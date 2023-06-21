@@ -1,11 +1,7 @@
 import React from 'react';
-import Head from '@/layouts/Head';
+import Head from '@layouts/user/Head';
 
-interface Props {
-  props: any;
-}
-
-const HomePage: React.FC<Props> = (): React.ReactElement => {
+const HomePage: React.FC = (): React.ReactElement => {
   return <Head title="Home Page" />;
 };
 
