@@ -1,0 +1,18 @@
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import styles from './Loader.module.scss';
+import color from '@/styles/Colors.module.scss';
+import Logo from '@assets/images/logo.svg';
+
+const Loader: React.FC = (): React.ReactElement => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.loaderContainer}>
+        <img className={styles.logo} src={Logo} alt="logo" />
+        <CircularProgress size={20} style={{ color: color.red }} />
+      </div>
+    </div>
+  );
+};
+
+export default Loader;

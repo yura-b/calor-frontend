@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "env-cmd -f .env vite --host",
+    "prod": "env-cmd -f .env.prod vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
@@ -18,6 +19,7 @@
     "@mui/material": "^5.13.5",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
+    "env-cmd": "^10.1.0",
     "formik": "^2.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
