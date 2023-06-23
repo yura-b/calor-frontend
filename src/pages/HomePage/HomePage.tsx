@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Head from '@/layouts/Head';
 import Cart from '../../components/ui/Cart';
+import { titles } from '@/translations/titles';
+import styles from './HomePage.module.scss';
 
 interface Props {
   props: any;
@@ -18,7 +20,7 @@ const HomePage: React.FC<Props> = (): React.ReactElement => {
   };
   return (
     <div>
-      <Head title="Home Page" />
+      <Head title={titles.homePage} />
       {!isCartOpen && <button onClick={openCart}>Open Cart</button>}
       {isCartOpen && (
         <div className="cart-overlay">
@@ -28,6 +30,7 @@ const HomePage: React.FC<Props> = (): React.ReactElement => {
         </div>
       )}
     </div>
+
   );
 };
 

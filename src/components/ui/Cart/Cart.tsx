@@ -1,5 +1,5 @@
 import React from 'react';
-import { COLORS } from '@/constants/user/colors';
+
 import style from './cart.module.scss';
 import basketImage from '@/assets/cartImages/basket.png';
 import closeBtnImage from '@/assets/cartImages/closeBtn.png';
@@ -14,7 +14,7 @@ interface Props {
 const Cart: React.FC<Props> = ({ title, onClose }): React.ReactElement => {
   return (
     <div className={style.cartContainer}>
-      <div className={style.cartHeader} style={{ background: COLORS.red, color: COLORS.white }}>
+      <div className={style.cartHeader}>
         <div>{title.toUpperCase()}</div>
         <div>
           <img src={basketImage} />
