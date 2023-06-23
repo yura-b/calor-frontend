@@ -1,0 +1,53 @@
+@import '@styles/Colors.module.scss';
+
+.button {
+  font: {
+    size: 1.25rem;
+    weight: 700;
+  }
+  line-height: 22px;
+  letter-spacing: 0.4px;
+  height: 44px;
+  max-width: 345px;
+  width: 100%;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  &.primary {
+    background-color: $darkGray;
+    color: $white;
+    &:hover {
+      moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+      background-color: $white;
+      color: $darkGray;
+      border: 1px solid $darkGray;
+    }
+
+    &.button:focus {
+      outline: none;
+    }
+  }
+  &.secondary {
+    color: $darkGray;
+    border:1px solid $darkGray;
+    background-color: transparent;
+    &:hover {
+      moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+      background-color: $darkGray;
+      color: $white;
+      border: 1px solid $darkGray;
+    }
+  }
+}
+
+

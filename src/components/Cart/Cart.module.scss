@@ -1,0 +1,67 @@
+@import '@/styles/Colors.module.scss';
+
+.cartContainer {
+    font-family: Poppins;
+    .cartHeader {
+        font-weight: 900;
+        font-size: 1.5rem;
+        height: 60px;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        background-color: $red;
+        color: $white;
+        .title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .headerNavigation {
+            margin-left: auto;
+            display: flex;
+            .customBadgeContainer {
+                position: relative;
+                margin-right: 30px;
+                .customBadge {
+                    position: absolute;
+                    top: -8px;
+                    right: -10px;
+                    background-color: $green;
+                    color: $white;
+                    border-radius: 50%;
+                    padding: 5px;
+                    font-size: 12px;
+                    width: 18px;
+                    height: 18px;
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+    .cartBody {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 24px;
+        color: $darkGray;
+
+        .itemsInfo {
+            background-color: $lightGreen;
+            width: 100%;
+            height: 50px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: $darkGray;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+        }
+    }
+}
