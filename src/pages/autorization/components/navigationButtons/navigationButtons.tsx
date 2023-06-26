@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router';
 const NavigationButtons = ({ isLogin = false }) => {
   const navigate = useNavigate();
   const signInHandler = () => {
-    navigate('/signup');
+    navigate('/login');
   };
   const signUpHandler = () => {
-    navigate('/login');
+    navigate('/signup');
   };
   return (
     <div className={'flex flex-row justify-end mb-12'}>
