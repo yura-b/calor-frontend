@@ -1,8 +1,8 @@
 import CustomInput from '@components/input/CustomInput.tsx';
 import * as yup from 'yup';
 import {useFormik} from 'formik';
-import NavigationButtons from '@/pages/autorization/components/navigationButtons/navigationButtons.tsx';
-import ForgotPassword from '@/pages/autorization/components/forgotPassword/forgotPassword.tsx';
+import NavigationButtons from '@pages/autorization/components/navigationButtons/navigationButtons.tsx';
+import ForgotPassword from '@pages/autorization/components/forgotPassword/forgotPassword.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import {useAppDispatch} from '@/store/hooks/hooks.ts';
 import {LoginDto} from '@/api/dto/login.dto.ts';

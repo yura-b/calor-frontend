@@ -1,7 +1,7 @@
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
-import HomePage from '@/pages/user/HomePage';
-import LoginPage from '@/pages/autorization/login/LoginPage.tsx';
-import SignupPage from '@/pages/autorization/signup/SignupPage.tsx';
+import HomePage from '@/pages/HomePage';
+import LoginPage from '@pages/autorization/login/LoginPage.tsx';
+import SignupPage from '@pages/autorization/signup/SignupPage.tsx';
 import {useQuery} from 'react-query';
 import {useAppDispatch, useAppSelector} from '@/store/hooks/hooks.ts';
 import {errorCorrupted, loading} from '@/store/reducers/StatusReducer.ts';

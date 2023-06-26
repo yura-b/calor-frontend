@@ -21,7 +21,7 @@ const GoogleSignIn = () => {
             dispatch(errorCorrupted('something went wrong'))
         },
         onError: () => {
-            console.log('Login Failed');
+            console.log('login Failed');
         }
     });
 

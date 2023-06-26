@@ -1,6 +1,6 @@
 import Semicircle from '@components/semicircle/Semicircle.tsx';
 import styles from './AuthorizationHeader.module.scss';
-import logo from '../../../../assets/images/logo.png';
+import logo from '@assets/images/logo.png';
 
 const AuthorizationHeader = () => {
   return (
