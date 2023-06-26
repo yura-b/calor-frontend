@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import style from './PurchasedGoods.module.scss';
-import styles from '@/styles/Colors.module.scss';
-
 import purchasedGoodsImg from '@assets/cartImages/purchasedGoodsImg.svg';
 import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
 
@@ -22,11 +19,11 @@ const PurchasedGoods: React.FC<Props> = ({ title, size, price }): React.ReactEle
     }
   };
   return (
-    <div className="flex">
-      <div className={style.purchasedProductImg}>
+    <div className="flex max-w-lg text-darkGray">
+      <div className="basis-4/12">
         <img src={purchasedGoodsImg} />
       </div>
-      <div className="w-full">
+      <div className="w-full basis-8/12">
         <div className="flex justify-between items-center">
           <p className="text-xl font-bold">{title}</p>
           <div>
@@ -34,7 +31,10 @@ const PurchasedGoods: React.FC<Props> = ({ title, size, price }): React.ReactEle
           </div>
         </div>
         <div className="mt-2 text-base">
-          Size: <span style={{ color: styles['lightGray'] }}>{size}</span>
+          <p>
+            {' '}
+            Size: <span>{size}</span>
+          </p>
         </div>
         <div className="flex justify-between items-baseline">
           <p className="text-base">$ {price}</p>

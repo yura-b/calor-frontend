@@ -3,6 +3,7 @@ $white: #FFFFFF;
 $darkGray: #4E4E4D;
 $lightGray: #787878;
 $lightGreen: #B8E4D8;
+$lighterGray: #F7F7F7;
 $green: #1EC1AA;
 
 :export {
@@ -12,4 +13,5 @@ $green: #1EC1AA;
     lightGreen: $lightGreen;
     lightGray: $lightGray;
     green: $green;
+    lighterGray: $lighterGray;
 }
