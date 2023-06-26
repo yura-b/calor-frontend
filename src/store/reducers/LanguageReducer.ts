@@ -4,14 +4,21 @@ export interface IState {
   [value: string]: string;
 }
 
+export interface ILanguage {
+  title: string;
+  en: string;
+}
+
 export const initialState: IState = {};
 
 export const LanguageSlice = createSlice({
   name: 'language',
   initialState,
   reducers: {
-    setLanguages: (state, action: PayloadAction<IState>) => {
-      state = action.payload;
+    setLanguages: (state, action: PayloadAction<ILanguage[]>) => {
+      action.payload.forEach((language) => {
+        state[language.title] = language.en;
+      });
     },
   },
 });

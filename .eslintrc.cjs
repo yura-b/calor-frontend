@@ -12,7 +12,6 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": "warn",
     "react/react-in-jsx-scope": "off",
-    "camelcase": "error",
     "spaced-comment": "error",
     "quotes": ["error", "single"],
     "no-duplicate-imports": "error"

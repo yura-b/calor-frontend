@@ -12,7 +12,9 @@ export default {
                 'white': '#FFFFFF',
                 'lightGreen': '#B8E4D8',
                 'green': '#1EC1AA',
-                'red': '#E22D21'
+                'red': '#E22D21',
+                'custom-turquoise': '#B8E4D8',
+                'custom-red': '#E22D21'
               },
               fontFamily: {
                 poppins: ['Poppins', 'sans-serif'],
@@ -20,8 +22,8 @@ export default {
               inset: {
                 '-2': '-8px',
               },
+            },
         },
-    },
     plugins: [],
 }
 
