@@ -1,10 +1,8 @@
-import dot from '@assets/images/circle/dot.png';
-import circle from '@assets/images/circle/circle.png';
+import circle from '../../assets/images/circle/Union.png';
 
-const Semicircle = () => {
+const Semicircle = ({ position }) => {
   return (
-    <div className="flex flex-col w-auto items-baseline absolute">
-      <img src={dot} alt={''} className={'h-full'} />
+    <div className={`flex flex-col w-auto items-baseline absolute ${position} h-40`}>
       <img src={circle} alt={''} className={'h-full'} />
     </div>
   );
