@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const backendUrl = 'http://localhost:3000';
+export const backendUrl = import.meta.env.VITE_BASE_URL;
 
 export const getTexts = () => {
   return axios.get(`${backendUrl}/text`);
