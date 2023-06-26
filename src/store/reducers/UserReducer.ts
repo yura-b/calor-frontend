@@ -4,7 +4,8 @@ import {Role} from '@/constants/enums/role.enum.ts';
 
 export interface IUser {
     access_token: string | null,
-    username: string,
+    firstName: string,
+    secondName: string,
     phoneNumber: string
     userId: string,
     roles: Role[] | null
@@ -14,7 +15,8 @@ export interface IUser {
 export const initialState: IUser = {
     access_token: localStorage.getItem('access_token'),
     phoneNumber: '',
-    username: '',
+    firstName: '',
+    secondName: '',
     userId: '',
     roles: null
 }
@@ -23,9 +25,11 @@ export const UserSlice = createSlice({
     initialState,
     reducers: {
         setUserData: (state, action: PayloadAction<IUser>) => {
-            const {access_token, userId, phoneNumber = '', username, roles} = action.payload
+            const {access_token, userId, phoneNumber = '', firstName, secondName, roles} = action.payload
+
             state.access_token = access_token
-            state.username = username
+            state.firstName = firstName
+            state.secondName = secondName
             state.phoneNumber = phoneNumber
             state.userId = userId
             state.roles = roles

@@ -7,7 +7,7 @@ const LoginPage = () => {
     //  const languages = useAppSelector((state) => state.language);
 
     return (
-        <div>
+        <div className={'flex flex-col h-full min-h-screen'}>
             <AuthorizationHeader/>
             <LoginForm/>
             <GoogleSignIn/>

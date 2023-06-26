@@ -19,7 +19,7 @@ const LoginForm = () => {
             .then((res) => {
                 const response = res.data
                 dispatch(loadingFinished())
-               dispatch(setUserData(response))
+                dispatch(setUserData(response))
             })
             .catch((e) => {
                 dispatch(errorCorrupted(e?.meesage))
