@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import style from './EmptyCart.module.scss';
+import React from 'react';
 import basketLayout from '@assets/cartImages/basketLayout.svg';
 import layout from '@assets/cartImages/layout.svg';
-import Button from '../../../ui/Button';
 
 interface Props {
   title: string;
@@ -13,11 +11,11 @@ const EmptyCart: React.FC<Props> = ({ title }): React.ReactElement => {
     <>
       <div className="flex items-center justify-center relative">
         <img src={layout} />
-        <img className={style.busketImg} src={basketLayout} />
+        <img className="absolute left-1/2 -translate-x-1/2 top-1/2 -ml-2" src={basketLayout} />
       </div>
-      <Button styled={'primary'} className="mt-10">
+      <button className="mt-10 base-text h-9 w-full border border-darkGray font-bold text-white bg-darkGray max-w-xs">
         Continue Shopping
-      </Button>
+      </button>
     </>
   );
 };

@@ -45,18 +45,18 @@ const Cart: React.FC<Props> = ({ title, onClose }): React.ReactElement => {
       title: 'Dayger',
       img: likesCategoryImg1,
       priceFrom: 10,
-      rating: 1,
+      rating: 4,
     },
     {
       title: 'Yolo',
       img: likesCategoryImg2,
       priceFrom: 100,
-      rating: 4,
+      rating: 0,
     },
   ];
   return (
     <div className="font-poppins">
-      <div className="h-16 flex items-center w-full bg-red text-white">
+      <div className="h-16 flex items-center w-full bg-custom-red text-white">
         <p className="absolute left-1/2 transform -translate-x-1/2 text-xl font-semibold">{title.toUpperCase()}</p>
         <div className="ml-auto flex">
           <div className="relative mr-6">
@@ -75,42 +75,42 @@ const Cart: React.FC<Props> = ({ title, onClose }): React.ReactElement => {
       <div className="flex flex-col items-center justify-center m-6 gap-4 text-darkGray">
         {!cartPurchasedItems.length ? (
           <>
-            <div className="bg-lightGreen w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
+            <div className="bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
               The are no items in your card
             </div>
             <EmptyCart title="" />
           </>
-        ) : (
-          ''
-        )}
+        ) : null}
         {cartPurchasedItems.length ? (
           <>
-            <div className="bg-lightGreen w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
+            <div className="bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
               Items in your cart are not reserved - checkout now to make them yours
             </div>
             {cartPurchasedItems.map((item) => (
               <PurchasedGoods title={item.title} size={item.size} price={item.price} />
             ))}
           </>
-        ) : (
-          ''
-        )}
+        ) : null}
       </div>
-      <h1 className="px-6 text-darkGray text-xl font-semibold">EXTRAS</h1>
-      <div className="bg-lightGray flex flex-wrap gap-4">
-        {ExtrasItems.map((item) => (
-          <Extras img={item.img} price={item.price} text={item.text} />
-        ))}
-        <hr className="border-t border-darkGray my-4 w-full mx-6" />
-        <div>
-          <h1 className="px-6 text-darkGray text-xl font-semibold">YOU MAY ALSO LIKE</h1>
-          <div className="mx-6 flex gap-2.5">
-            {LikesGoodsItems.map((item) => (
-              <LikesGoods title={item.title} img={item.img} priceFrom={item.priceFrom} rating={item.rating} />
+      {cartPurchasedItems.length ? (
+        <>
+          <h1 className="px-6 text-darkGray text-xl font-semibold">EXTRAS</h1>
+          <div className="bg-lightGray flex flex-wrap gap-4">
+            {ExtrasItems.map((item) => (
+              <Extras img={item.img} price={item.price} text={item.text} />
             ))}
+            <hr className="border-t border-darkGray my-4 w-full mx-6" />
+            <div>
+              <h1 className="px-6 text-darkGray text-xl font-semibold">YOU MAY ALSO LIKE</h1>
+              <div className="mx-6 flex gap-2.5">
+                {LikesGoodsItems.map((item) => (
+                  <LikesGoods title={item.title} img={item.img} priceFrom={item.priceFrom} rating={item.rating} />
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : null}
     </div>
   );
 };

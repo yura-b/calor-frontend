@@ -7,19 +7,17 @@ interface Props {
 const StarRating: React.FC<Props> = ({ rating }): React.ReactElement => {
   const starClasses = 'inline-block text-xl';
 
-  const renderStars = (): React.ReactElement[] => {
-    const stars: React.ReactElement[] = [];
-
-    for (let i = 1; i <= 5; i++) {
-      const starClass = i <= rating ? `${starClasses} text-yellow-500` : `${starClasses} text-gray-300`;
-      stars.push(
-        <span key={i} className={starClass}>
-          &#9733;
-        </span>
-      );
-    }
-
-    return stars;
+  const renderStars = () => {
+    return Array(5)
+      .fill(null)
+      .map((_, i) => {
+        const starClass = i + 1 <= rating ? `${starClasses} text-yellow` : `${starClasses} text-lighterGray`;
+        return (
+          <span key={i} className={starClass}>
+            &#9733;
+          </span>
+        );
+      });
   };
 
   return <div>{renderStars()}</div>;

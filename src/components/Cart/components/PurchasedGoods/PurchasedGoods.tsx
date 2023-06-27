@@ -19,7 +19,7 @@ const PurchasedGoods: React.FC<Props> = ({ title, size, price }): React.ReactEle
     }
   };
   return (
-    <div className="flex max-w-lg text-darkGray">
+    <div className="flex max-w-lg text-darkGray mx-6">
       <div className="basis-4/12">
         <img src={purchasedGoodsImg} />
       </div>
