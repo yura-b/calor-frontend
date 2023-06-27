@@ -14,13 +14,13 @@ const EmptyCart: React.FC<Props> = ({ title }): React.ReactElement => {
   return (
     <>
       <div className="bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
-        The are no items in your card
+        {title}
       </div>
       <div className="flex items-center justify-center relative">
         <img src={layout} />
         <img className="absolute left-1/2 -translate-x-1/2 top-1/2 -ml-2" src={basketLayout} />
       </div>
-      <Button backgroundColor="darkGray" textColor="white" className="w-full mt-6" onClick={handleClick}>
+      <Button backgroundColor="gray" textColor="white" className="w-full mt-6" onClick={handleClick}>
         Continue Shopping
       </Button>
     </>

@@ -13,7 +13,7 @@ const LikesGoods: React.FC<Props> = ({ img, priceFrom, title, rating }): React.R
     console.log('Button clicked!');
   };
   return (
-    <div className="basis-1/2 text-darkGray">
+    <div className="basis-1/2 text-gray">
       <div className=" w-33 ">
         <img src={img} />
       </div>
@@ -28,11 +28,10 @@ const LikesGoods: React.FC<Props> = ({ img, priceFrom, title, rating }): React.R
           <span className="text-sm">From</span> <span className="font-bold"> $ {priceFrom}</span>
         </p>
         <div className="flex justify-between mt-4 items-center">
-          {/* <button className="base-text h-9 w-full border border-darkGray font-bold">Add</button> */}
           <Button
             backgroundColor="lighterGray"
-            textColor="darkGray"
-            className="w-full border-darkGray hover:bg-darkGray hover:text-white"
+            textColor="gray"
+            className="w-full border-gray hover:bg-gray hover:text-white"
             onClick={handleClick}
           >
             Add

@@ -3,7 +3,7 @@ import Button from '../../../ui/Button';
 
 interface Props {
   title: string;
-  data: any[];
+  data: object[];
 }
 
 const CartFooter: React.FC<Props> = ({ title, data }): React.ReactElement => {
@@ -37,8 +37,8 @@ const CartFooter: React.FC<Props> = ({ title, data }): React.ReactElement => {
     console.log('Checkout Button clicked!');
   };
   return (
-    <div className="max-w-lg px-6 py-2.5 text-darkGray">
-      <h1 className="my-4 text-darkGray text-xl font-semibold">{title}</h1>
+    <div className="max-w-lg px-6 py-2.5 text-gray">
+      <h1 className="my-4 text-gray text-xl font-semibold">{title}</h1>
       <div className="text-base">
         <div className="flex justify-between mt-4 items-center">
           <p>{data.length} Item</p>
@@ -52,7 +52,7 @@ const CartFooter: React.FC<Props> = ({ title, data }): React.ReactElement => {
           <p>Taxes</p>
           <p>$ XXX</p>
         </div>
-        <div className="flex justify-between mt-4 items-center text-green text-xl font-bold">
+        <div className="flex justify-between mt-4 items-center text-mint text-xl font-bold">
           <p>Subtotal</p>
           <p>$ XXX</p>
         </div>
@@ -66,7 +66,7 @@ const CartFooter: React.FC<Props> = ({ title, data }): React.ReactElement => {
           maxLength={9}
         />
         {showHint && <p className="text-red-500 mt-1 text-sm">Please enter at least 9 characters.</p>}
-        <Button backgroundColor="green" textColor="white" className="mt-8" onClick={handleClick}>
+        <Button backgroundColor="mint" textColor="white" className="mt-8" onClick={handleClick}>
           Checkout
         </Button>
       </div>

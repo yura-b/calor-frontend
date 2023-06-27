@@ -23,7 +23,7 @@ const PurchasedGoods: React.FC<Props> = ({ title, size, price, countGoogs }): Re
     console.log('Button clicked!');
   };
   return (
-    <div className="flex max-w-lg text-darkGray">
+    <div className="flex max-w-lg text-gray">
       <div className="basis-4/12">
         <img src={purchasedGoodsImg} />
       </div>

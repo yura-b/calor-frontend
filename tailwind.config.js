@@ -7,11 +7,11 @@ export default {
     theme: {
         extend: {
             colors: {
-                'darkGray': '#404040',
+                'gray': '#404040',
                 'lightGray': '#F7F7F7',
                 'lighterGray': '#D9D9D9',
                 'white': '#FFFFFF',
-                'green': '#1EC1AA',
+                'mint': '#1EC1AA',
                 'custom-turquoise': '#B8E4D8',
                 'custom-red': '#E22D21',
                 'yellow': '#FFB800'

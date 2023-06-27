@@ -4,7 +4,7 @@ import closeBtnImage from '@/assets/cartImages/closeBtn.png';
 
 interface Props {
   title: string;
-  data: any[];
+  data: object[];
   onClose: () => void;
 }
 
@@ -16,7 +16,7 @@ const CartHeader: React.FC<Props> = ({ title, data, onClose }): React.ReactEleme
         <div className="relative mr-6">
           <img src={basketImage} alt="Basket" className="mr-2" />
           {data.length ? (
-            <span className="absolute top-0 right-0 bg-green text-white rounded-full p-1 text-xs w-4 h-4 flex items-center justify-center">
+            <span className="absolute top-0 right-0 bg-mint text-white rounded-full p-1 text-xs w-4 h-4 flex items-center justify-center">
               {data.length}
             </span>
           ) : (

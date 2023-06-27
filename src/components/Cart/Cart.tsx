@@ -15,7 +15,7 @@ interface Props {
   onClose: () => void;
 }
 
-const Cart: React.FC<Props> = ({ onClose }): React.ReactElement => {
+const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
   const cartPurchasedItems = [
     {
       title: 'Sunrise',
@@ -60,9 +60,9 @@ const Cart: React.FC<Props> = ({ onClose }): React.ReactElement => {
   ];
   return (
     <div className="font-poppins">
-      <CartHeader title="Cart" data={cartPurchasedItems} onClose={onClose} />
-      <div className="flex flex-col items-center justify-center m-6 gap-4 text-darkGray">
-        {!cartPurchasedItems.length ? <EmptyCart title="" /> : null}
+      <CartHeader title={title} data={cartPurchasedItems} onClose={onClose} />
+      <div className="flex flex-col items-center justify-center m-6 gap-4 text-gray">
+        {!cartPurchasedItems.length ? <EmptyCart title="The are no items in your card" /> : null}
         {cartPurchasedItems.length ? (
           <>
             <div className="bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
@@ -76,14 +76,14 @@ const Cart: React.FC<Props> = ({ onClose }): React.ReactElement => {
       </div>
       {cartPurchasedItems.length ? (
         <>
-          {ExtrasItems.length ? <h1 className="px-6 text-darkGray text-xl font-semibold">EXTRAS</h1> : null}
+          {ExtrasItems.length ? <h1 className="px-6 text-gray text-xl font-semibold">EXTRAS</h1> : null}
           <div className="bg-lightGray flex flex-wrap gap-4 pb-6">
             {ExtrasItems.map((item) => (
               <Extras name={item.name} img={item.img} price={item.price} text={item.text} />
             ))}
-            <hr className="border-t border-darkGray my-4 w-full mx-6" />
+            <hr className="border-t border-gray my-4 w-full mx-6" />
             <div>
-              <h1 className="px-6 text-darkGray text-xl font-semibold">YOU MAY ALSO LIKE</h1>
+              <h1 className="px-6 text-gray text-xl font-semibold">YOU MAY ALSO LIKE</h1>
               <div className="mx-6 flex gap-2.5">
                 {LikesGoodsItems.map((item) => (
                   <LikesGoods title={item.title} img={item.img} priceFrom={item.priceFrom} rating={item.rating} />

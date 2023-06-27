@@ -24,7 +24,7 @@ const Extras: React.FC<Props> = ({ name, img, price, text }): React.ReactElement
     setOpen(false);
   };
   return (
-    <div className="flex max-w-lg px-6 py-2.5 text-darkGray">
+    <div className="flex max-w-lg px-6 py-2.5 text-gray">
       <div className="basis-4/12 ">
         <div className="bg-white flex rounded-full w-24 mt-1">
           <img src={img} />
@@ -32,7 +32,7 @@ const Extras: React.FC<Props> = ({ name, img, price, text }): React.ReactElement
       </div>
       <div className="w-full basis-8/12">
         <p className="text-base mb-1">{text}</p>
-        <Link to="" className="font-bold border-b-2  border-darkGray mt-10" onClick={handleOpen}>
+        <Link to="" className="font-bold border-b-2  border-gray mt-10" onClick={handleOpen}>
           Details
         </Link>
         <Modal className="flex items-center justify-center" open={open} onClose={handleClose}>
@@ -44,8 +44,8 @@ const Extras: React.FC<Props> = ({ name, img, price, text }): React.ReactElement
             <Button
               onClick={handleClose}
               backgroundColor="lighterGray"
-              textColor="darkGray"
-              className="w-20 border-darkGray hover:bg-darkGray hover:text-white"
+              textColor="gray"
+              className="w-20 border-gray hover:bg-gray hover:text-white"
             >
               Close
             </Button>
@@ -55,8 +55,8 @@ const Extras: React.FC<Props> = ({ name, img, price, text }): React.ReactElement
           <p className="text-base basis-1/2">$ {price}</p>
           <Button
             backgroundColor="lighterGray"
-            textColor="darkGray"
-            className="w-20 border-darkGray hover:bg-darkGray hover:text-white"
+            textColor="gray"
+            className="w-20 border-gray hover:bg-gray hover:text-white"
             onClick={handleClick}
           >
             Add

@@ -3,11 +3,8 @@ import Head from '@/layouts/Head';
 import Cart from '@components/Cart';
 import { titles } from '@/translations/titles';
 import { Modal } from '@mui/material';
-interface Props {
-  props: any;
-}
 
-const HomePage: React.FC<Props> = (): React.ReactElement => {
+const HomePage: React.FC = (): React.ReactElement => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const openCart = () => {
