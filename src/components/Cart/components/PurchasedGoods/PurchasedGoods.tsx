@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import purchasedGoodsImg from '@assets/cartImages/purchasedGoodsImg.svg';
 import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
-
+import Button from '../../../ui/Button';
 interface Props {
   title: string;
   size: number;
   price: number;
+  countGoogs: number;
 }
 
-const PurchasedGoods: React.FC<Props> = ({ title, size, price }): React.ReactElement => {
-  const [count, setCount] = useState(1);
+const PurchasedGoods: React.FC<Props> = ({ title, size, price, countGoogs }): React.ReactElement => {
+  const [count, setCount] = useState(countGoogs);
   const incrementCount = () => {
     setCount((prevCount) => prevCount + 1);
   };
@@ -18,17 +19,20 @@ const PurchasedGoods: React.FC<Props> = ({ title, size, price }): React.ReactEle
       setCount((prevCount) => prevCount - 1);
     }
   };
+  const handleClick = () => {
+    console.log('Button clicked!');
+  };
   return (
-    <div className="flex max-w-lg text-darkGray mx-6">
+    <div className="flex max-w-lg text-darkGray">
       <div className="basis-4/12">
         <img src={purchasedGoodsImg} />
       </div>
       <div className="w-full basis-8/12">
         <div className="flex justify-between items-center">
           <p className="text-xl font-bold">{title}</p>
-          <div>
+          <Button className="w-8 border-0 flex items-center justify-center h-8" onClick={handleClick}>
             <img src={deleteIcon} />
-          </div>
+          </Button>
         </div>
         <div className="mt-2 text-base">
           <p>
