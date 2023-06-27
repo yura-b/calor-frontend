@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Loader from '@/components/ui/Loader/';
 
 const HomePage = lazy(() => import('@pages/HomePage'));
-const LoginPage = lazy(() => import('@/pages/auth/login/LoginPage'));
+const LoginPage = lazy(() => import('@/pages/autorization/login/LoginPage'));
 const SignupPage = lazy(() => import('@pages/autorization/signup/SignupPage'));
 
 const AppRouter = () => {
