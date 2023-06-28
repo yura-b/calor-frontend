@@ -16,7 +16,6 @@ export default {
                 'white': '#FFFFFF',
                 'mint': '#1EC1AA',
                 'custom-turquoise': '#B8E4D8',
-                'mint': '#1EC1AA',
                 'custom-red': '#E22D21',
                 'yellow': '#FFB800'
               },
