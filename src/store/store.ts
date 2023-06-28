@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import languageReducer from '@/store/reducers/LanguageReducer.ts';
 import statusReducer from '@/store/reducers/StatusReducer.ts';
 import userReducer from '@/store/reducers/UserReducer.ts';
+import registrationReducer from '@/store/reducers/RegistrationReducer.ts';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     language: languageReducer,
     status: statusReducer,
+    registration: registrationReducer,
   },
 });
 
