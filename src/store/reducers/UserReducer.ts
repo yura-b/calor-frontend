@@ -18,12 +18,25 @@ export const initialState: IUser = {
   userId: '',
   roles: null,
 };
+
+export interface ISetUserData extends IUser {
+  rememberMe?: boolean;
+}
+
 export const UserSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUserData: (state, action: PayloadAction<IUser>) => {
-      const { access_token, userId, phoneNumber = '', firstName, secondName, roles } = action.payload;
+    setUserData: (state, action: PayloadAction<ISetUserData>) => {
+      const {
+        access_token,
+        userId,
+        phoneNumber = '',
+        firstName,
+        secondName,
+        roles,
+        rememberMe = false,
+      } = action.payload;
 
       state.access_token = access_token;
       state.firstName = firstName;
@@ -32,7 +45,7 @@ export const UserSlice = createSlice({
       state.userId = userId;
       state.roles = roles;
 
-      if (access_token) localStorage.setItem('access_token', access_token);
+      if (access_token && rememberMe) localStorage.setItem('access_token', access_token);
     },
   },
 });
