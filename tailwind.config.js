@@ -5,6 +5,9 @@ export default {
         './src/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
+        minWidth:{
+            25: '25%'
+        },
         extend: {
             colors: {
                 'gray': '#404040',

@@ -11,8 +11,11 @@ export interface IProps {
 const CustomButton: React.FC<IProps> = ({ handler, styles, title, type }) => {
   return (
     <Button
+
+      variant={'contained'}
       className={styles}
       type={type}
+      disableRipple
       sx={{
         bgcolor: '#4e4e4d',
         color: 'white',

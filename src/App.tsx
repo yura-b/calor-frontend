@@ -17,8 +17,8 @@ const App = () => {
   if (isLoading) dispatch(loading());
   if (data?.status === HttpStatusCode.Ok) dispatch(setLanguages(data.data));
 
-  let { access_token } = useAppSelector((state) => state.user);
-  access_token = '';
+  const { access_token } = useAppSelector((state) => state.user);
+
   return (
     <BrowserRouter>
       <Routes>

@@ -13,6 +13,9 @@ export interface IProps {
   id?: string;
   placeholder?: string;
   children?: ReactNode;
+  border?: string;
+  description?: string;
+  errorMessage?: string;
 }
 
 const CustomInput: React.FC<IProps> = (props) => {
@@ -20,15 +23,18 @@ const CustomInput: React.FC<IProps> = (props) => {
     <>
       <div className={'flex flex-col gap-2 mb-4'}>
         <p className={'font-bold'}>{props.children}</p>
+        <p>{props.description}</p>
         <Input
           type={props.type}
           sx={{
             bgcolor: 'white',
             paddingY: '10px',
             paddingX: '5px',
+            border: props.border,
           }}
           {...props}
         />
+        {props.error && <p className={'text-custom-red'}>{props.errorMessage}</p>}
       </div>
     </>
   );

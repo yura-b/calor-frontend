@@ -1,9 +1,12 @@
 import React from 'react';
 import { Checkbox } from '@mui/material';
 
-const ForgotPassword = () => {
-  const checkboxHandler = () => {
-    console.log('checkbox');
+interface IProps {
+  setRememberMe: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const ForgotPassword: React.FC<IProps> = ({ setRememberMe }) => {
+  const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRememberMe(e.target.checked);
   };
   return (
     <div className={'flex justify-between items-center mb-6'}>
