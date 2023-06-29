@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../ui/Button';
+import Button from '@/components/ui/Button';
 import { Modal } from '@mui/material';
 interface Props {
   name: string;

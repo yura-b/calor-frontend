@@ -1,6 +1,6 @@
 import React from 'react';
-import StarRating from '../../../ui/StartRating';
-import Button from '../../../ui/Button';
+import StarRating from '@/components/ui/StarRating';
+import Button from '@/components/ui/Button';
 interface Props {
   title: string;
   img: string;

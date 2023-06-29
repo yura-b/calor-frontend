@@ -60,7 +60,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
   ];
   return (
     <div className="font-poppins">
-      <CartHeader title={title} data={cartPurchasedItems} onClose={onClose} />
+      <CartHeader title={title} onClose={onClose} />
       <div className="flex flex-col items-center justify-center m-6 gap-4 text-gray">
         {!cartPurchasedItems.length ? <EmptyCart title="The are no items in your card" /> : null}
         {cartPurchasedItems.length ? (

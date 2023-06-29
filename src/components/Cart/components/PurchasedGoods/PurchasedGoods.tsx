@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import purchasedGoodsImg from '@assets/cartImages/purchasedGoodsImg.svg';
 import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
-import Button from '../../../ui/Button';
 interface Props {
   title: string;
   size: number;
@@ -30,9 +29,9 @@ const PurchasedGoods: React.FC<Props> = ({ title, size, price, countGoogs }): Re
       <div className="w-full basis-8/12">
         <div className="flex justify-between items-center">
           <p className="text-xl font-bold">{title}</p>
-          <Button className="w-8 border-0 flex items-center justify-center h-8" onClick={handleClick}>
+          <div className="p-1 flex items-center justify-center" onClick={handleClick}>
             <img src={deleteIcon} />
-          </Button>
+          </div>
         </div>
         <div className="mt-2 text-base">
           <p>

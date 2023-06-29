@@ -1,7 +1,7 @@
 import React from 'react';
 import basketLayout from '@assets/cartImages/basketLayout.svg';
 import layout from '@assets/cartImages/layout.svg';
-import Button from '../../../ui/Button';
+import Button from '@/components/ui/Button';
 
 interface Props {
   title: string;
