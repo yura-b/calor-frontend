@@ -41,8 +41,8 @@ const MainMenu: React.FC = (): React.ReactElement => {
   return (
     <nav className="flex justify-center font-black  text-xl lg:text-xl lg:font-semibold">
       <div className="flex flex-col items-center lg:flex-row">
-        {menuItems.map((menuItem) => (
-          <div key={menuItem.id} className="relative group">
+        {menuItems.map((menuItem, index) => (
+          <div key={index} className="relative group">
             <button
               className="px-4 py-2 text-white hover:bg-gray-700 focus:outline-none"
               onClick={() => handleMenuItemClick(menuItem.id)}
