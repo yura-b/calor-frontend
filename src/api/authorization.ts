@@ -16,3 +16,10 @@ export const googleLogin = (credentials: string) => {
     credentials: credentials,
   });
 };
+
+export const sendEmailForReset = (email: string) => {
+  return axios.get(`${backendUrl}/user/reset/${email}`);
+};
+export const resetPassword = (id: string, password: string) => {
+  return axios.patch(`${backendUrl}/user/reset`, { id, password });
+};

@@ -17,7 +17,6 @@ const GoogleButton: React.FC<IGoogleButton> = ({ children }) => {
       dispatch(loading());
 
       googleLogin(tokenResponse.access_token).then((res) => {
-        console.log(res);
         dispatch(setUserData(res.data));
         dispatch(loadingFinished());
       });
@@ -38,7 +37,7 @@ const GoogleButton: React.FC<IGoogleButton> = ({ children }) => {
         borderRadius: '0px',
         height: '44px',
         border: '1px solid #D9D9D9',
-        width: '80%',
+        width: '100%',
       }}
     >
       <CardContent
@@ -49,7 +48,9 @@ const GoogleButton: React.FC<IGoogleButton> = ({ children }) => {
           padding: '10px',
         }}
       >
-        <Typography>{children}</Typography>
+        <Typography component={'div'} variant={'body1'}>
+          {children}
+        </Typography>
       </CardContent>
     </Card>
   );

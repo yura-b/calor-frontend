@@ -11,15 +11,20 @@ export enum ValidationResult {
 interface IProps {
   text: string;
   handler: (password: string, length: number) => ValidationResult;
-  property: keyof IPassword;
+  property?: keyof IPassword;
+  password?: string
 }
 
-const PasswordIdentifier: React.FC<IProps> = ({ text, handler, property }) => {
+const PasswordIdentifier: React.FC<IProps> = ({ text, handler, property, password }) => {
   const dispatch = useAppDispatch();
+
   const { firstPassword } = useAppSelector((state) => state.registration);
+  const passwordValues = password ? password: firstPassword.value
+
 
   if (!handler) return;
-  const result = handler(firstPassword.value, 8);
+
+  const result = handler(passwordValues, 8);
 
   let colorForCircle = '';
   let colorForText = '';
@@ -27,11 +32,11 @@ const PasswordIdentifier: React.FC<IProps> = ({ text, handler, property }) => {
   if (result === ValidationResult.ERROR) {
     colorForCircle = 'bg-custom-red';
     colorForText = 'text-custom-red';
-    dispatch(setExceptionState({ property: property, value: false }));
+    {property && dispatch(setExceptionState({property: property, value: false}));}
   }
 
   if (result === ValidationResult.SUCCESS) {
-    dispatch(setExceptionState({ property: property, value: true }));
+    {property && dispatch(setExceptionState({ property: property, value: true }));}
     colorForCircle = 'bg-mint';
     colorForText = 'text-mint';
   }
