@@ -11,6 +11,7 @@ export interface IProps {
 const CustomButton: React.FC<IProps> = ({ handler, styles, title, type }) => {
   return (
     <Button
+
       variant={'contained'}
       className={styles}
       type={type}
