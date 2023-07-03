@@ -15,7 +15,7 @@ export interface IProps {
   children?: ReactNode;
   border?: string;
   description?: string;
-  errorMessage?: string;
+  errormessage?: string;
 }
 
 const CustomInput: React.FC<IProps> = (props) => {
@@ -34,7 +34,7 @@ const CustomInput: React.FC<IProps> = (props) => {
           }}
           {...props}
         />
-        {props.error && <p className={'text-custom-red'}>{props.errorMessage}</p>}
+        {props.error && <p className={'text-custom-red'}>{props.errormessage}</p>}
       </div>
     </>
   );
