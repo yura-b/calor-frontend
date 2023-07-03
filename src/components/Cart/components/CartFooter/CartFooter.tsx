@@ -66,7 +66,7 @@ const CartFooter: React.FC<Props> = ({ title, data }): React.ReactElement => {
           maxLength={9}
         />
         {showHint && <p className="text-red-500 mt-1 text-sm">Please enter at least 9 characters.</p>}
-        <Button backgroundColor="mint" textColor="white" className="mt-8" onClick={handleClick}>
+        <Button color="mint" className="mt-8" onClick={handleClick}>
           Checkout
         </Button>
       </div>

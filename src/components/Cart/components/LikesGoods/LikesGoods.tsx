@@ -28,12 +28,7 @@ const LikesGoods: React.FC<Props> = ({ img, priceFrom, title, rating }): React.R
           <span className="text-sm">From</span> <span className="font-bold"> $ {priceFrom}</span>
         </p>
         <div className="flex justify-between mt-4 items-center">
-          <Button
-            backgroundColor="lighterGray"
-            textColor="gray"
-            className="w-full border-gray hover:bg-gray hover:text-white"
-            onClick={handleClick}
-          >
+          <Button color="transparentGray" onClick={handleClick}>
             Add
           </Button>
         </div>
