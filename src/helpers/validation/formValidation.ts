@@ -1,12 +1,14 @@
 import * as yup from 'yup';
 import { ValidationResult } from '@pages/autorization/signup/otherInfo/components/PasswordIdentifier.tsx';
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneNumberRegex = /^\+?\d{0,3}\s?(\(\d{1,4}\))?\s?\d{1,4}[\s.-]?\d{1,4}[\s.-]?\d{1,9}$/;
 
 export const validationSchemaForLogin = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
-  password: yup.string().min(8, 'Password should be of minimum 8 characters length').required('Password is required'),
+  password: yup
+    .string()
+    .min(8, 'ResetPassword should be of minimum 8 characters length')
+    .required('ResetPassword is required'),
 });
 export const validationSchemaForSignUp = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
@@ -20,7 +22,7 @@ export const validationSchemaForContactInfo = yup.object({
     .string()
     .min(3, 'First name should be of minimum 8 characters length')
     .required('Second name is required'),
-  phoneNumber: yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Phone number is required'),
+  phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
 });
 
 export const oneUpperCaseValidation = (password: string) => {
