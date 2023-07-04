@@ -6,15 +6,16 @@ interface Props {
   img: string;
   priceFrom: number;
   rating: number;
+  buttonClass?: string;
 }
 
-const LikesGoods: React.FC<Props> = ({ img, priceFrom, title, rating }): React.ReactElement => {
+const CardGoodsVertical: React.FC<Props> = ({ img, priceFrom, title, rating, buttonClass }): React.ReactElement => {
   const handleClick = () => {
     console.log('Button clicked!');
   };
   return (
-    <div className="basis-1/2 text-gray">
-      <div className=" w-33 ">
+    <div className="w-44 grow text-gray max-w-xs h-auto">
+      <div className="w-33 ">
         <img src={img} />
       </div>
       <div>
@@ -28,13 +29,20 @@ const LikesGoods: React.FC<Props> = ({ img, priceFrom, title, rating }): React.R
           <span className="text-sm">From</span> <span className="font-bold"> $ {priceFrom}</span>
         </p>
         <div className="flex justify-between mt-4 items-center">
-          <Button color="transparentGray" onClick={handleClick}>
-            Add
-          </Button>
+          {buttonClass == 'transparentGray' && (
+            <Button color="transparentGray" onClick={handleClick}>
+              Add
+            </Button>
+          )}
+          {buttonClass == 'transparentMint' && (
+            <Button color="transparentMint" onClick={handleClick}>
+              Customize
+            </Button>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default LikesGoods;
+export default CardGoodsVertical;

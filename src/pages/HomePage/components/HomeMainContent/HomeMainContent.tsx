@@ -23,7 +23,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
     console.log('Button clicked!');
   };
   return (
-    <div className="w-full h-screen bg-custom-red relative">
+    <div className="w-full bg-custom-red relative">
       <div className="flex w-full justify-around flex-wrap items-center relative z-10 lg:max-w-5xl mx-auto">
         <div className="flex basis-full lg:basis-2/3 grow pl-10 items-center gap-4 grow">
           <p className="text-4xl font-black text-white text-right leading-tight basis-1/2">DESIGN YOUR OWN SHOE</p>

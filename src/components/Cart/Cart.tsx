@@ -4,7 +4,7 @@ import PurchasedGoods from './components/PurchasedGoods';
 import Extras from './components/Extras';
 import CartFooter from './components/CartFooter';
 import CartHeader from './components/CartHeader';
-import LikesGoods from './components/LikesGoods';
+import CardGoodsVertical from '@components/CardGoodsVertical';
 import bag from '@assets/cartImages/bag.svg';
 import paste from '@assets/cartImages/paste.svg';
 import likesCategoryImg1 from '@assets/cartImages/likesCategoryImg1.svg';
@@ -94,12 +94,13 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
               <h1 className="px-6 text-gray text-xl font-semibold">YOU MAY ALSO LIKE</h1>
               <div className="mx-6 flex gap-2.5">
                 {LikesGoodsItems.map((item, index) => (
-                  <LikesGoods
+                  <CardGoodsVertical
                     title={item.title}
                     img={item.img}
                     priceFrom={item.priceFrom}
                     rating={item.rating}
                     key={index}
+                    buttonClass="transparentGray"
                   />
                 ))}
               </div>

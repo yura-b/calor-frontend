@@ -1,6 +1,6 @@
 import React from 'react';
 interface Props {
-  color: 'gray' | 'red' | 'mintExtraLight' | 'mint' | 'transparentGray';
+  color: 'gray' | 'red' | 'mintExtraLight' | 'mint' | 'transparentGray' | 'transparentMint';
   children: React.ReactNode;
   className?: string;
   onClick: () => void;
@@ -19,6 +19,8 @@ const Button: React.FC<Props> = ({ color, children, className, onClick }) => {
         return 'bg-mint text-white border border-mint hover:bg-transparent hover:text-mint hover:border hover:border-mint focus:bg-darkRed hover:drop-shadow-lg';
       case 'transparentGray':
         return 'bg-transparent text-gray border border-gray hover:bg-lighterGray focus:bg-darkRed hover:drop-shadow-lg';
+      case 'transparentMint':
+        return 'bg-transparent text-mint border border-mint hover:bg-mintExtraLight focus:bg-darkRed hover:drop-shadow-lg';
       default:
         return '';
     }

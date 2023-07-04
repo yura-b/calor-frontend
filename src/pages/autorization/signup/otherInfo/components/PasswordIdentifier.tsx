@@ -12,15 +12,14 @@ interface IProps {
   text: string;
   handler: (password: string, length: number) => ValidationResult;
   property?: keyof IPassword;
-  password?: string
+  password?: string;
 }
 
 const PasswordIdentifier: React.FC<IProps> = ({ text, handler, property, password }) => {
   const dispatch = useAppDispatch();
 
   const { firstPassword } = useAppSelector((state) => state.registration);
-  const passwordValues = password ? password: firstPassword.value
-
+  const passwordValues = password ? password : firstPassword.value;
 
   if (!handler) return;
 
@@ -32,11 +31,15 @@ const PasswordIdentifier: React.FC<IProps> = ({ text, handler, property, passwor
   if (result === ValidationResult.ERROR) {
     colorForCircle = 'bg-custom-red';
     colorForText = 'text-custom-red';
-    {property && dispatch(setExceptionState({property: property, value: false}));}
+    {
+      property && dispatch(setExceptionState({ property: property, value: false }));
+    }
   }
 
   if (result === ValidationResult.SUCCESS) {
-    {property && dispatch(setExceptionState({ property: property, value: true }));}
+    {
+      property && dispatch(setExceptionState({ property: property, value: true }));
+    }
     colorForCircle = 'bg-mint';
     colorForText = 'text-mint';
   }
