@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../ui/Button';
+import Button from '@/components/ui/Button';
 import { Modal } from '@mui/material';
 interface Props {
   name: string;
@@ -41,24 +41,14 @@ const Extras: React.FC<Props> = ({ name, img, price, text }): React.ReactElement
             <div className="bg-white flex rounded-full w-24 mt-1">
               <img src={img} />
             </div>
-            <Button
-              onClick={handleClose}
-              backgroundColor="lighterGray"
-              textColor="gray"
-              className="w-20 border-gray hover:bg-gray hover:text-white"
-            >
+            <Button onClick={handleClose} color="transparentGray" className="w-20">
               Close
             </Button>
           </div>
         </Modal>
         <div className="flex justify-between mt-4 items-center">
           <p className="text-base basis-1/2">$ {price}</p>
-          <Button
-            backgroundColor="lighterGray"
-            textColor="gray"
-            className="w-20 border-gray hover:bg-gray hover:text-white"
-            onClick={handleClick}
-          >
+          <Button color="transparentGray" className="w-20" onClick={handleClick}>
             Add
           </Button>
         </div>

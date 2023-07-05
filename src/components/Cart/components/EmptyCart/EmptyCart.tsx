@@ -1,7 +1,7 @@
 import React from 'react';
 import basketLayout from '@assets/cartImages/basketLayout.svg';
 import layout from '@assets/cartImages/layout.svg';
-import Button from '../../../ui/Button';
+import Button from '@/components/ui/Button';
 
 interface Props {
   title: string;
@@ -20,7 +20,7 @@ const EmptyCart: React.FC<Props> = ({ title }): React.ReactElement => {
         <img src={layout} />
         <img className="absolute left-1/2 -translate-x-1/2 top-1/2 -ml-2" src={basketLayout} />
       </div>
-      <Button backgroundColor="gray" textColor="white" className="w-full mt-6" onClick={handleClick}>
+      <Button color="gray" className="w-full mt-6" onClick={handleClick}>
         Continue Shopping
       </Button>
     </>

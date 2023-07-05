@@ -4,9 +4,9 @@ import PurchasedGoods from './components/PurchasedGoods';
 import Extras from './components/Extras';
 import CartFooter from './components/CartFooter';
 import CartHeader from './components/CartHeader';
+import CardGoodsVertical from '@components/CardGoodsVertical';
 import bag from '@assets/cartImages/bag.svg';
 import paste from '@assets/cartImages/paste.svg';
-import LikesGoods from './components/LikesGoods';
 import likesCategoryImg1 from '@assets/cartImages/likesCategoryImg1.svg';
 import likesCategoryImg2 from '@assets/cartImages/likesCategoryImg2.svg';
 
@@ -32,12 +32,14 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
   ];
   const ExtrasItems = [
     {
+      id: 1,
       name: 'Red bag',
       img: bag,
       price: 10,
       text: 'Would you like to add Name Bag. Which is suitable for your shoes',
     },
     {
+      id: 2,
       name: 'Paste',
       img: paste,
       price: 100,
@@ -60,7 +62,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
   ];
   return (
     <div className="font-poppins">
-      <CartHeader title={title} data={cartPurchasedItems} onClose={onClose} />
+      <CartHeader title={title} onClose={onClose} />
       <div className="flex flex-col items-center justify-center m-6 gap-4 text-gray">
         {!cartPurchasedItems.length ? <EmptyCart title="The are no items in your card" /> : null}
         {cartPurchasedItems.length ? (
@@ -68,8 +70,14 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
             <div className="bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
               Items in your cart are not reserved - checkout now to make them yours
             </div>
-            {cartPurchasedItems.map((item) => (
-              <PurchasedGoods title={item.title} size={item.size} price={item.price} countGoogs={item.countGoods} />
+            {cartPurchasedItems.map((item, index) => (
+              <PurchasedGoods
+                title={item.title}
+                size={item.size}
+                price={item.price}
+                countGoogs={item.countGoods}
+                key={index}
+              />
             ))}
           </>
         ) : null}
@@ -79,14 +87,21 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
           {ExtrasItems.length ? <h1 className="px-6 text-gray text-xl font-semibold">EXTRAS</h1> : null}
           <div className="bg-lightGray flex flex-wrap gap-4 pb-6">
             {ExtrasItems.map((item) => (
-              <Extras name={item.name} img={item.img} price={item.price} text={item.text} />
+              <Extras name={item.name} img={item.img} price={item.price} text={item.text} key={item.id} />
             ))}
             <hr className="border-t border-gray my-4 w-full mx-6" />
             <div>
               <h1 className="px-6 text-gray text-xl font-semibold">YOU MAY ALSO LIKE</h1>
               <div className="mx-6 flex gap-2.5">
-                {LikesGoodsItems.map((item) => (
-                  <LikesGoods title={item.title} img={item.img} priceFrom={item.priceFrom} rating={item.rating} />
+                {LikesGoodsItems.map((item, index) => (
+                  <CardGoodsVertical
+                    title={item.title}
+                    img={item.img}
+                    priceFrom={item.priceFrom}
+                    rating={item.rating}
+                    key={index}
+                    buttonClass="transparentGray"
+                  />
                 ))}
               </div>
             </div>

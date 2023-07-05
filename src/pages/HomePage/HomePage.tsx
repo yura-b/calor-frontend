@@ -1,28 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from '@/layouts/Head';
-import Cart from '@components/Cart';
 import { titles } from '@/translations/titles';
-import { Modal } from '@mui/material';
+import HomeMainContent from './components/HomeMainContent';
+import MainLayout from '@/components/MainLayout';
+import HomeGoodsContent from './components/HomeGoodsContent';
 
 const HomePage: React.FC = (): React.ReactElement => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const openCart = () => {
-    setIsCartOpen(true);
-  };
-
-  const closeCart = () => {
-    setIsCartOpen(false);
-  };
   return (
-    <div>
+    <div className="font-poppins h-screen">
       <Head title={titles.homePage} />
-      {!isCartOpen && <button onClick={openCart}>Open Cart</button>}
-      <Modal className="flex items-center justify-center" open={isCartOpen} onClose={closeCart}>
-        <div className="bg-white shadow-lg w-full md:w-1/2 max-h-screen overflow-y-auto">
-          <Cart title="Cart" onClose={closeCart} />
-        </div>
-      </Modal>
+      <MainLayout>
+        <HomeMainContent />
+        <HomeGoodsContent />
+      </MainLayout>
     </div>
   );
 };
