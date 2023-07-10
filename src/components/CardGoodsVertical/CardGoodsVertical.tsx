@@ -9,7 +9,14 @@ interface Props {
   buttonClass?: string;
 }
 
-const CardGoodsVertical: React.FC<Props> = ({ img, priceFrom, title, rating, buttonClass, className }): React.ReactElement => {
+const CardGoodsVertical: React.FC<Props> = ({
+  img,
+  priceFrom,
+  title,
+  rating,
+  buttonClass,
+  className,
+}): React.ReactElement => {
   const handleClick = () => {
     console.log('Button clicked!');
   };

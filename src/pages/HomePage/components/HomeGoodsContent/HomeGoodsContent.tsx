@@ -5,7 +5,7 @@ import likesCategoryImg1 from '@assets/cartImages/likesCategoryImg1.svg';
 import likesCategoryImg2 from '@assets/cartImages/likesCategoryImg2.svg';
 import bag1 from '@assets/cartImages/bag1.svg';
 import bag2 from '@assets/cartImages/bag2.svg';
-import rightArrowIcon from '@assets/images/rightArrowIcon.svg'
+import rightArrowIcon from '@assets/images/rightArrowIcon.svg';
 
 const HomeGoodsContent: React.FC = (): React.ReactElement => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -84,9 +84,11 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
   return (
     <div className="w-full bg-white pl-6">
       <div>
-        <div className='flex justify-between items-center'>
-        <p className="text-2xl font-black text-gray ">{'Our Shoe Models'.toLocaleUpperCase()}</p>
-        <IconButton onClick={handleClick(shoeContainerRef)} ><img src={rightArrowIcon} className='mr-5'/></IconButton>
+        <div className="flex justify-between items-center">
+          <p className="text-2xl font-black text-gray ">{'Our Shoe Models'.toLocaleUpperCase()}</p>
+          <IconButton onClick={handleClick(shoeContainerRef)}>
+            <img src={rightArrowIcon} className="mr-5" />
+          </IconButton>
         </div>
         <div className="flex overflow-x-auto flex-row mx-auto" ref={shoeContainerRef}>
           {ShoeModels.map((item, i) => (
@@ -104,9 +106,11 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
         </div>
       </div>
       <div>
-      <div className='flex justify-between items-center'>
-        <p className="text-2xl font-black text-gray ">{'Our Bag Models'.toLocaleUpperCase()}</p>
-        <IconButton onClick={handleClick(bagContainerRef)} ><img src={rightArrowIcon} className='mr-5'/></IconButton>
+        <div className="flex justify-between items-center">
+          <p className="text-2xl font-black text-gray ">{'Our Bag Models'.toLocaleUpperCase()}</p>
+          <IconButton onClick={handleClick(bagContainerRef)}>
+            <img src={rightArrowIcon} className="mr-5" />
+          </IconButton>
         </div>
         <div className="flex overflow-x-auto flex-row mx-auto" ref={bagContainerRef}>
           {BagModels.map((item, i) => (
