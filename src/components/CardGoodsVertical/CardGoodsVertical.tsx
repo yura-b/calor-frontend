@@ -9,17 +9,17 @@ interface Props {
   buttonClass?: string;
 }
 
-const CardGoodsVertical: React.FC<Props> = ({ img, priceFrom, title, rating, buttonClass }): React.ReactElement => {
+const CardGoodsVertical: React.FC<Props> = ({ img, priceFrom, title, rating, buttonClass, className }): React.ReactElement => {
   const handleClick = () => {
     console.log('Button clicked!');
   };
   return (
-    <div className="w-44 grow text-gray max-w-xs h-auto">
+    <div className={`w-36 grow text-gray max-w-xs h-auto +  ${className}`}>
       <div className="w-33 ">
         <img src={img} />
       </div>
       <div>
-        <p className="text-xl font-bold">{title}</p>
+        <p className="text-base font-bold">{title}</p>
         <div className="flex justify-between items-center">
           <StarRating rating={rating} />
           <p>XXX</p>
