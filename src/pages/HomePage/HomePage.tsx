@@ -4,6 +4,8 @@ import { titles } from '@/translations/titles';
 import HomeMainContent from './components/HomeMainContent';
 import MainLayout from '@/components/MainLayout';
 import HomeGoodsContent from './components/HomeGoodsContent';
+import HomeShowRoom from './components/HomeShowRoom';
+import HomeCalorByYou from './components/HomeCalorByYou';
 
 const HomePage: React.FC = (): React.ReactElement => {
   return (
@@ -12,6 +14,8 @@ const HomePage: React.FC = (): React.ReactElement => {
       <MainLayout>
         <HomeMainContent />
         <HomeGoodsContent />
+        <HomeShowRoom />
+        <HomeCalorByYou />
       </MainLayout>
     </div>
   );

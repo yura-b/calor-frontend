@@ -7,6 +7,7 @@ interface Props {
   priceFrom: number;
   rating: number;
   buttonClass?: string;
+  className: string;
 }
 
 const CardGoodsVertical: React.FC<Props> = ({
