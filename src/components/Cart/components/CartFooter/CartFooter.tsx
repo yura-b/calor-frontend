@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@components/ui/Button';
+import styles from '@styles/Styles.module.scss';
 
 interface Props {
   title: string;
@@ -38,8 +39,8 @@ const CartFooter: React.FC<Props> = ({ title, data }): React.ReactElement => {
   };
   return (
     <div className="max-w-lg px-6 py-2.5 text-gray">
-      <h1 className="my-4 text-gray text-xl font-semibold">{title}</h1>
-      <div className="text-base">
+      <h1 className={`${styles.header1} my-4`}>{title}</h1>
+      <div className={styles.body1}>
         <div className="flex justify-between mt-4 items-center">
           <p>{data.length} Item</p>
           <p>$ XXX</p>
@@ -52,7 +53,7 @@ const CartFooter: React.FC<Props> = ({ title, data }): React.ReactElement => {
           <p>Taxes</p>
           <p>$ XXX</p>
         </div>
-        <div className="flex justify-between mt-4 items-center text-mint text-xl font-bold">
+        <div className={`${styles.header2} flex justify-between mt-4 items-center`}>
           <p>Subtotal</p>
           <p>$ XXX</p>
         </div>

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import CardGoodsVertical from '@components/CardGoodsVertical';
+import styles from '@styles/Styles.module.scss';
 import IconButton from '@mui/material/IconButton';
 import likesCategoryImg1 from '@assets/cartImages/likesCategoryImg1.svg';
 import likesCategoryImg2 from '@assets/cartImages/likesCategoryImg2.svg';
@@ -85,7 +86,7 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
     <div className="w-full bg-white pl-6">
       <div>
         <div className="flex justify-between items-center">
-          <p className="text-2xl font-black text-gray ">{'Our Shoe Models'.toLocaleUpperCase()}</p>
+          <h1 className={styles.header1}>{'Our Shoe Models'.toLocaleUpperCase()}</h1>
           <IconButton onClick={handleClick(shoeContainerRef)}>
             <img src={rightArrowIcon} className="mr-5" />
           </IconButton>
@@ -107,7 +108,7 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
       </div>
       <div>
         <div className="flex justify-between items-center">
-          <p className="text-2xl font-black text-gray ">{'Our Bag Models'.toLocaleUpperCase()}</p>
+          <h1 className={styles.header1}>{'Our Bag Models'.toLocaleUpperCase()}</h1>
           <IconButton onClick={handleClick(bagContainerRef)}>
             <img src={rightArrowIcon} className="mr-5" />
           </IconButton>

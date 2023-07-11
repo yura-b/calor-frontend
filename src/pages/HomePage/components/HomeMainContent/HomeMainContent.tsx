@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '@styles/Styles.module.scss';
 import homeMainImg from '@assets/images/homeMainImg.svg';
 import homeSemiCircle from '@assets/images/homeSemiCircle.svg';
 import Button from '@components/ui/Button';
@@ -43,21 +44,21 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
         <div className="flex flex-col justify-around lg:flex-row my-6 lg:max-w-5xl mx-auto lg:py-10">
           {processArr.map((action, index) => (
             <div className="text-gray text-left w-auto max-w-sm">
-              <p className="text-2xl font-black">
+              <h1 className={styles.header1}>
                 <span className="text-custom-red">{index + 1}&gt; </span>
                 <span>{action.title}</span>
-              </p>
-              <p className="text-base ml-10 my-2">{action.content}</p>
+              </h1>
+              <p className={`${styles.body1} ml-10 my-2`}>{action.content}</p>
             </div>
           ))}
         </div>
         <div className="flex flex-col justify-around lg:flex-row my-6 lg:max-w-5xl mx-auto lg:py-10 text-left text-gray">
-          <p className="text-2xl font-black text-white ">CALOR BY YOU</p>
+          <h1 className={`${styles.header1} text-white`}>CALOR BY YOU</h1>
           <div>
-            <p className="font-black">
+            <p className={`${styles.body1} font-black`}>
               Create your own sneakers and bag with a unique design that reflects your personality and style.
             </p>
-            <p>
+            <p className={styles.body1}>
               Learn how to do it in our
               <span>
                 <Link to="" className="font-bold border-b-2 border-gray my-4 mx-auto text-center w-max">

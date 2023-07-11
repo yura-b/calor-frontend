@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '@styles/Styles.module.scss';
 import purchasedGoodsImg from '@assets/cartImages/purchasedGoodsImg.svg';
 import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
 interface Props {
@@ -28,19 +29,17 @@ const PurchasedGoods: React.FC<Props> = ({ title, size, price, countGoogs }): Re
       </div>
       <div className="w-full basis-8/12">
         <div className="flex justify-between items-center">
-          <p className="text-xl font-bold">{title}</p>
+          <h2 className={`${styles.header2} text-gray`}>{title}</h2>
           <div className="p-1 flex items-center justify-center" onClick={handleClick}>
             <img src={deleteIcon} />
           </div>
         </div>
-        <div className="mt-2 text-base">
-          <p>
-            {' '}
-            Size: <span>{size}</span>
-          </p>
-        </div>
+        <p className={`${styles.body1} mt-2`}>
+          {' '}
+          Size: <span>{size}</span>
+        </p>
         <div className="flex justify-between items-baseline">
-          <p className="text-base">$ {price}</p>
+          <p className={styles.body1}>$ {price}</p>
           <div className="flex justify-between items-center w-12 mt-2 mb-2">
             <div onClick={decrementCount}>-</div>
             <div>
@@ -49,7 +48,7 @@ const PurchasedGoods: React.FC<Props> = ({ title, size, price, countGoogs }): Re
             <div onClick={incrementCount}>+</div>
           </div>
         </div>
-        <p className="text-sm">This product is custom-made and delivered to you in X weeks.</p>
+        <p className={styles.body2}>This product is custom-made and delivered to you in X weeks.</p>
       </div>
     </div>
   );

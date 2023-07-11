@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '@styles/Styles.module.scss';
 import EmptyCart from './components/EmptyCart';
 import PurchasedGoods from './components/PurchasedGoods';
 import Extras from './components/Extras';
@@ -67,7 +68,9 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
         {!cartPurchasedItems.length ? <EmptyCart title="The are no items in your card" /> : null}
         {cartPurchasedItems.length ? (
           <>
-            <div className="bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
+            <div
+              className={`${styles.body1} bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2`}
+            >
               Items in your cart are not reserved - checkout now to make them yours
             </div>
             {cartPurchasedItems.map((item, index) => (
@@ -84,14 +87,14 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
       </div>
       {cartPurchasedItems.length ? (
         <>
-          {ExtrasItems.length ? <h1 className="px-6 text-gray text-xl font-semibold">EXTRAS</h1> : null}
+          {ExtrasItems.length ? <h1 className={`${styles.header1} px-6`}>EXTRAS</h1> : null}
           <div className="bg-lightGray flex flex-wrap gap-4 pb-6">
             {ExtrasItems.map((item) => (
               <Extras name={item.name} img={item.img} price={item.price} text={item.text} key={item.id} />
             ))}
             <hr className="border-t border-gray my-4 w-full mx-6" />
             <div>
-              <h1 className="px-6 text-gray text-xl font-semibold">YOU MAY ALSO LIKE</h1>
+              <h1 className={`${styles.header1} px-6`}>YOU MAY ALSO LIKE</h1>
               <div className="mx-6 flex gap-2.5">
                 {LikesGoodsItems.map((item, index) => (
                   <CardGoodsVertical
