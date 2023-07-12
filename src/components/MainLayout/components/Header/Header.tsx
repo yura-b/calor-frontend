@@ -27,7 +27,7 @@ const Header: React.FC = (): React.ReactElement => {
         <div className="hidden lg:block">
           <MainMenu />
         </div>
-        {!isCartOpen && <Busket count={2} onClick={openCart} />}
+        <Busket count={2} onClick={openCart} />
         <div>
           <img src={burgerIcon} alt="" className="block lg:hidden" />
         </div>

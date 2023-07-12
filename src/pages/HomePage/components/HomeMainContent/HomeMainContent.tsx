@@ -6,6 +6,7 @@ import Button from '@components/ui/Button';
 import { Link } from 'react-router-dom';
 
 const HomeMainContent: React.FC = (): React.ReactElement => {
+  const headingClass = 'text-4xl font-black leading-tight sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:7xl';
   const processArr = [
     {
       title: 'DESIGN',
@@ -25,25 +26,32 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
   };
   return (
     <div className="w-full bg-custom-red relative">
-      <div className="flex w-full justify-around flex-wrap items-center relative z-10 lg:max-w-5xl mx-auto">
-        <div className="flex basis-full lg:basis-2/3 grow pl-10 items-center gap-4 grow">
-          <p className="text-4xl font-black text-white text-right leading-tight basis-1/2">DESIGN YOUR OWN SHOE</p>
-          <img src={homeMainImg} className="basis-1/2 max-w-xs md:max-w-sm lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl" />
+      <div className="flex w-full justify-around flex-wrap items-center relative z-10 2xl:max-w-[86vw] mx-auto">
+        <div className="flex basis-full lg:basis-2/3 grow pl-10 items-center gap-4 grow lg: my-6">
+          <p className={`${headingClass} text-white text-right basis-1/2 lg:basis-3/5`}>
+            DESIGN
+            <br />
+            YOUR OWN
+            <br />
+            SHOE
+          </p>
+          <img src={homeMainImg} className="basis-1/2 lg:basis-2/5 h-48 sm:h-56 md:h-64 lg:h-72 xl:h-96" />
         </div>
-        <p className="text-4xl font-black text-custom-turquoise basis-1/3 leading-tight text-center grow hidden lg:block">
-          {'IT’S SIMPLY AS 1  >  2 >   3'}
+        <p className={`${headingClass} text-custom-turquoise basis-1/3 text-left grow hidden lg:block`}>
+          IT’S <br /> SIMPLY AS <br />
+          {'1  >  2 >   3'}
         </p>
-        <p className="text-4xl font-black text-custom-turquoise text-center leading-tight basis-1/3 grow lg:hidden">
+        <p className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow lg:hidden`}>
           {'IT’S SIMPLY AS'}
         </p>
       </div>
       <div className="w-full bg-custom-turquoise text-center px-6">
-        <p className="text-4xl font-black bg-custom-turquoise text-center leading-tight text-custom-red w-full lg:hidden">
+        <p className={`${headingClass}  bg-custom-turquoise text-center text-custom-red w-full lg:hidden`}>
           {'1  >  2 >    3'}
         </p>
-        <div className="flex flex-col justify-around lg:flex-row my-6 lg:max-w-5xl mx-auto lg:py-10">
+        <div className="flex flex-col justify-around lg:flex-row mt-6 lg:max-w-[90vw] 2xl:max-w-[70vw] mx-auto lg:pt-10">
           {processArr.map((action, index) => (
-            <div className="text-gray text-left w-auto max-w-sm">
+            <div className="text-gray text-left w-auto">
               <h1 className={styles.header1}>
                 <span className="text-custom-red">{index + 1}&gt; </span>
                 <span>{action.title}</span>
@@ -52,8 +60,10 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col justify-around lg:flex-row my-6 lg:max-w-5xl mx-auto lg:py-10 text-left text-gray">
-          <h1 className={`${styles.header1} text-white`}>CALOR BY YOU</h1>
+        <div className="flex flex-col justify-around lg:flex-row my-6 lg:max-w-[90vw] 2xl:max-w-[70vw] mx-auto lg:py-10 text-left text-gray">
+          <h1 className={`${styles.header1} text-custom-red`}>
+            CALOR <br /> BY YOU
+          </h1>
           <div>
             <p className={`${styles.body1} font-black`}>
               Create your own sneakers and bag with a unique design that reflects your personality and style.
@@ -79,7 +89,10 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
             Video Guide
           </Link>
         </div>
-        <img src={homeSemiCircle} className="absolute z-1 top-10 left-0" />
+        <img
+          src={homeSemiCircle}
+          className="absolute z-1 top-11 left-0 h-64 sm:h-72 sm:top-16 md:h-76 md:top-24 lg:h-80 lg:top-20 xl:h-1/2 xl:top-16"
+        />
       </div>
     </div>
   );
