@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Loader from '@/components/ui/Loader/';
+import AdminRoutes from '@routes/admin-routes.tsx';
 
 const HomePage = lazy(() => import('@pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/autorization/login/LoginPage'));
@@ -15,6 +16,8 @@ const AppRouter = () => {
           <Route path={'login'} element={<LoginPage />} />
           <Route path={'signup'} element={<SignupPage />} />
         </Route>
+
+        <AdminRoutes />
       </Routes>
     </Suspense>
   );

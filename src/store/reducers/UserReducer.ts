@@ -16,7 +16,7 @@ export const initialState: IUser = {
   firstName: '',
   secondName: '',
   userId: '',
-  roles: null,
+  roles: localStorage.getItem('roles')?.split(',') as Role[],
 };
 
 export interface ISetUserData extends IUser {
@@ -35,7 +35,7 @@ export const UserSlice = createSlice({
         firstName,
         secondName,
         roles,
-        rememberMe = false,
+        rememberMe = true,
       } = action.payload;
 
       state.access_token = access_token;
@@ -46,6 +46,7 @@ export const UserSlice = createSlice({
       state.roles = roles;
 
       if (access_token && rememberMe) localStorage.setItem('access_token', access_token);
+      if (access_token && rememberMe && roles) localStorage.setItem('roles', roles?.join(','));
     },
   },
 });

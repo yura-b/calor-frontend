@@ -12,9 +12,7 @@ export const signUp = (credentials: SignupDto) => {
 };
 
 export const googleLogin = (credentials: string) => {
-  return axios.post(`${backendUrl}/user/google`, {
-    credentials: credentials,
-  });
+  return axios.post(`${backendUrl}/user/google`, { credentials });
 };
 
 export const sendEmailForReset = (email: string) => {
