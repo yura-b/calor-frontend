@@ -19,3 +19,24 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: theme('colors.custom-turquoise');
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: theme('colors.mint');
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.gray');
+}

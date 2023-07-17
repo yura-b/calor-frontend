@@ -7,6 +7,8 @@ import burgerIcon from '@assets/images/burgerIcon.svg';
 import SearchInput from '@/components/ui/SearchInput';
 import { Modal } from '@mui/material';
 import Cart from '@components/Cart';
+import { layoutModalScaleAnimation } from '@styles/Animations';
+import { motion } from 'framer-motion';
 
 const Header: React.FC = (): React.ReactElement => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -38,9 +40,16 @@ const Header: React.FC = (): React.ReactElement => {
         </div>
       </div>
       <Modal className="flex items-center justify-center" open={isCartOpen} onClose={closeCart}>
-        <div className="bg-white shadow-lg w-full md:w-1/2 max-h-screen overflow-y-auto">
-          <Cart title="Cart" onClose={closeCart} />
-        </div>
+        <>
+          {isCartOpen && (
+            <motion.div
+              className="bg-white shadow-lg w-full h-screen my-6 md:w-1/2 rounded-md"
+              {...layoutModalScaleAnimation}
+            >
+              <Cart title="Cart" onClose={closeCart} />
+            </motion.div>
+          )}
+        </>
       </Modal>
     </div>
   );
