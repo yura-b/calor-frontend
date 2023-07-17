@@ -8,11 +8,11 @@ interface IProps {
 
 const AdminLayout: React.FC<IProps> = ({children}) => {
     return (
-        <>
+        <div className={'flex'}>
             <Header/>
             {children}
             <SubmitDialog/>
-        </>
+        </div>
     );
 };
 

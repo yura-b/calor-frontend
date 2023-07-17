@@ -48,9 +48,22 @@ export const UserSlice = createSlice({
       if (access_token && rememberMe) localStorage.setItem('access_token', access_token);
       if (access_token && rememberMe && roles) localStorage.setItem('roles', roles?.join(','));
     },
+    cleanUserData:(state) => {
+
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('roles')
+
+
+      state.access_token = initialState.access_token;
+      state.roles = initialState.roles;
+      state.userId = initialState.userId;
+      state.phoneNumber = initialState.phoneNumber;
+      state.firstName = initialState.firstName;
+      state.secondName = initialState.secondName
+    }
   },
 });
 
-export const { setUserData } = UserSlice.actions;
+export const { setUserData, cleanUserData } = UserSlice.actions;
 
 export default UserSlice.reducer;

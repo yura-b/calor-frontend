@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {IOrder, OrderStatus} from '@/constants/interfaces/order.ts';
+import {IOrder, OrderStatus, OrderStatusArray} from '@/constants/interfaces/order.ts';
 import {Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typography,} from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import {SelectChangeEvent} from '@mui/material/Select';
 
 import styles from './OrderGrid.module.scss';
 import {CustomSelect} from '@components/select/CustomSelect.tsx';
@@ -17,17 +16,7 @@ export const Order: React.FC<{ key: string; order: IOrder; align }> = ({order, a
     const {access_token} = useAppSelector(state => state.user)
 
     const dispatch = useAppDispatch()
-    const handleChange = (event: SelectChangeEvent) => {
-        setStatusValue(event.target.value as OrderStatus);
 
-        dispatch(openDialog({
-            title: 'Confirm change status',
-            submitHandler(){
-              access_token && changeOrderStatus(access_token, {_id: order._id, orderStatus: statusValue})
-            },
-            description: `Change order status from ${order.status} to ${statusValue} \n  order by ${order.username} `
-        }))
-    };
 
     return (
         <>
@@ -50,7 +39,23 @@ export const Order: React.FC<{ key: string; order: IOrder; align }> = ({order, a
                     <p>{order.email}</p>
                 </TableCell>
                 <TableCell align={align}>
-                    <CustomSelect handleFunc={handleChange} defaultValue={statusValue} />
+                    <CustomSelect handleFunc={(event) => {
+                        const eventValue = event.target.value as OrderStatus
+                        setStatusValue(eventValue)
+
+                        dispatch(openDialog({
+                            title: 'Confirm change status',
+                            submitHandler() {
+                                access_token && changeOrderStatus(access_token, {
+                                    _id: order._id,
+                                    orderStatus: eventValue
+                                })
+                            },
+                            description: `Change order status from ${order.status} to ${eventValue} \n  order by ${order.username} `
+                        }))
+
+                    }} defaultValue={statusValue}
+                                  array={OrderStatusArray}/>
                 </TableCell>
             </TableRow>
             <TableRow>
