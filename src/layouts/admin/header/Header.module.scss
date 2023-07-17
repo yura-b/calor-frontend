@@ -1,3 +1,17 @@
 .header {
+  .image {
+    fill: black;
+  }
 
+  .navContainer {
+    div {
+      display: flex;
+      span {
+        margin-left: 20px;
+      }
+      span, svg {
+        cursor: pointer;
+      }
+    }
+  }
 }

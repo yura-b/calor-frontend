@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import { Role } from '@/constants/enums/role.enum.ts';
 
 export interface IUser {
@@ -27,7 +27,7 @@ export const UserSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUserData: (state, action: PayloadAction<ISetUserData>) => {
+    setUserData: (state: Draft<IUser>, action: PayloadAction<ISetUserData>) => {
       const {
         access_token,
         userId,
@@ -48,19 +48,17 @@ export const UserSlice = createSlice({
       if (access_token && rememberMe) localStorage.setItem('access_token', access_token);
       if (access_token && rememberMe && roles) localStorage.setItem('roles', roles?.join(','));
     },
-    cleanUserData:(state) => {
-
-      localStorage.removeItem('access_token')
-      localStorage.removeItem('roles')
-
+    cleanUserData: (state: Draft<IUser>) => {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('roles');
 
       state.access_token = initialState.access_token;
       state.roles = initialState.roles;
       state.userId = initialState.userId;
       state.phoneNumber = initialState.phoneNumber;
       state.firstName = initialState.firstName;
-      state.secondName = initialState.secondName
-    }
+      state.secondName = initialState.secondName;
+    },
   },
 });
 
