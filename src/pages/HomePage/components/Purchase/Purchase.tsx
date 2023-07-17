@@ -31,9 +31,7 @@ const Purchase: React.FC = (): React.ReactElement => {
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
-        >
-          Email
-        </CustomInput>
+        />
         <Button color="gray" className="w-full my-6" type="submit">
           Subscribe
         </Button>

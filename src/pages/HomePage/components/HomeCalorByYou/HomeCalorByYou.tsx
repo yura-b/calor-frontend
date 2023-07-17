@@ -51,12 +51,14 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
         <img src={calorByYou} alt="Your Image" className="w-full" />
         <div className="absolute top-0 left-0 w-full h-full bg-custom-red opacity-80"></div>
         <div className="absolute -bottom-2 right-6">
-          <h1 className="text-white text-3xl font-black">{'calor by you!'.toLocaleUpperCase()}</h1>
+          <h1 className="text-white text-4xl font-black sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+            {'calor by you!'.toLocaleUpperCase()}
+          </h1>
         </div>
       </div>
-      <div className="px-6 pt-6 ">
+      <div className="flex flex-col justify-between  gap-4 px-6 pt-6 lg:flex-row">
         {calorByYouItems.map((calorBy, i) => (
-          <div key={i} className="flex gap-4 mb-2 items-start">
+          <div key={i} className="flex gap-4 mb-2 items-start basis-1/4">
             <img src={calorBy.img} />
             <div>
               <h2 className={styles.header2}>{calorBy.title}</h2>
