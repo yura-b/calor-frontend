@@ -1,11 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {AxiosPromise} from 'axios';
 
 interface IDialog {
     isOpen: boolean
     title: string | null,
     description?: string
     closeHandler?: () => void,
-    submitHandler: () => void,
+    submitHandler: () => Promise<AxiosPromise> | void,
 }
 
 const initialState: IDialog = {
@@ -29,7 +30,7 @@ export const DialogSlice = createSlice({
     reducers: {
         openDialog(state, action: PayloadAction<IPayload>) {
             const {submitHandler, closeHandler, description, title} = action.payload
-            state.isOpen=true
+            state.isOpen = true
             state.description = description
             state.title = title
             state.closeHandler = closeHandler

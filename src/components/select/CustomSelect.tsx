@@ -4,8 +4,9 @@ import {OrderStatus, OrderStatusArray} from '@/constants/interfaces/order.ts';
 import {createTheme, MenuItem, ThemeProvider} from '@mui/material';
 
 interface IProps {
+    array: string[],
     defaultValue: string | OrderStatus,
-   handleFunc: (value: SelectChangeEvent )=> void
+    handleFunc: (value: SelectChangeEvent) => void
 }
 
 const theme = createTheme({
