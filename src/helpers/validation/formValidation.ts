@@ -51,3 +51,7 @@ export const oneLowerCaseValidation = (password: string) => {
 
   return ValidationResult.ERROR;
 };
+
+export const validationSchemaForPurchase = yup.object({
+  email: yup.string().email('Enter a valid email').required('Email is required'),
+});
