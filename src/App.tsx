@@ -6,11 +6,11 @@ import Email from '@pages/autorization/forgotPassword/Email.tsx';
 import TokenGuard from '@routes/TokenGuard.tsx';
 import ResetPassword from '@pages/autorization/forgotPassword/ResetPassword.tsx';
 import MainPage from '@pages/admin/main/MainPage.tsx';
-import UserGridPage from '@pages/admin/users/UserGridPage.tsx';
+import UserPage from '@pages/admin/users/UserPage.tsx';
 import React from 'react';
+import TextReviewPage from '@pages/admin/reviews/textReviews/TextReviewPage.tsx';
 
 const App = () => {
-
   return (
     <BrowserRouter>
       <Routes>
@@ -21,9 +21,9 @@ const App = () => {
         <Route path={'password/:id'} element={<TokenGuard children={<ResetPassword />} />} />
         <Route path={'admin'}>
           <Route index element={<MainPage />} />
-          <Route path={'users'} element={<UserGridPage />} />
+          <Route path={'users'} element={<UserPage />} />
+          <Route path={'reviews/text'} element={<TextReviewPage/>} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   );

@@ -15,11 +15,7 @@ export enum OrderStatus {
   RECEIVED = 'RECEIVED',
 }
 
-export const OrderStatusArray: OrderStatus[] = [
-  OrderStatus.PAID,
-  OrderStatus.DELIVERING,
-  OrderStatus.RECEIVED,
-];
+export const OrderStatusArray: OrderStatus[] = [OrderStatus.PAID, OrderStatus.DELIVERING, OrderStatus.RECEIVED];
 
 export interface IPurchase {
   product: product;

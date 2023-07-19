@@ -24,7 +24,7 @@ export default {
                 'custom-red': '#E22D21',
                 'yellow': '#FFB800',
                 'darkRed': '#C21E3C',
-                'custom-grey': '#F3F3F3'
+                'custom-grey': '#EFEFEF'
               },
               fontFamily: {
                 body: ['"Poppins"', '"sans-serif"'],

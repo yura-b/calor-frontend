@@ -22,9 +22,7 @@ const AdminLayout: React.FC<IProps> = ({ children }) => {
   return (
     <div className={'flex'}>
       <Header />
-      <div className={'w-5/6 ml-marginForLeftHeader'}>
-        {children}
-      </div>
+      <div className={'w-5/6 ml-marginForLeftHeader'}>{children}</div>
       <SubmitDialog />
     </div>
   );
