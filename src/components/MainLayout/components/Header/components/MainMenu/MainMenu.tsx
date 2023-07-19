@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import downIcon from '@assets/images/downIcon.svg';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const MainMenu: React.FC = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(null);
@@ -33,37 +34,37 @@ const MainMenu: React.FC = (): React.ReactElement => {
     },
   ];
   return (
-    <nav className="flex font-black  text-xl lg:text-xl lg:font-semibold lg:justify-center">
-      <div className="flex flex-col lg:items-center lg:flex-row relative">
+    <nav className={'flex font-black  text-2xl lg:text-lg font-semibold lg:justify-center'}>
+      <ul className="w-full flex flex-col gap-2 lg:items-center lg:flex-row relative lg:gap-6">
         {menuItems.map((menuItem, index) => (
-          <div key={index} className="relative lg:w-52 lg:min-w-max lg:max-w-fit">
-            <button
-              className="lg:px-4 py-2 text-white hover:text-custom-turquoise focus:outline-none"
+          <li key={index} className="relative py-2 lg:py-0">
+            <Link
+              to="#"
+              className="flex text-white hover:text-custom-turquoise focus:outline-none  lg:py-2 "
               onClick={() => handleToggle(index)}
             >
-              <p className="flex">
-                {menuItem.title} {menuItem.subItems?.length ? <img src={downIcon} alt={''} className="ml-2" /> : null}
-              </p>
-            </button>
+              {menuItem.title} {menuItem.subItems?.length ? <img src={downIcon} alt={''} className="ml-2" /> : null}
+            </Link>
             <AnimatePresence>
               {isOpen === index && (
-                <motion.div
+                <motion.nav
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="bg-white p-2 rounded mt-2 absolute z-20 w-full opacity-25 "
+                  className="flex flex-col bg-white p-2  mt-2 lg:absolute z-20 w-full lg:w-56"
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
                 >
                   {menuItem.subItems?.map((option, optionIndex) => (
-                    <div key={optionIndex} className="text-2xl text-gray lg:text-base py-1">
-                      {option}
-                    </div>
+                    <li key={optionIndex} className="font-medium text-gray lg:hover:font-bold py-1">
+                      <Link to="#">{option}</Link>
+                    </li>
                   ))}
-                </motion.div>
+                </motion.nav>
               )}
             </AnimatePresence>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </nav>
   );
 };

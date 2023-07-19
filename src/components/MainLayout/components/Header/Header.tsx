@@ -8,7 +8,7 @@ import burgerIcon from '@assets/images/burgerIcon.svg';
 import SearchInput from '@/components/ui/SearchInput';
 import { Modal } from '@mui/material';
 import Cart from '@components/Cart';
-import { layoutModalScaleAnimation } from '@styles/Animations';
+import { layoutFadeAnimation } from '@styles/Animations';
 import { motion, useCycle } from 'framer-motion';
 
 const Header: React.FC = (): React.ReactElement => {
@@ -24,7 +24,7 @@ const Header: React.FC = (): React.ReactElement => {
 
   return (
     <div className=" w-full h-auto bg-custom-red px-6 py-3">
-      <div className=" flex flex-col m-auto items-center justify-center lg:flex-row lg:justify-between xl:max-w-[80vw] ">
+      <div className=" flex flex-col m-auto items-center justify-center lg:flex-row lg:justify-between xl:w-[80vw] xl:max-w-[80vw] ">
         <div className="flex flex-row items-center justify-center w-full">
           <div className="flex w-7 lg:w-44">
             <img src={logoImg} alt="" className="w-7 h-7 sm:w-7 sm:h-7 lg:w-11 lg:h-11" />
@@ -48,7 +48,7 @@ const Header: React.FC = (): React.ReactElement => {
           {isCartOpen && (
             <motion.div
               className="bg-white shadow-lg w-full h-screen my-6 md:w-1/2 rounded-md"
-              {...layoutModalScaleAnimation}
+              {...layoutFadeAnimation}
             >
               <Cart title="Cart" onClose={closeCart} />
             </motion.div>

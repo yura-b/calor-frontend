@@ -29,7 +29,7 @@ const Button: React.FC<Props> = ({ color, children, className, onClick, type }) 
   return (
     <button
       type={type}
-      className={`base-text transition-all duration-300 h-9 w-full font-bold text max-w-sm my-2 ${className} ${getButtonStyle()}`}
+      className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-sm my-2 ${className} ${getButtonStyle()}`}
       onClick={onClick}
     >
       {children}
