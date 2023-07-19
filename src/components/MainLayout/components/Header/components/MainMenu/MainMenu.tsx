@@ -33,15 +33,15 @@ const MainMenu: React.FC = (): React.ReactElement => {
     },
   ];
   return (
-    <nav className="flex justify-center font-black  text-xl lg:text-xl lg:font-semibold ">
-      <div className="flex flex-col items-center lg:flex-row relative">
+    <nav className="flex font-black  text-xl lg:text-xl lg:font-semibold lg:justify-center">
+      <div className="flex flex-col lg:items-center lg:flex-row relative">
         {menuItems.map((menuItem, index) => (
-          <div key={index} className="relative group">
+          <div key={index} className="relative lg:w-52 lg:min-w-max lg:max-w-fit">
             <button
-              className="px-4 py-2 text-white hover:bg-gray-700 focus:outline-none"
+              className="lg:px-4 py-2 text-white hover:text-custom-turquoise focus:outline-none"
               onClick={() => handleToggle(index)}
             >
-              <p className="text-2xl text-white  lg:text-base flex">
+              <p className="flex">
                 {menuItem.title} {menuItem.subItems?.length ? <img src={downIcon} alt={''} className="ml-2" /> : null}
               </p>
             </button>
@@ -51,10 +51,10 @@ const MainMenu: React.FC = (): React.ReactElement => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className=" bg-white p-2 border border-gray rounded mt-2 absolute z-20 w-full"
+                  className="bg-white p-2 rounded mt-2 absolute z-20 w-full opacity-25 "
                 >
                   {menuItem.subItems?.map((option, optionIndex) => (
-                    <div key={optionIndex} className="text-2xl text-gray  lg:text-base py-1">
+                    <div key={optionIndex} className="text-2xl text-gray lg:text-base py-1">
                       {option}
                     </div>
                   ))}
