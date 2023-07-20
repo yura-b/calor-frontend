@@ -8,6 +8,7 @@ import checkIcon from '@assets/images/checkIcon.svg';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import { layoutFadeAnimation, fadeAnimation } from '@styles/Animations';
+import HelpFooter from '@components/MainLayout/components/HelpFooter';
 
 const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
   const navigate = useNavigate();
@@ -25,10 +26,10 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className={`lg:hidden absolute bg-custom-red left-0 right-2 z-20 h-screen top-0   ${isOpen ? '' : 'hidden'}`}
+          className={`lg:hidden absolute bg-custom-red left-0 right-2 z-20 h-screen top-0  ${isOpen ? '' : 'hidden'}`}
           {...layoutFadeAnimation}
         >
-          <motion.div className={`text-white  ${isOpen ? '' : 'hidden'}`}>
+          <motion.div className={`text-white ${isOpen ? '' : 'hidden'}`}>
             <header className="fixed z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-lightGray">
               <img src={userIcon} />
               <div className={'flex justify-center '}>
@@ -50,8 +51,8 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
                   {'calor by you!'.toLocaleUpperCase()}
                 </h1>
               </main>
-              <footer className="bg-custom-turquoise h-full px-6">
-                <div className="py-4">
+              <footer className="bg-custom-turquoise h-full px-6 text-gray">
+                <div className="pt-4">
                   <ul className={`list-none ${styles.subtitle}`}>
                     {mobileMenuCalorItems.map((item, index) => (
                       <li key={index} className="mb-2 flex items-center">
@@ -64,6 +65,7 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
                 <Button color="gray" className="w-full my-4" onClick={handleClick}>
                   Create an Account
                 </Button>
+                <HelpFooter title={'Need Help?'} color="gray" />
               </footer>
             </motion.div>
           </motion.div>
