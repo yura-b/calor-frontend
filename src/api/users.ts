@@ -2,6 +2,10 @@ import axios from 'axios';
 import { backendUrl } from '@/api/languages.ts';
 import { authorization } from '@/api/config.ts';
 
-export const getUsers = (credential: string, name: string | null) => {
-  return axios.get(`${backendUrl}/user/all?name=${name}`, authorization(credential));
+export const getUsers = (credential, filter: string) => {
+  return axios.get(`${backendUrl}/user/all?name=${filter}`, authorization(credential));
+};
+
+export const getUser = (credential: string, id: string) => {
+  return axios.get(`${backendUrl}/user/${id}`, authorization(credential));
 };

@@ -4,12 +4,12 @@ import TextReviewsGrid from '@pages/admin/reviews/textReviews/components/TextRev
 import GridHeader from '@components/admin/GridHeader.tsx';
 
 const TextReviewPage = () => {
-    return (
-        <AdminLayout>
-            <GridHeader title={'Text Reviews'}/>
-            <TextReviewsGrid/>
-        </AdminLayout>
-    );
+  return (
+    <AdminLayout>
+      <GridHeader title={'Text Reviews'} />
+      <TextReviewsGrid />
+    </AdminLayout>
+  );
 };
 
 export default TextReviewPage;

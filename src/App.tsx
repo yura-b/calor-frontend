@@ -9,6 +9,7 @@ import MainPage from '@pages/admin/main/MainPage.tsx';
 import UserPage from '@pages/admin/users/UserPage.tsx';
 import React from 'react';
 import TextReviewPage from '@pages/admin/reviews/textReviews/TextReviewPage.tsx';
+import UserProfilePage from '@pages/admin/users/UserProfilePage.tsx';
 
 const App = () => {
   return (
@@ -22,7 +23,8 @@ const App = () => {
         <Route path={'admin'}>
           <Route index element={<MainPage />} />
           <Route path={'users'} element={<UserPage />} />
-          <Route path={'reviews/text'} element={<TextReviewPage/>} />
+          <Route path={'users/:id'} element={<UserProfilePage />} />
+          <Route path={'reviews/text'} element={<TextReviewPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

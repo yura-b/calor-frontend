@@ -12,9 +12,9 @@ const TokenGuard: React.FC<IProps> = ({ children }) => {
 
   if (!access_token) return <>{children}</>;
 
-  if (!isAdmin) return <Navigate to={'/'} />;
-
   if (isAdmin) return <Navigate to={'/admin/'} />;
+
+  if (!isAdmin) return <Navigate to={'/'} />;
 };
 
 export default TokenGuard;

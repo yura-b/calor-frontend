@@ -1,13 +1,15 @@
 export interface postReview {
-    product_id: string
+  product_id: string;
 
-    rating: number
+  user_id?: string;
 
-    experience: string
+  rating: number;
 
-    name: string
+  experience: string;
 
-    email: string
+  name: string;
 
-    photo: string
+  email: string;
+
+  photo: string;
 }
