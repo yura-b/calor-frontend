@@ -24,3 +24,24 @@ export const layoutModalScaleAnimation = {
   exit: { opacity: 0, scale: 0.5 },
   transition: { duration: 0.3 },
 };
+
+export const collapseAnimation = {
+  key: 'content',
+  initial: 'collapsed',
+  animate: 'open',
+  exit: 'collapsed',
+  variants: {
+    open: { opacity: 1, height: 'auto' },
+    collapsed: { opacity: 0, height: 0 },
+  },
+  transition: { duration: 0.8 },
+};
+
+export const hoverOnButtonAnimation = {
+  whileHover: { scale: 1.03 },
+  whileTap: { scale: 0.9 },
+  initial: { opacity: 1 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.3 },
+};

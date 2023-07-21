@@ -10,6 +10,8 @@ import bag from '@assets/cartImages/bag.svg';
 import paste from '@assets/cartImages/paste.svg';
 import likesCategoryImg1 from '@assets/cartImages/likesCategoryImg1.svg';
 import likesCategoryImg2 from '@assets/cartImages/likesCategoryImg2.svg';
+import Footer from '@components/MainLayout/components/Footer';
+
 interface Props {
   title: string;
   onClose: () => void;
@@ -112,6 +114,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
             <CartFooter title={'ORDER SUMMARY'} data={cartPurchasedItems} />
           </>
         ) : null}
+        {!cartPurchasedItems.length ? <Footer /> : null}
       </div>
     </div>
   );

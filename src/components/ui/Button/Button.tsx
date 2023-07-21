@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { hoverOnButtonAnimation } from '@/styles/Animations';
 interface Props {
   color: 'gray' | 'red' | 'mintExtraLight' | 'mint' | 'transparentGray' | 'transparentMint';
   children: React.ReactNode;
@@ -27,13 +29,16 @@ const Button: React.FC<Props> = ({ color, children, className, onClick, type }) 
     }
   };
   return (
-    <button
-      type={type}
-      className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-sm my-2 ${className} ${getButtonStyle()}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    <AnimatePresence>
+      <motion.button
+        type={type}
+        className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-sm my-2 ${className} ${getButtonStyle()}`}
+        onClick={onClick}
+        {...hoverOnButtonAnimation}
+      >
+        {children}
+      </motion.button>
+    </AnimatePresence>
   );
 };
 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MainMenu from '../MainMenu';
 import closeBtn from '@assets/cartImages/closeBtnIcon.png';
@@ -22,11 +23,24 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
   const handleClick = () => {
     console.log('Button clicked!');
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className={`lg:hidden absolute bg-custom-red left-0 right-2 z-20 h-screen top-0  ${isOpen ? '' : 'hidden'}`}
+          style={{ overflowY: 'auto', maxHeight: '100%', height: '100%' }}
+          className={`lg:hidden absolute bg-custom-red left-0 right-0 z-20 top-0  ${isOpen ? '' : 'hidden'}  w-full   `}
           {...layoutFadeAnimation}
         >
           <motion.div className={`text-white ${isOpen ? '' : 'hidden'}`}>

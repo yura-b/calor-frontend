@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { layoutFadeAnimation } from '@styles/Animations';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => (
-  <div>
+  <div className="overflow-x-hidden">
     <Header />
     <motion.div {...layoutFadeAnimation}>{children}</motion.div>
     <Footer />

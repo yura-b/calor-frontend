@@ -54,7 +54,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
           <br />
           <AnimatedText text="SIMPLY AS" />
           <br />
-          <AnimatedText text="1  >  2 >   3" />
+          <AnimatedText text="1  &gt; 2 &gt;  3" />
         </motion.p>
         <motion.p
           className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow lg:hidden`}
@@ -68,7 +68,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
           className={`${headingClass}  bg-custom-turquoise text-center text-custom-red w-full lg:hidden`}
           {...fadeAnimation}
         >
-          <AnimatedText text="1 > 2 > 3" />
+          <AnimatedText text="1 &gt; 2 &gt; 3" />
         </motion.p>
         <motion.div
           className="flex flex-col justify-around lg:flex-row mt-6 lg:max-w-[90vw] 2xl:max-w-[70vw] mx-auto lg:pt-10"
