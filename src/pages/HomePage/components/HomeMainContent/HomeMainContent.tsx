@@ -123,7 +123,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
         </motion.div>
         <img
           src={homeSemiCircle}
-          className="absolute z-1 top-8 left-0 h-64 sm:h-72 sm:top-16 md:h-76 md:top-24 lg:h-76 lg:top-12 xl:h-1/2"
+          className="absolute z-1 top-0 left-0 h-72 sm:h-80 sm:top-24 md:h-96 md:top-28 lg:h-72 lg:top-12  xl:top-24 xl:h-80 2xl:top-16 2xl:h-1/2"
         />
       </div>
     </div>

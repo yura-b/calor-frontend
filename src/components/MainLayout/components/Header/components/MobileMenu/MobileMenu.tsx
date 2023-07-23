@@ -40,11 +40,11 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
       {isOpen && (
         <motion.div
           style={{ overflowY: 'auto', maxHeight: '100%', height: '100%' }}
-          className={`lg:hidden absolute bg-custom-red left-0 right-0 z-20 top-0  ${isOpen ? '' : 'hidden'}  w-full   `}
+          className={`lg:hidden fixed bg-custom-red left-0 right-0 z-20 top-0  ${isOpen ? '' : 'hidden'}  w-full`}
           {...layoutFadeAnimation}
         >
           <motion.div className={`text-white ${isOpen ? '' : 'hidden'}`}>
-            <header className="fixed z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-lightGray">
+            <header className="fixed right-0 z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-lightGray">
               <img src={userIcon} />
               <div className={'flex justify-center '}>
                 <span className={'ml-2 underline font-bold'} onClick={signInHandler}>
@@ -58,7 +58,7 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
               <Busket count={2} onClick={openCart} />
               <img src={closeBtn} alt="Menu" onClick={toggleOpen} className="block lg:hidden cursor-pointer w-5 h-5" />
             </header>
-            <motion.div className="mt-16" {...fadeAnimation}>
+            <motion.div className="mt-16 overflow-y-auto" {...fadeAnimation}>
               <main className="px-6">
                 <MainMenu />
                 <h1 className="mt-6 -mb-2 text-custom-turquoise text-4xl font-black sm:text-5xl md:text-6xl">

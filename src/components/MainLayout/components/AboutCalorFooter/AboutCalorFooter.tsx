@@ -4,6 +4,7 @@ import { aboutLinks } from '../../helpers/data';
 import { motion, AnimatePresence } from 'framer-motion'; // Import Framer Motion components
 import styles from '@/styles/Styles.module.scss';
 import { collapseAnimation } from '@styles/Animations';
+import { paths } from '@/routes/paths';
 
 const AboutCalorFooter: React.FC = (): React.ReactElement => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
@@ -14,7 +15,9 @@ const AboutCalorFooter: React.FC = (): React.ReactElement => {
   return (
     <div className="border-b border-white py-2">
       <motion.div className="flex justify-between items-center px-6" onClick={toggleAccordion}>
-        <h1 className={`${styles.subtitle} text-white`}>About Calor</h1>
+        <Link to={paths.about} className={`${styles.subtitle} text-white`}>
+          About Calor
+        </Link>
         <h1 className={`${styles.header1} text-white`}>{isAccordionOpen ? '-' : '+'}</h1>
       </motion.div>
       <AnimatePresence>

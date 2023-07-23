@@ -48,8 +48,8 @@ const Footer: React.FC = (): React.ReactElement => {
         </div>
         <div className="flex justify-between">
           {privacyLinks.map((link, i) => (
-            <Link key={i} to="#" className={'hover:text-mint focus:outline-none py-4'}>
-              {link}
+            <Link key={i} to={link.path} className={'hover:text-mint focus:outline-none py-4'}>
+              {link.name}
             </Link>
           ))}
         </div>
