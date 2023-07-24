@@ -21,7 +21,8 @@ const MainMenu: React.FC = (): React.ReactElement => {
           <li key={index} className="relative py-2 lg:py-0">
             <Link
               to={menuItem.path}
-              className="flex text-white hover:text-custom-turquoise focus:outline-none lg:py-2 "
+              className="flex text-white hover:text-custom-turquoise focus:outline-none lg:py-2 leading-6"
+              style={{ whiteSpace: 'nowrap' }}
               onClick={() => handleToggle(index)}
             >
               {menuItem.title}{' '}
