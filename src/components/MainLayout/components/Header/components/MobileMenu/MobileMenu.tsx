@@ -10,6 +10,7 @@ import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import { layoutFadeAnimation, fadeAnimation } from '@styles/Animations';
 import HelpFooter from '@components/MainLayout/components/HelpFooter';
+import { mobileMenuCalorItems } from '../../../../helpers/data';
 
 const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
   const signUpHandler = () => {
     navigate('/signup');
   };
-  const mobileMenuCalorItems = ['Faster Checkout', 'Access  Your Complete Order History', 'Discount Rewards Program'];
+
   const handleClick = () => {
     console.log('Button clicked!');
   };

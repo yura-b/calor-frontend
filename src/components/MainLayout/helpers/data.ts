@@ -41,3 +41,9 @@ export const privacyLinks = [
     path: paths.terms_condition,
   },
 ];
+
+export const mobileMenuCalorItems = [
+  'Faster Checkout',
+  'Access  Your Complete Order History',
+  'Discount Rewards Program',
+];

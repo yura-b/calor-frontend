@@ -7,23 +7,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fadeAnimation, scaleAnimation } from '@styles/Animations';
 import AnimatedText from '@/helpers/animations/animations';
+import { processArr } from '../../helpers/data';
 
 const HomeMainContent: React.FC = (): React.ReactElement => {
   const headingClass = 'text-4xl font-black leading-tight sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:7xl';
-  const processArr = [
-    {
-      title: 'DESIGN',
-      content: 'Make a unique design of your shoes with the help of an online designer.',
-    },
-    {
-      title: 'MANUFACTURE',
-      content: 'We produce shoes according to your design and foot sizes in 5-7 working days.',
-    },
-    {
-      title: 'DELIVERY',
-      content: 'We pack and send your calories to the nearest post office in the world..',
-    },
-  ];
 
   const handleClick = () => {
     console.log('Button clicked!');
