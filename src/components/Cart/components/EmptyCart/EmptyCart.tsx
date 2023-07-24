@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '@styles/Styles.module.scss';
 import basketLayout from '@assets/cartImages/basketLayout.svg';
 import layout from '@assets/cartImages/layout.svg';
 import Button from '@/components/ui/Button';
@@ -13,7 +14,9 @@ const EmptyCart: React.FC<Props> = ({ title }): React.ReactElement => {
   };
   return (
     <>
-      <div className="bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2 text-sm">
+      <div
+        className={`${styles.body1} bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2`}
+      >
         {title}
       </div>
       <div className="flex items-center justify-center relative">

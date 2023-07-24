@@ -1,65 +1,66 @@
 import React, { useState } from 'react';
 import downIcon from '@assets/images/downIcon.svg';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const MainMenu: React.FC = (): React.ReactElement => {
-  const [activeMenuItem, setActiveMenuItem] = useState(null);
+  const [isOpen, setIsOpen] = useState(null);
 
-  const handleMenuItemClick = (itemId) => {
-    if (activeMenuItem === itemId) {
-      setActiveMenuItem(null);
-    } else {
-      setActiveMenuItem(itemId);
-    }
+  const handleToggle = (index) => {
+    setIsOpen(isOpen === index ? null : index);
   };
   const menuItems = [
     {
       id: 1,
       title: 'Design Your Shoe',
-      subItems: [],
     },
     {
       id: 2,
       title: 'Design Your Bag',
-      subItems: [],
     },
     {
       id: 3,
       title: 'Accessories',
-      subItems: ['Sub Item 7', 'Sub Item 8', 'Sub Item 9'],
+      subItems: ['All', 'Belts', 'Bracelets', 'Laces', 'Souvenirs', 'T-Shirts'],
     },
     {
       id: 4,
       title: 'Shoe Care Product',
-      subItems: ['Sub Item 10', 'Sub Item 11', 'Sub Item 12'],
+      subItems: ['All', 'Brushes', 'Cleaners', 'Protectors'],
     },
     {
       id: 4,
       title: 'Customer Experience',
-      subItems: [],
     },
   ];
   return (
-    <nav className="flex justify-center font-black  text-xl lg:text-xl lg:font-semibold">
-      <div className="flex flex-col items-center lg:flex-row">
+    <nav className="flex justify-center font-black  text-xl lg:text-xl lg:font-semibold ">
+      <div className="flex flex-col items-center lg:flex-row relative">
         {menuItems.map((menuItem, index) => (
           <div key={index} className="relative group">
             <button
               className="px-4 py-2 text-white hover:bg-gray-700 focus:outline-none"
-              onClick={() => handleMenuItemClick(menuItem.id)}
+              onClick={() => handleToggle(index)}
             >
-              <p className="flex">
-                {menuItem.title} {menuItem.subItems.length ? <img src={downIcon} alt={''} className="ml-2" /> : null}
+              <p className="text-2xl text-white  lg:text-base flex">
+                {menuItem.title} {menuItem.subItems?.length ? <img src={downIcon} alt={''} className="ml-2" /> : null}
               </p>
             </button>
-            {activeMenuItem === menuItem.id && (
-              <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                {menuItem.subItems.map((subItem, index) => (
-                  <a key={index} href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    {subItem}
-                  </a>
-                ))}
-              </div>
-            )}
+            <AnimatePresence>
+              {isOpen === index && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className=" bg-white p-2 border border-gray rounded mt-2 absolute z-20 w-full"
+                >
+                  {menuItem.subItems?.map((option, optionIndex) => (
+                    <div key={optionIndex} className="text-2xl text-gray  lg:text-base py-1">
+                      {option}
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ))}
       </div>
