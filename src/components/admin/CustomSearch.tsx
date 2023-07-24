@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const CustomSearch: React.FC<{ searchButton: (value) => void }> = ({ searchButton }) => {
   const [value, setValue] = useState('');
 
-  const changeHandler = (e) => {
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
   return (

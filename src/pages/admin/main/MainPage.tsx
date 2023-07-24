@@ -1,11 +1,13 @@
 import React from 'react';
 import AdminLayout from '@layouts/admin/AdminLayout.tsx';
-import OrdersGrid from '@pages/admin/main/components/OrdersGrid.tsx';
+import GridHeader from '@components/admin/GridHeader.tsx';
+import OrderGridPage from '@pages/admin/main/components/OrderGridPage.tsx';
 
 const MainPage = () => {
   return (
     <AdminLayout>
-      <OrdersGrid />
+      <GridHeader title={'Orders'} buttonTitle={'+ New Order'} />
+      <OrderGridPage />
     </AdminLayout>
   );
 };

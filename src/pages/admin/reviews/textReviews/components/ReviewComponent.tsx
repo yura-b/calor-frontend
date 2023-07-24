@@ -10,8 +10,9 @@ import IsRegistered from '@components/admin/IsRegistered.tsx';
 
 interface IProps extends Review {
   possibilityToApproveAndBlock: boolean;
-  publishedReviews: ReviewsState;
-  pendingReview: ReviewsState;
+  onlyForReview?: boolean;
+  publishedReviews?: ReviewsState;
+  pendingReview?: ReviewsState;
 }
 
 interface ReviewsState {
@@ -34,15 +35,16 @@ const ReviewComponent: React.FC<IProps> = ({
   possibilityToApproveAndBlock,
   publishedReviews,
   pendingReview,
+  onlyForReview = false,
 }) => {
   const { access_token } = useAppSelector((state) => state.user);
   if (!access_token) return <></>;
 
   const removeReview = () => {
-    pendingReview.setState((prev) => {
+    pendingReview?.setState((prev) => {
       return prev.filter((el) => el._id !== _id);
     });
-    publishedReviews.setState((prev) => {
+    publishedReviews?.setState((prev) => {
       return prev.filter((el) => el._id !== _id);
     });
   };
@@ -50,7 +52,7 @@ const ReviewComponent: React.FC<IProps> = ({
     approveReview(access_token, _id).then((res) => {
       if (res.status === HttpStatusCode.Ok) {
         removeReview();
-        publishedReviews.setState((prevState) => {
+        publishedReviews?.setState((prevState) => {
           return [
             ...prevState,
             { _id, date, name, experience, rating, email, status, photo, product_id, isUserRegistered, user_id },
@@ -82,13 +84,15 @@ const ReviewComponent: React.FC<IProps> = ({
         <p>{DateFormatter(date)}</p>
       </div>
       <p>{experience}</p>
-      <div className={'relative mx-auto flex flex-row gap-8'}>
-        {possibilityToApproveAndBlock && <CustomButton title={'Block User'} bgColor={'red'} />}
-        <CustomButton title={'Delete Review'} handler={deleteHandler} bgColor={'red'} />
-        {possibilityToApproveAndBlock && (
-          <CustomButton title={'Public Review'} handler={publicHandler} bgColor={'black'} />
-        )}
-      </div>
+      {!onlyForReview && (
+        <div className={'relative mx-auto flex flex-row gap-8'}>
+          {possibilityToApproveAndBlock && <CustomButton title={'Block User'} bgColor={'red'} />}
+          <CustomButton title={'Delete Review'} handler={deleteHandler} bgColor={'red'} />
+          {possibilityToApproveAndBlock && (
+            <CustomButton title={'Public Review'} handler={publicHandler} bgColor={'black'} />
+          )}
+        </div>
+      )}
       <hr />
     </div>
   );

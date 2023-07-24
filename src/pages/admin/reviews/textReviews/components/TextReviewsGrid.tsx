@@ -18,12 +18,11 @@ const TextReviewsGrid = () => {
   const stylesForPending = !history && ' text-white bg-black';
   const [publishedReviews, setPublishedReview] = useState<Review[]>([]);
   const [pendingReviews, setPendingReviews] = useState<Review[]>([]);
+
   useEffect(() => {
     if (!access_token) return;
     getAllReviews(access_token, filter)
       .then((res) => {
-        console.log(res);
-
         setPublishedReview(res.data.filter((review) => review.status === ReviewStatusEnum.PUBLISHED));
         setPendingReviews(res.data.filter((review) => review.status !== ReviewStatusEnum.PUBLISHED));
       })
@@ -33,8 +32,7 @@ const TextReviewsGrid = () => {
   }, [filter]);
 
   const filteredReviews = history ? publishedReviews : pendingReviews;
-  console.log(publishedReviews);
-  console.log(filteredReviews);
+
   return (
     <div className={'pl-10'}>
       <CustomSearch searchButton={setFilter} />

@@ -1,3 +1,5 @@
+import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
+
 export interface IOrder {
   address: string;
   email: string;
@@ -6,6 +8,10 @@ export interface IOrder {
   status: OrderStatus;
   username: string;
   _id: string;
+  date: Date;
+  productionDays: number;
+  totalPrice?: number;
+  payment: PaymentEnum;
 }
 
 export enum OrderStatus {
