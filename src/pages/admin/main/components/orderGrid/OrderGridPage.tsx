@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import OrdersTable from '@pages/admin/main/components/OrdersGrid.tsx';
+import OrdersTable from '@pages/admin/main/components/orderGrid/OrdersGrid.tsx';
 import CustomSearch from '@components/admin/CustomSearch.tsx';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { useQuery } from 'react-query';

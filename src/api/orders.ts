@@ -7,6 +7,10 @@ export const getOrders = (credential) => {
   return axios.get(`${backendUrl}/order/all`, authorization(credential));
 };
 
+export const getOrder = (credential:string, id:string) => {
+  return axios.get(`${backendUrl}/order/${id}`, authorization(credential));
+};
+
 export const changeOrderStatus = (credentials: string, data: changeOrderStatusInterface) => {
   return axios.put(
     `${backendUrl}/order/${data._id}`,
@@ -16,3 +20,5 @@ export const changeOrderStatus = (credentials: string, data: changeOrderStatusIn
     authorization(credentials)
   );
 };
+
+

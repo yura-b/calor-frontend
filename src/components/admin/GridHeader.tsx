@@ -1,8 +1,8 @@
 import React from 'react';
 import CustomButton from '../button/CustomButton';
 interface IProps {
-  title: string;
-  buttonTitle: string;
+  title?: string;
+  buttonTitle?: string;
 }
 const GridHeader: React.FC<IProps> = ({ title, buttonTitle }) => {
   return (

@@ -33,7 +33,7 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  const size = 28;
+  const size = 22;
 
   const navigateTo = (location: string) => {
     navigate(location);
@@ -55,7 +55,7 @@ const Header = () => {
           <img src={logo} className={'w-full h-full p-3 mt-6 ' + styles.image} alt="" />
         </div>
 
-        <div className={'flex flex-col gap-12 w-full justify-center ml-6  mt-16 ' + styles.navContainer}>
+        <div className={'flex flex-col gap-8 w-full justify-center ml-6  mt-16 ' + styles.navContainer}>
           <div>
             <ChartBar size={size} weight="fill" />
             <span>Analytics</span>
@@ -76,11 +76,11 @@ const Header = () => {
           {shopDropDown && (
             <div className={'flex flex-col pl-10 gap-5'}>
               <div>
-                <Package size={32} weight="fill" />
+                <Package size={size} weight="fill" />
                 <span>Warehouse</span>
               </div>
               <div>
-                <Book size={32} weight="fill" />
+                <Book size={size} weight="fill" />
                 <span>Catalog</span>
               </div>
               <div
@@ -88,7 +88,7 @@ const Header = () => {
                   navigateTo('/admin');
                 }}
               >
-                <ClipboardText size={32} weight="fill" />
+                <ClipboardText size={size} weight="fill" />
                 <span>Orders</span>
               </div>
             </div>
@@ -121,11 +121,11 @@ const Header = () => {
                   navigateTo('/admin/reviews/text');
                 }}
               >
-                <TextT size={32} weight="fill" />
+                <TextT size={size} weight="fill" />
                 <span>Text Reviews</span>
               </div>
               <div>
-                <VideoCamera size={32} weight="fill" />
+                <VideoCamera size={size} weight="fill" />
                 <span>Video Reviews</span>
               </div>
             </div>
@@ -148,17 +148,17 @@ const Header = () => {
           </div>
         </div>
 
-        <div className={'flex flex-col justify-center gap-12 ml-6 mt-52 ' + styles.navContainer}>
+        <div className={'flex flex-col justify-center gap-9 ml-6 absolute bottom-5 ' + styles.navContainer}>
           <div>
-            <GlobeSimple size={32} />
+            <GlobeSimple size={26} />
             <span>Go To Calor</span>
           </div>
           <div>
-            <UserCircle size={32} weight="fill" />
+            <UserCircle size={26} weight="fill" />
             <span>{fullName}</span>
           </div>
 
-          <CustomSignOut size={size} />
+          <CustomSignOut size={26} />
         </div>
       </div>
     </div>

@@ -27,13 +27,13 @@ const UserAdditionalInfo: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
         {sections.map((section) => {
           if (section === chosenSection) {
             return (
-              <div className={defaultStyles + chosen} onClick={() => setChosenSection(section)}>
+              <div key={section} className={defaultStyles + chosen} onClick={() => setChosenSection(section)}>
                 {section}
               </div>
             );
           }
           return (
-            <div className={defaultStyles} onClick={() => setChosenSection(section)}>
+            <div key={section} className={defaultStyles} onClick={() => setChosenSection(section)}>
               {section}
             </div>
           );

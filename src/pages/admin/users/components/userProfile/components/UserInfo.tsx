@@ -1,18 +1,19 @@
 import React from 'react';
-import { IUser } from '@/constants/interfaces/user.ts';
-import { ArrowsHorizontal, ChatText, House, User } from '@phosphor-icons/react';
+import {IUser, IUserForProfile} from '@/constants/interfaces/user.ts';
+import {ArrowsHorizontal, ChatText, House, Truck, User} from '@phosphor-icons/react';
 import IsRegistered from '@components/admin/IsRegistered.tsx';
 
 interface IProps {
   userDataState: UserInfoState;
+  withDelivery: boolean
 }
 
 interface UserInfoState {
-  state: IUser;
-  setState: React.Dispatch<React.SetStateAction<IUser>>;
+  state: IUserForProfile;
+  setState?: React.Dispatch<React.SetStateAction<IUser>>;
 }
 
-const UserInfo: React.FC<IProps> = ({ userDataState }) => {
+const UserInfo: React.FC<IProps> = ({ userDataState, withDelivery = false }) => {
   const { state, setState } = userDataState;
   console.log(state);
   return (
@@ -48,6 +49,10 @@ const UserInfo: React.FC<IProps> = ({ userDataState }) => {
         <div>
           <p>The Customer has not yet specified their default shipping address</p>
         </div>
+        {withDelivery && <div className={'flex flex-row gap-5 items-center'}>
+          <Truck size={32} weight={'fill'}/>
+          <h2 className={'font-bold'}>Delivery</h2>
+        </div>}
         <div>
           <ChatText size={32} weight="fill" />
           <p className={'font-bold'}>Comment</p>
