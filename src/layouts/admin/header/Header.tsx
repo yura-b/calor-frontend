@@ -1,4 +1,4 @@
-import React, { ReactEventHandler, useState } from 'react';
+import React, {  useState } from 'react';
 import styles from './Header.module.scss';
 import logo from '../../../assets/images/logoText.svg';
 import { useAppSelector } from '@/store/hooks/hooks';
@@ -23,6 +23,7 @@ import {
 } from '@phosphor-icons/react';
 import CustomSignOut from '@components/logout/SignOut.tsx';
 import { useNavigate } from 'react-router';
+import HeaderElement from '@layouts/admin/header/HeaderElement.tsx';
 
 const Header = () => {
   const { firstName, secondName } = useAppSelector((state) => state.user);
@@ -31,13 +32,7 @@ const Header = () => {
   const [shopDropDown, setShopDropDown] = useState(false);
   const [reviewDropDown, setReviewDropDown] = useState(false);
 
-  const navigate = useNavigate();
-
   const size = 22;
-
-  const navigateTo = (location: string) => {
-    navigate(location);
-  };
 
   const reviewHandler = (e: React.MouseEvent<any>) => {
     e.preventDefault();
@@ -56,10 +51,7 @@ const Header = () => {
         </div>
 
         <div className={'flex flex-col gap-8 w-full justify-center ml-6  mt-16 ' + styles.navContainer}>
-          <div>
-            <ChartBar size={size} weight="fill" />
-            <span>Analytics</span>
-          </div>
+          <HeaderElement icon={ <ChartBar size={size} weight="fill" />} title={'Analytics'}/>
           <div>
             <Storefront size={size} weight="fill" />
 
@@ -75,32 +67,12 @@ const Header = () => {
           </div>
           {shopDropDown && (
             <div className={'flex flex-col pl-10 gap-5'}>
-              <div>
-                <Package size={size} weight="fill" />
-                <span>Warehouse</span>
-              </div>
-              <div>
-                <Book size={size} weight="fill" />
-                <span>Catalog</span>
-              </div>
-              <div
-                onClick={() => {
-                  navigateTo('/admin');
-                }}
-              >
-                <ClipboardText size={size} weight="fill" />
-                <span>Orders</span>
-              </div>
+              <HeaderElement icon={<Package size={size} weight="fill" />} title={'Warehouse'}/>
+              <HeaderElement icon={<Book size={size} weight="fill" />} title={'Catalog'}/>
+              <HeaderElement icon={<ClipboardText size={size} weight="fill" />} title={'Orders'} navigateTo={'/admin'}/>
             </div>
           )}
-          <div
-            onClick={() => {
-              navigateTo('/admin/users');
-            }}
-          >
-            <Users size={size} weight="fill" />
-            <span>Customers</span>
-          </div>
+          <HeaderElement icon={<Users size={size} weight="fill" />} title={'Customers'} navigateTo={'/admin/users'}/>
           <div>
             <ChatDots size={size} weight="fill" />
 
@@ -116,36 +88,15 @@ const Header = () => {
           </div>
           {reviewDropDown && (
             <div className={'flex flex-col pl-10 gap-5'}>
-              <div
-                onClick={() => {
-                  navigateTo('/admin/reviews/text');
-                }}
-              >
-                <TextT size={size} weight="fill" />
-                <span>Text Reviews</span>
-              </div>
-              <div>
-                <VideoCamera size={size} weight="fill" />
-                <span>Video Reviews</span>
-              </div>
+              <HeaderElement icon={<TextT size={size} weight="fill" />} title={'Text Reviews'} navigateTo={'/admin/reviews/text'}/>
+              <HeaderElement icon={ <VideoCamera size={size} weight="fill" />} title={'Video Reviews'}/>
             </div>
           )}
-          <div>
-            <Calendar size={size} weight="fill" />
-            <span> Appointments</span>
-          </div>
-          <div>
-            <Envelope size={size} weight="fill" />
-            <span>Newsletter</span>
-          </div>
-          <div>
-            <Percent size={size} weight="fill" />
-            <span>Promo codes</span>
-          </div>
-          <div>
-            <Browsers size={size} weight="fill" />
-            <span>Page manager</span>
-          </div>
+
+          <HeaderElement icon={<Calendar size={size} weight="fill" />} title={'Appointments'}/>
+          <HeaderElement icon={ <Envelope size={size} weight="fill" />} title={'Newsletter'}/>
+          <HeaderElement icon={<Percent size={size} weight="fill" />} title={'Promo codes'}/>
+          <HeaderElement icon={<Browsers size={size} weight="fill" />} title={'Page manager'} navigateTo={'/admin/manager'}/>
         </div>
 
         <div className={'flex flex-col justify-center gap-9 ml-6 absolute bottom-5 ' + styles.navContainer}>
