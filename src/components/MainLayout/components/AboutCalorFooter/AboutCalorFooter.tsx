@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { aboutLinks } from '../../helpers/data';
-import { motion, AnimatePresence } from 'framer-motion'; // Import Framer Motion components
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from '@/styles/Styles.module.scss';
 import { collapseAnimation } from '@styles/Animations';
 import { paths } from '@/routes/paths';

@@ -32,8 +32,8 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
         <img src={calorByYou} alt="Your Image" className="w-full" />
         <div className="absolute top-0 left-0 w-full h-full bg-custom-red opacity-80"></div>
         <div className="absolute -bottom-2 right-6">
-          <h1 className="text-white text-4xl font-black sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-            {'calor by you!'.toLocaleUpperCase()}
+          <h1 className="text-white text-4xl font-black sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase">
+            calor by you!
           </h1>
         </div>
       </div>

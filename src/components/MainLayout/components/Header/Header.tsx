@@ -12,6 +12,7 @@ import { layoutFadeAnimation } from '@styles/Animations';
 import { motion, useCycle } from 'framer-motion';
 import userIcon from '@assets/images/userIcon.svg';
 import { useMediaQuery } from '@react-hook/media-query';
+import NavigationLinks from './components/NavigationLinks';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   headerHeight,
@@ -81,7 +82,8 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
         <div className="w-full lg:w-auto flex flex-row justify-center mt-10 lg:mt-0 md:w-max">
           <SearchInput />
         </div>
-      </div>{' '}
+      </div>
+      <NavigationLinks />
       <Modal className="flex items-center justify-center h-auto" open={isCartOpen} onClose={closeCart}>
         <>
           {isCartOpen && (

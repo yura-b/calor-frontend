@@ -1,6 +1,9 @@
 import React from 'react';
 import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
+import Slider from './components/Slider';
+import WhoWeAre from './components/WhoWeAre';
+import OurStory from './components/OurStory';
 
 import MainLayout from '@/components/MainLayout';
 
@@ -9,7 +12,9 @@ const AboutPage: React.FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.about} />
       <MainLayout>
-        <h1>About Page</h1>
+        <Slider />
+        <WhoWeAre />
+        <OurStory />
       </MainLayout>
     </div>
   );

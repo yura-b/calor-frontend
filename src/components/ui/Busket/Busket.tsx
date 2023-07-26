@@ -8,14 +8,16 @@ interface Props {
 
 const Busket: React.FC<Props> = ({ count, onClick }) => {
   return (
-    <div className="flex ml-auto">
-      <div className="relative mr-6 w-10" onClick={onClick}>
-        <img src={basketImage} alt="Basket" className="mr-2" />
+    <div className="" onClick={onClick}>
+      <div className="relative">
         {count > 0 && (
-          <span className="absolute top-0 right-0 bg-mint text-white rounded-full p-1 text-xs w-4 h-4 flex items-center justify-center">
-            {count}
-          </span>
+          <div className="-top-1.5 absolute left-5">
+            <p className="flex w-4 h-4 items-center justify-center rounded-full bg-mint p-2.5 text-xs text-white">
+              {count}
+            </p>
+          </div>
         )}
+        <img src={basketImage} alt="Basket" className="mr-6 mt-0" />
       </div>
     </div>
   );
