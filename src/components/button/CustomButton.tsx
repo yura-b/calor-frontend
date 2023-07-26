@@ -1,7 +1,7 @@
 import { Button, createTheme, ThemeProvider } from '@mui/material';
 import React from 'react';
 
-export interface IProps {
+interface IProps {
   title: string;
   handler?: () => void;
   type?: 'submit' | 'reset';

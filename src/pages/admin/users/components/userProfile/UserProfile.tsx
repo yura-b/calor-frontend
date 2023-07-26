@@ -6,6 +6,7 @@ import UserInfo from '@pages/admin/users/components/userProfile/components/UserI
 import { IUser } from '@/constants/interfaces/user.ts';
 import { Review } from '@/constants/interfaces/review.ts';
 import UserAdditionalInfo from '@pages/admin/users/components/userProfile/components/UserAdditionalInfo.tsx';
+import { IOrder } from '@/constants/interfaces/order.ts';
 
 const userDataInitialState: IUser = {
   _id: '',
@@ -23,21 +24,23 @@ const UserProfile = () => {
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState<IUser>(userDataInitialState);
   const [userReviews, setUserReviews] = useState<Review[]>([]);
+  const [userOrders, setUserOrders] = useState<IOrder[]>([]);
   useEffect(() => {
     if (!access_token || !id) return;
     getUser(access_token, id).then((res) => {
       console.log(res);
       setUserInfo(res.data.user);
       setUserReviews(res.data.reviews);
+      setUserOrders(res.data.orders)
     });
   }, [id]);
 
   if (!id) return <>wrong url</>;
   return (
     <div className={'pl-16'}>
-      <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} />
+      <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} withDelivery={false}/>
       <hr />
-      <UserAdditionalInfo reviews={userReviews} />
+      <UserAdditionalInfo reviews={userReviews} orders={userOrders}/>
     </div>
   );
 };

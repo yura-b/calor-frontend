@@ -30,7 +30,9 @@ const OrderPage = () => {
         <AdminLayout>
             <OrderPageHeader id={id}/>
             <OrderInformation order={orderData}/>
-            <UserInfo withDelivery={true} userDataState={{state: {phoneNumber: number, email, secondName, firstName}}}/>
+            <div className={'pl-7'}>
+              <UserInfo withDelivery={true} userDataState={{state: {phoneNumber: number, email, secondName, firstName}}}/>
+            </div>
         </AdminLayout>
     );
 };

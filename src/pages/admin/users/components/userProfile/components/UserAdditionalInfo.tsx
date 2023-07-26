@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import UserProfileReviews from '@pages/admin/users/components/userProfile/components/UserProfileReviews.tsx';
 import { Review } from '@/constants/interfaces/review.ts';
+import { IOrder } from '@/constants/interfaces/order.ts';
+import OrdersTable from '@pages/admin/main/components/OrdersGrid.tsx';
 
 enum chosenSectionEnum {
   orderHistory = 'Orders History',
@@ -16,7 +18,11 @@ const sections: chosenSectionEnum[] = [
   chosenSectionEnum.appointments,
 ];
 
-const UserAdditionalInfo: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
+interface IProps {
+  reviews: Review[]
+  orders: IOrder[]
+}
+const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders }) => {
   const [chosenSection, setChosenSection] = useState<chosenSectionEnum>(chosenSectionEnum.orderHistory);
   const defaultStyles = ' font-bold px-6 cursor-pointer font-bold border-b-2 border-black';
   const chosen = ' text-white bg-black';
@@ -40,6 +46,7 @@ const UserAdditionalInfo: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
         })}
       </div>
       <div>{chosenSection === chosenSectionEnum.reviews && <UserProfileReviews reviews={reviews} />}</div>
+      <div>{chosenSection === chosenSectionEnum.orderHistory && <OrdersTable orderList={orders} />}</div>
     </div>
   );
 };

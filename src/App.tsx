@@ -11,6 +11,7 @@ import React from 'react';
 import TextReviewPage from '@pages/admin/reviews/textReviews/TextReviewPage.tsx';
 import UserProfilePage from '@pages/admin/users/UserProfilePage.tsx';
 import OrderPage from '@pages/admin/main/OrderPage.tsx';
+import PageManagerPage from '@pages/admin/pageManager/PageManagerPage.tsx';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path={'users'} element={<UserPage />} />
           <Route path={'users/:id'} element={<UserProfilePage />} />
           <Route path={'reviews/text'} element={<TextReviewPage />} />
+          <Route path={'manager'} element={<PageManagerPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

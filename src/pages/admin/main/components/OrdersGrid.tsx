@@ -8,12 +8,13 @@ import {
   TableContainer,
   TableHead,
   TablePagination,
-  TableRow,
+  TableRow
 } from '@mui/material';
 
 import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
 import ProductionDay from '@components/admin/ProductionDay.tsx';
 import Wrapper from '@components/admin/Wrapper.tsx';
+import { useNavigate } from 'react-router';
 
 interface Column {
   id: 'ID' | 'Customer`s name' | 'Date' | 'Status' | 'Production Day' | 'Amount' | 'Payment' | 'Invoice' | 'Checklist';
@@ -31,19 +32,19 @@ const columns: readonly Column[] = [
     label: 'Date',
     minWidth: 150,
     align: 'center',
-    format: (value: number) => value.toLocaleString('en-US'),
+    format: (value: number) => value.toLocaleString('en-US')
   },
   { id: 'Status', label: 'Status', minWidth: 50, align: 'center' },
   {
     id: 'Production Day',
     label: 'Production Day',
     minWidth: 50,
-    align: 'center',
+    align: 'center'
   },
   { id: 'Amount', label: 'Amount', minWidth: 150 },
   { id: 'Payment', label: 'Payment', minWidth: 80, align: 'center' },
   { id: 'Invoice', label: 'Invoice', minWidth: 120, align: 'center' },
-  { id: 'Checklist', label: 'Checklist', minWidth: 150, align: 'center' },
+  { id: 'Checklist', label: 'Checklist', minWidth: 150, align: 'center' }
 ];
 
 interface IProps {
@@ -56,16 +57,24 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
 
   const align: 'right' | 'left' | 'center' | 'justify' | 'inherit' = 'left';
 
+  const navigator = useNavigate();
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
+  const navigateToOrderPage = (id: string) => {
+    navigator(`/admin/order/${id}`);
+  };
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  if (orderList.length === 0) return <div>
+    Order list is empty
+  </div>;
 
   return (
     <Paper sx={{ width: '99%', overflow: 'hidden' }}>
@@ -89,8 +98,10 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
             {orderList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={order._id}>
-                  <TableCell>
-                    <p className={'underline font-bold'}>{order._id}</p>
+                  <TableCell onClick={() => {
+                    navigateToOrderPage(order._id);
+                  }}>
+                    <p className={'underline font-bold cursor-pointer'}>{order._id}</p>
                   </TableCell>
                   <TableCell>
                     <p>{order.username}</p>
