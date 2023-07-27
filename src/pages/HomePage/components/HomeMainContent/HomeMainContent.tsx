@@ -7,23 +7,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fadeAnimation, scaleAnimation } from '@styles/Animations';
 import AnimatedText from '@/helpers/animations/animations';
+import { processArr } from '../../helpers/data';
 
 const HomeMainContent: React.FC = (): React.ReactElement => {
   const headingClass = 'text-4xl font-black leading-tight sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:7xl';
-  const processArr = [
-    {
-      title: 'DESIGN',
-      content: 'Make a unique design of your shoes with the help of an online designer.',
-    },
-    {
-      title: 'MANUFACTURE',
-      content: 'We produce shoes according to your design and foot sizes in 5-7 working days.',
-    },
-    {
-      title: 'DELIVERY',
-      content: 'We pack and send your calories to the nearest post office in the world..',
-    },
-  ];
 
   const handleClick = () => {
     console.log('Button clicked!');
@@ -54,7 +41,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
           <br />
           <AnimatedText text="SIMPLY AS" />
           <br />
-          <AnimatedText text="1  >  2 >   3" />
+          <AnimatedText text="1  &gt; 2 &gt;  3" />
         </motion.p>
         <motion.p
           className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow lg:hidden`}
@@ -68,7 +55,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
           className={`${headingClass}  bg-custom-turquoise text-center text-custom-red w-full lg:hidden`}
           {...fadeAnimation}
         >
-          <AnimatedText text="1 > 2 > 3" />
+          <AnimatedText text="1 &gt; 2 &gt; 3" />
         </motion.p>
         <motion.div
           className="flex flex-col justify-around lg:flex-row mt-6 lg:max-w-[90vw] 2xl:max-w-[70vw] mx-auto lg:pt-10"
@@ -123,7 +110,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
         </motion.div>
         <img
           src={homeSemiCircle}
-          className="absolute z-1 top-8 left-0 h-64 sm:h-72 sm:top-16 md:h-76 md:top-24 lg:h-76 lg:top-12 xl:h-1/2"
+          className="absolute z-1 top-0 left-0 h-72 sm:h-80 sm:top-24 md:h-96 md:top-28 lg:h-72 lg:top-12  xl:top-24 xl:h-80 2xl:top-16 2xl:h-1/2"
         />
       </div>
     </div>

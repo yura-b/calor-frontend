@@ -1,26 +1,13 @@
 import React from 'react';
-import care from '@assets/images/care.svg';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
-import accesories from '@assets/images/accesories.svg';
 import homeRoomSircle from '@assets/images/homeRoomSircle.svg';
+import { lookModels } from '../../helpers/data';
 
 const HomeShowRoom: React.FC = (): React.ReactElement => {
   const handleClick = () => {
     console.log('Button clicked!');
   };
-
-  const lookModels = [
-    {
-      title: 'Accessories',
-      img: accesories,
-    },
-    {
-      title: 'Care Product',
-      img: care,
-    },
-  ];
-
   return (
     <div className="w-full bg-custom-turquoise px-6 py-4">
       <p className={`${styles.subtitle}`}>Showroom</p>

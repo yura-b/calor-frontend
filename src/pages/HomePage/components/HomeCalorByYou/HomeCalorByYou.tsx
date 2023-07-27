@@ -3,34 +3,15 @@ import styles from '@styles/Styles.module.scss';
 import { Link } from 'react-router-dom';
 import Button from '@/components/ui/Button';
 import calorByYou from '@assets/images/calorByYou.svg';
-import homeCalorMade from '@assets/images/homeCalorMade.svg';
-import homeCalorQuality from '@assets/images/homeCalorQuality.svg';
-import homeCalorDesign from '@assets/images/homeCalorDesign.svg';
 import homeCustomerCreation1 from '@assets/images/homeCustomerCreation1.svg';
 import homeCustomerCreation2 from '@assets/images/homeCustomerCreation2.svg';
+import { calorByYouItems } from '../../helpers/data';
 
 const HomeCalorByYou: React.FC = (): React.ReactElement => {
   const handleClick = () => {
     console.log('Button clicked!');
   };
 
-  const calorByYouItems = [
-    {
-      title: 'Made-To-Order',
-      text: 'You get not only unique shoes, but also an expression of your individuality through shoes.',
-      img: homeCalorMade,
-    },
-    {
-      title: 'High Quality Material',
-      text: 'We use only high-quality materials to make our sneakers: genuine Italian leather and suede, wool and fur.',
-      img: homeCalorQuality,
-    },
-    {
-      title: 'Own design',
-      text: 'The main reason you are here is to try yourself as a designer of your own shoes or bag, right? So, we did a constructors for you to make it super easy!',
-      img: homeCalorDesign,
-    },
-  ];
   const homeCustomerCreations = [
     {
       img: homeCustomerCreation1,
