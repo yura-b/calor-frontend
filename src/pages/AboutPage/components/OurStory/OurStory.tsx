@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import { fadeAnimation } from '@styles/Animations';
 import ourStoryPhoto from '@assets/aboutImages/ourStoryPhoto.svg';
 import { motion } from 'framer-motion';
+import ReadMore from '@/components/ReadMore';
 
 const OurStory = () => {
-  const [showFullText, setShowFullText] = useState(false);
-
+  const initialText =
+    'CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.';
+  const expandedText =
+    'CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.';
   return (
     <motion.div {...fadeAnimation}>
       <div className="relative bg-custom-turquoise h-48 lg:h-52 m-auto w-full">
@@ -18,17 +20,7 @@ const OurStory = () => {
           </div>
         </div>
       </div>
-      <motion.p className={`${styles.body1} text-justify pt-40 px-6 m-auto min-h-max lg:max-w-[80vw] lg:pt-44`}>
-        {showFullText
-          ? 'CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.'
-          : 'CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.'}
-      </motion.p>
-      <a
-        onClick={() => setShowFullText(!showFullText)}
-        className="text-gray text-base underline cursor-pointer block text-center py-6 md:text-lg"
-      >
-        {showFullText ? 'Read Less' : 'Read More'}
-      </a>
+      <ReadMore initialText={initialText} expandedText={expandedText} className="pt-40 lg:pt-44" />
     </motion.div>
   );
 };

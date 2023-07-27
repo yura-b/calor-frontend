@@ -8,13 +8,10 @@ import { motion } from 'framer-motion';
 import { fadeAnimation, scaleAnimation } from '@styles/Animations';
 import AnimatedText from '@/helpers/animations/animations';
 import { processArr } from '../../helpers/data';
+import { paths } from '@/routes/paths';
 
 const HomeMainContent: React.FC = (): React.ReactElement => {
   const headingClass = 'text-4xl font-black leading-tight sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:7xl';
-
-  const handleClick = () => {
-    console.log('Button clicked!');
-  };
   return (
     <div className="w-full bg-custom-red relative">
       <div className="flex w-full justify-around flex-wrap items-center relative z-10 2xl:max-w-[86vw] mx-auto">
@@ -97,10 +94,10 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
             </p>
           </div>
           <div className="lg:basis-auto">
-            <Button color="red" onClick={handleClick}>
+            <Button color="red" to={paths.design_shoe}>
               Design Your Shoe
             </Button>
-            <Button color="mintExtraLight" onClick={handleClick}>
+            <Button color="mintExtraLight" to={paths.design_bag}>
               Design Your Bag
             </Button>
           </div>

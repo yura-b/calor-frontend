@@ -6,6 +6,7 @@ import WhoWeAre from './components/WhoWeAre';
 import OurStory from './components/OurStory';
 
 import MainLayout from '@/components/MainLayout';
+import OurManufacture from './components/OurManufacture';
 
 const AboutPage: React.FC = (): React.ReactElement => {
   return (
@@ -15,6 +16,7 @@ const AboutPage: React.FC = (): React.ReactElement => {
         <Slider />
         <WhoWeAre />
         <OurStory />
+        <OurManufacture />
       </MainLayout>
     </div>
   );
