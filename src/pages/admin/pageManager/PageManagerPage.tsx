@@ -4,22 +4,25 @@ import GridHeader from '@components/admin/GridHeader.tsx';
 import { getPageSection } from '@/api/pages.ts';
 import { PageSection } from '@/constants/interfaces/pageSection.ts';
 import SectionGrid from '@pages/admin/pageManager/components/SectionGrid.tsx';
+import {useAppDispatch} from '@/store/hooks/hooks.ts';
+import {setPages} from '@/store/admin/PageManagerReducer.ts';
 
 const PageManagerPage = () => {
-  
-  const [pageSections, setPageSections] = useState<PageSection[]>([])
-  const [isEditable, setIsEditable] = useState(false)
+
+  const dispatch = useAppDispatch()
+
+
   useEffect(()=>{
     getPageSection().then(res=>{
-      setPageSections(res.data)
+      dispatch(setPages(res.data))
     })
   }, [])
 
-  console.log(pageSections);
+
   return (
     <AdminLayout>
       <GridHeader title={'Page Manager'} buttonTitle={'edit'} />
-      <SectionGrid page={{state: pageSections, setState: setPageSections}} editable={isEditable}/>
+      <SectionGrid/>
     </AdminLayout>
   );
 };
