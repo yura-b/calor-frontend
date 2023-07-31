@@ -17,7 +17,6 @@ body {
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
 }
 
 /* width */
@@ -27,7 +26,8 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: theme('colors.custom-turquoise');
+  background: theme('colors.lightGray');
+  border-radius: 8px;
 }
 
 /* Handle */

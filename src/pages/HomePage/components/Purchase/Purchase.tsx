@@ -30,6 +30,7 @@ const Purchase: React.FC = (): React.ReactElement => {
           placeholder={'Enter email'}
           value={formik.values.email}
           onChange={formik.handleChange}
+          errormessage={formik.errors.email}
           error={formik.touched.email && Boolean(formik.errors.email)}
         />
         <Button color="gray" className="w-full my-6" type="submit">

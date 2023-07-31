@@ -1,69 +1,63 @@
 import React, { useState } from 'react';
 import downIcon from '@assets/images/downIcon.svg';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { menuItems } from '../../../../helpers/data';
+import { collapseAnimation } from '@styles/Animations';
+import { useMediaQuery } from '@react-hook/media-query';
 
 const MainMenu: React.FC = (): React.ReactElement => {
+  const isLargeScreen = useMediaQuery('(min-width: 1024px)');
   const [isOpen, setIsOpen] = useState(null);
 
   const handleToggle = (index) => {
     setIsOpen(isOpen === index ? null : index);
   };
-  const menuItems = [
-    {
-      id: 1,
-      title: 'Design Your Shoe',
-    },
-    {
-      id: 2,
-      title: 'Design Your Bag',
-    },
-    {
-      id: 3,
-      title: 'Accessories',
-      subItems: ['All', 'Belts', 'Bracelets', 'Laces', 'Souvenirs', 'T-Shirts'],
-    },
-    {
-      id: 4,
-      title: 'Shoe Care Product',
-      subItems: ['All', 'Brushes', 'Cleaners', 'Protectors'],
-    },
-    {
-      id: 4,
-      title: 'Customer Experience',
-    },
-  ];
+
   return (
-    <nav className="flex justify-center font-black  text-xl lg:text-xl lg:font-semibold ">
-      <div className="flex flex-col items-center lg:flex-row relative">
+    <nav className={'flex font-black  text-2xl lg:text-lg font-semibold'}>
+      <ul className="w-full flex flex-col gap-2  lg:flex-row relative lg:gap-6">
         {menuItems.map((menuItem, index) => (
-          <div key={index} className="relative group">
-            <button
-              className="px-4 py-2 text-white hover:bg-gray-700 focus:outline-none"
+          <li key={index} className="relative py-2 lg:py-0">
+            <Link
+              to={menuItem.path}
+              className="flex text-white hover:text-custom-turquoise focus:outline-none lg:py-2 leading-6"
+              style={{ whiteSpace: 'nowrap' }}
               onClick={() => handleToggle(index)}
             >
-              <p className="text-2xl text-white  lg:text-base flex">
-                {menuItem.title} {menuItem.subItems?.length ? <img src={downIcon} alt={''} className="ml-2" /> : null}
-              </p>
-            </button>
+              {menuItem.title}{' '}
+              {menuItem.subItems?.length ? (
+                <motion.img
+                  src={downIcon}
+                  alt={''}
+                  className={'ml-2'}
+                  animate={{ rotate: isOpen === index ? 180 : 0 }}
+                  transition={{ duration: 0.4 }}
+                />
+              ) : null}
+            </Link>
             <AnimatePresence>
-              {isOpen === index && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className=" bg-white p-2 border border-gray rounded mt-2 absolute z-20 w-full"
+              {isOpen === index && menuItem?.subItems && (
+                <motion.nav
+                  initial={isLargeScreen ? { opacity: 0, y: -10 } : 'collapsed'}
+                  animate={isLargeScreen ? { opacity: 1, y: 0 } : 'open'}
+                  exit={isLargeScreen ? { opacity: 0, y: -10 } : 'collapsed'}
+                  variants={isLargeScreen ? {} : collapseAnimation?.variants}
+                  transition={isLargeScreen ? {} : collapseAnimation.transition}
+                  className="flex flex-col bg-white p-2  mt-2 lg:absolute z-20 w-full lg:w-56"
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
                 >
                   {menuItem.subItems?.map((option, optionIndex) => (
-                    <div key={optionIndex} className="text-2xl text-gray  lg:text-base py-1">
-                      {option}
-                    </div>
+                    <motion.li key={optionIndex} className="font-medium text-gray lg:hover:font-bold py-1">
+                      <Link to="#">{option}</Link>
+                    </motion.li>
                   ))}
-                </motion.div>
+                </motion.nav>
               )}
             </AnimatePresence>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </nav>
   );
 };

@@ -10,6 +10,8 @@ import bag from '@assets/cartImages/bag.svg';
 import paste from '@assets/cartImages/paste.svg';
 import likesCategoryImg1 from '@assets/cartImages/likesCategoryImg1.svg';
 import likesCategoryImg2 from '@assets/cartImages/likesCategoryImg2.svg';
+import Footer from '@components/MainLayout/components/Footer';
+
 interface Props {
   title: string;
   onClose: () => void;
@@ -61,9 +63,9 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
     },
   ];
   return (
-    <div className="font-poppins h-screen flex flex-col">
-      <CartHeader title={title} onClose={onClose} />
-      <div className="flex-1 overflow-y-auto my-8 md:my-0">
+    <div className="font-poppins  h-full flex flex-col">
+      <CartHeader title={title} onClose={onClose} cartCount={cartPurchasedItems.length} />
+      <div className="flex-1 overflow-y-auto md:my-0">
         <div className="flex flex-col items-center justify-center m-6 gap-4 text-gray">
           {!cartPurchasedItems.length ? <EmptyCart title="The are no items in your card" /> : null}
           {cartPurchasedItems.length ? (
@@ -112,6 +114,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
             <CartFooter title={'ORDER SUMMARY'} data={cartPurchasedItems} />
           </>
         ) : null}
+        {!cartPurchasedItems.length ? <Footer /> : null}
       </div>
     </div>
   );
