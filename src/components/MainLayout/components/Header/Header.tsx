@@ -3,7 +3,7 @@ import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
 import logoText from '@assets/images/logoText.svg';
-import logoImg from '@assets/images/LogoImg.svg';
+import logoImg from '@assets/images/logoImg.svg';
 import burgerIcon from '@assets/images/burgerIcon.svg';
 import SearchInput from '@/components/ui/SearchInput';
 import { Modal } from '@mui/material';
