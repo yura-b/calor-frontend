@@ -15,7 +15,7 @@ export interface IProps {
   children?: ReactNode;
   border?: string;
   description?: string;
-  errormessage?: string;
+  errorMessage?: string;
 }
 
 const CustomInput: React.FC<IProps> = (props) => {
