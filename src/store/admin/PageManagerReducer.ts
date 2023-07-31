@@ -2,13 +2,13 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {PageSection} from '@/constants/interfaces/pageSection.ts';
 
 export interface IState {
-    isEnable: boolean;
+    isDisable: boolean;
     pageSections: PageSection[];
 }
 
 
 export const initialState: IState = {
-    isEnable: false,
+    isDisable: true,
     pageSections: [],
 };
 
@@ -19,13 +19,13 @@ export const pageSlice = createSlice({
         setPages: (state, action: PayloadAction<PageSection[]>) => {
             state.pageSections = action.payload
         },
-        toggleEditing: (state) => {
-            state.isEnable = !state.isEnable
+        toggleEditing: (state, action: PayloadAction<boolean>) => {
+            state.isDisable = action.payload
         },
-        setSpecificField: (state, action: PayloadAction<{ title: unknown, value: string }>) => {
-            const record = state.pageSections.filter(el => el.title === action.payload.title)[0]
+        setSpecificField: (state, action: PayloadAction<{ id: unknown, value: string }>) => {
+            const record = state.pageSections.find(el => el._id === action.payload.id)
             state.pageSections = state.pageSections.map(section=>{
-                if (section._id === record._id) {
+                if (section._id === record?._id) {
                     return {
                         ...record,
                         value: action.payload.value

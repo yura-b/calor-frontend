@@ -22,6 +22,7 @@ import PrivacyPolicyPage from '@pages/PrivacyPolicyPage';
 import CookiesPage from '@pages/CookiesPage';
 import TermsConditionPage from '@pages/TermsConditionPage';
 import AboutPage from '@pages/AboutPage';
+import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 
 const App = () => {
     return (
@@ -40,6 +41,7 @@ const App = () => {
                     <Route path={'users/:id'} element={<UserProfilePage/>}/>
                     <Route path={'reviews/text'} element={<TextReviewPage/>}/>
                     <Route path={'manager'} element={<PageManagerPage/>}/>
+                    <Route path={'createevent'} element={<CreateEvent/>}/>
                 </Route>
                 <Route path={paths.design_shoe} element={<DesignShoePage/>}/>
                 <Route path={paths.design_bag} element={<DesignBagPage/>}/>

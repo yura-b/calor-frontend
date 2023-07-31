@@ -3,8 +3,9 @@ import UserProfileReviews from '@pages/admin/users/components/userProfile/compon
 import { Review } from '@/constants/interfaces/review.ts';
 import { IOrder } from '@/constants/interfaces/order.ts';
 import OrdersTable from '@pages/admin/main/components/OrdersGrid.tsx';
+import Navigation from '@components/admin/Navigation.tsx';
 
-enum chosenSectionEnum {
+export enum chosenSectionEnum {
   orderHistory = 'Orders History',
   reviews = 'Reviews',
   promoCode = 'Promo Codes',
@@ -23,28 +24,11 @@ interface IProps {
   orders: IOrder[]
 }
 const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders }) => {
-  const [chosenSection, setChosenSection] = useState<chosenSectionEnum>(chosenSectionEnum.orderHistory);
-  const defaultStyles = ' font-bold px-6 cursor-pointer font-bold border-b-2 border-black';
-  const chosen = ' text-white bg-black';
+  const [chosenSection, setChosenSection] = useState<string>(chosenSectionEnum.orderHistory);
 
   return (
     <div className={'flex flex-col mt-4'}>
-      <div className={'flex flex-row mb-6'}>
-        {sections.map((section) => {
-          if (section === chosenSection) {
-            return (
-              <div key={section} className={defaultStyles + chosen} onClick={() => setChosenSection(section)}>
-                {section}
-              </div>
-            );
-          }
-          return (
-            <div key={section} className={defaultStyles} onClick={() => setChosenSection(section)}>
-              {section}
-            </div>
-          );
-        })}
-      </div>
+      <Navigation setState={setChosenSection} state={chosenSection} array={sections}/>
       <div>{chosenSection === chosenSectionEnum.reviews && <UserProfileReviews reviews={reviews} />}</div>
       <div>{chosenSection === chosenSectionEnum.orderHistory && <OrdersTable orderList={orders} />}</div>
     </div>

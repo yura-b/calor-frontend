@@ -3,15 +3,34 @@ import AdminLayout from '@layouts/admin/AdminLayout.tsx';
 import GridHeader from '@components/admin/GridHeader.tsx';
 import { getPageSection } from '@/api/pages.ts';
 import { PageSection } from '@/constants/interfaces/pageSection.ts';
-import SectionGrid from '@pages/admin/pageManager/components/SectionGrid.tsx';
+import ManagerHomerPage from '@pages/admin/pageManager/components/ManagerHomerPage.tsx';
 import {useAppDispatch} from '@/store/hooks/hooks.ts';
-import {setPages} from '@/store/admin/PageManagerReducer.ts';
+import { setPages, toggleEditing } from '@/store/admin/PageManagerReducer.ts';
+import Navigation from '@components/admin/Navigation.tsx';
+import ManagerAboutPage from '@pages/admin/pageManager/components/ManagerAboutPage.tsx';
+
+
+
+enum pages  {
+  HomePage= 'Home Page',
+  About= 'About',
+  Help='Help',
+  CustomerExperience='Customer Experience',
+  Footer='Footer'
+}
+
+
+const pagesArr: pages[] = [pages.HomePage, pages.About, pages.Help, pages.CustomerExperience, pages.Footer]
 
 const PageManagerPage = () => {
 
+  const [page, setPage] = useState<string>(pages.HomePage)
+
   const dispatch = useAppDispatch()
 
-
+   const headerClickHandler = () =>{
+    dispatch(toggleEditing(false))
+  }
   useEffect(()=>{
     getPageSection().then(res=>{
       dispatch(setPages(res.data))
@@ -21,8 +40,12 @@ const PageManagerPage = () => {
 
   return (
     <AdminLayout>
-      <GridHeader title={'Page Manager'} buttonTitle={'edit'} />
-      <SectionGrid/>
+      <GridHeader title={'Page Manager'} buttonTitle={'edit'} click={headerClickHandler} />
+      <div className={'ml-12 mt-8'}>
+        <Navigation setState={setPage} state={page} array={pagesArr}/>
+      </div>
+      {page === pages.HomePage && <ManagerHomerPage />}
+      {page === pages.About && <ManagerAboutPage/>}
     </AdminLayout>
   );
 };
