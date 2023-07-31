@@ -32,7 +32,7 @@ const SignupForm = () => {
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
-          errormessage={formik.errors.email}
+          errorMessage={formik.errors.email}
           border={'1px solid #D9D9D9'}
         >
           Email

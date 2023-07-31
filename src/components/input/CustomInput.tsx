@@ -34,7 +34,7 @@ const CustomInput: React.FC<IProps> = (props) => {
           }}
           {...props}
         />
-        {props.error && <p className={'text-custom-red'}>{props.errormessage}</p>}
+        {props.error && <p className={'text-custom-red'}>{props.errorMessage}</p>}
       </div>
     </>
   );
