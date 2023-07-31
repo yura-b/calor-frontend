@@ -3,7 +3,7 @@ import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
 import logoText from '@assets/images/logoText.svg';
-import logoImg from '@assets/images/LogoImg.svg';
+import logoImg from '@assets/images/logoImg.svg';
 import burgerIcon from '@assets/images/burgerIcon.svg';
 import SearchInput from '@/components/ui/SearchInput';
 import { Modal } from '@mui/material';
@@ -15,7 +15,6 @@ import { useMediaQuery } from '@react-hook/media-query';
 import NavigationLinks from './components/NavigationLinks';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
-  headerHeight,
   updateHeaderHeight,
 }): React.ReactElement => {
   const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
