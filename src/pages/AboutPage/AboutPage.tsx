@@ -4,9 +4,10 @@ import { titles } from '@/translations/titles';
 import Slider from './components/Slider';
 import WhoWeAre from './components/WhoWeAre';
 import OurStory from './components/OurStory';
-
 import MainLayout from '@/components/MainLayout';
 import OurManufacture from './components/OurManufacture';
+import Events from './components/Events';
+import InThePress from './components/InThePress';
 
 const AboutPage: React.FC = (): React.ReactElement => {
   return (
@@ -17,6 +18,8 @@ const AboutPage: React.FC = (): React.ReactElement => {
         <WhoWeAre />
         <OurStory />
         <OurManufacture />
+        <Events />
+        <InThePress />
       </MainLayout>
     </div>
   );

@@ -86,7 +86,7 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
     <div className="w-full bg-white pl-6">
       <div>
         <div className="flex justify-between items-center">
-          <h1 className={`${styles.header1} uppercase`}>Our Shoe Models</h1>
+          <h1 className={styles.header1}>Our Shoe Models</h1>
           <IconButton onClick={handleClick(shoeContainerRef)}>
             <img src={rightArrowIcon} className="mr-5" />
           </IconButton>
@@ -108,7 +108,7 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
       </div>
       <div>
         <div className="flex justify-between items-center">
-          <h1 className={`${styles.header1} uppercase`}>Our Bag Models</h1>
+          <h1 className={styles.header1}>Our Bag Models</h1>
           <IconButton onClick={handleClick(bagContainerRef)}>
             <img src={rightArrowIcon} className="mr-5" />
           </IconButton>

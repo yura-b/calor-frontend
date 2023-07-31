@@ -12,8 +12,8 @@ const OurStory = () => {
   return (
     <motion.div {...fadeAnimation}>
       <div className="relative bg-custom-turquoise h-48 lg:h-52 m-auto w-full">
-        <h1 className={`${styles.header1} text-white text-center uppercase`}>Our Story</h1>
-        <div className="top-10 text-center lg:top-16 absolute inset-x-0 flex items-center justify-center">
+        <h1 className={`${styles.header1} text-white text-center`}>Our Story</h1>
+        <div className="top-10 text-center lg:top-16 absolute inset-x-0 flex items-center justify-center container">
           <div>
             <img src={ourStoryPhoto} alt="Our Story" />
             <p className={`${styles.header2} text-gray`}>Kseniia Kondart</p>

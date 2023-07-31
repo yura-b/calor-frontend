@@ -11,7 +11,7 @@ const HomeShowRoom: React.FC = (): React.ReactElement => {
   return (
     <div className="w-full bg-custom-turquoise px-6 py-4">
       <p className={`${styles.subtitle}`}>Showroom</p>
-      <h2 className={`${styles.header1} uppercase`}>Perfect Fit</h2>
+      <h2 className={styles.header1}>Perfect Fit</h2>
       <p className={`${styles.body1} text-justify mt-4`}>
         Our experienced team of footwear specialists will guide you through the measurement process, taking precise
         measurements of your feet to guarantee a comfortable and flawless fit.
@@ -19,7 +19,7 @@ const HomeShowRoom: React.FC = (): React.ReactElement => {
       <Button color="gray" className="w-full my-6" onClick={handleClick}>
         Make Appointment
       </Button>
-      <h2 className={`${styles.header1} uppercase`}>Complete Your Look</h2>
+      <h2 className={styles.header1}>Complete Your Look</h2>
       <div className="flex gap-10 justify-evenly items-center mt-4">
         {lookModels.map((model, i) => (
           <div className="relative" key={i}>

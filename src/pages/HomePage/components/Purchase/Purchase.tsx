@@ -17,7 +17,7 @@ const Purchase: React.FC = (): React.ReactElement => {
   });
   return (
     <div className="w-full bg-white px-6 py-4">
-      <h2 className={`${styles.header1} text-mint text-center uppercase`}>Get 5% Off Your First Purchase</h2>
+      <h2 className={`${styles.header1} text-mint text-center`}>Get 5% Off Your First Purchase</h2>
       <p className={`${styles.body1} text-center mt-4`}>
         Join the mailing list. Be the first to get content updates. And you’ll get 5% off your first purchase
       </p>

@@ -56,7 +56,7 @@ const Slider = () => {
   };
 
   return (
-    <motion.div className="relative h-80 max-w-full overflow-hidden" {...fadeAnimation}>
+    <motion.div className="relative h-80 max-w-full overflow-hidden container" {...fadeAnimation}>
       <div className="w-full h-full max-w-full m-auto sm:max-w-xs relative">
         <motion.img
           key={currentIndex}
