@@ -6,7 +6,7 @@ import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHe
 const UserProfilePage = () => {
   return (
     <AdminLayout>
-      <UserPageHeader />
+      <UserPageHeader bottomText={'Customers profile'} upperText={'Back to Customers List'} buttonAvailable={true} url={'/admin/users'}/>
       <UserProfile />
     </AdminLayout>
   );
