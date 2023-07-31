@@ -14,7 +14,6 @@ import userIcon from '@assets/images/userIcon.svg';
 import { useMediaQuery } from '@react-hook/media-query';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
-  headerHeight,
   updateHeaderHeight,
 }): React.ReactElement => {
   const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
