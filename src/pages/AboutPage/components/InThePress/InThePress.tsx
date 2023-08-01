@@ -25,7 +25,7 @@ const InThePress = () => {
     },
   ];
   return (
-    <motion.div {...fadeAnimation} className="container p-6">
+    <motion.div {...fadeAnimation} className="container p-6" id="in_the_press">
       <h1 className={`${styles.header1} text-center mb-6`}>In The Press</h1>
       <AnimatePresence initial={false}>
         <motion.div className="flex flex-wrap gap-2 justify-around lg:justify-around">

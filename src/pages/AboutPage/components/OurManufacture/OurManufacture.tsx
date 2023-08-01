@@ -13,15 +13,19 @@ const OurManufacture = () => {
     'CALOR shoes are 100% handmade shoes. We have our own manufacturer in Ukraine. In our team we have professionals who have more than 20 years’ experience in shoe construction and manufacture. CALOR shoes are 100% handmade shoes. We have our own manufacturer in Ukraine. In our team we have professionals who have more than 20 years’ experience in shoe construction and manufacture. ';
   const youtubeVideoId = 'J7YYYLJOKFI';
   return (
-    <motion.div {...fadeAnimation}>
+    <motion.div {...fadeAnimation} id="our_manufacture">
       <h1 className={`${styles.header1} text-center py-6`}>Our Manufacture</h1>
       <div className="bg-custom-turquoise pb-6 lg:py-6">
         <div className="container">
-          <div className="lg:flex">
+          <div className="lg:flex gap-6">
             <div className="lg:basis-1/2">
               <Video videoId={youtubeVideoId} />
             </div>
-            <ReadMore initialText={initialText} expandedText={expandedText} className="mt-6 lg:basis-1/2 lg:mt-0" />
+            <ReadMore
+              initialText={initialText}
+              expandedText={expandedText}
+              className={`${styles.body1} pt-6 lg:basis-1/2 lg:pt-0`}
+            />
           </div>
           <div className="px-6 text-center mt-4">
             <Button color="red" to={paths.design_shoe} className="lg:mr-4">

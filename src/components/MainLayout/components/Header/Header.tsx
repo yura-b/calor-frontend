@@ -13,6 +13,8 @@ import { motion, useCycle } from 'framer-motion';
 import userIcon from '@assets/images/userIcon.svg';
 import { useMediaQuery } from '@react-hook/media-query';
 import NavigationLinks from './components/NavigationLinks';
+import { Link } from 'react-router-dom';
+import { paths } from '@/routes/paths';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
@@ -59,10 +61,10 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
             isSmallerThan1600px && isSmallerThan1024px ? 'flex-wrap justify-around' : 'flex-nowrap'
           }`}
         >
-          <div className="flex items-center justify-center lg:flex flex-initial 2xl:basis-1/6">
+          <Link to={paths.home} className="flex items-center justify-center lg:flex flex-initial 2xl:basis-1/6">
             <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 lg:w-11 lg:h-11" />
             <img src={logoText} alt="" className="hidden lg:block" />
-          </div>
+          </Link>
           <div className={`hidden mx-4 lg:block mt-2 ${isSmallerThan1600px && isSmallerThan1024px ? 'mr-24' : ''}`}>
             <MainMenu />
           </div>

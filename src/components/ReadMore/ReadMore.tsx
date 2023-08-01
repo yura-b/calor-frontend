@@ -24,7 +24,7 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
   };
 
   return (
-    <div className={`text-justify px-6 m-auto min-h-max container ${className}`}>
+    <div className={`text-justify px-6 m-auto min-h-max container lg:px-0 ${className}`}>
       <AnimatePresence initial={false}>
         <motion.p
           key={showFullText ? 'expandedText' : 'initialText'}

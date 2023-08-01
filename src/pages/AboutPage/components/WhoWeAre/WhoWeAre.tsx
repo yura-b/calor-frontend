@@ -1,11 +1,10 @@
-import React from 'react';
 import styles from '@styles/Styles.module.scss';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
 
 const WhoWeAre = () => {
   return (
-    <motion.div className="bg-custom-turquoise p-6" {...fadeAnimation}>
+    <motion.div className="bg-custom-turquoise p-6" {...fadeAnimation} id="who_we_are">
       <div className="container">
         <h1 className={`${styles.header1} text-white text-center`}>Who We Are?</h1>
         <p className={`${styles.body1} text-justify mt-3`}>
