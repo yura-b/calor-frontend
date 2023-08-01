@@ -51,11 +51,26 @@ const Events = () => {
   const handleSeeAllClick = () => {
     setShowAll((prevShowAll) => !prevShowAll);
   };
+  const containerVariants = {
+    expanded: {
+      height: 'auto',
+      transition: { duration: 0.4 },
+    },
+    collapsed: {
+      height: isLargeScreen ? '260px' : '200px',
+      transition: { duration: 0.4 },
+    },
+  };
   return (
     <motion.div {...fadeAnimation} className="container p-6" id="events">
       <h1 className={`${styles.header1} text-center mb-6`}>Events</h1>
       <AnimatePresence initial={false}>
-        <motion.div className="flex flex-wrap gap-2 justify-around lg:justify-around">
+        <motion.div
+          className="flex flex-wrap gap-2 justify-around lg:justify-around"
+          variants={containerVariants}
+          initial="collapsed"
+          animate={showAll ? 'expanded' : 'collapsed'}
+        >
           {eventsItems.slice(0, showAll ? eventsItems.length : maxItemsToShow).map((item, i) => (
             <motion.div
               key={i}
