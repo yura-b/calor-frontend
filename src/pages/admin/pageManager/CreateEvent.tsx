@@ -5,10 +5,14 @@ import PhotoInput from '@components/admin/PhotoInput.tsx';
 import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHeader.tsx';
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
+import { uploadEventPhoto } from '@/api/pages.ts';
 
 const CreateEvent = () => {
   const [photo, setPhoto] = useState<File>();
 
+  const handleAddNewEvent = () => {
+    uploadEventPhoto(photo);
+  }
 
   return (
     <AdminLayout>
@@ -29,7 +33,7 @@ const CreateEvent = () => {
             <p className={'font-bold'}>2. Event`s Detail</p>
             <CustomInput description={'Title'} />
             <CustomInput description={'News Announcement'} />
-            <CustomButton title={'Add New Event'}/>
+            <CustomButton title={'Add New Event'} handler={handleAddNewEvent}/>
           </div>
         </div>
       </div>
