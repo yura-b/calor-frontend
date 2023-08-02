@@ -1,18 +1,42 @@
 import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
+import {detail} from '@/api/dto/orders.dto.ts';
+
 
 export interface IOrder {
-  address: string;
-  email: string;
-  number: string;
-  purchases: IPurchase[];
-  status: OrderStatus;
-  username: string;
   _id: string;
-  date: Date;
-  productionDays: number;
-  totalPrice?: number;
-  payment: PaymentEnum;
+
+  userID: string;
+
+  status: OrderStatus;
+
+  details: {
+    [name: string]: detail[];
+  };
+
+  quantity: number
+
+  product: string;
+
+  address: string;
+
+  totalPrice: number
+
+  email: string;
+
+  username: string;
+
+  phoneNumber: string;
+
+  paypal_id: string;
+
+  date: Date
+
+  productionDays: number
+
+  payment: PaymentEnum
 }
+
+
 
 export enum OrderStatus {
   DELIVERING = 'DELIVERING',

@@ -77,8 +77,8 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
   </div>;
 
   return (
-    <Paper sx={{ width: '99%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: '72vh', padding: '30px' }}>
+    <Paper sx={{ width: '99%', height: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: '100%' }}>
         <Table stickyHeader aria-label="sticky table" sx={{ border: '1px #DDE1E6 solid' }}>
           <TableHead>
             <TableRow>
@@ -122,7 +122,7 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
                   </TableCell>
                   <TableCell align={'center'}>
                     <p>
-                      <Wrapper title={'payment'} />
+                      <Wrapper title={order.payment} />
                     </p>
                   </TableCell>
                   <TableCell align={'center'}>
