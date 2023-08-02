@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { PageSection } from '@/constants/interfaces/pageSection.ts';
 import { authorization } from '@/api/config.ts';
+import { backendUrl } from '@/api/languages.ts';
 
-const backendUrl = import.meta.env.VITE_BASE_URL;
 
 export const getPageSection = () => {
   return axios.get(`${backendUrl}/manager/pages`)

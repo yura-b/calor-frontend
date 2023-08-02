@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AdminLayout from '@layouts/admin/AdminLayout.tsx';
 import GridHeader from '@components/admin/GridHeader.tsx';
-import { getPageSection } from '@/api/pages.ts';
-import { PageSection } from '@/constants/interfaces/pageSection.ts';
+import { getPageSection } from '@/api/manager/pages.ts';
 import ManagerHomerPage from '@pages/admin/pageManager/components/ManagerHomerPage.tsx';
 import {useAppDispatch} from '@/store/hooks/hooks.ts';
 import { setPages, toggleEditing } from '@/store/admin/PageManagerReducer.ts';

@@ -5,13 +5,40 @@ import PhotoInput from '@components/admin/PhotoInput.tsx';
 import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHeader.tsx';
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
-import { uploadEventPhoto } from '@/api/pages.ts';
+import { uploadEventPhoto } from '@/api/manager/pages.ts';
+import { createEvent } from '@/api/manager/event.ts';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
 
 const CreateEvent = () => {
+
+  const {access_token} = useAppSelector(state => state.user)
+
+
+
   const [photo, setPhoto] = useState<File>();
+  const [title, setTitle] = useState<string>()
+  const [announcement, setAnnouncement] = useState<string>()
+
+  const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value)
+  }
+   const announcementHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAnnouncement(e.target.value)
+  }
+
 
   const handleAddNewEvent = () => {
-    uploadEventPhoto(photo);
+    if (!(title && announcement && access_token)) return
+    uploadEventPhoto(photo).then(res=>{
+        createEvent({
+          photo: res.data.url ,
+          title,
+          announcement
+        }, access_token)
+          .then(res =>{
+            console.log(res);
+          })
+    });
   }
 
   return (
@@ -31,8 +58,8 @@ const CreateEvent = () => {
           </div>
           <div className={'flex flex-col gap-5 w-1/2'}>
             <p className={'font-bold'}>2. Event`s Detail</p>
-            <CustomInput description={'Title'} />
-            <CustomInput description={'News Announcement'} />
+            <CustomInput description={'Title'} value={title} onChange={titleHandler}/>
+            <CustomInput description={'News Announcement'} value={announcement} onChange={announcementHandler}/>
             <CustomButton title={'Add New Event'} handler={handleAddNewEvent}/>
           </div>
         </div>

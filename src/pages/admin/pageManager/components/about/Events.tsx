@@ -10,7 +10,7 @@ const Events = () => {
   return (
     <div className={'flex flex-col gap-12'}>
       <div className={'flex flex-row justify-between'}>
-        <h1>Events</h1>
+        <h1 className={'text-xl font-bold'}>Events</h1>
         <CustomButton title={'+  Add New'} handler={buttonHandler}/>
       </div>
     </div>

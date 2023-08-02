@@ -22,7 +22,6 @@ import {
   VideoCamera,
 } from '@phosphor-icons/react';
 import CustomSignOut from '@components/logout/SignOut.tsx';
-import { useNavigate } from 'react-router';
 import HeaderElement from '@layouts/admin/header/HeaderElement.tsx';
 
 const Header = () => {

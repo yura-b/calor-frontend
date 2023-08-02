@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { removeDuplicateTitle } from '@/helpers/functions/removeDuplicateTitle.ts';
 import CustomButton from '@components/button/CustomButton.tsx';
-import { saveChanges } from '@/api/pages.ts';
+import { saveChanges } from '@/api/manager/pages.ts';
 import { toggleEditing } from '@/store/admin/PageManagerReducer.ts';
 import SectionBlock from '@pages/admin/pageManager/components/SectionBlock.tsx';
 
