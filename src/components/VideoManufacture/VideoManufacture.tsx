@@ -2,7 +2,7 @@ interface Props {
   videoId: string;
 }
 
-const Video: React.FC<Props> = ({ videoId }) => {
+const VideoManufacture: React.FC<Props> = ({ videoId }) => {
   return (
     <div className={'relative pb-[56.25%]'}>
       <iframe
@@ -17,4 +17,4 @@ const Video: React.FC<Props> = ({ videoId }) => {
   );
 };
 
-export default Video;
+export default VideoManufacture;

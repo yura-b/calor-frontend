@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@/styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
+import styles from '@styles/Styles.module.scss';
 
 interface Props {
   initialText: string;
@@ -24,7 +25,7 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
   };
 
   return (
-    <div className={`text-justify px-6 m-auto min-h-max container lg:px-0 ${className}`}>
+    <div className={`text-justify m-auto min-h-max ${styles.container} ${className}`}>
       <AnimatePresence initial={false}>
         <motion.p
           key={showFullText ? 'expandedText' : 'initialText'}
@@ -37,7 +38,7 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
       </AnimatePresence>
       <motion.a
         onClick={handleToggleText}
-        className={`text-gray text-base underline cursor-pointer block text-center p-3 max-w-max my-2 mx-auto hover:font-bold ${
+        className={`text-gray text-base underline cursor-pointer block text-center p-3 max-w-max  mx-auto hover:font-bold ${
           showFullText && 'focus:text-mint'
         } md:text-lg lg:hidden`}
         {...hoverOnButtonAnimation}

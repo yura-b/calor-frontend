@@ -17,4 +17,6 @@
 .body2 {
   @apply  text-sm text-gray sm:text-base md:text-base lg:text-lg xl:text-lg;
 }
-
+.container {
+  @apply m-auto w-full py-4 max-w-[88vw] md:max-w-[80vw] lg:max-w-[70vw] lg:py-8;
+}

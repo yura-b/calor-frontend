@@ -31,7 +31,7 @@ const Events = () => {
     },
     {
       title: 'Title4',
-      description: 'News announcement',
+      description: 'News announcement ggg hhhhhhhhhh gggggggggggggg',
       photo: event1,
     },
     {
@@ -62,11 +62,11 @@ const Events = () => {
     },
   };
   return (
-    <motion.div {...fadeAnimation} className="container p-6" id="events">
+    <motion.div {...fadeAnimation} className={`${styles.container}`} id="events">
       <h1 className={`${styles.header1} text-center mb-6`}>Events</h1>
       <AnimatePresence initial={false}>
         <motion.div
-          className="flex flex-wrap gap-2 justify-around lg:justify-around"
+          className={`flex ${showAll ? 'flex-wrap' : ''} gap-2 justify-around`}
           variants={containerVariants}
           initial="collapsed"
           animate={showAll ? 'expanded' : 'collapsed'}
@@ -74,7 +74,7 @@ const Events = () => {
           {eventsItems.slice(0, showAll ? eventsItems.length : maxItemsToShow).map((item, i) => (
             <motion.div
               key={i}
-              className="basis-2/5 lg:basis-1/5 flex flex-col justify-center items-center text-center max-h-60 mb-4 lg:mb-8"
+              className="basis-2/5 lg:basis-1/5 flex flex-col justify-center items-center text-center max-h-60 lg:mb-8"
               {...fadeAnimation}
               whileHover={{ scale: 1.1 }}
             >

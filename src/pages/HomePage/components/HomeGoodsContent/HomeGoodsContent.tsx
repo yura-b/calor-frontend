@@ -74,47 +74,59 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
       priceFrom: 100,
       rating: 0,
     },
+    {
+      title: 'Yolo',
+      img: likesCategoryImg2,
+      priceFrom: 100,
+      rating: 0,
+    },
   ];
 
   return (
     <div className={`${styles.container} w-full bg-white`}>
-      <div className="flex justify-between items-center">
-        <h1 className={styles.header1}>Our Shoe Models</h1>
-        <IconButton onClick={handleClick(shoeContainerRef)}>
-          <img src={rightArrowIcon} className="" />
-        </IconButton>
+      <div>
+        <div className="flex justify-between items-center">
+          <h1 className={styles.header1}>Our Shoe Models</h1>
+          <IconButton onClick={handleClick(shoeContainerRef)}>
+            <img src={rightArrowIcon} className="mr-5" />
+          </IconButton>
+        </div>
+        <div className="flex overflow-x-auto gap-2 flex-row mx-auto " ref={shoeContainerRef}>
+          {ShoeModels.map((item, i) => (
+            <div className="flex  justify-center items-center px-2  my-4" key={i}>
+              <CardGoodsVertical
+                title={item.title}
+                img={item.img}
+                priceFrom={item.priceFrom}
+                rating={item.rating}
+                key={i}
+                buttonClass="transparentMint"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="flex flex-wrap overflow-x-auto gap-4 flex-row mx-auto " ref={shoeContainerRef}>
-        {ShoeModels.map((item, i) => (
-          <CardGoodsVertical
-            title={item.title}
-            img={item.img}
-            priceFrom={item.priceFrom}
-            rating={item.rating}
-            key={i}
-            buttonClass="transparentMint"
-            className=""
-          />
-        ))}
-      </div>
-      <div className="flex justify-between  items-center">
-        <h1 className={styles.header1}>Our Bag Models</h1>
-        <IconButton onClick={handleClick(bagContainerRef)}>
-          <img src={rightArrowIcon} className="" />
-        </IconButton>
-      </div>
-      <div className="flex flex-wrap overflow-x-auto gap-4 flex-row mx-auto" ref={bagContainerRef}>
-        {BagModels.map((item, i) => (
-          <CardGoodsVertical
-            title={item.title}
-            img={item.img}
-            priceFrom={item.priceFrom}
-            rating={item.rating}
-            key={i}
-            buttonClass="transparentMint"
-          />
-          // </div>
-        ))}
+      <div>
+        <div className="flex justify-between items-center">
+          <h1 className={styles.header1}>Our Bag Models</h1>
+          <IconButton onClick={handleClick(bagContainerRef)}>
+            <img src={rightArrowIcon} className="mr-5" />
+          </IconButton>
+        </div>
+        <div className="flex overflow-x-auto flex-row mx-auto" ref={bagContainerRef}>
+          {BagModels.map((item, i) => (
+            <div className="flex justify-center items-center mr-4 my-4" key={i}>
+              <CardGoodsVertical
+                title={item.title}
+                img={item.img}
+                priceFrom={item.priceFrom}
+                rating={item.rating}
+                key={i}
+                buttonClass="transparentMint"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

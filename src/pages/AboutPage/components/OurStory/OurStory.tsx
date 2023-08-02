@@ -11,9 +11,11 @@ const OurStory = () => {
     'CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.CALOR is a footwear brand that was founded by Kseniia Kondart in July 2020 in Ukraine. The concept behind Our Brand was to empower customers to create their own shoes using a 3D online constructor and place orders.';
   return (
     <motion.div {...fadeAnimation} id="our_story">
-      <div className="relative bg-custom-turquoise h-48 lg:h-52 m-auto w-full pt-2">
+      <div className="relative bg-custom-turquoise h-48 lg:h-52 m-auto w-full">
         <h1 className={`${styles.header1} text-white text-center`}>Our Story</h1>
-        <div className="top-10 text-center lg:top-16 absolute inset-x-0 flex items-center justify-center container">
+        <div
+          className={`${styles.container}  text-center pt-0 lg:pt-6 lg:top-6 absolute inset-x-0 flex items-center justify-center`}
+        >
           <div>
             <img src={ourStoryPhoto} alt="Our Story" />
             <p className={`${styles.header2} text-gray`}>Kseniia Kondart</p>

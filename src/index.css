@@ -44,7 +44,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: theme('colors.gray');
 }
-
-.container {
-  @apply m-auto w-full lg:max-w-[70vw];
-}
