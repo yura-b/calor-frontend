@@ -17,6 +17,10 @@ const ProductionDay: React.FC<{ day: number }> = ({ day }) => {
     }
   }
 
+  if (day > 5) {
+    bgColor = 'bg-red-800 text-white';
+  }
+
   return (
     <span className={'rounded-full text-center text-black px-3 py-1 ' + bgColor}>
       {day}th day
