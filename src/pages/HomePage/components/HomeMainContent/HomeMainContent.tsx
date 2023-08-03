@@ -61,7 +61,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
                 <h1 className={`${styles.header1} text-custom-red`}>{index + 1} </h1>
                 <HomeArrowRightIcon
                   color="#E22D21"
-                  className="w-[10px] h-[10px] sm:w-[14px] sm:h-[14px] md:w-[14px] md:h-[14px] lg:w-4 lg:h-4"
+                  className="w-[10px] h-[10px] sm:w-[14px] sm:h-[14px] md:w-[14px] md:h-[14px] lg:w-[16px] lg:[16px]"
                 />
               </div>
               <div>

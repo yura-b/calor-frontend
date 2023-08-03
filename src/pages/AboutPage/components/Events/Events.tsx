@@ -31,7 +31,7 @@ const Events = () => {
     },
     {
       title: 'Title4',
-      description: 'News announcement ggg hhhhhhhhhh gggggggggggggg',
+      description: 'News announcement',
       photo: event1,
     },
     {

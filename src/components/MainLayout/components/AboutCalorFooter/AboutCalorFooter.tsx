@@ -32,12 +32,14 @@ const AboutCalorFooter = () => {
   }, []);
 
   const scrollToElement = (el) => {
-    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-    const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight - 110 : headerHeight;
-    window.scrollTo({
-      top: yCoordinate - yOffset,
-      behavior: 'smooth',
-    });
+    setTimeout(() => {
+      const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+      const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight - 110 : headerHeight;
+      window.scrollTo({
+        top: yCoordinate - yOffset,
+        behavior: 'smooth',
+      });
+    }, 200);
   };
 
   const scrollToTop = () => {

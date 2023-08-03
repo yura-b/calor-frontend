@@ -7,6 +7,7 @@ import HomeGoodsContent from './components/HomeGoodsContent';
 import HomeShowRoom from './components/HomeShowRoom';
 import HomeCalorByYou from './components/HomeCalorByYou';
 import Purchase from './components/Purchase';
+import CompleteLook from './components/CompleteLook';
 
 const HomePage: React.FC = (): React.ReactElement => {
   return (
@@ -15,7 +16,10 @@ const HomePage: React.FC = (): React.ReactElement => {
       <MainLayout>
         <HomeMainContent />
         <HomeGoodsContent />
-        <HomeShowRoom />
+        <div className="w-full bg-custom-turquoise lg:hidden">
+          <HomeShowRoom backgroundButton="gray" showRoomTitleColor="gray" titleColor="gray" bodyColor="gray" />
+        </div>
+        <CompleteLook />
         <HomeCalorByYou />
         <Purchase />
       </MainLayout>
