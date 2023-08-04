@@ -45,25 +45,34 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
           {...layoutFadeAnimation}
         >
           <motion.div className={`text-white ${isOpen ? '' : 'hidden'}`}>
-            <header className="fixed right-0 z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-lightGray">
-              <img src={userIcon} />
-              <div className={'flex justify-center '}>
-                <span className={'ml-2 underline font-bold'} onClick={signInHandler}>
-                  Sign In
-                </span>
-                /
-                <span className={'underline font-bold'} onClick={signUpHandler}>
-                  Sign Up
-                </span>
+            <header className="fixed right-0 z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-custom-turquoise">
+              <div className="flex">
+                <img src={userIcon} />
+                <div className={'flex justify-center '}>
+                  <span className={'ml-2 underline font-bold'} onClick={signInHandler}>
+                    Sign In
+                  </span>
+                  /
+                  <span className={'underline font-bold'} onClick={signUpHandler}>
+                    Sign Up
+                  </span>
+                </div>
               </div>
-              <Busket count={2} onClick={openCart} />
-              <img src={closeBtn} alt="Menu" onClick={toggleOpen} className="block lg:hidden cursor-pointer w-5 h-5" />
+              <div className="flex">
+                <Busket count={2} onClick={openCart} />
+                <img
+                  src={closeBtn}
+                  alt="Menu"
+                  onClick={toggleOpen}
+                  className="block lg:hidden cursor-pointer w-5 h-5"
+                />
+              </div>
             </header>
             <motion.div className="mt-16 overflow-y-auto" {...fadeAnimation}>
               <main className="px-6">
                 <MainMenu />
-                <h1 className="mt-6 -mb-2 text-custom-turquoise text-4xl font-black sm:text-5xl md:text-6xl">
-                  {'calor by you!'.toLocaleUpperCase()}
+                <h1 className="mt-6 -mb-2 text-custom-turquoise text-4xl font-black sm:text-5xl md:text-6xl uppercase">
+                  calor by you!
                 </h1>
               </main>
               <footer className="bg-custom-turquoise h-full px-6 text-gray">

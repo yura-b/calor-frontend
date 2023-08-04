@@ -26,7 +26,28 @@ export const menuItems = [
 ];
 
 export const helpLinks = ['Video Guides', 'Size Guide', 'Check Order Status', 'FAQ', 'Shipping', 'Returns & Exchange'];
-export const aboutLinks = ['Who We Are', 'Our Story', 'Our Manufacture', 'Events', 'In Press'];
+export const aboutLinks = [
+  {
+    subTitle: 'Who We Are',
+    path: paths.about + '#who_we_are',
+  },
+  {
+    subTitle: 'Our Story',
+    path: paths.about + '#our_story',
+  },
+  {
+    subTitle: 'Our Manufacture',
+    path: paths.about + '#our_manufacture',
+  },
+  {
+    subTitle: 'Events',
+    path: paths.about + '#events',
+  },
+  {
+    subTitle: 'In The Press',
+    path: paths.about + '#in_the_press',
+  },
+];
 export const privacyLinks = [
   {
     name: 'Privacy Policy',

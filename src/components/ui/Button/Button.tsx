@@ -1,15 +1,26 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@/styles/Animations';
+import { useNavigate } from 'react-router-dom';
 interface Props {
-  color: 'gray' | 'red' | 'mintExtraLight' | 'mint' | 'transparentGray' | 'transparentMint';
+  color: 'gray' | 'red' | 'mintExtraLight' | 'mint' | 'transparentGray' | 'transparentMint' | 'turquoise';
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
   type?: 'submit' | 'reset';
+  to?: string;
 }
 
-const Button: React.FC<Props> = ({ color, children, className, onClick, type }) => {
+const Button: React.FC<Props> = ({ color, children, className, onClick, type, to }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    if (to) {
+      navigate(to);
+    }
+    if (onClick) {
+      onClick();
+    }
+  };
   const getButtonStyle = () => {
     switch (color) {
       case 'gray':
@@ -20,6 +31,8 @@ const Button: React.FC<Props> = ({ color, children, className, onClick, type }) 
         return 'bg-mintExtraLight text-gray focus:text-mint hover:drop-shadow-lg';
       case 'mint':
         return 'bg-mint text-white border border-mint hover:bg-transparent hover:text-mint hover:border hover:border-mint focus:bg-darkRed hover:drop-shadow-lg';
+      case 'turquoise':
+        return 'bg-custom-turquoise text-gray border border-custom-turquoise hover:bg-white hover:text-gray hover:border hover:border-white focus:bg-darkRed hover:drop-shadow-lg';
       case 'transparentGray':
         return 'bg-transparent text-gray border border-gray hover:bg-lighterGray focus:text-mint hover:drop-shadow-lg';
       case 'transparentMint':
@@ -33,7 +46,7 @@ const Button: React.FC<Props> = ({ color, children, className, onClick, type }) 
       <motion.button
         type={type}
         className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-sm my-2 ${className} ${getButtonStyle()}`}
-        onClick={onClick}
+        onClick={handleClick}
         {...hoverOnButtonAnimation}
       >
         {children}

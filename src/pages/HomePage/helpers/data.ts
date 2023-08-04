@@ -3,6 +3,10 @@ import homeCalorQuality from '@assets/images/homeCalorQuality.svg';
 import homeCalorDesign from '@assets/images/homeCalorDesign.svg';
 import accesories from '@assets/images/accesories.svg';
 import care from '@assets/images/care.svg';
+import homeCalorSpeed from '@assets/images/homeCalorSpeed.svg';
+import homeCalorHandMade from '@assets/images/homeCalorHandMade.svg';
+import homeCalorGuarantees from '@assets/images/homeCalorGuarantees.svg';
+import homeCalorShipping from '@assets/images/homeCalorShipping.svg';
 
 export const processArr = [
   {
@@ -34,6 +38,26 @@ export const calorByYouItems = [
     title: 'Own design',
     text: 'The main reason you are here is to try yourself as a designer of your own shoes or bag, right? So, we did a constructors for you to make it super easy!',
     img: homeCalorDesign,
+  },
+  {
+    title: 'Speed & Convenience',
+    text: 'In general, an individual shoe making process can take up to two months. We have optimized this process as much as possible and therefore we do it in five to seven business days.',
+    img: homeCalorSpeed,
+  },
+  {
+    title: '100% Handmade',
+    text: 'Calors are handcrafted shoes and bags. The whole operation is processing by our hands.',
+    img: homeCalorHandMade,
+  },
+  {
+    title: 'Guarantees',
+    text: 'We are offering 100% money back guarantees. If the shoes do not fit well for some reason, we will refund you for the order in full.',
+    img: homeCalorGuarantees,
+  },
+  {
+    title: 'Free Shipping',
+    text: 'Only for members. If you order shoes and accessories, the delivery of accessories is free',
+    img: homeCalorShipping,
   },
 ];
 
