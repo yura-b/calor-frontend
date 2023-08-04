@@ -3,6 +3,8 @@ import languageReducer from '@/store/reducers/LanguageReducer.ts';
 import statusReducer from '@/store/reducers/StatusReducer.ts';
 import userReducer from '@/store/reducers/UserReducer.ts';
 import registrationReducer from '@/store/reducers/RegistrationReducer.ts';
+import dialogReducer from '@/store/reducers/DialogReducer.ts';
+import pageManagerReducer from '@/store/admin/PageManagerReducer.ts';
 
 export const store = configureStore({
   reducer: {
@@ -10,7 +12,14 @@ export const store = configureStore({
     language: languageReducer,
     status: statusReducer,
     registration: registrationReducer,
+    dialog: dialogReducer,
+    pageManager: pageManagerReducer
   },
+  middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
+
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

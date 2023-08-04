@@ -1,8 +1,8 @@
-import { Input } from '@mui/material';
+import { createTheme, Input, ThemeProvider } from '@mui/material';
 import React, { ChangeEvent, ReactNode } from 'react';
 import { InputType } from '@/constants/interfaces/inputTypes.ts';
 
-export interface IProps {
+interface IProps {
   value?: string;
   onChange?: (e: ChangeEvent<any>) => void;
   error?: boolean;
@@ -19,22 +19,31 @@ export interface IProps {
 }
 
 const CustomInput: React.FC<IProps> = (props) => {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#1EC1AA', // Your desired primary color
+      },
+    },
+  });
   return (
     <>
       <div className={'flex flex-col gap-2 mb-4'}>
         <p className={'font-bold'}>{props.children}</p>
         <p>{props.description}</p>
-        <Input
-          type={props.type}
-          sx={{
-            bgcolor: 'white',
-            paddingY: '10px',
-            paddingX: '5px',
-            border: props.border,
-          }}
-          {...props}
-        />
-        {props.error && <p className={'text-custom-red'}>{props.errorMessage}</p>}
+        <ThemeProvider theme={theme}>
+          <Input
+            type={props.type}
+            sx={{
+              bgcolor: 'white',
+              paddingY: '10px',
+              paddingX: '5px',
+              border: props.border,
+            }}
+            {...props}
+          />
+        </ThemeProvider>
+        {props.error && <p className={'text-custom-red'}>{props.errormessage}</p>}
       </div>
     </>
   );
