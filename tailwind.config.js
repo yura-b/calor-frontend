@@ -22,7 +22,7 @@ export default {
                 'darkRed': '#C21E3C'
               },
               fontFamily: {
-                poppins: ['Poppins', 'sans-serif'],
+                poppins: ['Poppins', 'sans-serif']
               },
             },
         },
