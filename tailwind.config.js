@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     content: [
         './index.html',
         './src/**/*.{js,ts,jsx,tsx}',
@@ -27,8 +27,11 @@ export default {
                 'custom-grey': '#EFEFEF'
               },
               fontFamily: {
-                body: ['"Poppins"', '"sans-serif"'],
+                poppins: ['Poppins', 'sans-serif']
               },
+              dropShadow: {
+                '2md': '0 4px 4px rgba(0, 0, 0, 0.25)',
+              }
             },
         },
     plugins: [],
