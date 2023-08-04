@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@styles/Styles.module.scss';
-import { Link } from 'react-router-dom';
 import Button from '@/components/ui/Button';
 import calorByYou from '@assets/images/calorByYou.svg';
 import homeCustomerCreation1 from '@assets/images/homeCustomerCreation1.svg';
 import homeCustomerCreation2 from '@assets/images/homeCustomerCreation2.svg';
 import { calorByYouItems } from '../../helpers/data';
 import HomeShowRoom from '../HomeShowRoom';
+import { useMediaQuery } from '@react-hook/media-query';
+import { hoverOnButtonAnimation } from '@styles/Animations';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const HomeCalorByYou: React.FC = (): React.ReactElement => {
+  const isLargeScreen = useMediaQuery('(min-width: 1024px)');
   const handleClick = () => {
     console.log('Button clicked!');
   };
@@ -30,6 +33,26 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
       img: homeCustomerCreation1,
     },
   ];
+  const maxItemsToShowLargeScreen = calorByYouItems.length;
+  const maxItemsToShowSmallScreen = 3;
+
+  const [showAll, setShowAll] = useState(false);
+
+  const maxItemsToShow = isLargeScreen ? maxItemsToShowLargeScreen : maxItemsToShowSmallScreen;
+
+  const handleSeeAllClick = () => {
+    setShowAll((prevShowAll) => !prevShowAll);
+  };
+  const containerVariants = {
+    expanded: {
+      height: 'auto',
+      transition: { duration: 0.4 },
+    },
+    collapsed: {
+      height: isLargeScreen ? 'auto' : '360px',
+      transition: { duration: 0.4 },
+    },
+  };
   return (
     <div className="w-full bg-white">
       <div className="relative w-screen lg:h-[400px]">
@@ -50,24 +73,37 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
         </div>
       </div>
       <div className={`${styles.container}`}>
-        <div className="flex flex-col justify-start gap-2  pt-6 lg:flex-row lg:flex-wrap lg:gap-6">
-          {calorByYouItems.map((calorBy, i) => (
-            <div key={i} className="flex gap-2 mb-2 items-start basis-[23%]">
-              <div className="basis-1/5">
-                <img src={calorBy.img} />
+        <AnimatePresence initial={false}>
+          <motion.div
+            className="flex flex-col justify-start gap-2  pt-6 lg:flex-row lg:flex-wrap lg:gap-6"
+            variants={containerVariants}
+            initial="collapsed"
+            animate={showAll ? 'expanded' : 'collapsed'}
+          >
+            {calorByYouItems.slice(0, showAll ? calorByYouItems.length : maxItemsToShow).map((calorBy, i) => (
+              <div key={i} className="flex gap-2 mb-2 items-start basis-[23%]">
+                <div className="basis-1/5">
+                  <img src={calorBy.img} />
+                </div>
+                <div className="basis-4/5">
+                  <h2 className={styles.header2}>{calorBy.title}</h2>
+                  <p className={`${styles.body2} text-justify mt-1`}>{calorBy.text}</p>
+                </div>
               </div>
-              <div className="basis-4/5">
-                <h2 className={styles.header2}>{calorBy.title}</h2>
-                <p className={`${styles.body2} text-justify mt-1`}>{calorBy.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-end pr-6">
-          <Link to="" className="border-b-2 border-gray text-sm text-gray">
-            Learn More
-          </Link>
-        </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+        {calorByYouItems.length > maxItemsToShow && (
+          <div className="flex justify-end">
+            <motion.button
+              onClick={handleSeeAllClick}
+              className={'flex justify-end  cursor-pointer mt-4 underline text-sm text-gray'}
+              {...hoverOnButtonAnimation}
+            >
+              {showAll ? 'Show Less' : 'Learn More'}
+            </motion.button>
+          </div>
+        )}
       </div>
       <div className={styles.container}>
         <p className={styles.subtitle}>Customer Creations</p>
