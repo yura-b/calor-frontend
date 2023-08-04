@@ -9,11 +9,13 @@ export interface IOrder {
 
   status: OrderStatus;
 
+  number: number;
+
   details: {
     [name: string]: detail[];
   };
 
-  quantity: number
+  quantity: number;
 
   product: string;
 
@@ -29,11 +31,13 @@ export interface IOrder {
 
   paypal_id: string;
 
-  date: Date
+  date: Date;
 
-  productionDays: number
+  productionDays: number;
 
-  payment: PaymentEnum
+  payment: PaymentEnum;
+
+  purchases: IPurchase[];
 }
 
 
