@@ -23,9 +23,9 @@ const CardGoodsVertical: React.FC<Props> = ({
     console.log('Button clicked!');
   };
   return (
-    <div className={`w-36 grow max-w-xs h-auto +  ${className}`}>
-      <div className="w-33">
-        <img src={img} />
+    <div className={`min-w-[150px] w-[360px] max-w-[400px] px-2  ${className}`}>
+      <div className="w-full">
+        <img src={img} alt="" className="w-full max-h-[224px]" />
       </div>
       <div>
         <h2 className={`${styles.header2} text-gray`}>{title}</h2>

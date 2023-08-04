@@ -8,8 +8,8 @@ import CartHeader from './components/CartHeader';
 import CardGoodsVertical from '@components/CardGoodsVertical';
 import bag from '@assets/cartImages/bag.svg';
 import paste from '@assets/cartImages/paste.svg';
-import likesCategoryImg1 from '@assets/cartImages/likesCategoryImg1.svg';
-import likesCategoryImg2 from '@assets/cartImages/likesCategoryImg2.svg';
+import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
+import shoeModel2 from '@assets/cartImages/shoeModel2.svg';
 import Footer from '@components/MainLayout/components/Footer';
 
 interface Props {
@@ -51,13 +51,13 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
   const LikesGoodsItems = [
     {
       title: 'Dayger',
-      img: likesCategoryImg1,
+      img: shoeModel1,
       priceFrom: 10,
       rating: 4,
     },
     {
       title: 'Yolo',
-      img: likesCategoryImg2,
+      img: shoeModel2,
       priceFrom: 100,
       rating: 0,
     },
@@ -106,6 +106,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                       rating={item.rating}
                       key={index}
                       buttonClass="transparentGray"
+                      className="w-[9rem] lg:w-[14rem]"
                     />
                   ))}
                 </div>

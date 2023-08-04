@@ -3,28 +3,21 @@ import styles from '@styles/Styles.module.scss';
 import homeMainImg from '@assets/images/homeMainImg.png';
 import homeSemiCircle from '@assets/images/homeSemiCircle.svg';
 import Button from '@components/ui/Button';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fadeAnimation, scaleAnimation } from '@styles/Animations';
-import AnimatedText from '@/helpers/animations/animations';
 import { processArr } from '../../helpers/data';
+import { paths } from '@/routes/paths';
+import HomeArrowRightIcon from '@components/ui/HomeArrowRightIcon';
+import VideoGuideLink from '@components/VideoGuideLink';
 
 const HomeMainContent: React.FC = (): React.ReactElement => {
-  const headingClass = 'text-4xl font-black leading-tight sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:7xl';
-
-  const handleClick = () => {
-    console.log('Button clicked!');
-  };
+  const headingClass = 'text-[2.4rem] font-black leading-tight sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:7xl';
   return (
     <div className="w-full bg-custom-red relative">
       <div className="flex w-full justify-around flex-wrap items-center relative z-10 2xl:max-w-[86vw] mx-auto">
-        <div className="flex basis-full lg:basis-2/3 grow px-6 items-center gap-4 grow">
+        <div className="flex basis-full lg:basis-2/3 grow px-6 items-center gap-4 grow relative mb-12 lg:mb-0">
           <motion.p className={`${headingClass}  text-white text-right basis-1/2 lg:basis-3/5`} {...fadeAnimation}>
-            <AnimatedText text="DESIGN" />
-            <br />
-            <AnimatedText text="YOUR OWN" />
-            <br />
-            <AnimatedText text="SHOE" />
+            DESIGN <br /> YOUR OWN <br /> SHOE
           </motion.p>
           <motion.img
             src={homeMainImg}
@@ -37,45 +30,54 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
           className={`${headingClass} text-custom-turquoise basis-1/3 text-left grow hidden lg:block`}
           {...fadeAnimation}
         >
-          <AnimatedText text="IT’S" />
-          <br />
-          <AnimatedText text="SIMPLY AS" />
-          <br />
-          <AnimatedText text="1  &gt; 2 &gt;  3" />
+          IT’S <br /> SIMPLY AS <br />
+          <div className="flex justify-between items-center max-w-[16rem]">
+            1 <HomeArrowRightIcon color="#B8E4D8" /> 2 <HomeArrowRightIcon color="#B8E4D8" /> 3
+          </div>
         </motion.p>
         <motion.p
-          className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow lg:hidden`}
+          className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow px-6 lg:hidden absolute -bottom-3 sm:-bottom-1.5`}
           {...fadeAnimation}
         >
-          <AnimatedText text="IT’S SIMPLY AS" />
+          IT’S SIMPLY AS
         </motion.p>
       </div>
-      <div className="w-full bg-custom-turquoise text-center px-6">
+      <div className="w-full bg-custom-turquoise text-center">
         <motion.p
           className={`${headingClass}  bg-custom-turquoise text-center text-custom-red w-full lg:hidden`}
           {...fadeAnimation}
         >
-          <AnimatedText text="1 &gt; 2 &gt; 3" />
+          <div className="flex justify-between items-center max-w-[12rem] m-auto lg:max-w-[16rem]">
+            1 <HomeArrowRightIcon color="#E22D21" /> 2 <HomeArrowRightIcon color="#E22D21" /> 3
+          </div>
         </motion.p>
         <motion.div
-          className="flex flex-col justify-around lg:flex-row mt-6 lg:max-w-[90vw] 2xl:max-w-[70vw] mx-auto lg:pt-10"
+          className={`${styles.container} flex flex-col justify-between gap-2  lg:flex-row  lg:gap-6 lg:pt-10`}
           {...fadeAnimation}
         >
           {processArr.map((action, index) => (
-            <div className="text-gray text-left w-auto" key={index}>
-              <h1 className={styles.header1}>
-                <span className="text-custom-red">{index + 1}&gt; </span>
-                <span>{action.title}</span>
-              </h1>
-              <p className={`${styles.body1} ml-10 my-2 lg:ml-16`}>{action.content}</p>
+            <div className="text-gray text-left  flex gap-2 basis-1/3 lg:max-w-[24rem]" key={index}>
+              <div className={'flex items-start gap-1 lg:gap-2 h-max'}>
+                <h1 className={`${styles.header1} text-custom-red`}>{index + 1} </h1>
+                <HomeArrowRightIcon
+                  color="#E22D21"
+                  className="w-[10px] h-[10px] sm:w-[14px] sm:h-[14px] md:w-[14px] md:h-[14px] lg:w-[16px] lg:[16px]"
+                />
+              </div>
+              <div>
+                <h1 className={`${styles.header1} mb-1 lg:mb-4`}>{action.title}</h1>
+                <p className={`${styles.body1} `}>{action.content}</p>
+              </div>
             </div>
           ))}
         </motion.div>
         <motion.div
-          className={`flex flex-col justify-between ${'lg:border-t lg:border-t-2 lg:border-white'} lg:flex-row my-6 lg:max-w-[90vw] 2xl:max-w-[70vw] mx-auto lg:py-10 text-left`}
+          className={`${
+            styles.container
+          } flex flex-col lg:gap-4 justify-between lg:items-center ${'lg:border-t lg:border-t-2 lg:border-gray'} lg:flex-row  text-left`}
           {...fadeAnimation}
         >
-          <h1 className={`${styles.header1} ${'text-white lg:text-custom-red'} lg:basis-auto`}>
+          <h1 className={`${styles.header1}  mb-4 text-white lg:text-custom-red lg:basis-1/5 `}>
             CALOR
             <span className="hidden lg:inline">
               <br />
@@ -83,30 +85,26 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
             BY YOU!
           </h1>
           <div className="lg:basis-3/5">
-            <p className={`${styles.body1} font-black`}>
+            <p className={`${styles.body1} font-black mb-2`}>
               Create your own sneakers and bag with a unique design that reflects your personality and style.
             </p>
             <p className={styles.body1}>
               Learn how to do it in our {''}
               <span className="hidden lg:inline-block">
-                <Link to="" className="border-b-2 border-custom-red my-4 mx-auto text-center text-custom-red w-max">
-                  Video Guide
-                </Link>
+                <VideoGuideLink color="custom-red" />
               </span>
               <span className=" lg:hidden">Video Guide</span>
             </p>
           </div>
-          <div className="lg:basis-auto">
-            <Button color="red" onClick={handleClick}>
+          <div className="lg:basis-auto mt-4 lg:mt-0">
+            <Button color="red" to={paths.design_shoe}>
               Design Your Shoe
             </Button>
-            <Button color="mintExtraLight" onClick={handleClick}>
+            <Button color="mintExtraLight" to={paths.design_bag}>
               Design Your Bag
             </Button>
           </div>
-          <Link to="" className="border-b-2 border-gray my-4 mx-auto text-center w-max lg:hidden">
-            Video Guide
-          </Link>
+          <VideoGuideLink className="lg:hidden" />
         </motion.div>
         <img
           src={homeSemiCircle}
