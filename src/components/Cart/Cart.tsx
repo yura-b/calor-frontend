@@ -106,6 +106,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                       rating={item.rating}
                       key={index}
                       buttonClass="transparentGray"
+                      className="w-[9rem] lg:w-[14rem]"
                     />
                   ))}
                 </div>
