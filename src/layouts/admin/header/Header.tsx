@@ -66,7 +66,7 @@ const Header = () => {
           </div>
           {shopDropDown && (
             <div className={'flex flex-col pl-10 gap-5'}>
-              <HeaderElement icon={<Package size={size} weight="fill" />} title={'Warehouse'}/>
+              <HeaderElement icon={<Package size={size} weight="fill" />} title={'Warehouse'} navigateTo={'/admin/warehouse'}/>
               <HeaderElement icon={<Book size={size} weight="fill" />} title={'Catalog'}/>
               <HeaderElement icon={<ClipboardText size={size} weight="fill" />} title={'Orders'} navigateTo={'/admin'}/>
             </div>

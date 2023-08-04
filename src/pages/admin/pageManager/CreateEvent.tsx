@@ -43,7 +43,7 @@ const CreateEvent = () => {
 
   return (
     <AdminLayout>
-      <UserPageHeader buttonAvailable={false} url={'/admin/manager'} upperText={'Back to Page Manager'} bottomText={'New Event'}/>
+      <UserPageHeader buttonAvailable={false} url={'/admin/manager'} upperText={'Back to Page Manager'} bottomText={'New EventComponent'}/>
       <div className={'m-24'}>
         <div className={'flex flex-row mb-8 items-center gap-3'}>
           <PlusCircle size={32} fill={'weight'} />
@@ -60,7 +60,7 @@ const CreateEvent = () => {
             <p className={'font-bold'}>2. Event`s Detail</p>
             <CustomInput description={'Title'} value={title} onChange={titleHandler}/>
             <CustomInput description={'News Announcement'} value={announcement} onChange={announcementHandler}/>
-            <CustomButton title={'Add New Event'} handler={handleAddNewEvent}/>
+            <CustomButton title={'Add New EventComponent'} handler={handleAddNewEvent}/>
           </div>
         </div>
       </div>

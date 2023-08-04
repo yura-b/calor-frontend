@@ -23,6 +23,7 @@ import CookiesPage from '@pages/CookiesPage';
 import TermsConditionPage from '@pages/TermsConditionPage';
 import AboutPage from '@pages/AboutPage';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
+import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
 
 const App = () => {
     return (
@@ -42,6 +43,7 @@ const App = () => {
                     <Route path={'reviews/text'} element={<TextReviewPage/>}/>
                     <Route path={'manager'} element={<PageManagerPage/>}/>
                     <Route path={'createevent'} element={<CreateEvent/>}/>
+                    <Route path={'warehouse'} element={<WarehousePage/>}/>
                 </Route>
                 <Route path={paths.design_shoe} element={<DesignShoePage/>}/>
                 <Route path={paths.design_bag} element={<DesignBagPage/>}/>
