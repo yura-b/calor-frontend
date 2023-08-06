@@ -1,6 +1,5 @@
 import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
-import {detail} from '@/api/dto/orders.dto.ts';
-
+import { detail } from '@/api/dto/orders.dto.ts';
 
 export interface IOrder {
   _id: string;
@@ -13,13 +12,13 @@ export interface IOrder {
     [name: string]: detail[];
   };
 
-  quantity: number
+  quantity: number;
 
   product: string;
 
   address: string;
 
-  totalPrice: number
+  totalPrice: number;
 
   email: string;
 
@@ -29,14 +28,12 @@ export interface IOrder {
 
   paypal_id: string;
 
-  date: Date
+  date: Date;
 
-  productionDays: number
+  productionDays: number;
 
-  payment: PaymentEnum
+  payment: PaymentEnum;
 }
-
-
 
 export enum OrderStatus {
   DELIVERING = 'DELIVERING',

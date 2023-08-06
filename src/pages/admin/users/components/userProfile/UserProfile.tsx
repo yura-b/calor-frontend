@@ -31,16 +31,16 @@ const UserProfile = () => {
       console.log(res);
       setUserInfo(res.data.user);
       setUserReviews(res.data.reviews);
-      setUserOrders(res.data.orders)
+      setUserOrders(res.data.orders);
     });
   }, [id]);
 
   if (!id) return <>wrong url</>;
   return (
     <div className={'pl-16'}>
-      <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} withDelivery={false}/>
+      <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} withDelivery={false} />
       <hr />
-      <UserAdditionalInfo reviews={userReviews} orders={userOrders}/>
+      <UserAdditionalInfo reviews={userReviews} orders={userOrders} />
     </div>
   );
 };

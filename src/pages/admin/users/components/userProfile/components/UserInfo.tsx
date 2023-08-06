@@ -1,11 +1,11 @@
 import React from 'react';
-import {IUser, IUserForProfile} from '@/constants/interfaces/user.ts';
-import {ArrowsHorizontal, ChatText, House, Truck, User} from '@phosphor-icons/react';
+import { IUser, IUserForProfile } from '@/constants/interfaces/user.ts';
+import { ArrowsHorizontal, ChatText, House, Truck, User } from '@phosphor-icons/react';
 import IsRegistered from '@components/admin/IsRegistered.tsx';
 
 interface IProps {
   userDataState: UserInfoState;
-  withDelivery: boolean
+  withDelivery: boolean;
 }
 
 interface UserInfoState {
@@ -39,13 +39,17 @@ const UserInfo: React.FC<IProps> = ({ userDataState, withDelivery = false }) => 
         <div>
           <p>This data has not been entered in the user profile</p>
         </div>
-        {withDelivery && <div className={'flex flex-row gap-5 items-center'}>
-          <ChatText size={32} weight="fill" />
-          <p className={'font-bold'}>Comment</p>
-        </div>}
-        {withDelivery&& <div>
-          <p>There are no comments for this customer yet</p>
-        </div>}
+        {withDelivery && (
+          <div className={'flex flex-row gap-5 items-center'}>
+            <ChatText size={32} weight="fill" />
+            <p className={'font-bold'}>Comment</p>
+          </div>
+        )}
+        {withDelivery && (
+          <div>
+            <p>There are no comments for this customer yet</p>
+          </div>
+        )}
       </div>
 
       <div className={'flex flex-col gap-5 mt-4 w-1/2'}>
@@ -56,21 +60,28 @@ const UserInfo: React.FC<IProps> = ({ userDataState, withDelivery = false }) => 
         <div>
           <p>The Customer has not yet specified their default shipping address</p>
         </div>
-        {withDelivery && <div className={'flex flex-row gap-5 items-center'}>
-          <Truck size={32} weight={'fill'}/>
-          <h2 className={'font-bold'}>Delivery</h2>
-        </div>
-        }
-        {withDelivery && <div>
-          <p>Delivery information not yet specified</p>
-        </div>}
-        {!withDelivery && <div>
-          <ChatText size={32} weight="fill" />
-          <p className={'font-bold'}>Comment</p>
-        </div>}
-         {!withDelivery&& <div>
-          <p>There are no comments for this customer yet</p>
-        </div>}
+        {withDelivery && (
+          <div className={'flex flex-row gap-5 items-center'}>
+            <Truck size={32} weight={'fill'} />
+            <h2 className={'font-bold'}>Delivery</h2>
+          </div>
+        )}
+        {withDelivery && (
+          <div>
+            <p>Delivery information not yet specified</p>
+          </div>
+        )}
+        {!withDelivery && (
+          <div>
+            <ChatText size={32} weight="fill" />
+            <p className={'font-bold'}>Comment</p>
+          </div>
+        )}
+        {!withDelivery && (
+          <div>
+            <p>There are no comments for this customer yet</p>
+          </div>
+        )}
       </div>
     </div>
   );

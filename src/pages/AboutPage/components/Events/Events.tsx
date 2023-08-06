@@ -1,45 +1,47 @@
-import { useState } from 'react';
-import { fadeAnimation, hoverOnButtonAnimation } from '@styles/Animations';
-import event1 from '@assets/aboutImages/event1.svg';
-import event2 from '@assets/aboutImages/event2.svg';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import styles from '@styles/Styles.module.scss';
 import { useMediaQuery } from '@react-hook/media-query';
+import { fetchEvents } from '@/api/apiFunctions/events';
+import { EventDto } from '@/api/dto/event.dto';
+import Loader from '@components/ui/Loader';
+import { fadeAnimation, hoverOnButtonAnimation } from '@styles/Animations';
+import styles from '@styles/Styles.module.scss';
 
-const Events = () => {
+const EventCard = ({ event, isLargeScreen }) => (
+  <motion.div
+    className="basis-2/5 lg:basis-1/5 flex flex-col justify-center items-center text-center lg:mb-8"
+    whileHover={{ scale: 1.1 }}
+  >
+    <img
+      src={event.photo}
+      alt=""
+      style={{
+        maxWidth: isLargeScreen ? '200px' : '140px',
+        maxHeight: isLargeScreen ? '200px' : '140px',
+        width: isLargeScreen ? '200px' : '140px',
+        height: isLargeScreen ? '200px' : '140px',
+      }}
+      className="rounded-full"
+    />
+    <p className={`${styles.subtitle} font-semibold truncate w-36 mt-4 lg:w-48`}>{event.title}</p>
+    <p className={`${styles.body2} truncate w-36 lg:w-48`}>{event.announcement}</p>
+  </motion.div>
+);
+
+const Events: React.FC = () => {
   const isLargeScreen = useMediaQuery('(min-width: 1024px)');
-  const eventsItems = [
-    {
-      title: 'Title1',
-      description: 'News announcement',
-      photo: event1,
-    },
-    {
-      title: 'Title2',
-      description: 'News announcement',
-      photo: event2,
-    },
-    {
-      title: 'Title3',
-      description: 'News announcement',
-      photo: event1,
-    },
-    {
-      title: 'Title4',
-      description: 'News announcement',
-      photo: event1,
-    },
-    {
-      title: 'Title4',
-      description: 'News announcement',
-      photo: event1,
-    },
-    {
-      title: 'Title4',
-      description: 'News announcement',
-      photo: event1,
-    },
-  ];
+  const [events, setEvents] = useState<EventDto[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEventData = async () => {
+      const eventData = await fetchEvents();
+      setEvents(eventData);
+      setLoading(false);
+    };
+
+    fetchEventData();
+  }, []);
 
   const maxItemsToShowLargeScreen = 4;
   const maxItemsToShowSmallScreen = 2;
@@ -51,6 +53,7 @@ const Events = () => {
   const handleSeeAllClick = () => {
     setShowAll((prevShowAll) => !prevShowAll);
   };
+
   const containerVariants = {
     expanded: {
       height: 'auto',
@@ -61,36 +64,33 @@ const Events = () => {
       transition: { duration: 0.4 },
     },
   };
+
   return (
     <motion.div {...fadeAnimation} className={`${styles.container}`} id="events">
       <h1 className={`${styles.header1} text-center mb-6`}>Events</h1>
-      <AnimatePresence initial={false}>
-        <motion.div
-          className={`flex ${showAll ? 'flex-wrap' : ''} gap-2 justify-around`}
-          variants={containerVariants}
-          initial="collapsed"
-          animate={showAll ? 'expanded' : 'collapsed'}
-        >
-          {eventsItems.slice(0, showAll ? eventsItems.length : maxItemsToShow).map((item, i) => (
+
+      {loading ? (
+        <Loader />
+      ) : (
+        <AnimatePresence initial={false}>
+          {!events.length ? (
+            <p className={`${styles.subtitle} text-center mt-4`}>No events</p>
+          ) : (
             <motion.div
-              key={i}
-              className="basis-2/5 lg:basis-1/5 flex flex-col justify-center items-center text-center max-h-60 lg:mb-8"
-              {...fadeAnimation}
-              whileHover={{ scale: 1.1 }}
+              className={`flex ${showAll ? 'flex-wrap' : ''} gap-2 justify-around`}
+              variants={containerVariants}
+              initial="collapsed"
+              animate={showAll ? 'expanded' : 'collapsed'}
             >
-              <img
-                src={item.photo}
-                alt=""
-                style={{ maxWidth: isLargeScreen ? '200px' : '140px', maxHeight: isLargeScreen ? '200px' : '140px' }}
-                className="rounded-full"
-              />
-              <p className={`${styles.subtitle} font-semibold truncate w-36 mt-4 lg:w-48`}>{item.title}</p>
-              <p className={`${styles.body2} truncate w-36 lg:w-48`}>{item.description}</p>
+              {events.slice(0, showAll ? events.length : maxItemsToShow).map((event, i) => (
+                <EventCard key={i} event={event} isLargeScreen={isLargeScreen} />
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
-      </AnimatePresence>
-      {eventsItems.length > maxItemsToShow && (
+          )}
+        </AnimatePresence>
+      )}
+
+      {events.length > maxItemsToShow && (
         <motion.button
           onClick={handleSeeAllClick}
           className={`${styles.subtitle} cursor-pointer mt-4 underline block mx-auto`}

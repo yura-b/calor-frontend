@@ -1,7 +1,6 @@
 import axios from 'axios';
-import {backendUrl} from '@/api/languages.ts';
+import { backendUrl } from '@/api/languages.ts';
 
-
-export const getDetails = () =>{
-    return axios.get(`${backendUrl}/product/details`)
-}
+export const getDetails = () => {
+  return axios.get(`${backendUrl}/product/details`);
+};

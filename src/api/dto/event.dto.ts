@@ -1,9 +1,7 @@
 export interface EventDto {
+  title: string;
 
-  title: string
+  announcement: string;
 
-  announcement: string
-
-  photo: string
-
+  photo: string;
 }
