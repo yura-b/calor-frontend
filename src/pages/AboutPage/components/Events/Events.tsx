@@ -60,7 +60,7 @@ const Events: React.FC = () => {
       transition: { duration: 0.4 },
     },
     collapsed: {
-      height: isLargeScreen ? '260px' : '200px',
+      height: isLargeScreen ? '300px' : '230px',
       transition: { duration: 0.4 },
     },
   };

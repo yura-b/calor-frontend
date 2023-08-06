@@ -8,6 +8,8 @@ export interface IOrder {
 
   status: OrderStatus;
 
+  number: number;
+
   details: {
     [name: string]: detail[];
   };
@@ -33,6 +35,8 @@ export interface IOrder {
   productionDays: number;
 
   payment: PaymentEnum;
+
+  purchases: IPurchase[];
 }
 
 export enum OrderStatus {

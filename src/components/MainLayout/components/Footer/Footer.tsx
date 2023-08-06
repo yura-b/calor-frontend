@@ -12,7 +12,7 @@ import facebookIcon from '@assets/images/facebookIcon.svg';
 
 const Footer: React.FC = (): React.ReactElement => {
   return (
-    <footer className="bg-gray text-white w-full">
+    <footer className="bg-gray text-white w-full overflow-hidden">
       <div className={`flex justify-between ${styles.body2} font-bold text-white px-6 pt-4 pb-2`}>
         <div>
           <p>Follow Us</p>
