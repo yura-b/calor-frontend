@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
-import calorByYou from '@assets/images/calorByYou.svg';
+import calorByYou from '@assets/images/calorByYou.png';
 import homeCustomerCreation1 from '@assets/images/homeCustomerCreation1.svg';
 import homeCustomerCreation2 from '@assets/images/homeCustomerCreation2.svg';
 import { calorByYouItems } from '../../helpers/data';
@@ -56,7 +56,7 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
   return (
     <div className="w-full bg-white">
       <div className="relative w-screen lg:h-[400px]">
-        <div className={`${styles.container} py-0 px-0 max-w-[100vw] md:max-w-[80vw] lg:max-w-[70vw]`}>
+        <div className={`${styles.container} py-0 px-0 `}>
           <img src={calorByYou} alt="Your Image" className=" lg:h-[400px] lg:w-auto " />
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-custom-red opacity-80"></div>

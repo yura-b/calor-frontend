@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import downIcon from '@assets/images/downIcon.svg';
+import mintDownIcon from '@assets/images/mintDownIcon.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { menuItems } from '../../../../helpers/data';
@@ -15,27 +16,30 @@ const MainMenu: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <nav className={'flex font-black  text-2xl lg:text-lg font-semibold'}>
+    <nav className={'flex  text-2xl lg:text-sm font-semibold'}>
       <ul className="w-full flex flex-col gap-2  lg:flex-row relative lg:gap-6">
         {menuItems.map((menuItem, index) => (
           <li key={index} className="relative py-2 lg:py-0">
-            <Link
-              to={menuItem.path}
-              className="flex text-white hover:text-custom-turquoise focus:outline-none lg:py-2 leading-6"
-              style={{ whiteSpace: 'nowrap' }}
-              onClick={() => handleToggle(index)}
-            >
-              {menuItem.title}{' '}
+            <div className="flex">
+              <Link
+                to={menuItem.path}
+                className="flex text-white hover:text-custom-turquoise focus:outline-none lg:py-2 leading-6"
+                style={{ whiteSpace: 'nowrap' }}
+              >
+                {menuItem.title}{' '}
+              </Link>
               {menuItem.subItems?.length ? (
                 <motion.img
-                  src={downIcon}
+                  src={isOpen === index ? mintDownIcon : downIcon}
                   alt={''}
-                  className={'ml-2'}
+                  className={'ml-4 lg:ml-2'}
                   animate={{ rotate: isOpen === index ? 180 : 0 }}
                   transition={{ duration: 0.4 }}
+                  onClick={() => handleToggle(index)}
+                  onMouseEnter={() => handleToggle(index)}
                 />
               ) : null}
-            </Link>
+            </div>
             <AnimatePresence>
               {isOpen === index && menuItem?.subItems && (
                 <motion.nav
@@ -44,8 +48,9 @@ const MainMenu: React.FC = (): React.ReactElement => {
                   exit={isLargeScreen ? { opacity: 0, y: -10 } : 'collapsed'}
                   variants={isLargeScreen ? {} : collapseAnimation?.variants}
                   transition={isLargeScreen ? {} : collapseAnimation.transition}
-                  className="flex flex-col bg-white p-2  mt-2 lg:absolute z-20 w-full lg:w-56"
-                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
+                  className="flex flex-col  p-2  mt-2 lg:absolute z-20 w-full lg:min-w-[8rem]"
+                  style={{ backgroundColor: 'rgb(184, 228, 216, 0.9)' }}
+                  onMouseLeave={() => setIsOpen(null)}
                 >
                   {menuItem.subItems?.map((option, optionIndex) => (
                     <motion.li key={optionIndex} className="font-medium text-gray lg:hover:font-bold py-1">
