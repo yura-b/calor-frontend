@@ -86,7 +86,7 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
                   <img src={calorBy.img} />
                 </div>
                 <div className="basis-4/5">
-                  <h2 className={styles.header2}>{calorBy.title}</h2>
+                  <h2 className={`${styles.header2} lg:text-xl`}>{calorBy.title}</h2>
                   <p className={`${styles.body2} text-justify mt-1`}>{calorBy.text}</p>
                 </div>
               </div>

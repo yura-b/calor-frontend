@@ -95,7 +95,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
           </h1>
           <div className="lg:basis-3/5">
             <p className={`${styles.subtitle} mb-2`}>
-              Create your own sneakers and bag with a unique design that reflects your personality and style.
+              Create your own sneakers and bags with a unique designs that reflects your personality and style.
             </p>
             <p className={styles.body1}>
               Learn how to do it in our {''}

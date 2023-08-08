@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import downIcon from '@assets/images/downIcon.svg';
 import mintDownIcon from '@assets/images/mintDownIcon.svg';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import { menuItems } from '../../../../helpers/data';
 import { collapseAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -14,17 +14,50 @@ const MainMenu: React.FC = (): React.ReactElement => {
   const handleToggle = (index) => {
     setIsOpen(isOpen === index ? null : index);
   };
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const mobileBreakpoint = 1024;
+  const updateHeaderHeight = () => {
+    const headerElement = document.getElementById('header');
+    if (headerElement) {
+      setHeaderHeight(headerElement.offsetHeight);
+    }
+  };
 
+  useEffect(() => {
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight);
+    };
+  }, []);
+  const scrollToElement = (el) => {
+    setTimeout(() => {
+      const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+      const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight - 110 : headerHeight;
+      window.scrollTo({
+        top: yCoordinate - yOffset,
+        behavior: 'smooth',
+      });
+    }, 200);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <nav className={'flex  text-2xl lg:text-sm font-semibold'}>
       <ul className="w-full flex flex-col gap-2  lg:flex-row relative lg:gap-6">
         {menuItems.map((menuItem, index) => (
           <li key={index} className="relative py-2 lg:py-0">
-            <div className="flex">
+            <div className="flex justify-between">
               <Link
                 to={menuItem.path}
                 className="flex text-white hover:text-custom-turquoise focus:outline-none lg:py-2 leading-6"
                 style={{ whiteSpace: 'nowrap' }}
+                onClick={scrollToTop}
               >
                 {menuItem.title}{' '}
               </Link>
@@ -54,7 +87,9 @@ const MainMenu: React.FC = (): React.ReactElement => {
                 >
                   {menuItem.subItems?.map((option, optionIndex) => (
                     <motion.li key={optionIndex} className="font-medium text-gray lg:hover:font-bold py-1">
-                      <Link to="#">{option}</Link>
+                      <Link to={option.path} scroll={scrollToElement}>
+                        {option.subTitle}
+                      </Link>
                     </motion.li>
                   ))}
                 </motion.nav>

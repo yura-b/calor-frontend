@@ -11,15 +11,15 @@ import homeCalorShipping from '@assets/images/homeCalorShipping.svg';
 export const processArr = [
   {
     title: 'DESIGN',
-    content: 'Make a unique design of your shoes with the help of an online designer.',
+    content: 'Make a unique design for your shoes with the help of our online designer.',
   },
   {
     title: 'MANUFACTURE',
-    content: 'We produce shoes according to your design and foot sizes in 5-7 working days.',
+    content: 'We produce shoes according to your design and foot sizes in 5-7 business days.',
   },
   {
     title: 'DELIVERY',
-    content: 'We pack and send your calories to the nearest post office in the world..',
+    content: 'We pack and send your Calors to the nearest post office in your area around the globe',
   },
 ];
 
@@ -67,7 +67,7 @@ export const lookModels = [
     img: accesories,
   },
   {
-    title: 'Care Product',
+    title: 'Care Products',
     img: care,
   },
 ];
