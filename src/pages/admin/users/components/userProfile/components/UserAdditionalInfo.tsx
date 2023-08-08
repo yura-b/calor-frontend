@@ -20,15 +20,15 @@ const sections: chosenSectionEnum[] = [
 ];
 
 interface IProps {
-  reviews: Review[]
-  orders: IOrder[]
+  reviews: Review[];
+  orders: IOrder[];
 }
 const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders }) => {
   const [chosenSection, setChosenSection] = useState<string>(chosenSectionEnum.orderHistory);
 
   return (
     <div className={'flex flex-col mt-4'}>
-      <Navigation setState={setChosenSection} state={chosenSection} array={sections}/>
+      <Navigation setState={setChosenSection} state={chosenSection} array={sections} />
       <div>{chosenSection === chosenSectionEnum.reviews && <UserProfileReviews reviews={reviews} />}</div>
       <div>{chosenSection === chosenSectionEnum.orderHistory && <OrdersTable orderList={orders} />}</div>
     </div>

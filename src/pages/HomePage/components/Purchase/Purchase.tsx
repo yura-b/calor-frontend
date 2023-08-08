@@ -23,7 +23,7 @@ const Purchase: React.FC = (): React.ReactElement => {
     >
       <h2 className={`${styles.header1} text-custom-red  lg:basis-[30%]`}>Get 5% Off Your First Purchase</h2>
       <p className={`${styles.body1} p-4  mt-4 lg:mt-0`}>
-        Join the mailing list. Be the first to get content updates. And you’ll get 5% off your first purchase
+        Join our mailing list to receive 5% off your first purchase and be the first to get content updates.
       </p>
       <form
         onSubmit={formik.handleSubmit}

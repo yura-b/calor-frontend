@@ -13,13 +13,12 @@ export const store = configureStore({
     status: statusReducer,
     registration: registrationReducer,
     dialog: dialogReducer,
-    pageManager: pageManagerReducer
+    pageManager: pageManagerReducer,
   },
-  middleware: getDefaultMiddleware =>
-      getDefaultMiddleware({
-        serializableCheck: false,
-      }),
-
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

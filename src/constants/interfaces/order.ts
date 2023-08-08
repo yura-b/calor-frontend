@@ -1,6 +1,5 @@
 import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
-import {detail} from '@/api/dto/orders.dto.ts';
-
+import { detail } from '@/api/dto/orders.dto.ts';
 
 export interface IOrder {
   _id: string;
@@ -21,7 +20,7 @@ export interface IOrder {
 
   address: string;
 
-  totalPrice: number
+  totalPrice: number;
 
   email: string;
 
@@ -39,8 +38,6 @@ export interface IOrder {
 
   purchases: IPurchase[];
 }
-
-
 
 export enum OrderStatus {
   DELIVERING = 'DELIVERING',

@@ -1,34 +1,33 @@
-import {OrderStatus} from '@/constants/interfaces/order.ts';
+import { OrderStatus } from '@/constants/interfaces/order.ts';
 
 export interface changeOrderStatusInterface {
-    _id: string;
-    orderStatus: OrderStatus;
+  _id: string;
+  orderStatus: OrderStatus;
 }
 
-
 export interface CreateOrderDto {
-    address: string;
+  address: string;
 
-    userID: string;
+  userID: string;
 
-    email: string;
+  email: string;
 
-    phone_number: string;
+  phone_number: string;
 
-    username: string;
+  username: string;
 
-    purchases: Purchases[];
+  purchases: Purchases[];
 }
 
 export interface Purchases {
-    product: string
-    details: {
-        [name: string]: detail[]
-    }
-    count: number
+  product: string;
+  details: {
+    [name: string]: detail[];
+  };
+  count: number;
 }
 
 export interface detail {
-    material: string;
-    color: string;
+  material: string;
+  color: string;
 }

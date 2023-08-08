@@ -21,10 +21,6 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
     navigate('/signup');
   };
 
-  const handleClick = () => {
-    console.log('Button clicked!');
-  };
-
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -86,7 +82,7 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
                     ))}
                   </ul>
                 </div>
-                <Button color="gray" className="w-full my-4" onClick={handleClick}>
+                <Button color="gray" className="w-full my-4" onClick={signUpHandler}>
                   Create an Account
                 </Button>
                 <HelpFooter title={'Need Help?'} color="gray" />

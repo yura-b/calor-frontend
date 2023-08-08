@@ -1,4 +1,4 @@
-import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 
 export enum Steps {
   FIRST = 0,
@@ -50,7 +50,7 @@ export const RegistrationSlice = createSlice({
     setEmail: (state: Draft<IState>, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
-    setStep: (state:Draft<IState>, action: PayloadAction<Steps>) => {
+    setStep: (state: Draft<IState>, action: PayloadAction<Steps>) => {
       state.step = action.payload;
     },
     destroyStep: (state) => {
