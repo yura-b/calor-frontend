@@ -14,7 +14,9 @@ const OurManufacture = () => {
   const youtubeVideoId = 'J7YYYLJOKFI';
   return (
     <motion.div {...fadeAnimation} id="our_manufacture" className="lg:bg-mintExtraLight">
-      <h1 className={`${styles.header1} text-center py-6`}>Our Manufacture</h1>
+      <h1 className={`${styles.header1} ${styles.container} text-center pt-0 lg:pt-8 pb-2 lg:text-left`}>
+        Our Manufacture
+      </h1>
       <div className="bg-custom-turquoise pb-6 lg:py-6 lg:bg-opacity-0">
         <div
           className={`${styles.container} max-w-[100vw] md:max-w-[80vw] lg:max-w-[70vw] py-0 lg:flex gap-6 lg:justify-between`}

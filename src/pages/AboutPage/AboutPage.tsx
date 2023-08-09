@@ -21,7 +21,7 @@ const AboutPage: React.FC = (): React.ReactElement => {
           <div
             className={`${
               window.innerWidth >= mobileBreakpoint ? styles.container : ''
-            } lg:flex lg:justify-center lg:items-center h-full`}
+            } lg:flex lg:justify-center  h-full`}
           >
             <WhoWeAre />
             <OurStory />

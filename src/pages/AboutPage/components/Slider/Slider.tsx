@@ -6,6 +6,7 @@ import calorByYouBig from '@assets/images/calorByYouBig.png';
 import homeCircle from '@assets/images/homeCircle.svg';
 import { fadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
+import calorSliderLogo from '@assets/aboutImages/calorSliderLogo.svg';
 
 const Slider = () => {
   const breakpoint640 = 640;
@@ -81,7 +82,7 @@ const Slider = () => {
           <motion.img
             key={currentIndex}
             src={sliderItems[currentIndex].img}
-            className="w-full h-full max-w-full object-cover absolute top-0 left-0"
+            className="w-full h-full max-w-full object-cover object-contain absolute top-0 left-0"
             style={{ maxHeight: '500px', minHeight: '300px' }}
             alt={`Slider ${currentIndex}`}
             initial="hidden"
@@ -104,6 +105,7 @@ const Slider = () => {
               />
             ))}
           </div>
+          <img src={calorSliderLogo} className="absolute inset-0 mx-auto mt-24 w-[80vw] lg:w-[20vw]" />
         </div>
       </motion.div>
       <img
