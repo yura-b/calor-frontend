@@ -13,14 +13,14 @@ const NavigationLinks: React.FC = (): React.ReactElement => {
 
   const currentPage = convertToTitleCase(window.location.pathname.slice(1));
   return (
-    <div className={`${styles.body1} flex text-white justify-center mt-4 lg:hidden`}>
+    <div className={`${styles.body1} flex text-custom-turquoise justify-center mt-4`}>
       {window.location.href.split('/')[3] != '' && (
         <>
           <Link to={paths.home}>Home</Link>
-          <p className="mx-2">/</p>
+          <p className="mx-2">{'>'}</p>
         </>
       )}
-      <p>{currentPage}</p>
+      <p className="font-bold">{currentPage}</p>
     </div>
   );
 };
