@@ -31,8 +31,8 @@ const EventCard = ({ event, i }: Props) => (
         alt={event.title}
         className="rounded-full border border-mintExtraLight border-8 object-contain object-cover w-[140px] h-[140px] mx-auto lg:w-[180px] lg:h-[180px]"
       />
-      <p className={`${styles.subtitle} font-semibold text-center   mt-4 `}>{event.title}</p>
-      <p className={`${styles.body2} text-justify`}>{event.announcement}</p>
+      <p className={`${styles.subtitle} font-semibold text-center mt-4 `}>{event.title}</p>
+      <p className={`${styles.body2} text-justify text-center `}>{event.announcement}</p>
     </motion.div>
   </motion.div>
 );

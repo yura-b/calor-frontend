@@ -29,7 +29,7 @@ const InThePress = () => {
     <motion.div {...fadeAnimation} className={`${styles.container} py-6`} id="in_the_press">
       <h1 className={`${styles.header1} text-center mb-6 lg:text-left`}>In The Press</h1>
       <AnimatePresence initial={false}>
-        <motion.div className="flex flex-wrap gap-2 justify-start">
+        <motion.div className="flex flex-wrap gap-2 justify-between">
           {inThePressItems.map((item, i) => (
             <Link to="#" key={i} className="basis-[30%] lg:basis-[15%]">
               <motion.div

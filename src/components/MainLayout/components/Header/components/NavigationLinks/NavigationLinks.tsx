@@ -14,7 +14,7 @@ const NavigationLinks: React.FC = (): React.ReactElement => {
   const currentPage = convertToTitleCase(window.location.pathname.slice(1));
   return (
     <div
-      className={`${styles.body1} ${styles.container} py-2 flex text-custom-turquoise justify-center  lg:text-sm lg:justify-start`}
+      className={`${styles.body1} ${styles.container} py-0 mt-2 flex text-custom-turquoise justify-center  lg:text-sm lg:justify-start lg:mt-0`}
     >
       {window.location.href.split('/')[3] != '' && (
         <>
