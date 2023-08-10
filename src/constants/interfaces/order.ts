@@ -1,5 +1,6 @@
 import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
 import {detail} from '@/api/dto/orders.dto.ts';
+import { details } from '@/constants/interfaces/basket.ts';
 
 
 export interface IOrder {
@@ -61,8 +62,16 @@ export interface lanches {
 }
 
 export interface product {
-  type: string;
   title: string;
+
+
+  details: details[];
+
+
+  stripeID: string;
+
+
   price: number;
+
   description: string;
 }

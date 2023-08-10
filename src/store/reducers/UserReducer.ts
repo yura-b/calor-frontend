@@ -1,5 +1,6 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import { Role } from '@/constants/enums/role.enum.ts';
+import { Basket } from '@/constants/interfaces/basket.ts';
 
 export interface IUser {
   access_token: string | null;
@@ -8,6 +9,7 @@ export interface IUser {
   phoneNumber: string;
   userId: string;
   roles: Role[] | null;
+  basket: Basket[] | null
 }
 
 export const initialState: IUser = {
@@ -17,6 +19,7 @@ export const initialState: IUser = {
   secondName: '',
   userId: '',
   roles: localStorage.getItem('roles')?.split(',') as Role[],
+  basket: null
 };
 
 export interface ISetUserData extends IUser {
@@ -36,14 +39,16 @@ export const UserSlice = createSlice({
         secondName,
         roles,
         rememberMe = true,
+        basket
       } = action.payload;
+      if (access_token) state.access_token = access_token;
 
-      state.access_token = access_token;
       state.firstName = firstName;
       state.secondName = secondName;
       state.phoneNumber = phoneNumber;
       state.userId = userId;
       state.roles = roles;
+      state.basket = basket
 
       if (access_token && rememberMe) localStorage.setItem('access_token', access_token);
       if (access_token && rememberMe && roles) localStorage.setItem('roles', roles?.join(','));
@@ -58,6 +63,7 @@ export const UserSlice = createSlice({
       state.phoneNumber = initialState.phoneNumber;
       state.firstName = initialState.firstName;
       state.secondName = initialState.secondName;
+      state.basket = initialState.basket
     },
   },
 });

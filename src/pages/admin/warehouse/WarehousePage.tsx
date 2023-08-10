@@ -4,25 +4,34 @@ import AdminLayout from '@layouts/admin/AdminLayout.tsx';
 
 import GridHeader from '@components/admin/GridHeader.tsx';
 import DetailsGrid from '@pages/admin/warehouse/components/DetailsGrid.tsx';
-import {Detail, ProductNameAndId} from '@/constants/interfaces/details.ts';
+import { Detail,  products } from '@/constants/interfaces/details.ts';
+import { useAppDispatch } from '@/store/hooks/hooks.ts';
+import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 
 export interface DetailsAndProductName {
-    details: Detail[],
-    productsName: ProductNameAndId[]
+    detail: Detail,
+    products: products[]
 }
 
 const WarehousePage = () => {
-    const [details, setDetails] = useState<DetailsAndProductName>()
+    const [details, setDetails] = useState<DetailsAndProductName[]>([])
+    const dispatch = useAppDispatch()
+
     useEffect(() => {
+        dispatch(loading())
         getDetails().then(res => {
             setDetails(res.data)
+
+
+            dispatch(loadingFinished())
         })
     }, []);
+
     if (!details) return
     return (
         <AdminLayout>
             <GridHeader title={'Details'}/>
-            <DetailsGrid details={details}/>
+            <DetailsGrid  details={details} setDetails={setDetails} />
         </AdminLayout>
     );
 };

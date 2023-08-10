@@ -24,8 +24,12 @@ import TermsConditionPage from '@pages/TermsConditionPage';
 import AboutPage from '@pages/AboutPage';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
+import { useGetUserIfRefresh } from '@/hooks/getUserIfRefresh.ts';
 
 const App = () => {
+    const getUser = useGetUserIfRefresh()
+    
+    getUser()
     return (
         <BrowserRouter>
             <Routes>

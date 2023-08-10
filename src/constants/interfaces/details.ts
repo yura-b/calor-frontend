@@ -20,7 +20,7 @@ export interface Color {
     _id:string
 }
 
-export interface ProductNameAndId {
+export interface products {
     title: string,
-    id: string
+    _id: string
 }

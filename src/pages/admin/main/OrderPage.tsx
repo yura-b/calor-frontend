@@ -3,24 +3,34 @@ import OrderInformation from '@pages/admin/main/components/orderPage/OrderInform
 import OrderPageHeader from '@pages/admin/main/components/orderPage/OrderPageHeader.tsx';
 import {useParams} from 'react-router';
 import {getOrder} from '@/api/orders.ts';
-import {useAppSelector} from '@/store/hooks/hooks.ts';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import AdminLayout from '@layouts/admin/AdminLayout.tsx';
 import {IOrder} from '@/constants/interfaces/order.ts';
 import UserInfo from '@pages/admin/users/components/userProfile/components/UserInfo.tsx';
 import {IUser} from '@/constants/interfaces/user.ts';
+import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 
 const OrderPage = () => {
+    const dispatch = useAppDispatch()
     const {access_token} = useAppSelector(state=>state.user)
     const [orderData, setOrderData] = useState<IOrder>()
     const [userData, setUserData] = useState<IUser>()
     const {id} = useParams()
 
-    useEffect(()=>{
-        if (access_token && id) getOrder(access_token, id)
-            .then(res=>{
-             setOrderData(res.data.order)
-             setUserData(res.data.user)
-         })
+    useEffect(()=> {
+      if (access_token && id){
+
+        dispatch(loading())
+
+        getOrder(access_token, id)
+          .then(res => {
+            setOrderData(res.data.order)
+            setUserData(res.data.user)
+
+
+            dispatch(loadingFinished())
+          })
+    }
     }, [])
 
 

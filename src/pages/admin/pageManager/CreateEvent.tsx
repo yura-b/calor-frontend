@@ -7,12 +7,13 @@ import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { uploadEventPhoto } from '@/api/manager/pages.ts';
 import { createEvent } from '@/api/manager/event.ts';
-import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
+import { showMessage } from '@/store/reducers/StatusReducer.ts';
 
 const CreateEvent = () => {
 
   const {access_token} = useAppSelector(state => state.user)
-
+  const dispatch = useAppDispatch()
 
 
   const [photo, setPhoto] = useState<File>();
@@ -35,8 +36,8 @@ const CreateEvent = () => {
           title,
           announcement
         }, access_token)
-          .then(res =>{
-            console.log(res);
+          .then(() =>{
+            dispatch(showMessage('New event was successfully added'))
           })
     });
   }

@@ -5,7 +5,7 @@ import EventComponent from '@pages/admin/pageManager/components/about/EventCompo
 const EventsGrid:FC<{ events: Events[] }> = ({events}) => {
 
     return (
-        <div>
+        <div className={'flex flex-row flex-wrap gap-8'}>
             {events.map(event=>{
                 return <EventComponent key={event._id} {...event}/>
             })}

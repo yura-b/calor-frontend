@@ -7,12 +7,13 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { getUsers } from '@/api/users.ts';
 import { IUser } from '@/constants/interfaces/user.ts';
 import { TablePagination } from '@mui/material';
-import { useCleanUserDataAndNavigateToLogin } from '@components/hooks/CleanUserData.ts';
+import { useCleanUserDataAndNavigateToLogin } from '@/hooks/CleanUserData.ts';
 import { useNavigate } from 'react-router';
+import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 
 interface Column {
   id: 'name' | 'Registration' | 'Phone  Number' | 'Registration Date' | 'email';
@@ -54,6 +55,7 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
   const [users, setUsers] = useState<IUser[]>([]);
   const clearUserData = useCleanUserDataAndNavigateToLogin();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch()
 
   const onClickHandler = (id: string) => {
     navigate(`/admin/users/${id}`);
@@ -61,9 +63,16 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
 
   useEffect(() => {
     if (access_token) {
+
+      dispatch(loading())
+
       getUsers(access_token, nameFilter)
         .then((res) => {
           setUsers(res.data);
+
+
+          dispatch(loadingFinished())
+
         })
         .catch((e) => clearUserData(e));
     }
