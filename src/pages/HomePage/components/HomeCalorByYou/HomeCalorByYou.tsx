@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import calorByYou from '@assets/images/calorByYou.png';
+import calorByYouBig from '@assets/images/calorByYouBig.png';
 import homeCustomerCreation1 from '@assets/images/homeCustomerCreation1.svg';
 import homeCustomerCreation2 from '@assets/images/homeCustomerCreation2.svg';
 import { calorByYouItems } from '../../helpers/data';
@@ -55,12 +56,12 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
   };
   return (
     <div className="w-full bg-white">
-      <div className="relative w-screen lg:h-[400px]">
-        <div className={`${styles.container} py-0 px-0 `}>
-          <img src={calorByYou} alt="Your Image" className=" lg:h-[400px] lg:w-auto " />
-        </div>
+      <div
+        className={'relative w-screen lg:h-[400px] h-[200px] bg-cover bg-center bg-no-repeat'}
+        style={{ backgroundImage: isLargeScreen ? `url(${calorByYouBig})` : `url(${calorByYou})` }}
+      >
         <div className="absolute top-0 left-0 w-full h-full bg-custom-red opacity-80"></div>
-        <div className="absolute -bottom-2 right-6 lg:top-[180px] lg:left-[5vw] xl:left-[30vw]">
+        <div className="absolute -bottom-2 right-6 lg:bottom-[26px] lg:left-[5vw] xl:left-[36vw]">
           <h1 className="text-white text-4xl font-black sm:text-5xl   uppercase">calor by you!</h1>
         </div>
         <div className="absolute max-w-[400px] w-[400px] min-w-[200px] hidden top-4 lg:right-[5vw] xl:right-[15vw] lg:block">
