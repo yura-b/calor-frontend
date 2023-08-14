@@ -50,7 +50,7 @@ const AboutCalorFooter = () => {
   };
 
   return (
-    <div className="border-b border-white py-2 lg:border-none lg:py-0">
+    <div className="border-b border-white lg:border-none lg:py-0">
       <motion.div className="flex justify-between items-center" onClick={toggleAccordion}>
         <Link
           to={paths.about}
