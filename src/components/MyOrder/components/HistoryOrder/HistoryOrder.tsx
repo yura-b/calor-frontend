@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from '@/styles/Styles.module.scss';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@/styles/Animations';
+
 interface Props {
   orderData?: any;
 }

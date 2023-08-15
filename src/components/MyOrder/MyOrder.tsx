@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
 import MainFrame from '@/components/mainFrame';
-
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import Order from './components/order';
