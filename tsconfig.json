@@ -48,6 +48,9 @@
       ],
       "@translations/*": [
         "src/translations/*"
+      ],
+      "@images/*": [
+        "src/assets/images/*"
       ]
     },
     "allowSyntheticDefaultImports": true

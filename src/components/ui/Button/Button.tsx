@@ -8,9 +8,10 @@ interface Props {
   onClick?: () => void;
   type?: 'submit' | 'reset';
   to?: string;
+  margin?: string;
 }
 
-const Button: React.FC<Props> = ({ color, children, className, onClick, type, to }) => {
+const Button: React.FC<Props> = ({ color, children, className, onClick, type, to, margin = 'my2' }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     if (to) {
@@ -44,7 +45,7 @@ const Button: React.FC<Props> = ({ color, children, className, onClick, type, to
     <AnimatePresence>
       <motion.button
         type={type}
-        className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-sm my-2 ${className} ${getButtonStyle()}`}
+        className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-sm ${margin} ${className} ${getButtonStyle()}`}
         onClick={handleClick}
       >
         {children}

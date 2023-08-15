@@ -26,7 +26,8 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 /* Track */
@@ -37,7 +38,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.mint');
+  background: theme('colors.grayLight');
   border-radius: 5px;
 }
 
