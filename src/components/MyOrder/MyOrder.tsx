@@ -15,6 +15,8 @@ import CustomInput from '@/components/input/CustomInput';
 import { validationSchemaForOrderNumber } from '@/helpers/validation/formValidation.ts';
 import { useFormik } from 'formik';
 import styles from '@/styles/Styles.module.scss';
+import emptyCurrent from '@assets/images/order/emptyCurrent.svg';
+import emptyHistory from '@assets/images/order/emptyHistory.svg';
 
 const MyOrder = ({ isOpen, onClose }): React.ReactElement => {
   const { roles, access_token } = useAppSelector((state) => state.user);
@@ -115,76 +117,95 @@ const MyOrder = ({ isOpen, onClose }): React.ReactElement => {
       <>
         {isOpen && (
           <motion.div
-            className="absolute bg-white shadow-lg w-full lg:w-1/2 h-full  lg:h-4/5 max-h-full lg:rounded-md overflow-hidden "
+            className="absolute bg-white shadow-lg w-full lg:w-1/2 h-full  lg:h-4/5 max-h-full lg:rounded-md overflow-hidden"
             {...layoutFadeAnimation}
-            style={{ overflowY: 'auto', maxHeight: '100%', height: '100%' }}
           >
             <MainFrame isOpen={isOpen} closeFrame={onClose} title={'My Order'} className="">
-              <div className={`${styles.container} `}>
-                {isRegisteredUser && (
-                  <div className={`flex justify-around text-gray ${styles.header2} mb-8`}>
-                    <button
-                      className={`px-4 py-1  mr-2 ${activeTab === 1 ? ' border-b-2 border-gray font-bold' : ''}`}
-                      onClick={() => setActiveTab(1)}
-                    >
-                      Current
-                    </button>
-                    <button
-                      className={`px-4 py-1  ${activeTab === 2 ? ' border-b-2 border-gray font-bold' : ''}`}
-                      onClick={() => setActiveTab(2)}
-                    >
-                      History
-                    </button>
-                  </div>
-                )}
-                <div>
-                  {activeTab === 1 && (
-                    <div>
-                      {!isRegisteredUser && (
-                        <div>
-                          {!formSubmitted && (
-                            <div>
-                              <p className={`${styles.body1}`}>
-                                To check the status of your order, please enter your order number
-                              </p>
-                              <p className={`${styles.body1} font-bold`}>Order Number</p>
+              <div className={isRegisteredUser ? 'bg-mintExtraLight' : ''}>
+                <div className={`${styles.container} lg:p-10`}>
+                  {isRegisteredUser && (
+                    <div className={`flex justify-around text-gray ${styles.header2} mb-8`}>
+                      <button
+                        className={`px-4 py-1  mr-2  ${
+                          activeTab === 1 ? ' border-b-2 border-gray text-gray' : 'text-[#949494]'
+                        }`}
+                        onClick={() => setActiveTab(1)}
+                      >
+                        Current
+                      </button>
+                      <button
+                        className={`px-4 py-1  ${
+                          activeTab === 2 ? ' border-b-2 border-gray text-gray' : 'text-[#949494]'
+                        }`}
+                        onClick={() => setActiveTab(2)}
+                      >
+                        History
+                      </button>
+                    </div>
+                  )}
+                  <div>
+                    {activeTab === 1 && (
+                      <motion.div {...layoutFadeAnimation}>
+                        {!isRegisteredUser && (
+                          <div>
+                            {!formSubmitted && (
+                              <div className="pt-6">
+                                <p className={`${styles.body1}`}>
+                                  To check the status of your order, please enter your order number
+                                </p>
+                                <p className={`${styles.body1} font-bold`}>Order Number</p>
 
-                              <form onSubmit={formik.handleSubmit} className={'mb-4 lg:basis-[40%] lg:-mt-4'}>
-                                <CustomInput
-                                  id={'orderNumber'}
-                                  name={'orderNumber'}
-                                  placeholder={'e.g. XXXXX'}
-                                  value={formik.values.orderNumber}
-                                  onChange={formik.handleChange}
-                                  errorMessage={formik.errors.orderNumber}
-                                  error={formik.touched.orderNumber && Boolean(formik.errors.orderNumber)}
-                                />
-                                <Button color="gray" type="submit">
-                                  Check
-                                </Button>
-                              </form>
+                                <form onSubmit={formik.handleSubmit} className={'mb-4 lg:basis-[40%] lg:-mt-4'}>
+                                  <CustomInput
+                                    id={'orderNumber'}
+                                    name={'orderNumber'}
+                                    placeholder={'e.g. XXXXX'}
+                                    value={formik.values.orderNumber}
+                                    onChange={formik.handleChange}
+                                    errorMessage={formik.errors.orderNumber}
+                                    error={formik.touched.orderNumber && Boolean(formik.errors.orderNumber)}
+                                  />
+                                  <Button color="gray" type="submit">
+                                    Check
+                                  </Button>
+                                </form>
+                              </div>
+                            )}
+
+                            {formSubmitted && <Order orderData={OrderItems[0]} />}
+                          </div>
+                        )}
+                        {isRegisteredUser && OrderItems.length ? (
+                          <div>
+                            {OrderItems.map((item) => (
+                              <Order orderData={item} />
+                            ))}
+                          </div>
+                        ) : (
+                          isRegisteredUser && (
+                            <div className="m-auto">
+                              <p className={`${styles.body1} text-center`}>You have nothing ordered</p>
+                              <img src={emptyCurrent} alt="empty" className="mx-auto my-5" />
                             </div>
-                          )}
-
-                          {formSubmitted && <Order orderData={OrderItems[0]} />}
-                        </div>
-                      )}
-                      {isRegisteredUser && (
-                        <div>
-                          {OrderItems.map((item) => (
-                            <Order orderData={item} />
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {activeTab === 2 && (
-                    <div>
-                      {HistoryOrderItems.map((item) => (
-                        <HistoryOrder orderData={item} />
-                      ))}
-                    </div>
-                  )}
+                          )
+                        )}
+                      </motion.div>
+                    )}
+                    {activeTab === 2 && HistoryOrderItems.length ? (
+                      <motion.div {...layoutFadeAnimation}>
+                        {HistoryOrderItems.map((item) => (
+                          <HistoryOrder orderData={item} />
+                        ))}
+                      </motion.div>
+                    ) : (
+                      activeTab === 2 && (
+                        <motion.div className="m-auto" {...layoutFadeAnimation}>
+                          <p className={`${styles.body1} text-center`}>Your order history is empty</p>
+                          <img src={emptyHistory} alt="empty" className="mx-auto my-5" />
+                        </motion.div>
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
             </MainFrame>
