@@ -43,10 +43,10 @@ const Footer: React.FC = (): React.ReactElement => {
               </div>
               <p className="lg:text-custom-turquoise lg:text-sm lg:font-extrabold">Follow Us</p>
               <div className="flex justify-between mt-2 max-w-[80px]">
-                <Link to="https://www.instagram.com/calorshoeua/" target="_blank">
+                <Link to="https://www.instagram.com/calorshoe" target="_blank">
                   <img src={instagramIcon} />
                 </Link>
-                <Link to="https://www.facebook.com/calorshoeua" target="_blank">
+                <Link to="https://www.facebook.com/calorshoeus" target="_blank">
                   <img src={facebookIcon} />
                 </Link>
               </div>
