@@ -15,7 +15,7 @@ export const processArr = [
   },
   {
     title: 'MANUFACTURE',
-    content: 'We produce shoes according to your design and foot sizes in 5-7 business days.',
+    content: 'We produce shoes according to your design and foot sizes in 7-10 business days.',
   },
   {
     title: 'DELIVERY',
