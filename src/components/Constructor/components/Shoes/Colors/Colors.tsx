@@ -27,7 +27,6 @@ interface IProps {
   details: Detail[];
 }
 const Colors: FC<IProps> = ({ details }) => {
-  console.log(1212)
   const dispatch = useDispatch();
   const { selectedMaterial, selectedDetail, selectedColor } = useSelector(state => state.activeShoeParts);
 
@@ -48,15 +47,17 @@ const Colors: FC<IProps> = ({ details }) => {
 
   return (
     <div className='flex lg:justify-center sm:justify-start items-center m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 overflow-hidden hover:overflow-y-auto'>
-      {
-        colors.map((color) => {
-          return (
-            <Tooltip title={color.name} placement="top" arrow>
-              <button style={{ backgroundColor: color.hex }} className='min-h-[50px] min-w-[50px] rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-2 ring-grayLight focus:ring-grayLight' onClick={() => handleColorClick(color.img)}/>
-            </Tooltip>
-          )
-        })
-      }
+      {colors.map((color) =>
+        color.name !== null ? (
+          <Tooltip key={color.name} title={color.name} placement="top" arrow>
+            <button
+              style={{ backgroundColor: color.hex }}
+              className='min-h-[50px] min-w-[50px] rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-2 ring-grayLight focus:ring-grayLight'
+              onClick={() => handleColorClick(color.img)}
+            />
+          </Tooltip>
+        ) : null
+      )}
     </div>
   );
 }

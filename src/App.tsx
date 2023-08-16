@@ -13,7 +13,6 @@ import PageManagerPage from '@pages/admin/pageManager/PageManagerPage.tsx';
 import {paths} from '@routes/paths.ts';
 import MainPage from '@pages/admin/main/MainPage.tsx';
 import DesignBagPage from '@pages/DesignBagPage';
-import DesignShoePage from '@pages/DesignShoePage';
 import AccessoriesPage from '@pages/AccessoriesPage';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
@@ -26,6 +25,7 @@ import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
 import Loader from '@/components/ui/Loader/';
 
 const HomePage = lazy(() => import('@pages/HomePage'));
+const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 
 const App = () => {
     return (
@@ -48,7 +48,11 @@ const App = () => {
                         <Route path={'createevent'} element={<CreateEvent/>}/>
                         <Route path={'warehouse'} element={<WarehousePage/>}/>
                     </Route>
-                    <Route path={paths.design_shoe} element={<DesignShoePage/>}/>
+                    <Route path={'design_your_shoe'}>
+                        <Route path={'dayger'} element={<DesignShoePage model="dayger" />} />
+                        <Route path={'sunrise'} element={<DesignShoePage model="sunrise" />} />
+                        <Route path={'yolo'} element={<DesignShoePage model="yolo" />} />
+                    </Route>
                     <Route path={paths.design_bag} element={<DesignBagPage/>}/>
                     <Route path={paths.accessories} element={<AccessoriesPage/>}/>
                     <Route path={paths.shoe_care_product} element={<ShoeCareProductPage/>}/>

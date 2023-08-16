@@ -17,6 +17,7 @@ const activeShoePartsSlice = createSlice({
       state.selectedMaterial = action.payload;
     },
     setSelectedColor: (state, action) => {
+      console.log(action.payload)
       state.selectedColor = action.payload;
     },
   },
