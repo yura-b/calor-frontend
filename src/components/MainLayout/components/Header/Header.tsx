@@ -85,7 +85,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
           <SearchInput />
         </div>
       </div>
-      <NavigationLinks />
+      <NavigationLinks color="white" className="lg:hidden" />
       <Modal className="flex items-center justify-center h-auto" open={isCartOpen} onClose={closeCart}>
         <>
           {isCartOpen && (

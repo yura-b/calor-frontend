@@ -118,7 +118,7 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
           {homeCustomerCreations.map((item, i) => (
             <div className="flex justify-center items-center lg:basis-1/5  my-4" key={i}>
               <div className={'w-36  text-gray lg:w-full '}>
-                <img src={item.img} className="w-full" />
+                <img src={item.img} className="w-full object-contain object-cover h-full mx-auto " />
               </div>
             </div>
           ))}

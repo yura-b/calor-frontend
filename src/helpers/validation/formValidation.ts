@@ -55,3 +55,10 @@ export const oneLowerCaseValidation = (password: string) => {
 export const validationSchemaForPurchase = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
 });
+
+export const validationSchemaForOrderNumber = yup.object({
+  orderNumber: yup
+    .string()
+    .min(3, 'Order Number should be of minimum 3 characters length')
+    .required('Order Number is required'),
+});

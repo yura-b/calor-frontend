@@ -67,7 +67,28 @@ export const menuItems = [
   },
 ];
 
-export const helpLinks = ['Video Guides', 'Size Guide', 'Check Order Status', 'FAQ', 'Shipping', 'Returns & Exchange'];
+export const helpLinks = [
+  {
+    title: 'Video Guides',
+    path: '#',
+  },
+  {
+    title: 'Size Guide',
+    path: '#',
+  },
+  {
+    title: 'FAQ',
+    path: '#',
+  },
+  {
+    title: 'Shipping',
+    path: '#',
+  },
+  {
+    title: 'Returns & Exchange',
+    path: '#',
+  },
+];
 export const aboutLinks = [
   {
     subTitle: 'Who We Are',
