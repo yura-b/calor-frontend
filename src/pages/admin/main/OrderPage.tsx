@@ -25,10 +25,8 @@ const OrderPage = () => {
 
   if (!id || !access_token || !orderData) return <></>;
   const { email, phoneNumber } = orderData;
-  console.log(orderData);
-  console.log(userData);
+
   const [firstName, secondName] = orderData.username.split(' ');
-  // console.log(orderData)
 
   return (
     <AdminLayout>

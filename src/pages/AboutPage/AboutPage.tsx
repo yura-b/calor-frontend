@@ -9,13 +9,19 @@ import OurManufacture from './components/OurManufacture';
 import Events from './components/Events';
 import InThePress from './components/InThePress';
 import styles from '@styles/Styles.module.scss';
-
+import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 const AboutPage: React.FC = (): React.ReactElement => {
   const mobileBreakpoint = 1024;
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.about} />
       <MainLayout>
+        <div className="relative hidden lg:block">
+          <NavigationLinks
+            color="white"
+            className="absolute top-6  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-auto"
+          />
+        </div>
         <Slider />
         <div className=" lg:bg-custom-turquoise lg:min-h-max lg:py-12">
           <div

@@ -7,12 +7,14 @@ import grayTelIcon from '@assets/images/grayTelIcon.svg';
 import mintTelcon from '@assets/images/mintTelcon.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import { collapseAnimation } from '@styles/Animations';
+
 interface Props {
   title: string;
   color?: 'gray' | 'white';
+  openMyOrder?: () => void;
 }
 
-const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
+const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.ReactElement => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const toggleAccordion = () => {
     setIsAccordionOpen((prev) => !prev);
@@ -24,13 +26,13 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
         <>
           <h1 className={`${styles.subtitle} text-${color}`}>{title}</h1>
           {helpLinks.map((link, i) => (
-            <Link key={i} to="#" className={'flex text-base hover:text-mint focus:outline-none py-2'}>
-              {link}
+            <Link key={i} to={link.path} className={'flex text-base hover:text-mint focus:outline-none py-2'}>
+              {link.title}
             </Link>
           ))}
         </>
       ) : (
-        <div className="border-b border-white py-2 lg:border-none lg:py-0">
+        <div className="border-b border-white lg:border-none lg:py-0">
           <div className="flex justify-between items-center" onClick={toggleAccordion}>
             <h1 className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}>
               {title}
@@ -41,8 +43,12 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
             {isAccordionOpen && (
               <motion.div {...collapseAnimation}>
                 {helpLinks.map((link, i) => (
-                  <Link key={i} to="#" className={'flex text-base hover:text-custom-turquoise focus:outline-none py-2'}>
-                    {link}
+                  <Link
+                    key={i}
+                    to={link.path}
+                    className={'flex text-base hover:text-custom-turquoise focus:outline-none py-2'}
+                  >
+                    {link.title}
                   </Link>
                 ))}
               </motion.div>
@@ -52,13 +58,30 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
             {helpLinks.map((link, i) => (
               <Link
                 key={i}
-                to="#"
+                to={link.path}
                 className={'flex text-xs font-semibold hover:text-custom-turquoise focus:outline-none py-1'}
               >
-                {link}
+                {link.title}
               </Link>
             ))}
           </div>
+        </div>
+      )}
+      {color == 'white' && (
+        <div className="lg:hidden flex flex-col">
+          <Link
+            to="#"
+            onClick={openMyOrder}
+            className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold border-b border-white py-3`}
+          >
+            Check Order Status
+          </Link>
+          <Link
+            to="#"
+            className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3 border-b border-white`}
+          >
+            Be Our Partner
+          </Link>
         </div>
       )}
       <div

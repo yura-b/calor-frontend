@@ -16,7 +16,11 @@ const CompleteLook: React.FC = (): React.ReactElement => {
           {lookModels.map((model, i) => (
             <div className="relative min-w-[140px] lg:w-[200px] max-w-[220px]" key={i}>
               <img src={homeRoomSircle} alt="" className="w-full" style={{ transform: 'rotate(30deg)' }} />
-              <img src={model.img} alt="" className="absolute top-8 left-0 w-full h-auto" />
+              <img
+                src={model.img}
+                alt=""
+                className="absolute top-8 left-0 object-contain object-cover w-[200px] h-auto mx-auto"
+              />
               <p className={`${styles.subtitle} mt-4 -ml-5 text-center uppercase`}>{model.title}</p>
             </div>
           ))}

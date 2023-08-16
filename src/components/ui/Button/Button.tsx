@@ -32,7 +32,7 @@ const Button: React.FC<Props> = ({ color, children, className, onClick, type, to
       case 'mint':
         return 'bg-mint text-white border border-mint hover:bg-transparent hover:text-mint hover:border hover:border-mint focus:bg-darkRed hover:drop-shadow-2md';
       case 'turquoise':
-        return 'bg-custom-turquoise text-gray border border-custom-turquoise   hover:border hover:border-custom-turquoise focus:bg-darkRed hover:drop-shadow-2md';
+        return 'bg-custom-turquoise text-gray border border-custom-turquoise   hover:border hover:border-custom-turquoise focus:text-mint hover:drop-shadow-2md';
       case 'transparentGray':
         return 'bg-transparent text-gray border border-gray hover:bg-lighterGray focus:text-mint hover:drop-shadow-2md';
       case 'transparentMint':
