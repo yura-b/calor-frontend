@@ -9,6 +9,7 @@ import {IOrder} from '@/constants/interfaces/order.ts';
 import UserInfo from '@pages/admin/users/components/userProfile/components/UserInfo.tsx';
 import {IUser} from '@/constants/interfaces/user.ts';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
+import OrderStatusComponent from './components/orderPage/OrderStatusComponent';
 
 const OrderPage = () => {
     const dispatch = useAppDispatch()
@@ -35,15 +36,13 @@ const OrderPage = () => {
 
 
     if (!id || !access_token || !orderData) return <></>
-    const {email, phoneNumber} = orderData;
-    console.log(orderData)
-    console.log(userData)
+    const {email, phoneNumber, status } = orderData;
     const [firstName, secondName] = orderData.username.split(' ')
-    // console.log(orderData)
 
     return (
         <AdminLayout>
             <OrderPageHeader id={id}/>
+            <OrderStatusComponent status={status} />
             <OrderInformation order={orderData}/>
             <div className={'pl-7'}>
               <UserInfo withDelivery={true} userDataState={{state: {phoneNumber, email, secondName, firstName}}}/>

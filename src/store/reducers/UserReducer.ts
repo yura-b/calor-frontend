@@ -57,7 +57,7 @@ export const UserSlice = createSlice({
       localStorage.removeItem('access_token');
       localStorage.removeItem('roles');
 
-      state.access_token = initialState.access_token;
+      state.access_token = null;
       state.roles = initialState.roles;
       state.userId = initialState.userId;
       state.phoneNumber = initialState.phoneNumber;

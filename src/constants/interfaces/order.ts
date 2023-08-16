@@ -6,19 +6,15 @@ import { details } from '@/constants/interfaces/basket.ts';
 export interface IOrder {
   _id: string;
 
-  userID: string;
-
   status: OrderStatus;
 
   details: {
     [name: string]: detail[];
   };
 
-  quantity: number
+  product: product;
 
-  product: string;
-
-  address: string;
+  address: shippingDetails;
 
   totalPrice: number
 
@@ -40,13 +36,13 @@ export interface IOrder {
 
 
 export enum OrderStatus {
-  DELIVERING = 'DELIVERING',
-  PAID = 'PAID',
-  NotPAID = 'NotPAID',
-  RECEIVED = 'RECEIVED',
+  PROCESSING= 'Processing',
+  PRODUCTION = 'Production',
+  QualityControl  = 'Quality  Control',
+  Shipped = 'Shipped'
 }
 
-export const OrderStatusArray: OrderStatus[] = [OrderStatus.PAID, OrderStatus.DELIVERING, OrderStatus.RECEIVED];
+export const OrderStatusArray: OrderStatus[] = [OrderStatus.PRODUCTION, OrderStatus.QualityControl, OrderStatus.Shipped];
 
 export interface IPurchase {
   product: product;
@@ -74,4 +70,37 @@ export interface product {
   price: number;
 
   description: string;
+}
+
+export  interface shippingDetails {
+  country: string;
+  
+  streetAddress: string;
+  
+  ASB: string;
+
+  
+  city: string;
+  
+  state: string;
+  
+  ZIP: string;
+}
+
+export interface IMeasurement {
+
+  size: number;
+
+  rightFootLength: number;
+
+  rightFootWidth: number;
+
+  leftFootLength: number;
+
+  leftFootWidth: number;
+
+  insoleLength: number;
+
+  insoleWidth: number;
+
 }

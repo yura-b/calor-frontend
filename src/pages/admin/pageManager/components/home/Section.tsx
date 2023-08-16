@@ -12,7 +12,8 @@ const Section: React.FC<{ value: string, title: string | null, id: string }> = (
     return (
         <div className={'w-[45%]'}>
             {title && <p>{title}</p>}
-                <CustomTextField  disabledField={isDisable} defaultValue={value} setValue={handler}/>
+
+            {isDisable ? <p>{value}</p> : <CustomTextField disabledField={isDisable} defaultValue={value} setValue={handler} />}
         </div>
     );
 };

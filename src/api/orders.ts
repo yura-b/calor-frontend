@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { backendUrl } from '@/api/languages.ts';
 import { authorization } from '@/api/config.ts';
-import { changeOrderStatusInterface } from '@/api/dto/orders.dto.ts';
+import { changeOrderStatusInterface, CreateOrderDto } from '@/api/dto/orders.dto.ts';
 
 export const getOrders = (credential) => {
   return axios.get(`${backendUrl}/order/all`, authorization(credential));
@@ -21,4 +21,6 @@ export const changeOrderStatus = (credentials: string, data: changeOrderStatusIn
   );
 };
 
-
+export const createOrder = (order: CreateOrderDto ) => {
+  return axios.post(`${backendUrl}/order`, order)
+}

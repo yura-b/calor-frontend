@@ -6,34 +6,34 @@ import { EStatus, showMessage } from '@/store/reducers/StatusReducer.ts';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
-  ref,
+  ref
 ) {
   return <MuiAlert elevation={6} ref={ref} color={'success'} variant="filled" {...props} />;
 });
 
- const CustomizedSnackbars = ()=> {
-  
-  const {message, status} = useAppSelector(state => state.status)
+const CustomizedSnackbars = () => {
 
-  const dispatch = useAppDispatch()
-
-   useEffect(()=>{
-     if (status === EStatus.OK && message === null) return
-
-     setTimeout(()=>{
-       dispatch(showMessage(null))
-     }, 3000)
-   }, [message, status])
+  const { message, status } = useAppSelector(state => state.status);
+  const dispatch = useAppDispatch();
 
 
-   if (!message) return <></>
+  useEffect(() => {
+    if (status === EStatus.OK && message === null) return;
 
-   return (
-    <div className={'absolute right-10 bottom-10'}>
+    setTimeout(() => {
+      dispatch(showMessage(null));
+    }, 3000);
+  }, [message, status]);
+
+
+  if (!message) return <></>;
+
+  return (
+    <div className={'fixed right-10 bottom-10'}>
       <Alert severity="success">{message}</Alert>
     </div>
   );
 
-}
+};
 
-export default memo(CustomizedSnackbars)
+export default memo(CustomizedSnackbars);

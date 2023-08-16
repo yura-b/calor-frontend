@@ -7,6 +7,7 @@ import {useAppDispatch} from '@/store/hooks/hooks.ts';
 import { setPages, toggleEditing } from '@/store/admin/PageManagerReducer.ts';
 import Navigation from '@components/admin/Navigation.tsx';
 import ManagerAboutPage from '@pages/admin/pageManager/components/ManagerAboutPage.tsx';
+import ManagerFooterPage from '@pages/admin/pageManager/components/ManagerFooterPage.tsx';
 
 
 
@@ -45,6 +46,8 @@ const PageManagerPage = () => {
       </div>
       {page === pages.HomePage && <ManagerHomerPage />}
       {page === pages.About && <ManagerAboutPage/>}
+      {page === pages.Footer && <ManagerFooterPage/>}
+
     </AdminLayout>
   );
 };

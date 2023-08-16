@@ -1,21 +1,16 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { removeDuplicateTitle } from '@/helpers/functions/removeDuplicateTitle.ts';
+import SectionBlock from '@pages/admin/pageManager/components/SectionBlock.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { saveChanges } from '@/api/manager/pages.ts';
 import { toggleEditing } from '@/store/admin/PageManagerReducer.ts';
-import SectionBlock from '@pages/admin/pageManager/components/SectionBlock.tsx';
 
-const ManagerHomerPage = () => {
+const ManagerFooterPage = () => {
   const { pageSections, isDisable } = useAppSelector(state => state.pageManager);
   const { access_token } = useAppSelector(state => state.user);
-
-
+  
   const dispatch = useAppDispatch();
-
-  const benefits = removeDuplicateTitle(pageSections.filter(sections => sections.section === 'Benefits'));
-  const PerfectFit = removeDuplicateTitle(pageSections.filter(sections => sections.section === 'Perfect Fit'));
-  const YourVision = removeDuplicateTitle(pageSections.filter(sections => sections.section === 'Your Vision, Our Craftsmanship'));
 
   const submitHandler = () => {
     if (access_token) saveChanges(access_token, pageSections)
@@ -24,11 +19,15 @@ const ManagerHomerPage = () => {
       });
   };
 
+  const address = removeDuplicateTitle(pageSections.filter(sections => sections.section === 'Address'));
+  const phoneNumber = removeDuplicateTitle(pageSections.filter(sections => sections.section === 'Phone Number'));
+  const Email = removeDuplicateTitle(pageSections.filter(sections => sections.section === 'Email'));
+
   return (
     <div className={'flex flex-col gap-12 p-12'}>
-      <SectionBlock arr={YourVision} title={'Your Vision, Our Craftsmanship'} />
-      <SectionBlock arr={PerfectFit} title={'Perfect Fit'} />
-      <SectionBlock arr={benefits} title={'Benefits'} />
+    <SectionBlock arr={phoneNumber} title={'Phone Number'} />
+      <SectionBlock arr={address} title={'Address'} />
+      <SectionBlock arr={Email} title={'Email'} />
       {!isDisable && <div className={'flex justify-end'}>
         <CustomButton title={'Submit'} handler={submitHandler} />
       </div>}
@@ -36,6 +35,4 @@ const ManagerHomerPage = () => {
   );
 };
 
-export default ManagerHomerPage;
-
-
+export default ManagerFooterPage;

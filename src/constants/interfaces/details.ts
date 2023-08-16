@@ -11,13 +11,15 @@ export interface Materials {
     colors: Color[]
     title:string,
     _id:string
+    additional: boolean
 }
 
 export interface Color {
     available: boolean,
     color: string
     photo: string | null,
-    _id:string
+    _id:string,
+    additional?: boolean
 }
 
 export interface products {
