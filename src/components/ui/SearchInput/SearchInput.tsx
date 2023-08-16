@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import searchIcon from '@assets/images/searchIcon.svg'; // Replace with the path to your search icon image
+import searchIcon from '@assets/images/searchIcon.svg';
 
 const SearchInput = () => {
   const initialValues = { searchTerm: '' };
@@ -34,21 +34,21 @@ const SearchInput = () => {
         <input
           type="text"
           name="searchTerm"
-          className={`border px-2 py-2 bg-lightGray lg:py-1  ${
-            isInputFocused || formik.values.searchTerm ? 'pl-4 pr-10' : 'pl-8'
-          }  border-white  focus:outline-none  focus:ring-lightGray focus:border-lightGray w-full text-base placeholder-gray lg:text-[10px] `}
+          className={`border-b px-2 py-1 bg-custom-red lg:py-0.5 text-white ${
+            isInputFocused || formik.values.searchTerm ? 'px-2' : 'pl-8'
+          }  border-[#F09690]  focus:outline-none  focus:ring-lightGray focus:border-lightGray w-full text-base placeholder-[#F09690] lg:text-[12px] `}
           placeholder={!isInputFocused ? 'Search for Calor products' : 'What are you looking for?'}
           value={formik.values.searchTerm}
           onChange={formik.handleChange}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
-          style={{ minWidth: '210px' }}
+          style={{ minWidth: '200px' }}
         />
         {!formik.values.searchTerm && !isInputFocused && (
           <img
             src={searchIcon}
             alt="Search Icon"
-            className="absolute left-2 top-2 lg:top-1.5 cursor-pointer"
+            className="absolute left-1 top-1.5 lg:top-0.5 cursor-pointer w-[16px]"
             onClick={handleSearchIconClick}
           />
         )}
@@ -56,7 +56,7 @@ const SearchInput = () => {
           <img
             src={searchIcon}
             alt="Search Icon"
-            className="absolute right-4 top-2 lg:top-1.5 cursor-pointer"
+            className="absolute right-2 top-1.5 lg:top-0.5 cursor-pointer w-[16px]"
             onClick={handleSearchIconClick}
           />
         )}
