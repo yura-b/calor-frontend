@@ -5,6 +5,10 @@ import userReducer from '@/store/reducers/UserReducer.ts';
 import registrationReducer from '@/store/reducers/RegistrationReducer.ts';
 import dialogReducer from '@/store/reducers/DialogReducer.ts';
 import pageManagerReducer from '@/store/admin/PageManagerReducer.ts';
+import ProductsReducer from '@/store/reducers/ProductsReducer.ts';
+import ShoesReducer from './reducers/ShoesReducer';
+import ActiveShoeParts from '@/store/reducers/ActiveShoePartsReducer';
+import DaygerModel from '@/store/reducers/DaygerModelReducer';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +18,10 @@ export const store = configureStore({
     registration: registrationReducer,
     dialog: dialogReducer,
     pageManager: pageManagerReducer,
+    products: ProductsReducer,
+    shoes: ShoesReducer,
+    activeShoeParts: ActiveShoeParts,
+    daygerModel: DaygerModel,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
