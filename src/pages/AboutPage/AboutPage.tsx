@@ -19,7 +19,7 @@ const AboutPage: React.FC = (): React.ReactElement => {
         <div className="relative hidden lg:block">
           <NavigationLinks
             color="white"
-            className="absolute top-6  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-auto"
+            className="absolute top-8  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-auto"
           />
         </div>
         <Slider />
