@@ -27,7 +27,7 @@ const HomeShowRoom: React.FC<Props> = ({
         measurements of your feet to guarantee a comfortable and flawless fit.
       </p>
       <Button color={backgroundButton} className="w-full my-6" onClick={handleClick}>
-        Make Appointment
+        Make an Appointment
       </Button>
     </div>
   );

@@ -3,7 +3,7 @@ import CustomButton from '../button/CustomButton';
 interface IProps {
   title?: string;
   buttonTitle?: string;
-  click?: () =>void
+  click?: () => void;
 }
 const GridHeader: React.FC<IProps> = ({ title, buttonTitle, click }) => {
   return (

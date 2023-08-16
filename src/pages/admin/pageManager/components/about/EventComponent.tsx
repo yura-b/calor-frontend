@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import {Events} from '@/constants/interfaces/events.ts';
+import React, { FC } from 'react';
+import { Events } from '@/constants/interfaces/events.ts';
 
 const EventComponent:FC<Events> = ({photo, title,announcement}) => {
     return (

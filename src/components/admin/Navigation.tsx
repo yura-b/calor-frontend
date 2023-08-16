@@ -1,17 +1,13 @@
 import React, { FC } from 'react';
 
-
-
-
-
 interface IProps {
   setState: React.Dispatch<React.SetStateAction<string>>;
   state: string;
-  array: string[]
+  array: string[];
 }
 
 // Make Navigation a generic component with two type parameters
-const Navigation:FC<IProps> = ({setState, state, array}) => {
+const Navigation: FC<IProps> = ({ setState, state, array }) => {
   const defaultStyles = ' font-bold px-6 cursor-pointer font-bold border-b-2 border-black';
   const chosen = ' text-white bg-black';
   return (
@@ -25,7 +21,7 @@ const Navigation:FC<IProps> = ({setState, state, array}) => {
           );
         }
         return (
-          <div key={section} className={defaultStyles} onClick={() =>  setState(section)}>
+          <div key={section} className={defaultStyles} onClick={() => setState(section)}>
             {section}
           </div>
         );

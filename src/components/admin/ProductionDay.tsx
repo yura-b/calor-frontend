@@ -21,11 +21,7 @@ const ProductionDay: React.FC<{ day: number }> = ({ day }) => {
     bgColor = 'bg-red-800 text-white';
   }
 
-  return (
-    <span className={'rounded-full text-center text-black px-3 py-1 ' + bgColor}>
-      {day}th day
-    </span>
-  );
+  return <span className={'rounded-full text-center text-black px-3 py-1 ' + bgColor}>{day}th day</span>;
 };
 
 export default ProductionDay;

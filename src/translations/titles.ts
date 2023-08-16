@@ -1,5 +1,5 @@
 export const titles = {
-  homePage: 'Home Page',
+  homePage: 'Calor',
   designShoePage: 'Design Shoe Page',
   designBagPage: 'Design Bag Page',
   accessories: 'Accessories Page',

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@/styles/Animations';
-import { useMediaQuery } from '@react-hook/media-query';
 import styles from '@styles/Styles.module.scss';
 
 interface Props {
@@ -11,21 +10,18 @@ interface Props {
 }
 
 const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => {
-  const [showFullText, setShowFullText] = useState(true);
-  const isLargeScreen = useMediaQuery('(min-width: 1024px)');
+  const [showFullText, setShowFullText] = useState(false);
 
   useEffect(() => {
-    setShowFullText(isLargeScreen);
-  }, [isLargeScreen]);
+    setShowFullText(showFullText);
+  }, [showFullText]);
 
   const handleToggleText = () => {
-    if (!isLargeScreen) {
-      setShowFullText(!showFullText);
-    }
+    setShowFullText(!showFullText);
   };
 
   return (
-    <div className={`text-justify m-auto min-h-max ${styles.container} ${className}`}>
+    <div className={`text-left m-auto min-h-max ${styles.container} ${className} lg:py-0`}>
       <AnimatePresence initial={false}>
         <motion.p
           key={showFullText ? 'expandedText' : 'initialText'}
@@ -40,7 +36,7 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
         onClick={handleToggleText}
         className={`text-gray text-base underline cursor-pointer block text-center p-3 max-w-max  mx-auto hover:font-bold ${
           showFullText && 'focus:text-mint'
-        } md:text-lg lg:hidden`}
+        } md:text-lg `}
         {...hoverOnButtonAnimation}
       >
         {showFullText ? 'Read Less' : 'Read More'}

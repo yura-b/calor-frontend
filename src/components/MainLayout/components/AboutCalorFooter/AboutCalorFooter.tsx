@@ -50,28 +50,28 @@ const AboutCalorFooter = () => {
   };
 
   return (
-    <div className="border-b border-white py-2">
-      <motion.div className="flex justify-between items-center px-6" onClick={toggleAccordion}>
+    <div className="border-b border-white lg:border-none lg:py-0">
+      <motion.div className="flex justify-between items-center" onClick={toggleAccordion}>
         <Link
           to={paths.about}
           className={`${styles.subtitle} ${
-            paths.about === window.location.pathname ? 'text-custom-turquoise' : 'text-white'
-          }`}
+            paths.about === window.location.pathname ? 'text-mint' : 'text-white lg:text-custom-turquoise'
+          } lg:text-sm lg:font-extrabold`}
           onClick={scrollToTop}
         >
           About Calor
         </Link>
         <h1
-          className={`${styles.header1} ${
-            paths.about === window.location.pathname ? 'text-custom-turquoise' : 'text-white'
-          }`}
+          className={`text-[32px] font-extralight ${
+            paths.about === window.location.pathname ? 'text-mint' : 'text-white'
+          } lg:hidden`}
         >
           {isAccordionOpen ? '-' : '+'}
         </h1>
       </motion.div>
       <AnimatePresence>
         {isAccordionOpen && (
-          <motion.div className="px-6" {...collapseAnimation}>
+          <motion.div {...collapseAnimation} className="lg:hidden">
             {aboutLinks.map((link, i) => (
               <Link
                 key={i}
@@ -85,6 +85,18 @@ const AboutCalorFooter = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <div className="hidden lg:block mt-1">
+        {aboutLinks.map((link, i) => (
+          <Link
+            key={i}
+            to={link.path}
+            scroll={scrollToElement}
+            className={`flex text-xs font-semibold hover:text-custom-turquoise focus:outline-none py-1 ${styles.link}`}
+          >
+            {link.subTitle}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

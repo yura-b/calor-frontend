@@ -16,23 +16,24 @@ const CreateEvent = () => {
   const dispatch = useAppDispatch()
 
 
+
   const [photo, setPhoto] = useState<File>();
-  const [title, setTitle] = useState<string>()
-  const [announcement, setAnnouncement] = useState<string>()
+  const [title, setTitle] = useState<string>();
+  const [announcement, setAnnouncement] = useState<string>();
 
   const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value)
-  }
-   const announcementHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAnnouncement(e.target.value)
-  }
-
+    setTitle(e.target.value);
+  };
+  const announcementHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAnnouncement(e.target.value);
+  };
 
   const handleAddNewEvent = () => {
-    if (!(title && announcement && access_token)) return
-    uploadEventPhoto(photo).then(res=>{
-        createEvent({
-          photo: res.data.url ,
+    if (!(title && announcement && access_token)) return;
+    uploadEventPhoto(photo).then((res) => {
+      createEvent(
+        {
+          photo: res.data.url,
           title,
           announcement
         }, access_token)
@@ -40,11 +41,16 @@ const CreateEvent = () => {
             dispatch(showMessage('New event was successfully added'))
           })
     });
-  }
+  };
 
   return (
     <AdminLayout>
-      <UserPageHeader buttonAvailable={false} url={'/admin/manager'} upperText={'Back to Page Manager'} bottomText={'New EventComponent'}/>
+      <UserPageHeader
+        buttonAvailable={false}
+        url={'/admin/manager'}
+        upperText={'Back to Page Manager'}
+        bottomText={'New EventComponent'}
+      />
       <div className={'m-24'}>
         <div className={'flex flex-row mb-8 items-center gap-3'}>
           <PlusCircle size={32} fill={'weight'} />
@@ -59,9 +65,9 @@ const CreateEvent = () => {
           </div>
           <div className={'flex flex-col gap-5 w-1/2'}>
             <p className={'font-bold'}>2. Event`s Detail</p>
-            <CustomInput description={'Title'} value={title} onChange={titleHandler}/>
-            <CustomInput description={'News Announcement'} value={announcement} onChange={announcementHandler}/>
-            <CustomButton title={'Add New EventComponent'} handler={handleAddNewEvent}/>
+            <CustomInput description={'Title'} value={title} onChange={titleHandler} />
+            <CustomInput description={'News Announcement'} value={announcement} onChange={announcementHandler} />
+            <CustomButton title={'Add New EventComponent'} handler={handleAddNewEvent} />
           </div>
         </div>
       </div>

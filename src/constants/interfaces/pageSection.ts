@@ -5,5 +5,5 @@ export interface PageSection {
   title: string;
   value: string;
   _id: string;
-  section: string
+  section: string;
 }
