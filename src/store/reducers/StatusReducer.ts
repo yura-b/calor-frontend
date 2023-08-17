@@ -32,9 +32,12 @@ export const StatusSlice = createSlice({
       state.status = EStatus.OK;
       state.message = null;
     },
+    showMessage: (state, action:PayloadAction<string | null>)=> {
+      state.message = action.payload
+    }
   },
 });
 
-export const { loading, loadingFinished, errorCorrupted } = StatusSlice.actions;
+export const { loading, loadingFinished, errorCorrupted, showMessage } = StatusSlice.actions;
 
 export default StatusSlice.reducer;

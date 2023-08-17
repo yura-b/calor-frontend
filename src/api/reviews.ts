@@ -10,6 +10,5 @@ export const deleteReview = (access_token: string, id: string) => {
 };
 
 export const approveReview = (access_token: string, id: string) => {
-  console.log(access_token);
   return axios.put(`${backendUrl}/review/${id}`, {}, authorization(access_token));
 };

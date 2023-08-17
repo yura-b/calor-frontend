@@ -9,3 +9,7 @@ export const getUsers = (credential, filter: string) => {
 export const getUser = (credential: string, id: string) => {
   return axios.get(`${backendUrl}/user/${id}`, authorization(credential));
 };
+
+export const getUserUsingToken = (credentials: string) => {
+  return axios.get(`${backendUrl}/user/token`, authorization(credentials));
+};

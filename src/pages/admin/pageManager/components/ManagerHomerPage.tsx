@@ -6,15 +6,7 @@ import { saveChanges } from '@/api/manager/pages.ts';
 import { toggleEditing } from '@/store/admin/PageManagerReducer.ts';
 import SectionBlock from '@pages/admin/pageManager/components/SectionBlock.tsx';
 
-// interface IProps {
-//   page: pageState,
-//   editable: boolean
-// }
-//
-// interface pageState {
-//   state: PageSection[];
-//   setState: React.Dispatch<React.SetStateAction<PageSection[]>>;
-// }
+
 const ManagerHomerPage = () => {
   const { pageSections, isDisable } = useAppSelector((state) => state.pageManager);
   const { access_token } = useAppSelector((state) => state.user);
