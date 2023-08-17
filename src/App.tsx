@@ -25,6 +25,8 @@ import AboutPage from '@pages/AboutPage';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
 import { useGetUserIfRefresh } from '@/hooks/getUserIfRefresh.ts';
+import CreateItem from '@pages/admin/catalog/CreateItem.tsx';
+import CatalogPage from '@pages/admin/catalog/CatalogPage.tsx';
 
 const App = () => {
     const getUser = useGetUserIfRefresh()
@@ -47,6 +49,8 @@ const App = () => {
                     <Route path={'reviews/text'} element={<TextReviewPage/>}/>
                     <Route path={'manager'} element={<PageManagerPage/>}/>
                     <Route path={'createevent'} element={<CreateEvent/>}/>
+                    <Route path={'catalog'} element={<CatalogPage/>} />
+                    <Route path={'createitem'} element={<CreateItem/>}/>
                     <Route path={'warehouse'} element={<WarehousePage/>}/>
                 </Route>
                 <Route path={paths.design_shoe} element={<DesignShoePage/>}/>

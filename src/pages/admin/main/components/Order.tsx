@@ -29,10 +29,10 @@ export const Order: React.FC<{ key: string; order: IOrder; align }> = ({ order, 
           <p>{order.username}</p>
         </TableCell>
         <TableCell align={align}>
-          <p>{order.address}</p>
+          <p>address</p>
         </TableCell>
         <TableCell align={align}>
-          <p>{order.number}</p>
+          <p>{order.phoneNumber}</p>
         </TableCell>
         <TableCell align={align}>
           <p>{order.email}</p>
@@ -59,6 +59,7 @@ export const Order: React.FC<{ key: string; order: IOrder; align }> = ({ order, 
             }}
             defaultValue={statusValue}
             array={OrderStatusArray}
+            value={statusValue}
           />
         </TableCell>
       </TableRow>
@@ -79,16 +80,16 @@ export const Order: React.FC<{ key: string; order: IOrder; align }> = ({ order, 
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {order.purchases.map((purchase) => (
-                    <TableRow key={2}>
-                      <TableCell component="th" scope="row">
-                        {purchase.product.title}
-                      </TableCell>
-                      <TableCell>details here</TableCell>
-                      <TableCell align={align}>{purchase.count}</TableCell>
-                      <TableCell align={'right'}>{purchase.product.price * purchase.count}</TableCell>
-                    </TableRow>
-                  ))}
+                  {/* {order.map((purchase) => (*/}
+                  {/*  <TableRow key={2}>*/}
+                  {/*    <TableCell component="th" scope="row">*/}
+                  {/*      {purchase.product.title}*/}
+                  {/*    </TableCell>*/}
+                  {/*    <TableCell>details here</TableCell>*/}
+                  {/*    <TableCell align={align}>{purchase.count}</TableCell>*/}
+                  {/*    <TableCell align={'right'}>{purchase.product.price * purchase.count}</TableCell>*/}
+                  {/*  </TableRow>*/}
+                  {/* ))}*/}
                 </TableBody>
               </Table>
             </Box>

@@ -29,7 +29,6 @@ export const CustomSelect: React.FC<IProps> = ({ handleFunc, array, value }) => 
         }}
         value={value}
         onChange={(e: SelectChangeEvent) => {
-          console.log(e);
           handleFunc(e);
         }}
       >
