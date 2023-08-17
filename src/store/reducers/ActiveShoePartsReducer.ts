@@ -17,16 +17,12 @@ const activeShoePartsSlice = createSlice({
       state.selectedMaterial = action.payload;
     },
     setSelectedColor: (state, action) => {
-      console.log(action.payload)
+      console.log(action.payload);
       state.selectedColor = action.payload;
     },
   },
 });
 
-export const {
-  setSelectedDetail,
-  setSelectedMaterial,
-  setSelectedColor,
-} = activeShoePartsSlice.actions;
+export const { setSelectedDetail, setSelectedMaterial, setSelectedColor } = activeShoePartsSlice.actions;
 
 export default activeShoePartsSlice.reducer;

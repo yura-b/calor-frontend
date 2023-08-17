@@ -6,7 +6,6 @@ import { saveChanges } from '@/api/manager/pages.ts';
 import { toggleEditing } from '@/store/admin/PageManagerReducer.ts';
 import SectionBlock from '@pages/admin/pageManager/components/SectionBlock.tsx';
 
-
 const ManagerHomerPage = () => {
   const { pageSections, isDisable } = useAppSelector((state) => state.pageManager);
   const { access_token } = useAppSelector((state) => state.user);

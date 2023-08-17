@@ -6,25 +6,23 @@ export interface Detail {
 }
 
 export interface Materials {
-    colors: Color[]
-    title:string,
-    _id:string
-    additional: boolean
+  colors: Color[];
+  title: string;
+  _id: string;
+  additional: boolean;
 }
 
 export interface Color {
-    available: boolean,
-    color: string
-    _id:string,
-    additional?: boolean
+  available: boolean;
+  color: string;
+  _id: string;
+  additional?: boolean;
 }
 
 export interface products {
-    title: string,
-    _id: string
-   colors: Color[];
+  title: string;
+  _id: string;
+  colors: Color[];
   title: string;
   _id: string;
 }
-
-

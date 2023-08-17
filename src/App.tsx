@@ -29,48 +29,46 @@ import Loader from '@/components/ui/Loader/';
 const HomePage = lazy(() => import('@pages/HomePage'));
 const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 
-
 const App = () => {
-    const getUser = useGetUserIfRefresh()
-    
-    getUser()
-    return (
-        <BrowserRouter>
-            <Suspense fallback={<Loader />}>
-                <Routes>
-                    <Route path={'/'} element={<HomePage/>}/>
-                    <Route path={paths.home} element={<HomePage/>}/>
-                    <Route path={'login'} element={<TokenGuard children={<LoginPage/>}/>}/>
-                    <Route path={'signup'} element={<TokenGuard children={<SignupPage/>}/>}/>
-                    <Route path={'reset'} element={<TokenGuard children={<Email/>}/>}/>
-                    <Route path={'password/:id'} element={<TokenGuard children={<ResetPassword/>}/>}/>
-                    <Route path={'admin'}>
-                        <Route index element={<MainPage/>}/>
-                        <Route path={'order/:id'} element={<OrderPage/>}/>
-                        <Route path={'users'} element={<UserPage/>}/>
-                        <Route path={'users/:id'} element={<UserProfilePage/>}/>
-                        <Route path={'reviews/text'} element={<TextReviewPage/>}/>
-                        <Route path={'manager'} element={<PageManagerPage/>}/>
-                        <Route path={'createevent'} element={<CreateEvent/>}/>
-                        <Route path={'warehouse'} element={<WarehousePage/>}/>
-                    </Route>
-                    <Route path={'design_your_shoe'}>
-                        <Route path={'dayger'} element={<DesignShoePage model="dayger" />} />
-                        <Route path={'sunrise'} element={<DesignShoePage model="sunrise" />} />
-                        <Route path={'yolo'} element={<DesignShoePage model="yolo" />} />
-                    </Route>
-                    <Route path={paths.design_bag} element={<DesignBagPage/>}/>
-                    <Route path={paths.accessories} element={<AccessoriesPage/>}/>
-                    <Route path={paths.shoe_care_product} element={<ShoeCareProductPage/>}/>
-                    <Route path={paths.customer_experience} element={<CustomerExperiencePage/>}/>
-                    <Route path={paths.privacy_policy} element={<PrivacyPolicyPage/>}/>
-                    <Route path={paths.cookies} element={<CookiesPage/>}/>
-                    <Route path={paths.terms_condition} element={<TermsConditionPage/>}/>
-                    <Route path={paths.about} element={<AboutPage/>}/>
-                </Routes>
-            </Suspense>
-        </BrowserRouter>
-    );
+  const getUser = useGetUserIfRefresh();
+  getUser();
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path={'/'} element={<HomePage />} />
+          <Route path={paths.home} element={<HomePage />} />
+          <Route path={'login'} element={<TokenGuard children={<LoginPage />} />} />
+          <Route path={'signup'} element={<TokenGuard children={<SignupPage />} />} />
+          <Route path={'reset'} element={<TokenGuard children={<Email />} />} />
+          <Route path={'password/:id'} element={<TokenGuard children={<ResetPassword />} />} />
+          <Route path={'admin'}>
+            <Route index element={<MainPage />} />
+            <Route path={'order/:id'} element={<OrderPage />} />
+            <Route path={'users'} element={<UserPage />} />
+            <Route path={'users/:id'} element={<UserProfilePage />} />
+            <Route path={'reviews/text'} element={<TextReviewPage />} />
+            <Route path={'manager'} element={<PageManagerPage />} />
+            <Route path={'createevent'} element={<CreateEvent />} />
+            <Route path={'warehouse'} element={<WarehousePage />} />
+          </Route>
+          <Route path={'design_your_shoe'}>
+            <Route path={'dayger'} element={<DesignShoePage model="dayger" />} />
+            <Route path={'sunrise'} element={<DesignShoePage model="sunrise" />} />
+            <Route path={'yolo'} element={<DesignShoePage model="yolo" />} />
+          </Route>
+          <Route path={paths.design_bag} element={<DesignBagPage />} />
+          <Route path={paths.accessories} element={<AccessoriesPage />} />
+          <Route path={paths.shoe_care_product} element={<ShoeCareProductPage />} />
+          <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
+          <Route path={paths.privacy_policy} element={<PrivacyPolicyPage />} />
+          <Route path={paths.cookies} element={<CookiesPage />} />
+          <Route path={paths.terms_condition} element={<TermsConditionPage />} />
+          <Route path={paths.about} element={<AboutPage />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
 };
 
 export default App;

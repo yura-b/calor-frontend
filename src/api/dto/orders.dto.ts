@@ -10,12 +10,11 @@ export interface CreateOrderDto {
 
   phone_number: string;
 
+  fistName: string;
 
-    fistName: string;
+  secondName: string;
 
-    secondName: string;
-
-    shippingInfo: ShippingInfoDto
+  shippingInfo: ShippingInfoDto;
   purchases: Purchases[];
 }
 
@@ -33,21 +32,21 @@ export interface detail {
 }
 
 export interface ShippingInfoDto {
-    receiverFirstName: string;
+  receiverFirstName: string;
 
-    receiverSecondName: string;
+  receiverSecondName: string;
 
-    streetAddress: string
+  streetAddress: string;
 
-    ASB: string
+  ASB: string;
 
-    city: string
+  city: string;
 
-    state: string
+  state: string;
 
-    ZIP: number
+  ZIP: number;
 
-    save: boolean
+  save: boolean;
 
-    user_id?: string
+  user_id?: string;
 }

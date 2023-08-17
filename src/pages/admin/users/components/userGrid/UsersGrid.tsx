@@ -55,7 +55,7 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
   const [users, setUsers] = useState<IUser[]>([]);
   const clearUserData = useCleanUserDataAndNavigateToLogin();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const onClickHandler = (id: string) => {
     navigate(`/admin/users/${id}`);
@@ -63,16 +63,13 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
 
   useEffect(() => {
     if (access_token) {
-
-      dispatch(loading())
+      dispatch(loading());
 
       getUsers(access_token, nameFilter)
         .then((res) => {
           setUsers(res.data);
 
-
-          dispatch(loadingFinished())
-
+          dispatch(loadingFinished());
         })
         .catch((e) => clearUserData(e));
     }

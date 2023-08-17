@@ -106,7 +106,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
             </p>
           </div>
           <div className="lg:basis-auto mt-4 lg:mt-0">
-            <Button color="red" to={paths.design_shoe}>
+            <Button color="red" to={paths.design_shoe} className="mb-4">
               Design Your Shoe
             </Button>
             <Button color="mintExtraLight" to={paths.design_bag}>
@@ -118,8 +118,8 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
         <img src={homeSemiCircle} className="absolute z-1 top-40 left-0 h-56 sm:hidden" />
         <img
           src={homeCircle}
-          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-40 lg:left-[10%] xl:top-48 xl:h-80 ${
-            isSmallerThan1600px ? '2xl:h-96 2xl:top-32' : '2xl:h-1/2 2xl:top-32'
+          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-40 lg:left-[10%] xl:top-36 xl:h-80 ${
+            isSmallerThan1600px ? '2xl:h-96 2xl:top-32' : '2xl:h-1/2 2xl:top-44'
           }`}
           style={{ maxWidth: '100%' }}
         />

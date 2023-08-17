@@ -27,8 +27,8 @@ const AdminLayout: React.FC<IProps> = ({ children }) => {
       <Header />
       <div className={'w-5/6 ml-marginForLeftHeader'}>{children}</div>
       <SubmitDialog />
-      <AdminLoader/>
-      <CustomizedSnackbars/>
+      <AdminLoader />
+      <CustomizedSnackbars />
     </div>
   );
 };

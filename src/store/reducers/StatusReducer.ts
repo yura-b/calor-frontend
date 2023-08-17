@@ -32,9 +32,9 @@ export const StatusSlice = createSlice({
       state.status = EStatus.OK;
       state.message = null;
     },
-    showMessage: (state, action:PayloadAction<string | null>)=> {
-      state.message = action.payload
-    }
+    showMessage: (state, action: PayloadAction<string | null>) => {
+      state.message = action.payload;
+    },
   },
 });
 

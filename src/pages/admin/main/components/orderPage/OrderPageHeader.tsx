@@ -22,12 +22,8 @@ const OrderPageHeader: React.FC<IProps> = ({ id }) => {
           </div>
         </div>
         <div className={'flex gap-8'}>
-          <div className={'px-16 flex items-center bg-black text-white'}>
-            Invoice
-          </div>
-          <div className={'px-16 flex items-center bg-black text-white'}>
-            Checklist
-          </div>
+          <div className={'px-16 flex items-center bg-black text-white'}>Invoice</div>
+          <div className={'px-16 flex items-center bg-black text-white'}>Checklist</div>
         </div>
       </div>
       <hr />
