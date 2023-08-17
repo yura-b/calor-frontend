@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import { Color, Detail, Materials } from '@/api/detail.ts';
 import {
   Paper,
   Table,
@@ -8,9 +7,12 @@ import {
   TableContainer,
   TableHead,
   TablePagination,
-  TableRow,
+  TableRow
 } from '@mui/material';
 import { DetailsAndProductName } from '@pages/admin/warehouse/WarehousePage.tsx';
+import { Color, Detail, Materials } from '@/constants/interfaces/details.ts';
+import DetailRow from '@pages/admin/warehouse/components/DetailRow.tsx';
+
 
 interface Column {
   id: keyof Detail | keyof Materials | keyof Color;
@@ -28,25 +30,32 @@ const columns: Column[] = [
     label: 'material name',
     minWidth: 100,
     align: 'center',
-    format: (value: number) => value.toLocaleString('en-US'),
+    format: (value: number) => value.toLocaleString('en-US')
   },
   {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
+    id: 'color',
+    label: 'color name',
     minWidth: 170,
     align: 'center',
-    format: (value: number) => value.toLocaleString('en-US'),
+    format: (value: number) => value.toLocaleString('en-US')
   },
   {
-    id: 'density',
-    label: 'Density',
+    id: 'colors',
+    label: 'color availability',
     minWidth: 170,
     align: 'center',
-    format: (value: number) => value.toFixed(2),
-  },
+    format: (value: number) => value.toFixed(2)
+  }
 ];
+interface IProps {
+  details:  DetailsAndProductName[],
+  setDetails: React.Dispatch<React.SetStateAction<DetailsAndProductName[]>>
+}
 
-const DetailsGrid: FC<DetailsAndProductName> = ({ details, productsName }) => {
+const DetailsGrid: FC<IProps> = ({ details, setDetails }) => {
+
+  const valueOfDetails = Object.values(details);
+  console.log(details);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -62,35 +71,50 @@ const DetailsGrid: FC<DetailsAndProductName> = ({ details, productsName }) => {
   };
 
   return (
-    <Paper sx={{ width: '100%' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
+    <Paper sx={{ width: '99%',paddingLeft: '30px', height: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: '100%' }}>
+      <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={2}>
+              <TableCell
+                sx={{ background: '#DDE1E6', fontWeight: 'bold', borderBottom: '1px solid black' }}
+                key={Math.random()}
+                align="center" colSpan={2}>
                 Country
               </TableCell>
-              <TableCell align="center" colSpan={3}>
+              <TableCell
+                sx={{ background: '#DDE1E6', fontWeight: 'bold', borderBottom: '1px solid black' }}
+                key={Math.random()}
+                align="center" colSpan={3}>
                 Details
               </TableCell>
             </TableRow>
             <TableRow>
               {columns.map((column) => (
-                <TableCell key={column.id} align={column.align} style={{ top: 57, minWidth: column.minWidth }}>
+                <TableCell
+                  sx={{ background: '#DDE1E6', fontWeight: 'bold' }}
+                  key={Math.random()}
+                  align={column.align}
+                  style={{ top: 57, minWidth: column.minWidth }}
+                >
                   {column.label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            <TableRow hover role="checkbox" tabIndex={-1} key={details._id}></TableRow>
+          <TableBody >
+            {valueOfDetails.map(({ detail, products }) =>
+              <DetailRow key={Math.random()} details={{detail, products}} setDetails={setDetails}/>
+             )
+            }
+
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={details.length}
+        count={Object.values(details).length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CustomSearch from '@components/admin/CustomSearch.tsx';
 import { getAllReviews } from '@/api/reviews.ts';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
-import { useCleanUserDataAndNavigateToLogin } from '@components/hooks/CleanUserData.ts';
+import { useCleanUserDataAndNavigateToLogin } from '@/hooks/CleanUserData.ts';
 import { Review, ReviewStatusEnum } from '@/constants/interfaces/review.ts';
 import ReviewComponent from '@pages/admin/reviews/textReviews/components/ReviewComponent.tsx';
 

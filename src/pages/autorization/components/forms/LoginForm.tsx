@@ -51,6 +51,7 @@ const LoginForm = () => {
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
+          errorMessage={formik.errors.email}
         >
           Email
         </CustomInput>
@@ -62,6 +63,7 @@ const LoginForm = () => {
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
+          errorMessage={formik.errors.password}
         >
           Password
         </CustomInput>

@@ -6,16 +6,16 @@ export interface changeOrderStatusInterface {
 }
 
 export interface CreateOrderDto {
-  address: string;
-
-  userID: string;
-
   email: string;
 
   phone_number: string;
 
-  username: string;
 
+    fistName: string;
+
+    secondName: string;
+
+    shippingInfo: ShippingInfoDto
   purchases: Purchases[];
 }
 
@@ -30,4 +30,24 @@ export interface Purchases {
 export interface detail {
   material: string;
   color: string;
+}
+
+export interface ShippingInfoDto {
+    receiverFirstName: string;
+
+    receiverSecondName: string;
+
+    streetAddress: string
+
+    ASB: string
+
+    city: string
+
+    state: string
+
+    ZIP: number
+
+    save: boolean
+
+    user_id?: string
 }
