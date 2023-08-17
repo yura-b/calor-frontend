@@ -48,8 +48,8 @@ const MainMenu: React.FC = (): React.ReactElement => {
     });
   };
   return (
-    <nav className={'flex  text-2xl lg:text-sm font-semibold'}>
-      <ul className="w-full flex flex-col gap-2  lg:flex-row relative lg:gap-6">
+    <nav className={'flex  text-2xl lg:text-base font-semibold max-w-[1024px] m-auto'}>
+      <ul className="w-full flex flex-col gap-2 lg:gap-6  lg:flex-row relative lg:justify-between">
         {menuItems.map((menuItem, index) => (
           <li key={index} className="relative py-2 lg:py-0">
             <div className="flex justify-between">
@@ -81,10 +81,18 @@ const MainMenu: React.FC = (): React.ReactElement => {
                   exit={isLargeScreen ? { opacity: 0, y: -10 } : 'collapsed'}
                   variants={isLargeScreen ? {} : collapseAnimation?.variants}
                   transition={isLargeScreen ? {} : collapseAnimation.transition}
-                  className="flex flex-col  p-2  mt-2 lg:absolute z-20 w-full lg:min-w-[8rem]"
+                  className="flex flex-col  p-2  mt-[7px] lg:absolute z-20 w-full lg:min-w-[8rem]"
                   style={{ backgroundColor: 'rgb(184, 228, 216, 0.9)' }}
                   onMouseLeave={() => setIsOpen(null)}
                 >
+                  <div
+                    className="absolute -top-4 right-1 w-0 h-0 -rotate-90 hidden lg:block"
+                    style={{
+                      borderWidth: '8px',
+                      borderStyle: 'solid',
+                      borderColor: 'transparent transparent transparent rgb(184, 228, 216, 0.9)',
+                    }}
+                  />
                   {menuItem.subItems?.map((option, optionIndex) => (
                     <motion.li key={optionIndex} className="font-medium text-gray lg:hover:font-bold py-1">
                       <Link to={option.path} scroll={scrollToElement}>

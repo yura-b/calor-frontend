@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   dayger: [],
@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const shoesSlice = createSlice({
-  name: "shoes",
+  name: 'shoes',
   initialState,
   reducers: {
     setDaygerDetails(state, action) {

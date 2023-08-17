@@ -6,7 +6,6 @@ export const fetchProductsDetails = createAsyncThunk('products/fetchProductsDeta
   return response.data;
 });
 
-
 const productsDataSlice = createSlice({
   name: 'products',
   initialState: {
@@ -15,32 +14,32 @@ const productsDataSlice = createSlice({
     error: null,
   },
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchProductsDetails.pending, state => {
+      .addCase(fetchProductsDetails.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(fetchProductsDetails.fulfilled, (state, action) => {
         state.status = 'succeeded';
 
-        state.products = action.payload.map(item => ({
+        state.products = action.payload.map((item) => ({
           detail: {
             id: item.detail._id,
             name: item.detail.title,
-            materials: item.detail.materials.map(material => ({
+            materials: item.detail.materials.map((material) => ({
               id: material._id,
               name: material.title,
-              colors: material.colors.map(color => ({
+              colors: material.colors.map((color) => ({
                 id: color._id,
                 name: color.color,
-                available: color.available
-              }))
-            }))
+                available: color.available,
+              })),
+            })),
           },
-          products: item.products.map(product => ({
+          products: item.products.map((product) => ({
             id: product._id,
-            name: product.title
-          }))
+            name: product.title,
+          })),
         }));
       })
 

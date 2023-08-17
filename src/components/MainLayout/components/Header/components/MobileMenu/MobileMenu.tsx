@@ -11,6 +11,8 @@ import Button from '@/components/ui/Button';
 import { layoutFadeAnimation, fadeAnimation } from '@styles/Animations';
 import HelpFooter from '@components/MainLayout/components/HelpFooter';
 import { mobileMenuCalorItems } from '../../../../helpers/data';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { Role } from '@/constants/enums/role.enum.ts';
 
 const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
   const navigate = useNavigate();
@@ -31,7 +33,8 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
-
+  const { roles, access_token } = useAppSelector((state) => state.user);
+  const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
   return (
     <AnimatePresence>
       {isOpen && (
@@ -44,15 +47,18 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
             <header className="fixed right-0 z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-custom-turquoise">
               <div className="flex">
                 <img src={userIcon} />
-                <div className={'flex justify-center '}>
-                  <span className={'ml-2 underline font-bold'} onClick={signInHandler}>
-                    Sign In
-                  </span>
-                  /
-                  <span className={'underline font-bold'} onClick={signUpHandler}>
-                    Sign Up
-                  </span>
-                </div>
+                {isRegisteredUser && <p className="ml-2 font-bold">Name</p>}
+                {!isRegisteredUser && (
+                  <div className={'flex justify-center '}>
+                    <span className={'ml-2 underline font-bold'} onClick={signInHandler}>
+                      Sign In
+                    </span>
+                    /
+                    <span className={'underline font-bold'} onClick={signUpHandler}>
+                      Sign Up
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="flex">
                 <Busket count={2} onClick={openCart} />

@@ -1,12 +1,11 @@
 import axios from 'axios';
-import {backendUrl} from '@/api/languages.ts';
+import { backendUrl } from '@/api/languages.ts';
 import { authorization } from '@/api/config.ts';
 
+export const getDetails = (productFilter: string) => {
+  return axios.get(`${backendUrl}/product/details/?productFilter=${productFilter}`);
+};
 
-export const getDetails = (productFilter: string) =>{
-    return axios.get(`${backendUrl}/product/details/?productFilter=${productFilter}`)
-}
-
-export const changeColorAvailability = (_id:string, access_token: string) =>{
-    return axios.patch(`${backendUrl}/product/colors/${_id}`, {}, authorization(access_token))
-}
+export const changeColorAvailability = (_id: string, access_token: string) => {
+  return axios.patch(`${backendUrl}/product/colors/${_id}`, {}, authorization(access_token));
+};

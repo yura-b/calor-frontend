@@ -3,6 +3,7 @@ import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import calorByYou from '@assets/images/calorByYou.png';
 import calorByYouBig from '@assets/images/calorByYouBig.png';
+import calorCircle from '@assets/images/calorCircle.png';
 import homeCustomerCreation1 from '@assets/images/homeCustomerCreation1.svg';
 import homeCustomerCreation2 from '@assets/images/homeCustomerCreation2.svg';
 import { calorByYouItems } from '../../helpers/data';
@@ -61,8 +62,11 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
         style={{ backgroundImage: isLargeScreen ? `url(${calorByYouBig})` : `url(${calorByYou})` }}
       >
         <div className="absolute top-0 left-0 w-full h-full bg-custom-red opacity-80"></div>
-        <div className="absolute -bottom-2 right-6 lg:bottom-[26px] lg:left-[5vw] xl:left-[36vw]">
-          <h1 className="text-white text-4xl font-black sm:text-5xl   uppercase">calor by you!</h1>
+        <div className="absolute -bottom-2 right-6 lg:bottom-[26px] lg:left-[5vw] xl:left-[24vw] 2xl:left-[28vw]">
+          <h1 className="text-white text-4xl font-black sm:text-5xl uppercase">calor by you!</h1>
+        </div>
+        <div className="hidden lg:block">
+          <img src={calorCircle} className="lg:m-auto lg:pt-4" />
         </div>
         <div className="absolute max-w-[400px] w-[400px] min-w-[200px] hidden top-4 lg:right-[5vw] xl:right-[15vw] lg:block">
           <HomeShowRoom
@@ -108,8 +112,8 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
       </div>
       <div className={styles.container}>
         <p className={styles.subtitle}>Customer Creations</p>
-        <div className="flex justify-between items-center">
-          <h1 className={'text-2xl font-black text-gray lg:text-4xl'}>@calor_custom_sneakers</h1>
+        <div className="flex justify-between items-center gap-4">
+          <h1 className={'text-2xl font-black text-gray lg:text-3xl xl:text-4xl'}>@calor_custom_sneakers</h1>
           <Button color="gray" className="w-full my-4 hidden lg:block" onClick={handleClick}>
             Follow Us
           </Button>

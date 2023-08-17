@@ -23,16 +23,17 @@ interface IProps {
 }
 
 const Details: FC<IProps> = ({ details }) => {
-	const { selectedDetail } = useSelector(state => state.activeShoeParts);
-	const dispatch = useDispatch();
-	
-	const handleDetailClick = (detailId) => {
-		dispatch(setSelectedDetail(detailId));
-	};
+  const { selectedDetail } = useSelector((state) => state.activeShoeParts);
+  const dispatch = useDispatch();
 
-	return (
-		<>
-			<div className='flex
+  const handleDetailClick = (detailId) => {
+    dispatch(setSelectedDetail(detailId));
+  };
+
+  return (
+    <>
+      <div
+        className="flex
 				justify-between
 				items-start
 				m-auto
@@ -41,22 +42,30 @@ const Details: FC<IProps> = ({ details }) => {
 				flex-row
 				p-5
 				lg:py-6
-				lg:gap-6'>
-				{
-					details.map((detail) => {
-						return (
-							<div className='min-h-[70px] justify-center items-center flex flex-col cursor-pointer' onClick={() => handleDetailClick(detail.part)}>
-								<div className={`flex items-center justify-center w-20 h-20 rounded-full ${selectedDetail === detail.part ? 'bg-grayLight' : 'bg-grayExtraLight'}`}>
-									<img src={detail.image} alt={detail.name} />
-								</div>
-								<span className={`inline-block text-center ${selectedDetail === detail.part ? 'font-bold' : ''}`}>{detail.name}</span>
-							</div>
-						)
-					})
-				}
-			</div>
-		</>
-	);
-}
+				lg:gap-6"
+      >
+        {details.map((detail) => {
+          return (
+            <div
+              className="min-h-[70px] justify-center items-center flex flex-col cursor-pointer"
+              onClick={() => handleDetailClick(detail.part)}
+            >
+              <div
+                className={`flex items-center justify-center w-20 h-20 rounded-full ${
+                  selectedDetail === detail.part ? 'bg-grayLight' : 'bg-grayExtraLight'
+                }`}
+              >
+                <img src={detail.image} alt={detail.name} />
+              </div>
+              <span className={`inline-block text-center ${selectedDetail === detail.part ? 'font-bold' : ''}`}>
+                {detail.name}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+};
 
 export default Details;

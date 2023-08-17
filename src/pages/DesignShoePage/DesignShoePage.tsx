@@ -5,7 +5,7 @@ import { titles } from '@/translations/titles';
 import MainLayout from '@/components/MainLayout';
 import Constructor from '@/components/Constructor';
 interface IProps {
-	model: string;
+  model: string;
 }
 
 const DesignShoePage: React.FC<IProps> = ({ model }): React.ReactElement => {
@@ -13,7 +13,7 @@ const DesignShoePage: React.FC<IProps> = ({ model }): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.designShoePage} />
       <MainLayout>
-        <Constructor model={model}/>
+        <Constructor model={model} />
       </MainLayout>
     </div>
   );

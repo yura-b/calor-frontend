@@ -7,6 +7,8 @@ import grayTelIcon from '@assets/images/grayTelIcon.svg';
 import mintTelcon from '@assets/images/mintTelcon.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import { collapseAnimation } from '@styles/Animations';
+import { useQuery } from 'react-query';
+import { getPageSection } from '@/api/manager/pages';
 
 interface Props {
   title: string;
@@ -15,11 +17,18 @@ interface Props {
 }
 
 const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.ReactElement => {
+  const { data, isLoading, error } = useQuery('getOrders', () => getPageSection());
+  const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
+  const phone = filteredPagesFooter?.find((section) => section?.section === 'Phone Number').value;
+  const email = filteredPagesFooter?.find((section) => section?.section === 'Email').value;
+  const address = filteredPagesFooter?.find((section) => section?.section === 'Address').value;
+  const commaIndex = address?.indexOf(',');
+  const address1 = address?.substring(0, commaIndex);
+  const address2 = address?.substring(commaIndex + 1).trim();
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const toggleAccordion = () => {
     setIsAccordionOpen((prev) => !prev);
   };
-
   return (
     <>
       {color !== 'white' ? (
@@ -89,10 +98,22 @@ const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.React
           color === 'white' ? 'px-0' : 'font-bold'
         } lg:hidden`}
       >
-        <div className={'flex basis-1/2 '}>
-          <img src={grayTelIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
-          <span>1 234 567 8910</span>
-        </div>
+        {isLoading ? (
+          <p>Loading data...</p>
+        ) : error ? (
+          <p>Error loading data</p>
+        ) : (
+          <a href={`tel:+${phone}`} className="cursor-pointer">
+            <div className={'flex basis-1/2 '}>
+              <img
+                src={grayTelIcon}
+                className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`}
+                alt=""
+              />
+              <span> {phone}</span>
+            </div>
+          </a>
+        )}
         <div className={'flex'}>
           <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
           <span>2023 Calor</span>
@@ -104,21 +125,31 @@ const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.React
       </div>
       {color === 'white' && (
         <>
-          <div className="text-xs">
-            <div className="flex  justify-between lg:flex-col">
-              <div className={'mb-1  hidden lg:block lg:text-custom-turquoise lg:flex'}>
-                <img src={mintTelcon} className={'mr-2  '} alt="" />
-                <span className="lg:text-sm lg:font-extrabold">1 234 567 8910</span>
+          {isLoading ? (
+            <p>Loading data...</p>
+          ) : error ? (
+            <p>Error loading data</p>
+          ) : (
+            <div className="text-xs">
+              <div className="flex  justify-between lg:flex-col">
+                <a href={`tel:+${phone}`} className="cursor-pointer hidden lg:block">
+                  <div className={'mb-1   lg:text-custom-turquoise lg:flex'}>
+                    <img src={mintTelcon} className={'mr-2  '} alt="" />
+                    <span className="lg:text-sm lg:font-extrabold">{phone}</span>
+                  </div>
+                </a>
+                <div className="font-semibold leading-6">
+                  <p>{address1},</p>
+                  <p>{address2}</p>
+                </div>
+                <p className="font-semibold leading-6">
+                  <a href={`mailto:${email}`}>{email}</a>
+                </p>
               </div>
-              <p className="font-semibold leading-6">
-                6734 Westheimer Lakes North,
-                <br /> Suite 107, Katy, TX, 77494
-              </p>
-              <p className="font-semibold leading-6">magic@calorshoe.com</p>
             </div>
-          </div>
-          <div className="flex justify-between text-xs mt-3 lg:flex-col lg:justify-start lg:mt-0">
-            <h1 className={'text-custom-turquoise hidden lg:block lg:text-sm lg:font-extrabold'}>Info</h1>
+          )}
+          <div className="flex justify-between text-xs mt-3 lg:flex-col lg:justify-start lg:mt-0 lg:absolute lg:right-2 lg:top-16 xl:relative xl:top-0">
+            <h1 className={'text-custom-turquoise hidden xl:block xl:text-sm xl:font-extrabold'}>Info</h1>
             {privacyLinks.map((link, i) => (
               <Link
                 key={i}

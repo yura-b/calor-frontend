@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderStepper from '../OrderStepper/OrderStepper';
+import OrderStepper from './../OrderStepper/OrderStepper';
 import styles from '@/styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 

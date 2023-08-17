@@ -9,7 +9,9 @@ const UserProfileReviews: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
   return (
     <div>
       {reviews.map((review) => {
-        return <ReviewComponent key={review._id} {...review} onlyForReview={true} possibilityToApproveAndBlock={false} />;
+        return (
+          <ReviewComponent key={review._id} {...review} onlyForReview={true} possibilityToApproveAndBlock={false} />
+        );
       })}
     </div>
   );

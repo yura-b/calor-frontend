@@ -7,12 +7,11 @@ import {
   TableContainer,
   TableHead,
   TablePagination,
-  TableRow
+  TableRow,
 } from '@mui/material';
 import { DetailsAndProductName } from '@pages/admin/warehouse/WarehousePage.tsx';
 import { Color, Detail, Materials } from '@/constants/interfaces/details.ts';
 import DetailRow from '@pages/admin/warehouse/components/DetailRow.tsx';
-
 
 interface Column {
   id: keyof Detail | keyof Materials | keyof Color;
@@ -30,29 +29,29 @@ const columns: Column[] = [
     label: 'material name',
     minWidth: 100,
     align: 'center',
-    format: (value: number) => value.toLocaleString('en-US')
+    format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'color',
     label: 'color name',
     minWidth: 170,
     align: 'center',
-    format: (value: number) => value.toLocaleString('en-US')
+    format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'colors',
     label: 'color availability',
     minWidth: 170,
     align: 'center',
-    format: (value: number) => value.toFixed(2)
-  }
+    format: (value: number) => value.toFixed(2),
+  },
 ];
 interface IProps {
   details:  DetailsAndProductName[],
 }
 
 const DetailsGrid: FC<IProps> = ({ details }) => {
-
+      
   const valueOfDetails = Object.values(details);
   console.log(details);
   const [page, setPage] = useState(0);
@@ -70,21 +69,25 @@ const DetailsGrid: FC<IProps> = ({ details }) => {
   };
 
   return (
-    <Paper sx={{ width: '99%',paddingLeft: '30px', height: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '99%', paddingLeft: '30px', height: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: '100%' }}>
-      <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell
                 sx={{ background: '#DDE1E6', fontWeight: 'bold', borderBottom: '1px solid black' }}
                 key={Math.random()}
-                align="center" colSpan={2}>
+                align="center"
+                colSpan={2}
+              >
                 Country
               </TableCell>
               <TableCell
                 sx={{ background: '#DDE1E6', fontWeight: 'bold', borderBottom: '1px solid black' }}
                 key={Math.random()}
-                align="center" colSpan={3}>
+                align="center"
+                colSpan={3}
+              >
                 Details
               </TableCell>
             </TableRow>
@@ -106,7 +109,6 @@ const DetailsGrid: FC<IProps> = ({ details }) => {
               <DetailRow key={Math.random()} details={{detail, products}}/>
              )
             }
-
           </TableBody>
         </Table>
       </TableContainer>

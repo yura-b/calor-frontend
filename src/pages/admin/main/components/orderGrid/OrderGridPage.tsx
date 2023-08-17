@@ -19,7 +19,7 @@ const OrderGridPage = () => {
   const [filter, setFilter] = useState('');
 
   const { access_token } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const { data, isLoading, error } = useQuery('getOrders', () => getOrders(access_token));
 
@@ -28,15 +28,14 @@ const OrderGridPage = () => {
   const chosen = ' text-white bg-black';
 
   if (isLoading) {
-    dispatch(loading())
+    dispatch(loading());
     return <></>;
   }
   if (error) {
     cleanAndRedirect(error);
     return <></>;
   }
-  dispatch(loadingFinished())
-
+  dispatch(loadingFinished());
 
   return (
     <div className={'pl-5'}>

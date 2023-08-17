@@ -40,9 +40,8 @@ const PageManagerPage = () => {
         <Navigation setState={setPage} state={page} array={pagesArr} />
       </div>
       {page === pages.HomePage && <ManagerHomerPage />}
-      {page === pages.About && <ManagerAboutPage/>}
-      {page === pages.Footer && <ManagerFooterPage/>}
-
+      {page === pages.About && <ManagerAboutPage />}
+      {page === pages.Footer && <ManagerFooterPage />}
     </AdminLayout>
   );
 };

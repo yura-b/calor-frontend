@@ -30,7 +30,7 @@ const OurManufacture = () => {
               expandedText={expandedText}
               className={`${styles.body1} pt-6  lg:pt-0 lg:mt-0 text-justify`}
             />
-            <div className="px-6 lg:px-0 flex flex-col items-center">
+            <div className="px-6 lg:px-0 flex gap-4 flex-col items-center">
               <Button color="red" to={paths.design_shoe}>
                 Design Your Shoe
               </Button>

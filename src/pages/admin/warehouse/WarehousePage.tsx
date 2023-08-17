@@ -13,40 +13,41 @@ import { ProductsEnum } from '@/constants/enums/products.enum.ts';
 import { SelectChangeEvent } from '@mui/material/Select';
 
 export interface DetailsAndProductName {
-    detail: Detail,
-    products: products
+  detail: Detail;
+  products: products;
 }
 
 const WarehousePage = () => {
-    const [details, setDetails] = useState<DetailsAndProductName[]>([])
-    const [productFilter, setProductFilter] = useState<ProductsEnum>(ProductsEnum.empty)
-    const dispatch = useAppDispatch()
-    const cleanUserData = useCleanUserDataAndNavigateToLogin()
-  
-    const onChangeFilter = (e: SelectChangeEvent)=>{
-      setProductFilter(e.target.value as ProductsEnum)
-    }
+  const [details, setDetails] = useState<DetailsAndProductName[]>([]);
+  const [productFilter, setProductFilter] = useState<ProductsEnum>(ProductsEnum.empty);
+  const dispatch = useAppDispatch();
+  const cleanUserData = useCleanUserDataAndNavigateToLogin();
 
-    useEffect(() => {
-        dispatch(loading())
-        getDetails(productFilter).then(res => {
-            setDetails(res.data)
+  const onChangeFilter = (e: SelectChangeEvent) => {
+    setProductFilter(e.target.value as ProductsEnum);
+  };
 
-            dispatch(loadingFinished())
-        })
-          .catch(e =>{
-              cleanUserData(e)
-          })
-    }, [productFilter]);
+  useEffect(() => {
+    dispatch(loading());
+    getDetails(productFilter)
+      .then((res) => {
+        setDetails(res.data);
 
-    if (!details) return
-    return (
-        <AdminLayout>
-            <GridHeader title={'Details'}/>
-            <WarehouseFilters setProductFilter={onChangeFilter} productValue={productFilter}/>
-            <DetailsGrid  details={details} setDetails={setDetails} />
-        </AdminLayout>
-    );
+        dispatch(loadingFinished());
+      })
+      .catch((e) => {
+        cleanUserData(e);
+      });
+  }, [productFilter]);
+
+  if (!details) return;
+  return (
+    <AdminLayout>
+      <GridHeader title={'Details'} />
+      <WarehouseFilters setProductFilter={onChangeFilter} productValue={productFilter} />
+      <DetailsGrid details={details} setDetails={setDetails} />
+    </AdminLayout>
+  );
 };
 
 export default WarehousePage;

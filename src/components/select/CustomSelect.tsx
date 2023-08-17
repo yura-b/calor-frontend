@@ -13,9 +13,9 @@ interface IProps {
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1EC1AA' // Your desired primary color
-    }
-  }
+      main: '#1EC1AA', // Your desired primary color
+    },
+  },
 });
 
 export const CustomSelect: React.FC<IProps> = ({ handleFunc, array, value }) => {
@@ -25,7 +25,7 @@ export const CustomSelect: React.FC<IProps> = ({ handleFunc, array, value }) => 
         sx={{
           minWidth: '150px',
           textAlign: 'center',
-          color: 'black'
+          color: 'black',
         }}
         value={value}
         onChange={(e: SelectChangeEvent) => {
@@ -33,9 +33,11 @@ export const CustomSelect: React.FC<IProps> = ({ handleFunc, array, value }) => 
         }}
       >
         {array.map((el) => {
-          return <MenuItem key={el} value={el}>
-            {el}
-          </MenuItem>;
+          return (
+            <MenuItem key={el} value={el}>
+              {el}
+            </MenuItem>
+          );
         })}
       </Select>
     </ThemeProvider>

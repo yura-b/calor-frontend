@@ -11,11 +11,8 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { showMessage } from '@/store/reducers/StatusReducer.ts';
 
 const CreateEvent = () => {
-
-  const {access_token} = useAppSelector(state => state.user)
-  const dispatch = useAppDispatch()
-
-
+  const { access_token } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   const [photo, setPhoto] = useState<File>();
   const [title, setTitle] = useState<string>();
@@ -35,11 +32,12 @@ const CreateEvent = () => {
         {
           photo: res.data.url,
           title,
-          announcement
-        }, access_token)
-          .then(() =>{
-            dispatch(showMessage('New event was successfully added'))
-          })
+          announcement,
+        },
+        access_token
+      ).then(() => {
+        dispatch(showMessage('New event was successfully added'));
+      });
     });
   };
 
