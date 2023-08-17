@@ -12,12 +12,54 @@ export const menuItems = [
   {
     title: 'Accessories',
     path: paths.accessories,
-    subItems: ['All', 'Belts', 'Bracelets', 'Laces', 'Souvenirs', 'T-Shirts'],
+    subItems: [
+      {
+        subTitle: 'All',
+        path: paths.accessories,
+      },
+      {
+        subTitle: 'Belts',
+        path: paths.accessories + '#belts_accessories',
+      },
+      {
+        subTitle: 'Bracelets',
+        path: paths.accessories + '#bracelets_accessories',
+      },
+      {
+        subTitle: 'Laces',
+        path: paths.accessories + '#laces_accessories',
+      },
+      {
+        subTitle: 'Souvenirs',
+        path: paths.accessories + '#souvenirs_accessories',
+      },
+      {
+        subTitle: 'T-Shirts',
+        path: paths.accessories + '#t-shirts_accessories',
+      },
+    ],
   },
   {
     title: 'Shoe Care Product',
     path: paths.shoe_care_product,
-    subItems: ['All', 'Brushes', 'Cleaners', 'Protectors'],
+    subItems: [
+      {
+        subTitle: 'All',
+        path: paths.shoe_care_product + '#all_shoe',
+      },
+      {
+        subTitle: 'Brushes',
+        path: paths.shoe_care_product + '#brushes_shoe',
+      },
+      {
+        subTitle: 'Cleaners',
+        path: paths.shoe_care_product + '#cleaners_shoe',
+      },
+      {
+        subTitle: 'Protectors',
+        path: paths.shoe_care_product + '#protectors_shoe',
+      },
+    ],
   },
   {
     title: 'Customer Experience',
@@ -25,7 +67,28 @@ export const menuItems = [
   },
 ];
 
-export const helpLinks = ['Video Guides', 'Size Guide', 'Check Order Status', 'FAQ', 'Shipping', 'Returns & Exchange'];
+export const helpLinks = [
+  {
+    title: 'Video Guides',
+    path: '#',
+  },
+  {
+    title: 'Size Guide',
+    path: '#',
+  },
+  {
+    title: 'FAQ',
+    path: '#',
+  },
+  {
+    title: 'Shipping',
+    path: '#',
+  },
+  {
+    title: 'Returns & Exchange',
+    path: '#',
+  },
+];
 export const aboutLinks = [
   {
     subTitle: 'Who We Are',
@@ -63,8 +126,4 @@ export const privacyLinks = [
   },
 ];
 
-export const mobileMenuCalorItems = [
-  'Faster Checkout',
-  'Access  Your Complete Order History',
-  'Discount Rewards Program',
-];
+export const mobileMenuCalorItems = ['Faster Checkout', 'Access Your Order History', 'Discount Rewards Program'];

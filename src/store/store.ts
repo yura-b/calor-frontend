@@ -5,6 +5,10 @@ import userReducer from '@/store/reducers/UserReducer.ts';
 import registrationReducer from '@/store/reducers/RegistrationReducer.ts';
 import dialogReducer from '@/store/reducers/DialogReducer.ts';
 import pageManagerReducer from '@/store/admin/PageManagerReducer.ts';
+import ProductsReducer from '@/store/reducers/ProductsReducer.ts';
+import ShoesReducer from './reducers/ShoesReducer';
+import ActiveShoeParts from '@/store/reducers/ActiveShoePartsReducer';
+import DaygerModel from '@/store/reducers/DaygerModelReducer';
 
 export const store = configureStore({
   reducer: {
@@ -13,13 +17,16 @@ export const store = configureStore({
     status: statusReducer,
     registration: registrationReducer,
     dialog: dialogReducer,
-    pageManager: pageManagerReducer
+    pageManager: pageManagerReducer,
+    products: ProductsReducer,
+    shoes: ShoesReducer,
+    activeShoeParts: ActiveShoeParts,
+    daygerModel: DaygerModel,
   },
-  middleware: getDefaultMiddleware =>
-      getDefaultMiddleware({
-        serializableCheck: false,
-      }),
-
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

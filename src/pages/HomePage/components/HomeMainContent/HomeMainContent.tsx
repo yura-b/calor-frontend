@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '@styles/Styles.module.scss';
 import homeMainImg from '@assets/images/homeMainImg.png';
 import homeSemiCircle from '@assets/images/homeSemiCircle.svg';
+import homeCircle from '@assets/images/homeCircle.svg';
 import Button from '@components/ui/Button';
 import { motion } from 'framer-motion';
 import { fadeAnimation, scaleAnimation } from '@styles/Animations';
@@ -9,34 +10,42 @@ import { processArr } from '../../helpers/data';
 import { paths } from '@/routes/paths';
 import HomeArrowRightIcon from '@components/ui/HomeArrowRightIcon';
 import VideoGuideLink from '@components/VideoGuideLink';
+import { useMediaQuery } from '@react-hook/media-query';
 
 const HomeMainContent: React.FC = (): React.ReactElement => {
-  const headingClass = 'text-[2.4rem] font-black leading-tight sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:7xl';
+  const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
+
+  const headingClass = `text-[2.4rem] leading-tight font-black sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl  ${
+    isSmallerThan1600px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
+  }`;
   return (
-    <div className="w-full bg-custom-red relative">
-      <div className="flex w-full justify-around flex-wrap items-center relative z-10 2xl:max-w-[86vw] mx-auto">
-        <div className="flex basis-full lg:basis-2/3 grow px-6 items-center gap-4 grow relative mb-12 lg:mb-0">
-          <motion.p className={`${headingClass}  text-white text-right basis-1/2 lg:basis-3/5`} {...fadeAnimation}>
-            DESIGN <br /> YOUR OWN <br /> SHOE
-          </motion.p>
+    <div className="w-full bg-custom-red">
+      <div
+        className={`flex w-full justify-around flex-wrap items-center relative z-10  mx-auto ${styles.container} py-0`}
+      >
+        <div className="flex basis-full lg:basis-2/3 grow items-center gap-0 grow mb-12 lg:mb-0">
+          <div className="basis-1/2  flex justify-start grow">
+            <motion.p className={`${headingClass}  text-white text-right `} {...fadeAnimation}>
+              DESIGN <br /> YOUR OWN <br /> SHOE
+            </motion.p>
+          </div>
           <motion.img
             src={homeMainImg}
-            className="bg-white bg-opacity-0 basis-1/2 lg:basis-2/5 w-48 h-auto  sm:max-w-1/2"
+            className="bg-white bg-opacity-0 basis-1/2  w-48 h-auto  sm:max-w-1/2"
             {...scaleAnimation}
             whileHover={{ rotate: 4 }}
           />
         </div>
+        <div className="flex basis-1/3 justify-end  grow 2xl:basis-auto">
+          <motion.p className={`${headingClass} text-custom-turquoise  text-left  hidden lg:block`} {...fadeAnimation}>
+            IT’S <br /> SIMPLY AS <br />
+            <div className="flex justify-between items-center max-w-[16rem]">
+              1 <HomeArrowRightIcon color="#B8E4D8" /> 2 <HomeArrowRightIcon color="#B8E4D8" /> 3
+            </div>
+          </motion.p>
+        </div>
         <motion.p
-          className={`${headingClass} text-custom-turquoise basis-1/3 text-left grow hidden lg:block`}
-          {...fadeAnimation}
-        >
-          IT’S <br /> SIMPLY AS <br />
-          <div className="flex justify-between items-center max-w-[16rem]">
-            1 <HomeArrowRightIcon color="#B8E4D8" /> 2 <HomeArrowRightIcon color="#B8E4D8" /> 3
-          </div>
-        </motion.p>
-        <motion.p
-          className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow px-6 lg:hidden absolute -bottom-3 sm:-bottom-1.5`}
+          className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow  lg:hidden absolute -bottom-3 sm:-bottom-1.5`}
           {...fadeAnimation}
         >
           IT’S SIMPLY AS
@@ -85,15 +94,15 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
             BY YOU!
           </h1>
           <div className="lg:basis-3/5">
-            <p className={`${styles.body1} font-black mb-2`}>
-              Create your own sneakers and bag with a unique design that reflects your personality and style.
+            <p className={`${styles.subtitle} mb-2`}>
+              Create your own sneakers and bags with a unique designs that reflects your personality and style.
             </p>
             <p className={styles.body1}>
               Learn how to do it in our {''}
               <span className="hidden lg:inline-block">
                 <VideoGuideLink color="custom-red" />
               </span>
-              <span className=" lg:hidden">Video Guide</span>
+              <span className="lg:hidden">Video Guide</span>
             </p>
           </div>
           <div className="lg:basis-auto mt-4 lg:mt-0">
@@ -106,9 +115,13 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
           </div>
           <VideoGuideLink className="lg:hidden" />
         </motion.div>
+        <img src={homeSemiCircle} className="absolute z-1 top-40 left-0 h-56 sm:hidden" />
         <img
-          src={homeSemiCircle}
-          className="absolute z-1 top-0 left-0 h-72 sm:h-80 sm:top-24 md:h-96 md:top-28 lg:h-72 lg:top-12  xl:top-24 xl:h-80 2xl:top-16 2xl:h-1/2"
+          src={homeCircle}
+          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-40 lg:left-[10%] xl:top-48 xl:h-80 ${
+            isSmallerThan1600px ? '2xl:h-96 2xl:top-32' : '2xl:h-1/2 2xl:top-32'
+          }`}
+          style={{ maxWidth: '100%' }}
         />
       </div>
     </div>

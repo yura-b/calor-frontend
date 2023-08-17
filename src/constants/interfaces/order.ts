@@ -3,6 +3,7 @@ import {detail} from '@/api/dto/orders.dto.ts';
 import { details } from '@/constants/interfaces/basket.ts';
 
 
+
 export interface IOrder {
   _id: string;
 
@@ -32,8 +33,6 @@ export interface IOrder {
 
   payment: PaymentEnum
 }
-
-
 
 export enum OrderStatus {
   PROCESSING= 'Processing',

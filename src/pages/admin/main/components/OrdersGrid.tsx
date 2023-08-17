@@ -8,7 +8,7 @@ import {
   TableContainer,
   TableHead,
   TablePagination,
-  TableRow
+  TableRow,
 } from '@mui/material';
 
 import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
@@ -32,19 +32,19 @@ const columns: readonly Column[] = [
     label: 'Date',
     minWidth: 150,
     align: 'center',
-    format: (value: number) => value.toLocaleString('en-US')
+    format: (value: number) => value.toLocaleString('en-US'),
   },
   { id: 'Status', label: 'Status', minWidth: 50, align: 'center' },
   {
     id: 'Production Day',
     label: 'Production Day',
     minWidth: 50,
-    align: 'center'
+    align: 'center',
   },
   { id: 'Amount', label: 'Amount', minWidth: 150 },
   { id: 'Payment', label: 'Payment', minWidth: 80, align: 'center' },
   { id: 'Invoice', label: 'Invoice', minWidth: 120, align: 'center' },
-  { id: 'Checklist', label: 'Checklist', minWidth: 150, align: 'center' }
+  { id: 'Checklist', label: 'Checklist', minWidth: 150, align: 'center' },
 ];
 
 interface IProps {
@@ -72,9 +72,7 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
     setPage(0);
   };
 
-  if (orderList.length === 0) return <div>
-    Order list is empty
-  </div>;
+  if (orderList.length === 0) return <div>Order list is empty</div>;
 
   return (
     <Paper sx={{ width: '99%', height: '100%', overflow: 'hidden' }}>
@@ -98,9 +96,11 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
             {orderList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={order._id}>
-                  <TableCell onClick={() => {
-                    navigateToOrderPage(order._id);
-                  }}>
+                  <TableCell
+                    onClick={() => {
+                      navigateToOrderPage(order._id);
+                    }}
+                  >
                     <p className={'underline font-bold cursor-pointer'}>{order._id}</p>
                   </TableCell>
                   <TableCell>

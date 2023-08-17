@@ -1,52 +1,49 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AxiosPromise} from 'axios';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AxiosPromise } from 'axios';
 
 interface IDialog {
-    isOpen: boolean
-    title: string | null,
-    description?: string
-    closeHandler?: () => void,
-    submitHandler: () => Promise<AxiosPromise> | void,
+  isOpen: boolean;
+  title: string | null;
+  description?: string;
+  closeHandler?: () => void;
+  submitHandler: () => Promise<AxiosPromise> | void;
 }
 
 const initialState: IDialog = {
-    isOpen: false,
-    title: null,
+  isOpen: false,
+  title: null,
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    submitHandler() {
-    },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  submitHandler() {},
 
-
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    closeHandler() {
-    }
-}
-type IPayload = Omit<IDialog, 'isOpen'>
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  closeHandler() {},
+};
+type IPayload = Omit<IDialog, 'isOpen'>;
 
 export const DialogSlice = createSlice({
-    name: 'dialog',
-    initialState,
-    reducers: {
-        openDialog(state, action: PayloadAction<IPayload>) {
-            const {submitHandler, closeHandler, description, title} = action.payload
-            state.isOpen = true
-            state.description = description
-            state.title = title
-            state.closeHandler = closeHandler
-            state.submitHandler = submitHandler
-        },
-        closeDialog(state) {
-            state.isOpen = false
+  name: 'dialog',
+  initialState,
+  reducers: {
+    openDialog(state, action: PayloadAction<IPayload>) {
+      const { submitHandler, closeHandler, description, title } = action.payload;
+      state.isOpen = true;
+      state.description = description;
+      state.title = title;
+      state.closeHandler = closeHandler;
+      state.submitHandler = submitHandler;
+    },
+    closeDialog(state) {
+      state.isOpen = false;
 
-            state.title = initialState.title
-            state.closeHandler = initialState.closeHandler
-            state.submitHandler = initialState.submitHandler
-            state.description = undefined
-        }
-    }
+      state.title = initialState.title;
+      state.closeHandler = initialState.closeHandler;
+      state.submitHandler = initialState.submitHandler;
+      state.description = undefined;
+    },
+  },
 });
 
-export const {openDialog, closeDialog} = DialogSlice.actions;
+export const { openDialog, closeDialog } = DialogSlice.actions;
 
 export default DialogSlice.reducer;

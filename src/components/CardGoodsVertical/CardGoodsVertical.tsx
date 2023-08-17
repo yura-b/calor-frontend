@@ -2,6 +2,7 @@ import React from 'react';
 import StarRating from '@/components/ui/StarRating';
 import Button from '@/components/ui/Button';
 import styles from '@styles/Styles.module.scss';
+
 interface Props {
   title: string;
   img: string;
@@ -25,7 +26,11 @@ const CardGoodsVertical: React.FC<Props> = ({
   return (
     <div className={`min-w-[150px] w-[360px] max-w-[400px] px-2  ${className}`}>
       <div className="w-full">
-        <img src={img} alt="" className="w-full max-h-[224px]" />
+        <img
+          src={img}
+          alt=""
+          className="object-contain object-cover w-[143px] h-full mx-auto lg:max-w-[300px] lg:w-[300px]"
+        />
       </div>
       <div>
         <h2 className={`${styles.header2} text-gray`}>{title}</h2>
