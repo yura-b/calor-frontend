@@ -21,7 +21,6 @@ export const changeOrderStatus = (credentials: string, data: changeOrderStatusIn
   );
 };
 
-export const createOrder = (order: CreateOrderDto ) => {
-  return axios.post(`${backendUrl}/order`, order)
-}
-
+export const createOrder = (order: CreateOrderDto) => {
+  return axios.post(`${backendUrl}/order`, order);
+};

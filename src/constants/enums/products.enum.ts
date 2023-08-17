@@ -1,8 +1,8 @@
 export enum ProductsEnum {
-  empty='',
+  empty = '',
   Yolo = 'yolo',
-  Sunrise='sunrise',
-  Dayger='dayger'
+  Sunrise = 'sunrise',
+  Dayger = 'dayger',
 }
 
-export const ProductsArr = [ProductsEnum.Yolo, ProductsEnum.Dayger, ProductsEnum.Sunrise]
+export const ProductsArr = [ProductsEnum.Yolo, ProductsEnum.Dayger, ProductsEnum.Sunrise];

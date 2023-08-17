@@ -24,37 +24,33 @@ const UserProfile = () => {
   const { access_token } = useAppSelector((state) => state.user);
   const { id } = useParams();
 
-
   const [userInfo, setUserInfo] = useState<IUser>(userDataInitialState);
   const [userReviews, setUserReviews] = useState<Review[]>([]);
   const [userOrders, setUserOrders] = useState<IOrder[]>([]);
 
-
-  const dispatch = useAppDispatch()
-
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!access_token || !id) return;
 
-    dispatch(loading())
+    dispatch(loading());
 
     getUser(access_token, id).then((res) => {
-
       console.log(res.data);
       setUserInfo(res.data.user);
       setUserReviews(res.data.reviews);
-      setUserOrders(res.data.orders)
+      setUserOrders(res.data.orders);
 
-      dispatch(loadingFinished())
+      dispatch(loadingFinished());
     });
   }, [id]);
 
   if (!id) return <>wrong url</>;
   return (
     <div className={'pl-16'}>
-      <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} withDelivery={false}/>
+      <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} withDelivery={false} />
       <hr />
-      <UserAdditionalInfo reviews={userReviews} orders={userOrders}/>
+      <UserAdditionalInfo reviews={userReviews} orders={userOrders} />
     </div>
   );
 };

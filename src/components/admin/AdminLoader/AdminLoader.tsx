@@ -8,10 +8,10 @@ import { EStatus } from '@/store/reducers/StatusReducer.ts';
 import { memo, useMemo } from 'react';
 
 const AdminLoader = () => {
-  const {status} = useAppSelector(state => state.status)
-  
+  const { status } = useAppSelector((state) => state.status);
+
   const memoizedStatus = useMemo(() => status, [status]);
-  
+
   if (memoizedStatus !== EStatus.LOADING) return <></>;
 
   return (

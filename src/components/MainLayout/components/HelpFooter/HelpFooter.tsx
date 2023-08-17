@@ -138,9 +138,9 @@ const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.React
                     <span className="lg:text-sm lg:font-extrabold">{phone}</span>
                   </div>
                 </a>
-                <div>
-                  <p className="font-semibold leading-6">{address1},</p>
-                  <p className="font-semibold leading-6">{address2}</p>
+                <div className="font-semibold leading-6">
+                  <p>{address1},</p>
+                  <p>{address2}</p>
                 </div>
                 <p className="font-semibold leading-6">
                   <a href={`mailto:${email}`}>{email}</a>

@@ -24,22 +24,20 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
             <TableHead>
               <TableRow sx={{ background: '#DDE1E6', fontWeight: 'bold' }}>
                 <TableCell sx={{ fontWeight: 'bold' }}>Item`s Name</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }} align="right">Price</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }} align="right">Payment</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="right">
+                  Price
+                </TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="right">
+                  Payment
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableCell>
-                {product.title}
-              </TableCell>
+              <TableCell>{product.title}</TableCell>
 
-              <TableCell align={'right'}>
-                {totalPrice}$
-              </TableCell>
+              <TableCell align={'right'}>{totalPrice}$</TableCell>
 
-              <TableCell align={'right'}>
-                {payment}
-              </TableCell>
+              <TableCell align={'right'}>{payment}</TableCell>
             </TableBody>
           </Table>
         </TableContainer>

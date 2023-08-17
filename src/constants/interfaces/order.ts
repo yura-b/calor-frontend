@@ -1,8 +1,6 @@
 import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
-import {detail} from '@/api/dto/orders.dto.ts';
+import { detail } from '@/api/dto/orders.dto.ts';
 import { details } from '@/constants/interfaces/basket.ts';
-
-
 
 export interface IOrder {
   _id: string;
@@ -17,7 +15,7 @@ export interface IOrder {
 
   address: shippingDetails;
 
-  totalPrice: number
+  totalPrice: number;
 
   email: string;
 
@@ -27,21 +25,25 @@ export interface IOrder {
 
   paypal_id: string;
 
-  date: Date
+  date: Date;
 
-  productionDays: number
+  productionDays: number;
 
-  payment: PaymentEnum
+  payment: PaymentEnum;
 }
 
 export enum OrderStatus {
-  PROCESSING= 'Processing',
+  PROCESSING = 'Processing',
   PRODUCTION = 'Production',
-  QualityControl  = 'Quality  Control',
-  Shipped = 'Shipped'
+  QualityControl = 'Quality  Control',
+  Shipped = 'Shipped',
 }
 
-export const OrderStatusArray: OrderStatus[] = [OrderStatus.PRODUCTION, OrderStatus.QualityControl, OrderStatus.Shipped];
+export const OrderStatusArray: OrderStatus[] = [
+  OrderStatus.PRODUCTION,
+  OrderStatus.QualityControl,
+  OrderStatus.Shipped,
+];
 
 export interface IPurchase {
   product: product;
@@ -59,35 +61,30 @@ export interface lanches {
 export interface product {
   title: string;
 
-
   details: details[];
 
-
   stripeID: string;
-
 
   price: number;
 
   description: string;
 }
 
-export  interface shippingDetails {
+export interface shippingDetails {
   country: string;
-  
+
   streetAddress: string;
-  
+
   ASB: string;
 
-  
   city: string;
-  
+
   state: string;
-  
+
   ZIP: string;
 }
 
 export interface IMeasurement {
-
   size: number;
 
   rightFootLength: number;
@@ -101,5 +98,4 @@ export interface IMeasurement {
   insoleLength: number;
 
   insoleWidth: number;
-
 }

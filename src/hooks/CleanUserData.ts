@@ -11,7 +11,6 @@ export const useCleanUserDataAndNavigateToLogin = () => {
       const responseError = error as { response: { status: HttpStatusCode } };
 
       if (responseError.response.status === HttpStatusCode.Unauthorized) {
-
         dispatch(cleanUserData());
         navigate('/login');
       }

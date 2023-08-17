@@ -12,11 +12,10 @@ export interface Basket {
   details: details[];
 }
 
-
 export interface details {
   detail: string;
 
   material: string;
 
-  color: string
+  color: string;
 }
