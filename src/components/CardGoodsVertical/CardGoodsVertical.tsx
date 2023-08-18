@@ -50,7 +50,7 @@ const CardGoodsVertical: React.FC<Props> = ({
           )}
           {buttonClass == 'transparentMint' && (
             <Button color="transparentMint" onClick={handleClick}>
-              Customize
+              Design
             </Button>
           )}
         </div>

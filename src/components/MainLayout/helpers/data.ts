@@ -1,4 +1,6 @@
 import { paths } from '@routes/paths';
+import privacy from '../../../../public/Privacy Policy_CALOR.pdf';
+import conditions from './../../../../public/Terms and Conditions_CALOR.pdf';
 
 export const menuItems = [
   {
@@ -114,7 +116,8 @@ export const aboutLinks = [
 export const privacyLinks = [
   {
     name: 'Privacy Policy',
-    path: paths.privacy_policy,
+    path: privacy,
+    isPdfLink: true,
   },
   {
     name: 'Cookies',
@@ -122,7 +125,8 @@ export const privacyLinks = [
   },
   {
     name: 'Terms & Condition',
-    path: paths.terms_condition,
+    path: conditions,
+    isPdfLink: true,
   },
 ];
 
