@@ -16,9 +16,7 @@ import DesignBagPage from '@pages/DesignBagPage';
 import AccessoriesPage from '@pages/AccessoriesPage';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
-import PrivacyPolicyPage from '@pages/PrivacyPolicyPage';
 import CookiesPage from '@pages/CookiesPage';
-import TermsConditionPage from '@pages/TermsConditionPage';
 import AboutPage from '@pages/AboutPage';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
@@ -65,9 +63,7 @@ const App = () => {
               <Route path={paths.accessories} element={<AccessoriesPage/>}/>
               <Route path={paths.shoe_care_product} element={<ShoeCareProductPage/>}/>
               <Route path={paths.customer_experience} element={<CustomerExperiencePage/>}/>
-              <Route path={paths.privacy_policy} element={<PrivacyPolicyPage/>}/>
               <Route path={paths.cookies} element={<CookiesPage/>}/>
-              <Route path={paths.terms_condition} element={<TermsConditionPage/>}/>
               <Route path={paths.about} element={<AboutPage/>}/>
             </Routes>
           </Suspense>
