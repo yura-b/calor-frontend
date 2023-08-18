@@ -47,11 +47,11 @@ const columns: Column[] = [
   },
 ];
 interface IProps {
-  details: DetailsAndProductName[];
-  setDetails: React.Dispatch<React.SetStateAction<DetailsAndProductName[]>>;
+  details:  DetailsAndProductName[],
 }
 
-const DetailsGrid: FC<IProps> = ({ details, setDetails }) => {
+const DetailsGrid: FC<IProps> = ({ details }) => {
+      
   const valueOfDetails = Object.values(details);
   console.log(details);
   const [page, setPage] = useState(0);
@@ -104,10 +104,11 @@ const DetailsGrid: FC<IProps> = ({ details, setDetails }) => {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {valueOfDetails.map(({ detail, products }) => (
-              <DetailRow key={Math.random()} details={{ detail, products }} setDetails={setDetails} />
-            ))}
+          <TableBody >
+            {valueOfDetails.map(({ detail, products }) =>
+              <DetailRow key={Math.random()} details={{detail, products}}/>
+             )
+            }
           </TableBody>
         </Table>
       </TableContainer>

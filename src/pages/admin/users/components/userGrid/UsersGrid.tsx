@@ -14,6 +14,7 @@ import { TablePagination } from '@mui/material';
 import { useCleanUserDataAndNavigateToLogin } from '@/hooks/CleanUserData.ts';
 import { useNavigate } from 'react-router';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
+import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
 
 interface Column {
   id: 'name' | 'Registration' | 'Phone  Number' | 'Registration Date' | 'email';
@@ -88,18 +89,17 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
   };
 
   return (
-    <Paper sx={{ width: '99%', height: '100%', marginX: '30px', marginTop: '30px' }}>
+    <Paper sx={{ width: '99%',paddingLeft: '30px', height: '100%', overflow: 'hidden', marginTop:'30px'}}>
       <TableContainer sx={{ maxHeight: '100%' }}>
-        <Table stickyHeader aria-label="sticky table" sx={{ border: '1px #DDE1E6 solid' }}>
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
                 <TableCell
-                  sx={{ background: '#DDE1E6', fontWeight: 'bold' }}
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
+                    sx={{ background: '#DDE1E6', fontWeight: 'bold' }}
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}>
                   {column.label}
                 </TableCell>
               ))}
@@ -124,7 +124,7 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
                     <p>{user.email_verified + ''}</p>
                   </TableCell>
                   <TableCell align={'center'}>
-                    <p>{user.registrationDate + ''}</p>
+                    <p>{DateFormatter(user.registrationDate)}</p>
                   </TableCell>
                   <TableCell>
                     <p>{user.email}</p>
