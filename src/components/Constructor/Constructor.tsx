@@ -1,28 +1,28 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetDesign } from '@/store/reducers/DaygerModelReducer';
-import View1 from './components/Shoes/Views/View1'
-import View2 from './components/Shoes/Views/View2'
+import { resetDesign } from '@/store/reducers/constructor/ShoesConstructorReducer';
+import { setSelectedModel } from '@/store/reducers/constructor/SelectedShoePartsReducer'
+import styles from '@styles/Styles.module.scss';
+import MainView from './components/Shoes/Views/MainView'
+import AditionalViews from './components/Shoes/Views/AditionalViews'
 import Details from './components/Shoes/Details';
 import Materials from "./components/Shoes/Materials";
 import Colors from "./components/Shoes/Colors";
 import Button from '@/components/ui/Button';
 import { shoes } from './shoesData';
-import styles from '@styles/Styles.module.scss';
 import combineImages from '@/helpers/functions/combineImages';
-import { setSelectedMaterial, setSelectedColor } from '@/store/reducers/ActiveShoePartsReducer';
 
 interface IProps {
 	model: string;
 }
 
 const Constructor: FC<IProps> = ({model}) => {
-	const [isVisible, setIsVisible] = useState(false);
 	const dispatch = useDispatch();
-	const { view2 } = useSelector(state => state.daygerModel);
-	const { selectedMaterial } = useSelector(state => state.activeShoeParts);
-	const modelImages = Object.values(view2);
 
+	const [isVisible, setIsVisible] = useState(false);
+	const { view3 } = useSelector(state => state.shoesConstructor[model]);
+	const { selectedModel } = useSelector(state => state.selectedShoeParts);
+	const modelImages = Object.values(view3);
 	const modelDetails = shoes.find((item) => item.product === model);
 
 	const toggleVisibility = () => {
@@ -31,23 +31,27 @@ const Constructor: FC<IProps> = ({model}) => {
 
 	const handleSaveDesign = () => {
 		combineImages(modelImages).then((base64) => {
-			console.log(base64)
+
 		});
 	}
 
 	const handleRedesign = () => {
-		dispatch(resetDesign({}));
+		dispatch(resetDesign());
 	}
 	
 	const handleAddToCart = () => {
 		combineImages(modelImages).then((base64) => {
-			console.log(base64)
+
 		});
 	}
 
+	useEffect(() => {
+		dispatch(setSelectedModel(model));
+	}, [selectedModel]);
+
 	return (
 		<div className={`${styles.container}`}>
-			<View1 />
+			<MainView model={model}/>
 			<Details details={modelDetails?.details} />
 			<Materials details={modelDetails?.details} />
 			<Colors details={modelDetails?.details} />
@@ -57,7 +61,7 @@ const Constructor: FC<IProps> = ({model}) => {
 			{
 				isVisible && 
 				<>
-					<View2 />
+					<AditionalViews model={model}/>
 					<div className='flex flex-col justify-center items-center'>
 						<Button color="mint" className="w-full my-4 lg:block" onClick={handleSaveDesign}>Save design</Button>
 						<Button color="transparentGray" className="w-full my-4 lg:block" onClick={handleRedesign}>Redesign</Button>

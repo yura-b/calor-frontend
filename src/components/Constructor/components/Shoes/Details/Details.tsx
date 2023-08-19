@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelectedDetail } from '@/store/reducers/ActiveShoePartsReducer';
+import { setSelectedDetail } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 
 interface Color {
   name: string;
@@ -23,25 +23,16 @@ interface IProps {
 }
 
 const Details: FC<IProps> = ({ details }) => {
-	const { selectedDetail } = useSelector(state => state.activeShoeParts);
+	const { selectedDetail } = useSelector(state => state.selectedShoeParts);
 	const dispatch = useDispatch();
 	
-	const handleDetailClick = (detailId) => {
-		dispatch(setSelectedDetail(detailId));
+	const handleDetailClick = (detailPart) => {
+		dispatch(setSelectedDetail(detailPart));
 	};
 
 	return (
 		<>
-			<div className='flex
-				justify-between
-				items-start
-				m-auto
-				overflow-x-auto
-				gap-6
-				flex-row
-				p-5
-				lg:py-6
-				lg:gap-6'>
+			<div className='flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6'>
 				{
 					details.map((detail) => {
 						return (
