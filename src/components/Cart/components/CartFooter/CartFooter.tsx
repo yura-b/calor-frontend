@@ -1,73 +1,96 @@
 import React, { useState } from 'react';
 import Button from '@components/ui/Button';
 import styles from '@styles/Styles.module.scss';
+import { useFormik } from 'formik';
+import CustomInput from '@/components/input/CustomInput';
+import { validationSchemaForPromoCode } from '@/helpers/validation/formValidation.ts';
+import { motion } from 'framer-motion';
+import { fadeAnimation } from '@styles/Animations';
 
 interface Props {
   title: string;
-  data: object[];
+  data?: object[];
 }
 
-const CartFooter: React.FC<Props> = ({ title, data }): React.ReactElement => {
-  const [promoCode, setPromoCode] = useState('');
-  const [isValid, setIsValid] = useState(false);
-  const [showHint, setShowHint] = useState(false);
+const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
+  const [showPromoCodeForm, setShowPromoCodeForm] = useState(false);
+  const [promoCodeApplied, setPromoCodeApplied] = useState(false);
 
-  const handleInputChange = (event) => {
-    const code = event.target.value.slice(0, 9);
-    setPromoCode(code);
-    setIsValid(code.length === 9);
+  const addPromoCode = () => {
+    setShowPromoCodeForm(true);
+    setPromoCodeApplied(false);
   };
 
-  const handleInputBlur = () => {
-    setShowHint(promoCode.length < 9);
-    setIsValid(promoCode.length === 9);
-  };
-
-  const getInputClass = () => {
-    if (promoCode.length === 0) {
-      return '';
-    } else if (isValid) {
-      return 'bg-custom-turquoise';
-    } else if (showHint) {
-      return 'bg-custom-red';
-    } else {
-      return '';
-    }
-  };
   const handleClick = () => {
     console.log('Checkout Button clicked!');
   };
+
+  const handlePromoCodeApplied = () => {
+    setPromoCodeApplied(true);
+    setShowPromoCodeForm(false);
+  };
+  const handleFormClose = () => {
+    setShowPromoCodeForm(false);
+  };
+  const formik = useFormik({
+    initialValues: {
+      promoCode: '',
+    },
+    validationSchema: validationSchemaForPromoCode,
+    onSubmit: (values) => {
+      console.log(values);
+      handlePromoCodeApplied();
+    },
+  });
+
   return (
-    <div className="max-w-lg px-6 py-2.5 text-gray">
-      <h1 className={`${styles.header1} my-4`}>{title}</h1>
-      <div className={styles.body1}>
+    <div className="px-6 py-2.5 text-gray lg:pt-0">
+      <h1 className={`${styles.header1} my-4 lg:mt-0 lg:text-[1.5rem]`}>{title}</h1>
+      <div className={`${styles.body2} lg:text-[]`}>
         <div className="flex justify-between mt-4 items-center">
-          <p>{data.length} Item</p>
-          <p>$ XXX</p>
+          <p>Discount</p>
+          <p>-$ XXX</p>
         </div>
-        <div className="flex justify-between mt-4 items-center">
-          <p>Order Delivery</p>
-          <p>$ XXX</p>
-        </div>
-        <div className="flex justify-between mt-4 items-center">
-          <p>Taxes</p>
-          <p>$ XXX</p>
-        </div>
-        <div className={`${styles.header2} flex justify-between mt-4 items-center`}>
+        <div className={`${styles.body2} flex justify-between mt-4 items-center font-bold text-mint`}>
           <p>Subtotal</p>
           <p>$ XXX</p>
         </div>
-        <input
-          type="text"
-          className={`mt-6 px-2 py-1 border border-lightGray w-full text-center font-bold ${getInputClass()}`}
-          placeholder="Add promo code"
-          value={promoCode}
-          onChange={handleInputChange}
-          onBlur={handleInputBlur}
-          maxLength={9}
-        />
-        {showHint && <p className="text-red-500 mt-1 text-sm">Please enter at least 9 characters.</p>}
-        <Button color="mint" className="mt-8" onClick={handleClick}>
+        {!promoCodeApplied && !showPromoCodeForm && (
+          <Button color="transparentMint" onClick={addPromoCode} className="mt-6 max-w-[100%]">
+            Add Promo Code +
+          </Button>
+        )}
+        {showPromoCodeForm && (
+          <motion.div {...fadeAnimation} className="w-full">
+            <form onSubmit={formik.handleSubmit} className={'mb-4 basis-[100%] lg:basis-[40%] '}>
+              <p className={`${styles.body2} font-bold mb-0 lg:-mb-4 mt-4`}>Your Promo Code</p>
+              <div className="relative">
+                <CustomInput
+                  id={'promoCode'}
+                  name={'promoCode'}
+                  placeholder={'Promo Code'}
+                  value={formik.values.promoCode}
+                  onChange={formik.handleChange}
+                  errorMessage={formik.errors.promoCode}
+                  error={formik.touched.promoCode && Boolean(formik.errors.promoCode)}
+                />
+                <button className="absolute top-8 right-4  rotate-45 text-[34px]" onClick={handleFormClose}>
+                  +
+                </button>
+              </div>
+              <Button color="transparentMint" type="submit" className="max-w-[100%]">
+                Apply Promo Code
+              </Button>
+            </form>
+          </motion.div>
+        )}
+        {promoCodeApplied && (
+          <div className="bg-custom-turquoise p-2 mt-4">
+            Promo Code Applied <div className="inline border border-gray rounded-full  px-1.5 py-0">&#x2713;</div>
+          </div>
+        )}{' '}
+        {/* Check if promoCodeApplied */}
+        <Button color="mint" className="mt-4 max-w-[100%]" onClick={handleClick}>
           Checkout
         </Button>
       </div>

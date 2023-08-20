@@ -83,19 +83,23 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
                 </h1>
               </main>
               <footer className="bg-custom-turquoise h-full px-6 text-gray">
-                <div className="pt-4">
-                  <ul className={`list-none ${styles.subtitle}`}>
-                    {mobileMenuCalorItems.map((item, index) => (
-                      <li key={index} className="mb-2 flex items-center">
-                        <img src={checkIcon} className="mr-2" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Button color="gray" className="w-full my-4" onClick={signUpHandler}>
-                  Create an Account
-                </Button>
+                {!isRegisteredUser && (
+                  <>
+                    <div className="pt-4">
+                      <ul className={`list-none ${styles.subtitle}`}>
+                        {mobileMenuCalorItems.map((item, index) => (
+                          <li key={index} className="mb-2 flex items-center">
+                            <img src={checkIcon} className="mr-2" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Button color="gray" className="w-full my-4" onClick={signUpHandler}>
+                      Create an Account
+                    </Button>
+                  </>
+                )}
                 <HelpFooter title={'Need Help?'} color="gray" />
               </footer>
             </motion.div>

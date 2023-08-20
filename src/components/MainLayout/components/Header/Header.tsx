@@ -130,7 +130,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
         <>
           {isCartOpen && (
             <motion.div
-              className="absolute bg-white shadow-lg w-full lg:w-1/2 h-full  lg:h-4/5 max-h-full lg:rounded-md overflow-hidden "
+              className="absolute bg-white shadow-lg w-full lg:w-[760px] h-full  lg:max-h-[90%]  lg:rounded-md overflow-hidden "
               {...layoutFadeAnimation}
             >
               <Cart title="Cart" onClose={closeCart} />

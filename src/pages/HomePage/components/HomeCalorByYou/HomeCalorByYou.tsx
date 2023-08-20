@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const HomeCalorByYou: React.FC = (): React.ReactElement => {
   const isLargeScreen = useMediaQuery('(min-width: 1024px)');
   const handleClick = () => {
-    console.log('Button clicked!');
+    window.open('https://www.instagram.com/calor_custom_sneakers/', '_blank');
   };
 
   const homeCustomerCreations = [
