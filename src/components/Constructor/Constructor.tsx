@@ -8,6 +8,7 @@ import AditionalViews from './components/Shoes/Views/AditionalViews'
 import Details from './components/Shoes/Details';
 import Materials from "./components/Shoes/Materials";
 import Colors from "./components/Shoes/Colors";
+import NavigationMenu from './components/NavigationMenu';
 import Button from '@/components/ui/Button';
 import { shoes } from './shoesData';
 import combineImages from '@/helpers/functions/combineImages';
@@ -50,7 +51,8 @@ const Constructor: FC<IProps> = ({model}) => {
 	}, [selectedModel]);
 
 	return (
-		<div className={`${styles.container}`}>
+		<div >
+			<NavigationMenu />
 			<MainView model={model}/>
 			<Details details={modelDetails?.details} />
 			<Materials details={modelDetails?.details} />
