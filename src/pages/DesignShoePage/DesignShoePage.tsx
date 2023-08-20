@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
-
 import MainLayout from '@/components/MainLayout';
 import Constructor from '@/components/Constructor';
 interface IProps {

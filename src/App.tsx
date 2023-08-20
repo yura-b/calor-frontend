@@ -1,10 +1,10 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import LoginPage from '@pages/autorization/login/LoginPage.tsx';
 import SignupPage from '@pages/autorization/signup/SignupPage.tsx';
 import Email from '@pages/autorization/forgotPassword/Email.tsx';
 import TokenGuard from '@routes/TokenGuard.tsx';
 import ResetPassword from '@pages/autorization/forgotPassword/ResetPassword.tsx';
-import React, { lazy, Suspense } from 'react';
 import OrderPage from '@pages/admin/main/OrderPage.tsx';
 import UserPage from '@pages/admin/users/UserPage.tsx';
 import UserProfilePage from '@pages/admin/users/UserProfilePage.tsx';
@@ -55,6 +55,7 @@ const App = () => {
                 <Route path={'warehouse'} element={<WarehousePage/>}/>
               </Route>
               <Route path={'design_your_shoe'}>
+                <Route index element={<Navigate to="dayger" replace />} />
                 <Route path={'dayger'} element={<DesignShoePage model="dayger" />} />
                 <Route path={'sunrise'} element={<DesignShoePage model="sunrise" />} />
                 <Route path={'yolo'} element={<DesignShoePage model="yolo" />} />
