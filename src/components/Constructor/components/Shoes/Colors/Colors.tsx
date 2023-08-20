@@ -67,7 +67,7 @@ const Colors: FC<IProps> = ({ details }) => {
 	  }, [selectedColor]);
 
   return (
-    <div ref={containerRef} className={`flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 xl:w-wrapper`}>
+    <div ref={containerRef} className={`flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 xl:w-wrapper no-scrollbar`}>
       {colors.map((color) =>
         color.name !== null ? (
           <Tooltip key={color.name} title={color.name} placement="top" arrow>
