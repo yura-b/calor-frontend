@@ -56,12 +56,12 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
           <p>$ XXX</p>
         </div>
         {!promoCodeApplied && !showPromoCodeForm && (
-          <Button color="transparentMint" onClick={addPromoCode} className="mt-6 max-w-[100%]">
+          <Button color="transparentMint" onClick={addPromoCode} className="mt-6 max-w-[100%] block m-auto">
             Add Promo Code +
           </Button>
         )}
         {showPromoCodeForm && (
-          <motion.div {...fadeAnimation} className="w-full">
+          <motion.div {...fadeAnimation}>
             <form onSubmit={formik.handleSubmit} className={'mb-4 basis-[100%] lg:basis-[40%] '}>
               <p className={`${styles.body2} font-bold mb-0 lg:-mb-4 mt-4`}>Your Promo Code</p>
               <div className="relative">
@@ -78,7 +78,7 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
                   +
                 </button>
               </div>
-              <Button color="transparentMint" type="submit" className="max-w-[100%]">
+              <Button color="transparentMint" type="submit" className="max-w-[100%] block m-auto">
                 Apply Promo Code
               </Button>
             </form>
@@ -89,8 +89,7 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
             Promo Code Applied <div className="inline border border-gray rounded-full  px-1.5 py-0">&#x2713;</div>
           </div>
         )}{' '}
-        {/* Check if promoCodeApplied */}
-        <Button color="mint" className="mt-4 max-w-[100%]" onClick={handleClick}>
+        <Button color="mint" className="mt-4 max-w-[100%] block m-auto" onClick={handleClick}>
           Checkout
         </Button>
       </div>
