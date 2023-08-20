@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '@/styles/Styles.module.scss';
 import { useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
-import { setSelectedModel } from '@/store/reducers/constructor/SelectedShoePartsReducer';
+import { setSelectedModel, setSelectedDetail, setSelectedMaterial } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import { IconButton } from "@mui/material";
 import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
 import rightArrowIcon from '@assets/images/rightArrowIcon.svg';
@@ -23,21 +23,26 @@ const NavigationMenu = ({ }) => {
     const goBack = () => {
         if (currentIndex === 0) {
             dispatch(setSelectedModel(models.length - 1));
+            dispatch(setSelectedDetail('part01'));
             navigate(`../${models[models.length - 1]}`);
         }
         if (currentIndex > 0) {
             dispatch(setSelectedModel(models[currentIndex - 1]));
+            dispatch(setSelectedDetail('part01'));
             navigate(`../${models[currentIndex - 1]}`);
         }
+
     };
 
     const goNext = () => {
         if (currentIndex === models.length - 1) {
             dispatch(setSelectedModel(models[0]));
+            dispatch(setSelectedDetail('part01'));
             navigate(`../${models[0]}`);
         }
         if (currentIndex < models.length - 1) {
             dispatch(setSelectedModel(models[currentIndex + 1]));
+            dispatch(setSelectedDetail('part01'));
             navigate(`../${models[currentIndex + 1]}`);
         }
     };
