@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
+import styles from '@/styles/Styles.module.scss';
 import { useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import { setSelectedModel } from '@/store/reducers/constructor/SelectedShoePartsReducer';
@@ -20,6 +21,10 @@ const NavigationMenu = ({ }) => {
     const currentIndex = models.indexOf(lastSegment);
 
     const goBack = () => {
+        if (currentIndex === 0) {
+            dispatch(setSelectedModel(models.length - 1));
+            navigate(`../${models[models.length - 1]}`);
+        }
         if (currentIndex > 0) {
             dispatch(setSelectedModel(models[currentIndex - 1]));
             navigate(`../${models[currentIndex - 1]}`);
@@ -27,6 +32,10 @@ const NavigationMenu = ({ }) => {
     };
 
     const goNext = () => {
+        if (currentIndex === models.length - 1) {
+            dispatch(setSelectedModel(models[0]));
+            navigate(`../${models[0]}`);
+        }
         if (currentIndex < models.length - 1) {
             dispatch(setSelectedModel(models[currentIndex + 1]));
             navigate(`../${models[currentIndex + 1]}`);
@@ -34,8 +43,8 @@ const NavigationMenu = ({ }) => {
     };
 
     return (
-        <>
-            <div className="w-full bg-custom-turquoise flex flex-row justify-between items-center h-10">
+        <div className="w-full bg-custom-turquoise h-10 flex items-center justify-center">
+            <div className={`flex flex-row justify-between items-center w-wrapper`}>
                 <IconButton onClick={goBack}>
                     <ReactSVG
                         src={leftArrowIcon}
@@ -58,7 +67,7 @@ const NavigationMenu = ({ }) => {
                     />
                 </IconButton>
             </div>
-        </>
+        </div>
     )
 }
 

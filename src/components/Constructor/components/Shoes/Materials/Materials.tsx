@@ -26,7 +26,9 @@ interface IProps {
 const Materials: FC<IProps> = ({ details }) => {
 	const dispatch = useDispatch();
   const { selectedMaterial, selectedDetail, selectedModel } = useSelector(state => state.selectedShoeParts);
+  console.log(selectedDetail, 'selectedDetail', details, 'details')
   const selectedDetailObj = details.find(item => item.part === selectedDetail);
+  console.log(selectedDetailObj)
   const materials = selectedDetailObj?.materials || [];
   
 	const handleMaterialClick = (materialName) => {
@@ -42,7 +44,7 @@ const Materials: FC<IProps> = ({ details }) => {
 
   useEffect(() => {
     dispatch(setSelectedMaterial(materials[0].name));
-  }, [selectedDetail, selectedModel])
+  }, [selectedDetail])
 
   return (
     <div className='flex justify-center items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6'>

@@ -29,7 +29,7 @@ const MainView: FC<IProps> = ({ model }) => {
     }, []);
 
     return (
-        <div ref={parentRef} className='mt-10 mb-2 mr-4 ml-4 relative flex justify-center items-center'>
+        <div ref={parentRef} className='mt-10 mb-2 relative flex justify-center items-center w-wrapper mx-auto'>
             {Object.values(view1).map((src, index, array) => (
                 <img
                     key={index}

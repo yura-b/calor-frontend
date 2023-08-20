@@ -51,26 +51,29 @@ const Constructor: FC<IProps> = ({model}) => {
 	}, [selectedModel]);
 
 	return (
-		<div >
+		<div>
 			<NavigationMenu />
 			<MainView model={model}/>
 			<Details details={modelDetails?.details} />
 			<Materials details={modelDetails?.details} />
 			<Colors details={modelDetails?.details} />
-			<div className='flex justify-center align-center'>
-				<Button color="gray" className="w-full my-4 lg:block" onClick={toggleVisibility}>Preview</Button>
+
+			<div className="flex w-wrapper flex-col mx-auto">
+				<div className='flex justify-center align-center'>
+					<Button color="gray" className="w-full my-4 lg:block" onClick={toggleVisibility}>Preview</Button>
+				</div>
+				{
+					isVisible && 
+					<>
+						<AditionalViews model={model}/>
+						<div className='flex flex-col justify-center items-center'>
+							<Button color="mint" className="w-full my-4 lg:block" onClick={handleSaveDesign}>Save design</Button>
+							<Button color="transparentGray" className="w-full my-4 lg:block" onClick={handleRedesign}>Redesign</Button>
+							<Button color="gray" className="w-full my-4 lg:block" onClick={handleAddToCart}>Add to cart</Button>
+						</div>
+					</>
+				}
 			</div>
-			{
-				isVisible && 
-				<>
-					<AditionalViews model={model}/>
-					<div className='flex flex-col justify-center items-center'>
-						<Button color="mint" className="w-full my-4 lg:block" onClick={handleSaveDesign}>Save design</Button>
-						<Button color="transparentGray" className="w-full my-4 lg:block" onClick={handleRedesign}>Redesign</Button>
-						<Button color="gray" className="w-full my-4 lg:block" onClick={handleAddToCart}>Add to cart</Button>
-					</div>
-				</>
-			}
 		</div>
 	)
 }

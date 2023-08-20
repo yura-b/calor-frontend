@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import styles from '@/styles/Styles.module.scss'
 import { setSelectedDetail } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 
 interface Color {
@@ -32,7 +33,7 @@ const Details: FC<IProps> = ({ details }) => {
 
 	return (
 		<>
-			<div className='flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6'>
+			<div className={`flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 xl:w-wrapper`}>
 				{
 					details.map((detail) => {
 						return (
