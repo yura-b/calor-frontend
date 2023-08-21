@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from '@pages/autorization/login/LoginPage.tsx';
 import SignupPage from '@pages/autorization/signup/SignupPage.tsx';
 import Email from '@pages/autorization/forgotPassword/Email.tsx';
@@ -17,6 +17,7 @@ import AccessoriesPage from '@pages/AccessoriesPage';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
 import CookiesPage from '@pages/CookiesPage';
+import AccountPage from '@pages/AccountPage';
 import AboutPage from '@pages/AboutPage';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
@@ -26,6 +27,7 @@ import CatalogPage from '@pages/admin/catalog/CatalogPage.tsx';
 import CreateItem from '@pages/admin/catalog/CreateItem.tsx';
 const HomePage = lazy(() => import('@pages/HomePage'));
 const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
+import PrivateRoute from '@/components/PrivateRoute';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -64,6 +66,7 @@ const App = () => {
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
           <Route path={paths.cookies} element={<CookiesPage />} />
           <Route path={paths.about} element={<AboutPage />} />
+          <Route path={paths.account} element={<PrivateRoute element={<AccountPage />} />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

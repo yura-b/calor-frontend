@@ -7,4 +7,5 @@ export const titles = {
   customerExperiencePage: 'Customer Experience Page',
   cookiesPage: 'Cookies Page',
   about: 'About Page',
+  accountPage: 'Account',
 };

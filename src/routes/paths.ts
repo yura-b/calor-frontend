@@ -7,4 +7,11 @@ export const paths = {
   customer_experience: '/customer_experience',
   about: '/about',
   cookies: '/cookies',
+  account: '/account/*',
+  accountDetails: 'details',
+  myOrders: 'my_orders',
+  designList: 'design_list',
+  shippingAddress: 'shipping_address',
+  changePassword: 'change_password',
+  reviews: 'reviews',
 };
