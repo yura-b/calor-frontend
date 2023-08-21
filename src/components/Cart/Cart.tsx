@@ -10,7 +10,6 @@ import bag from '@assets/cartImages/bag.svg';
 import paste from '@assets/cartImages/paste.svg';
 import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
 import shoeModel2 from '@assets/cartImages/shoeModel2.svg';
-import Footer from '@components/MainLayout/components/Footer';
 
 interface Props {
   title: string;
@@ -24,6 +23,18 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
       size: 38,
       price: 10,
       countGoods: 1,
+    },
+    {
+      title: 'Sun',
+      size: 36,
+      price: 100,
+      countGoods: 4,
+    },
+    {
+      title: 'Sun',
+      size: 36,
+      price: 100,
+      countGoods: 4,
     },
     {
       title: 'Sun',
@@ -66,56 +77,70 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
     <div className="font-poppins  h-full flex flex-col">
       <CartHeader title={title} onClose={onClose} cartCount={cartPurchasedItems.length} />
       <div className="flex-1 overflow-y-auto md:my-0">
-        <div className="flex flex-col items-center justify-center m-6 gap-4 text-gray">
+        <div className="flex flex-col  justify-center mx-6 my-4 gap-4 text-gray lg:max-h-[500px] lg:my-12">
           {!cartPurchasedItems.length ? <EmptyCart title="The are no items in your card" /> : null}
           {cartPurchasedItems.length ? (
             <>
-              <div
-                className={`${styles.body1} bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2`}
+              <p
+                className={`${styles.body1} bg-custom-turquoise w-full h-auto  flex items-center justify-center text-center p-2 lg:my-4 lg:text-[18px]`}
               >
                 Items in your cart are not reserved - checkout now to make them yours
+              </p>
+              <div className="lg:flex lg:gap-2">
+                <div className="h-auto lg:basis-[52%] lg:overflow-auto lg:max-h-[480px] lg:px-4">
+                  {cartPurchasedItems.map((item, index) => (
+                    <PurchasedGoods
+                      title={item.title}
+                      size={item.size}
+                      price={item.price}
+                      countGoogs={item.countGoods}
+                      key={index}
+                    />
+                  ))}
+                </div>
+                {
+                  <div className="hidden lg:block lg:basis-[48%]">
+                    <CartFooter title={'ORDER SUMMARY'} data={cartPurchasedItems} />
+                  </div>
+                }
               </div>
-              {cartPurchasedItems.map((item, index) => (
-                <PurchasedGoods
-                  title={item.title}
-                  size={item.size}
-                  price={item.price}
-                  countGoogs={item.countGoods}
-                  key={index}
-                />
-              ))}
             </>
           ) : null}
         </div>
         {cartPurchasedItems.length ? (
-          <>
-            {ExtrasItems.length ? <h1 className={`${styles.header1} px-6`}>EXTRAS</h1> : null}
+          <div className="bg-lightGray">
+            {ExtrasItems.length ? <h1 className={`${styles.header1} p-6 lg:text-[1.5rem]`}>EXTRAS</h1> : null}
             <div className="bg-lightGray flex flex-wrap gap-4 pb-6">
-              {ExtrasItems.map((item) => (
-                <Extras name={item.name} img={item.img} price={item.price} text={item.text} key={item.id} />
-              ))}
+              <div className="flex flex-col lg:flex-row gap-4 basis-[100%]">
+                {ExtrasItems.map((item) => (
+                  <Extras name={item.name} img={item.img} price={item.price} text={item.text} key={item.id} />
+                ))}
+              </div>
               <hr className="border-t border-gray my-4 w-full mx-6" />
-              <div>
-                <h1 className={`${styles.header1} px-6`}>YOU MAY ALSO LIKE</h1>
-                <div className="mx-6 flex gap-2.5">
-                  {LikesGoodsItems.map((item, index) => (
-                    <CardGoodsVertical
-                      title={item.title}
-                      img={item.img}
-                      priceFrom={item.priceFrom}
-                      rating={item.rating}
-                      key={index}
-                      buttonClass="transparentGray"
-                      className="w-[9rem] lg:w-[14rem]"
-                    />
-                  ))}
-                </div>
+              {LikesGoodsItems.length ? (
+                <h1 className={`${styles.header1} px-6 lg:text-[1.5rem]`}>YOU MAY ALSO LIKE</h1>
+              ) : null}
+              <div className=" flex   w-full gap-4 md:justify-center">
+                {LikesGoodsItems.map((item, index) => (
+                  <CardGoodsVertical
+                    title={item.title}
+                    img={item.img}
+                    priceFrom={item.priceFrom}
+                    rating={item.rating}
+                    key={index}
+                    buttonClass="transparentGray"
+                    className="basis-[48%] px-6 md:max-w-[100%] min-w-[39%] w-full md:basis-[40%] lg:basis-[48%]"
+                  />
+                ))}
               </div>
             </div>
-            <CartFooter title={'ORDER SUMMARY'} data={cartPurchasedItems} />
-          </>
+            {
+              <div className="lg:hidden">
+                <CartFooter title={'ORDER SUMMARY'} data={cartPurchasedItems} />
+              </div>
+            }
+          </div>
         ) : null}
-        {!cartPurchasedItems.length ? <Footer /> : null}
       </div>
     </div>
   );
