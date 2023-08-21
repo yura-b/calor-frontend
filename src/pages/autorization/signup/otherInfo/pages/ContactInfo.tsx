@@ -37,7 +37,7 @@ const ContactInfo = () => {
           value={formik.values.firstName}
           onChange={formik.handleChange}
           error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-          errormessage={formik.errors.firstName}
+          errorMessage={formik.errors.firstName}
           border={'1px solid #D9D9D9'}
         >
           First Name
@@ -49,7 +49,7 @@ const ContactInfo = () => {
           value={formik.values.secondName}
           onChange={formik.handleChange}
           error={formik.touched.secondName && Boolean(formik.errors.secondName)}
-          errormessage={formik.errors.secondName}
+          errorMessage={formik.errors.secondName}
           border={'1px solid #D9D9D9'}
         >
           Second Name
@@ -62,7 +62,7 @@ const ContactInfo = () => {
           value={formik.values.phoneNumber}
           onChange={formik.handleChange}
           error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-          errormessage={formik.errors.phoneNumber}
+          errorMessage={formik.errors.phoneNumber}
           border={'1px solid #D9D9D9'}
           description={'Your phone number is needed to contact you for shipping-related questions'}
         >
