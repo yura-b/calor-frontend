@@ -6,10 +6,12 @@ module.exports = {
     ],
     theme: {
         extend: {
+            width: {
+                wrapper: '90vw'
+            },
             minWidth:{
                 25: '25%'
             },
-
             margin: {
                 marginForLeftHeader: '16.666667%'
             },

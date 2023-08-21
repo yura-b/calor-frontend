@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactSVG } from 'react-svg';
 import CardGoodsVertical from '@components/CardGoodsVertical';
 import styles from '@styles/Styles.module.scss';
 import IconButton from '@mui/material/IconButton';
@@ -19,7 +20,13 @@ const headerBlock = (title: string, linkPath: string) => (
     <h1 className={styles.header1}>{title}</h1>
     <Link to={linkPath}>
       <IconButton>
-        <img src={rightArrowIcon} />
+        <ReactSVG
+          src={rightArrowIcon}
+          beforeInjection={(svg) => {
+            svg.classList.add('icon');
+            svg.setAttribute('stroke', '#E2E0E0');
+          }}
+        />
       </IconButton>
     </Link>
   </div>
