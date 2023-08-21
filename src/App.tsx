@@ -13,6 +13,7 @@ import PageManagerPage from '@pages/admin/pageManager/PageManagerPage.tsx';
 import { paths } from '@routes/paths.ts';
 import MainPage from '@pages/admin/main/MainPage.tsx';
 import DesignBagPage from '@pages/DesignBagPage';
+import ReadyMadeProductsPage from '@pages/ReadyMadeProductsPage';
 import AccessoriesPage from '@pages/AccessoriesPage';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
@@ -64,6 +65,7 @@ const App = () => {
           <Route path={paths.design_bag} element={<DesignBagPage />} />
           <Route path={paths.accessories} element={<AccessoriesPage />} />
           <Route path={paths.shoe_care_product} element={<ShoeCareProductPage />} />
+          <Route path={paths.ready_made_products} element={<ReadyMadeProductsPage />} />
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
           <Route path={paths.cookies} element={<CookiesPage />} />
           <Route path={paths.about} element={<AboutPage />} />
