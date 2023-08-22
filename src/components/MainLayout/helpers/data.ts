@@ -12,6 +12,20 @@ export const menuItems = [
     path: paths.design_bag,
   },
   {
+    title: 'Ready Made Products',
+    path: paths.ready_made_products,
+    subItems: [
+      {
+        subTitle: 'Item1',
+        path: '',
+      },
+      {
+        subTitle: 'Item2',
+        path: '',
+      },
+    ],
+  },
+  {
     title: 'Accessories',
     path: paths.accessories,
     subItems: [

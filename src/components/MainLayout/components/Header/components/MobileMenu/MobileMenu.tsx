@@ -41,7 +41,7 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
       {isOpen && (
         <motion.div
           style={{ overflowY: 'auto', maxHeight: '100%', height: '100%' }}
-          className={`lg:hidden fixed bg-custom-red left-0 right-0 z-20 top-0  ${isOpen ? '' : 'hidden'}  w-full`}
+          className={`xl:hidden fixed bg-custom-red left-0 right-0 z-20 top-0  ${isOpen ? '' : 'hidden'}  w-full`}
           {...layoutFadeAnimation}
         >
           <motion.div className={`text-white ${isOpen ? '' : 'hidden'}`}>
