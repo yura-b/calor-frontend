@@ -1,11 +1,8 @@
 import React from 'react';
+import AccountLayout from '../AccountLayout';
 
 const AccountDetails: React.FC = (): React.ReactElement => {
-  return (
-    <div className="font-poppins ">
-      <p className="bg-custom-red w-full"> AccountDetails</p>
-    </div>
-  );
+  return <AccountLayout>AccountDetails</AccountLayout>;
 };
 
 export default AccountDetails;

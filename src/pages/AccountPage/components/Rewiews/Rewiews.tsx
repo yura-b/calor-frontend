@@ -1,11 +1,8 @@
 import React from 'react';
+import AccountLayout from '../AccountLayout';
 
 const Rewiews: React.FC = (): React.ReactElement => {
-  return (
-    <div>
-      <p className="bg-custom-red w-full"> Rewiews</p>
-    </div>
-  );
+  return <AccountLayout>Rewiews</AccountLayout>;
 };
 
 export default Rewiews;

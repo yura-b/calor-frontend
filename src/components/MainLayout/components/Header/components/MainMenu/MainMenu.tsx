@@ -66,7 +66,7 @@ const MainMenu: React.FC = (): React.ReactElement => {
                   <motion.img
                     src={isOpen === index ? mintDownIcon : downIcon}
                     alt={''}
-                    className={'ml-4 xl:ml-2'}
+                    className={'ml-4 xl:ml-1'}
                     animate={{ rotate: isOpen === index ? 180 : 0 }}
                     transition={{ duration: 0.4 }}
                     onClick={() => handleToggle(index)}

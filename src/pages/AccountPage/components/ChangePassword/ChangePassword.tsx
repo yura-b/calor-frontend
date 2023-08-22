@@ -1,11 +1,8 @@
 import React from 'react';
+import AccountLayout from '../AccountLayout';
 
 const ChangePassword: React.FC = (): React.ReactElement => {
-  return (
-    <div>
-      <p className="bg-custom-red w-full">ChangePassword</p>
-    </div>
-  );
+  return <AccountLayout>ChangePassword</AccountLayout>;
 };
 
 export default ChangePassword;

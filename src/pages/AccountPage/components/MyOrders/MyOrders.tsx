@@ -1,11 +1,9 @@
 import React from 'react';
 
+import AccountLayout from '../AccountLayout';
+
 const MyOrders: React.FC = (): React.ReactElement => {
-  return (
-    <div>
-      <p className="bg-custom-red h-full"> MyOrders</p>
-    </div>
-  );
+  return <AccountLayout>MyOrders</AccountLayout>;
 };
 
 export default MyOrders;

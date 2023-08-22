@@ -3,7 +3,6 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { paths } from '@routes/paths.ts';
 import CustomSignOut from '@components/logout/SignOut.tsx';
 import styles from '@styles/Styles.module.scss';
-
 import Orders from '@assets/images/account/orders.svg';
 import Design from '@assets/images/account/design.svg';
 import Preview from '@assets/images/account/preview.svg';
@@ -27,23 +26,19 @@ const AccountMenuLinks: React.FC<Props> = ({ firstName, secondName }): React.Rea
   ];
 
   return (
-    <div className="h-auto">
-      <h1 className={`${styles.body2} font-bold mb-4`}>
+    <div className="h-auto py-2">
+      <h1 className={`${styles.body2} font-bold mb-2`}>
         {firstName} {secondName}
       </h1>
       <div className="flex flex-col ">
         {menuItems.map((menuItem) => (
-          <NavLink
-            key={menuItem.path}
-            to={menuItem.path}
-            className={`${
-              location.pathname.substring(location.pathname.lastIndexOf('/') + 1) === menuItem.path
-                ? 'bg-custom-turquoise'
-                : ''
-            } py-2 px-3 -ml-3`}
-          >
-            <div className="flex gap-2">
-              <img src={menuItem?.img} />
+          <NavLink key={menuItem.path} to={menuItem.path} className={'py-2 w-[220px] hover:font-bold'}>
+            <div
+              className={`flex gap-2 ${
+                location.pathname === menuItem.path ? 'bg-custom-turquoise py-2 px-3 -ml-3' : ''
+              }`}
+            >
+              <img src={menuItem?.img} alt="" />
               {menuItem.label}
             </div>
           </NavLink>

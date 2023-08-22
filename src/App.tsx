@@ -18,7 +18,12 @@ import AccessoriesPage from '@pages/AccessoriesPage';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
 import CookiesPage from '@pages/CookiesPage';
-import AccountPage from '@pages/AccountPage';
+import AccountDetails from '@pages/AccountPage/components/AccountDetails';
+import MyOrders from '@pages/AccountPage/components/MyOrders';
+import DesignList from '@pages/AccountPage/components/DesignList';
+import ShippingAddress from '@pages/AccountPage/components/ShippingAddress';
+import ChangePassword from '@pages/AccountPage/components/ChangePassword';
+import Rewiews from '@pages/AccountPage/components/Rewiews';
 import AboutPage from '@pages/AboutPage';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
@@ -69,7 +74,12 @@ const App = () => {
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
           <Route path={paths.cookies} element={<CookiesPage />} />
           <Route path={paths.about} element={<AboutPage />} />
-          <Route path={paths.account} element={<PrivateRoute element={<AccountPage />} />} />
+          <Route path={paths.accountDetails} element={<PrivateRoute element={<AccountDetails />} />} />
+          <Route path={paths.myOrders} element={<PrivateRoute element={<MyOrders />} />} />
+          <Route path={paths.designList} element={<PrivateRoute element={<DesignList />} />} />
+          <Route path={paths.shippingAddress} element={<PrivateRoute element={<ShippingAddress />} />} />
+          <Route path={paths.changePassword} element={<PrivateRoute element={<ChangePassword />} />} />
+          <Route path={paths.reviews} element={<PrivateRoute element={<Rewiews />} />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

@@ -1,9 +1,10 @@
 import React from 'react';
+import AccountLayout from '../AccountLayout';
 
 const ShippingAddress: React.FC = (): React.ReactElement => {
   return (
     <div>
-      <p className="bg-custom-red w-full"> ShippingAddress</p>
+      <AccountLayout>ShippingAddress1111</AccountLayout>
     </div>
   );
 };

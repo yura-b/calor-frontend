@@ -11,7 +11,6 @@ import Cart from '@components/Cart';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { motion, useCycle } from 'framer-motion';
 import userIcon from '@assets/images/userIcon.svg';
-import { useMediaQuery } from '@react-hook/media-query';
 import NavigationLinks from './components/NavigationLinks';
 import { Link, useLocation } from 'react-router-dom';
 import { paths } from '@/routes/paths';
@@ -19,6 +18,7 @@ import styles from '@/styles/Styles.module.scss';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { useNavigate } from 'react-router';
+import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
@@ -32,7 +32,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const signUpHandler = () => {
     navigate('/signup');
   };
-  const isSmallerThan1024px = useMediaQuery('(min-width: 1024px)');
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isOpen, toggleOpen] = useCycle(false, true);
   const openCart = () => {
@@ -61,7 +61,9 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
     };
   }, [updateHeaderHeight]);
 
-  const { roles, access_token } = useAppSelector((state) => state.user);
+  const [isAccountVisible, setIsAccountVisible] = useState(false);
+
+  const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
   return (
@@ -88,7 +90,21 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
                 <Busket count={2} onClick={openCart} />
               </div>
               <div>
-                {isRegisteredUser && <img src={userIcon} className="hidden xl:block " />}
+                {isRegisteredUser && (
+                  <>
+                    <img
+                      src={userIcon}
+                      className="hidden xl:block cursor-pointer"
+                      onClick={() => setIsAccountVisible(!isAccountVisible)}
+                    />
+                    {isAccountVisible && (
+                      <div className="absolute bg-custom-turquoise px-4 z-20 mt-1">
+                        {' '}
+                        <AccountMenuLinks firstName={firstName} secondName={secondName} />
+                      </div>
+                    )}
+                  </>
+                )}
                 {!isRegisteredUser && (
                   <div className="text-white text-[14px]">
                     <button

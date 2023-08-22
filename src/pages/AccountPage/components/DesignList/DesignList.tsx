@@ -1,11 +1,8 @@
 import React from 'react';
+import AccountLayout from '../AccountLayout';
 
 const DesignList: React.FC = (): React.ReactElement => {
-  return (
-    <div>
-      <p className="bg-custom-red"> DesignList</p>
-    </div>
-  );
+  return <AccountLayout>DesignList</AccountLayout>;
 };
 
 export default DesignList;
