@@ -31,6 +31,7 @@ import { useGetUserIfRefresh } from '@/hooks/getUserIfRefresh.ts';
 import Loader from '@/components/ui/Loader/';
 import CatalogPage from '@pages/admin/catalog/CatalogPage.tsx';
 import CreateItem from '@pages/admin/catalog/CreateItem.tsx';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 const HomePage = lazy(() => import('@pages/HomePage'));
 const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 import PrivateRoute from '@/components/PrivateRoute';
@@ -80,6 +81,7 @@ const App = () => {
           <Route path={paths.shippingAddress} element={<PrivateRoute element={<ShippingAddress />} />} />
           <Route path={paths.changePassword} element={<PrivateRoute element={<ChangePassword />} />} />
           <Route path={paths.reviews} element={<PrivateRoute element={<Rewiews />} />} />
+           <Route path={paths.checkout} element={<CheckoutPage/>}/>
         </Routes>
       </Suspense>
     </BrowserRouter>

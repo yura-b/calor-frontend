@@ -8,6 +8,8 @@ export const paths = {
   customer_experience: '/customer_experience',
   about: '/about',
   cookies: '/cookies',
+  terms_condition: '/terms_condition',
+  checkout: '/checkout',
   accountDetails: '/account/details',
   myOrders: '/account/my_orders',
   designList: '/account/design_list',

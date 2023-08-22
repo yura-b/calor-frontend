@@ -3,7 +3,7 @@ import React, { ChangeEvent, ReactNode } from 'react';
 import { InputType } from '@/constants/interfaces/inputTypes.ts';
 
 interface IProps {
-  value?: string;
+  value?: string | number;
   onChange?: (e: ChangeEvent<any>) => void;
   error?: boolean;
   type?: InputType | undefined;
