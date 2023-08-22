@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import styles from './Header.module.scss';
 import logo from '../../../assets/images/logoText.svg';
 import { useAppSelector } from '@/store/hooks/hooks';
@@ -50,7 +50,7 @@ const Header = () => {
         </div>
 
         <div className={'flex flex-col gap-8 w-full justify-center ml-6  mt-16 ' + styles.navContainer}>
-          <HeaderElement icon={<ChartBar size={size} weight="fill" />} title={'Analytics'} />
+          <HeaderElement icon={ <ChartBar size={size} weight="fill" />} title={'Analytics'}/>
           <div>
             <Storefront size={size} weight="fill" />
 
@@ -66,20 +66,12 @@ const Header = () => {
           </div>
           {shopDropDown && (
             <div className={'flex flex-col pl-10 gap-5'}>
-              <HeaderElement
-                icon={<Package size={size} weight="fill" />}
-                title={'Warehouse'}
-                navigateTo={'/admin/warehouse'}
-              />
-              <HeaderElement icon={<Book size={size} weight="fill" />} title={'Catalog'} />
-              <HeaderElement
-                icon={<ClipboardText size={size} weight="fill" />}
-                title={'Orders'}
-                navigateTo={'/admin'}
-              />
+              <HeaderElement icon={<Package size={size} weight="fill" />} title={'Warehouse'} navigateTo={'/admin/warehouse'}/>
+              <HeaderElement icon={<Book size={size} weight="fill" />} title={'Catalog'} navigateTo={'/admin/catalog'}/>
+              <HeaderElement icon={<ClipboardText size={size} weight="fill" />} title={'Orders'} navigateTo={'/admin'}/>
             </div>
           )}
-          <HeaderElement icon={<Users size={size} weight="fill" />} title={'Customers'} navigateTo={'/admin/users'} />
+          <HeaderElement icon={<Users size={size} weight="fill" />} title={'Customers'} navigateTo={'/admin/users'}/>
           <div>
             <ChatDots size={size} weight="fill" />
 
@@ -95,23 +87,15 @@ const Header = () => {
           </div>
           {reviewDropDown && (
             <div className={'flex flex-col pl-10 gap-5'}>
-              <HeaderElement
-                icon={<TextT size={size} weight="fill" />}
-                title={'Text Reviews'}
-                navigateTo={'/admin/reviews/text'}
-              />
-              <HeaderElement icon={<VideoCamera size={size} weight="fill" />} title={'Video Reviews'} />
+              <HeaderElement icon={<TextT size={size} weight="fill" />} title={'Text Reviews'} navigateTo={'/admin/reviews/text'}/>
+              <HeaderElement icon={ <VideoCamera size={size} weight="fill" />} title={'Video Reviews'}/>
             </div>
           )}
 
-          <HeaderElement icon={<Calendar size={size} weight="fill" />} title={'Appointments'} />
-          <HeaderElement icon={<Envelope size={size} weight="fill" />} title={'Newsletter'} />
-          <HeaderElement icon={<Percent size={size} weight="fill" />} title={'Promo codes'} />
-          <HeaderElement
-            icon={<Browsers size={size} weight="fill" />}
-            title={'Page manager'}
-            navigateTo={'/admin/manager'}
-          />
+          <HeaderElement icon={<Calendar size={size} weight="fill" />} title={'Appointments'}/>
+          <HeaderElement icon={ <Envelope size={size} weight="fill" />} title={'Newsletter'}/>
+          <HeaderElement icon={<Percent size={size} weight="fill" />} title={'Promo codes'}/>
+          <HeaderElement icon={<Browsers size={size} weight="fill" />} title={'Page manager'} navigateTo={'/admin/manager'}/>
         </div>
 
         <div className={'flex flex-col justify-center gap-9 ml-6 absolute bottom-5 ' + styles.navContainer}>

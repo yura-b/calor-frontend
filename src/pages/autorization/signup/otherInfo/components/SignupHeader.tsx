@@ -32,7 +32,7 @@ const SignupHeader = () => {
         <img onClick={xHandler} src={X} alt={''} />
       </div>
       <div>
-        <CustomStepper />
+        <CustomStepper/>
       </div>
     </div>
   );
