@@ -100,7 +100,9 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
                     </Button>
                   </>
                 )}
-                <HelpFooter title={'Need Help?'} color="gray" />
+                <div className="lg:hidden">
+                  <HelpFooter title={'Need Help?'} color="gray" />
+                </div>
               </footer>
             </motion.div>
           </motion.div>

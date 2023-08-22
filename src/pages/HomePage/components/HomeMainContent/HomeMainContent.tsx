@@ -12,9 +12,11 @@ import HomeArrowRightIcon from '@components/ui/HomeArrowRightIcon';
 import VideoGuideLink from '@components/VideoGuideLink';
 import { useMediaQuery } from '@react-hook/media-query';
 
-const HomeMainContent: React.FC = (): React.ReactElement => {
+interface Props {
+  visions?: string;
+}
+const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
   const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
-
   const headingClass = `text-[2.4rem] leading-tight font-black sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl  ${
     isSmallerThan1600px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
   }`;
@@ -94,9 +96,7 @@ const HomeMainContent: React.FC = (): React.ReactElement => {
             BY YOU!
           </h1>
           <div className="lg:basis-3/5">
-            <p className={`${styles.subtitle} mb-2`}>
-              Create your own sneakers and bags with a unique designs that reflects your personality and style.
-            </p>
+            <p className={`${styles.subtitle} mb-2`}>{visions}</p>
             <p className={styles.body1}>
               Learn how to do it in our {''}
               <span className="hidden lg:inline-block">
