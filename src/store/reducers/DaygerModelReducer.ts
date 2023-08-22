@@ -84,7 +84,7 @@ const daygerModelSlice = createSlice({
       state.view2[selectedDetail] = `/src/assets/images/constructor/parts/dayger/view2/dayger_view2_${selectedColor}`;
       state.view4[selectedDetail] = `/src/assets/images/constructor/parts/dayger/view4/dayger_view4_${selectedColor}`;
     },
-    resetDesign: (state, action) => {
+    resetDesign: (state) => {
       state.view1 = { ...initialState.view1 };
       state.view2 = { ...initialState.view2 };
       state.view3 = { ...initialState.view3 };

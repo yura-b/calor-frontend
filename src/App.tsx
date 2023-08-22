@@ -26,6 +26,7 @@ import { useGetUserIfRefresh } from '@/hooks/getUserIfRefresh.ts';
 import Loader from '@/components/ui/Loader/';
 import CatalogPage from '@pages/admin/catalog/CatalogPage.tsx';
 import CreateItem from '@pages/admin/catalog/CreateItem.tsx';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 const HomePage = lazy(() => import('@pages/HomePage'));
 const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 
@@ -69,6 +70,7 @@ const App = () => {
               <Route path={paths.cookies} element={<CookiesPage/>}/>
               <Route path={paths.terms_condition} element={<TermsConditionPage/>}/>
               <Route path={paths.about} element={<AboutPage/>}/>
+              <Route path={paths.checkout} element={<CheckoutPage/>}/>
             </Routes>
           </Suspense>
         </BrowserRouter>

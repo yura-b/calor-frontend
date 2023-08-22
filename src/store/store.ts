@@ -9,6 +9,7 @@ import ProductsReducer from '@/store/reducers/ProductsReducer.ts';
 import ShoesReducer from './reducers/ShoesReducer';
 import ActiveShoeParts from '@/store/reducers/ActiveShoePartsReducer';
 import DaygerModel from '@/store/reducers/DaygerModelReducer';
+import checkoutReducer from '@/store/reducers/CheckoutReducer.ts';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     language: languageReducer,
     status: statusReducer,
     registration: registrationReducer,
+    checkout: checkoutReducer,
     dialog: dialogReducer,
     pageManager: pageManagerReducer,
     products: ProductsReducer,

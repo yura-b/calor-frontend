@@ -9,4 +9,5 @@ export const paths = {
   privacy_policy: '/privacy_policy',
   cookies: '/cookies',
   terms_condition: '/terms_condition',
+  checkout: '/checkout'
 };
