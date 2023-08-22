@@ -17,7 +17,7 @@ interface Props {
 }
 
 const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.ReactElement => {
-  const { data, isLoading, error } = useQuery('getOrders', () => getPageSection());
+  const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
   const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
   const phone = filteredPagesFooter?.find((section) => section?.section === 'Phone Number').value;
   const email = filteredPagesFooter?.find((section) => section?.section === 'Email').value;
@@ -155,6 +155,12 @@ const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.React
                 key={i}
                 to={link.path}
                 className={' text-xs font-semibold hover:text-custom-turquoise focus:outline-none py-1'}
+                onClick={(e) => {
+                  if (link.isPdfLink) {
+                    e.preventDefault();
+                    window.open(link.path, '_blank');
+                  }
+                }}
               >
                 {link.name}
               </Link>

@@ -1,4 +1,6 @@
 import { paths } from '@routes/paths';
+import privacy from '../../../../public/Privacy Policy_CALOR.pdf';
+import conditions from './../../../../public/Terms and Conditions_CALOR.pdf';
 
 export const menuItems = [
   {
@@ -8,6 +10,20 @@ export const menuItems = [
   {
     title: 'Design Your Bag',
     path: paths.design_bag,
+  },
+  {
+    title: 'Ready Made Products',
+    path: paths.ready_made_products,
+    subItems: [
+      {
+        subTitle: 'Item1',
+        path: '',
+      },
+      {
+        subTitle: 'Item2',
+        path: '',
+      },
+    ],
   },
   {
     title: 'Accessories',
@@ -114,7 +130,8 @@ export const aboutLinks = [
 export const privacyLinks = [
   {
     name: 'Privacy Policy',
-    path: paths.privacy_policy,
+    path: privacy,
+    isPdfLink: true,
   },
   {
     name: 'Cookies',
@@ -122,7 +139,8 @@ export const privacyLinks = [
   },
   {
     name: 'Terms & Condition',
-    path: paths.terms_condition,
+    path: conditions,
+    isPdfLink: true,
   },
 ];
 

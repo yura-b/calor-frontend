@@ -33,21 +33,26 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
-  const { roles, access_token } = useAppSelector((state) => state.user);
+  const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
+
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
           style={{ overflowY: 'auto', maxHeight: '100%', height: '100%' }}
-          className={`lg:hidden fixed bg-custom-red left-0 right-0 z-20 top-0  ${isOpen ? '' : 'hidden'}  w-full`}
+          className={`xl:hidden fixed bg-custom-red left-0 right-0 z-20 top-0  ${isOpen ? '' : 'hidden'}  w-full`}
           {...layoutFadeAnimation}
         >
           <motion.div className={`text-white ${isOpen ? '' : 'hidden'}`}>
             <header className="fixed right-0 z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-custom-turquoise">
               <div className="flex">
                 <img src={userIcon} />
-                {isRegisteredUser && <p className="ml-2 font-bold">Name</p>}
+                {isRegisteredUser && (
+                  <p className="ml-2 pt-1 border-box font-bold">
+                    {firstName} {secondName}
+                  </p>
+                )}
                 {!isRegisteredUser && (
                   <div className={'flex justify-center '}>
                     <span className={'ml-2 underline font-bold'} onClick={signInHandler}>
@@ -78,19 +83,23 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
                 </h1>
               </main>
               <footer className="bg-custom-turquoise h-full px-6 text-gray">
-                <div className="pt-4">
-                  <ul className={`list-none ${styles.subtitle}`}>
-                    {mobileMenuCalorItems.map((item, index) => (
-                      <li key={index} className="mb-2 flex items-center">
-                        <img src={checkIcon} className="mr-2" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Button color="gray" className="w-full my-4" onClick={signUpHandler}>
-                  Create an Account
-                </Button>
+                {!isRegisteredUser && (
+                  <>
+                    <div className="pt-4">
+                      <ul className={`list-none ${styles.subtitle}`}>
+                        {mobileMenuCalorItems.map((item, index) => (
+                          <li key={index} className="mb-2 flex items-center">
+                            <img src={checkIcon} className="mr-2" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Button color="gray" className="w-full my-4" onClick={signUpHandler}>
+                      Create an Account
+                    </Button>
+                  </>
+                )}
                 <HelpFooter title={'Need Help?'} color="gray" />
               </footer>
             </motion.div>

@@ -11,7 +11,6 @@ import Cart from '@components/Cart';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { motion, useCycle } from 'framer-motion';
 import userIcon from '@assets/images/userIcon.svg';
-import { useMediaQuery } from '@react-hook/media-query';
 import NavigationLinks from './components/NavigationLinks';
 import { Link, useLocation } from 'react-router-dom';
 import { paths } from '@/routes/paths';
@@ -19,6 +18,7 @@ import styles from '@/styles/Styles.module.scss';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { useNavigate } from 'react-router';
+import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
@@ -32,7 +32,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const signUpHandler = () => {
     navigate('/signup');
   };
-  const isSmallerThan1024px = useMediaQuery('(min-width: 1024px)');
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isOpen, toggleOpen] = useCycle(false, true);
   const openCart = () => {
@@ -61,30 +61,50 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
     };
   }, [updateHeaderHeight]);
 
-  const { roles, access_token } = useAppSelector((state) => state.user);
+  const [isAccountVisible, setIsAccountVisible] = useState(false);
+
+  const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
   return (
     <div
-      className="w-full max-h-[140px] bg-custom-red pt-2 pb-1  lg:fixed lg:z-20 lg:top-0 relative lg:h-[108px] "
+      className="w-full max-h-[140px] bg-custom-red pt-2 pb-1  xl:fixed xl:z-20 xl:top-0 relative xl:h-[108px] "
       id="header"
     >
-      <div className={`${isSmallerThan1024px ? styles.container : ''} pt-2 pb-0`}>
-        <div className={'px-6 flex flex-col  w-full fixed  z-20 top-0 bg-custom-red p-2 lg:p-1 lg:static'}>
+      <div className={`${styles.container} pt-2 pb-0`}>
+        <div
+          className={
+            'flex flex-col w-full max-w-[88vw] md:max-w-[80vw]  fixed  z-20 top-0 bg-custom-red p-2 xl:p-1 xl:static'
+          }
+        >
           <div className="flex justify-between">
-            <Link to={paths.home} className="flex items-center justify-center lg:flex flex-initial ">
-              <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 lg:w-10 lg:h-10" />
-              <img src={logoText} alt="" className="hidden mb-2 lg:block" />
+            <Link to={paths.home} className="flex items-center justify-center xl:flex flex-initial ">
+              <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10" />
+              <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
             </Link>
-            <div className="hidden lg:block lg:flex lg:flex-row lg:gap-2 lg:items-center">
+            <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
               <div className="mr-4">
                 <SearchInput />
               </div>
-              <div className="hidden lg:block">
+              <div className="hidden xl:block">
                 <Busket count={2} onClick={openCart} />
               </div>
               <div>
-                {isRegisteredUser && <img src={userIcon} className="hidden lg:block " />}
+                {isRegisteredUser && (
+                  <>
+                    <img
+                      src={userIcon}
+                      className="hidden xl:block cursor-pointer"
+                      onClick={() => setIsAccountVisible(!isAccountVisible)}
+                    />
+                    {isAccountVisible && (
+                      <div className="absolute bg-custom-turquoise px-4 z-20 mt-1">
+                        {' '}
+                        <AccountMenuLinks firstName={firstName} secondName={secondName} />
+                      </div>
+                    )}
+                  </>
+                )}
                 {!isRegisteredUser && (
                   <div className="text-white text-[14px]">
                     <button
@@ -103,34 +123,34 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
                 )}
               </div>
             </div>
-            <div className="flex lg:hidden items-baseline">
-              <div className="lg:hidden mt-1">
+            <div className="flex xl:hidden items-baseline">
+              <div className="xl:hidden mt-1">
                 <Busket count={2} onClick={openCart} />
               </div>
               <img
                 src={burgerIcon}
                 alt="Menu"
                 onClick={() => toggleOpen()}
-                className="block lg:hidden cursor-pointer w-[30px]"
+                className="block xl:hidden cursor-pointer w-[30px]"
               />
             </div>
             <MobileMenu isOpen={isOpen} toggleOpen={toggleOpen} openCart={openCart} />
           </div>
-          <div className={'hidden  lg:block '}>
+          <div className={'hidden  xl:block '}>
             <MainMenu />
           </div>
         </div>
 
-        <div className="mt-9 mb-3  sm:w-[320px] sm:mx-auto lg:hidden px-6">
+        <div className="mt-9 mb-3  sm:w-[320px] sm:mx-auto xl:hidden px-6">
           <SearchInput />
         </div>
       </div>
-      {!isHome && <NavigationLinks color="white" className={'lg:hidden'} />}
+      {!isHome && <NavigationLinks color="white" className={'xl:hidden'} />}
       <Modal className="flex items-center justify-center h-auto" open={isCartOpen} onClose={closeCart}>
         <>
           {isCartOpen && (
             <motion.div
-              className="absolute bg-white shadow-lg w-full lg:w-1/2 h-full  lg:h-4/5 max-h-full lg:rounded-md overflow-hidden "
+              className="absolute bg-white shadow-lg w-full lg:w-[760px] h-full  lg:max-h-[90%]  lg:rounded-md overflow-hidden "
               {...layoutFadeAnimation}
             >
               <Cart title="Cart" onClose={closeCart} />

@@ -2,16 +2,11 @@ import React from 'react';
 import styles from '@styles/Styles.module.scss';
 import basketLayout from '@assets/cartImages/basketLayout.svg';
 import layout from '@assets/cartImages/layout.svg';
-import Button from '@/components/ui/Button';
-
 interface Props {
   title: string;
 }
 
 const EmptyCart: React.FC<Props> = ({ title }): React.ReactElement => {
-  const handleClick = () => {
-    console.log('Continue Shopping Button clicked!');
-  };
   return (
     <>
       <div
@@ -23,9 +18,6 @@ const EmptyCart: React.FC<Props> = ({ title }): React.ReactElement => {
         <img src={layout} />
         <img className="absolute left-1/2 -translate-x-1/2 top-1/2 -ml-2" src={basketLayout} />
       </div>
-      <Button color="gray" className="w-full mt-6" onClick={handleClick}>
-        Continue Shopping
-      </Button>
     </>
   );
 };

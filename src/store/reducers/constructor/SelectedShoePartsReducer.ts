@@ -4,10 +4,11 @@ const initialState = {
   selectedDetail: 'part01',
   selectedMaterial: 'leather',
   selectedColor: '',
+  selectedModel: '',
 };
 
-const activeShoePartsSlice = createSlice({
-  name: 'activeShoeParts',
+const selectedShoePartsSlice = createSlice({
+  name: 'selectedShoeParts',
   initialState,
   reducers: {
     setSelectedDetail: (state, action) => {
@@ -17,12 +18,15 @@ const activeShoePartsSlice = createSlice({
       state.selectedMaterial = action.payload;
     },
     setSelectedColor: (state, action) => {
-      console.log(action.payload);
       state.selectedColor = action.payload;
+    },
+    setSelectedModel: (state, action) => {
+      state.selectedModel = action.payload;
     },
   },
 });
 
-export const { setSelectedDetail, setSelectedMaterial, setSelectedColor } = activeShoePartsSlice.actions;
+export const { setSelectedDetail, setSelectedMaterial, setSelectedColor, setSelectedModel } =
+  selectedShoePartsSlice.actions;
 
-export default activeShoePartsSlice.reducer;
+export default selectedShoePartsSlice.reducer;

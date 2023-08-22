@@ -80,3 +80,10 @@ export const validationSchemaForOrderNumber = yup.object({
         .min(3, 'Order Number should be of minimum 3 characters length')
         .required('Order Number is required'),
 });
+
+export const validationSchemaForPromoCode = yup.object({
+  promoCode: yup
+    .string()
+    .min(3, 'Your promo code is not valid. Please enter  again')
+    .required('Promo Code is required'),
+});

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import GridHeader from '@components/admin/GridHeader.tsx';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AdminLayout from '@layouts/admin/AdminLayout.tsx';
 import {getProducts} from '@/api/products.ts';
 import {useAppDispatch} from '@/store/hooks/hooks.ts';
