@@ -11,10 +11,10 @@ import CompleteLook from './components/CompleteLook';
 import MyOrder from '@/components/MyOrder';
 import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
-import Loader from '@components/ui/Loader';
 
 const HomePage: React.FC = (): React.ReactElement => {
-  const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
+  const { data } = useQuery('getPageSection', () => getPageSection());
+
   const filteredPagesHome = data?.data.filter((page) => page.page === 'Home Page');
   const benefits = filteredPagesHome?.filter((section) => section?.section === 'Benefits');
   const visions = filteredPagesHome?.filter((section) => section?.section === 'Your Vision, Our Craftsmanship')[0]
@@ -36,28 +36,22 @@ const HomePage: React.FC = (): React.ReactElement => {
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.homePage} />
-      {isLoading ? (
-        <Loader />
-      ) : error ? (
-        <p>Error loading data</p>
-      ) : (
-        <MainLayout>
-          <HomeMainContent visions={visions} />
-          <HomeGoodsContent />
-          <div className="w-full bg-custom-turquoise lg:hidden">
-            <HomeShowRoom
-              backgroundButton="gray"
-              showRoomTitleColor="gray"
-              titleColor="gray"
-              bodyColor="gray"
-              perfectFit={perfectFit}
-            />
-          </div>
-          <CompleteLook />
-          <HomeCalorByYou benefits={benefits} perfectFit={perfectFit} />
-          <Purchase />
-        </MainLayout>
-      )}
+      <MainLayout>
+        <HomeMainContent visions={visions} />
+        <HomeGoodsContent />
+        <div className="w-full bg-custom-turquoise lg:hidden">
+          <HomeShowRoom
+            backgroundButton="gray"
+            showRoomTitleColor="gray"
+            titleColor="gray"
+            bodyColor="gray"
+            perfectFit={perfectFit}
+          />
+        </div>
+        <CompleteLook />
+        <HomeCalorByYou benefits={benefits} perfectFit={perfectFit} />
+        <Purchase />
+      </MainLayout>
       <MyOrder isOpen={myOrderOpen} onClose={closeMyOrder} />
     </div>
   );
