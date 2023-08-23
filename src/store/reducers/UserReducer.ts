@@ -8,7 +8,7 @@ export interface IUser {
   firstName: string;
   secondName: string;
   phoneNumber: string;
-  email: string
+  email: string;
   userId: string;
   roles: Role[] | null;
   basket: Basket[] | null;

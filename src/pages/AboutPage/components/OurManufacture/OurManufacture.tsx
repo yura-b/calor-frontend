@@ -6,11 +6,16 @@ import VideoManufacture from '@/components/VideoManufacture';
 import { paths } from '@/routes/paths';
 import Button from '@components/ui/Button';
 
-const OurManufacture = () => {
-  const initialText =
-    'CALOR shoes are 100% handmade shoes. We have our own manufacturer in Ukraine. In our team we have professionals who have more than 20 years’ experience in shoe construction and manufacture.';
-  const expandedText =
-    'CALOR shoes are 100% handmade shoes. We have our own manufacturer in Ukraine. In our team we have professionals who have more than 20 years’ experience in shoe construction and manufacture. CALOR shoes are 100% handmade shoes. We have our own manufacturer in Ukraine. In our team we have professionals who have more than 20 years’ experience in shoe construction and manufacture. ';
+interface Props {
+  ourManufacture?: {
+    title: string;
+    value: string;
+  };
+}
+const OurManufacture: React.FC<Props> = ({ ourManufacture }): React.ReactElement => {
+  const initialText = ourManufacture?.value.match(/[^.!]+[.!]/g)?.slice(0, 3) || '';
+  const expandedText = ourManufacture?.value || '';
+
   const youtubeVideoId = 'J7YYYLJOKFI';
   return (
     <motion.div {...fadeAnimation} id="our_manufacture" className="lg:bg-mintExtraLight">
