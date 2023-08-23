@@ -29,7 +29,7 @@ const HomePage: React.FC = (): React.ReactElement => {
       <MainLayout>
         <HomeMainContent />
         <HomeGoodsContent />
-        <div className="w-full bg-custom-turquoise lg:hidden">
+        <div className="w-f`ull bg-custom-turquoise lg:hidden">
           <HomeShowRoom backgroundButton="gray" showRoomTitleColor="gray" titleColor="gray" bodyColor="gray" />
         </div>
         <CompleteLook />

@@ -18,7 +18,7 @@ const AccountLayout = ({ children }: { children: React.ReactNode }) => {
             <NavigationLinks color="gray" className=" w-auto" />
           </div>
           <div className="flex mt-4  min-h-[500px] ">
-            <div className="pr-12 border-r border-lighterGray">
+            <div className="pr-12 border-r border-lighterGray hidden lg:block">
               <AccountMenuLinks firstName={firstName} secondName={secondName} />
             </div>
             <div className="pl-6">{children}</div>
