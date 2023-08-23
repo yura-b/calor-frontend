@@ -35,6 +35,7 @@ import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 const HomePage = lazy(() => import('@pages/HomePage'));
 const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 import PrivateRoute from '@/components/PrivateRoute';
+import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -80,6 +81,7 @@ const App = () => {
           <Route path={paths.designList} element={<PrivateRoute element={<DesignList />} />} />
           <Route path={paths.shippingAddress} element={<PrivateRoute element={<ShippingAddress />} />} />
           <Route path={paths.changePassword} element={<PrivateRoute element={<ChangePassword />} />} />
+          <Route path={paths.changeUserPassword} element={<PrivateRoute element={<ResetUserPassword />} />} />
           <Route path={paths.reviews} element={<PrivateRoute element={<Rewiews />} />} />
           <Route path={paths.checkout} element={<CheckoutPage />} />
         </Routes>

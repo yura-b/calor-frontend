@@ -14,6 +14,7 @@ export const paths = {
   myOrders: '/account/my_orders',
   designList: '/account/design_list',
   shippingAddress: '/account/shipping_address',
-  changePassword: '/account/change_password',
+  changePassword: '/account/change_password/',
+  changeUserPassword: '/account/change_password/:id',
   reviews: '/account/reviews',
 };
