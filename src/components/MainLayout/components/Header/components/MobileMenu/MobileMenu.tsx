@@ -71,7 +71,7 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
                   src={closeBtn}
                   alt="Menu"
                   onClick={toggleOpen}
-                  className="block lg:hidden cursor-pointer w-5 h-5"
+                  className="block xl:hidden cursor-pointer w-5 h-5"
                 />
               </div>
             </header>
@@ -100,7 +100,7 @@ const MobileMenu = ({ isOpen, toggleOpen, openCart }) => {
                     </Button>
                   </>
                 )}
-                <div className="lg:hidden">
+                <div className="xl:hidden">
                   <HelpFooter title={'Need Help?'} color="gray" />
                 </div>
               </footer>
