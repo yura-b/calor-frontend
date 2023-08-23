@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HelpFooter from '../HelpFooter';
 import AboutCalorFooter from '../AboutCalorFooter';
 import { Link } from 'react-router-dom';
@@ -8,18 +8,8 @@ import { hoverOnButtonAnimation } from '@/styles/Animations';
 import arrowUpIcon from '@assets/images/arrowUpIcon.svg';
 import instagramIcon from '@assets/images/instagramIcon.svg';
 import facebookIcon from '@assets/images/facebookIcon.svg';
-import MyOrder from '@/components/MyOrder';
 
 const Footer: React.FC = (): React.ReactElement => {
-  const [myOrderOpen, setMyOrderOpen] = useState(false);
-
-  const openMyOrder = () => {
-    setMyOrderOpen(true);
-  };
-
-  const closeMyOrder = () => {
-    setMyOrderOpen(false);
-  };
   return (
     <footer className="bg-gray text-white w-full overflow-hidden">
       <div className={`${styles.container} lg:relative `}>
@@ -29,7 +19,6 @@ const Footer: React.FC = (): React.ReactElement => {
               <div className="lg:flex lg:flex-col hidden lg:block">
                 <Link
                   to="#"
-                  onClick={openMyOrder}
                   className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
                 >
                   Check Order Status
@@ -63,10 +52,9 @@ const Footer: React.FC = (): React.ReactElement => {
             </motion.button>
           </div>
           <AboutCalorFooter />
-          <HelpFooter title={'Get Help'} color="white" openMyOrder={openMyOrder} />
+          <HelpFooter title={'Get Help'} color="white" />
         </div>
       </div>
-      <MyOrder isOpen={myOrderOpen} onClose={closeMyOrder} />
     </footer>
   );
 };

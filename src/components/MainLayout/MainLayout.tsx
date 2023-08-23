@@ -6,7 +6,7 @@ import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const isLargeScreen = useMediaQuery('(min-width: 1024px)');
+  const isLargeScreen = useMediaQuery('(min-width: 1280px)');
   const [headerHeight, setHeaderHeight] = useState(0);
 
   const updateHeaderHeight = () => {

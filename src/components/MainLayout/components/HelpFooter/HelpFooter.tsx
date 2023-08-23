@@ -13,10 +13,9 @@ import { getPageSection } from '@/api/manager/pages';
 interface Props {
   title: string;
   color?: 'gray' | 'white';
-  openMyOrder?: () => void;
 }
 
-const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.ReactElement => {
+const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
   const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
   const phone = filteredPagesFooter?.find((section) => section?.section === 'Phone Number').value;
@@ -80,7 +79,6 @@ const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.React
         <div className="lg:hidden flex flex-col">
           <Link
             to="#"
-            onClick={openMyOrder}
             className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold border-b border-white py-3`}
           >
             Check Order Status

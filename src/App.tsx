@@ -20,6 +20,7 @@ import CustomerExperiencePage from '@pages/CustomerExperiencePage';
 import CookiesPage from '@pages/CookiesPage';
 import AccountDetails from '@pages/AccountPage/components/AccountDetails';
 import MyOrders from '@pages/AccountPage/components/MyOrders';
+import MyOrder from '@components/MyOrder';
 import DesignList from '@pages/AccountPage/components/DesignList';
 import ShippingAddress from '@pages/AccountPage/components/ShippingAddress';
 import ChangePassword from '@pages/AccountPage/components/ChangePassword';
@@ -82,6 +83,7 @@ const App = () => {
           <Route path={paths.changePassword} element={<PrivateRoute element={<ChangePassword />} />} />
           <Route path={paths.reviews} element={<PrivateRoute element={<Rewiews />} />} />
           <Route path={paths.checkout} element={<CheckoutPage />} />
+          <Route path={paths.myOrder} element={<MyOrder />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

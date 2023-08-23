@@ -16,4 +16,5 @@ export const paths = {
   shippingAddress: '/account/shipping_address',
   changePassword: '/account/change_password',
   reviews: '/account/reviews',
+  myOrder: '/my_order',
 };

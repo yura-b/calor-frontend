@@ -21,18 +21,6 @@ const HomePage: React.FC = (): React.ReactElement => {
     .value;
   const perfectFit = filteredPagesHome?.filter((section) => section?.section === 'Perfect Fit')[0];
 
-  const [myOrderOpen, setMyOrderOpen] = useState(false);
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    if (queryParams.get('my_orders') === 'true') {
-      setMyOrderOpen(true);
-    }
-  }, []);
-
-  const closeMyOrder = () => {
-    setMyOrderOpen(false);
-  };
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.homePage} />
@@ -52,7 +40,6 @@ const HomePage: React.FC = (): React.ReactElement => {
         <HomeCalorByYou benefits={benefits} perfectFit={perfectFit} />
         <Purchase />
       </MainLayout>
-      <MyOrder isOpen={myOrderOpen} onClose={closeMyOrder} />
     </div>
   );
 };
