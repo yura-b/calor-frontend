@@ -41,7 +41,7 @@ export interface ShippingInfoDto {
 
   ASB: string;
 
-  country: string
+  country: string;
 
   city: string;
 
@@ -53,5 +53,5 @@ export interface ShippingInfoDto {
 
   user_id?: string;
 
-  receiverPhoneNumber: string
+  receiverPhoneNumber: string;
 }

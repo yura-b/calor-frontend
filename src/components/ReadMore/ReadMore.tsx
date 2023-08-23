@@ -32,15 +32,17 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
           {showFullText ? expandedText : initialText}
         </motion.p>
       </AnimatePresence>
-      <motion.a
-        onClick={handleToggleText}
-        className={`text-gray text-base underline cursor-pointer block text-center p-3 max-w-max  mx-auto hover:font-bold ${
-          showFullText && 'focus:text-mint'
-        } md:text-lg `}
-        {...hoverOnButtonAnimation}
-      >
-        {showFullText ? 'Read Less' : 'Read More'}
-      </motion.a>
+      {initialText != '' && expandedText != '' && (
+        <motion.a
+          onClick={handleToggleText}
+          className={`text-gray text-base underline cursor-pointer block text-center p-3 max-w-max  mx-auto hover:font-bold ${
+            showFullText && 'focus:text-mint'
+          } md:text-lg `}
+          {...hoverOnButtonAnimation}
+        >
+          {showFullText ? 'Read Less' : 'Read More'}
+        </motion.a>
+      )}
     </div>
   );
 };

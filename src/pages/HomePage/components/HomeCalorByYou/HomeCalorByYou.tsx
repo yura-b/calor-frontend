@@ -12,7 +12,25 @@ import { useMediaQuery } from '@react-hook/media-query';
 import { hoverOnButtonAnimation } from '@styles/Animations';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const HomeCalorByYou: React.FC = (): React.ReactElement => {
+interface benefit {
+  page: string;
+  section: string;
+  title: string;
+  value: string;
+}
+interface Props {
+  benefits?: benefit[];
+  perfectFit?: {
+    title: string;
+    value: string;
+  };
+}
+const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactElement => {
+  const benefitsWithImg = benefits?.map((benefit, i) => ({
+    ...benefit,
+    img: calorByYouItems[i].img,
+  }));
+
   const isLargeScreen = useMediaQuery('(min-width: 1024px)');
   const handleClick = () => {
     window.open('https://www.instagram.com/calor_custom_sneakers/', '_blank');
@@ -35,7 +53,7 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
       img: homeCustomerCreation1,
     },
   ];
-  const maxItemsToShowLargeScreen = calorByYouItems.length;
+  const maxItemsToShowLargeScreen = benefitsWithImg?.length || 0;
   const maxItemsToShowSmallScreen = 3;
 
   const [showAll, setShowAll] = useState(false);
@@ -74,6 +92,7 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
             showRoomTitleColor="white"
             titleColor="custom-turquoise"
             bodyColor="white"
+            perfectFit={perfectFit}
           />
         </div>
       </div>
@@ -85,20 +104,20 @@ const HomeCalorByYou: React.FC = (): React.ReactElement => {
             initial="collapsed"
             animate={showAll ? 'expanded' : 'collapsed'}
           >
-            {calorByYouItems.slice(0, showAll ? calorByYouItems.length : maxItemsToShow).map((calorBy, i) => (
+            {benefitsWithImg?.slice(0, showAll ? benefitsWithImg?.length : maxItemsToShow).map((calorBy, i) => (
               <div key={i} className="flex gap-2 mb-2 items-start basis-[23%]">
                 <div className="basis-1/5">
                   <img src={calorBy.img} />
                 </div>
                 <div className="basis-4/5">
                   <h2 className={`${styles.header2} lg:text-xl`}>{calorBy.title}</h2>
-                  <p className={`${styles.body2} text-justify mt-1`}>{calorBy.text}</p>
+                  <p className={`${styles.body2} text-justify mt-1`}>{calorBy.value}</p>
                 </div>
               </div>
             ))}
           </motion.div>
         </AnimatePresence>
-        {calorByYouItems.length > maxItemsToShow && (
+        {benefitsWithImg && benefitsWithImg.length > maxItemsToShow && (
           <div className="flex justify-end">
             <motion.button
               onClick={handleSeeAllClick}

@@ -81,7 +81,7 @@ const App = () => {
           <Route path={paths.shippingAddress} element={<PrivateRoute element={<ShippingAddress />} />} />
           <Route path={paths.changePassword} element={<PrivateRoute element={<ChangePassword />} />} />
           <Route path={paths.reviews} element={<PrivateRoute element={<Rewiews />} />} />
-           <Route path={paths.checkout} element={<CheckoutPage/>}/>
+          <Route path={paths.checkout} element={<CheckoutPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
