@@ -71,10 +71,10 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
       className="w-full max-h-[140px] bg-custom-red pt-2 pb-1  xl:fixed xl:z-20 xl:top-0 relative xl:h-[108px] "
       id="header"
     >
-      <div className={`${styles.container} pt-2 pb-0`}>
+      <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
         <div
           className={
-            'flex flex-col w-full max-w-[88vw] md:max-w-[80vw]  fixed  z-20 top-0 bg-custom-red p-2 xl:p-1 xl:static'
+            'flex flex-col w-full  fixed  z-20 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
           }
         >
           <div className="flex justify-between">
@@ -98,10 +98,20 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
                       onClick={() => setIsAccountVisible(!isAccountVisible)}
                     />
                     {isAccountVisible && (
-                      <div className="absolute bg-custom-turquoise px-4 z-20 mt-1">
-                        {' '}
+                      <motion.div
+                        className="absolute bg-custom-turquoise px-4 z-20 mt-3 right-[12%]"
+                        {...layoutFadeAnimation}
+                      >
+                        <div
+                          className="absolute -top-4 right-11 w-0 h-0 -rotate-90 hidden xl:block"
+                          style={{
+                            borderWidth: '8px',
+                            borderStyle: 'solid',
+                            borderColor: 'transparent transparent transparent rgb(184, 228, 216, 0.9)',
+                          }}
+                        />
                         <AccountMenuLinks firstName={firstName} secondName={secondName} />
-                      </div>
+                      </motion.div>
                     )}
                   </>
                 )}

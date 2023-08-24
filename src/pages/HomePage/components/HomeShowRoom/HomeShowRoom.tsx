@@ -7,6 +7,10 @@ interface Props {
   showRoomTitleColor?: string;
   titleColor?: string;
   bodyColor?: string;
+  perfectFit?: {
+    value: string;
+    title: string;
+  };
 }
 
 const HomeShowRoom: React.FC<Props> = ({
@@ -14,6 +18,7 @@ const HomeShowRoom: React.FC<Props> = ({
   showRoomTitleColor,
   titleColor,
   bodyColor,
+  perfectFit,
 }): React.ReactElement => {
   const handleClick = () => {
     console.log('Button clicked!');
@@ -21,11 +26,8 @@ const HomeShowRoom: React.FC<Props> = ({
   return (
     <div className={`${styles.container} w-full`}>
       <p className={`${styles.subtitle} text-${showRoomTitleColor}`}>Showroom</p>
-      <h2 className={`${styles.header1} text-${titleColor}`}>Perfect Fit</h2>
-      <p className={`${styles.body1}  text-${bodyColor} text-justify mt-4`}>
-        Our experienced team of footwear specialists will guide you through the measurement process, taking precise
-        measurements of your feet to guarantee a comfortable and flawless fit.
-      </p>
+      <h2 className={`${styles.header1} text-${titleColor}`}>{perfectFit?.title}</h2>
+      <p className={`${styles.body1}  text-${bodyColor} text-justify mt-4`}>{perfectFit?.value}</p>
       <Button color={backgroundButton} className="w-full my-6" onClick={handleClick}>
         Make an Appointment
       </Button>
