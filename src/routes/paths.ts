@@ -10,6 +10,7 @@ export const paths = {
   cookies: '/cookies',
   terms_condition: '/terms_condition',
   checkout: '/checkout',
+  account: '/account',
   accountDetails: '/account/details',
   myOrders: '/account/my_orders',
   designList: '/account/design_list',

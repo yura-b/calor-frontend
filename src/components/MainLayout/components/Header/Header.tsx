@@ -99,11 +99,11 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
                     />
                     {isAccountVisible && (
                       <motion.div
-                        className="absolute bg-custom-turquoise px-4 z-20 mt-3 right-[12%]"
+                        className="absolute bg-custom-turquoise px-4 z-20 mt-3 right-[12%] shadow-2xl"
                         {...layoutFadeAnimation}
                       >
                         <div
-                          className="absolute -top-4 right-11 w-0 h-0 -rotate-90 hidden xl:block"
+                          className="absolute -top-[16px] right-11 w-0 h-0 -rotate-90 hidden xl:block"
                           style={{
                             borderWidth: '8px',
                             borderStyle: 'solid',

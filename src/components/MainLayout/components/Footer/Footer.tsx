@@ -8,8 +8,14 @@ import { hoverOnButtonAnimation } from '@/styles/Animations';
 import arrowUpIcon from '@assets/images/arrowUpIcon.svg';
 import instagramIcon from '@assets/images/instagramIcon.svg';
 import facebookIcon from '@assets/images/facebookIcon.svg';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { Role } from '@/constants/enums/role.enum.ts';
+import { paths } from '@/routes/paths';
 
 const Footer: React.FC = (): React.ReactElement => {
+  const { roles, access_token } = useAppSelector((state) => state.user);
+  const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
+
   return (
     <footer className="bg-gray text-white w-full overflow-hidden">
       <div className={`${styles.container} lg:relative `}>
@@ -17,12 +23,22 @@ const Footer: React.FC = (): React.ReactElement => {
           <div className={`flex justify-between ${styles.body2} font-bold text-white  pt-4 pb-2 lg:p-0 bg`}>
             <div>
               <div className="lg:flex lg:flex-col hidden lg:block">
-                <Link
-                  to="#"
-                  className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
-                >
-                  Check Order Status
-                </Link>
+                {isRegisteredUser && (
+                  <Link
+                    to={paths.myOrders}
+                    className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+                  >
+                    Check Order Status
+                  </Link>
+                )}
+                {!isRegisteredUser && (
+                  <Link
+                    to={paths.myOrder}
+                    className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+                  >
+                    Check Order Status
+                  </Link>
+                )}
                 <Link
                   to="#"
                   className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3`}

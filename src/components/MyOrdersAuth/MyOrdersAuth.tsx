@@ -78,9 +78,10 @@ const MyOrder = (): React.ReactElement => {
       shippingInfo: ShippingInfo,
     },
   ];
+
   return (
     <motion.div className="w-full   h-full  lg:max-h-[600px] max-h-full  lg:overflow-hidden" {...layoutFadeAnimation}>
-      <MainFrame title={'My Orders'} className="">
+      <MainFrame title={'My Orders'}>
         <div className="">
           <div className={`${styles.container} lg:pt-0`}>
             <div className={`flex justify-around text-gray ${styles.body2} mb-8 lg:justify-start`}>

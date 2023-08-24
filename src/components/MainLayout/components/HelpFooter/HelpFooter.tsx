@@ -9,6 +9,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { collapseAnimation } from '@styles/Animations';
 import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { Role } from '@/constants/enums/role.enum.ts';
+import { paths } from '@/routes/paths';
 
 interface Props {
   title: string;
@@ -28,6 +31,8 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const toggleAccordion = () => {
     setIsAccordionOpen((prev) => !prev);
   };
+  const { roles, access_token } = useAppSelector((state) => state.user);
+  const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
   return (
     <>
       {color !== 'white' ? (
@@ -77,12 +82,22 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
       )}
       {color == 'white' && (
         <div className="lg:hidden flex flex-col">
-          <Link
-            to="#"
-            className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold border-b border-white py-3`}
-          >
-            Check Order Status
-          </Link>
+          {isRegisteredUser && (
+            <Link
+              to={paths.myOrders}
+              className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+            >
+              Check Order Status
+            </Link>
+          )}
+          {!isRegisteredUser && (
+            <Link
+              to={paths.myOrder}
+              className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+            >
+              Check Order Status
+            </Link>
+          )}
           <Link
             to="#"
             className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3 border-b border-white`}
