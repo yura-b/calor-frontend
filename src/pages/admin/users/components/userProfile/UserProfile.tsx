@@ -19,6 +19,8 @@ const userDataInitialState: IUser = {
   registrationDate: null,
   roles: [],
   secondName: '',
+  shippingInfo: null,
+  registered: false
 };
 const UserProfile = () => {
   const { access_token } = useAppSelector((state) => state.user);
