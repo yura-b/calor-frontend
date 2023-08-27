@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 interface Props {
+  form?: string;
   color: 'gray' | 'red' | 'mintExtraLight' | 'mint' | 'transparentGray' | 'transparentMint' | 'turquoise';
   children: React.ReactNode;
   className?: string;
@@ -9,9 +10,10 @@ interface Props {
   type?: 'submit' | 'reset';
   to?: string;
   margin?: string;
+  disabled?: boolean; 
 }
 
-const Button: React.FC<Props> = ({ color, children, className, onClick, type, to, margin = 'my2' }) => {
+const Button: React.FC<Props> = ({ disabled, color, children, className, onClick, type, to, margin = 'my2' }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     if (to) {
@@ -47,6 +49,7 @@ const Button: React.FC<Props> = ({ color, children, className, onClick, type, to
         type={type}
         className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-sm ${margin} ${className} ${getButtonStyle()}`}
         onClick={handleClick}
+        disabled={disabled}
       >
         {children}
       </motion.button>

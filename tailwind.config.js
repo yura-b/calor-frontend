@@ -6,6 +6,9 @@ module.exports = {
     ],
     theme: {
         extend: {
+            screens: {
+                xs: '480px'
+            },
             width: {
                 wrapper: '90vw'
             },

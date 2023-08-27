@@ -62,3 +62,14 @@ export const validationSchemaForOrderNumber = yup.object({
     .min(3, 'Order Number should be of minimum 3 characters length')
     .required('Order Number is required'),
 });
+
+export const validationSchemaForProductReview = yup.object({
+  email: yup.string().email('Enter a valid email').required('Email is required'),
+  firstName: yup
+    .string()
+    .min(3, 'First name should be of minimum 8 characters length')
+    .required('First name is required'),
+  lastName: yup
+    .string()
+    .min(3, 'First name should be of minimum 8 characters length')
+});

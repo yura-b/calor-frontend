@@ -18,6 +18,7 @@ import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
 import CookiesPage from '@pages/CookiesPage';
 import AboutPage from '@pages/AboutPage';
+import ProductPage from './pages/ProductPage/ProductPage.tsx';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
 import { useGetUserIfRefresh } from '@/hooks/getUserIfRefresh.ts';
@@ -42,6 +43,7 @@ const App = () => {
               <Route path={'signup'} element={<TokenGuard children={<SignupPage/>}/>}/>
               <Route path={'reset'} element={<TokenGuard children={<Email/>}/>}/>
               <Route path={'password/:id'} element={<TokenGuard children={<ResetPassword/>}/>}/>
+              <Route path={'product/:id'} element={<ProductPage/>}/>
               <Route path={'admin'}>
                 <Route index element={<MainPage/>}/>
                 <Route path={'order/:id'} element={<OrderPage/>}/>
