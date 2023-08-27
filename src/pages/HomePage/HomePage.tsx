@@ -27,14 +27,8 @@ const HomePage: React.FC = (): React.ReactElement => {
       <MainLayout>
         <HomeMainContent visions={visions} />
         <HomeGoodsContent />
-        <div className="w-full bg-custom-turquoise lg:hidden">
-          <HomeShowRoom
-            backgroundButton="gray"
-            showRoomTitleColor="gray"
-            titleColor="gray"
-            bodyColor="gray"
-            perfectFit={perfectFit}
-          />
+        <div className="w-f`ull bg-custom-turquoise lg:hidden">
+          <HomeShowRoom backgroundButton="gray" showRoomTitleColor="gray" titleColor="gray" bodyColor="gray" />
         </div>
         <CompleteLook />
         <HomeCalorByYou benefits={benefits} perfectFit={perfectFit} />

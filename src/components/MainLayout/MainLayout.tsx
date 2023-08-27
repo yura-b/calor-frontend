@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import { motion } from 'framer-motion';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
+import CustomizedSnackbars from '../admin/CustomizedSnackbars';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');
@@ -35,6 +36,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       >
         {children}
       </motion.div>
+      <CustomizedSnackbars />
       <Footer />
     </div>
   );
