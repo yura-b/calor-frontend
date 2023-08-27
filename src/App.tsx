@@ -40,7 +40,6 @@ import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 import { useMediaQuery } from '@react-hook/media-query';
 
-
 const App = () => {
   const getUser = useGetUserIfRefresh();
 

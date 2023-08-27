@@ -101,13 +101,13 @@ const MyOrder = (): React.ReactElement => {
               {!formSubmitted && (
                 <div className="pt-6 shadow-2xl max-w-[88vw] md:max-w-[80vw] lg:max-w-[60vw] xl:max-w-[40vw]  mx-auto">
                   <header className=" bg-mint flex  items-center  px-6  h-[60px] ">
-                    <h1 className={`${styles.header2} m-auto text-gray uppercase`}>MY Order</h1>
+                    <h1 className={`${styles.header2} m-auto text-white uppercase`}>MY Order</h1>
                   </header>
                   <div className="p-8 text-center">
                     <p className={`${styles.body1}`}>
                       To check the status of your order, please enter your order number
                     </p>
-                    <p className={`${styles.body1} font-bold`}>Order Number</p>
+                    <p className={`${styles.body1} font-bold mt-6`}>Order Number</p>
 
                     <form
                       onSubmit={formik.handleSubmit}

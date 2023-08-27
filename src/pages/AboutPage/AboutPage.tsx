@@ -25,7 +25,7 @@ const AboutPage: React.FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.about} />
       <MainLayout>
-        <div className="relative hidden xl:block">
+        <div className="relative hidden lg:block">
           <NavigationLinks
             color="white"
             className="absolute top-8  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-auto"
