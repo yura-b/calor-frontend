@@ -23,10 +23,16 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       window.removeEventListener('resize', updateHeaderHeight);
     };
   }, []);
+
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden flex flex-col min-h-screen justify-between">
       <Header headerHeight={headerHeight} updateHeaderHeight={updateHeaderHeight} />
-      <motion.div {...layoutFadeAnimation} style={{ paddingTop: isLargeScreen ? headerHeight : '0px' }}>
+      <motion.div
+        {...layoutFadeAnimation}
+        id="content"
+        style={{ paddingTop: isLargeScreen ? headerHeight : '0px' }}
+        className="min-h-[50vh]"
+      >
         {children}
       </motion.div>
       <Footer />

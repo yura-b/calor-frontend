@@ -63,10 +63,6 @@ const MyOrder = (): React.ReactElement => {
       order: OrderItem,
       shippingInfo: ShippingInfo,
     },
-    {
-      order: OrderItem,
-      shippingInfo: ShippingInfo,
-    },
   ];
   const HistoryOrderItems = [
     {
@@ -80,13 +76,13 @@ const MyOrder = (): React.ReactElement => {
   ];
 
   return (
-    <motion.div className="w-full   h-full  lg:max-h-[600px] max-h-full  lg:overflow-hidden" {...layoutFadeAnimation}>
-      <MainFrame title={'My Orders'}>
-        <div className="">
-          <div className={`${styles.container} lg:pt-0`}>
-            <div className={`flex justify-around text-gray ${styles.body2} mb-8 lg:justify-start`}>
+    <motion.div className="w-full  overflow-hidden bg-mintExtraLight lg:bg-transparent" {...layoutFadeAnimation}>
+      <MainFrame title={'My Orders'} className="overflow-hidden">
+        <div className="overflow-hidden">
+          <div className={`${styles.container} lg:py-0`}>
+            <div className={`flex justify-around text-gray ${styles.body1} mb-8 lg:justify-start gap-6`}>
               <button
-                className={`px-4 py-1  mr-2  ${
+                className={`px-12 py-1  mr-2 ${
                   activeTab === 1 ? ' border-b-2 border-gray text-gray font-bold' : 'text-[#949494]'
                 }`}
                 onClick={() => setActiveTab(1)}
@@ -94,7 +90,7 @@ const MyOrder = (): React.ReactElement => {
                 Current
               </button>
               <button
-                className={`px-4 py-1  ${
+                className={`px-12 py-1  ${
                   activeTab === 2 ? ' border-b-2 border-gray text-gray font-bold' : 'text-[#949494]'
                 }`}
                 onClick={() => setActiveTab(2)}

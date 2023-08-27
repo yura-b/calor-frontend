@@ -28,7 +28,7 @@ const HistoryOrder: React.FC<Props> = ({ orderData }): React.ReactElement => {
   }, []);
 
   return (
-    <div className="mb-5 mt-2 xl:flex xl:justify-between  xl:gap-4 lg:border-b-2 lg:border-lightGray lg:pb-5 mr-6">
+    <div className="lg:pb-5 mb-6 xl:flex xl:justify-between  xl:gap-4 lg:border-b-2 lg:border-lightGray">
       <div className="xl:basis-[50%] ">
         <h2 className={`${styles.subtitle} text-gray mt-4 `}>Order №{number}</h2>
         <p className="border-b-2 border-gray py-2 lg:border-none">Date {date.toISOString().substring(0, 10)}</p>
@@ -42,7 +42,11 @@ const HistoryOrder: React.FC<Props> = ({ orderData }): React.ReactElement => {
           <p>Color: Color Name / Category</p>
         </div>
         {showDetails && (
-          <>
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+          >
             <div className="border-b-2 border-gray py-2 lg:border-none">
               <p className={`${styles.subtitle}`}>Shipping Information</p>
               <div className="flex justify-between">
@@ -74,7 +78,7 @@ const HistoryOrder: React.FC<Props> = ({ orderData }): React.ReactElement => {
                 <p>{phoneNumber} </p>
               </div>
             </div>
-          </>
+          </motion.div>
         )}
       </div>
 
