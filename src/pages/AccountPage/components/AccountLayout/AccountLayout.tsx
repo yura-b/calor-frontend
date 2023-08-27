@@ -21,7 +21,7 @@ const AccountLayout = ({ children }: { children: React.ReactNode }) => {
             <div className="pr-12 border-r border-lighterGray hidden lg:block">
               <AccountMenuLinks firstName={firstName} secondName={secondName} />
             </div>
-            <div className="pl-6 lg:w-full">{children}</div>
+            <div className="pl-6 w-full">{children}</div>
           </div>
         </div>
       </MainLayout>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import PasswordIdentifier from '@pages/autorization/signup/otherInfo/components/PasswordIdentifier.tsx';
-import { useAppDispatch } from '@/store/hooks/hooks.ts';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { errorCorrupted, loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import { resetPassword } from '@/api/authorization.ts';
 import {
@@ -14,10 +14,13 @@ import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import AlreadyRegistered from '@pages/autorization/signup/otherInfo/components/AlreadyRegistered.tsx';
 import AuthorizationHeader from '@pages/autorization/components/header/AuthorizationHeader.tsx';
+import { X } from '@phosphor-icons/react';
 
 const ResetPassword = () => {
-  const [firstPassword, setFirstPassword] = useState('');
+  const [firstPasswordInputValue, setfirstPasswordInputValue] = useState('');
   const [secondPassword, setSecondPassword] = useState('');
+
+  const { firstPassword } = useAppSelector((state) => state.registration);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -33,15 +36,21 @@ const ResetPassword = () => {
   // convert from base64 to string
   const id = atob(params.id);
 
-  const firstPasswordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstPassword(e.currentTarget.value);
+  const firstPasswordInputValueChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setfirstPasswordInputValue(e.currentTarget.value);
   };
   const secondPasswordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSecondPassword(e.currentTarget.value);
   };
 
   const buttonHandler = () => {
-    if (secondPassword === firstPassword) {
+    if (
+      secondPassword === firstPasswordInputValue &&
+      !firstPassword.minLength &&
+      !firstPassword.upperCase &&
+      !firstPassword.number &&
+      !firstPassword.lowerCase
+    ) {
       resetPassword(id, secondPassword)
         .then(() => {
           dispatch(loading());
@@ -53,6 +62,8 @@ const ResetPassword = () => {
           dispatch(errorCorrupted(e.response.data.message));
         });
     } else {
+      console.log(firstPassword);
+
       setMatchError({
         errorMessage: 'Passwords do not match',
         isError: true,
@@ -68,24 +79,28 @@ const ResetPassword = () => {
           <PasswordIdentifier
             text={'One uppercase character'}
             handler={oneUpperCaseValidation}
-            password={firstPassword}
+            password={firstPasswordInputValue}
           />
-          <PasswordIdentifier text={'8 characters minimum'} handler={minLengthValidation} password={firstPassword} />
-          <PasswordIdentifier text={'One number'} handler={oneNumberValidation} password={firstPassword} />
+          <PasswordIdentifier
+            text={'8 characters minimum'}
+            handler={minLengthValidation}
+            password={firstPasswordInputValue}
+          />
+          <PasswordIdentifier text={'One number'} handler={oneNumberValidation} password={firstPasswordInputValue} />
           <PasswordIdentifier
             text={'One lowercase character'}
             handler={oneLowerCaseValidation}
-            password={firstPassword}
+            password={firstPasswordInputValue}
           />
         </div>
 
         <div className={'w-full'}>
           <CustomInput
-            id={'firstPassword'}
-            name={'firstPassword'}
+            id={'firstPasswordInputValue'}
+            name={'firstPasswordInputValue'}
             placeholder={'input password'}
-            value={firstPassword}
-            onChange={firstPasswordChangeHandler}
+            value={firstPasswordInputValue}
+            onChange={firstPasswordInputValueChangeHandler}
             border={'1px solid #D9D9D9'}
           ></CustomInput>
 
