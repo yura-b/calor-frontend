@@ -11,7 +11,7 @@ interface Props {
   };
 }
 const OurStory: React.FC<Props> = ({ ourStory }): React.ReactElement => {
-  const initialText = ourStory?.value.match(/[^.!]+[.!]/g)?.slice(0, 2) || '';
+  const initialText = ourStory?.value.match(/[^.!]+[.!]/g)?.slice(0, 3) || '';
   const expandedText = ourStory?.value || '';
   return (
     <motion.div {...fadeAnimation} id="our_story" className="lg:basis-2/3 lg:flex r">
@@ -36,7 +36,7 @@ const OurStory: React.FC<Props> = ({ ourStory }): React.ReactElement => {
         <ReadMore
           initialText={initialText}
           expandedText={expandedText}
-          className={`${styles.body1} pt-32 lg:pt-0 text-justify lg:text-left`}
+          className={`${styles.body1} pt-32 lg:pt-0 text-justify`}
         />
       </div>
     </motion.div>

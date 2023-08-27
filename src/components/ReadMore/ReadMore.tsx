@@ -21,7 +21,7 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
   };
 
   return (
-    <div className={`text-left m-auto min-h-max ${styles.container} ${className} lg:py-0`}>
+    <div className={`text-left m-auto min-h-max ${styles.container} ${className} py-0`}>
       <AnimatePresence initial={false}>
         <motion.p
           key={showFullText ? 'expandedText' : 'initialText'}
@@ -32,7 +32,7 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
           {showFullText ? expandedText : initialText}
         </motion.p>
       </AnimatePresence>
-      {initialText != '' && expandedText != '' && (
+      {initialText != '' && (
         <motion.a
           onClick={handleToggleText}
           className={`text-gray text-base underline cursor-pointer block text-center p-3 max-w-max  mx-auto hover:font-bold ${

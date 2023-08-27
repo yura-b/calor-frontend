@@ -18,8 +18,10 @@ import AccessoriesPage from '@pages/AccessoriesPage';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
 import CookiesPage from '@pages/CookiesPage';
+import AccountPage from '@pages/AccountPage';
 import AccountDetails from '@pages/AccountPage/components/AccountDetails';
 import MyOrders from '@pages/AccountPage/components/MyOrders';
+import MyOrder from '@components/MyOrder';
 import DesignList from '@pages/AccountPage/components/DesignList';
 import ShippingAddress from '@pages/AccountPage/components/ShippingAddress';
 import ChangePassword from '@pages/AccountPage/components/ChangePassword';
@@ -36,11 +38,14 @@ const HomePage = lazy(() => import('@pages/HomePage'));
 const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
+import { useMediaQuery } from '@react-hook/media-query';
+
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
 
   getUser();
+  const isMobile = useMediaQuery('(max-width: 1023px)');
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
@@ -76,6 +81,7 @@ const App = () => {
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
           <Route path={paths.cookies} element={<CookiesPage />} />
           <Route path={paths.about} element={<AboutPage />} />
+          <Route path={paths.account} element={isMobile ? <PrivateRoute element={<AccountPage />} /> : null} />
           <Route path={paths.accountDetails} element={<PrivateRoute element={<AccountDetails />} />} />
           <Route path={paths.myOrders} element={<PrivateRoute element={<MyOrders />} />} />
           <Route path={paths.designList} element={<PrivateRoute element={<DesignList />} />} />
@@ -84,6 +90,7 @@ const App = () => {
           <Route path={paths.changeUserPassword} element={<PrivateRoute element={<ResetUserPassword />} />} />
           <Route path={paths.reviews} element={<PrivateRoute element={<Rewiews />} />} />
           <Route path={paths.checkout} element={<CheckoutPage />} />
+          <Route path={paths.myOrder} element={<MyOrder />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
