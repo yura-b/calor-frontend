@@ -66,8 +66,8 @@ const Constructor: FC<IProps> = ({model}) => {
 					isVisible && 
 					<>
 						<AditionalViews model={model}/>
-						<div className='flex flex-col justify-center items-center'>
-							<Button color="mint" className="w-full my-4 lg:block" onClick={handleSaveDesign}>Save design</Button>
+						<div className='flex md:flex-row flex-col justify-center items-center md:gap-3'>
+							{/* <Button color="mint" className="w-full my-4 lg:block" onClick={handleSaveDesign}>Save design</Button> */}
 							<Button color="transparentGray" className="w-full my-4 lg:block" onClick={handleRedesign}>Redesign</Button>
 							<Button color="gray" className="w-full my-4 lg:block" onClick={handleAddToCart}>Add to cart</Button>
 						</div>
