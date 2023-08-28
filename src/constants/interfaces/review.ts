@@ -4,7 +4,8 @@ export interface Review {
   user_id: string;
   isUserRegistered: boolean;
   experience: string;
-  name: string;
+  firstName: string;
+  secondName: string;
   photo: string | null;
   product_id: string;
   rating: number;

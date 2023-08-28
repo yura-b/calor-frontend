@@ -28,7 +28,8 @@ const ReviewComponent: React.FC<IProps> = ({
   user_id,
   status,
   date,
-  name,
+    firstName,
+  secondName,
   experience,
   rating,
   email,
@@ -55,7 +56,7 @@ const ReviewComponent: React.FC<IProps> = ({
         publishedReviews?.setState((prevState) => {
           return [
             ...prevState,
-            { _id, date, name, experience, rating, email, status, photo, product_id, isUserRegistered, user_id },
+            { _id, date, firstName,secondName, experience, rating, email, status, photo, product_id, isUserRegistered, user_id },
           ];
         });
       }
@@ -73,7 +74,7 @@ const ReviewComponent: React.FC<IProps> = ({
   return (
     <div className={'flex flex-col gap-5 w-full mb-6'}>
       <div className={'flex flex-row gap-5 items-baseline'}>
-        <p className={'underline font-bold'}>{name}</p>
+        <p className={'underline font-bold'}>{firstName + ' ' + secondName}</p>
         <p>
           <IsRegistered isUserRegistered={isUserRegistered} />
         </p>

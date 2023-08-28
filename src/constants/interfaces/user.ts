@@ -11,7 +11,7 @@ export interface IUser {
   registrationDate: Date | null;
   roles: Role[];
   _id: string;
-  shippingInfo: ShippingInfoDto | null,
+  shippingInfo?: ShippingInfoDto | null ,
   registered: boolean
 }
 

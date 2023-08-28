@@ -3,8 +3,9 @@ import { backendUrl } from '@/api/languages.ts';
 import { authorization } from '@/api/config.ts';
 import { changeOrderStatusInterface, CreateOrderDto } from '@/api/dto/orders.dto.ts';
 
-export const getOrders = (credential) => {
-  return axios.get(`${backendUrl}/order/all`, authorization(credential));
+export const getOrders = (credential: string | null, emailFilter: string) => {
+  if (!credential) return
+  return axios.get(`${backendUrl}/order/all/?email=${emailFilter}`, authorization(credential));
 };
 
 export const getOrder = (credential: string, id: string) => {

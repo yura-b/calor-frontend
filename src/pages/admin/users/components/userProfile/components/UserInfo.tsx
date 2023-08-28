@@ -23,7 +23,7 @@ const UserInfo: React.FC<IProps> = ({userDataState, withDelivery = false}) => {
                 <div className={'flex flex-row gap-5 items-center'}>
                     <User size={32} weight="fill"/>
                     <h2 className={'font-bold'}>Personal Information </h2>
-                    <IsRegistered isUserRegistered={true}/>
+                    <IsRegistered isUserRegistered={state.registered}/>
                 </div>
                 <div className={'grid grid-cols-2 w-2/3'}>
                     <p>Customer`s name </p>
