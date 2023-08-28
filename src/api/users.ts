@@ -16,8 +16,8 @@ export const getUserUsingToken = (credentials: string) => {
 };
 
 export const assignAdditionalInfo = (info: ShippingInfoDto) => {
-  return axios.put(`${backendUrl}/user/shipping`, info)
-}
+  return axios.put(`${backendUrl}/user/shipping`, info);
+};
 export const getShippingById = (access_token: string, id: string) => {
   return axios.get(`${backendUrl}/user/shipping/${id}`, authorization(access_token));
 };

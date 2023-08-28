@@ -40,7 +40,6 @@ import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 import { useMediaQuery } from '@react-hook/media-query';
 
-
 const App = () => {
   const getUser = useGetUserIfRefresh();
 
@@ -81,7 +80,12 @@ const App = () => {
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
           <Route path={paths.cookies} element={<CookiesPage />} />
           <Route path={paths.about} element={<AboutPage />} />
-          <Route path={paths.account} element={isMobile ? <PrivateRoute element={<AccountPage />} /> : null} />
+          <Route
+            path={paths.account}
+            element={
+              isMobile ? <PrivateRoute element={<AccountPage />} /> : <PrivateRoute element={<AccountDetails />} />
+            }
+          />
           <Route path={paths.accountDetails} element={<PrivateRoute element={<AccountDetails />} />} />
           <Route path={paths.myOrders} element={<PrivateRoute element={<MyOrders />} />} />
           <Route path={paths.designList} element={<PrivateRoute element={<DesignList />} />} />

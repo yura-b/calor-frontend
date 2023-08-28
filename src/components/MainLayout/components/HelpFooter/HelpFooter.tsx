@@ -28,11 +28,23 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const address1 = address?.substring(0, commaIndex);
   const address2 = address?.substring(commaIndex + 1).trim();
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+
+  const mobileBreakpoint = 1024;
+
   const toggleAccordion = () => {
-    setIsAccordionOpen((prev) => !prev);
+    if (window.innerWidth < mobileBreakpoint) {
+      setIsAccordionOpen((prev) => !prev);
+    }
   };
   const { roles, access_token } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <>
       {color !== 'white' ? (
@@ -85,7 +97,8 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
           {isRegisteredUser && (
             <Link
               to={paths.myOrders}
-              className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+              className={`${styles.subtitle}  text-white lg:text-custom-turquoise lg:text-sm lg:font-extrabold py-3 border-b border-white`}
+              onClick={scrollToTop}
             >
               Check Order Status
             </Link>
@@ -93,7 +106,8 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
           {!isRegisteredUser && (
             <Link
               to={paths.myOrder}
-              className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+              className={`${styles.subtitle} text-white lg:text-custom-turquoise lg:text-sm lg:font-extrabold py-3 border-b border-white`}
+              onClick={scrollToTop}
             >
               Check Order Status
             </Link>

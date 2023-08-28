@@ -5,14 +5,15 @@ import Button from '@/components/ui/Button';
 
 interface Props {
   orderData?: any;
+  className?: string;
 }
 
-const Order: React.FC<Props> = ({ orderData }): React.ReactElement => {
+const Order: React.FC<Props> = ({ orderData, className }): React.ReactElement => {
   const { number, date, product, phoneNumber } = orderData.order;
   const { username, company, address, city, state, zip, country, region } = orderData.shippingInfo;
 
   return (
-    <div className="mb-12 mt-2 lg:border-b-2 lg:border-lightGray lg:pb-5 mr-6">
+    <div className={`lg:border-b-2 lg:border-lightGray lg:pb-5 mb-6 ${className}`}>
       <OrderStepper />
       <div className="xl:flex xl:justify-between xl:mt-4 xl:gap-4">
         <div className="xl:basis-[50%] ">
@@ -79,7 +80,7 @@ const Order: React.FC<Props> = ({ orderData }): React.ReactElement => {
               <h2>$XXX</h2>
             </div>
           </div>
-          <Button color="gray" type="submit" className="my-4">
+          <Button color="gray" type="submit" className="my-4 mx-auto block">
             Track Delivery
           </Button>
         </div>

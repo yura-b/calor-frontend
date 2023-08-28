@@ -9,13 +9,15 @@ import { paths } from '@/routes/paths';
 const AboutCalorFooter = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
+  const mobileBreakpoint = 1024;
+
   const toggleAccordion = () => {
-    setIsAccordionOpen((prev) => !prev);
+    if (window.innerWidth < mobileBreakpoint) {
+      setIsAccordionOpen((prev) => !prev);
+    }
   };
 
   const [headerHeight, setHeaderHeight] = useState(0);
-  const mobileBreakpoint = 1024;
-
   const updateHeaderHeight = () => {
     const headerElement = document.getElementById('header');
     if (headerElement) {

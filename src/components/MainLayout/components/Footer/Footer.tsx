@@ -15,7 +15,12 @@ import { paths } from '@/routes/paths';
 const Footer: React.FC = (): React.ReactElement => {
   const { roles, access_token } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
-
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <footer className="bg-gray text-white w-full overflow-hidden">
       <div className={`${styles.container} lg:relative `}>
@@ -27,6 +32,7 @@ const Footer: React.FC = (): React.ReactElement => {
                   <Link
                     to={paths.myOrders}
                     className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+                    onClick={scrollToTop}
                   >
                     Check Order Status
                   </Link>
@@ -35,6 +41,7 @@ const Footer: React.FC = (): React.ReactElement => {
                   <Link
                     to={paths.myOrder}
                     className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+                    onClick={scrollToTop}
                   >
                     Check Order Status
                   </Link>
