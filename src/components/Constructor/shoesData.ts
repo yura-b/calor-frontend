@@ -5,7 +5,7 @@ export const shoes = [
       {
         part: 'part01',
         name: 'Sock',
-        image: '/public/assets/images/constructor/details/dayger/1.png',
+        image: '/assets/images/constructor/details/dayger/1.png',
         materials: [
           {
             name: 'leather',
@@ -197,7 +197,7 @@ export const shoes = [
       {
         part: 'part02',
         name: 'Quarter stripe 1',
-        image: '/public/assets/images/constructor/details/dayger/2.png',
+        image: '/assets/images/constructor/details/dayger/2.png',
         materials: [
           {
             name: 'leather',
@@ -389,7 +389,7 @@ export const shoes = [
       {
         part: 'part03',
         name: 'Laces',
-        image: '/public/assets/images/constructor/details/dayger/13.png',
+        image: '/assets/images/constructor/details/dayger/13.png',
         materials: [
           {
             name: 'polyester',
@@ -491,7 +491,7 @@ export const shoes = [
       {
         part: 'part04',
         name: 'Lower eyelets',
-        image: '/public/assets/images/constructor/details/dayger/3.png',
+        image: '/assets/images/constructor/details/dayger/3.png',
         materials: [
           {
             name: 'metal',
@@ -593,7 +593,7 @@ export const shoes = [
       {
         part: 'part05',
         name: 'Sole',
-        image: '/public/assets/images/constructor/details/dayger/4.png',
+        image: '/assets/images/constructor/details/dayger/4.png',
         materials: [
           {
             name: 'sole',
@@ -625,7 +625,7 @@ export const shoes = [
       {
         part: 'part06',
         name: 'Thread stitching',
-        image: '/public/assets/images/constructor/details/dayger/14.png',
+        image: '/assets/images/constructor/details/dayger/14.png',
         materials: [
           {
             name: 'stitch',
@@ -722,7 +722,7 @@ export const shoes = [
       {
         part: 'part07',
         name: 'Detail 1',
-        image: '/public/assets/images/constructor/details/dayger/5.png',
+        image: '/assets/images/constructor/details/dayger/5.png',
         materials: [
           {
             name: 'leather',
@@ -914,7 +914,7 @@ export const shoes = [
       {
         part: 'part08',
         name: 'Tongue',
-        image: '/public/assets/images/constructor/details/dayger/6.png',
+        image: '/assets/images/constructor/details/dayger/6.png',
         materials: [
           {
             name: 'leather',
@@ -1106,7 +1106,7 @@ export const shoes = [
       {
         part: 'part09',
         name: 'Lining',
-        image: '/public/assets/images/constructor/details/dayger/7.png',
+        image: '/assets/images/constructor/details/dayger/7.png',
         materials: [
           {
             name: 'fur',
@@ -1121,7 +1121,7 @@ export const shoes = [
       {
         part: 'part10',
         name: 'Detail 2',
-        image: '/public/assets/images/constructor/details/dayger/8.png',
+        image: '/assets/images/constructor/details/dayger/8.png',
         materials: [
           {
             name: 'leather',
@@ -1313,7 +1313,7 @@ export const shoes = [
       {
         part: 'part11',
         name: 'Quarter',
-        image: '/public/assets/images/constructor/details/dayger/9.png',
+        image: '/assets/images/constructor/details/dayger/9.png',
         materials: [
           {
             name: 'leather',
@@ -1505,7 +1505,7 @@ export const shoes = [
       {
         part: 'part12',
         name: 'Quarter stripe 2',
-        image: '/public/assets/images/constructor/details/dayger/10.png',
+        image: '/assets/images/constructor/details/dayger/10.png',
         materials: [
           {
             name: 'leather',
@@ -1697,7 +1697,7 @@ export const shoes = [
       {
         part: 'part13',
         name: 'Quarter stripe 3',
-        image: '/public/assets/images/constructor/details/dayger/11.png',
+        image: '/assets/images/constructor/details/dayger/11.png',
         materials: [
           {
             name: 'leather',
@@ -1889,7 +1889,7 @@ export const shoes = [
       {
         part: 'part14',
         name: 'Top eyelets',
-        image: '/public/assets/images/constructor/details/dayger/12.png',
+        image: '/assets/images/constructor/details/dayger/12.png',
         materials: [
           {
             name: 'metal',
@@ -1996,7 +1996,7 @@ export const shoes = [
       {
         part: 'part01',
         name: 'Quarter',
-        image: '/public/assets/images/constructor/details/sunrise/1.png',
+        image: '/assets/images/constructor/details/sunrise/1.png',
         materials: [
           {
             name: 'leather',
@@ -2188,7 +2188,7 @@ export const shoes = [
       {
         part: 'part02',
         name: 'Tongue + toe',
-        image: '/public/assets/images/constructor/details/sunrise/2.png',
+        image: '/assets/images/constructor/details/sunrise/2.png',
         materials: [
           {
             name: 'leather',
@@ -2380,7 +2380,7 @@ export const shoes = [
       {
         part: 'part03',
         name: 'Back strap',
-        image: '/public/assets/images/constructor/details/sunrise/3.png',
+        image: '/assets/images/constructor/details/sunrise/3.png',
         materials: [
           {
             name: 'leather',
@@ -2572,7 +2572,7 @@ export const shoes = [
       {
         part: 'part04',
         name: 'Lace guard',
-        image: '/public/assets/images/constructor/details/sunrise/4.png',
+        image: '/assets/images/constructor/details/sunrise/4.png',
         materials: [
           {
             name: 'leather',
@@ -2764,7 +2764,7 @@ export const shoes = [
       {
         part: 'part05',
         name: 'Sole',
-        image: '/public/assets/images/constructor/details/sunrise/8.png',
+        image: '/assets/images/constructor/details/sunrise/8.png',
         materials: [
           {
             name: 'sole',
@@ -2796,7 +2796,7 @@ export const shoes = [
       {
         part: 'part06',
         name: 'Laces',
-        image: '/public/assets/images/constructor/details/sunrise/6.png',
+        image: '/assets/images/constructor/details/sunrise/6.png',
         materials: [
           {
             name: 'polyester',
@@ -2898,7 +2898,7 @@ export const shoes = [
       {
         part: 'part07',
         name: 'Eyelets',
-        image: '/public/assets/images/constructor/details/sunrise/5.png',
+        image: '/assets/images/constructor/details/sunrise/5.png',
         materials: [
           {
             name: 'metal',
@@ -3000,7 +3000,7 @@ export const shoes = [
       {
         part: 'part08',
         name: 'Thread stitching',
-        image: '/public/assets/images/constructor/details/sunrise/9.png',
+        image: '/assets/images/constructor/details/sunrise/9.png',
         materials: [
           {
             name: 'stitch',
@@ -3097,7 +3097,7 @@ export const shoes = [
       {
         part: 'part09',
         name: 'Lining',
-        image: '/public/assets/images/constructor/details/sunrise/7.png',
+        image: '/assets/images/constructor/details/sunrise/7.png',
         materials: [
           {
             name: 'leather',
@@ -3199,7 +3199,7 @@ export const shoes = [
       {
         part: 'part01',
         name: 'Tongue + toe',
-        image: '/public/assets/images/constructor/details/yolo/1.png',
+        image: '/assets/images/constructor/details/yolo/1.png',
         materials: [
           {
             name: 'cotton',
@@ -3296,7 +3296,7 @@ export const shoes = [
       {
         part: 'part02',
         name: 'Detail 1',
-        image: '/public/assets/images/constructor/details/yolo/2.png',
+        image: '/assets/images/constructor/details/yolo/2.png',
         materials: [
           {
             name: 'cotton',
@@ -3393,7 +3393,7 @@ export const shoes = [
       {
         part: 'part03',
         name: 'Detail 2',
-        image: '/public/assets/images/constructor/details/yolo/3.png',
+        image: '/assets/images/constructor/details/yolo/3.png',
         materials: [
           {
             name: 'cotton',
@@ -3490,7 +3490,7 @@ export const shoes = [
       {
         part: 'part04',
         name: 'Laces',
-        image: '/public/assets/images/constructor/details/yolo/4.png',
+        image: '/assets/images/constructor/details/yolo/4.png',
         materials: [
           {
             name: 'polyester',
@@ -3592,7 +3592,7 @@ export const shoes = [
       {
         part: 'part05',
         name: 'Eyelets',
-        image: '/public/assets/images/constructor/details/yolo/5.png',
+        image: '/assets/images/constructor/details/yolo/5.png',
         materials: [
           {
             name: 'metal',
@@ -3694,7 +3694,7 @@ export const shoes = [
       {
         part: 'part06',
         name: 'Back strap',
-        image: '/public/assets/images/constructor/details/yolo/6.png',
+        image: '/assets/images/constructor/details/yolo/6.png',
         materials: [
           {
             name: 'leather',
@@ -3796,7 +3796,7 @@ export const shoes = [
       {
         part: 'part07',
         name: 'Detail 3',
-        image: '/public/assets/images/constructor/details/yolo/7.png',
+        image: '/assets/images/constructor/details/yolo/7.png',
         materials: [
           {
             name: 'cotton',
@@ -3988,7 +3988,7 @@ export const shoes = [
       {
         part: 'part08',
         name: 'Lining',
-        image: '/public/assets/images/constructor/details/yolo/8.png',
+        image: '/assets/images/constructor/details/yolo/8.png',
         materials: [
           {
             name: 'cotton',
@@ -4085,7 +4085,7 @@ export const shoes = [
       {
         part: 'part09',
         name: 'Detail 4',
-        image: '/public/assets/images/constructor/details/yolo/9.png',
+        image: '/assets/images/constructor/details/yolo/9.png',
         materials: [
           {
             name: 'cotton',
@@ -4182,7 +4182,7 @@ export const shoes = [
       {
         part: 'part10',
         name: 'Detail 5',
-        image: '/public/assets/images/constructor/details/yolo/10.png',
+        image: '/assets/images/constructor/details/yolo/10.png',
         materials: [
           {
             name: 'cotton',
@@ -4279,7 +4279,7 @@ export const shoes = [
       {
         part: 'part11',
         name: 'Sole',
-        image: '/public/assets/images/constructor/details/yolo/11.png',
+        image: '/assets/images/constructor/details/yolo/11.png',
         materials: [
           {
             name: 'sole',
@@ -4311,7 +4311,7 @@ export const shoes = [
       {
         part: 'part12',
         name: 'Thread stitching',
-        image: '/public/assets/images/constructor/details/yolo/12.png',
+        image: '/assets/images/constructor/details/yolo/12.png',
         materials: [
           {
             name: 'stitch',
@@ -4412,180 +4412,180 @@ export const shoes = [
 export const shoesImages = {
   dayger: {
     view1: {
-      part01: '/public/assets/images/constructor/parts/dayger/view1/view1_part01_leather_11.png',
-      part02: '/public/assets/images/constructor/parts/dayger/view1/view1_part02_leather_11.png',
-      part03: '/public/assets/images/constructor/parts/dayger/view1/view1_part03_laces_polyester_12.png',
-      part04: '/public/assets/images/constructor/parts/dayger/view1/view1_part04_lower_eyelets_metal_12.png',
-      part05: '/public/assets/images/constructor/parts/dayger/view1/view1_part05_sole_01.png',
-      part06: '/public/assets/images/constructor/parts/dayger/view1/view1_part06_stitch_11.png',
-      part07: '/public/assets/images/constructor/parts/dayger/view1/view1_part07_leather_11.png',
-      part08: '/public/assets/images/constructor/parts/dayger/view1/view1_part08_leather_11.png',
-      part10: '/public/assets/images/constructor/parts/dayger/view1/view1_part10_leather_11.png',
-      part11: '/public/assets/images/constructor/parts/dayger/view1/view1_part11_leather_11.png',
-      part12: '/public/assets/images/constructor/parts/dayger/view1/view1_part12_leather_11.png',
-      part13: '/public/assets/images/constructor/parts/dayger/view1/view1_part13_leather_11.png',
-      part14: '/public/assets/images/constructor/parts/dayger/view1/view1_part14_eyelets_metal_12.png',
-      part15: '/public/assets/images/constructor/parts/dayger/view1/view1_shade.png',
+      part01: '/assets/images/constructor/parts/dayger/view1/view1_part01_leather_11.png',
+      part02: '/assets/images/constructor/parts/dayger/view1/view1_part02_leather_11.png',
+      part03: '/assets/images/constructor/parts/dayger/view1/view1_part03_laces_polyester_12.png',
+      part04: '/assets/images/constructor/parts/dayger/view1/view1_part04_lower_eyelets_metal_12.png',
+      part05: '/assets/images/constructor/parts/dayger/view1/view1_part05_sole_01.png',
+      part06: '/assets/images/constructor/parts/dayger/view1/view1_part06_stitch_11.png',
+      part07: '/assets/images/constructor/parts/dayger/view1/view1_part07_leather_11.png',
+      part08: '/assets/images/constructor/parts/dayger/view1/view1_part08_leather_11.png',
+      part10: '/assets/images/constructor/parts/dayger/view1/view1_part10_leather_11.png',
+      part11: '/assets/images/constructor/parts/dayger/view1/view1_part11_leather_11.png',
+      part12: '/assets/images/constructor/parts/dayger/view1/view1_part12_leather_11.png',
+      part13: '/assets/images/constructor/parts/dayger/view1/view1_part13_leather_11.png',
+      part14: '/assets/images/constructor/parts/dayger/view1/view1_part14_eyelets_metal_12.png',
+      part15: '/assets/images/constructor/parts/dayger/view1/view1_shade.png',
     },
     view2: {
       part01: '/assets/images/constructor/parts/dayger/view2/view2_part01_leather_11.png',
-      part02: '/public/assets/images/constructor/parts/dayger/view2/view2_part02_leather_11.png',
-      part03: '/public/assets/images/constructor/parts/dayger/view2/view2_part03_laces_polyester_12.png',
-      part04: '/public/assets/images/constructor/parts/dayger/view2/view2_part04_lower_eyelets_metal_12.png',
-      part05: '/public/assets/images/constructor/parts/dayger/view2/view2_part05_sole_01.png',
-      part06: '/public/assets/images/constructor/parts/dayger/view2/view2_part06_stitch_11.png',
-      part07: '/public/assets/images/constructor/parts/dayger/view2/view2_part07_leather_11.png',
-      part08: '/public/assets/images/constructor/parts/dayger/view2/view2_part08_leather_11.png',
-      part10: '/public/assets/images/constructor/parts/dayger/view2/view2_part10_leather_11.png',
-      part11: '/public/assets/images/constructor/parts/dayger/view2/view2_part11_leather_11.png',
-      part12: '/public/assets/images/constructor/parts/dayger/view2/view2_part12_leather_11.png',
-      part13: '/public/assets/images/constructor/parts/dayger/view2/view2_part13_leather_11.png',
-      part14: '/public/assets/images/constructor/parts/dayger/view2/view2_part14_eyelets_metal_12.png',
-      part15: '/public/assets/images/constructor/parts/dayger/view2/view2_shade.png',
+      part02: '/assets/images/constructor/parts/dayger/view2/view2_part02_leather_11.png',
+      part03: '/assets/images/constructor/parts/dayger/view2/view2_part03_laces_polyester_12.png',
+      part04: '/assets/images/constructor/parts/dayger/view2/view2_part04_lower_eyelets_metal_12.png',
+      part05: '/assets/images/constructor/parts/dayger/view2/view2_part05_sole_01.png',
+      part06: '/assets/images/constructor/parts/dayger/view2/view2_part06_stitch_11.png',
+      part07: '/assets/images/constructor/parts/dayger/view2/view2_part07_leather_11.png',
+      part08: '/assets/images/constructor/parts/dayger/view2/view2_part08_leather_11.png',
+      part10: '/assets/images/constructor/parts/dayger/view2/view2_part10_leather_11.png',
+      part11: '/assets/images/constructor/parts/dayger/view2/view2_part11_leather_11.png',
+      part12: '/assets/images/constructor/parts/dayger/view2/view2_part12_leather_11.png',
+      part13: '/assets/images/constructor/parts/dayger/view2/view2_part13_leather_11.png',
+      part14: '/assets/images/constructor/parts/dayger/view2/view2_part14_eyelets_metal_12.png',
+      part15: '/assets/images/constructor/parts/dayger/view2/view2_shade.png',
     },
     view3: {
-      part01: '/public/assets/images/constructor/parts/dayger/view3/view3_part01_leather_11.png',
-      part02: '/public/assets/images/constructor/parts/dayger/view3/view3_part02_leather_11.png',
-      part03: '/public/assets/images/constructor/parts/dayger/view3/view3_part03_laces_polyester_12.png',
-      part04: '/public/assets/images/constructor/parts/dayger/view3/view3_part04_lower_eyelets_metal_12.png',
-      part05: '/public/assets/images/constructor/parts/dayger/view3/view3_part05_sole_01.png',
-      part07: '/public/assets/images/constructor/parts/dayger/view3/view3_part07_leather_11.png',
-      part08: '/public/assets/images/constructor/parts/dayger/view3/view3_part08_leather_11.png',
-      part09: '/public/assets/images/constructor/parts/dayger/view3/view3_part09_fur_01.png',
-      part10: '/public/assets/images/constructor/parts/dayger/view3/view3_part10_leather_11.png',
-      part11: '/public/assets/images/constructor/parts/dayger/view3/view3_part11_leather_11.png',
-      part12: '/public/assets/images/constructor/parts/dayger/view3/view3_part12_leather_11.png',
-      part13: '/public/assets/images/constructor/parts/dayger/view3/view3_part13_leather_11.png',
-      part14: '/public/assets/images/constructor/parts/dayger/view3/view3_part14_eyelets_metal_12.png',
+      part01: '/assets/images/constructor/parts/dayger/view3/view3_part01_leather_11.png',
+      part02: '/assets/images/constructor/parts/dayger/view3/view3_part02_leather_11.png',
+      part03: '/assets/images/constructor/parts/dayger/view3/view3_part03_laces_polyester_12.png',
+      part04: '/assets/images/constructor/parts/dayger/view3/view3_part04_lower_eyelets_metal_12.png',
+      part05: '/assets/images/constructor/parts/dayger/view3/view3_part05_sole_01.png',
+      part07: '/assets/images/constructor/parts/dayger/view3/view3_part07_leather_11.png',
+      part08: '/assets/images/constructor/parts/dayger/view3/view3_part08_leather_11.png',
+      part09: '/assets/images/constructor/parts/dayger/view3/view3_part09_fur_01.png',
+      part10: '/assets/images/constructor/parts/dayger/view3/view3_part10_leather_11.png',
+      part11: '/assets/images/constructor/parts/dayger/view3/view3_part11_leather_11.png',
+      part12: '/assets/images/constructor/parts/dayger/view3/view3_part12_leather_11.png',
+      part13: '/assets/images/constructor/parts/dayger/view3/view3_part13_leather_11.png',
+      part14: '/assets/images/constructor/parts/dayger/view3/view3_part14_eyelets_metal_12.png',
     },
     view4: {
-      part01: '/public/assets/images/constructor/parts/dayger/view4/view4_part01_leather_11.png',
-      part02: '/public/assets/images/constructor/parts/dayger/view4/view4_part02_leather_11.png',
-      part03: '/public/assets/images/constructor/parts/dayger/view4/view4_part03_laces_polyester_12.png',
-      part04: '/public/assets/images/constructor/parts/dayger/view4/view4_part04_lower_eyelets_metal_12.png',
-      part05: '/public/assets/images/constructor/parts/dayger/view4/view4_part05_sole_01.png',
-      part06: '/public/assets/images/constructor/parts/dayger/view4/view4_part06_stitch_11.png',
-      part07: '/public/assets/images/constructor/parts/dayger/view4/view4_part07_leather_11.png',
-      part08: '/public/assets/images/constructor/parts/dayger/view4/view4_part08_leather_11.png',
-      part10: '/public/assets/images/constructor/parts/dayger/view4/view4_part10_leather_11.png',
-      part11: '/public/assets/images/constructor/parts/dayger/view4/view4_part11_leather_11.png',
-      part12: '/public/assets/images/constructor/parts/dayger/view4/view4_part12_leather_11.png',
-      part13: '/public/assets/images/constructor/parts/dayger/view4/view4_part13_leather_11.png',
-      part14: '/public/assets/images/constructor/parts/dayger/view4/view4_part14_eyelets_metal_12.png',
-      part15: '/public/assets/images/constructor/parts/dayger/view4/view4_shade.png',
+      part01: '/assets/images/constructor/parts/dayger/view4/view4_part01_leather_11.png',
+      part02: '/assets/images/constructor/parts/dayger/view4/view4_part02_leather_11.png',
+      part03: '/assets/images/constructor/parts/dayger/view4/view4_part03_laces_polyester_12.png',
+      part04: '/assets/images/constructor/parts/dayger/view4/view4_part04_lower_eyelets_metal_12.png',
+      part05: '/assets/images/constructor/parts/dayger/view4/view4_part05_sole_01.png',
+      part06: '/assets/images/constructor/parts/dayger/view4/view4_part06_stitch_11.png',
+      part07: '/assets/images/constructor/parts/dayger/view4/view4_part07_leather_11.png',
+      part08: '/assets/images/constructor/parts/dayger/view4/view4_part08_leather_11.png',
+      part10: '/assets/images/constructor/parts/dayger/view4/view4_part10_leather_11.png',
+      part11: '/assets/images/constructor/parts/dayger/view4/view4_part11_leather_11.png',
+      part12: '/assets/images/constructor/parts/dayger/view4/view4_part12_leather_11.png',
+      part13: '/assets/images/constructor/parts/dayger/view4/view4_part13_leather_11.png',
+      part14: '/assets/images/constructor/parts/dayger/view4/view4_part14_eyelets_metal_12.png',
+      part15: '/assets/images/constructor/parts/dayger/view4/view4_shade.png',
     },
   },
   sunrise: {
     view1: {
-      part01: '/public/assets/images/constructor/parts/sunrise/view1/view1_part01_quarter_leather_11.png',
-      part02: '/public/assets/images/constructor/parts/sunrise/view1/view1_part02_tongue_toe_leather_11.png',
-      part03: '/public/assets/images/constructor/parts/sunrise/view1/view1_part03_back_strap_leather_11.png',
-      part04: '/public/assets/images/constructor/parts/sunrise/view1/view1_part04_lace_guard_leather_11.png',
-      part05: '/public/assets/images/constructor/parts/sunrise/view1/view1_part05_sole_01.png',
-      part06: '/public/assets/images/constructor/parts/sunrise/view1/view1_part06_laces_polyester_12.png',
-      part07: '/public/assets/images/constructor/parts/sunrise/view1/view1_part07_eyelets_metal_12.png',
-      part08: '/public/assets/images/constructor/parts/sunrise/view1/view1_part08_stitch_11.png',
-      part09: '/public/assets/images/constructor/parts/sunrise/view1/view1_part09_lining_leather_10.png',
-      part10: '/public/assets/images/constructor/parts/sunrise/view1/view1_shade.png',
+      part01: '/assets/images/constructor/parts/sunrise/view1/view1_part01_quarter_leather_11.png',
+      part02: '/assets/images/constructor/parts/sunrise/view1/view1_part02_tongue_toe_leather_11.png',
+      part03: '/assets/images/constructor/parts/sunrise/view1/view1_part03_back_strap_leather_11.png',
+      part04: '/assets/images/constructor/parts/sunrise/view1/view1_part04_lace_guard_leather_11.png',
+      part05: '/assets/images/constructor/parts/sunrise/view1/view1_part05_sole_01.png',
+      part06: '/assets/images/constructor/parts/sunrise/view1/view1_part06_laces_polyester_12.png',
+      part07: '/assets/images/constructor/parts/sunrise/view1/view1_part07_eyelets_metal_12.png',
+      part08: '/assets/images/constructor/parts/sunrise/view1/view1_part08_stitch_11.png',
+      part09: '/assets/images/constructor/parts/sunrise/view1/view1_part09_lining_leather_10.png',
+      part10: '/assets/images/constructor/parts/sunrise/view1/view1_shade.png',
     },
     view2: {
-      part01: '/public/assets/images/constructor/parts/sunrise/view2/view2_part01_quarter_leather_11.png',
-      part02: '/public/assets/images/constructor/parts/sunrise/view2/view2_part02_tongue_toe_leather_11.png',
-      part03: '/public/assets/images/constructor/parts/sunrise/view2/view2_part03_back_strap_leather_11.png',
-      part04: '/public/assets/images/constructor/parts/sunrise/view2/view2_part04_lace_guard_leather_11.png',
-      part05: '/public/assets/images/constructor/parts/sunrise/view2/view2_part05_sole_01.png',
-      part06: '/public/assets/images/constructor/parts/sunrise/view2/view2_part06_laces_polyester_12.png',
-      part07: '/public/assets/images/constructor/parts/sunrise/view2/view2_part07_eyelets_metal_12.png',
-      part08: '/public/assets/images/constructor/parts/sunrise/view2/view2_part08_stitch_11.png',
-      part09: '/public/assets/images/constructor/parts/sunrise/view2/view2_part09_lining_leather_10.png',
-      part10: '/public/assets/images/constructor/parts/sunrise/view2/view2_shade.png',
+      part01: '/assets/images/constructor/parts/sunrise/view2/view2_part01_quarter_leather_11.png',
+      part02: '/assets/images/constructor/parts/sunrise/view2/view2_part02_tongue_toe_leather_11.png',
+      part03: '/assets/images/constructor/parts/sunrise/view2/view2_part03_back_strap_leather_11.png',
+      part04: '/assets/images/constructor/parts/sunrise/view2/view2_part04_lace_guard_leather_11.png',
+      part05: '/assets/images/constructor/parts/sunrise/view2/view2_part05_sole_01.png',
+      part06: '/assets/images/constructor/parts/sunrise/view2/view2_part06_laces_polyester_12.png',
+      part07: '/assets/images/constructor/parts/sunrise/view2/view2_part07_eyelets_metal_12.png',
+      part08: '/assets/images/constructor/parts/sunrise/view2/view2_part08_stitch_11.png',
+      part09: '/assets/images/constructor/parts/sunrise/view2/view2_part09_lining_leather_10.png',
+      part10: '/assets/images/constructor/parts/sunrise/view2/view2_shade.png',
     },
     view3: {
-      part01: '/public/assets/images/constructor/parts/sunrise/view3/view3_part01_quarter_leather_11.png',
-      part02: '/public/assets/images/constructor/parts/sunrise/view3/view3_part02_tongue_toe_leather_11.png',
-      part03: '/public/assets/images/constructor/parts/sunrise/view3/view3_part03_back_strap_leather_11.png',
-      part04: '/public/assets/images/constructor/parts/sunrise/view3/view3_part04_lace_guard_leather_11.png',
-      part05: '/public/assets/images/constructor/parts/sunrise/view3/view3_part05_sole_01.png',
-      part06: '/public/assets/images/constructor/parts/sunrise/view3/view3_part06_laces_polyester_12.png',
-      part07: '/public/assets/images/constructor/parts/sunrise/view3/view3_part07_eyelets_metal_12.png',
-      part08: '/public/assets/images/constructor/parts/sunrise/view3/view3_part08_stitch_11.png',
-      part09: '/public/assets/images/constructor/parts/sunrise/view3/view3_part09_lining_leather_10.png',
+      part01: '/assets/images/constructor/parts/sunrise/view3/view3_part01_quarter_leather_11.png',
+      part02: '/assets/images/constructor/parts/sunrise/view3/view3_part02_tongue_toe_leather_11.png',
+      part03: '/assets/images/constructor/parts/sunrise/view3/view3_part03_back_strap_leather_11.png',
+      part04: '/assets/images/constructor/parts/sunrise/view3/view3_part04_lace_guard_leather_11.png',
+      part05: '/assets/images/constructor/parts/sunrise/view3/view3_part05_sole_01.png',
+      part06: '/assets/images/constructor/parts/sunrise/view3/view3_part06_laces_polyester_12.png',
+      part07: '/assets/images/constructor/parts/sunrise/view3/view3_part07_eyelets_metal_12.png',
+      part08: '/assets/images/constructor/parts/sunrise/view3/view3_part08_stitch_11.png',
+      part09: '/assets/images/constructor/parts/sunrise/view3/view3_part09_lining_leather_10.png',
     },
     view4: {
-      part01: '/public/assets/images/constructor/parts/sunrise/view4/view4_part01_quarter_leather_11.png',
-      part02: '/public/assets/images/constructor/parts/sunrise/view4/view4_part02_tongue_toe_leather_11.png',
-      part03: '/public/assets/images/constructor/parts/sunrise/view4/view4_part03_back_strap_leather_11.png',
-      part04: '/public/assets/images/constructor/parts/sunrise/view4/view4_part04_lace_guard_leather_11.png',
-      part05: '/public/assets/images/constructor/parts/sunrise/view4/view4_part05_sole_01.png',
-      part06: '/public/assets/images/constructor/parts/sunrise/view4/view4_part06_laces_polyester_12.png',
-      part07: '/public/assets/images/constructor/parts/sunrise/view4/view4_part07_eyelets_metal_12.png',
-      part08: '/public/assets/images/constructor/parts/sunrise/view4/view4_part08_stitch_11.png',
-      part09: '/public/assets/images/constructor/parts/sunrise/view4/view4_part09_lining_leather_10.png',
-      part10: '/public/assets/images/constructor/parts/sunrise/view4/view4_shade.png',
+      part01: '/assets/images/constructor/parts/sunrise/view4/view4_part01_quarter_leather_11.png',
+      part02: '/assets/images/constructor/parts/sunrise/view4/view4_part02_tongue_toe_leather_11.png',
+      part03: '/assets/images/constructor/parts/sunrise/view4/view4_part03_back_strap_leather_11.png',
+      part04: '/assets/images/constructor/parts/sunrise/view4/view4_part04_lace_guard_leather_11.png',
+      part05: '/assets/images/constructor/parts/sunrise/view4/view4_part05_sole_01.png',
+      part06: '/assets/images/constructor/parts/sunrise/view4/view4_part06_laces_polyester_12.png',
+      part07: '/assets/images/constructor/parts/sunrise/view4/view4_part07_eyelets_metal_12.png',
+      part08: '/assets/images/constructor/parts/sunrise/view4/view4_part08_stitch_11.png',
+      part09: '/assets/images/constructor/parts/sunrise/view4/view4_part09_lining_leather_10.png',
+      part10: '/assets/images/constructor/parts/sunrise/view4/view4_shade.png',
     },
   },
   yolo: {
     view1: {
-      part01: '/public/assets/images/constructor/parts/yolo/view1/view1_part01_tongue_toe_cotton_01.png',
+      part01: '/assets/images/constructor/parts/yolo/view1/view1_part01_tongue_toe_cotton_01.png',
       part02: '/assets/images/constructor/parts/yolo/view1/view1_part02_detail_1_cotton_01.png',
-      part03: '/public/assets/images/constructor/parts/yolo/view1/view1_part03_detail_2_cotton_01.png',
-      part04: '/public/assets/images/constructor/parts/yolo/view1/view1_part04_laces_polyester_12.png',
-      part05: '/public/assets/images/constructor/parts/yolo/view1/view1_part05_eyelets_metal_12.png',
-      part06: '/public/assets/images/constructor/parts/yolo/view1/view1_part06_back_strap_leather_11.png',
-      part07: '/public/assets/images/constructor/parts/yolo/view1/view1_part07_detail_3_cotton_01.png',
-      part08: '/public/assets/images/constructor/parts/yolo/view1/view1_part08_lining_cotton_03.png',
-      part09: '/public/assets/images/constructor/parts/yolo/view1/view1_part09_detail_4_cotton_01.png',
-      part10: '/public/assets/images/constructor/parts/yolo/view1/view1_part10_details_5_cotton_01.png',
-      part11: '/public/assets/images/constructor/parts/yolo/view1/view1_part11_sole_01.png',
-      part12: '/public/assets/images/constructor/parts/yolo/view1/view1_part12_stitch_11.png',
-      part13: '/public/assets/images/constructor/parts/yolo/view1/view1_podlozhka.png',
-      part14: '/public/assets/images/constructor/parts/yolo/view1/view1_shade.png',
+      part03: '/assets/images/constructor/parts/yolo/view1/view1_part03_detail_2_cotton_01.png',
+      part04: '/assets/images/constructor/parts/yolo/view1/view1_part04_laces_polyester_12.png',
+      part05: '/assets/images/constructor/parts/yolo/view1/view1_part05_eyelets_metal_12.png',
+      part06: '/assets/images/constructor/parts/yolo/view1/view1_part06_back_strap_leather_11.png',
+      part07: '/assets/images/constructor/parts/yolo/view1/view1_part07_detail_3_cotton_01.png',
+      part08: '/assets/images/constructor/parts/yolo/view1/view1_part08_lining_cotton_03.png',
+      part09: '/assets/images/constructor/parts/yolo/view1/view1_part09_detail_4_cotton_01.png',
+      part10: '/assets/images/constructor/parts/yolo/view1/view1_part10_details_5_cotton_01.png',
+      part11: '/assets/images/constructor/parts/yolo/view1/view1_part11_sole_01.png',
+      part12: '/assets/images/constructor/parts/yolo/view1/view1_part12_stitch_11.png',
+      part13: '/assets/images/constructor/parts/yolo/view1/view1_podlozhka.png',
+      part14: '/assets/images/constructor/parts/yolo/view1/view1_shade.png',
     },
     view2: {
-      part01: '/public/assets/images/constructor/parts/yolo/view2/view2_part01_tongue_toe_cotton_01.png',
-      part02: '/public/assets/images/constructor/parts/yolo/view2/view2_part02_detail_1_cotton_01.png',
-      part03: '/public/assets/images/constructor/parts/yolo/view2/view2_part03_detail_2_cotton_01.png',
-      part04: '/public/assets/images/constructor/parts/yolo/view2/view2_part04_laces_polyester_12.png',
-      part05: '/public/assets/images/constructor/parts/yolo/view2/view2_part05_eyelets_metal_12.png',
-      part06: '/public/assets/images/constructor/parts/yolo/view2/view2_part06_back_strap_leather_11.png',
-      part07: '/public/assets/images/constructor/parts/yolo/view2/view2_part07_detail_3_cotton_01.png',
-      part08: '/public/assets/images/constructor/parts/yolo/view2/view2_part08_lining_cotton_03.png',
-      part09: '/public/assets/images/constructor/parts/yolo/view2/view2_part09_detail_4_cotton_01.png',
-      part10: '/public/assets/images/constructor/parts/yolo/view2/view2_part10_details_5_cotton_01.png',
-      part11: '/public/assets/images/constructor/parts/yolo/view2/view2_part11_sole_01.png',
-      part12: '/public/assets/images/constructor/parts/yolo/view2/view2_part12_stitch_11.png',
-      part13: '/public/assets/images/constructor/parts/yolo/view2/view2_podlozhka.png',
-      part14: '/public/assets/images/constructor/parts/yolo/view2/view2_shade.png',
+      part01: '/assets/images/constructor/parts/yolo/view2/view2_part01_tongue_toe_cotton_01.png',
+      part02: '/assets/images/constructor/parts/yolo/view2/view2_part02_detail_1_cotton_01.png',
+      part03: '/assets/images/constructor/parts/yolo/view2/view2_part03_detail_2_cotton_01.png',
+      part04: '/assets/images/constructor/parts/yolo/view2/view2_part04_laces_polyester_12.png',
+      part05: '/assets/images/constructor/parts/yolo/view2/view2_part05_eyelets_metal_12.png',
+      part06: '/assets/images/constructor/parts/yolo/view2/view2_part06_back_strap_leather_11.png',
+      part07: '/assets/images/constructor/parts/yolo/view2/view2_part07_detail_3_cotton_01.png',
+      part08: '/assets/images/constructor/parts/yolo/view2/view2_part08_lining_cotton_03.png',
+      part09: '/assets/images/constructor/parts/yolo/view2/view2_part09_detail_4_cotton_01.png',
+      part10: '/assets/images/constructor/parts/yolo/view2/view2_part10_details_5_cotton_01.png',
+      part11: '/assets/images/constructor/parts/yolo/view2/view2_part11_sole_01.png',
+      part12: '/assets/images/constructor/parts/yolo/view2/view2_part12_stitch_11.png',
+      part13: '/assets/images/constructor/parts/yolo/view2/view2_podlozhka.png',
+      part14: '/assets/images/constructor/parts/yolo/view2/view2_shade.png',
     },
     view3: {
-      part01: '/public/assets/images/constructor/parts/yolo/view3/view3_part01_tongue_toe_cotton_01.png',
-      part02: '/public/assets/images/constructor/parts/yolo/view3/view3_part02_detail_1_cotton_01.png',
-      part03: '/public/assets/images/constructor/parts/yolo/view3/view3_part03_detail_2_cotton_01.png',
-      part04: '/public/assets/images/constructor/parts/yolo/view3/view3_part04_laces_polyester_12.png',
-      part05: '/public/assets/images/constructor/parts/yolo/view3/view3_part05_eyelets_metal_12.png',
-      part06: '/public/assets/images/constructor/parts/yolo/view3/view3_part06_back_strap_leather_11.png',
-      part07: '/public/assets/images/constructor/parts/yolo/view3/view3_part07_detail_3_cotton_01.png',
-      part08: '/public/assets/images/constructor/parts/yolo/view3/view3_part08_lining_cotton_03.png',
-      part09: '/public/assets/images/constructor/parts/yolo/view3/view3_part09_detail_4_cotton_01.png',
-      part10: '/public/assets/images/constructor/parts/yolo/view3/view3_part10_details_5_cotton_01.png',
-      part11: '/public/assets/images/constructor/parts/yolo/view3/view3_part11_sole_01.png',
-      part12: '/public/assets/images/constructor/parts/yolo/view3/view3_podlozhka.png',
+      part01: '/assets/images/constructor/parts/yolo/view3/view3_part01_tongue_toe_cotton_01.png',
+      part02: '/assets/images/constructor/parts/yolo/view3/view3_part02_detail_1_cotton_01.png',
+      part03: '/assets/images/constructor/parts/yolo/view3/view3_part03_detail_2_cotton_01.png',
+      part04: '/assets/images/constructor/parts/yolo/view3/view3_part04_laces_polyester_12.png',
+      part05: '/assets/images/constructor/parts/yolo/view3/view3_part05_eyelets_metal_12.png',
+      part06: '/assets/images/constructor/parts/yolo/view3/view3_part06_back_strap_leather_11.png',
+      part07: '/assets/images/constructor/parts/yolo/view3/view3_part07_detail_3_cotton_01.png',
+      part08: '/assets/images/constructor/parts/yolo/view3/view3_part08_lining_cotton_03.png',
+      part09: '/assets/images/constructor/parts/yolo/view3/view3_part09_detail_4_cotton_01.png',
+      part10: '/assets/images/constructor/parts/yolo/view3/view3_part10_details_5_cotton_01.png',
+      part11: '/assets/images/constructor/parts/yolo/view3/view3_part11_sole_01.png',
+      part12: '/assets/images/constructor/parts/yolo/view3/view3_podlozhka.png',
     },
     view4: {
-      part01: '/public/assets/images/constructor/parts/yolo/view4/view4_part01_tongue_toe_cotton_01.png',
-      part02: '/public/assets/images/constructor/parts/yolo/view4/view4_part02_detail_1_cotton_01.png',
-      part03: '/public/assets/images/constructor/parts/yolo/view4/view4_part03_detail_2_cotton_01.png',
-      part04: '/public/assets/images/constructor/parts/yolo/view4/view4_part04_laces_polyester_12.png',
-      part05: '/public/assets/images/constructor/parts/yolo/view4/view4_part05_eyelets_metal_12.png',
-      part06: '/public/assets/images/constructor/parts/yolo/view4/view4_part06_back_strap_leather_11.png',
-      part07: '/public/assets/images/constructor/parts/yolo/view4/view4_part07_detail_3_cotton_01.png',
-      part08: '/public/assets/images/constructor/parts/yolo/view4/view4_part08_lining_cotton_03.png',
-      part09: '/public/assets/images/constructor/parts/yolo/view4/view4_part09_detail_4_cotton_01.png',
-      part10: '/public/assets/images/constructor/parts/yolo/view4/view4_part10_details_5_cotton_01.png',
-      part11: '/public/assets/images/constructor/parts/yolo/view4/view4_part11_sole_01.png',
-      part12: '/public/assets/images/constructor/parts/yolo/view4/view4_part12_stitch_11.png',
-      part13: '/public/assets/images/constructor/parts/yolo/view4/view4_podlozhka.png',
-      part14: '/public/assets/images/constructor/parts/yolo/view4/view4_shade.png',
+      part01: '/assets/images/constructor/parts/yolo/view4/view4_part01_tongue_toe_cotton_01.png',
+      part02: '/assets/images/constructor/parts/yolo/view4/view4_part02_detail_1_cotton_01.png',
+      part03: '/assets/images/constructor/parts/yolo/view4/view4_part03_detail_2_cotton_01.png',
+      part04: '/assets/images/constructor/parts/yolo/view4/view4_part04_laces_polyester_12.png',
+      part05: '/assets/images/constructor/parts/yolo/view4/view4_part05_eyelets_metal_12.png',
+      part06: '/assets/images/constructor/parts/yolo/view4/view4_part06_back_strap_leather_11.png',
+      part07: '/assets/images/constructor/parts/yolo/view4/view4_part07_detail_3_cotton_01.png',
+      part08: '/assets/images/constructor/parts/yolo/view4/view4_part08_lining_cotton_03.png',
+      part09: '/assets/images/constructor/parts/yolo/view4/view4_part09_detail_4_cotton_01.png',
+      part10: '/assets/images/constructor/parts/yolo/view4/view4_part10_details_5_cotton_01.png',
+      part11: '/assets/images/constructor/parts/yolo/view4/view4_part11_sole_01.png',
+      part12: '/assets/images/constructor/parts/yolo/view4/view4_part12_stitch_11.png',
+      part13: '/assets/images/constructor/parts/yolo/view4/view4_podlozhka.png',
+      part14: '/assets/images/constructor/parts/yolo/view4/view4_shade.png',
     },
   },
 };

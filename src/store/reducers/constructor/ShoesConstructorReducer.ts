@@ -17,25 +17,25 @@ const shoesConstructorSlice = createSlice({
       if (validView1Numbers.includes(selectedDetail)) {
         state[selectedModel].view1[
           selectedDetail
-        ] = `/public/assets/images/constructor/parts/${selectedModel}/view1/view1_${selectedColor.img}`;
+        ] = `/assets/images/constructor/parts/${selectedModel}/view1/view1_${selectedColor.img}`;
       }
 
       if (validView2Numbers.includes(selectedDetail)) {
         state[selectedModel].view2[
           selectedDetail
-        ] = `/public/assets/images/constructor/parts/${selectedModel}/view2/view2_${selectedColor.img}`;
+        ] = `/assets/images/constructor/parts/${selectedModel}/view2/view2_${selectedColor.img}`;
       }
 
       if (validView3Numbers.includes(selectedDetail)) {
         state[selectedModel].view3[
           selectedDetail
-        ] = `/public/assets/images/constructor/parts/${selectedModel}/view3/view3_${selectedColor.img}`;
+        ] = `/assets/images/constructor/parts/${selectedModel}/view3/view3_${selectedColor.img}`;
       }
 
       if (validView4Numbers.includes(selectedDetail)) {
         state[selectedModel].view4[
           selectedDetail
-        ] = `/public/assets/images/constructor/parts/${selectedModel}/view4/view4_${selectedColor.img}`;
+        ] = `/assets/images/constructor/parts/${selectedModel}/view4/view4_${selectedColor.img}`;
       }
     },
     resetDesign: () => initialState,
