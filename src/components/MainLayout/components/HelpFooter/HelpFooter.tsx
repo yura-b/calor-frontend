@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import { helpLinks, privacyLinks } from '../../helpers/data';
 import styles from '@/styles/Styles.module.scss';
 import atIcon from '@/assets/images/atIcon.svg';
@@ -38,6 +38,31 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   };
   const { roles, access_token } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const updateHeaderHeight = () => {
+    const headerElement = document.getElementById('header');
+    if (headerElement) {
+      setHeaderHeight(headerElement.offsetHeight);
+    }
+  };
+
+  useEffect(() => {
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight);
+    };
+  }, []);
+  const scrollToElement = (el) => {
+    setTimeout(() => {
+      const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+      const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight : headerHeight + 110;
+      window.scrollTo({
+        top: yCoordinate - yOffset,
+        behavior: 'smooth',
+      });
+    }, 200);
+  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -49,9 +74,23 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
     <>
       {color !== 'white' ? (
         <>
-          <h1 className={`${styles.subtitle} text-${color}`}>{title}</h1>
+          <Link
+            to={paths.helpPage}
+            className={`${styles.subtitle} ${
+              paths.helpPage === window.location.pathname ? 'text-mint' : `text-${color} lg:text-custom-turquoise`
+            }
+          } lg:text-sm lg:font-extrabold`}
+            onClick={scrollToTop}
+          >
+            {title}
+          </Link>
           {helpLinks.map((link, i) => (
-            <Link key={i} to={link.path} className={'flex text-base hover:text-mint focus:outline-none py-2'}>
+            <Link
+              key={i}
+              to={link.path}
+              className={'flex text-base hover:text-mint focus:outline-none py-2'}
+              scroll={scrollToElement}
+            >
               {link.title}
             </Link>
           ))}
@@ -59,10 +98,23 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
       ) : (
         <div className="border-b border-white lg:border-none lg:py-0">
           <div className="flex justify-between items-center" onClick={toggleAccordion}>
-            <h1 className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}>
+            <Link
+              to={paths.helpPage}
+              className={`${styles.subtitle} ${
+                paths.helpPage === window.location.pathname ? 'text-mint' : `text-${color} lg:text-custom-turquoise`
+              }
+          } lg:text-sm lg:font-extrabold`}
+              onClick={scrollToTop}
+            >
               {title}
+            </Link>
+            <h1
+              className={`text-[32px] font-extralight ${
+                paths.helpPage === window.location.pathname ? 'text-mint' : 'text-white'
+              } lg:hidden`}
+            >
+              {isAccordionOpen ? '-' : '+'}
             </h1>
-            <h1 className={`text-[32px] font-extralight text-${color}  lg:hidden`}>{isAccordionOpen ? '-' : '+'}</h1>
           </div>
           <AnimatePresence>
             {isAccordionOpen && (

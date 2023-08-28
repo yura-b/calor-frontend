@@ -86,23 +86,23 @@ export const menuItems = [
 export const helpLinks = [
   {
     title: 'Video Guides',
-    path: '#',
+    path: paths.helpPage + '#helpVideoGuides',
   },
   {
     title: 'Size Guide',
-    path: '#',
+    path: paths.helpPage + '#sizeGuide',
   },
   {
     title: 'FAQ',
-    path: '#',
+    path: paths.helpPage + '#FAQ',
   },
   {
     title: 'Shipping',
-    path: '#',
+    path: paths.helpPage + '#shipping',
   },
   {
     title: 'Returns & Exchange',
-    path: '#',
+    path: paths.helpPage + '#returns&Exchange',
   },
 ];
 export const aboutLinks = [

@@ -19,4 +19,5 @@ export const paths = {
   changeUserPassword: '/account/change_password/:id',
   reviews: '/account/reviews',
   myOrder: '/my_order',
+  helpPage: '/help',
 };
