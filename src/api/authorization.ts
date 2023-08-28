@@ -16,7 +16,7 @@ export const googleLogin = (credentials: string) => {
 };
 
 export const sendEmailForReset = (email: string) => {
-  return axios.get(`${backendUrl}/user/reset/${email}`);
+  return axios.post(`${backendUrl}/user/reset/`, {email});
 };
 export const resetPassword = (id: string, password: string) => {
   return axios.patch(`${backendUrl}/user/reset`, { id, password });

@@ -3,7 +3,7 @@ import {ShippingInfoDto} from '@/api/dto/orders.dto.ts';
 import {House} from '@phosphor-icons/react';
 
 interface IProps {
-    shippingInfo: ShippingInfoDto | null
+    shippingInfo: ShippingInfoDto | null | undefined
 }
 
 const DefaultShippingInfo: FC<IProps> = ({shippingInfo}) => {

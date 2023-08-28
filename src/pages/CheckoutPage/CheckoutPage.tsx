@@ -16,6 +16,7 @@ const CheckoutPage = () => {
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
 
+
   useEffect(() => {
     if (!data) return;
     dispatch(loading());
@@ -33,11 +34,6 @@ const CheckoutPage = () => {
         {
           product: '64d634cc66fe8aeb227974dc',
           count: 1,
-          details: {},
-        },
-        {
-          product: '64e32737b9175349bcf4366c',
-          count: 2,
           details: {},
         },
       ],
