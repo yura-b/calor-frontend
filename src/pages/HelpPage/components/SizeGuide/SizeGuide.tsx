@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
-import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
 import VideoFrame from '@components/VideoFrame';
 import AccordionSection from '@components/AccordionSection';
+import SizeTable from '../SizeTable'
 
 const SizeGuide: React.FC = () => {
   const mobileBreakpoint = 1024;
@@ -19,7 +19,12 @@ const SizeGuide: React.FC = () => {
   const toggleTShirtAccordion = () => {
     setIsTShirtAccordionOpen((prev) => !prev);
   };
-
+  const data = [
+    { column1: 'Shoe', column2: 'waiting for data', column3: 'waiting for data' },
+    { column1: 'T-Shirt ', column2: 'waiting for data', column3: 'waiting for data' },
+    { column1: 'Shoe', column2: 'waiting for data', column3: 'waiting for data' },
+    { column1: 'T-Shirt ', column2: 'waiting for data', column3: 'waiting for data' },
+  ];
   return (
     <motion.div
       {...fadeAnimation}
@@ -42,17 +47,11 @@ const SizeGuide: React.FC = () => {
               Description Description Description Description
             </p>
           </div>
-          <img
-            src={shoeModel1}
-            className="object-contain object-cover w-[240px] sm:w-[260px] h-auto mx-auto lg:w-[180px]"
-          />
+          <SizeTable data={data} />
         </AccordionSection>
 
         <AccordionSection title="T-Shirt" isOpen={isTShirtAccordionOpen} toggleAccordion={toggleTShirtAccordion}>
-          <img
-            src={shoeModel1}
-            className="object-contain object-cover w-[240px] sm:w-[260px] h-auto mx-auto lg:w-[180px]"
-          />
+        <SizeTable data={data} />
         </AccordionSection>
       </div>
     </motion.div>
