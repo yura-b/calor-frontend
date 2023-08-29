@@ -165,7 +165,7 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
             </Link>
           )}
           <Link
-            to="#"
+            to="https://calorfranchise.com/"
             className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3 border-b border-white`}
           >
             Be Our Partner

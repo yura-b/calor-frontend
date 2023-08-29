@@ -10,7 +10,7 @@ interface Props {
 
 const VideoFrame: React.FC<Props> = ({ src, title, width = '100%', className }) => {
   const isLargeScreen = useMediaQuery('(min-width: 1024px)');
-  const height = isLargeScreen ? '450' : '250';
+  const height = isLargeScreen ? '400' : '300';
   return (
     <iframe
       width={width}
@@ -19,7 +19,7 @@ const VideoFrame: React.FC<Props> = ({ src, title, width = '100%', className }) 
       title={title}
       frameBorder="0"
       allowFullScreen
-      className={`${className} w-full sm:max-w-[60vw] m-auto`}
+      className={`${className} w-full  m-auto`}
     />
   );
 };

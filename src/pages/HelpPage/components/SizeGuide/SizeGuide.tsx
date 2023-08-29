@@ -13,21 +13,21 @@ const SizeGuide: React.FC = () => {
   const [isTShirtAccordionOpen, setIsTShirtAccordionOpen] = useState(false);
 
   const toggleAccordion = () => {
-    if (window.innerWidth < mobileBreakpoint) {
-      setIsAccordionOpen((prev) => !prev);
-    }
+    setIsAccordionOpen((prev) => !prev);
   };
 
   const toggleTShirtAccordion = () => {
-    if (window.innerWidth < mobileBreakpoint) {
-      setIsTShirtAccordionOpen((prev) => !prev);
-    }
+    setIsTShirtAccordionOpen((prev) => !prev);
   };
 
   return (
-    <motion.div {...fadeAnimation} className={`${styles.container}`} id="sizeGuide">
+    <motion.div
+      {...fadeAnimation}
+      className={`${window.innerWidth < mobileBreakpoint ? styles.container : ''}`}
+      id="sizeGuide"
+    >
       <div className="lg:flex flex-col items-center justify-between mb-2 lg:mb-6">
-        <h1 className={`${styles.header1} text-center`}>Size Guide</h1>
+        <h1 className={`${styles.header1} text-center border-b border-gray w-full`}>Size Guide</h1>
 
         <AccordionSection title="Shoe" isOpen={isAccordionOpen} toggleAccordion={toggleAccordion}>
           <VideoFrame

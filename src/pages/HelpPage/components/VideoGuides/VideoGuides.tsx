@@ -18,6 +18,10 @@ const VideoGuides: React.FC = () => {
       src: 'https://drive.google.com/file/d/1l4VfItYOQO7xZxqJX93nmfNz2VT9ONXU/preview',
       title: 'Video Guide 3',
     },
+    {
+      src: 'https://drive.google.com/file/d/1l4VfItYOQO7xZxqJX93nmfNz2VT9ONXU/preview',
+      title: 'Video Guide 3',
+    },
   ];
   const mobileBreakpoint = 1024;
   return (
@@ -28,9 +32,9 @@ const VideoGuides: React.FC = () => {
         } lg:flex flex-col items-center  mb-2 lg:mb-6 lg:py-0`}
       >
         <h1 className={`${styles.header1} text-center pt-4 pb-2 lg:pt-0 `}>Video Guides</h1>
-        <div className="text-center w-full">
+        <div className="lg:flex gap-6 text-center w-full flex-wrap">
           {videoGuides.map((video, i) => (
-            <div className="py-2" key={i}>
+            <div className="py-2 basis-[48%]" key={i}>
               <VideoFrame src={video.src} title="Video Guide" className="xl:max-w-[50vw]" />
               <p className={`${styles.subtitle} py-2`}>{video.title}</p>
             </div>

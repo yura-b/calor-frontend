@@ -13,25 +13,27 @@ interface AccordionSectionProps {
 
 const AccordionSection: React.FC<AccordionSectionProps> = ({ title, isOpen, toggleAccordion, children }) => {
   return (
-    <div className={'border-b border-white lg:border-none lg:py-0'}>
-      <motion.div className="flex justify-between items-center py-2" onClick={toggleAccordion}>
-        <h1 className={`${styles.subtitle}`}>{title}</h1>
+    <div className={'border-b border-white lg:border-none lg:py-0 w-full'}>
+      <motion.div
+        className="flex justify-between items-center py-2 w-full border-b border-grayLight"
+        onClick={toggleAccordion}
+      >
+        <h1 className={`${styles.body2} font-semibold`}>{title}</h1>
         <motion.img
           src={down}
           alt=""
-          className={'ml-4 xl:ml-1 lg:hidden'}
+          className={'ml-4 xl:ml-1 '}
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.4 }}
         />
       </motion.div>
       <AnimatePresence>
         {isOpen && (
-          <motion.div {...collapseAnimation} className="lg:hidden">
+          <motion.div {...collapseAnimation} className="py-4">
             {children}
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="hidden lg:block mt-1">{children}</div>
     </div>
   );
 };
