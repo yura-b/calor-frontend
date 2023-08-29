@@ -10,11 +10,12 @@ export interface CreateOrderDto {
 
   phone_number: string;
 
-  fistName: string;
+  firstName: string;
 
   secondName: string;
 
   shippingInfo: ShippingInfoDto;
+
   purchases: Purchases[];
 }
 
@@ -40,6 +41,8 @@ export interface ShippingInfoDto {
 
   ASB: string;
 
+  country: string;
+
   city: string;
 
   state: string;
@@ -49,4 +52,6 @@ export interface ShippingInfoDto {
   save: boolean;
 
   user_id?: string;
+
+  receiverPhoneNumber: string;
 }

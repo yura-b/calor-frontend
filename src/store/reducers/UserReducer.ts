@@ -1,15 +1,18 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { Basket } from '@/constants/interfaces/basket.ts';
+import { ShippingInfoDto } from '@/api/dto/orders.dto';
 
 export interface IUser {
   access_token: string | null;
   firstName: string;
   secondName: string;
   phoneNumber: string;
+  email: string;
   userId: string;
   roles: Role[] | null;
   basket: Basket[] | null;
+  shippingInfo: string | null;
 }
 
 export const initialState: IUser = {
@@ -18,8 +21,10 @@ export const initialState: IUser = {
   firstName: '',
   secondName: '',
   userId: '',
+  email: '',
   roles: localStorage.getItem('roles')?.split(',') as Role[],
   basket: null,
+  shippingInfo: null,
 };
 
 export interface ISetUserData extends IUser {
@@ -40,6 +45,8 @@ export const UserSlice = createSlice({
         roles,
         rememberMe = true,
         basket,
+        email,
+        shippingInfo,
       } = action.payload;
       if (access_token) state.access_token = access_token;
 
@@ -49,6 +56,8 @@ export const UserSlice = createSlice({
       state.userId = userId;
       state.roles = roles;
       state.basket = basket;
+      state.email = email;
+      state.shippingInfo = shippingInfo;
 
       if (access_token && rememberMe) localStorage.setItem('access_token', access_token);
       if (access_token && rememberMe && roles) localStorage.setItem('roles', roles?.join(','));
@@ -64,6 +73,7 @@ export const UserSlice = createSlice({
       state.firstName = initialState.firstName;
       state.secondName = initialState.secondName;
       state.basket = initialState.basket;
+      (state.email = initialState.email), (state.shippingInfo = initialState.shippingInfo);
     },
   },
 });

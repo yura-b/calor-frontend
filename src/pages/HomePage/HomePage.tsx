@@ -9,34 +9,31 @@ import HomeCalorByYou from './components/HomeCalorByYou';
 import Purchase from './components/Purchase';
 import CompleteLook from './components/CompleteLook';
 import MyOrder from '@/components/MyOrder';
+import { useQuery } from 'react-query';
+import { getPageSection } from '@/api/manager/pages';
 
 const HomePage: React.FC = (): React.ReactElement => {
-  const [myOrderOpen, setMyOrderOpen] = useState(false);
+  const { data } = useQuery('getPageSection', () => getPageSection());
 
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    if (queryParams.get('my_orders') === 'true') {
-      setMyOrderOpen(true);
-    }
-  }, []);
+  const filteredPagesHome = data?.data.filter((page) => page.page === 'Home Page');
+  const benefits = filteredPagesHome?.filter((section) => section?.section === 'Benefits');
+  const visions = filteredPagesHome?.filter((section) => section?.section === 'Your Vision, Our Craftsmanship')[0]
+    .value;
+  const perfectFit = filteredPagesHome?.filter((section) => section?.section === 'Perfect Fit')[0];
 
-  const closeMyOrder = () => {
-    setMyOrderOpen(false);
-  };
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.homePage} />
       <MainLayout>
-        <HomeMainContent />
+        <HomeMainContent visions={visions} />
         <HomeGoodsContent />
-        <div className="w-full bg-custom-turquoise lg:hidden">
+        <div className="w-f`ull bg-custom-turquoise lg:hidden">
           <HomeShowRoom backgroundButton="gray" showRoomTitleColor="gray" titleColor="gray" bodyColor="gray" />
         </div>
         <CompleteLook />
-        <HomeCalorByYou />
+        <HomeCalorByYou benefits={benefits} perfectFit={perfectFit} />
         <Purchase />
       </MainLayout>
-      <MyOrder isOpen={myOrderOpen} onClose={closeMyOrder} />
     </div>
   );
 };

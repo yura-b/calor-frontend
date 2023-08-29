@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import { helpLinks, privacyLinks } from '../../helpers/data';
 import styles from '@/styles/Styles.module.scss';
 import atIcon from '@/assets/images/atIcon.svg';
@@ -9,14 +9,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { collapseAnimation } from '@styles/Animations';
 import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { Role } from '@/constants/enums/role.enum.ts';
+import { paths } from '@/routes/paths';
 
 interface Props {
   title: string;
   color?: 'gray' | 'white';
-  openMyOrder?: () => void;
 }
 
-const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.ReactElement => {
+const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
   const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
   const phone = filteredPagesFooter?.find((section) => section?.section === 'Phone Number').value;
@@ -26,16 +28,69 @@ const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.React
   const address1 = address?.substring(0, commaIndex);
   const address2 = address?.substring(commaIndex + 1).trim();
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+
+  const mobileBreakpoint = 1024;
+
   const toggleAccordion = () => {
-    setIsAccordionOpen((prev) => !prev);
+    if (window.innerWidth < mobileBreakpoint) {
+      setIsAccordionOpen((prev) => !prev);
+    }
+  };
+  const { roles, access_token } = useAppSelector((state) => state.user);
+  const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const updateHeaderHeight = () => {
+    const headerElement = document.getElementById('header');
+    if (headerElement) {
+      setHeaderHeight(headerElement.offsetHeight);
+    }
+  };
+
+  useEffect(() => {
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight);
+    };
+  }, []);
+  const scrollToElement = (el) => {
+    setTimeout(() => {
+      const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+      const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight : headerHeight + 110;
+      window.scrollTo({
+        top: yCoordinate - yOffset,
+        behavior: 'smooth',
+      });
+    }, 200);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
   return (
     <>
       {color !== 'white' ? (
         <>
-          <h1 className={`${styles.subtitle} text-${color}`}>{title}</h1>
+          <Link
+            to={paths.helpPage}
+            className={`${styles.subtitle} ${
+              paths.helpPage === window.location.pathname ? 'text-mint' : `text-${color} lg:text-custom-turquoise`
+            }
+          } lg:text-sm lg:font-extrabold`}
+            onClick={scrollToTop}
+          >
+            {title}
+          </Link>
           {helpLinks.map((link, i) => (
-            <Link key={i} to={link.path} className={'flex text-base hover:text-mint focus:outline-none py-2'}>
+            <Link
+              key={i}
+              to={link.path}
+              className={'flex text-base hover:text-mint focus:outline-none py-2'}
+              scroll={scrollToElement}
+            >
               {link.title}
             </Link>
           ))}
@@ -43,10 +98,23 @@ const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.React
       ) : (
         <div className="border-b border-white lg:border-none lg:py-0">
           <div className="flex justify-between items-center" onClick={toggleAccordion}>
-            <h1 className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}>
+            <Link
+              to={paths.helpPage}
+              className={`${styles.subtitle} ${
+                paths.helpPage === window.location.pathname ? 'text-mint' : `text-${color} lg:text-custom-turquoise`
+              }
+          } lg:text-sm lg:font-extrabold`}
+              onClick={scrollToTop}
+            >
               {title}
+            </Link>
+            <h1
+              className={`text-[32px] font-extralight ${
+                paths.helpPage === window.location.pathname ? 'text-mint' : 'text-white'
+              } lg:hidden`}
+            >
+              {isAccordionOpen ? '-' : '+'}
             </h1>
-            <h1 className={`text-[32px] font-extralight text-${color}  lg:hidden`}>{isAccordionOpen ? '-' : '+'}</h1>
           </div>
           <AnimatePresence>
             {isAccordionOpen && (
@@ -78,15 +146,26 @@ const HelpFooter: React.FC<Props> = ({ title, color, openMyOrder }): React.React
       )}
       {color == 'white' && (
         <div className="lg:hidden flex flex-col">
+          {isRegisteredUser && (
+            <Link
+              to={paths.myOrders}
+              className={`${styles.subtitle}  text-white lg:text-custom-turquoise lg:text-sm lg:font-extrabold py-3 border-b border-white`}
+              onClick={scrollToTop}
+            >
+              Check Order Status
+            </Link>
+          )}
+          {!isRegisteredUser && (
+            <Link
+              to={paths.myOrder}
+              className={`${styles.subtitle} text-white lg:text-custom-turquoise lg:text-sm lg:font-extrabold py-3 border-b border-white`}
+              onClick={scrollToTop}
+            >
+              Check Order Status
+            </Link>
+          )}
           <Link
-            to="#"
-            onClick={openMyOrder}
-            className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold border-b border-white py-3`}
-          >
-            Check Order Status
-          </Link>
-          <Link
-            to="#"
+            to="https://calorfranchise.com/"
             className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3 border-b border-white`}
           >
             Be Our Partner

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, createTheme, TextField, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 interface IProps {
   defaultValue: string;
   setValue: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   disabledField: boolean;
 }
+
 const theme = createTheme({
   palette: {
     primary: {

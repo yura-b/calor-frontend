@@ -6,6 +6,7 @@ import userReducer from '@/store/reducers/UserReducer.ts';
 import registrationReducer from '@/store/reducers/RegistrationReducer.ts';
 import dialogReducer from '@/store/reducers/DialogReducer.ts';
 import pageManagerReducer from '@/store/admin/PageManagerReducer.ts';
+import checkoutReducer from '@/store/reducers/CheckoutReducer.ts';
 import selectedShoePartsReducer from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import shoesConstructorReducer from '@/store/reducers/constructor/ShoesConstructorReducer';
 
@@ -19,6 +20,7 @@ export const store = configureStore({
     language: languageReducer,
     status: statusReducer,
     registration: registrationReducer,
+    checkout: checkoutReducer,
     dialog: dialogReducer,
     pageManager: pageManagerReducer,
     selectedShoeParts: selectedShoePartsReducer,

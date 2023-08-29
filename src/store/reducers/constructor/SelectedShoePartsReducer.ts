@@ -26,11 +26,7 @@ const selectedShoePartsSlice = createSlice({
   },
 });
 
-export const {
-  setSelectedDetail,
-  setSelectedMaterial,
-  setSelectedColor,
-  setSelectedModel
-} = selectedShoePartsSlice.actions;
+export const { setSelectedDetail, setSelectedMaterial, setSelectedColor, setSelectedModel } =
+  selectedShoePartsSlice.actions;
 
 export default selectedShoePartsSlice.reducer;

@@ -89,17 +89,18 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
   };
 
   return (
-    <Paper sx={{ width: '99%',paddingLeft: '30px', height: '100%', overflow: 'hidden', marginTop:'30px'}}>
+    <Paper sx={{ width: '99%', paddingLeft: '30px', height: '100%', overflow: 'hidden', marginTop: '30px' }}>
       <TableContainer sx={{ maxHeight: '100%' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
                 <TableCell
-                    sx={{ background: '#DDE1E6', fontWeight: 'bold' }}
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}>
+                  sx={{ background: '#DDE1E6', fontWeight: 'bold' }}
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
                   {column.label}
                 </TableCell>
               ))}
