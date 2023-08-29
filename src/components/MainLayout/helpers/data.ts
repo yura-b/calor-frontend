@@ -1,8 +1,7 @@
 import { paths } from '@routes/paths';
 import privacy from '../../../../public/Privacy Policy_CALOR.pdf';
 import conditions from './../../../../public/Terms and Conditions_CALOR.pdf';
-import cookie from '../../../../public/Use of Cookies_CALOR.pdf'
-
+import cookie from '../../../../public/Use of Cookies_CALOR.pdf';
 
 export const menuItems = [
   {

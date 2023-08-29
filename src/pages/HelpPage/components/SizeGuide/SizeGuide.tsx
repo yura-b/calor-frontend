@@ -4,7 +4,7 @@ import { fadeAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
 import VideoFrame from '@components/VideoFrame';
 import AccordionSection from '@components/AccordionSection';
-import SizeTable from '../SizeTable'
+import SizeTable from '../SizeTable';
 
 const SizeGuide: React.FC = () => {
   const mobileBreakpoint = 1024;
@@ -51,7 +51,7 @@ const SizeGuide: React.FC = () => {
         </AccordionSection>
 
         <AccordionSection title="T-Shirt" isOpen={isTShirtAccordionOpen} toggleAccordion={toggleTShirtAccordion}>
-        <SizeTable data={data} />
+          <SizeTable data={data} />
         </AccordionSection>
       </div>
     </motion.div>
