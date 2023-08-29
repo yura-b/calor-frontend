@@ -45,7 +45,7 @@ const OrderPage = () => {
   }
   if (!id || !access_token || !orderData) return <></>;
   const { email, phoneNumber, status } = orderData;
-  const [firstName, secondName] = orderData.username.split(' ');
+  const {firstName, secondName} = orderData
   if (typeof phoneNumber === 'undefined' ) return
 
 
