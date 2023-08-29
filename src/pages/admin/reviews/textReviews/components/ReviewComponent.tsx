@@ -28,7 +28,7 @@ const ReviewComponent: React.FC<IProps> = ({
   user_id,
   status,
   date,
-    firstName,
+  firstName,
   secondName,
   experience,
   rating,
@@ -70,7 +70,7 @@ const ReviewComponent: React.FC<IProps> = ({
       }
     });
   };
-
+  console.log(firstName)
   return (
     <div className={'flex flex-col gap-5 w-full mb-6'}>
       <div className={'flex flex-row gap-5 items-baseline'}>

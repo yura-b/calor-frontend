@@ -21,7 +21,9 @@ export interface IOrder {
 
     email: string;
 
-    username: string;
+    firstName: string;
+
+    secondName: string;
 
     phoneNumber: string;
 

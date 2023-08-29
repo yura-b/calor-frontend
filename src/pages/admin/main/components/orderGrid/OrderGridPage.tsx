@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from '@/store/hooks/hooks.ts';
 import {useQuery} from 'react-query';
 import {getOrders} from '@/api/orders.ts';
 import {useCleanUserDataAndNavigateToLogin} from '@/hooks/CleanUserData.ts';
-import OrdersTable from '@pages/admin/main/components/OrdersGrid.tsx';
+import OrdersTable from '@pages/admin/main/components/orderGrid/OrdersGrid.tsx';
 import {loading, loadingFinished} from '@/store/reducers/StatusReducer.ts';
 import {IOrder, OrderStatus} from '@/constants/interfaces/order.ts';
 import OrderHistoryGrid from '@pages/admin/main/components/orderGrid/OrderHistoryGrid.tsx';

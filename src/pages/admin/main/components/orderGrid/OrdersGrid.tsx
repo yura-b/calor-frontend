@@ -104,7 +104,7 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
                     <p className={'underline font-bold cursor-pointer'}>{order._id}</p>
                   </TableCell>
                   <TableCell>
-                    <p>{order.username}</p>
+                    <p>{order.firstName + ' ' + order.secondName}</p>
                   </TableCell>
                   <TableCell align={'center'}>
                     <p>{DateFormatter(order.date)}</p>
