@@ -3,11 +3,9 @@ import {useAppSelector} from '@/store/hooks/hooks.ts';
 import PaymentButtons from '@components/payment/PaymentButtons.tsx';
 
 const Payment = () => {
-    const {order_ids, numberOfItems, totalPrice} = useAppSelector(state => state.checkout)
+    const {order_ids, numberOfItems, totalPrice, shippingPrice, tax} = useAppSelector(state => state.checkout)
 
      if (!order_ids) return
-
-
 
 
     return (
@@ -18,10 +16,10 @@ const Payment = () => {
                 <p>{totalPrice}$</p>
 
                 <p>Order Delivery</p>
-                <p>$$$</p>
+                <p>{shippingPrice}$</p>
 
                 <p>Taxes</p>
-                <p>$$$</p>
+                <p>{tax}$</p>
             </div>
 
             <p className={'font-bold'}>Payment Method</p>

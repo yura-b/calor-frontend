@@ -9,14 +9,18 @@ export enum CheckoutSteps {
 interface IState extends IContactInfo {
     step: CheckoutSteps,
     order_ids: string[] | null,
+    numberOfItems: number,
+    shippingPrice: number,
+    tax: number,
     totalPrice: number
-    numberOfItems: number
 }
 
 interface createdOrder {
     order_ids: string[],
     totalPrice: number
-    numberOfItems: number
+    numberOfItems: number,
+    shippingPrice: number,
+    tax: number
 }
 
 export const initialState: IState = {
@@ -27,7 +31,9 @@ export const initialState: IState = {
     email: '',
     order_ids: null,
     totalPrice: 0,
-    numberOfItems: 0
+    numberOfItems: 0,
+    shippingPrice: 0,
+    tax: 0
 };
 
 interface IContactInfo {
@@ -55,6 +61,8 @@ export const CheckoutSlice = createSlice({
             state.order_ids = action.payload.order_ids
             state.totalPrice = action.payload.totalPrice
             state.numberOfItems = action.payload.numberOfItems
+            state.shippingPrice = action.payload.shippingPrice,
+                state.tax = action.payload.tax
         }
         // saveShippingInfo(State: Draft<IState>, action: PayloadAction<ShippingInfoDto>) {
         //     const {
