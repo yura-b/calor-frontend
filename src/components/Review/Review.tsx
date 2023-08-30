@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
 import Rating from '@mui/material/Rating';
@@ -16,21 +16,22 @@ import { useAppSelector } from '@/store/hooks/hooks';
 import { useMutation } from 'react-query';
 import { uploadEventPhoto } from '@/api/manager/pages';
 import { validationSchemaForCreateReview } from '@/helpers/validation/formValidation';
+import { getProductById } from '@/api/products';
+import { ProductsDto } from '@/api/dto/products.dto';
 
 interface Props {
   title: string;
+  productId?: string | null;
   review?: PostReviewDto | null;
   onClose: () => void;
   onSuccess: () => void;
 }
 
-const Review: React.FC<Props> = ({ onClose, onSuccess, title, review }): React.ReactElement => {
-  console.log(review, 'review');
-  const {
-    mutate: addReview,
-    isLoading,
-    error,
-  } = useMutation(createReview, {
+const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId }): React.ReactElement => {
+  const { userId } = useAppSelector((state) => state.user);
+  const [product, setProduct] = useState<ProductsDto | null>(null);
+
+  const addUserReview = useMutation((newReview: PostReviewDto) => createReview(newReview), {
     onSuccess: () => {
       onClose();
       onSuccess();
@@ -40,22 +41,27 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review }): React.R
     },
   });
 
-  const { userId } = useAppSelector((state) => state.user);
+  useEffect(() => {
+    if (productId) {
+      getProductById(productId).then((res) => {
+        if (res) {
+          setProduct(res.data);
+        }
+      });
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
-      product_id: review?.product_id || '',
+      product_id: productId || review?.product_id || '',
       user_id: review?.user_id || userId,
-      rating: review?.rating || 0,
+      rating: product?.rating || review?.rating || 0,
       experience: review?.experience || '',
       email: review?.email || '',
       photo: '',
       firstName: review?.firstName || '',
       secondName: review?.secondName || '',
-      // productName: 'Sunrise',
-      // category: 'Category',
-      // price: 120,
-    } as Omit<PostReviewDto, 'user_id'>,
+    } as Omit<PostReviewDto, 'status' | 'date' | '_id' | 'price' | 'category' | 'productName'>,
     validationSchema: validationSchemaForCreateReview,
     onSubmit: (values) => {
       if (!values.experience.length) {
@@ -63,9 +69,9 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review }): React.R
       } else if (!values.rating) {
         formik.setFieldError('rating', 'Rating is required');
       } else if (Boolean(review) && review?._id) {
-        editReview(review?._id, values);
+        addUserReview.mutate(values);
       } else {
-        addReview(values);
+        addUserReview.mutate(values);
       }
     },
   });
@@ -77,7 +83,7 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review }): React.R
       });
     }
   };
-  console.log(formik.errors, 'formik.errors');
+
   return (
     <>
       <div className="font-poppins  h-full flex flex-col">
@@ -92,7 +98,7 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review }): React.R
                       src={shoeModel1}
                       className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:transform "
                     />
-                    <h4 className={`${styles.subtitle} text-gray ml-5 mt-2 `}>Sunrise</h4>
+                    <h4 className={`${styles.subtitle} text-gray ml-5 mt-2 `}>{product?.title}</h4>
                   </div>
                   <h2 className={'font-bold'}>Rate This Product*</h2>
 

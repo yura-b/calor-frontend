@@ -10,5 +10,7 @@ export interface PostReviewDto {
   productName?: string;
   category?: string;
   price?: number;
-    _id?: string;
+  _id?: string;
+  date?: string;
+  status?: string;
 }

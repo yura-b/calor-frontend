@@ -16,13 +16,13 @@ export const approveReview = (access_token: string, id: string) => {
 };
 
 export const createReview = (review:PostReviewDto) => {
-  return axios.post(`${backendUrl}/review`, review);
+  return axios.post(`${BASE_URL}/review`, review);
 };
 
 export const editReview = (id: string, review:PostReviewDto) => {
-  return axios.put(`${backendUrl}/review/${id}`, review);
+  return axios.put(`${BASE_URL}/review/${id}`, review);
 };
 
 export const findPublished = () => {
-  return axios.get(`${backendUrl}/review/all`);
+  return axios.get(`${BASE_URL}/review/all`);
 };
