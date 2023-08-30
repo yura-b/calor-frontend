@@ -82,7 +82,7 @@ const MainMenu: React.FC = (): React.ReactElement => {
                   exit={isLargeScreen ? { opacity: 0, y: -10 } : 'collapsed'}
                   variants={isLargeScreen ? {} : collapseAnimation?.variants}
                   transition={isLargeScreen ? {} : collapseAnimation.transition}
-                  className="flex flex-col  p-2  mt-[7px] xl:absolute z-20 w-full xl:min-w-[8rem]"
+                  className="flex flex-col  p-2  mt-[7px] xl:absolute z-20 w-full xl:min-w-[8rem] shadow-lg"
                   style={{ backgroundColor: 'rgb(184, 228, 216, 0.9)' }}
                   onMouseLeave={() => setIsOpen(null)}
                 >

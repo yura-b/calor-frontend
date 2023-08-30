@@ -9,4 +9,5 @@ export const titles = {
   cookiesPage: 'Cookies Page',
   about: 'About Page',
   accountPage: 'Account',
+  helpPage: 'Help',
 };

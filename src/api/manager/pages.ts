@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { PageSection } from '@/constants/interfaces/pageSection.ts';
 import { authorization } from '@/api/config.ts';
-import { backendUrl } from '@/api/languages.ts';
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const getPageSection = () => {
-  return axios.get(`${backendUrl}/manager/pages`);
+  return axios.get(`${BASE_URL}/manager/pages`);
 };
 
 export const saveChanges = (access_token: string, data: PageSection[]) => {
-  return axios.put(`${backendUrl}/manager/pages`, data, authorization(access_token));
+  return axios.put(`${BASE_URL}/manager/pages`, data, authorization(access_token));
 };
 
 export const uploadEventPhoto = (file) => {
@@ -17,7 +18,7 @@ export const uploadEventPhoto = (file) => {
   formData.append('file', file);
   formData.append('folder', 'events');
 
-  return axios.post(`${backendUrl}/do/upload`, formData, {
+  return axios.post(`${BASE_URL}/do/upload`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

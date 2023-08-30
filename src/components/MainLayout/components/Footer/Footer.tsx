@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HelpFooter from '../HelpFooter';
 import AboutCalorFooter from '../AboutCalorFooter';
 import { Link } from 'react-router-dom';
@@ -8,17 +8,18 @@ import { hoverOnButtonAnimation } from '@/styles/Animations';
 import arrowUpIcon from '@assets/images/arrowUpIcon.svg';
 import instagramIcon from '@assets/images/instagramIcon.svg';
 import facebookIcon from '@assets/images/facebookIcon.svg';
-import MyOrder from '@/components/MyOrder';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { Role } from '@/constants/enums/role.enum.ts';
+import { paths } from '@/routes/paths';
 
 const Footer: React.FC = (): React.ReactElement => {
-  const [myOrderOpen, setMyOrderOpen] = useState(false);
-
-  const openMyOrder = () => {
-    setMyOrderOpen(true);
-  };
-
-  const closeMyOrder = () => {
-    setMyOrderOpen(false);
+  const { roles, access_token } = useAppSelector((state) => state.user);
+  const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
   return (
     <footer className="bg-gray text-white w-full overflow-hidden">
@@ -27,15 +28,26 @@ const Footer: React.FC = (): React.ReactElement => {
           <div className={`flex justify-between ${styles.body2} font-bold text-white  pt-4 pb-2 lg:p-0 bg`}>
             <div>
               <div className="lg:flex lg:flex-col hidden lg:block">
+                {isRegisteredUser && (
+                  <Link
+                    to={paths.myOrders}
+                    className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+                    onClick={scrollToTop}
+                  >
+                    Check Order Status
+                  </Link>
+                )}
+                {!isRegisteredUser && (
+                  <Link
+                    to={paths.myOrder}
+                    className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
+                    onClick={scrollToTop}
+                  >
+                    Check Order Status
+                  </Link>
+                )}
                 <Link
-                  to="#"
-                  onClick={openMyOrder}
-                  className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
-                >
-                  Check Order Status
-                </Link>
-                <Link
-                  to="#"
+                  to="https://calorfranchise.com/"
                   className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3`}
                 >
                   Be Our Partner
@@ -63,10 +75,9 @@ const Footer: React.FC = (): React.ReactElement => {
             </motion.button>
           </div>
           <AboutCalorFooter />
-          <HelpFooter title={'Get Help'} color="white" openMyOrder={openMyOrder} />
+          <HelpFooter title={'Get Help'} color="white" />
         </div>
       </div>
-      <MyOrder isOpen={myOrderOpen} onClose={closeMyOrder} />
     </footer>
   );
 };

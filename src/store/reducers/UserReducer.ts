@@ -3,6 +3,7 @@ import { Role } from '@/constants/enums/role.enum.ts';
 import { Basket } from '@/constants/interfaces/basket.ts';
 import {shippingDetails} from '@/constants/interfaces/order.ts';
 
+
 export interface IUser {
   access_token: string | null;
   firstName: string;
@@ -25,7 +26,7 @@ export const initialState: IUser = {
   roles: localStorage.getItem('roles')?.split(',') as Role[],
   basket: null,
   shippingInfo: null
-};
+
 
 export interface ISetUserData extends IUser {
   rememberMe?: boolean;
@@ -46,7 +47,7 @@ export const UserSlice = createSlice({
         rememberMe = true,
         basket,
         email,
-          shippingInfo
+        shippingInfo
       } = action.payload;
       if (access_token) state.access_token = access_token;
 

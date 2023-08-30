@@ -14,11 +14,12 @@ import {shippingDetails} from '@/constants/interfaces/order.ts';
 interface IProps {
   setData: React.Dispatch<React.SetStateAction<shippingForm | null>>;
   buttonTitle: string;
+  shippingData: shippingForm | null;
 }
 
 export type shippingForm = Omit<ShippingInfoDto, 'user_id'>;
 
-const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
+const ShippingInformation: FC<IProps> = ({ setData, buttonTitle, shippingData }) => {
   const [saveAddress, setSaveAddress] = useState(false);
   const [country, setCountry] = useState('United States');
 
@@ -54,7 +55,6 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
     validationSchema: validationSchemaForShippingInfo,
     initialValues: initialValues,
     onSubmit: (values) => {
-      // console.log(values)
       setData({
         ...values,
         country,
@@ -69,125 +69,130 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
         <h2 className={'text-xl my-4 font-bold'}>Shipping Information</h2>
       </div>
       <form onSubmit={formik.handleSubmit} className={'w-full'}>
-        <CustomInput
-          id={'receiverFirstName'}
-          name={'receiverFirstName'}
-          placeholder={'input first name'}
-          value={formik.values.receiverFirstName}
-          onChange={formik.handleChange}
-          error={formik.touched.receiverFirstName && Boolean(formik.errors.receiverFirstName)}
-          errorMessage={formik.errors.receiverFirstName}
-          border={'1px solid #D9D9D9'}
-        >
-          First Name
-        </CustomInput>
-        <CustomInput
-          id={'receiverSecondName'}
-          name={'receiverSecondName'}
-          placeholder={'e.g James'}
-          value={formik.values.receiverSecondName}
-          onChange={formik.handleChange}
-          error={formik.touched.receiverSecondName && Boolean(formik.errors.receiverSecondName)}
-          errorMessage={formik.errors.receiverSecondName}
-          border={'1px solid #D9D9D9'}
-        >
-          Second Name
-        </CustomInput>
+        <div className="lg:flex lg:justify-between lg:w-[640px]">
+          <div className="lg:w-1/2 lg:p-4">
+            <CustomInput
+              id={'receiverFirstName'}
+              name={'receiverFirstName'}
+              placeholder={'input first name'}
+              value={formik.values.receiverFirstName}
+              onChange={formik.handleChange}
+              error={formik.touched.receiverFirstName && Boolean(formik.errors.receiverFirstName)}
+              errorMessage={formik.errors.receiverFirstName}
+              border={'1px solid #D9D9D9'}
+            >
+              First Name
+            </CustomInput>
+            <CustomInput
+              id={'receiverSecondName'}
+              name={'receiverSecondName'}
+              placeholder={'e.g James'}
+              value={formik.values.receiverSecondName}
+              onChange={formik.handleChange}
+              error={formik.touched.receiverSecondName && Boolean(formik.errors.receiverSecondName)}
+              errorMessage={formik.errors.receiverSecondName}
+              border={'1px solid #D9D9D9'}
+            >
+              Second Name
+            </CustomInput>
 
-        <div className={'mb-4'}>
-          <p className={'font-bold'}>Country/Region</p>
-          <CountryAutoComplete id="country" handler={setCountry} value={country} />
+            <div className={'mb-4'}>
+              <p className={'font-bold'}>Country/Region</p>
+              <CountryAutoComplete id="country" handler={setCountry} value={country} />
+            </div>
+
+            <CustomInput
+              id={'streetAddress'}
+              name={'streetAddress'}
+              value={formik.values.streetAddress}
+              onChange={formik.handleChange}
+              error={formik.touched.streetAddress && Boolean(formik.errors.streetAddress)}
+              errorMessage={formik.errors.streetAddress}
+              border={'1px solid #D9D9D9'}
+            >
+              Street Address
+            </CustomInput>
+            <CustomInput
+              id={'ASB'}
+              name={'ASB'}
+              placeholder={'e.g 111'}
+              value={formik.values.ASB}
+              onChange={formik.handleChange}
+              error={formik.touched.ASB && Boolean(formik.errors.ASB)}
+              errorMessage={formik.errors.ASB}
+              border={'1px solid #D9D9D9'}
+            >
+              Apt, Suite, Building
+            </CustomInput>
+          </div>
+          <div className="lg:w-1/2 lg:p-4">
+            <CustomInput
+              id={'city'}
+              name={'city'}
+              value={formik.values.city}
+              onChange={formik.handleChange}
+              error={formik.touched.city && Boolean(formik.errors.city)}
+              errorMessage={formik.errors.city}
+              border={'1px solid #D9D9D9'}
+            >
+              City
+            </CustomInput>
+            <CustomInput
+              id={'state'}
+              name={'state'}
+              value={formik.values.state}
+              onChange={formik.handleChange}
+              error={formik.touched.state && Boolean(formik.errors.state)}
+              errorMessage={formik.errors.state}
+              border={'1px solid #D9D9D9'}
+            >
+              State
+            </CustomInput>
+            <CustomInput
+              id={'ZIP'}
+              name={'ZIP'}
+              type={InputType.number}
+              value={formik.values.ZIP}
+              onChange={formik.handleChange}
+              error={formik.touched.ZIP && Boolean(formik.errors.ZIP)}
+              errorMessage={formik.errors.ZIP}
+              border={'1px solid #D9D9D9'}
+            >
+              ZIP Code
+            </CustomInput>
+
+            <CustomInput
+              id={'receiverPhoneNumber'}
+              name={'receiverPhoneNumber'}
+              placeholder={'e.g.   +1 (555) 555-5555'}
+              value={formik.values.receiverPhoneNumber}
+              onChange={formik.handleChange}
+              error={formik.touched.receiverPhoneNumber && Boolean(formik.errors.receiverPhoneNumber)}
+              errorMessage={formik.errors.receiverPhoneNumber}
+              border={'1px solid #D9D9D9'}
+              description={'Your phone number is needed to contact you for shipping-related questions'}
+            >
+              Phone number
+            </CustomInput>
+
+            <div className={'flex flex-row justify-start gap-3 mb-6'}>
+              <ToggleButton
+                value="check"
+                selected={saveAddress}
+                onChange={() => setSaveAddress((prevState) => !prevState)}
+                style={{
+                  // background: saveAddress ? '#1EC1AA' : '', // Example background color change based on selection
+                  height: '25px',
+                  width: '25px',
+                }}
+              >
+                <CheckIcon />
+              </ToggleButton>
+              <p className={'text-sm'}>Save the shipping address for future orders</p>
+            </div>
+            <CustomButton styles={'w-full'} title={buttonTitle} type={'submit'} />
+          </div>
         </div>
-
-        <CustomInput
-          id={'streetAddress'}
-          name={'streetAddress'}
-          value={formik.values.streetAddress}
-          onChange={formik.handleChange}
-          error={formik.touched.streetAddress && Boolean(formik.errors.streetAddress)}
-          errorMessage={formik.errors.streetAddress}
-          border={'1px solid #D9D9D9'}
-        >
-          Street Address
-        </CustomInput>
-        <CustomInput
-          id={'ASB'}
-          name={'ASB'}
-          placeholder={'e.g 111'}
-          value={formik.values.ASB}
-          onChange={formik.handleChange}
-          error={formik.touched.ASB && Boolean(formik.errors.ASB)}
-          errorMessage={formik.errors.ASB}
-          border={'1px solid #D9D9D9'}
-        >
-          Apt, Suite, Building
-        </CustomInput>
-        <CustomInput
-          id={'city'}
-          name={'city'}
-          value={formik.values.city}
-          onChange={formik.handleChange}
-          error={formik.touched.city && Boolean(formik.errors.city)}
-          errorMessage={formik.errors.city}
-          border={'1px solid #D9D9D9'}
-        >
-          City
-        </CustomInput>
-        <CustomInput
-          id={'state'}
-          name={'state'}
-          value={formik.values.state}
-          onChange={formik.handleChange}
-          error={formik.touched.state && Boolean(formik.errors.state)}
-          errorMessage={formik.errors.state}
-          border={'1px solid #D9D9D9'}
-        >
-          State
-        </CustomInput>
-        <CustomInput
-          id={'ZIP'}
-          name={'ZIP'}
-          type={InputType.number}
-          value={formik.values.ZIP}
-          onChange={formik.handleChange}
-          error={formik.touched.ZIP && Boolean(formik.errors.ZIP)}
-          errorMessage={formik.errors.ZIP}
-          border={'1px solid #D9D9D9'}
-        >
-          ZIP Code
-        </CustomInput>
-
-        <CustomInput
-          id={'receiverPhoneNumber'}
-          name={'receiverPhoneNumber'}
-          placeholder={'e.g.   +1 (555) 555-5555'}
-          value={formik.values.receiverPhoneNumber}
-          onChange={formik.handleChange}
-          error={formik.touched.receiverPhoneNumber && Boolean(formik.errors.receiverPhoneNumber)}
-          errorMessage={formik.errors.receiverPhoneNumber}
-          border={'1px solid #D9D9D9'}
-          description={'Your phone number is needed to contact you for shipping-related questions'}
-        >
-          Phone number
-        </CustomInput>
-
-        <div className={'flex flex-row justify-start gap-3 mb-6'}>
-          <ToggleButton
-            value="check"
-            selected={saveAddress}
-            onChange={() => setSaveAddress((prevState) => !prevState)}
-            style={{
-              // background: saveAddress ? '#1EC1AA' : '', // Example background color change based on selection
-              height: '25px',
-              width: '25px',
-            }}
-          >
-            <CheckIcon />
-          </ToggleButton>
-          <p className={'text-sm'}>Save the shipping address for future orders</p>
-        </div>
-
-        <CustomButton styles={'w-full'} title={buttonTitle} type={'submit'} />
       </form>
     </div>
   );
