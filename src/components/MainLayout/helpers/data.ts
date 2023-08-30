@@ -85,11 +85,13 @@ export const menuItems = [
 ];
 
 export const helpLinks = [
+
   // Waiting videos
   // {
   //   title: 'Video Guides',
   //   path: paths.helpPage + '#helpVideoGuides',
   // },
+
   {
     title: 'Size Guide',
     path: paths.helpPage + '#sizeGuide',
