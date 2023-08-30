@@ -26,6 +26,20 @@ export const validationSchemaForContactInfo = yup.object({
   email: yup.string().email('email is not valid'),
 });
 
+export const validationSchemaForCreateReview = yup.object({
+  product_id: yup.string().required(),
+  user_id: yup.string().required(),
+  firstName: yup
+    .string()
+    .min(3, 'First name should be of minimum 3 characters length')
+    .required('First name is required'),
+  secondName: yup
+    .string()
+    .min(3, 'Second name should be of minimum 3 characters length')
+    .required('Second name is required'),
+  email: yup.string().email('Email is not valid').required('Email is required'),
+});
+
 export const validationSchemaForShippingInfo = yup.object({
   city: yup.string().required('city is required').min(2, 'city should have at least 2 characters'),
   streetAddress: yup.string().required('city is required').min(2, 'street address should have at least 2 characters'),

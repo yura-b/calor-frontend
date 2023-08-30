@@ -25,7 +25,6 @@ import MyOrder from '@components/MyOrder';
 import DesignList from '@pages/AccountPage/components/DesignList';
 import ShippingAddress from '@pages/AccountPage/components/ShippingAddress';
 import ChangePassword from '@pages/AccountPage/components/ChangePassword';
-import Rewiews from '@pages/AccountPage/components/Rewiews';
 import AboutPage from '@pages/AboutPage';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
@@ -39,6 +38,7 @@ const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 import { useMediaQuery } from '@react-hook/media-query';
+import Reviews from './pages/AccountPage/components/Reviews';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -92,7 +92,7 @@ const App = () => {
           <Route path={paths.shippingAddress} element={<PrivateRoute element={<ShippingAddress />} />} />
           <Route path={paths.changePassword} element={<PrivateRoute element={<ChangePassword />} />} />
           <Route path={paths.changeUserPassword} element={<PrivateRoute element={<ResetUserPassword />} />} />
-          <Route path={paths.reviews} element={<PrivateRoute element={<Rewiews />} />} />
+          <Route path={paths.reviews} element={<PrivateRoute element={<Reviews />} />} />
           <Route path={paths.checkout} element={<CheckoutPage />} />
           <Route path={paths.myOrder} element={<MyOrder />} />
         </Routes>
