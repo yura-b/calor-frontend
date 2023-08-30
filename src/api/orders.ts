@@ -1,19 +1,20 @@
 import axios from 'axios';
-import { backendUrl } from '@/api/languages.ts';
 import { authorization } from '@/api/config.ts';
 import { changeOrderStatusInterface, CreateOrderDto } from '@/api/dto/orders.dto.ts';
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export const getOrders = (credential) => {
-  return axios.get(`${backendUrl}/order/all`, authorization(credential));
+  return axios.get(`${BASE_URL}/order/all`, authorization(credential));
 };
 
 export const getOrder = (credential: string, id: string) => {
-  return axios.get(`${backendUrl}/order/${id}`, authorization(credential));
+  return axios.get(`${BASE_URL}/order/${id}`, authorization(credential));
 };
 
 export const changeOrderStatus = (credentials: string, data: changeOrderStatusInterface) => {
   return axios.put(
-    `${backendUrl}/order/${data._id}`,
+    `${BASE_URL}/order/${data._id}`,
     {
       status: data.orderStatus,
     },
@@ -22,5 +23,5 @@ export const changeOrderStatus = (credentials: string, data: changeOrderStatusIn
 };
 
 export const createOrder = (order: CreateOrderDto) => {
-  return axios.post(`${backendUrl}/order`, order);
+  return axios.post(`${BASE_URL}/order`, order);
 };

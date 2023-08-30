@@ -47,7 +47,7 @@ const Footer: React.FC = (): React.ReactElement => {
                   </Link>
                 )}
                 <Link
-                  to="#"
+                  to="https://calorfranchise.com/"
                   className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3`}
                 >
                   Be Our Partner

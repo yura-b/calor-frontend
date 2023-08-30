@@ -26,6 +26,7 @@ import DesignList from '@pages/AccountPage/components/DesignList';
 import ShippingAddress from '@pages/AccountPage/components/ShippingAddress';
 import ChangePassword from '@pages/AccountPage/components/ChangePassword';
 import AboutPage from '@pages/AboutPage';
+import HelpPage from '@pages/HelpPage';
 import CreateEvent from '@pages/admin/pageManager/CreateEvent.tsx';
 import WarehousePage from '@pages/admin/warehouse/WarehousePage.tsx';
 import { useGetUserIfRefresh } from '@/hooks/getUserIfRefresh.ts';
@@ -95,6 +96,7 @@ const App = () => {
           <Route path={paths.reviews} element={<PrivateRoute element={<Reviews />} />} />
           <Route path={paths.checkout} element={<CheckoutPage />} />
           <Route path={paths.myOrder} element={<MyOrder />} />
+          <Route path={paths.helpPage} element={<HelpPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
