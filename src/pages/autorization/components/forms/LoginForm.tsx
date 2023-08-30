@@ -12,7 +12,7 @@ import { setUserData } from '@/store/reducers/UserReducer.ts';
 import { validationSchemaForLogin } from '@/helpers/validation/formValidation.ts';
 import { useState } from 'react';
 
-const LoginForm = () => {
+const   LoginForm = () => {
   const dispatch = useAppDispatch();
   const [rememberMe, setRememberMe] = useState(false);
   const logInHandler = (values: LoginDto) => {
@@ -40,36 +40,38 @@ const LoginForm = () => {
   });
 
   return (
-    <div className={'flex flex-col p-5 bg-custom-turquoise w-full'}>
-      <NavigationButtons isLogin={true} />
+    <div className={'p-5 bg-custom-turquoise w-full'}>
+      <div className={'flex flex-col max-w-2xl relative mx-auto'} >
+        <NavigationButtons isLogin={true} />
 
-      <form onSubmit={formik.handleSubmit} className={'mb-4'}>
-        <CustomInput
-          id={'email'}
-          name={'email'}
-          placeholder={'input email'}
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          errorMessage={formik.errors.email}
-        >
-          Email
-        </CustomInput>
-        <CustomInput
-          id={'password'}
-          name={'password'}
-          type={InputType.password}
-          placeholder={'input password'}
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          errorMessage={formik.errors.password}
-        >
-          Password
-        </CustomInput>
-        <ForgotPassword setRememberMe={setRememberMe} />
-        <CustomButton styles={'w-full'} title={'Sign In'} type={'submit'} />
-      </form>
+        <form onSubmit={formik.handleSubmit} className={'mb-4 w-full'}>
+          <CustomInput
+              id={'email'}
+              name={'email'}
+              placeholder={'input email'}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              errorMessage={formik.errors.email}
+          >
+            Email
+          </CustomInput>
+          <CustomInput
+              id={'password'}
+              name={'password'}
+              type={InputType.password}
+              placeholder={'input password'}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              errorMessage={formik.errors.password}
+          >
+            Password
+          </CustomInput>
+          <ForgotPassword setRememberMe={setRememberMe} />
+          <CustomButton styles={'w-full'} title={'Sign In'} type={'submit'} />
+        </form>
+      </div>
     </div>
   );
 };

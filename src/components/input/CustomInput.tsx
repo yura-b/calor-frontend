@@ -28,7 +28,7 @@ const CustomInput: React.FC<IProps> = (props) => {
   });
   return (
     <>
-      <div className={'flex flex-col gap-2 mb-4'}>
+      <div className={'flex flex-col items-start gap-2 mb-4'}>
         <p className={'font-bold'}>{props.children}</p>
         <p>{props.description}</p>
         <ThemeProvider theme={theme}>
@@ -38,6 +38,7 @@ const CustomInput: React.FC<IProps> = (props) => {
               bgcolor: 'white',
               paddingY: '10px',
               paddingX: '5px',
+              width: '100%',
               border: props.border,
             }}
             {...props}

@@ -2,11 +2,9 @@ import axios from 'axios';
 import { authorization } from '@/api/config.ts';
 import { changeOrderStatusInterface, CreateOrderDto } from '@/api/dto/orders.dto.ts';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-export const getOrders = (credential) => {
-  return axios.get(`${BASE_URL}/order/all`, authorization(credential));
-};
+export const getOrders = (credential: string | null, emailFilter: string) => {
+  if (!credential) return
+  return axios.get(`${backendUrl}/order/all/?email=${emailFilter}`, authorization(credential));
 
 export const getOrder = (credential: string, id: string) => {
   return axios.get(`${BASE_URL}/order/${id}`, authorization(credential));
