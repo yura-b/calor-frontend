@@ -35,11 +35,12 @@ const SizeGuide: React.FC = () => {
         <h1 className={`${styles.header1} text-center border-b border-gray w-full`}>Size Guide</h1>
 
         <AccordionSection title="Shoe" isOpen={isAccordionOpen} toggleAccordion={toggleAccordion}>
-          <VideoFrame
+          {/* Waiting videos */}
+          {/* <VideoFrame
             src="https://drive.google.com/file/d/1l4VfItYOQO7xZxqJX93nmfNz2VT9ONXU/preview"
             title="Video Guide"
             className="xl:max-w-[50vw]"
-          />
+          /> */}
           <div className="py-8">
             <p className={`${styles.subtitle}`}>Title</p>
             <p>

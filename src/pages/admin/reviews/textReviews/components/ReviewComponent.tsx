@@ -21,22 +21,25 @@ interface ReviewsState {
 }
 
 const ReviewComponent: React.FC<IProps> = ({
-  _id,
-  isUserRegistered,
-  photo,
-  product_id,
-  user_id,
-  status,
-  date,
-  name,
-  experience,
-  rating,
-  email,
-  possibilityToApproveAndBlock,
-  publishedReviews,
-  pendingReview,
-  onlyForReview = false,
-}) => {
+                                             _id,
+                                             isUserRegistered,
+                                             photo,
+                                             product_id,
+                                             user_id,
+                                             status,
+                                             date,
+                                             firstName,
+                                             secondName,
+                                             experience,
+                                             rating,
+                                             email,
+                                             possibilityToApproveAndBlock,
+                                             publishedReviews,
+                                             pendingReview,
+                                             onlyForReview = false
+                                           }) => {
+
+
   const { access_token } = useAppSelector((state) => state.user);
   if (!access_token) return <></>;
 
@@ -55,12 +58,26 @@ const ReviewComponent: React.FC<IProps> = ({
         publishedReviews?.setState((prevState) => {
           return [
             ...prevState,
-            { _id, date, name, experience, rating, email, status, photo, product_id, isUserRegistered, user_id },
+            {
+              _id,
+              date,
+              firstName,
+              secondName,
+              experience,
+              rating,
+              email,
+              status,
+              photo,
+              product_id,
+              isUserRegistered,
+              user_id
+            }
           ];
         });
       }
     });
   };
+
 
   const deleteHandler = () => {
     deleteReview(access_token, _id).then((res) => {
@@ -73,7 +90,7 @@ const ReviewComponent: React.FC<IProps> = ({
   return (
     <div className={'flex flex-col gap-5 w-full mb-6'}>
       <div className={'flex flex-row gap-5 items-baseline'}>
-        <p className={'underline font-bold'}>{name}</p>
+        <p className={'underline font-bold'}>{firstName + ' ' + secondName}</p>
         <p>
           <IsRegistered isUserRegistered={isUserRegistered} />
         </p>
@@ -84,6 +101,10 @@ const ReviewComponent: React.FC<IProps> = ({
         <p>{DateFormatter(date)}</p>
       </div>
       <p>{experience}</p>
+
+      <div>
+        {photo && <img src={photo} alt="" />}
+      </div>
       {!onlyForReview && (
         <div className={'relative mx-auto flex flex-row gap-8'}>
           {possibilityToApproveAndBlock && <CustomButton title={'Block User'} bgColor={'red'} />}

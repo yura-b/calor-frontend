@@ -12,6 +12,7 @@ export interface IGoogleButton {
 
 const GoogleButton: React.FC<IGoogleButton> = ({ children }) => {
   const dispatch = useAppDispatch();
+
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       dispatch(loading());
@@ -34,6 +35,7 @@ const GoogleButton: React.FC<IGoogleButton> = ({ children }) => {
         login();
       }}
       sx={{
+        cursor:'pointer',
         borderRadius: '0px',
         height: '44px',
         border: '1px solid #D9D9D9',

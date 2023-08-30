@@ -1,4 +1,5 @@
 import { Role } from '@/constants/enums/role.enum.ts';
+import {ShippingInfoDto} from '@/api/dto/orders.dto.ts';
 
 export interface IUser {
   email: string;
@@ -10,6 +11,8 @@ export interface IUser {
   registrationDate: Date | null;
   roles: Role[];
   _id: string;
+  shippingInfo?: ShippingInfoDto | null ,
+  registered: boolean
 }
 
 export type IUserForProfile = Omit<IUser, 'registrationDate' | 'roles' | '_id' | 'googleAccount' | 'email_verified'>;
