@@ -18,7 +18,8 @@ const HelpPage: React.FC = (): React.ReactElement => {
         <div className=" hidden lg:block lg:my-4">
           <NavigationLinks color="gray" className=" w-auto" />
         </div>
-        <VideoGuides />
+        {/* Waiting videos */}
+        {/* <VideoGuides /> */}
         <div className={`${styles.container} w-full  lg:flex lg:items-start lg:justify-around gap-6`}>
           <div className="basis-[48%]">
             <SizeGuide />
