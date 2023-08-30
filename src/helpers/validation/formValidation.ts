@@ -90,3 +90,16 @@ export const validationSchemaForPromoCode = yup.object({
     .min(3, 'Your promo code is not valid. Please enter  again')
     .required('Promo Code is required'),
 });
+
+export const validationSchemaForUserAccount = yup.object({
+  firstName: yup
+    .string()
+    .min(3, 'First name should be of minimum 3 characters length')
+    .required('First name is required'),
+  secondName: yup
+    .string()
+    .min(3, 'Second name should be of minimum 3 characters length')
+    .required('Second name is required'),
+  email: yup.string().email('Enter a valid email').required('Email is required'),
+  phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
+});

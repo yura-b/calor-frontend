@@ -25,7 +25,6 @@ const CustomerExperiencePage: React.FC = (): React.ReactElement => {
         <Inspiration />
         <OurShoesFor />
         <Reviews />
-
       </MainLayout>
     </div>
   );

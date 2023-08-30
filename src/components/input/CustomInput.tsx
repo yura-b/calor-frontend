@@ -16,6 +16,7 @@ interface IProps {
   border?: string;
   description?: string;
   errorMessage?: string;
+  disabled?: boolean;
 }
 
 const CustomInput: React.FC<IProps> = (props) => {
