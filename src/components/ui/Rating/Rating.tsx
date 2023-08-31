@@ -6,10 +6,20 @@ import Typography from '@mui/material/Typography';
 interface IProps {
   includeTitle: boolean;
   readOnly: boolean;
+  rating?: number;
+  size?: "small" | "medium" | "large";
+  getRating?: (newValue: number) => void;
 }
 
-const BasicRating: FC<IProps> = ({includeTitle, readOnly}) => {
-  const [value, setValue] = useState<number | null>(5);
+const BasicRating: FC<IProps> = ({ includeTitle, readOnly, rating, size = "large", getRating }) => {
+  const [value, setValue] = useState<number>(rating || 5);
+
+  const handleChange = (newValue: number) => {
+    setValue(newValue);
+    if (getRating) {
+      getRating(newValue);
+    }
+  };
 
   return (
     <Box
@@ -17,19 +27,23 @@ const BasicRating: FC<IProps> = ({includeTitle, readOnly}) => {
         '& > legend': { mt: 2 },
       }}
     >
-      { includeTitle && 
-        <Typography className="flex justify-center items-center" component="legend">1</Typography>
-      }
-      <Rating
-        readOnly={readOnly}
-        name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
+      {includeTitle && (
+        <Typography className="flex justify-center items-center" component="legend">
+          1
+        </Typography>
+      )}
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Rating
+          style={{  }}
+          readOnly={readOnly}
+          name="simple-controlled"
+          value={readOnly ? rating || 0 : value}
+          onChange={(event, newValue) => handleChange(newValue as number)}
+          size={size}
+        />
+      </div>
     </Box>
   );
-}
+};
 
 export default BasicRating;

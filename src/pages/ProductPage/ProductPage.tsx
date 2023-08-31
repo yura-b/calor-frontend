@@ -1,6 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from '@styles/Styles.module.scss';
+import { useQuery } from "react-query";
+import { useParams } from "react-router"; 
+import { getProductById } from "@/api/products";
 import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
 import MainLayout from '@/components/MainLayout';
@@ -12,6 +14,12 @@ import Button from '@components/ui/Button';
 import CustomAccordion from "@/components/ui/Accordion";
 
 const ProductPage = () => {
+  const { id } = useParams();
+  const { data, isLoading, isError } = useQuery(['productById', id], () => getProductById(id), {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false
+  });
+
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.about} />
@@ -22,13 +30,13 @@ const ProductPage = () => {
             className="z-10 w-auto"
           />
         </div>
-        <div className={`md:grid md:grid-cols-2 w-full md:grid-rows-2 md:justify-start ${styles.container}`}>
+        <div className={`md:grid md:grid-cols-2 md:grid-rows-2 md:justify-center md:py-8 ${styles.container}`}>
           {/* Product Slider */}
           <div className={`justify-start`}>
             <Slider images={[]}/>
           </div>
-          {/* Product Desription*/}
-          <div className="flex flex-col bg-mintExtraLight row-span-2 justify-start items-start">
+          {/* Product Desription */}
+          <div className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident}`}>
             <div className={``}>
               <ProductDescription description={{}}/>
               <div>

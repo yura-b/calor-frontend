@@ -10,9 +10,14 @@ import FileUpload from '@/components/ui/FileUpload/FileUpload'
 
 const WriteReviewModal = () => {
   const [open, setOpen] = useState(false);
+  const [rating, setRating] = useState<number>(5);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const getRating = (rating) => {
+    setRating(rating)
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -20,10 +25,12 @@ const WriteReviewModal = () => {
       lastName: '',
       email: '',
       image: null,
+      rating: 5
     },
     
     onSubmit: (values) => {
-      console.log(values)
+      formik.values.rating = rating;
+      console.log(values);
     },
   });
 
@@ -54,7 +61,7 @@ const WriteReviewModal = () => {
             <div>
               <h3>Rate this product</h3>
               <span>Please select</span>
-              <Rating includeTitle={false} readOnly={false} />
+              <Rating includeTitle={false} readOnly={false} getRating={getRating}/>
             </div>
             {/* IMPRESSIONS */}
             <div>
