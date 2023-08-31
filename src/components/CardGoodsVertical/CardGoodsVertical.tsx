@@ -22,6 +22,7 @@ const CardGoodsVertical: React.FC<Props> = ({
 }): React.ReactElement => {
   const handleClick = () => {
     console.log('Button clicked!');
+    console.log(img, 'img');
   };
   return (
     <div className={`min-w-[150px] w-[360px] max-w-[400px] px-2  ${className}`}>

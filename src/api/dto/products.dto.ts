@@ -6,4 +6,7 @@ export interface ProductsDto {
   subcategory: string;
   description: string;
   size: number[];
+  _id?: string;
+  rating?: number;
+  title?: string;
 }
