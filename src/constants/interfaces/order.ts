@@ -35,7 +35,15 @@ export interface IOrder {
 
   payment: PaymentEnum;
 
-  size?: number;
+    size?: number,
+
+    order_id: number
+
+    trackingNumber?: string;
+
+    courier?: string;
+
+    approxDeliveryDate?: string;
 }
 
 export enum OrderStatus {
