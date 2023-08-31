@@ -13,3 +13,7 @@ export const deleteReview = (access_token: string, id: string) => {
 export const approveReview = (access_token: string, id: string) => {
   return axios.put(`${BASE_URL}/review/${id}`, {}, authorization(access_token));
 };
+
+export const getReviews = () => {
+  return axios.get(`${BASE_URL}/review/all`);
+};

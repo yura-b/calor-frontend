@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backendUrl } from '@/api/languages.ts';
 import { LoginDto } from '@/api/dto/login.dto.ts';
 import { SignupDto } from '@/api/dto/signup.dto.ts';
 
@@ -17,9 +16,10 @@ export const googleLogin = (credentials: string) => {
   return axios.post(`${BASE_URL}/user/google`, { credentials });
 };
 
-export const sendEmailForReset = (email: string) => {
-  return axios.post(`${backendUrl}/user/reset/`, {email});
-};
+export const sendEmailForReset = (access_token: string, email: string) => {
+    return axios.post(`${BASE_URL}/user/reset`, {access_token, email});
+}
+
 export const resetPassword = (id: string, password: string) => {
   return axios.patch(`${BASE_URL}/user/reset`, { id, password });
 };
