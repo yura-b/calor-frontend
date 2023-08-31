@@ -8,8 +8,8 @@ import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import ToggleButton from '@mui/material/ToggleButton';
 import CheckIcon from '@mui/icons-material/Check';
 import { validationSchemaForShippingInfo } from '@/helpers/validation/formValidation.ts';
-import {useAppSelector} from '@/store/hooks/hooks.ts';
-import {shippingDetails} from '@/constants/interfaces/order.ts';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { shippingDetails } from '@/constants/interfaces/order.ts';
 
 interface IProps {
   setData: React.Dispatch<React.SetStateAction<shippingForm | null>>;
@@ -23,9 +23,9 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle, shippingData })
   const [saveAddress, setSaveAddress] = useState(false);
   const [country, setCountry] = useState('United States');
 
-  const {shippingInfo} = useAppSelector(state => state.user)
+  const { shippingInfo } = useAppSelector((state) => state.user);
   if (typeof shippingInfo === 'string') {
-    console.log()
+    console.log();
   }
   const initialValues = {
     city: '',
@@ -35,11 +35,10 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle, shippingData })
     ZIP: 0,
     ASB: '',
     state: '',
-    receiverPhoneNumber: ''
-  } as Omit<ShippingInfoDto, | 'user_id' | 'save'>
+    receiverPhoneNumber: '',
+  } as Omit<ShippingInfoDto, 'user_id' | 'save'>;
 
-
-  if (shippingInfo || typeof shippingInfo === 'object'){
+  if (shippingInfo || typeof shippingInfo === 'object') {
     initialValues.receiverFirstName = (shippingInfo as shippingDetails)?.receiverFirstName;
     initialValues.receiverSecondName = (shippingInfo as shippingDetails)?.receiverSecondName;
     initialValues.city = (shippingInfo as shippingDetails)?.city;
@@ -47,8 +46,8 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle, shippingData })
     initialValues.state = (shippingInfo as shippingDetails)?.state;
     initialValues.country = (shippingInfo as shippingDetails)?.country;
     initialValues.ZIP = Number((shippingInfo as shippingDetails)?.ZIP);
-    initialValues.ASB = (shippingInfo as shippingDetails)?.ASB
-    initialValues.receiverPhoneNumber = (shippingInfo as shippingDetails)?.receiverPhoneNumber
+    initialValues.ASB = (shippingInfo as shippingDetails)?.ASB;
+    initialValues.receiverPhoneNumber = (shippingInfo as shippingDetails)?.receiverPhoneNumber;
   }
 
   const formik = useFormik({

@@ -5,10 +5,7 @@ const phoneNumberRegex = /^\+?\d{0,3}\s?(\(\d{1,4}\))?\s?\d{1,4}[\s.-]?\d{1,4}[\
 
 export const validationSchemaForLogin = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
-  password: yup
-    .string()
-    .min(8, 'password should be of minimum 8 characters length')
-    .required('password is required'),
+  password: yup.string().min(8, 'password should be of minimum 8 characters length').required('password is required'),
 });
 export const validationSchemaForSignUp = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),

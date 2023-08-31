@@ -16,7 +16,6 @@ const CheckoutPage = () => {
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
 
-
   useEffect(() => {
     if (!data) return;
     dispatch(loading());
