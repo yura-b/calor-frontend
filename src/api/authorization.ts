@@ -16,11 +16,9 @@ export const googleLogin = (credentials: string) => {
   return axios.post(`${BASE_URL}/user/google`, { credentials });
 };
 
-
 export const sendEmailForReset = (email: string) => {
-  return axios.post(`${BASE_URL}/user/reset/`, {email});
-}
-
+  return axios.post(`${BASE_URL}/user/reset/`, { email });
+};
 
 export const resetPassword = (id: string, password: string) => {
   return axios.patch(`${BASE_URL}/user/reset`, { id, password });
