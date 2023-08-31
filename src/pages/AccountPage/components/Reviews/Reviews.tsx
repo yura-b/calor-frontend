@@ -55,16 +55,14 @@ const Reviews: React.FC = (): React.ReactElement => {
     let color;
     switch (status) {
       case 'PUBLISHED':
-        color = 'green';
+        color = 'text-green-500';
         break;
       case 'PENDING':
-        color = 'orange';
+        color = 'text-orange-500';
         break;
       case 'CANCELED':
-        color = 'red';
+        color = 'text-red-500';
         break;
-      default:
-        color = 'black';
     }
     return color;
   };
@@ -85,7 +83,6 @@ const Reviews: React.FC = (): React.ReactElement => {
     }
     return text;
   };
-  console.log(userProducts, 'userProducts');
 
   return (
     <AccountLayout>
@@ -104,7 +101,7 @@ const Reviews: React.FC = (): React.ReactElement => {
                 <h2 className="text-slate-500">{item.category}</h2>
                 <h2>From ${item.price}</h2>
                 <h2 className={`${styles.body1} font-bold text-gray mt-3`}>Your Review</h2>
-                <div className={`text-${statusTextColor(item.status)}-500 flex items-center mt-1`}>
+                <div className={`${statusTextColor(item.status)} flex items-center mt-1`}>
                   <Square size={15} weight="fill" />
                   <div className="ml-2">{statusText(item.status)}</div>
                 </div>
