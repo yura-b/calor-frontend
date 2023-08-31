@@ -25,7 +25,7 @@ const CatalogPage = () => {
     dispatch(loadingFinished());
   }, []);
 
-  if (products.length === 0) return;
+  // if (products.length === 0) return;
 
   return (
     <AdminLayout>

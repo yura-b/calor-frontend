@@ -45,7 +45,7 @@ const WarehousePage = () => {
     <AdminLayout>
       <GridHeader title={'Details'} />
       <WarehouseFilters setProductFilter={onChangeFilter} productValue={productFilter} />
-      <DetailsGrid details={details} setDetails={setDetails} />
+      <DetailsGrid details={details} />
     </AdminLayout>
   );
 };

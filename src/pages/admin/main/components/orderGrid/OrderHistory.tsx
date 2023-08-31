@@ -25,10 +25,10 @@ export const OrderHistory: React.FC<{ key: string; order: IOrder; align }> = ({o
                     </IconButton>
                 </TableCell>
                 <TableCell component="th" scope="row">
-                    <p>{order._id}</p>
+                    <p>{order.order_id}</p>
                 </TableCell>
                 <TableCell align={align}>
-                    <p>{order.username}</p>
+                    <p>{order.firstName + ' ' + order.secondName}</p>
                 </TableCell>
                 <TableCell align={align}>
                     <p>{DateFormatter(order.date)}</p>
@@ -77,6 +77,9 @@ export const OrderHistory: React.FC<{ key: string; order: IOrder; align }> = ({o
                                         <TableCell align={align}>{order.totalPrice}$</TableCell>
                                         <TableCell align={align}>{order.payment}</TableCell>
                                     </TableRow>
+                                    {/* <div className={'flex justify-end w-[60vw] mt-5'}> */}
+                                    {/*     <CustomButton title={'return'} styles={'px-5'}/> */}
+                                    {/* </div> */}
                                 </TableBody>
                             </Table>
                         </Box>
