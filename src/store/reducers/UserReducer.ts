@@ -24,8 +24,9 @@ export const initialState: IUser = {
   email: '',
   roles: localStorage.getItem('roles')?.split(',') as Role[],
   basket: null,
-  shippingInfo: null,
-};
+  shippingInfo: null
+}
+
 
 export interface ISetUserData extends IUser {
   rememberMe?: boolean;

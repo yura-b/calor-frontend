@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { authorization } from '@/api/config.ts';
+import { PostReviewDto } from './dto/review/postReview.dto';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -12,6 +13,14 @@ export const deleteReview = (access_token: string, id: string) => {
 
 export const approveReview = (access_token: string, id: string) => {
   return axios.put(`${BASE_URL}/review/${id}`, {}, authorization(access_token));
+};
+
+export const createReview = (review:PostReviewDto) => {
+  return axios.post(`${BASE_URL}/review`, review);
+};
+
+export const editReview = (id: string, review:PostReviewDto) => {
+  return axios.put(`${BASE_URL}/review/${id}`, review);
 };
 
 export const getReviews = () => {
