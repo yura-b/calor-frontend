@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@styles/Styles.module.scss';
-import families from '@assets/images/ourShoesFor/families.svg';
+import families from '@assets/images/ourShoesFor/families.png';
 import creative from '@assets/images/ourShoesFor/creative.svg';
 import extraOrdinary from '@assets/images/ourShoesFor/extraOrdinary.svg';
 import individuality from '@assets/images/ourShoesFor/individuality.svg';
@@ -18,19 +18,22 @@ const OurShoesFor: React.FC = () => {
     {
       img: creative,
       title: 'Creatives and Emotionals',
-      description: 'Design matching shoes for the whole family and create a sense of closeness and unity.',
+      description:
+        ' Creatives and Emotionals: Unleash your creativity and become your own shoe designer. Express your unique style and emotions through custom designs.',
       mt: '0px',
     },
     {
       img: extraOrdinary,
       title: 'The Extraordinary',
-      description: 'Design matching shoes for the whole family and create a sense of closeness and unity.',
+      description:
+        ' Want to take it to the next level? Create shoes where each half pair is different, and stand out with an awesome and cool statement.',
       mt: '0px',
     },
     {
       img: creative,
       title: 'Business People',
-      description: 'Design matching shoes for the whole family and create a sense of closeness and unity.',
+      description:
+        'Save time on shoe shopping without compromising on what you want. Our custom-made shoes are perfect for busy professionals who value convenience and style.',
       mt: '-130px',
     },
     {

@@ -1,19 +1,18 @@
 import React, { useState, useCallback } from 'react';
 import MainFrame from '@/components/mainFrame';
 import CustomInput from '@components/input/CustomInput.tsx';
-import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { useFormik } from 'formik';
 import { validationSchemaForUserAccount } from '@/helpers/validation/formValidation.ts';
-import { setFirstName, setPhoneNumber, setSecondName, setEmail } from '@/store/reducers/RegistrationReducer.ts';
 import { Modal } from '@mui/material';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import X from '@assets/images/SignUpHeaderImg/X.png';
+import { updateUserAccount } from '@/api/users';
 
 const EditAccountDetails: React.FC = (): React.ReactElement => {
-  const { secondName, firstName, email, phoneNumber } = useAppSelector((state) => state.user);
+  const { access_token, secondName, firstName, email, phoneNumber } = useAppSelector((state) => state.user);
 
-  const dispatch = useAppDispatch();
   const formik = useFormik({
     initialValues: {
       firstName,
@@ -23,12 +22,23 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
     },
     validateOnMount: true,
     validationSchema: validationSchemaForUserAccount,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values, 'values');
-      dispatch(setFirstName(values.firstName));
-      dispatch(setSecondName(values.secondName));
-      dispatch(setEmail(values.email));
-      dispatch(setPhoneNumber(values.phoneNumber));
+      try {
+        const updatedData = {
+          firstName: values.firstName,
+          secondName: values.secondName,
+          phoneNumber: values.phoneNumber,
+        };
+        if (access_token) {
+          await updateUserAccount(access_token, updatedData);
+          handleClose();
+        } else {
+          console.error('Access token is null.');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      }
     },
   });
   const [open, setOpen] = useState(false);
@@ -46,6 +56,7 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
       console.log('Form is not valid. Modal will not be opened.');
     }
   }, [formik.isValid]);
+
   return (
     <MainFrame title={'Edit Account Details'} showCloseBtn={true}>
       <form onSubmit={formik.handleSubmit} className={`${styles.container} w-full`}>
@@ -82,7 +93,6 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
               name={'email'}
               placeholder={''}
               value={formik.values.email}
-              onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
               errorMessage={formik.errors.email}
               border={'1px solid #D9D9D9'}
@@ -103,7 +113,7 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
             >
               Phone number
             </CustomInput>
-            <Button onClick={handleClick} color="gray" className="block m-auto" type={'submit'}>
+            <Button onClick={handleClick} color="gray" className="block m-auto">
               Save
             </Button>
           </div>
@@ -120,10 +130,7 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
                 to delete your account?
               </p>
               <div className="w-full flex flex-col items-center justify-center mt-8 gap-8 md:flex-row md:gap-4">
-                <Button color="gray" type="submit">
-                  Yes
-                </Button>
-                {/* <CustomButton styles={'w-full'} title={'Yes'} type={'submit'} /> */}
+                <Button color="gray">Yes</Button>
                 <Button onClick={handleClose} color="mintExtraLight">
                   No
                 </Button>
