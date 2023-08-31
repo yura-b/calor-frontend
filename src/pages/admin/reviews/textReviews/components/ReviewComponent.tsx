@@ -103,7 +103,7 @@ const ReviewComponent: React.FC<IProps> = ({
       <p>{experience}</p>
 
       <div>
-        {photo && <img src={photo} alt="" />}
+        {photo && <img className={'w-[150px]'} src={photo} alt="" />}
       </div>
       {!onlyForReview && (
         <div className={'relative mx-auto flex flex-row gap-8'}>

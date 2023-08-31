@@ -6,7 +6,7 @@ import OrderGridPage from '@pages/admin/main/components/orderGrid/OrderGridPage.
 const MainPage = () => {
   return (
     <AdminLayout>
-      <GridHeader title={'Orders'} buttonTitle={'+ New OrderHistrory'} />
+      <GridHeader title={'Orders'} buttonTitle={'+ New Order'} />
       <OrderGridPage />
     </AdminLayout>
   );

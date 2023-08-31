@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {IUser, IUserForProfile} from '@/constants/interfaces/user.ts';
-import {ArrowsHorizontal, ChatText, Truck, User} from '@phosphor-icons/react';
+import {ArrowsHorizontal, ChatText, User} from '@phosphor-icons/react';
 import IsRegistered from '@components/admin/IsRegistered.tsx';
 import DefaultShippingInfo from '@pages/admin/users/components/userProfile/components/DefaultShippingInfo.tsx';
 
 interface IProps {
     userDataState: UserInfoState;
     withDelivery: boolean;
+    delivery: ReactNode | null
 }
 
 interface UserInfoState {
@@ -14,7 +15,7 @@ interface UserInfoState {
     setState?: React.Dispatch<React.SetStateAction<IUser>>;
 }
 
-const UserInfo: React.FC<IProps> = ({userDataState, withDelivery = false}) => {
+const UserInfo: React.FC<IProps> = ({userDataState, withDelivery = false, delivery}) => {
     const {state, setState} = userDataState;
 
     return (
@@ -54,19 +55,9 @@ const UserInfo: React.FC<IProps> = ({userDataState, withDelivery = false}) => {
             </div>
 
             <div className={'flex flex-col gap-5 mt-4 w-1/2'}>
-
                 <DefaultShippingInfo shippingInfo={state.shippingInfo}/>
-
-                {withDelivery && (
-                    <div className={'flex flex-row gap-5 items-center'}>
-                        <Truck size={32} weight={'fill'}/>
-                        <h2 className={'font-bold'}>Delivery</h2>
-                    </div>
-                )}
-                {withDelivery && (
-                    <div>
-                        <p>Delivery information not yet specified</p>
-                    </div>
+                {delivery && (
+                    delivery
                 )}
                 {!withDelivery && (
                     <div>

@@ -12,56 +12,67 @@ import {loading, loadingFinished} from '@/store/reducers/StatusReducer.ts';
 import OrderStatusComponent from './components/orderPage/OrderStatusComponent';
 import CustomButton from '@components/button/CustomButton.tsx';
 import reloadPage from '@/helpers/functions/reloadPage.ts';
+import DeliveryInfo from '@pages/admin/main/components/orderPage/DeliveryInfo.tsx';
 
 const OrderPage = () => {
-  const dispatch = useAppDispatch();
-  const { access_token } = useAppSelector((state) => state.user);
-  const [orderData, setOrderData] = useState<IOrder>();
-  const [userData, setUserData] = useState<IUser>();
-  const { id } = useParams();
+    const dispatch = useAppDispatch();
+    const {access_token} = useAppSelector((state) => state.user);
+    const [orderData, setOrderData] = useState<IOrder>();
+    const [userData, setUserData] = useState<IUser>();
+    const {id} = useParams();
 
-  useEffect(() => {
-    if (access_token && id) {
-      dispatch(loading());
+    useEffect(() => {
+        if (access_token && id) {
+            dispatch(loading());
 
-      getOrder(access_token, id).then((res) => {
-        setOrderData(res.data.order);
-        setUserData(res.data.user);
+            getOrder(access_token, id).then((res) => {
+                setOrderData(res.data.order);
+                setUserData(res.data.user);
 
-        dispatch(loadingFinished());
-      });
+                dispatch(loadingFinished());
+            });
+        }
+    }, []);
+
+
+    const startProduction = () => {
+        if (!access_token || !orderData?._id) return
+        changeOrderStatus(access_token, {
+            orderStatus: OrderStatus.PRODUCTION,
+            _id: orderData?._id
+        }).then(() => {
+            reloadPage()
+        })
     }
-  }, []);
-
-
-  const startProduction = () =>{
-    if (!access_token || !orderData?._id) return
-    changeOrderStatus(access_token, {
-      orderStatus: OrderStatus.PRODUCTION,
-      _id: orderData?._id
-    }).then(()=>{
-      reloadPage()
-    })
-  }
-  if (!id || !access_token || !orderData) return <></>;
-  const { email, phoneNumber, status } = orderData;
-  const {firstName, secondName} = orderData
-  if (typeof phoneNumber === 'undefined' ) return
+    if (!id || !access_token || !orderData) return <></>;
+    const {email, phoneNumber, status} = orderData;
+    const {firstName, secondName} = orderData
+    if (typeof phoneNumber === 'undefined') return
 
 
     return (
-    <AdminLayout>
-      <OrderPageHeader id={id} />
-      <OrderStatusComponent status={status} id={id} />
-      <OrderInformation order={orderData} />
-      <div className={'pl-7'}>
-        <UserInfo withDelivery={true} userDataState={{ state: {...userData, firstName, secondName, phoneNumber, email, registered: userData?.registered || false  } }} />
-      </div>
-      {orderData.status ===OrderStatus.PROCESSING && <div className={'flex justify-end mr-32'}>
-        <CustomButton title={'Start Production'} handler={startProduction}/>
-      </div>}
-    </AdminLayout>
-  );
+        <AdminLayout>
+            <OrderPageHeader id={id}/>
+            <OrderStatusComponent status={status} id={id}/>
+            <OrderInformation order={orderData}/>
+            <div className={'pl-7'}>
+                <UserInfo withDelivery={true} userDataState={{
+                    state: {
+                        ...userData,
+                        firstName,
+                        secondName,
+                        phoneNumber,
+                        email,
+                        registered: userData?.registered || false
+                    }
+                }} delivery={<DeliveryInfo _id={id}/>} />
+                    </div>
+                {orderData.status ===OrderStatus.PROCESSING && <div className={'flex justify-end mr-32'}>
+                    <CustomButton title={'Start Production'} handler={startProduction}/>
+            </div>
+            }
+        </AdminLayout>
+    );
 };
 
 export default OrderPage;
