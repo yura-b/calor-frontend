@@ -97,13 +97,14 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
           </h1>
           <div className="lg:basis-3/5">
             <p className={`${styles.subtitle} mb-2`}>{visions}</p>
-            <p className={styles.body1}>
+            {/* Waiting videos */}
+            {/* <p className={styles.body1}>
               Learn how to do it in our {''}
               <span className="hidden lg:inline-block">
                 <VideoGuideLink color="custom-red" />
               </span>
               <span className="lg:hidden">Video Guide</span>
-            </p>
+            </p> */}
           </div>
           <div className="lg:basis-auto mt-4 lg:mt-0">
             <Button color="red" to={paths.design_shoe} className="mb-4">
@@ -113,7 +114,8 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
               Design Your Bag
             </Button>
           </div>
-          <VideoGuideLink className="lg:hidden" />
+          {/* Waiting videos */}
+          {/* <VideoGuideLink className="lg:hidden" /> */}
         </motion.div>
         <img src={homeSemiCircle} className="absolute z-1 top-40 left-0 h-56 sm:hidden" />
         <img

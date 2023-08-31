@@ -24,5 +24,6 @@ export const editReview = (id: string, review:PostReviewDto) => {
 };
 
 export const findPublished = () => {
+export const getReviews = () => {
   return axios.get(`${BASE_URL}/review/all`);
 };

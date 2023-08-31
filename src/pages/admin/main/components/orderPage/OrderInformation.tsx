@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const OrderInformation: React.FC<IProps> = ({ order }) => {
-  const { payment, product, totalPrice } = order;
+  const { payment, shoes, accessory, totalPrice } = order;
   console.log(order);
   return (
     <>
@@ -33,7 +33,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableCell>{product.title}</TableCell>
+              <TableCell>{shoes?.title || accessory?.name}</TableCell>
 
               <TableCell align={'right'}>{totalPrice}$</TableCell>
 
