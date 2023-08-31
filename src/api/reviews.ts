@@ -23,7 +23,6 @@ export const editReview = (id: string, review:PostReviewDto) => {
   return axios.put(`${BASE_URL}/review/${id}`, review);
 };
 
-export const findPublished = () => {
 export const getReviews = () => {
   return axios.get(`${BASE_URL}/review/all`);
 };
