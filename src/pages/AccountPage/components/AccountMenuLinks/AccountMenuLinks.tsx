@@ -12,8 +12,9 @@ import Password from '@assets/images/account/password.svg';
 interface Props {
   firstName: string;
   secondName: string;
+  account?: boolean;
 }
-const AccountMenuLinks: React.FC<Props> = ({ firstName, secondName }): React.ReactElement => {
+const AccountMenuLinks: React.FC<Props> = ({ firstName, secondName, account }): React.ReactElement => {
   const location = useLocation();
 
   const menuItems = [
@@ -27,18 +28,20 @@ const AccountMenuLinks: React.FC<Props> = ({ firstName, secondName }): React.Rea
 
   return (
     <div className="h-auto py-2">
-      <h1 className={`${styles.body2} font-bold mb-2`}>
+      <h1 className={`${account ? styles.subtitle : styles.body2} font-bold mb-2`}>
         {firstName} {secondName}
       </h1>
       <div className="flex flex-col ">
         {menuItems.map((menuItem) => (
           <NavLink key={menuItem.path} to={menuItem.path} className={'py-2 w-[220px] hover:font-bold'}>
             <div
-              className={`flex gap-2 ${
+              className={`flex items-center gap-2 ${
                 location.pathname === menuItem.path ? 'bg-custom-turquoise py-2 px-3 -ml-3' : ''
               }`}
             >
-              <img src={menuItem?.img} alt="" />
+              <div className={` ${account ? 'border border-mint rounded-full bg-mint w-[36px] h-[36px] flex' : ''}`}>
+                <img src={menuItem?.img} alt="" className={` ${account ? 'filter brightness-0 invert m-auto' : ''}`} />
+              </div>
               {menuItem.label}
             </div>
           </NavLink>

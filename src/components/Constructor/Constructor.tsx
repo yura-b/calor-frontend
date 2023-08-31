@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetDesign } from '@/store/reducers/constructor/ShoesConstructorReducer';
 import { setSelectedModel } from '@/store/reducers/constructor/SelectedShoePartsReducer';
+import styles from '@styles/Styles.module.scss';
 import MainView from './components/Shoes/Views/MainView';
 import AditionalViews from './components/Shoes/Views/AditionalViews';
 import Details from './components/Shoes/Details';
@@ -62,10 +63,8 @@ const Constructor: FC<IProps> = ({ model }) => {
         {isVisible && (
           <>
             <AditionalViews model={model} />
-            <div className="flex flex-col justify-center items-center">
-              <Button color="mint" className="w-full my-4 lg:block" onClick={handleSaveDesign}>
-                Save design
-              </Button>
+            <div className="flex md:flex-row flex-col justify-center items-center md:gap-3">
+              {/* <Button color="mint" className="w-full my-4 lg:block" onClick={handleSaveDesign}>Save design</Button> */}
               <Button color="transparentGray" className="w-full my-4 lg:block" onClick={handleRedesign}>
                 Redesign
               </Button>

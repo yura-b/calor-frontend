@@ -14,6 +14,7 @@ import {shippingDetails} from '@/constants/interfaces/order.ts';
 interface IProps {
   setData: React.Dispatch<React.SetStateAction<shippingForm | null>>;
   buttonTitle: string;
+  shippingData: shippingForm | null;
 }
 
 export type shippingForm = Omit<ShippingInfoDto, 'user_id'>;

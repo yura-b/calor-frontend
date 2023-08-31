@@ -1,6 +1,7 @@
 import { paths } from '@routes/paths';
 import privacy from '../../../../public/Privacy Policy_CALOR.pdf';
 import conditions from './../../../../public/Terms and Conditions_CALOR.pdf';
+import cookie from '../../../../public/Use of Cookies_CALOR.pdf';
 
 export const menuItems = [
   {
@@ -86,23 +87,23 @@ export const menuItems = [
 export const helpLinks = [
   {
     title: 'Video Guides',
-    path: '#',
+    path: paths.helpPage + '#helpVideoGuides',
   },
   {
     title: 'Size Guide',
-    path: '#',
+    path: paths.helpPage + '#sizeGuide',
   },
   {
     title: 'FAQ',
-    path: '#',
+    path: paths.helpPage + '#FAQ',
   },
   {
     title: 'Shipping',
-    path: '#',
+    path: paths.helpPage + '#shipping',
   },
   {
     title: 'Returns & Exchange',
-    path: '#',
+    path: paths.helpPage + '#returns&Exchange',
   },
 ];
 export const aboutLinks = [
@@ -135,7 +136,8 @@ export const privacyLinks = [
   },
   {
     name: 'Cookies',
-    path: paths.cookies,
+    path: cookie,
+    isPdfLink: true,
   },
   {
     name: 'Terms & Condition',

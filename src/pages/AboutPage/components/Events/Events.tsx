@@ -50,7 +50,7 @@ const EventsComponent: React.FC = () => {
     };
 
     fetchEventData();
-  });
+  }, []);
 
   const maxItemsToShowLargeScreen = 4;
   const maxItemsToShowSmallScreen = 2;
