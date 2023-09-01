@@ -4,77 +4,23 @@ import Order from './components/Order';
 import HistoryOrder from './components/HistoryOrder';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { motion } from 'framer-motion';
-import { IOrder } from '@/constants/interfaces/order';
+// import { IOrder } from '@/constants/interfaces/order';
 import styles from '@/styles/Styles.module.scss';
 import emptyCurrent from '@assets/images/order/emptyCurrent.svg';
 import emptyHistory from '@assets/images/order/emptyHistory.svg';
+import { useQuery } from 'react-query';
+import { getOrdersForUser } from '@/api/orders';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
 
 const MyOrder = (): React.ReactElement => {
   const [activeTab, setActiveTab] = useState(1);
-
-  const OrderItem: IOrder[] = {
-    _id: 1,
-    userID: '1',
-    number: 100,
-    details: {
-      shoe: [],
-    },
-    quantity: 1,
-    product: 'Shoe',
-    address: 'Test Address',
-    totalPrice: 100,
-    email: '1@1',
-    username: 'TestName',
-    phoneNumber: '0000000000',
-    paypal_id: '1',
-    date: new Date(),
-    productionDays: 3,
-    purchases: [
-      {
-        product: {
-          type: 'shoe',
-          title: 'SunRize',
-          price: 100,
-          description: 'Test description',
-        },
-        count: 2,
-        details: {
-          bag: { material: 'test material', color: 'gray' },
-        },
-      },
-    ],
-  };
-  const ShippingInfo = {
-    username: 'Test',
-    company: 'Test',
-    address: 'Test Address',
-    city: 'Test City',
-    state: 'Test State',
-    zip: '12345',
-    country: 'Test Country',
-    region: 'Test Region',
-  };
-  const OrderItems = [
-    {
-      order: OrderItem,
-      shippingInfo: ShippingInfo,
-    },
-    {
-      order: OrderItem,
-      shippingInfo: ShippingInfo,
-    },
-  ];
-  const HistoryOrderItems = [
-    {
-      order: OrderItem,
-      shippingInfo: ShippingInfo,
-    },
-    {
-      order: OrderItem,
-      shippingInfo: ShippingInfo,
-    },
-  ];
-
+  const { access_token } = useAppSelector((state) => state.user);
+  const { data, isLoading, error } = useQuery('getOrdersForUser', () => {
+    if (access_token === null) {
+      throw new Error('Access token is null');
+    }
+    return getOrdersForUser(access_token);
+  });
   return (
     <motion.div className="w-full  overflow-hidden bg-mintExtraLight lg:bg-transparent" {...layoutFadeAnimation}>
       <MainFrame title={'My Orders'} className="overflow-hidden">
@@ -102,10 +48,10 @@ const MyOrder = (): React.ReactElement => {
             <div>
               {activeTab === 1 && (
                 <motion.div {...layoutFadeAnimation}>
-                  {OrderItems.length ? (
+                  {data?.data?.length ? (
                     <div>
-                      {OrderItems.map((item) => (
-                        <Order orderData={item} />
+                      {data?.data?.map((item) => (
+                        <Order orderData={item} loading={isLoading} error={error} />
                       ))}
                     </div>
                   ) : (
@@ -116,10 +62,10 @@ const MyOrder = (): React.ReactElement => {
                   )}
                 </motion.div>
               )}
-              {activeTab === 2 && HistoryOrderItems.length ? (
+              {activeTab === 2 && data?.data?.length ? (
                 <motion.div {...layoutFadeAnimation}>
-                  {HistoryOrderItems.map((item) => (
-                    <HistoryOrder orderData={item} />
+                  {data?.data?.map((item) => (
+                    <HistoryOrder orderData={item} loading={isLoading} error={error} />
                   ))}
                 </motion.div>
               ) : (

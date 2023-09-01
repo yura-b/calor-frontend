@@ -9,6 +9,8 @@ import Preview from '@assets/images/account/preview.svg';
 import Details from '@assets/images/account/details.svg';
 import Address from '@assets/images/account/address.svg';
 import Password from '@assets/images/account/password.svg';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+
 interface Props {
   firstName: string;
   secondName: string;
@@ -16,9 +18,11 @@ interface Props {
 }
 const AccountMenuLinks: React.FC<Props> = ({ firstName, secondName, account }): React.ReactElement => {
   const location = useLocation();
+  const { userId } = useAppSelector((state) => state.user);
 
   const menuItems = [
     { path: paths.accountDetails, label: 'Account Details', img: Details },
+    // { path: paths.accountDetails.replace(':id', userId), label: 'Account Details', img: Details },
     { path: paths.myOrders, label: 'My Orders', img: Orders },
     // TODO
     // { path: paths.designList, label: 'Design List', img: Design },

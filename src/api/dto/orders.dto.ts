@@ -57,7 +57,7 @@ export interface ShippingInfoDto {
 }
 
 export interface deliveryInfo {
-  order_id: string
+  order_id: string;
 
   trackingNumber: string;
 

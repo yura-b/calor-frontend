@@ -20,7 +20,7 @@ const userDataInitialState: IUser = {
   roles: [],
   secondName: '',
   shippingInfo: null,
-  registered: false
+  registered: false,
 };
 const UserProfile = () => {
   const { access_token } = useAppSelector((state) => state.user);
