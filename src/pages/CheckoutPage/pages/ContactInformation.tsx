@@ -1,0 +1,107 @@
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
+import { useFormik } from 'formik';
+import { validationSchemaForContactInfo } from '@/helpers/validation/formValidation.ts';
+import CustomInput from '@components/input/CustomInput.tsx';
+import CustomButton from '@components/button/CustomButton.tsx';
+import { useNavigate } from 'react-router';
+import { CheckoutSteps, setCheckoutStep, setContactInfo } from '@/store/reducers/CheckoutReducer.ts';
+
+const ContactInformation = () => {
+  const { access_token, firstName, secondName, phoneNumber, email } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  const contactInfo = useAppSelector((state) => state.checkout);
+  const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: firstName,
+      secondName: secondName,
+      phoneNumber: phoneNumber,
+      email: email,
+    },
+    validationSchema: validationSchemaForContactInfo,
+    onSubmit: (values) => {
+      dispatch(setContactInfo(values));
+      dispatch(setCheckoutStep(CheckoutSteps.SECOND));
+    },
+  });
+  console.log(formik.values.email);
+
+  return (
+    <div className={'flex flex-col p-5 w-full items-center '}>
+      <div className={'flex flex-col flex-start w-full'}>
+        <h2 className={'text-xl my-4 font-bold'}>Contact Information</h2>
+        {access_token && (
+          <div className="flex flex-row justify-between">
+            Sign In and checkout faster
+            <span
+              onClick={() => {
+                navigate('/login');
+              }}
+              className={'underline'}
+            >
+              Sign In
+            </span>
+          </div>
+        )}
+      </div>
+      <form onSubmit={formik.handleSubmit} className={'w-full'}>
+        <CustomInput
+          id={'email'}
+          name={'email'}
+          placeholder={'input email'}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          errorMessage={formik.errors.email}
+          border={'1px solid #D9D9D9'}
+        >
+          Email
+        </CustomInput>
+        <CustomInput
+          id={'firstName'}
+          name={'firstName'}
+          placeholder={'e.g James'}
+          value={formik.values.firstName}
+          onChange={formik.handleChange}
+          error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+          errorMessage={formik.errors.firstName}
+          border={'1px solid #D9D9D9'}
+        >
+          First Name
+        </CustomInput>
+        <CustomInput
+          id={'secondName'}
+          name={'secondName'}
+          placeholder={'e.g James'}
+          value={formik.values.secondName}
+          onChange={formik.handleChange}
+          error={formik.touched.secondName && Boolean(formik.errors.secondName)}
+          errorMessage={formik.errors.secondName}
+          border={'1px solid #D9D9D9'}
+        >
+          Second Name
+        </CustomInput>
+
+        <CustomInput
+          id={'phoneNumber'}
+          name={'phoneNumber'}
+          placeholder={'e.g.   +1 (555) 555-5555'}
+          value={formik.values.phoneNumber}
+          onChange={formik.handleChange}
+          error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+          errorMessage={formik.errors.phoneNumber}
+          border={'1px solid #D9D9D9'}
+        >
+          Phone number
+        </CustomInput>
+
+        <CustomButton styles={'w-full'} title={'Continue'} type={'submit'} />
+      </form>
+    </div>
+  );
+};
+
+export default ContactInformation;
