@@ -14,7 +14,7 @@ const CustomerExperiencePage: React.FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.customerExperiencePage} />
       <MainLayout>
-        <div className=" hidden lg:block lg:my-4">
+        <div className=" hidden lg:block lg:mt-4 lg:mb-2">
           <NavigationLinks color="gray" className=" w-auto" />
         </div>
         {/* Waiting videos */}

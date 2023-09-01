@@ -31,7 +31,7 @@ const CheckoutPage = () => {
       },
       purchases: [
         {
-          product: '64d634cc66fe8aeb227974dc',
+          product: '64f0b9060c1c98ee88262c87',
           count: 1,
           details: {},
         },

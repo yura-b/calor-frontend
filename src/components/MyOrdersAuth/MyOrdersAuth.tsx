@@ -4,13 +4,13 @@ import Order from './components/Order';
 import HistoryOrder from './components/HistoryOrder';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { motion } from 'framer-motion';
-// import { IOrder } from '@/constants/interfaces/order';
 import styles from '@/styles/Styles.module.scss';
 import emptyCurrent from '@assets/images/order/emptyCurrent.svg';
 import emptyHistory from '@assets/images/order/emptyHistory.svg';
 import { useQuery } from 'react-query';
 import { getOrdersForUser } from '@/api/orders';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { OrderStatus } from '@/constants/interfaces/order';
 
 const MyOrder = (): React.ReactElement => {
   const [activeTab, setActiveTab] = useState(1);
@@ -21,6 +21,12 @@ const MyOrder = (): React.ReactElement => {
     }
     return getOrdersForUser(access_token);
   });
+
+  const statusesForCurrentOrders = [OrderStatus.PROCESSING, OrderStatus.PRODUCTION, OrderStatus.QualityControl];
+  const statusesForHistoryOrders = [OrderStatus.Shipped];
+  const filteredStatusesForCurrentOrders = data?.data.filter((obj) => statusesForCurrentOrders.includes(obj.status));
+  const filteredStatusesForHistoryOrders = data?.data.filter((obj) => statusesForHistoryOrders.includes(obj.status));
+
   return (
     <motion.div className="w-full  overflow-hidden bg-mintExtraLight lg:bg-transparent" {...layoutFadeAnimation}>
       <MainFrame title={'My Orders'} className="overflow-hidden">
@@ -48,9 +54,9 @@ const MyOrder = (): React.ReactElement => {
             <div>
               {activeTab === 1 && (
                 <motion.div {...layoutFadeAnimation}>
-                  {data?.data?.length ? (
+                  {filteredStatusesForCurrentOrders?.length ? (
                     <div>
-                      {data?.data?.map((item) => (
+                      {filteredStatusesForCurrentOrders?.map((item) => (
                         <Order orderData={item} loading={isLoading} error={error} />
                       ))}
                     </div>
@@ -62,9 +68,9 @@ const MyOrder = (): React.ReactElement => {
                   )}
                 </motion.div>
               )}
-              {activeTab === 2 && data?.data?.length ? (
+              {activeTab === 2 && filteredStatusesForHistoryOrders?.length ? (
                 <motion.div {...layoutFadeAnimation}>
-                  {data?.data?.map((item) => (
+                  {filteredStatusesForHistoryOrders?.map((item) => (
                     <HistoryOrder orderData={item} loading={isLoading} error={error} />
                   ))}
                 </motion.div>
