@@ -9,10 +9,11 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import TagManager from 'react-gtm-module';
 
-const gtmId = import.meta.env.VITE_GTM_ID;
+const GOOGLE_CLIENT_ID = import.meta.env.GOOGLE_CLIENT_ID;
+const GTM_ID = import.meta.env.VITE_GTM_ID;
 
 const tagManagerArgs = {
-  gtmId
+  gtmId: GTM_ID
 }
 
 TagManager.initialize(tagManagerArgs)
@@ -21,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={new QueryClient()}>
-        <GoogleOAuthProvider clientId="352361031995-3huasr1q21c4l3mktm2l64pvddkbac7j.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
           <App />
         </GoogleOAuthProvider>
       </QueryClientProvider>
