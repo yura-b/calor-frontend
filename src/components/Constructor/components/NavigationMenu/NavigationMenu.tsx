@@ -17,18 +17,6 @@ const NavigationMenu = ({}) => {
     navigate(-1);
   }
 
-  const scrollToElement = () => {
-    if (targetElementRef.current) {
-      targetElementRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  };
-
-  useEffect(() => {
-    if (isMobile) {
-      scrollToElement()
-    }
-  }, [targetElementRef.current])
-
   return (
     <div className="w-full bg-custom-turquoise h-10 flex items-center justify-center" ref={targetElementRef}>
       <div className={`flex flex-row justify-between items-center ${styles.wrapper}`}>
