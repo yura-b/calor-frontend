@@ -30,6 +30,10 @@ const Constructor: FC<IProps> = ({ model }) => {
     setIsVisible(!isVisible);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 90);
+  }, []);
+
   const handleSaveDesign = () => {
     combineImages(modelImages).then((base64) => {});
   };
