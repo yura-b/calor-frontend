@@ -1,17 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import IconButton from '@mui/material/IconButton/IconButton';
 import styles from '@styles/Styles.module.scss';
-import { useMediaQuery } from '@react-hook/media-query';
 import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
 
 
 const NavigationMenu = ({}) => {
   const navigate = useNavigate();
   const targetElementRef = useRef(null);
-
-  const isMobile = useMediaQuery('(max-width: 640px)');
 
   const goBack = () => {
     navigate(-1);
