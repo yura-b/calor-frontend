@@ -85,7 +85,6 @@ export const menuItems = [
 ];
 
 export const helpLinks = [
-
   // Waiting videos
   // {
   //   title: 'Video Guides',

@@ -101,7 +101,7 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
                       navigateToOrderPage(order._id);
                     }}
                   >
-                    <p className={'underline font-bold cursor-pointer'}>{order._id}</p>
+                    <p className={'underline font-bold cursor-pointer'}>{order.order_id}</p>
                   </TableCell>
                   <TableCell>
                     <p>{order.firstName + ' ' + order.secondName}</p>
