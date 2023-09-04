@@ -114,3 +114,30 @@ export const validationSchemaForUserAccount = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
   phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
 });
+
+export const validationMeasurement = yup.object({
+  rightFootLength: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  rightFootWidth: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  leftFootLength: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  leftFootWidth: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  insoleLength: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  insoleWidth: yup
+  .string()
+  .min(1, 'Field must contain a minimum of 1 character')
+  .required('This field is required'),
+});
