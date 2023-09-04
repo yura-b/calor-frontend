@@ -6,7 +6,7 @@ import MeasurementForm from "./components/MeasurementForm";
 import { Link } from "react-router-dom";
 
 const MeasurementPage = () => {
-  const sizeList = [1, 2, 3, 4, 5]
+  const sizeList = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13,5, 14, 14.5, 15, 15.5, 16, 16.5, 17]
   const [selectedShoeSize, setSelectedShoeSize] = useState(0);
 
   const handleSize = (size) => {
@@ -46,7 +46,7 @@ const MeasurementPage = () => {
                     border
                     cursor-pointer
                     ${selectedShoeSize === size 
-                      ? 'bg-mint border-mint' 
+                      ? 'bg-mint border-mint text-white' 
                       : 'hover:bg-mintExtraLight'}`}
                     onClick={() => handleSize(size)}>{size}</div>)
                 }

@@ -44,7 +44,7 @@ const MeasurementForm: FC<IProps> = ({selectedShoeSize}) => {
                 height="45px"
                 gap="1"
             >
-                Right Foot Length
+                Right Foot Length (in)
             </CustomInput>
             <CustomInput
                 id={'rightFootWidth'}
@@ -60,7 +60,7 @@ const MeasurementForm: FC<IProps> = ({selectedShoeSize}) => {
                 height="45px"
                 gap="1"
             >
-                Right Foot Width
+                Right Foot Width (in)
             </CustomInput>
             <CustomInput
                 id={'leftFootLength'}
@@ -76,7 +76,7 @@ const MeasurementForm: FC<IProps> = ({selectedShoeSize}) => {
                 height="45px"
                 gap="1"
             >
-                Left Foot Length
+                Left Foot Length (in)
             </CustomInput>
             <CustomInput
                 id={'leftFootWidth'}
@@ -92,7 +92,7 @@ const MeasurementForm: FC<IProps> = ({selectedShoeSize}) => {
                 height="45px"
                 gap="1"
             >
-                Left Foot Width
+                Left Foot Width (in)
             </CustomInput>
             <p className="mb-2">
                 Please, find your most comfortable shoe similar to the shoe type you created and take out the insole (if it's removable), and measure it
@@ -111,7 +111,7 @@ const MeasurementForm: FC<IProps> = ({selectedShoeSize}) => {
                 height="45px"
                 gap="1"
             >
-                Insole Length
+                Insole Length (in)
             </CustomInput>
             <CustomInput
                 id={'insoleWidth'}
@@ -127,7 +127,7 @@ const MeasurementForm: FC<IProps> = ({selectedShoeSize}) => {
                 height="45px"
                 gap="1"
             >
-                Insole Width
+                Insole Width (in)
             </CustomInput>
             <p className="mb-2">
                 If you have any questions, please, contact us by chat or any other available communication option.
