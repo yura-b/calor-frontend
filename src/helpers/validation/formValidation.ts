@@ -90,10 +90,7 @@ export const validationSchemaForPurchase = yup.object({
 
 export const validationSchemaForOrderNumber = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
-  orderNumber: yup
-    .string()
-    .min(3, 'OrderHistrory Number should be of minimum 3 characters length')
-    .required('OrderHistrory Number is required'),
+  order_id: yup.number().required('Order Number is required'),
 });
 
 export const validationSchemaForPromoCode = yup.object({

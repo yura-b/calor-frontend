@@ -54,7 +54,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.Re
         >
           <motion.div className={`text-white ${isOpen ? '' : 'hidden'}`}>
             <header className="fixed right-0 z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-custom-turquoise">
-              <div className="flex">
+              <div className="flex items-center">
                 {isRegisteredUser && (
                   <Link to={paths.account}>
                     {' '}

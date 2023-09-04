@@ -34,3 +34,7 @@ export const patchOrderDeliveryInfo = (info: deliveryInfo, credentials: string) 
 export const getOrdersForUser = (access_token: string) => {
   return axios.get(`${BASE_URL}/order`, authorization(access_token));
 };
+
+export const sendOrderForNotAuthUser = (email: string, order_id: number) => {
+  return axios.put(`${BASE_URL}/order`, { email, order_id });
+};

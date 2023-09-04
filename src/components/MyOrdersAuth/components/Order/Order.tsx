@@ -9,14 +9,22 @@ import OrderHeader from '../OrderHeader';
 interface Props {
   orderData: IOrder;
   className?: string;
-  loading: boolean;
-  error: any;
+  loading?: boolean;
+  error?: any;
+  token: string | null;
 }
 
-const Order: React.FC<Props> = ({ orderData, className, loading, error }): React.ReactElement => {
+const Order: React.FC<Props> = ({ orderData, className, loading, error, token }): React.ReactElement => {
   const { status } = orderData;
   const stepsCustom = [OrderStatus.PROCESSING, OrderStatus.PRODUCTION, OrderStatus.QualityControl];
   const stepsNoCustom = [OrderStatus.PROCESSING, OrderStatus.QualityControl];
+  const stepsCustomNotAuth = [
+    OrderStatus.PROCESSING,
+    OrderStatus.PRODUCTION,
+    OrderStatus.QualityControl,
+    OrderStatus.Shipped,
+  ];
+  const stepsNoCustomNotAuth = [OrderStatus.PROCESSING, OrderStatus.QualityControl, OrderStatus.Shipped];
 
   return (
     <div className={`lg:border-b-2 lg:border-lightGray lg:pb-5 mb-6 ${className}`}>
@@ -26,8 +34,10 @@ const Order: React.FC<Props> = ({ orderData, className, loading, error }): React
         <p>Error loading data</p>
       ) : (
         <>
-          {orderData?.shoes && <OrderStepper step={status} steps={stepsCustom} />}
-          {orderData?.accessory && <OrderStepper step={status} steps={stepsNoCustom} />}
+          {orderData?.shoes && token && <OrderStepper step={status} steps={stepsCustom} />}
+          {orderData?.accessory && token && <OrderStepper step={status} steps={stepsNoCustom} />}
+          {orderData?.shoes && !token && <OrderStepper step={status} steps={stepsCustomNotAuth} />}
+          {orderData?.accessory && !token && <OrderStepper step={status} steps={stepsNoCustomNotAuth} />}
           <div className="xl:flex xl:justify-between xl:mt-4 xl:gap-4">
             <div className="xl:basis-[50%] ">
               <OrderHeader orderData={orderData} />
