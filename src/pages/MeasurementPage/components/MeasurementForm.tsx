@@ -4,7 +4,7 @@ import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import { validationMeasurement } from '@/helpers/validation/formValidation.ts';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserMeasurement } from "@/store/reducers/UserMeasurement";
 
 interface IProps {
