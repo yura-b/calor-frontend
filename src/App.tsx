@@ -40,6 +40,7 @@ import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 import { useMediaQuery } from '@react-hook/media-query';
 import Reviews from './pages/AccountPage/components/Reviews';
+import MeasurementPage from "./pages/MeasurementPage/MeasurementPage";
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -73,6 +74,7 @@ const App = () => {
             <Route path={'dayger'} element={<DesignShoePage model="dayger" />} />
             <Route path={'sunrise'} element={<DesignShoePage model="sunrise" />} />
             <Route path={'yolo'} element={<DesignShoePage model="yolo" />} />
+            <Route path={'measurement'} element={<MeasurementPage />} />
           </Route>
           <Route path={paths.design_bag} element={<DesignBagPage />} />
           <Route path={paths.accessories} element={<AccessoriesPage />} />
