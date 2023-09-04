@@ -89,6 +89,7 @@ export const validationSchemaForPurchase = yup.object({
 });
 
 export const validationSchemaForOrderNumber = yup.object({
+  email: yup.string().email('Enter a valid email').required('Email is required'),
   orderNumber: yup
     .string()
     .min(3, 'OrderHistrory Number should be of minimum 3 characters length')
@@ -120,24 +121,9 @@ export const validationMeasurement = yup.object({
     .string()
     .min(1, 'Field must contain a minimum of 1 character')
     .required('This field is required'),
-  rightFootWidth: yup
-    .string()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required'),
-  leftFootLength: yup
-    .string()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required'),
-  leftFootWidth: yup
-    .string()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required'),
-  insoleLength: yup
-    .string()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required'),
-  insoleWidth: yup
-  .string()
-  .min(1, 'Field must contain a minimum of 1 character')
-  .required('This field is required'),
+  rightFootWidth: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
+  leftFootLength: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
+  leftFootWidth: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
+  insoleLength: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
+  insoleWidth: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
 });

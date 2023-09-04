@@ -22,6 +22,7 @@ const MyOrder = (): React.ReactElement => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const formik = useFormik({
     initialValues: {
+      email: '',
       orderNumber: '',
     },
     validationSchema: validationSchemaForOrderNumber,
@@ -104,15 +105,24 @@ const MyOrder = (): React.ReactElement => {
                     <h1 className={`${styles.header2} m-auto text-white uppercase`}>MY Order</h1>
                   </header>
                   <div className="p-8 text-center">
-                    <p className={`${styles.body1}`}>
-                      To check the status of your order, please enter your order number
+                    <p className={`${styles.body1} pb-4`}>
+                      To check the status of your order, please enter your email and order number
                     </p>
-                    <p className={`${styles.body1} font-bold mt-6`}>Order Number</p>
+                    {/* <p className={`${styles.body1} font-bold mt-6`}>Order Number</p> */}
 
                     <form
                       onSubmit={formik.handleSubmit}
                       className={'mb-4 lg:basis-[40%] lg:-mt-4 lg:max-w-[500px] mx-auto'}
                     >
+                      <CustomInput
+                        id={'email'}
+                        name={'email'}
+                        placeholder={'Enter email'}
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        errorMessage={formik.errors.email}
+                        error={formik.touched.email && Boolean(formik.errors.email)}
+                      />
                       <CustomInput
                         id={'orderNumber'}
                         name={'orderNumber'}

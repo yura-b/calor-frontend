@@ -40,7 +40,7 @@ import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 import { useMediaQuery } from '@react-hook/media-query';
 import Reviews from './pages/AccountPage/components/Reviews';
-import MeasurementPage from "./pages/MeasurementPage/MeasurementPage";
+import MeasurementPage from './pages/MeasurementPage/MeasurementPage';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
