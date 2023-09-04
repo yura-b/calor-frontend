@@ -1,12 +1,18 @@
-import { } from 'react';
+import { FC } from 'react';
 import { useFormik } from 'formik';
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import { validationMeasurement } from '@/helpers/validation/formValidation.ts';
+import { useSelector, useDispatch } from "react-redux";
+import { setUserMeasurement } from "@/store/reducers/UserMeasurement";
 
-const MeasurementForm = () => {
+interface IProps {
+    selectedShoeSize: number
+}
 
+const MeasurementForm: FC<IProps> = ({selectedShoeSize}) => {
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             rightFootLength: '',
@@ -18,7 +24,7 @@ const MeasurementForm = () => {
         },
         validationSchema: validationMeasurement,
         onSubmit: (values) => {
-
+            dispatch(setUserMeasurement({selectedShoeSize,...values}));
         },
     });
 
@@ -36,6 +42,7 @@ const MeasurementForm = () => {
                 disableUnderline={true}
                 border="1px solid"
                 height="45px"
+                gap="1"
             >
                 Right Foot Length
             </CustomInput>
@@ -51,6 +58,7 @@ const MeasurementForm = () => {
                 disableUnderline={true}
                 border="1px solid"
                 height="45px"
+                gap="1"
             >
                 Right Foot Width
             </CustomInput>
@@ -66,6 +74,7 @@ const MeasurementForm = () => {
                 disableUnderline={true}
                 border="1px solid"
                 height="45px"
+                gap="1"
             >
                 Left Foot Length
             </CustomInput>
@@ -81,6 +90,7 @@ const MeasurementForm = () => {
                 disableUnderline={true}
                 border="1px solid"
                 height="45px"
+                gap="1"
             >
                 Left Foot Width
             </CustomInput>
@@ -99,6 +109,7 @@ const MeasurementForm = () => {
                 disableUnderline={true}
                 border="1px solid"
                 height="45px"
+                gap="1"
             >
                 Insole Length
             </CustomInput>
@@ -114,6 +125,7 @@ const MeasurementForm = () => {
                 disableUnderline={true}
                 border="1px solid"
                 height="45px"
+                gap="1"
             >
                 Insole Width
             </CustomInput>

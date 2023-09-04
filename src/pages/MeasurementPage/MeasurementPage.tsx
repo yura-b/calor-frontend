@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 
 const MeasurementPage = () => {
   const sizeList = [1, 2, 3, 4, 5]
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedShoeSize, setSelectedShoeSize] = useState(0);
 
   const handleSize = (size) => {
-    setSelectedSize(size)
+    setSelectedShoeSize(size)
   }
 
   return (
@@ -45,7 +45,7 @@ const MeasurementPage = () => {
                     items-center
                     border
                     cursor-pointer
-                    ${selectedSize === size 
+                    ${selectedShoeSize === size 
                       ? 'bg-mint border-mint' 
                       : 'hover:bg-mintExtraLight'}`}
                     onClick={() => handleSize(size)}>{size}</div>)
@@ -66,7 +66,7 @@ const MeasurementPage = () => {
                 <span>Don't know how to do it?</span>
                 <Link className="underline text-mint font-bold" to={""}>Video Guide</Link>
               </div>
-              <MeasurementForm />
+              <MeasurementForm selectedShoeSize={selectedShoeSize}/>
             </div>
           </div>
         </div>
