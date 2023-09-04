@@ -35,7 +35,7 @@ const GoogleButton: React.FC<IGoogleButton> = ({ children }) => {
         login();
       }}
       sx={{
-        cursor:'pointer',
+        cursor: 'pointer',
         borderRadius: '0px',
         height: '44px',
         border: '1px solid #D9D9D9',

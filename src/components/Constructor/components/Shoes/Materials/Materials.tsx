@@ -45,7 +45,7 @@ const Materials: FC<IProps> = ({ details }) => {
   }, [selectedDetail, selectedModel]);
 
   return (
-    <div className="flex justify-center items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6">
+    <div className="flex justify-center items-start m-auto overflow-x-auto gap-6 flex-row lg:gap-6">
       {materials.map((material) => (
         <button
           className={`capitalize min-w-[150px] h-[40px] border border-gray p-1 ${

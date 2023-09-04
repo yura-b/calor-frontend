@@ -42,6 +42,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 import Constructor from './components/Constructor';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Reviews from './pages/AccountPage/components/Reviews';
+import MeasurementPage from "./pages/MeasurementPage/MeasurementPage";
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -71,8 +72,11 @@ const App = () => {
             <Route path={'warehouse'} element={<WarehousePage />} />
           </Route>
           <Route path={'design_your_shoe'}>
-            <Route index element={<DesignShoePage />} />
-            <Route path={'product/:model/:id'} element={<Constructor />} />
+            <Route index element={<Navigate to="dayger" replace />} />
+            <Route path={'dayger'} element={<DesignShoePage model="dayger" />} />
+            <Route path={'sunrise'} element={<DesignShoePage model="sunrise" />} />
+            <Route path={'yolo'} element={<DesignShoePage model="yolo" />} />
+            <Route path={'measurement'} element={<MeasurementPage />} />
           </Route>
           <Route path={'product/:id'} element={<ProductPage />}/>
           <Route path={paths.design_bag} element={<DesignBagPage />} />

@@ -15,11 +15,11 @@ export const approveReview = (access_token: string, id: string) => {
   return axios.put(`${BASE_URL}/review/${id}`, {}, authorization(access_token));
 };
 
-export const createReview = (review:PostReviewDto) => {
+export const createReview = (review: PostReviewDto) => {
   return axios.post(`${BASE_URL}/review`, review);
 };
 
-export const editReview = (id: string, review:PostReviewDto) => {
+export const editReview = (id: string, review: PostReviewDto) => {
   return axios.put(`${BASE_URL}/review/${id}`, review);
 };
 

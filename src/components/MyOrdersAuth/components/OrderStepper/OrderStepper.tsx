@@ -1,9 +1,7 @@
 import React from 'react';
 import { Stack, Step, StepConnector, stepConnectorClasses, StepIconProps, StepLabel, Stepper } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import tick from '@assets/images/SignUpHeaderImg/tick.png';
-import { setStep, Steps } from '@/store/reducers/RegistrationReducer.ts';
 
 const ColorlibStepIconRoot = styled('div')<{
   ownerState: { completed?: boolean; active?: boolean };
@@ -26,45 +24,36 @@ const ColorlibStepIconRoot = styled('div')<{
   }),
 }));
 
-function ColorlibStepIcon(props: StepIconProps) {
-  const { active, completed, className } = props;
-  const icons: { [index: string]: React.ReactElement } = {
+function ColorlibStepIcon(props: StepIconProps & { currentStep: number }) {
+  const { active, icon, currentStep } = props;
+  const stepNumber = currentStep + 1;
+
+  const iconNumber = typeof icon === 'number' ? icon : 0;
+  const completed = active || iconNumber < stepNumber;
+
+  const icons: { [index: number]: React.ReactElement } = {
     1: <p>1</p>,
     2: <p>2</p>,
     3: <p>3</p>,
-    4: <p>4</p>,
   };
 
   return (
-    <ColorlibStepIconRoot ownerState={{ completed, active }} className={className}>
-      {completed ? <img src={tick} alt={''} /> : icons[String(props.icon)]}
+    <ColorlibStepIconRoot ownerState={{ completed }}>
+      {completed ? <img src={tick} alt={''} /> : icons[iconNumber]}
     </ColorlibStepIconRoot>
   );
 }
 
-const OrderStepper = () => {
-  const steps = ['Step1', 'Step2', 'Step3', 'Step4'];
-  const { step } = useAppSelector((state) => state.registration);
-  const dispatch = useAppDispatch();
-
-  const firstClick = () => {
-    dispatch(setStep(Steps.FIRST));
-  };
-  const secondClick = () => {
-    dispatch(setStep(Steps.SECOND));
-  };
-
+const OrderStepper = ({ step, steps }) => {
   return (
     <Stack sx={{ width: '100%' }} spacing={4}>
-      <Stepper activeStep={step} alternativeLabel connector={<ColorlibConnector />}>
+      <Stepper activeStep={steps.indexOf(step)} alternativeLabel connector={<ColorlibConnector />}>
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel
-              onClick={() => {
-                if (index === 0 && step !== Steps.FOURTH) firstClick();
-                if (index === 1 && step !== Steps.FOURTH) secondClick();
-              }}
-              StepIconComponent={ColorlibStepIcon}
+              StepIconComponent={(stepProps) => (
+                <ColorlibStepIcon {...stepProps} currentStep={steps.indexOf(step)} icon={index + 1} />
+              )}
             >
               {label}
             </StepLabel>

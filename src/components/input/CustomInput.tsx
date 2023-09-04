@@ -16,19 +16,22 @@ interface IProps {
   border?: string;
   description?: string;
   errorMessage?: string;
+  disableUnderline?: boolean;
+  height?: string;
+  gap?: string;
 }
 
-const CustomInput: React.FC<IProps> = (props) => {
+const CustomInput: React.FC<IProps> = ({gap = '2', ...props}) => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#1EC1AA', // Your desired primary color
+        main: '#1EC1AA',
       },
     },
   });
   return (
     <>
-      <div className={'flex flex-col items-start gap-2 mb-4'}>
+      <div className={`flex flex-col items-start gap-${gap} mb-4`}>
         <p className={'font-bold'}>{props.children}</p>
         <p>{props.description}</p>
         <ThemeProvider theme={theme}>
@@ -37,8 +40,9 @@ const CustomInput: React.FC<IProps> = (props) => {
             sx={{
               bgcolor: 'white',
               paddingY: '10px',
-              paddingX: '5px',
+              paddingX: '10px',
               width: '100%',
+              height: props.height,
               border: props.border,
             }}
             {...props}
