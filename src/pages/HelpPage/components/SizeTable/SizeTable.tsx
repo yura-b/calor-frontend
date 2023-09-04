@@ -12,6 +12,10 @@ const SizeTable = ({ data }) => {
                 <span className="font-bold">size guide</span>
               </TableCell>
               <TableCell className="border-r border-lighterGray"></TableCell>
+              <TableCell className="border-r border-lighterGray"></TableCell>
+              <TableCell className="border-r border-lighterGray"></TableCell>
+              <TableCell className="border-r border-lighterGray"></TableCell>
+              <TableCell className="border-r border-lighterGray"></TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
@@ -27,7 +31,11 @@ const SizeTable = ({ data }) => {
               >
                 <TableCell className="border-r border-lighterGray">{row.column1}</TableCell>
                 <TableCell className="border-r border-lighterGray">{row.column2}</TableCell>
-                <TableCell>{row.column3}</TableCell>
+                <TableCell className="border-r border-lighterGray">{row.column3}</TableCell>
+                <TableCell className="border-r border-lighterGray">{row.column4}</TableCell>
+                <TableCell className="border-r border-lighterGray">{row.column5}</TableCell>
+                <TableCell className="border-r border-lighterGray">{row.column6}</TableCell>
+                <TableCell>{row.column7}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -35,7 +35,6 @@ function ColorlibStepIcon(props: StepIconProps & { currentStep: number }) {
     1: <p>1</p>,
     2: <p>2</p>,
     3: <p>3</p>,
-    4: <p>4</p>,
   };
 
   return (
@@ -45,8 +44,7 @@ function ColorlibStepIcon(props: StepIconProps & { currentStep: number }) {
   );
 }
 
-const OrderStepper = ({ step }) => {
-  const steps = ['Processing', 'Production', 'Quality Control', 'Shipped'];
+const OrderStepper = ({ step, steps }) => {
   return (
     <Stack sx={{ width: '100%' }} spacing={4}>
       <Stepper activeStep={steps.indexOf(step)} alternativeLabel connector={<ColorlibConnector />}>

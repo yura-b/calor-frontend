@@ -23,6 +23,8 @@ export interface IOrder {
 
   firstName: string;
 
+  tax: number;
+
   secondName: string;
 
   phoneNumber: string;
@@ -88,6 +90,7 @@ interface shoes {
   description: string;
   details: string;
   insole: string;
+  photo: string;
   liningMaterial: string;
   price: number;
   season: string;
@@ -102,8 +105,8 @@ interface shoes {
 interface accessory {
   category: string;
   description: string;
-  name: string;
-  photos: string[];
+  title: string;
+  photos: string;
   price: number;
   rating: number;
   size: number[];
