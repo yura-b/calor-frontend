@@ -11,7 +11,6 @@ const OrderHeader: React.FC<Props> = ({ orderData }): React.ReactElement => {
   const product = orderData?.shoes || orderData?.accessory;
   if (!product) return <></>;
   const { title, price, photos } = product;
-
   const originalDate = new Date(date);
   const year = originalDate.getFullYear();
   const month = String(originalDate.getMonth() + 1).padStart(2, '0');

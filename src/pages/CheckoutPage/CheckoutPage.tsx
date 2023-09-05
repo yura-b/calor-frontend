@@ -35,11 +35,6 @@ const CheckoutPage = () => {
           count: 1,
           details: {},
         },
-        {
-          product: '64d645c3e23b73b29fbde190',
-          count: 1,
-          details: {},
-        },
       ],
     })
       .then((res) => {
