@@ -52,9 +52,9 @@ const OrderPage = () => {
 
   return (
     <AdminLayout>
-      <OrderPageHeader id={id} />
-      <OrderStatusComponent status={status} id={id} />
-      <OrderInformation order={orderData} />
+      <OrderPageHeader id={id}/>
+      <OrderStatusComponent status={status} id={id}/>
+      <OrderInformation order={orderData}/>
       <div className={'pl-7'}>
         <UserInfo withDelivery={true} userDataState={{
           state: {

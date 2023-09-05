@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { DetailsAndProductName } from '@pages/admin/warehouse/WarehousePage.tsx';
 import { TableCell, TableRow } from '@mui/material';
 import { Color } from '@/constants/interfaces/details.ts';
-import CustomToggle from '@components/admin/CustomToggle.tsx';
+import CustomToggle from '@components/admin/Toggle/CustomToggle.tsx';
 import { changeColorAvailability } from '@/api/warehouse.ts';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 

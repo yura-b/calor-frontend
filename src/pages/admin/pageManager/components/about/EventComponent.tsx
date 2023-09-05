@@ -53,20 +53,22 @@ const EventComponent: FC<Events> = ({photo, title, announcement, _id}) => {
     const styles = 'w-full mt-5'
 
     return (
-        <div className={'flex flex-col items-center w-1/6'}>
-            <img className={'min-h-fit'} src={photo} alt=""/>
-            {edit ?
-                <>
-                    <CustomInput value={newTitle} onChange={changeHandler(setNewTitle)}>Title</CustomInput>
-                    <CustomInput value={newAnnouncement}
-                                 onChange={changeHandler(setNewAnnouncement)}>Announcement</CustomInput>
-                </>
+        <div className={'flex flex-col w-1/6'}>
+            <div className={'flex flex-col items-center min-h-[350px]'}>
+                <img className={'min-h-fit'} src={photo} alt=""/>
+                {edit ?
+                  <>
+                      <CustomInput value={newTitle} onChange={changeHandler(setNewTitle)}>Title</CustomInput>
+                      <CustomInput value={newAnnouncement}
+                                   onChange={changeHandler(setNewAnnouncement)}>Announcement</CustomInput>
+                  </>
 
-                : <>
-                    <p className="font-bold">{currentTitle}</p>
-                    <p>{currentAnnouncement}</p>
-                </>
-            }
+                  : <>
+                      <p className="font-bold">{currentTitle}</p>
+                      <p>{currentAnnouncement}</p>
+                  </>
+                }
+            </div>
 
 
             <div className={'flex flex-col gap-5 mt-6 w-full'}>
