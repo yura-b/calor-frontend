@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetDesign } from '@/store/reducers/constructor/ShoesConstructorReducer';
 import { setSelectedModel } from '@/store/reducers/constructor/SelectedShoePartsReducer';
+import { setConsctructorImage } from "@/store/reducers/constructor/ConstructorImage";
 import { titles } from '@/translations/titles';
 import Head from '@/layouts/Head';
 import MainLayout from '@/components/MainLayout';
@@ -14,32 +15,32 @@ import NavigationMenu from './components/NavigationMenu';
 import Button from '@/components/ui/Button';
 import { shoes } from './shoesData';
 import combineImages from '@/helpers/functions/combineImages';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Constructor: FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { model } = useParams();
 
   const [isVisible, setIsVisible] = useState(false);
-  const { view3 } = useSelector((state) => state.shoesConstructor[model]);
+  const { view2 } = useSelector((state) => state.shoesConstructor[model]);
   const { selectedModel } = useSelector((state) => state.selectedShoeParts);
-  const modelImages = Object.values(view3);
+  const modelImages = Object.values(view2);
   const modelDetails = shoes.find((item) => item.product === model);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  const handleSaveDesign = () => {
-    combineImages(modelImages).then((base64) => { });
-  };
-
   const handleRedesign = () => {
     dispatch(resetDesign());
   };
 
-  const handleAddToCart = () => {
-    combineImages(modelImages).then((base64) => { });
+  const goToNextPage = () => {
+      combineImages(modelImages).then((base64) => { 
+      dispatch(setConsctructorImage(base64));
+      navigate('measurement');
+    });
   };
 
   useEffect(() => {
@@ -71,7 +72,7 @@ const Constructor: FC = () => {
                   <Button color="transparentGray" className="w-full my-4 lg:block max-w-sm" onClick={handleRedesign}>
                     Redesign
                   </Button>
-                  <Button color="gray" className="w-full my-4 lg:block max-w-sm" onClick={handleAddToCart}>
+                  <Button color="gray" className="w-full my-4 lg:block max-w-sm" onClick={goToNextPage}>
                     Add to cart
                   </Button>
                 </div>

@@ -29,7 +29,7 @@ const BasicRating: FC<IProps> = ({ includeTitle, readOnly, rating, size = "large
     >
       {includeTitle && (
         <Typography className="flex justify-center items-center" component="legend">
-          1
+          {rating}
         </Typography>
       )}
       <div style={{ display: 'flex', alignItems: 'center' }}>

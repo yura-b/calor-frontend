@@ -10,6 +10,9 @@ import bag from '@assets/cartImages/bag.svg';
 import paste from '@assets/cartImages/paste.svg';
 import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
 import shoeModel2 from '@assets/cartImages/shoeModel2.svg';
+import { useQuery } from 'react-query';
+import { getUser } from "@/api/users";
+import { useSelector, useDispatch } from 'react-redux';
 
 interface Props {
   title: string;
@@ -17,32 +20,18 @@ interface Props {
 }
 
 const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
-  const cartPurchasedItems = [
-    {
-      title: 'Sunrise',
-      size: 38,
-      price: 10,
-      countGoods: 1,
-    },
-    {
-      title: 'Sun',
-      size: 36,
-      price: 100,
-      countGoods: 4,
-    },
-    {
-      title: 'Sun',
-      size: 36,
-      price: 100,
-      countGoods: 4,
-    },
-    {
-      title: 'Sun',
-      size: 36,
-      price: 100,
-      countGoods: 4,
-    },
-  ];
+  const { access_token, userId } = useSelector((state) => state.user);
+  const { data: user, isLoading, isError } = useQuery(['userBasket', getUser], () => getUser(access_token, userId), {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false
+  });
+  console.log(user, 'user')
+  let cartPurchasedItems = [];
+
+  if (!isLoading) {
+    cartPurchasedItems = [...user?.data?.user.basket]
+  }
+
   const ExtrasItems = [
     {
       id: 1,
@@ -95,6 +84,8 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                       price={item.price}
                       countGoogs={item.countGoods}
                       key={index}
+                      id={item._id}
+                      photo={item.photo}
                     />
                   ))}
                 </div>

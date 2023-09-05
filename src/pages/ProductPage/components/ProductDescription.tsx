@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const ProductDescription = ({ description }) => {
+const ProductDescription = ({ description, title, price, subcategory }) => {
     return (
         <>
             <div className="flex justify-start items-center">
-                <span className="text-gray font-bold">Sunrise</span>
+                <span className="text-gray font-bold">{title}</span>
             </div>
 
             <div className="flex justify-start items-center">
@@ -14,7 +14,7 @@ const ProductDescription = ({ description }) => {
 
             <div className="flex flex-row justify-between items-center">
                 <div className="flex justify-start">Stars</div>
-                <div className="flex justify-end">Price</div>
+                <div className="flex justify-end">{price}</div>
             </div>
 
             <div className="flex flex-col items-start">

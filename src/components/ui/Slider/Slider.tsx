@@ -1,6 +1,5 @@
 import { FC, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import homeCircle from '@assets/images/homeCircle.svg';
 import { fadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 
@@ -42,12 +41,6 @@ const Slider: FC<IProps> = ({images}) => {
     setCurrentIndex(index);
   };
 
-  const slideAnimation = {
-    hidden: { opacity: 0, x: currentIndex > prevIndex ? '100%' : '-100%' },
-    visible: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: currentIndex > prevIndex ? '-100%' : '100%' },
-  };
-
   return (
     <div>
       <motion.div className="relative h-80 max-w-full overflow-hidden" {...fadeAnimation}>
@@ -55,13 +48,12 @@ const Slider: FC<IProps> = ({images}) => {
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
-            className="w-full h-full max-w-full object-cover object-contain absolute top-0 left-0"
+            className="w-full h-full max-w-full object-contain absolute top-0 left-0"
             style={{ maxHeight: '500px', minHeight: '300px' }}
             alt={`Slider ${currentIndex}`}
             initial="hidden"
             animate="visible"
             exit="exit"
-            variants={slideAnimation}
             transition={{ duration: 0.6 }}
             onMouseEnter={stopAutoPlay}
             onMouseLeave={handleAutoPlay}

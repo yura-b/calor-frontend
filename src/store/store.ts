@@ -10,6 +10,7 @@ import checkoutReducer from '@/store/reducers/CheckoutReducer.ts';
 import selectedShoePartsReducer from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import shoesConstructorReducer from '@/store/reducers/constructor/ShoesConstructorReducer';
 import userMeasurement from "./reducers/UserMeasurement";
+import constructorImage from "./reducers/constructor/ConstructorImage";
 
 const persistedCartState = localStorage.getItem('cartState');
 const cartState = persistedCartState !== null ? JSON.parse(persistedCartState) : {};
@@ -26,7 +27,8 @@ export const store = configureStore({
     pageManager: pageManagerReducer,
     selectedShoeParts: selectedShoePartsReducer,
     shoesConstructor: shoesConstructorReducer,
-    userMeasurement: userMeasurement
+    userMeasurement: userMeasurement,
+    constructorImage: constructorImage,
   },
   preloadedState: {
     cart: cartState,

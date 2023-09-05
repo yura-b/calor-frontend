@@ -9,13 +9,19 @@ import ShippingInformation, { shippingForm } from '@pages/CheckoutPage/pages/Shi
 import Payment from '@pages/CheckoutPage/pages/Payment.tsx';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import { createOrder } from '@/api/orders.ts';
+import { useQuery } from 'react-query';
+import { getUser } from "@/api/users"
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
-  const { userId } = useAppSelector((state) => state.user);
+  const { userId, access_token } = useAppSelector((state) => state.user);
+  const { data: user, isLoading, isError } = useQuery(['userBasket', getUser], () => getUser(access_token, userId), {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false
+  });
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
-
+  console.log(user?.data?.user.basket, 'user?.data?.user.basket')
   useEffect(() => {
     if (!data) return;
     dispatch(loading());
@@ -29,13 +35,13 @@ const CheckoutPage = () => {
         user_id: userId,
         save: data.save,
       },
-      purchases: [
+      purchases: user?.data?.user.basket.map((item) => (
         {
-          product: '64f0b9060c1c98ee88262c87',
-          count: 1,
-          details: {},
-        },
-      ],
+          count: item.count,
+          product: item.shoes,
+          details: item.details[0]
+        }
+      )),
     })
       .then((res) => {
         console.log(res.data);
@@ -47,6 +53,12 @@ const CheckoutPage = () => {
       });
     dispatch(loadingFinished());
   }, [data]);
+
+  // {
+  //   product: '64f0b9060c1c98ee88262c87',
+  //   count: 1,
+  //   details: {},
+  // },
   return (
     <div className="font-poppins h-screen">
       <MainLayout>

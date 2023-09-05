@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import styles from '@styles/Styles.module.scss';
 import { useQuery } from "react-query";
 import { useParams } from "react-router"; 
@@ -12,15 +12,21 @@ import NavigationLinks from '@components/MainLayout/components/Header/components
 import Slider from "@/components/ui/Slider";
 import Button from '@components/ui/Button';
 import CustomAccordion from "@/components/ui/Accordion";
+import Loader from "@/components/ui/Loader";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { data, isLoading, isError } = useQuery(['productById', id], () => getProductById(id), {
+  const { data: product, isLoading, isError } = useQuery(['productById', id], () => getProductById(id), {
     keepPreviousData: true,
     refetchOnWindowFocus: false
   });
+  
+  const isShoePage = product?.data.details !== undefined;
 
   return (
+    isLoading ? (
+      <Loader />
+    ) : (
     <div className="font-poppins h-screen">
       <Head title={titles.about} />
       <MainLayout>
@@ -30,15 +36,20 @@ const ProductPage = () => {
             className="z-10 w-auto"
           />
         </div>
-        <div className={`md:grid md:grid-cols-2 md:grid-rows-2 md:justify-center md:py-8 ${styles.container}`}>
+        <div className={`md:grid lg:grid-cols-2 md:grid-rows-2 md:justify-center md:py-8 ${styles.container}`}>
           {/* Product Slider */}
-          <div className={`justify-start`}>
-            <Slider images={[]}/>
+          <div className="justify-start">
+            <Slider images={isShoePage ? [product?.data.photo] : product?.data.photos}/>
           </div>
           {/* Product Desription */}
           <div className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident}`}>
-            <div className={``}>
-              <ProductDescription description={{}}/>
+            <div>
+              <ProductDescription 
+                description={product?.data.description}
+                title={product?.data.title}
+                price={product?.data.price}
+                subcategory={product?.data.subcategory}
+                />
               <div>
                 <span>Your order will be customized and delivared within 7-10 days</span>
               </div>
@@ -51,14 +62,14 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
-          <div className={``}>
+          <div>
             {/* Product Reviews */}
-            <ProductReviews />
+            <ProductReviews rating={product?.data.rating}/>
           </div>
         </div>
       </MainLayout>
     </div>
-  )
+  ))
 }
 
 export default ProductPage;
