@@ -7,21 +7,21 @@ interface Props {
 }
 
 const OrderSummary: React.FC<Props> = ({ orderData }): React.ReactElement => {
-  const { tax, totalPrice } = orderData;
+  const { tax, totalPrice, subtotal, shippingPrice } = orderData;
   const product = orderData?.shoes || orderData?.accessory;
   if (!product) return <></>;
-  const { title, price } = product;
+  const { title } = product;
 
   return (
     <div className="border-b-2 border-mint py-2 lg:border-none">
       <p className={`${styles.subtitle}`}>Order Summary </p>
       <div className="flex justify-between">
         <p>{title}</p>
-        <p>${price} </p>
+        <p>${totalPrice} </p>
       </div>
       <div className="flex justify-between py-2">
         <p>Order Delivery</p>
-        <p>$20 </p>
+        <p>${shippingPrice} </p>
       </div>
       <div className="flex justify-between">
         <p>Taxes</p>
@@ -29,7 +29,7 @@ const OrderSummary: React.FC<Props> = ({ orderData }): React.ReactElement => {
       </div>
       <div className={`${styles.body2} font-bold text-mint flex justify-between`}>
         <h2>Subtotal</h2>
-        <h2>${totalPrice}</h2>
+        <h2>${subtotal}</h2>
       </div>
     </div>
   );

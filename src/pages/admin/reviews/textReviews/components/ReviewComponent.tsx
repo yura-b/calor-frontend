@@ -24,28 +24,25 @@ interface ReviewsState {
 }
 
 const ReviewComponent: React.FC<IProps> = ({
-                                             _id,
-                                             photo,
-                                             product_id,
-                                             user_id,
-                                             status,
-                                             date,
-                                             firstName,
-                                             secondName,
-                                             experience,
-                                             isUserRegistered,
-                                             rating,
-                                             email,
-                                             possibilityToApproveAndBlock,
-                                             publishedReviews,
-                                             pendingReview,
-                                             onlyForReview = false
-                                           }) => {
-
-
+  _id,
+  photo,
+  product_id,
+  user_id,
+  status,
+  date,
+  firstName,
+  secondName,
+  experience,
+  isUserRegistered,
+  rating,
+  email,
+  possibilityToApproveAndBlock,
+  publishedReviews,
+  pendingReview,
+  onlyForReview = false,
+}) => {
   const { access_token } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-
 
   if (!access_token) return <></>;
 
@@ -76,8 +73,8 @@ const ReviewComponent: React.FC<IProps> = ({
               status,
               photo,
               product_id,
-              user_id
-            }
+              user_id,
+            },
           ];
         });
       }
@@ -113,13 +110,12 @@ const ReviewComponent: React.FC<IProps> = ({
       </div>
       <p>{experience}</p>
 
-      <div>
-        {photo && <img className={'w-[150px]'} src={photo} alt="" />}
-      </div>
+      <div>{photo && <img className={'w-[150px]'} src={photo} alt="" />}</div>
       {!onlyForReview && (
         <div className={'relative mx-auto flex flex-row gap-8'}>
-          {possibilityToApproveAndBlock &&
-            <CustomButton title={'Block User'} bgColor={'red'} handler={() => blockUserHandler(user_id)} />}
+          {possibilityToApproveAndBlock && (
+            <CustomButton title={'Block User'} bgColor={'red'} handler={() => blockUserHandler(user_id)} />
+          )}
           <CustomButton title={'Delete Review'} handler={deleteHandler} bgColor={'red'} />
           {possibilityToApproveAndBlock && (
             <CustomButton title={'Public Review'} handler={publicHandler} bgColor={'black'} />

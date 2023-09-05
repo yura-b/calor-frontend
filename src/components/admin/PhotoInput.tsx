@@ -7,8 +7,8 @@ const PhotoInput: FC<{ handler: (e: File) => void }> = ({ handler }) => {
     if (!e.target.files) {
       return;
     }
-    const {width, height} = await imageWidthAndHeight(e.target.files[0]);
-    if (height && height >1024) return
+    const { width, height } = await imageWidthAndHeight(e.target.files[0]);
+    if (height && height > 1024) return;
     handler(e.target.files[0]);
   };
 

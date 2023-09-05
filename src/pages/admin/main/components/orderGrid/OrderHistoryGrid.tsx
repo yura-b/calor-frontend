@@ -13,27 +13,27 @@ import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { getRelativeOrders } from '@/api/orders.ts';
 
 const OrderHistoryGrid: FC<{ orders: IOrder[] }> = ({ orders }) => {
-
-  const { access_token } = useAppSelector(state=>state.user)
+  const { access_token } = useAppSelector((state) => state.user);
   const [currentOrder, setCurrentOrder] = useState('');
   const [openModal, setOpenModal] = useState(false);
-  const [relativeOrders, setRelativeOrder] = useState<IOrder[]>([])
+  const [relativeOrders, setRelativeOrder] = useState<IOrder[]>([]);
 
   useEffect(() => {
-    if (!currentOrder || !access_token) return
-    
-    getRelativeOrders(access_token, currentOrder).then(res=>{
-      setRelativeOrder(res.data)
-      console.log(res.data);
-      setOpenModal(true)
-    })
-  }, [currentOrder]);
-  
-  
-  if (orders.length === 0) return <>
-    <p>There are no orders in history</p>
-  </>;
+    if (!currentOrder || !access_token) return;
 
+    getRelativeOrders(access_token, currentOrder).then((res) => {
+      setRelativeOrder(res.data);
+      console.log(res.data);
+      setOpenModal(true);
+    });
+  }, [currentOrder]);
+
+  if (orders.length === 0)
+    return (
+      <>
+        <p>There are no orders in history</p>
+      </>
+    );
 
   return (
     <TableContainer component={Paper}>
@@ -50,8 +50,13 @@ const OrderHistoryGrid: FC<{ orders: IOrder[] }> = ({ orders }) => {
         </TableHead>
         <TableBody>
           {orders.map((order) => (
-            <OrderHistory key={order._id} order={order} align={'right'} setOpenModal={setOpenModal}
-                          setCurrentOrder={setCurrentOrder} />
+            <OrderHistory
+              key={order._id}
+              order={order}
+              align={'right'}
+              setOpenModal={setOpenModal}
+              setCurrentOrder={setCurrentOrder}
+            />
           ))}
         </TableBody>
       </Table>
