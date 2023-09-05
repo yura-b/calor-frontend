@@ -3,7 +3,9 @@ import AccountLayout from '../AccountLayout';
 import Details from './components/Details';
 import EditAccountDetails from './components/EditAccountDetails';
 import Delete from '@assets/images/account/delete.svg';
-import DeleteMyAccountComponent from './components/DeleteMyAccountComponent'; // Adjust the import path
+import DeleteMyAccountComponent from './components/DeleteMyAccountComponent';
+import { paths } from '@/routes/paths';
+import { Link } from 'react-router-dom';
 
 const AccountDetails: React.FC = (): React.ReactElement => {
   const [editing, setEditing] = useState(false);
@@ -32,9 +34,9 @@ const AccountDetails: React.FC = (): React.ReactElement => {
                 >
                   <img src={Delete} className="w-[24px] h-[24px]" />
                 </div>
-                <button className="text-custom-red hover:font-bold " onClick={() => setDeleting(!deleting)}>
+                <Link className="text-custom-red hover:font-bold " to={paths.accountDelete}>
                   Delete My Account
-                </button>
+                </Link>
               </div>
             )}
           </div>

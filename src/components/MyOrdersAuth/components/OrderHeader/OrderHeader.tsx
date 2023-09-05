@@ -10,7 +10,7 @@ const OrderHeader: React.FC<Props> = ({ orderData }): React.ReactElement => {
   const { date, order_id } = orderData;
   const product = orderData?.shoes || orderData?.accessory;
   if (!product) return <></>;
-  const { title, price } = product;
+  const { title, price, photos } = product;
 
   const originalDate = new Date(date);
   const year = originalDate.getFullYear();
@@ -27,18 +27,7 @@ const OrderHeader: React.FC<Props> = ({ orderData }): React.ReactElement => {
           <p className="font-bold">{title}</p>
           <p className="">${price}</p>
         </div>
-        {orderData?.shoes && (
-          <img
-            src={orderData?.shoes.photo}
-            className="object-contain object-cover w-[240px] block h-auto m-auto py-2"
-          />
-        )}
-        {orderData?.accessory && (
-          <img
-            src={orderData?.accessory?.photos[0]}
-            className="object-contain object-cover  w-[240px] block h-auto m-auto lg:mx-0 py-2"
-          />
-        )}
+        <img src={photos[0]} className="object-contain object-cover w-[240px] block h-auto m-auto py-2" />
       </div>
     </div>
   );

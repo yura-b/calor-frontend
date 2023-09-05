@@ -90,7 +90,7 @@ interface shoes {
   description: string;
   details: string;
   insole: string;
-  photo: string;
+  photos: string;
   liningMaterial: string;
   price: number;
   season: string;
