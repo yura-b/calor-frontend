@@ -9,19 +9,15 @@ const Inspiration: React.FC = () => {
   const homeCustomerCreations = [
     {
       img: inspiration1,
-      overlayColor: 'rgba(	20, 244, 196, 0.5)',
     },
     {
       img: inspiration2,
-      overlayColor: 'rgba(226, 45, 33, 0.7)',
     },
     {
       img: inspiration3,
-      overlayColor: 'rgba(	20, 244, 196, 0.1)',
     },
     {
       img: inspiration4,
-      overlayColor: 'rgba(	20, 244, 196, 0.5)',
     },
   ];
   return (
@@ -31,8 +27,7 @@ const Inspiration: React.FC = () => {
         <div className="flex justify-between overflow-x-auto flex-row gap-2 mx-auto lg:gap-10">
           {homeCustomerCreations.map((item, i) => (
             <div className="flex justify-center items-center lg:basis-1/5  my-4" key={i}>
-              <div className={'w-36  text-gray lg:w-full relative z-10'}>
-                <div style={{ backgroundColor: item.overlayColor }} className=" absolute z-20 w-full h-full"></div>
+              <div className={'w-36 lg:w-full'}>
                 <img src={item.img} className="w-full object-contain object-cover h-full mx-auto z-10" />
               </div>
             </div>

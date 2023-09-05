@@ -5,10 +5,7 @@ const phoneNumberRegex = /^\+?\d{0,3}\s?(\(\d{1,4}\))?\s?\d{1,4}[\s.-]?\d{1,4}[\
 
 export const validationSchemaForLogin = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
-  password: yup
-    .string()
-    .min(8, 'password should be of minimum 8 characters length')
-    .required('password is required'),
+  password: yup.string().min(8, 'password should be of minimum 8 characters length').required('password is required'),
 });
 export const validationSchemaForSignUp = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
@@ -103,4 +100,44 @@ export const validationSchemaForPromoCode = yup.object({
     .string()
     .min(3, 'Your promo code is not valid. Please enter  again')
     .required('Promo Code is required'),
+});
+
+export const validationSchemaForUserAccount = yup.object({
+  firstName: yup
+    .string()
+    .min(3, 'First name should be of minimum 3 characters length')
+    .required('First name is required'),
+  secondName: yup
+    .string()
+    .min(3, 'Second name should be of minimum 3 characters length')
+    .required('Second name is required'),
+  email: yup.string().email('Enter a valid email').required('Email is required'),
+  phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
+});
+
+export const validationMeasurement = yup.object({
+  rightFootLength: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  rightFootWidth: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  leftFootLength: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  leftFootWidth: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  insoleLength: yup
+    .string()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required'),
+  insoleWidth: yup
+  .string()
+  .min(1, 'Field must contain a minimum of 1 character')
+  .required('This field is required'),
 });

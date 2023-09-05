@@ -7,7 +7,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 export const getCategories = () => {
   return axios.get(`${BASE_URL}/category`);
 };
-export const getProductById = (id:string) => {
+export const getProductById = (id: string) => {
   return axios.get(`${BASE_URL}/product/${id}`);
 };
 export const getAllProducts = () => {
@@ -32,3 +32,4 @@ export const getUserReviews = (access_token: string) => {
 export const saveNewPrice = (access_token: string, newPrice: number, product_id: string) => {
     return axios.patch(`${BASE_URL}/product/price`, {id: product_id, price: newPrice}, authorization(access_token))
 };
+
