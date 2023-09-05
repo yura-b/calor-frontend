@@ -34,11 +34,12 @@ const OrderPage = () => {
     }
   }, []);
 
+
   const startProduction = () => {
     if (!access_token || !orderData?._id) return;
     changeOrderStatus(access_token, {
       orderStatus: OrderStatus.PRODUCTION,
-      _id: orderData?._id,
+      _id: orderData?._id
     }).then(() => {
       reloadPage();
     });
@@ -48,32 +49,28 @@ const OrderPage = () => {
   const { firstName, secondName } = orderData;
   if (typeof phoneNumber === 'undefined') return;
 
+
   return (
     <AdminLayout>
       <OrderPageHeader id={id} />
       <OrderStatusComponent status={status} id={id} />
       <OrderInformation order={orderData} />
       <div className={'pl-7'}>
-        <UserInfo
-          withDelivery={true}
-          userDataState={{
-            state: {
-              ...userData,
-              firstName,
-              secondName,
-              phoneNumber,
-              email,
-              registered: userData?.registered || false,
-            },
-          }}
-          delivery={<DeliveryInfo _id={id} />}
-        />
+        <UserInfo withDelivery={true} userDataState={{
+          state: {
+            ...userData,
+            firstName,
+            secondName,
+            phoneNumber,
+            email,
+            registered: userData?.registered || false
+          }
+        }} delivery={<DeliveryInfo _id={id} />} />
       </div>
-      {orderData.status === OrderStatus.PROCESSING && (
-        <div className={'flex justify-end mr-32'}>
-          <CustomButton title={'Start Production'} handler={startProduction} />
-        </div>
-      )}
+      {orderData.status === OrderStatus.PROCESSING && orderData.shoes && <div className={'flex justify-end mr-32'}>
+        <CustomButton title={'Start Production'} handler={startProduction} />
+      </div>
+      }
     </AdminLayout>
   );
 };

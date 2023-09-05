@@ -26,11 +26,15 @@ export const changeOrderStatus = (credentials: string, data: changeOrderStatusIn
 export const createOrder = (order: CreateOrderDto) => {
   return axios.post(`${BASE_URL}/order`, order);
 };
-
 export const patchOrderDeliveryInfo = (info: deliveryInfo, credentials: string) => {
-  return axios.patch(`${BASE_URL}/order`, info, authorization(credentials));
-};
+    return axios.patch(`${BASE_URL}/order`, info, authorization(credentials))
+}
 
-export const getOrdersForUser = (access_token: string) => {
-  return axios.get(`${BASE_URL}/order`, authorization(access_token));
-};
+
+export const getRelativeOrders = (access_token: string, order_id: string ) =>{
+  return axios.get(`${BASE_URL}/order/relative/${order_id}`, authorization(access_token))
+}
+
+export const refundMoney = (access_token: string, refund: refundDto, payment: 'paypal' | 'stripe' ) =>{
+   return axios.post(`${BASE_URL}/${payment}/refund`, refund, authorization(access_token))
+}
