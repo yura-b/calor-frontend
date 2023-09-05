@@ -7,7 +7,7 @@ const ProductsGrid: FC<{ products: Product[] }> = ({ products }) => {
   return (
     <div className={'flex flex-row flex-wrap gap-10 m-5'}>
       {products.map((product) => (
-        <ProductComponent {...product} />
+        <ProductComponent key={product._id} {...product} />
       ))}
     </div>
   );

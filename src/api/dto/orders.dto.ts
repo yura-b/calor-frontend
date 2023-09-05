@@ -65,3 +65,12 @@ export interface deliveryInfo {
 
   approxDeliveryDate: string;
 }
+
+export interface refundDto {
+
+  order_id: string
+
+  orders_id?: string[]
+
+  custom_price?: number
+}
