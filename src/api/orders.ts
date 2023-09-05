@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {authorization} from '@/api/config.ts';
-import {changeOrderStatusInterface, CreateOrderDto, deliveryInfo} from '@/api/dto/orders.dto.ts';
+import { changeOrderStatusInterface, CreateOrderDto, deliveryInfo, refundDto } from '@/api/dto/orders.dto.ts';
+import { backend_url } from '@/api/languages.ts';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -31,4 +32,13 @@ export const createOrder = (order: CreateOrderDto) => {
 
 export const patchOrderDeliveryInfo = (info: deliveryInfo, credentials: string) => {
     return axios.patch(`${BASE_URL}/order`, info, authorization(credentials))
+}
+
+
+export const getRelativeOrders = (access_token: string, order_id: string ) =>{
+  return axios.get(`${BASE_URL}/order/relative/${order_id}`, authorization(access_token))
+}
+
+export const refundMoney = (access_token: string, refund: refundDto, payment: 'paypal' | 'stripe' ) =>{
+   return axios.post(`${BASE_URL}/${payment}/refund`, refund, authorization(access_token))
 }

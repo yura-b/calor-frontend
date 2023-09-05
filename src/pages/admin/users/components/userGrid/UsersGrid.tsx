@@ -123,7 +123,7 @@ const UsersGrid: React.FC<IProps> = ({nameFilter}) => {
                                         <p>{user.firstName + ' ' + user.secondName}</p>
                                     </TableCell>
                                     <TableCell>
-                                            <IsRegistered isUserRegistered={user.registered}/>
+                                            <IsRegistered role={user.roles}/>
                                     </TableCell>
                                     <TableCell align={'center'}>
                                         <p>{DateFormatter(user.registrationDate)}</p>

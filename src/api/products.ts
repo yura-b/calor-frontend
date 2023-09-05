@@ -29,3 +29,6 @@ export const getUserReviews = (access_token: string) => {
   return axios.get(`${BASE_URL}/user/reviews`, authorization(access_token));
 };
 
+export const saveNewPrice = (access_token: string, newPrice: number, product_id: string) => {
+    return axios.patch(`${BASE_URL}/product/price`, {id: product_id, price: newPrice}, authorization(access_token))
+};
