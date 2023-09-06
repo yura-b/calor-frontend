@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import { IOrder } from '@/constants/interfaces/order.ts';
+import { IOrder, OrderStatus } from '@/constants/interfaces/order.ts';
 import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import styles from './OrderGrid.module.scss';
-import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
+import CustomButton from '@components/button/CustomButton.tsx';
 
-export const OrderHistory: React.FC<{ key: string; order: IOrder; align }> = ({ order, align }) => {
+export const OrderHistory: React.FC<{
+  key: string;
+  order: IOrder;
+  align,
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>,
+  setCurrentOrder: React.Dispatch<React.SetStateAction<string>>
+}> = ({ order, align, setOpenModal, setCurrentOrder }) => {
+
   const [open, setOpen] = useState(false);
-  const { access_token } = useAppSelector((state) => state.user);
 
-  console.log(order);
   if (!order) return;
 
-  console.log(order);
-  if (!order) return;
+  const returnHandler = () => {
+    setCurrentOrder(order._id);
+    setOpenModal(true);
+  };
 
   return (
     <>
@@ -54,8 +61,7 @@ export const OrderHistory: React.FC<{ key: string; order: IOrder; align }> = ({ 
                   <TableRow>
                     <TableCell>Item`s name</TableCell>
                     <TableCell>size</TableCell>
-                    <TableCell align={align}>
-                      <p className={'font-bold'}>Shipping Info</p>
+                    <TableCell align={align}><p className={'font-bold'}>Shipping Info</p>
                     </TableCell>
                     <TableCell align={align}>Total price ($)</TableCell>
                     <TableCell align={align}>Payment</TableCell>
@@ -78,11 +84,13 @@ export const OrderHistory: React.FC<{ key: string; order: IOrder; align }> = ({ 
                       </div>
                     </TableCell>
                     <TableCell align={align}>{order.totalPrice}$</TableCell>
-                    <TableCell align={align}>{order.payment}</TableCell>
+                    <TableCell align={align}>
+                      <div className={'flex flex-col gap-12 items-end'}>
+                        <p>{order.payment}</p>
+                        {order.status === OrderStatus.Shipped && <CustomButton title={'return'} handler={returnHandler} />}
+                      </div>
+                    </TableCell>
                   </TableRow>
-                  {/* <div className={'flex justify-end w-[60vw] mt-5'}> */}
-                  {/*     <CustomButton title={'return'} styles={'px-5'}/> */}
-                  {/* </div> */}
                 </TableBody>
               </Table>
             </Box>

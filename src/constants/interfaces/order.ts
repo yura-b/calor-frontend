@@ -37,8 +37,11 @@ export interface IOrder {
 
   payment: PaymentEnum;
 
-  size?: number;
 
+    tax: number
+
+    order_id: number
+  size?: number;
   order_id: number;
 
   trackingNumber?: string;
@@ -49,10 +52,12 @@ export interface IOrder {
 }
 
 export enum OrderStatus {
-  PROCESSING = 'Processing',
-  PRODUCTION = 'Production',
-  QualityControl = 'Quality  Control',
-  Shipped = 'Shipped',
+    NotPaid = 'Not paid yet',
+    PROCESSING = 'Processing',
+    PRODUCTION = 'Production',
+    QualityControl = 'Quality  Control',
+    Shipped = 'Shipped',
+    Refunded = 'Refunded'
 }
 
 export const OrderStatusArray: OrderStatus[] = [
