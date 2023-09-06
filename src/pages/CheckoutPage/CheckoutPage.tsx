@@ -15,13 +15,15 @@ import { getUser } from "@/api/users"
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
   const { userId, access_token } = useAppSelector((state) => state.user);
-  const { data: user, isLoading, isError } = useQuery(['userBasket', getUser], () => getUser(access_token, userId), {
+  const { data: user, isLoading, isError } = useQuery('userBasket', () => getUser(access_token, userId), {
     keepPreviousData: true,
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
+    enabled: !!userId
   });
+
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
-  console.log(user?.data?.user.basket, 'user?.data?.user.basket')
+  
   useEffect(() => {
     if (!data) return;
     dispatch(loading());
