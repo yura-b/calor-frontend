@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const userMeasurementSlice = createSlice({
   name: 'userMeasurement',
   initialState: {},
@@ -11,7 +10,6 @@ const userMeasurementSlice = createSlice({
   },
 });
 
-export const { setUserMeasurement } =
-userMeasurementSlice.actions;
+export const { setUserMeasurement } = userMeasurementSlice.actions;
 
 export default userMeasurementSlice.reducer;

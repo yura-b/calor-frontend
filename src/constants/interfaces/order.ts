@@ -25,6 +25,8 @@ export interface IOrder {
 
   tax: number;
 
+  subtotal: number;
+
   secondName: string;
 
   phoneNumber: string;
@@ -37,12 +39,10 @@ export interface IOrder {
 
   payment: PaymentEnum;
 
-
-    tax: number
-
-    order_id: number
-  size?: number;
+  shippingPrice: number;
   order_id: number;
+
+  size?: number;
 
   trackingNumber?: string;
 
@@ -52,12 +52,12 @@ export interface IOrder {
 }
 
 export enum OrderStatus {
-    NotPaid = 'Not paid yet',
-    PROCESSING = 'Processing',
-    PRODUCTION = 'Production',
-    QualityControl = 'Quality  Control',
-    Shipped = 'Shipped',
-    Refunded = 'Refunded'
+  NotPaid = 'Not paid yet',
+  PROCESSING = 'Processing',
+  PRODUCTION = 'Production',
+  QualityControl = 'Quality  Control',
+  Shipped = 'Shipped',
+  Refunded = 'Refunded',
 }
 
 export const OrderStatusArray: OrderStatus[] = [
@@ -95,7 +95,7 @@ interface shoes {
   description: string;
   details: string;
   insole: string;
-  photo: string;
+  photos: string;
   liningMaterial: string;
   price: number;
   season: string;

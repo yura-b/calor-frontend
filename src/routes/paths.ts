@@ -11,6 +11,7 @@ export const paths = {
   terms_condition: '/terms_condition',
   checkout: '/checkout',
   account: '/account',
+  accountDelete: '/account/delete',
   accountDetails: '/account/details',
   myOrders: '/account/my_orders',
   designList: '/account/design_list',

@@ -25,20 +25,19 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 interface IProps {
-  open: boolean,
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  orders: IOrder[],
-  order_id: string
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  orders: IOrder[];
+  order_id: string;
 }
 
 const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
   const [ids, setIds] = useState<string[]>([]);
   const [customPrice, setCustomPrice] = useState(0);
-  const { access_token } = useAppSelector(state => state.user);
+  const { access_token } = useAppSelector((state) => state.user);
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const customPriceHandler = (setPrice: React.Dispatch<React.SetStateAction<number>>) => {
     return (e: React.ChangeEvent<any>) => {
       setPrice(e.target.value);
@@ -46,24 +45,21 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
   };
   if (!orders) return;
 
-
-
   const tax = orders.reduce((accum, order) => {
-    return accum += order.tax;
+    return (accum += order.tax);
   }, 0);
-  let payment: PaymentEnum | string | undefined = orders.find(order => order.payment)?.payment;
+  let payment: PaymentEnum | string | undefined = orders.find((order) => order.payment)?.payment;
 
   if (payment === PaymentEnum.STRIPE) payment = 'stripe';
   if (payment === PaymentEnum.PayPal) payment = 'paypal';
 
   const handleReturn = () => {
     if (!access_token || (payment !== 'stripe' && payment !== 'paypal')) return;
-    refundMoney(access_token, { custom_price: customPrice, order_id, orders_id: ids }, payment).then(res=>{
+    refundMoney(access_token, { custom_price: customPrice, order_id, orders_id: ids }, payment).then((res) => {
       console.log(res);
-      dispatch(showMessage('orders was successfully refunded'))
+      dispatch(showMessage('orders was successfully refunded'));
       setOpen(false);
     });
-
   };
 
   const handleClose = () => {
@@ -82,13 +78,15 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
       <DialogContent>
         <div className={'flex flex-col gap-12'}>
           <div className={'grid grid-cols-3 gap-5 w-[400px]'}>
-            {orders.map(order => {
-              return <Fragment key={order._id}>
-                <span>{order.shoes?.title || order.accessory?.price}</span>
-                <span>{order.shoes?.price || order.accessory?.price}$</span>
-                {/* <span>{order.tax || order.tax}$</span>*/}
-                <RefundToggle available={false} _id={order._id} handler={setIds} />
-              </Fragment>;
+            {orders.map((order) => {
+              return (
+                <Fragment key={order._id}>
+                  <span>{order.shoes?.title || order.accessory?.price}</span>
+                  <span>{order.shoes?.price || order.accessory?.price}$</span>
+                  {/* <span>{order.tax || order.tax}$</span>*/}
+                  <RefundToggle available={false} _id={order._id} handler={setIds} />
+                </Fragment>
+              );
             })}
           </div>
           <div className={'flex flex-row gap-6'}>
@@ -96,8 +94,9 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
             <p>tax: {tax}$</p>
           </div>
           <div className={'flex flex-col gap-3'}>
-            <p className={'font-medium'}>or enter by your self <span
-              className={'ml-12 italic font-bold'}>!more priority</span></p>
+            <p className={'font-medium'}>
+              or enter by your self <span className={'ml-12 italic font-bold'}>!more priority</span>
+            </p>
             <CustomInput onChange={customPriceHandler(setCustomPrice)} type={InputType.number} value={customPrice}>
               Custom Price
             </CustomInput>
@@ -111,6 +110,5 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
     </Dialog>
   );
 };
-
 
 export default ModalWindow;
