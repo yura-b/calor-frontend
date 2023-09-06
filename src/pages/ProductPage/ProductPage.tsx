@@ -13,6 +13,7 @@ import Slider from '@/components/ui/Slider';
 import Button from '@components/ui/Button';
 import CustomAccordion from '@/components/ui/Accordion';
 import Loader from '@/components/ui/Loader';
+import { Link } from 'react-router-dom';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const ProductPage = () => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
-
+  console.log(product);
   return isLoading ? (
     <Loader />
   ) : (
@@ -51,15 +52,22 @@ const ProductPage = () => {
               <div className="py-2">
                 <span>Your order will be customized and delivared within 7-10 days</span>
               </div>
-              <div>
+              <div className="flex flex-col justify-center items-center gap-6 py-8">
+                {typeof product?.data.category == 'string' && (
+                  <Button
+                    color="gray"
+                    to={`/design_your_shoe/model/${product.data.title.toLowerCase()}/${product.data._id}`}
+                  >
+                    Design Your Shoe
+                  </Button>
+                )}
+                <Button color="transparentGray">Choose From Existing</Button>
+              </div>
+              <div className="py-2">
                 <CustomAccordion
                   titles={['Product details', 'Inspiration']}
                   styles={{ backgroundColor: 'transparent', boxShadow: 'none' }}
                 />
-              </div>
-              <div className="flex flex-col justify-center items-center gap-2">
-                {typeof product?.data.category == 'string' && <Button color="gray">Design Your Shoe</Button>}
-                <Button color="transparentGray">Choose From Existing</Button>
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { ReactSVG } from 'react-svg';
 import downIcon from '@assets/images/downIcon.svg';
+import Styles from '@/styles/Styles.module.scss';
 
 interface IProps {
   titles: string[];
@@ -30,7 +31,7 @@ const CustomAccordion: FC<IProps> = ({ titles, styles }) => {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>{title}</Typography>
+            <p className={`${Styles.body2} font-bold`}>{title}</p>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
