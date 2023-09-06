@@ -57,7 +57,7 @@ const MyOrder = (): React.ReactElement => {
                   {filteredStatusesForCurrentOrders?.length ? (
                     <div>
                       {filteredStatusesForCurrentOrders?.map((item) => (
-                        <Order orderData={item} loading={isLoading} error={error} />
+                        <Order orderData={item} loading={isLoading} error={error} token={access_token} />
                       ))}
                     </div>
                   ) : (

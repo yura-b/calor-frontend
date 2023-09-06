@@ -35,11 +35,6 @@ const CheckoutPage = () => {
           count: 1,
           details: {},
         },
-        {
-          product: '64d645c3e23b73b29fbde190',
-          count: 1,
-          details: {},
-        },
       ],
     })
       .then((res) => {
@@ -58,7 +53,9 @@ const CheckoutPage = () => {
         <CheckoutHeader />
         <CheckoutStepper />
         {step === CheckoutSteps.FIRST && <ContactInformation />}
-        {step === CheckoutSteps.SECOND && <ShippingInformation setData={setData} buttonTitle={'Save'} shippingData={data}  />}
+        {step === CheckoutSteps.SECOND && (
+          <ShippingInformation setData={setData} buttonTitle={'Save'} shippingData={data} />
+        )}
         {step === CheckoutSteps.THIRD && <Payment />}
       </MainLayout>
     </div>

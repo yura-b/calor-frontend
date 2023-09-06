@@ -20,26 +20,8 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
       email,
       phoneNumber,
     },
-    validateOnMount: true,
     validationSchema: validationSchemaForUserAccount,
-    onSubmit: async (values) => {
-      console.log(values, 'values');
-      try {
-        const updatedData = {
-          firstName: values.firstName,
-          secondName: values.secondName,
-          phoneNumber: values.phoneNumber,
-        };
-        if (access_token) {
-          await updateUserAccount(access_token, updatedData);
-          handleClose();
-        } else {
-          console.error('Access token is null.');
-        }
-      } catch (error) {
-        console.error('Error submitting form:', error);
-      }
-    },
+    onSubmit: () => {},
   });
   const [open, setOpen] = useState(false);
 
@@ -48,6 +30,24 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleSubmit = async (values) => {
+    try {
+      const updatedData = {
+        firstName: values.firstName,
+        secondName: values.secondName,
+        phoneNumber: values.phoneNumber,
+      };
+      if (access_token) {
+        await updateUserAccount(access_token, updatedData);
+        handleClose();
+        window.location.reload();
+      } else {
+        console.error('Access token is null.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
   const handleClick = useCallback(() => {
     if (formik.isValid) {
@@ -125,12 +125,11 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
               <img src={X} alt="Close" className="cursor-pointer w-5 h-5  brightness-0 invert" onClick={handleClose} />
             </header>
             <div className="px-8 py-14 text-center">
-              <p className={`${styles.body1}`}>
-                You still have an active order(s). Deleting the account does not cancel the order. Are you sure you want
-                to delete your account?
-              </p>
+              <p className={`${styles.body1}`}>Save changes to your account?</p>
               <div className="w-full flex flex-col items-center justify-center mt-8 gap-8 md:flex-row md:gap-4">
-                <Button color="gray">Yes</Button>
+                <Button color="gray" onClick={() => handleSubmit(formik.values)}>
+                  Yes
+                </Button>
                 <Button onClick={handleClose} color="mintExtraLight">
                   No
                 </Button>
