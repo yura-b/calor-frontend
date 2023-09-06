@@ -16,9 +16,9 @@ interface Props {
   visions?: string;
 }
 const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
-  const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
+  const isSmallerThan1800px = useMediaQuery('(max-width: 1800px)');
   const headingClass = `text-[2.4rem] leading-tight font-black sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl  ${
-    isSmallerThan1600px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
+    isSmallerThan1800px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
   }`;
   return (
     <div className="w-full bg-custom-red">
@@ -120,8 +120,8 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
         <img src={homeSemiCircle} className="absolute z-1 top-40 left-0 h-56 sm:hidden" />
         <img
           src={homeCircle}
-          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-40 lg:left-[10%] xl:top-36 xl:h-80 ${
-            isSmallerThan1600px ? '2xl:h-96 2xl:top-32' : '2xl:h-1/2 2xl:top-44'
+          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-36 lg:left-[10%] xl:top-36 xl:h-80 ${
+            isSmallerThan1800px ? '2xl:h-96 2xl:top-32' : '2xl:h-[430px] 2xl:top-44'
           }`}
           style={{ maxWidth: '100%' }}
         />

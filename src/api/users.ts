@@ -24,6 +24,10 @@ export const getShippingById = (access_token: string, id: string) => {
   return axios.get(`${BASE_URL}/user/shipping/${id}`, authorization(access_token));
 };
 
+export const blockUser = (access_token: string, id: string) => {
+  return axios.patch(`${BASE_URL}/user`, { id }, authorization(access_token));
+};
+
 export const updateUserAccount = (access_token: string, data: any) => {
   return axios.patch(`${BASE_URL}/user`, data, authorization(access_token));
 };

@@ -15,18 +15,21 @@ import NavigationLinks from './components/NavigationLinks';
 import { Link, useLocation } from 'react-router-dom';
 import { paths } from '@/routes/paths';
 import styles from '@/styles/Styles.module.scss';
-import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { useAppSelector, useAppDispatch } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { useNavigate } from 'react-router';
 import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
+import { cleanUserData } from '@/store/reducers/UserReducer.ts';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
 }): React.ReactElement => {
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const isHome = location.pathname === paths.home;
   const navigate = useNavigate();
   const signInHandler = () => {
+    dispatch(cleanUserData());
     navigate('/login');
   };
   const signUpHandler = () => {

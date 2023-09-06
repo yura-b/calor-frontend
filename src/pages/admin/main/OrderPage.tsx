@@ -69,7 +69,7 @@ const OrderPage = () => {
           delivery={<DeliveryInfo _id={id} />}
         />
       </div>
-      {orderData.status === OrderStatus.PROCESSING && (
+      {orderData.status === OrderStatus.PROCESSING && orderData.shoes && (
         <div className={'flex justify-end mr-32'}>
           <CustomButton title={'Start Production'} handler={startProduction} />
         </div>

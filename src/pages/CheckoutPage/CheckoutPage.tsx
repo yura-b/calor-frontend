@@ -69,7 +69,9 @@ const CheckoutPage = () => {
         <CheckoutHeader />
         <CheckoutStepper />
         {step === CheckoutSteps.FIRST && <ContactInformation />}
-        {step === CheckoutSteps.SECOND && <ShippingInformation setData={setData} buttonTitle={'Save'} />}
+        {step === CheckoutSteps.SECOND && (
+          <ShippingInformation setData={setData} buttonTitle={'Save'} shippingData={data} />
+        )}
         {step === CheckoutSteps.THIRD && <Payment />}
       </MainLayout>
     </div>

@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { paths } from '@/routes/paths';
 import { List, ListItem, ListItemText } from '@mui/material';
 import { cleanUserData } from '@/store/reducers/UserReducer.ts';
+import { useNavigate } from 'react-router';
 
 const MarkedList = ({ items }) => {
   return (
@@ -43,9 +44,7 @@ const CustomCheckbox = ({ checked, onChange }) => {
 const DeleteMyAccountComponent: React.FC = (): React.ReactElement => {
   const { access_token } = useAppSelector((state) => state.user);
   const items = ['Sign out on all devices', 'Delete all of your account information'];
-  const refreshPage = () => {
-    window.location.reload();
-  };
+  const navigate = useNavigate();
   const [selectedReasons, setSelectedReasons] = useState<string[]>([]);
   const [showTextArea, setShowTextArea] = useState(false);
 
@@ -55,7 +54,9 @@ const DeleteMyAccountComponent: React.FC = (): React.ReactElement => {
     'Found a better alternative',
     'Other reasons',
   ];
+
   const [showReasons, setShowReasons] = useState<boolean>(false);
+  const [accountDeleted, setAccountDeleted] = useState(false);
   const dispatch = useAppDispatch();
   const formik = useFormik({
     initialValues: {
@@ -66,6 +67,7 @@ const DeleteMyAccountComponent: React.FC = (): React.ReactElement => {
       try {
         await deleteUserMutation.mutateAsync(access_token, values);
         setAccountDeleted(true);
+        dispatch(cleanUserData());
       } catch (error) {
         console.error('Form submission error:', error);
       }
@@ -80,7 +82,7 @@ const DeleteMyAccountComponent: React.FC = (): React.ReactElement => {
       console.error('Account deletion error:', error);
     },
   });
-  const [accountDeleted, setAccountDeleted] = useState(false);
+
   return (
     <MainLayout>
       <MainFrame title={'Delete Account'} showCloseBtn={true} headerBg={'grayLight'}>
@@ -96,7 +98,7 @@ const DeleteMyAccountComponent: React.FC = (): React.ReactElement => {
               <Button color="gray" className="my-8" onClick={() => setShowReasons(!showReasons)}>
                 Yes
               </Button>
-              <Button onClick={refreshPage} color="mintExtraLight">
+              <Button onClick={() => navigate(paths.accountDetails)} color="mintExtraLight">
                 No
               </Button>
             </div>
@@ -147,20 +149,11 @@ const DeleteMyAccountComponent: React.FC = (): React.ReactElement => {
                 <Button color="gray" className="my-8" type={'submit'}>
                   Delete Account
                 </Button>
-                <Button onClick={refreshPage} color="mintExtraLight">
+                <Button onClick={() => navigate(paths.accountDetails)} color="mintExtraLight">
                   No
                 </Button>
               </div>
             </form>
-          )}
-          {accountDeleted && (
-            <div className="flex flex-col justify-center items-center mt-8 min-h-[50vh]">
-              <p className={`${styles.body1} font-bold text-center`}>Your account is deleted</p>
-              <p className={`${styles.body1} text-center`}>Thanks for using our product</p>
-              <Button color="gray" className="my-8" to={paths.home}>
-                Home
-              </Button>
-            </div>
           )}
         </div>
       </MainFrame>
