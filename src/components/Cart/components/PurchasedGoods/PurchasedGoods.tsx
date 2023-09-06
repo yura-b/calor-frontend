@@ -3,7 +3,7 @@ import styles from '@styles/Styles.module.scss';
 import purchasedGoodsImg from '@assets/cartImages/purchasedGoodsImg.svg';
 import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
 import { useMutation, useQueryClient } from 'react-query';
-import { deleteFromBasket } from "@/api/basket";
+import { deleteFromBasket } from '@/api/basket';
 import { useSelector, useDispatch } from 'react-redux';
 interface Props {
   title: string;
@@ -29,15 +29,15 @@ const PurchasedGoods: React.FC<Props> = ({ id, title, size, price, countGoogs, p
   };
   const mutation = useMutation(deleteFromBasket, {
     onSuccess: (data) => {
-        queryClient.invalidateQueries('userBasket');
+      queryClient.invalidateQueries('userBasket');
     },
   });
   const handleClick = () => {
     const requestData = {
       recordId: id,
-      userId: userId
-    }
-    mutation.mutate(requestData)
+      userId: userId,
+    };
+    mutation.mutate(requestData);
   };
   return (
     <div className="mb-4">

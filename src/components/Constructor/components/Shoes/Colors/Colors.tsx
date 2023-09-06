@@ -71,7 +71,9 @@ const Colors: FC<IProps> = ({ details }) => {
   return (
     <div
       ref={containerRef}
-      className={`flex ${colors.length < 5 ? 'justify-center' : 'justify-between'} items-center m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 md:w-wrapper no-scrollbar`}
+      className={`flex ${
+        colors.length < 5 ? 'justify-center' : 'justify-between'
+      } items-center m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 md:w-wrapper no-scrollbar`}
     >
       {colors.map((color) =>
         color.name !== null ? (

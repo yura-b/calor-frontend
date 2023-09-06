@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetDesign } from '@/store/reducers/constructor/ShoesConstructorReducer';
 import { setSelectedModel } from '@/store/reducers/constructor/SelectedShoePartsReducer';
-import { setConsctructorImage } from "@/store/reducers/constructor/ConstructorImage";
+import { setConsctructorImage } from '@/store/reducers/constructor/ConstructorImage';
 import { titles } from '@/translations/titles';
 import Head from '@/layouts/Head';
 import MainLayout from '@/components/MainLayout';
@@ -37,7 +37,7 @@ const Constructor: FC = () => {
   };
 
   const goToNextPage = () => {
-      combineImages(modelImages).then((base64) => { 
+    combineImages(modelImages).then((base64) => {
       dispatch(setConsctructorImage(base64));
       navigate('measurement');
     });

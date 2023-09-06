@@ -4,10 +4,11 @@ import { fadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 
 interface IProps {
-  images: string[]
+  images: string[];
+  color?: string;
 }
 
-const Slider: FC<IProps> = ({images}) => {
+const Slider: FC<IProps> = ({ images, color }) => {
   const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,8 +64,8 @@ const Slider: FC<IProps> = ({images}) => {
               <span
                 key={index}
                 className={`inline-block w-4 h-4 rounded-full ${
-                  currentIndex === index ? 'bg-white' : 'bg-transparent'
-                } border-2 border-white mx-1 cursor-pointer`}
+                  currentIndex === index ? `bg-${color}` : 'bg-transparent'
+                } border-2 border-${color} mx-1 cursor-pointer`}
                 onClick={() => handleIndicatorClick(index)}
               />
             ))}

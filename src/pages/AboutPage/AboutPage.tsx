@@ -31,7 +31,7 @@ const AboutPage: React.FC = (): React.ReactElement => {
             className="absolute top-8  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-auto"
           />
         </div>
-        <Slider images={[slider1, calorByYou, calorByYouBig]}/>
+        <Slider images={([slider1, calorByYou, calorByYouBig], (color = 'white'))} />
         <div className=" lg:bg-custom-turquoise lg:min-h-max lg:py-12">
           <div
             className={`${

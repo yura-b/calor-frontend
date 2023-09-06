@@ -8,12 +8,14 @@ import { getProducts } from '@/api/products';
 import Loader from '@/components/ui/Loader';
 import styles from '@styles/Styles.module.scss';
 
-
 const DesignShoePage: FC = (): React.ReactElement => {
-
-  const { data: products, isLoading, isError } = useQuery('products', getProducts, {
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery('products', getProducts, {
     keepPreviousData: true,
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
 
   const shoes = products?.data?.shoes || [];
@@ -22,7 +24,7 @@ const DesignShoePage: FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.designShoePage} />
       <MainLayout>
-        { isLoading && <Loader /> }
+        {isLoading && <Loader />}
         <div className={`${styles.container}`}>
           <ShoesList shoes={shoes} />
         </div>

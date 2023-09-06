@@ -11,7 +11,7 @@ import paste from '@assets/cartImages/paste.svg';
 import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
 import shoeModel2 from '@assets/cartImages/shoeModel2.svg';
 import { useQuery } from 'react-query';
-import { getUser } from "@/api/users";
+import { getUser } from '@/api/users';
 import { useSelector, useDispatch } from 'react-redux';
 
 interface Props {
@@ -21,15 +21,19 @@ interface Props {
 
 const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
   const { access_token, userId } = useSelector((state) => state.user);
-  const { data: user, isLoading, isError } = useQuery(['userBasket', getUser], () => getUser(access_token, userId), {
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useQuery(['userBasket', getUser], () => getUser(access_token, userId), {
     keepPreviousData: true,
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
-  console.log(user, 'user')
+  console.log(user, 'user');
   let cartPurchasedItems = [];
 
   if (!isLoading) {
-    cartPurchasedItems = [...user?.data?.user.basket]
+    cartPurchasedItems = [...user?.data?.user.basket];
   }
 
   const ExtrasItems = [

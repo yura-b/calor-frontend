@@ -120,24 +120,9 @@ export const validationMeasurement = yup.object({
     .string()
     .min(1, 'Field must contain a minimum of 1 character')
     .required('This field is required'),
-  rightFootWidth: yup
-    .string()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required'),
-  leftFootLength: yup
-    .string()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required'),
-  leftFootWidth: yup
-    .string()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required'),
-  insoleLength: yup
-    .string()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required'),
-  insoleWidth: yup
-  .string()
-  .min(1, 'Field must contain a minimum of 1 character')
-  .required('This field is required'),
+  rightFootWidth: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
+  leftFootLength: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
+  leftFootWidth: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
+  insoleLength: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
+  insoleWidth: yup.string().min(1, 'Field must contain a minimum of 1 character').required('This field is required'),
 });

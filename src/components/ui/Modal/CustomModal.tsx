@@ -7,7 +7,7 @@ import Button from '@components/ui/Button';
 interface IProps {
   open: boolean;
   handleClose: (boolean) => void;
-  children
+  children;
 }
 
 const CustomModal: FC<IProps> = ({ open, handleClose, children }) => {
@@ -25,7 +25,7 @@ const CustomModal: FC<IProps> = ({ open, handleClose, children }) => {
         </Box>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export default CustomModal;

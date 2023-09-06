@@ -7,11 +7,12 @@ interface IProps {
   includeTitle: boolean;
   readOnly: boolean;
   rating?: number;
-  size?: "small" | "medium" | "large";
+  size?: 'small' | 'medium' | 'large';
   getRating?: (newValue: number) => void;
+  className?: string;
 }
 
-const BasicRating: FC<IProps> = ({ includeTitle, readOnly, rating, size = "large", getRating }) => {
+const BasicRating: FC<IProps> = ({ includeTitle, readOnly, rating, size = 'large', getRating, className }) => {
   const [value, setValue] = useState<number>(rating || 5);
 
   const handleChange = (newValue: number) => {
@@ -27,20 +28,22 @@ const BasicRating: FC<IProps> = ({ includeTitle, readOnly, rating, size = "large
         '& > legend': { mt: 2 },
       }}
     >
-      {includeTitle && (
-        <Typography className="flex justify-center items-center" component="legend">
-          {rating}
-        </Typography>
-      )}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Rating
-          style={{  }}
-          readOnly={readOnly}
-          name="simple-controlled"
-          value={readOnly ? rating || 0 : value}
-          onChange={(event, newValue) => handleChange(newValue as number)}
-          size={size}
-        />
+      <div className={className}>
+        {includeTitle && (
+          <Typography className="flex justify-center items-center " component="legend">
+            <p className="text-[20px] font-bold text-gray">{rating}</p>
+          </Typography>
+        )}
+        <div style={{ display: 'flex', alignItems: 'center', padding: '2px' }}>
+          <Rating
+            style={{}}
+            readOnly={readOnly}
+            name="simple-controlled"
+            value={readOnly ? rating || 0 : value}
+            onChange={(event, newValue) => handleChange(newValue as number)}
+            size={size}
+          />
+        </div>
       </div>
     </Box>
   );

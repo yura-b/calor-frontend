@@ -1,2 +1,2 @@
-import CustomAccordion from "./CustomAccordion";
+import CustomAccordion from './CustomAccordion';
 export default CustomAccordion;

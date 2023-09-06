@@ -10,20 +10,24 @@ import Payment from '@pages/CheckoutPage/pages/Payment.tsx';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import { createOrder } from '@/api/orders.ts';
 import { useQuery } from 'react-query';
-import { getUser } from "@/api/users"
+import { getUser } from '@/api/users';
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
   const { userId, access_token } = useAppSelector((state) => state.user);
-  const { data: user, isLoading, isError } = useQuery('userBasket', () => getUser(access_token, userId), {
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useQuery('userBasket', () => getUser(access_token, userId), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
-    enabled: !!userId
+    enabled: !!userId,
   });
 
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
-  
+
   useEffect(() => {
     if (!data) return;
     dispatch(loading());
@@ -37,13 +41,11 @@ const CheckoutPage = () => {
         user_id: userId,
         save: data.save,
       },
-      purchases: user?.data?.user.basket.map((item) => (
-        {
-          count: item.count,
-          product: item.shoes,
-          details: item.details[0]
-        }
-      )),
+      purchases: user?.data?.user.basket.map((item) => ({
+        count: item.count,
+        product: item.shoes,
+        details: item.details[0],
+      })),
     })
       .then((res) => {
         console.log(res.data);

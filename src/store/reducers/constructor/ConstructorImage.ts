@@ -10,7 +10,6 @@ const constructorImageSlice = createSlice({
   },
 });
 
-export const { setConsctructorImage } =
-constructorImageSlice.actions;
+export const { setConsctructorImage } = constructorImageSlice.actions;
 
 export default constructorImageSlice.reducer;

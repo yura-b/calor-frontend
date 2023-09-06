@@ -1,5 +1,5 @@
-import { FC, useRef } from "react";
-import { FormikErrors } from "formik";
+import { FC, useRef } from 'react';
+import { FormikErrors } from 'formik';
 import CustomButton from '@components/ui/Button';
 
 interface IProps {
@@ -12,10 +12,7 @@ interface IProps {
   errors: FormikErrors<{ image?: File }>;
 }
 
-const FileUpload: FC<IProps> = ({
-  setFieldValue,
-  errors
-}) => {
+const FileUpload: FC<IProps> = ({ setFieldValue, errors }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileButtonClick = () => {
@@ -25,19 +22,21 @@ const FileUpload: FC<IProps> = ({
   };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFieldValue("image", e.target.files[0]);
+      setFieldValue('image', e.target.files[0]);
     }
   };
   return (
     <div>
-      <CustomButton onClick={handleFileButtonClick} color="transparentMint">Upload File</CustomButton>
+      <CustomButton onClick={handleFileButtonClick} color="transparentMint">
+        Upload File
+      </CustomButton>
       <input
         ref={fileInputRef}
         type="file"
         name="image"
         accept="image/png, image/jpg, image/jpeg"
         onChange={handleFileChange}
-        style={{ display: "none" }}
+        style={{ display: 'none' }}
       />
       {errors.image && (
         <>

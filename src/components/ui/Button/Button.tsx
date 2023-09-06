@@ -10,7 +10,7 @@ interface Props {
   type?: 'submit' | 'reset';
   to?: string;
   margin?: string;
-  disabled?: boolean; 
+  disabled?: boolean;
 }
 
 const Button: React.FC<Props> = ({ disabled, color, children, className, onClick, type, to, margin = 'my2' }) => {

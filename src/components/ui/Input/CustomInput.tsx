@@ -15,7 +15,7 @@ interface IProps {
   onChange?: (e: ChangeEvent<any>) => void;
 }
 
-const CustomInput: FC<IProps> = ({ id, name, placeholder, label, errorMessage, error, onChange}) => {
+const CustomInput: FC<IProps> = ({ id, name, placeholder, label, errorMessage, error, onChange }) => {
   return (
     <FormControl error>
       <FormLabel>{label}</FormLabel>
@@ -27,11 +27,9 @@ const CustomInput: FC<IProps> = ({ id, name, placeholder, label, errorMessage, e
         onChange={onChange}
         style={{ borderRadius: '2px' }}
       />
-      <FormHelperText>
-        {errorMessage}
-      </FormHelperText>
+      <FormHelperText>{errorMessage}</FormHelperText>
     </FormControl>
-  )
-}
+  );
+};
 
 export default CustomInput;

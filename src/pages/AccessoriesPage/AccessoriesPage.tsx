@@ -9,20 +9,24 @@ import { getAccessories } from '@/api/products';
 import Loader from '@/components/ui/Loader';
 
 const AccessoriesPage: React.FC = (): React.ReactElement => {
-  const { data: products, isLoading, isError } = useQuery('accessories', getAccessories, {
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery('accessories', getAccessories, {
     keepPreviousData: true,
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
-  console.log(products)
+  console.log(products);
   const accessories = products?.data || [];
 
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.accessories} />
       <MainLayout>
-        { isLoading && <Loader /> }
+        {isLoading && <Loader />}
         <div className={`${styles.container}`}>
-          <SubCategoriesProductsList products={accessories}/>
+          <SubCategoriesProductsList products={accessories} />
         </div>
       </MainLayout>
     </div>
