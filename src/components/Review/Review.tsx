@@ -18,6 +18,7 @@ import { uploadEventPhoto } from '@/api/manager/pages';
 import { validationSchemaForCreateReview } from '@/helpers/validation/formValidation';
 import { getProductById } from '@/api/products';
 import { ProductsDto } from '@/api/dto/products.dto';
+import conditions from '../../../public/Terms and Conditions_CALOR.pdf';
 
 interface Props {
   title: string;
@@ -171,7 +172,9 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
                   </CustomInput>
                   <div className="mb-4 text-xs">
                     By submitting a review you agree to our&nbsp;
-                    <Link color="inherit">Terms and Condition</Link>
+                    <a href={conditions} target="_blank" className="underline hover:font-bold">
+                      Terms and Conditions
+                    </a>
                   </div>
                   <div className="mb-4">
                     <CustomUploadPhoto handler={handleSelectFile} />
