@@ -42,9 +42,9 @@ const Slider: FC<IProps> = ({images}) => {
   };
 
   return (
-    <div>
+    <>
       <motion.div className="relative h-80 max-w-full overflow-hidden" {...fadeAnimation}>
-        <div className="w-full h-full max-w-full m-auto relative">
+        <div className="w-full h-full max-w-full m-auto flex flex-col-reverse">
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
@@ -58,7 +58,7 @@ const Slider: FC<IProps> = ({images}) => {
             onMouseEnter={stopAutoPlay}
             onMouseLeave={handleAutoPlay}
           />
-          <div className="absolute bottom-2 left-0 right-0 text-center">
+          <div className="flex justify-center items-center">
             {images.map((_, index) => (
               <span
                 key={index}
@@ -71,7 +71,7 @@ const Slider: FC<IProps> = ({images}) => {
           </div>
         </div>
       </motion.div>
-    </div>
+    </>
   );
 };
 

@@ -20,8 +20,6 @@ const ProductPage = () => {
     keepPreviousData: true,
     refetchOnWindowFocus: false
   });
-  
-  const isShoePage = product?.data.details !== undefined;
 
   return (
     isLoading ? (
@@ -36,11 +34,9 @@ const ProductPage = () => {
             className="z-10 w-auto"
           />
         </div>
-        <div className={`md:grid lg:grid-cols-2 md:grid-rows-2 md:justify-center md:py-8 ${styles.container}`}>
+        <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-10 ${styles.container}`}>
           {/* Product Slider */}
-          <div className="justify-start">
-            <Slider images={isShoePage ? [product?.data.photo] : product?.data.photos}/>
-          </div>
+          <Slider images={product?.data.photos}/>
           {/* Product Desription */}
           <div className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident}`}>
             <div>
