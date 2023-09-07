@@ -70,7 +70,7 @@ export const OrderHistory: React.FC<{
                 <TableBody>
                   <TableRow key={2}>
                     <TableCell component="th" scope="row">
-                      <p>{order.shoes?.title || order.accessory?.name}</p>
+                      <p>{order.shoes?.title || order.accessory?.title}</p>
                     </TableCell>
                     <TableCell>details here</TableCell>
                     <TableCell align={align}>
