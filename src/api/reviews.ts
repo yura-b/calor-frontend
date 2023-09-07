@@ -26,3 +26,7 @@ export const editReview = (id: string, review: PostReviewDto) => {
 export const getReviews = () => {
   return axios.get(`${BASE_URL}/review/all`);
 };
+
+export const getReview = (id: string) => {
+  return axios.get(`${BASE_URL}/review/products/${id}`);
+};

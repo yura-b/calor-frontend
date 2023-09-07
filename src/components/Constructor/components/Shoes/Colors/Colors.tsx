@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedColor } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import { updateParts } from '@/store/reducers/constructor/ShoesConstructorReducer';
 import { Tooltip } from '@mui/material';
+import styles from '@styles/Styles.module.scss';
 
 interface Color {
   img: string;
@@ -70,7 +71,9 @@ const Colors: FC<IProps> = ({ details }) => {
   return (
     <div
       ref={containerRef}
-      className={`flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 xl:w-wrapper no-scrollbar`}
+      className={`flex ${
+        colors.length < 5 ? 'justify-center' : 'justify-between'
+      } items-center m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 md:w-wrapper no-scrollbar`}
     >
       {colors.map((color) =>
         color.name !== null ? (

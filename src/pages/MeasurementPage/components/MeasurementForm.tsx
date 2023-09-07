@@ -4,15 +4,27 @@ import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import { validationMeasurement } from '@/helpers/validation/formValidation.ts';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserMeasurement } from '@/store/reducers/UserMeasurement';
+import { useMutation, useQueryClient } from 'react-query';
+import { addToBasket } from '@/api/basket';
+import { useParams } from 'react-router-dom';
 
 interface IProps {
   selectedShoeSize: number;
 }
 
 const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
+  const { id } = useParams();
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+  const { userId } = useSelector((state) => state.user);
+  const constructorImage = useSelector((state) => state.constructorImage);
+
+  const mutation = useMutation(addToBasket, {
+    onSuccess: (data) => {},
+  });
+
   const formik = useFormik({
     initialValues: {
       rightFootLength: '',
@@ -25,6 +37,13 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     validationSchema: validationMeasurement,
     onSubmit: (values) => {
       dispatch(setUserMeasurement({ selectedShoeSize, ...values }));
+      const requestData = {
+        product: id,
+        count: 1,
+        photo: constructorImage,
+        details: [{ selectedShoeSize, ...values }],
+      };
+      mutation.mutate({ userId, requestData });
     },
   });
 

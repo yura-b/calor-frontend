@@ -1,7 +1,5 @@
 import axios from 'axios';
-
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-
 export const createPayPalOrder = (ordersId: string[]) => {
   return axios.post(`${BASE_URL}/paypal/create-paypal-order`, {
     order_id: ordersId,

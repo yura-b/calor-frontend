@@ -10,15 +10,21 @@ export const getCategories = () => {
 export const getProductById = (id: string) => {
   return axios.get(`${BASE_URL}/product/${id}`);
 };
+
 export const getAllProducts = () => {
   return axios.get(`${BASE_URL}/product`);
 };
+
 export const createProduct = (product: ProductsDto, access_token: string) => {
   return axios.post(`${BASE_URL}/accessories`, product, authorization(access_token));
 };
 
 export const getProducts = () => {
   return axios.get(`${BASE_URL}/product`);
+};
+
+export const getAccessories = () => {
+  return axios.get(`${BASE_URL}/accessories`);
 };
 
 export const getBoughtProducts = (access_token: string) => {
