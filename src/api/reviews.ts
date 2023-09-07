@@ -27,6 +27,7 @@ export const getReviews = () => {
   return axios.get(`${BASE_URL}/review/all`);
 };
 
-export const getReview = (id: string) => {
+export const getReview = (id: string | undefined) => {
+
   return axios.get(`${BASE_URL}/review/products/${id}`);
 };

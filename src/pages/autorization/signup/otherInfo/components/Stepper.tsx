@@ -19,11 +19,11 @@ const ColorlibStepIconRoot = styled('div')<{
   alignItems: 'center',
   ...(ownerState.active && {
     backgroundColor: '#1EC1AA',
-    boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+    boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)'
   }),
   ...(ownerState.completed && {
-    backgroundColor: '#1EC1AA',
-  }),
+    backgroundColor: '#1EC1AA'
+  })
 }));
 
 function ColorlibStepIcon(props: StepIconProps) {
@@ -31,7 +31,7 @@ function ColorlibStepIcon(props: StepIconProps) {
   const icons: { [index: string]: React.ReactElement } = {
     1: <p>1</p>,
     2: <p>2</p>,
-    3: <p>3</p>,
+    3: <p>3</p>
   };
 
   return (
@@ -54,7 +54,7 @@ const CustomStepper = () => {
   };
 
   return (
-    <Stack sx={{ width: '100%' }} spacing={4}>
+    <Stack sx={{ width: '100%' }} spacing={16}>
       <Stepper activeStep={step} alternativeLabel connector={<ColorlibConnector />}>
         {steps.map((label, index) => (
           <Step key={label}>
@@ -78,22 +78,22 @@ export default CustomStepper;
 
 const ColorlibConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
-    top: 22,
+    top: 22
   },
   [`&.${stepConnectorClasses.active}`]: {
     [`& .${stepConnectorClasses.line}`]: {
-      backgroundColor: '#1EC1AA',
-    },
+      backgroundColor: '#1EC1AA'
+    }
   },
   [`&.${stepConnectorClasses.completed}`]: {
     [`& .${stepConnectorClasses.line}`]: {
-      backgroundColor: '#B8E4D8',
-    },
+      backgroundColor: '#B8E4D8'
+    }
   },
   [`& .${stepConnectorClasses.line}`]: {
     height: 3,
     border: 0,
     backgroundColor: '#B8E4D8',
-    borderRadius: 1,
-  },
+    borderRadius: 1
+  }
 }));
