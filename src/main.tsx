@@ -8,11 +8,13 @@ import { store } from '@/store/store.ts';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
+const VITE_GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={new QueryClient()}>
-        <GoogleOAuthProvider clientId="352361031995-3huasr1q21c4l3mktm2l64pvddkbac7j.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={VITE_GOOGLE_CLIENT_ID}>
           <App />
         </GoogleOAuthProvider>
       </QueryClientProvider>

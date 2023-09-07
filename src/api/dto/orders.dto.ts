@@ -67,10 +67,9 @@ export interface deliveryInfo {
 }
 
 export interface refundDto {
+  order_id: string;
 
-  order_id: string
+  orders_id?: string[];
 
-  orders_id?: string[]
-
-  custom_price?: number
+  custom_price?: number;
 }

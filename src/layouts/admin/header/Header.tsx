@@ -119,7 +119,7 @@ const Header = () => {
         </div>
 
         <div className={'flex flex-col justify-center gap-9 ml-6 absolute bottom-5 ' + styles.navContainer}>
-          <HeaderElement icon={<GlobeSimple size={26} />} title={'Go To Calor'} navigateTo={'/'}/>
+          <HeaderElement icon={<GlobeSimple size={26} />} title={'Go To Calor'} navigateTo={'/'} />
           <div>
             <UserCircle size={26} weight="fill" />
             <span>{fullName}</span>

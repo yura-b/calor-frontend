@@ -3,6 +3,8 @@ import styles from '@styles/Styles.module.scss';
 import { useQuery } from 'react-query';
 import { getReviews } from '@/api/reviews';
 import StarRating from '@/components/ui/StarRating';
+import { motion } from 'framer-motion';
+import { collapseAnimation } from '@styles/Animations';
 
 const Reviews: React.FC = () => {
   const { data, isLoading, error } = useQuery('getReviews', () => getReviews());
@@ -20,10 +22,10 @@ const Reviews: React.FC = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header1}>Reviews</h1>
-      <div className="flex lg:flex-row overflow-x-auto flex-col gap-2 lg:gap-6">
+      <div className="flex lg:flex-row overflow-x-auto flex-wrap flex-col gap-2 lg:gap-6">
         {reviewsToDisplay?.length ? (
           reviewsToDisplay.map((item, i) => (
-            <div className="flex flex-col lg:basis-1/2 my-4" key={i}>
+            <motion.div className="flex flex-col basis-[48%] my-4" {...collapseAnimation} key={i}>
               <p className="font-bold">
                 {item.firstName} {item.secondName}
               </p>
@@ -31,7 +33,7 @@ const Reviews: React.FC = () => {
               <p className="py-2">{item.experience}</p>
               {item.photo && <img src={item.photo} className="object-contain object-cover w-[140px] h-[140px]" />}
               <p className="py-2 text-grayLight">{new Date(item.date).toISOString().split('T')[0]}</p>
-            </div>
+            </motion.div>
           ))
         ) : (
           <p className="font-bold">No reviews</p>

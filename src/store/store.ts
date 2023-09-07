@@ -8,7 +8,7 @@ import pageManagerReducer from '@/store/admin/PageManagerReducer.ts';
 import checkoutReducer from '@/store/reducers/CheckoutReducer.ts';
 import selectedShoePartsReducer from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import shoesConstructorReducer from '@/store/reducers/constructor/ShoesConstructorReducer';
-import userMeasurement from "./reducers/UserMeasurement";
+import userMeasurement from './reducers/UserMeasurement';
 
 export const store = configureStore({
   reducer: {
@@ -21,7 +21,7 @@ export const store = configureStore({
     pageManager: pageManagerReducer,
     selectedShoeParts: selectedShoePartsReducer,
     shoesConstructor: shoesConstructorReducer,
-    userMeasurement: userMeasurement
+    userMeasurement: userMeasurement,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

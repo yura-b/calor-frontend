@@ -19,6 +19,8 @@ import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
 import CookiesPage from '@pages/CookiesPage';
 import AccountPage from '@pages/AccountPage';
+import DeleteMyAccountComponent from '@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountComponent';
+import DeleteMyAccountSuccess from '@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountSuccess';
 import AccountDetails from '@pages/AccountPage/components/AccountDetails';
 import MyOrders from '@pages/AccountPage/components/MyOrders';
 import MyOrder from '@components/MyOrder';
@@ -40,13 +42,16 @@ import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 import { useMediaQuery } from '@react-hook/media-query';
 import Reviews from './pages/AccountPage/components/Reviews';
-import MeasurementPage from "./pages/MeasurementPage/MeasurementPage";
+import MeasurementPage from './pages/MeasurementPage/MeasurementPage';
+
+import { useAppSelector } from '@/store/hooks/hooks.ts';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
 
   getUser();
   const isMobile = useMediaQuery('(max-width: 1023px)');
+  const { access_token } = useAppSelector((state) => state.user);
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
@@ -90,6 +95,10 @@ const App = () => {
             }
           />
           <Route path={paths.accountDetails} element={<PrivateRoute element={<AccountDetails />} />} />
+          <Route
+            path={paths.accountDelete}
+            element={access_token ? <DeleteMyAccountComponent /> : <DeleteMyAccountSuccess />}
+          />
           <Route path={paths.myOrders} element={<PrivateRoute element={<MyOrders />} />} />
           <Route path={paths.designList} element={<PrivateRoute element={<DesignList />} />} />
           <Route path={paths.shippingAddress} element={<PrivateRoute element={<ShippingAddress />} />} />

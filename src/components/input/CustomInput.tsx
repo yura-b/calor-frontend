@@ -21,7 +21,7 @@ interface IProps {
   gap?: string;
 }
 
-const CustomInput: React.FC<IProps> = ({gap = '2', ...props}) => {
+const CustomInput: React.FC<IProps> = ({ gap = '2', ...props }) => {
   const theme = createTheme({
     palette: {
       primary: {

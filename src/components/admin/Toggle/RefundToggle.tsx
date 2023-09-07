@@ -16,8 +16,8 @@ const RefundToggle: FC<IProps> = ({ _id, available, handler }) => {
   };
 
   useEffect(() => {
-    if (selected) handler(prevState => [...prevState, _id]);
-    else handler(prevState => prevState.filter(id => id !== _id));
+    if (selected) handler((prevState) => [...prevState, _id]);
+    else handler((prevState) => prevState.filter((id) => id !== _id));
   }, [selected]);
 
   return (
@@ -28,7 +28,7 @@ const RefundToggle: FC<IProps> = ({ _id, available, handler }) => {
       style={{
         background: selected ? '#1EC1AA' : '', // Example background color change based on selection
         height: '25px',
-        width: '25px'
+        width: '25px',
       }}
     >
       <CheckIcon />
