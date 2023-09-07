@@ -10,4 +10,5 @@ export const titles = {
   about: 'About Page',
   accountPage: 'Account',
   helpPage: 'Help',
+  product: 'Product',
 };

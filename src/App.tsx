@@ -41,9 +41,11 @@ const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 import { useMediaQuery } from '@react-hook/media-query';
+import Constructor from './components/Constructor';
+import ProductPage from './pages/ProductPage/ProductPage';
 import Reviews from './pages/AccountPage/components/Reviews';
-import MeasurementPage from './pages/MeasurementPage/MeasurementPage';
 
+import MeasurementPage from '@/pages/MeasurementPage/MeasurementPage';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 
 const App = () => {
@@ -75,12 +77,13 @@ const App = () => {
             <Route path={'warehouse'} element={<WarehousePage />} />
           </Route>
           <Route path={'design_your_shoe'}>
-            <Route index element={<Navigate to="dayger" replace />} />
-            <Route path={'dayger'} element={<DesignShoePage model="dayger" />} />
-            <Route path={'sunrise'} element={<DesignShoePage model="sunrise" />} />
-            <Route path={'yolo'} element={<DesignShoePage model="yolo" />} />
-            <Route path={'measurement'} element={<MeasurementPage />} />
+            <Route index element={<DesignShoePage />} />
+            <Route path={'model/:model/:id'}>
+              <Route index element={<Constructor />} />
+              <Route path={'measurement'} element={<MeasurementPage />} />
+            </Route>
           </Route>
+          <Route path={'product/:id'} element={<ProductPage />} />
           <Route path={paths.design_bag} element={<DesignBagPage />} />
           <Route path={paths.accessories} element={<AccessoriesPage />} />
           <Route path={paths.shoe_care_product} element={<ShoeCareProductPage />} />

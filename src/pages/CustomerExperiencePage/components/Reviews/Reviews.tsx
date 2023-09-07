@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { getReviews } from '@/api/reviews';
 import StarRating from '@/components/ui/StarRating';
 import { motion } from 'framer-motion';
-import { collapseAnimation } from '@styles/Animations';
+import { fadeAnimation } from '@styles/Animations';
 
 const Reviews: React.FC = () => {
   const { data, isLoading, error } = useQuery('getReviews', () => getReviews());
@@ -22,10 +22,20 @@ const Reviews: React.FC = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header1}>Reviews</h1>
-      <div className="flex lg:flex-row overflow-x-auto flex-wrap flex-col gap-2 lg:gap-6">
+      <div className="flex lg:flex-row overflow-x-auto flex-col gap-2 lg:gap-6 text-gray" {...fadeAnimation}>
         {reviewsToDisplay?.length ? (
           reviewsToDisplay.map((item, i) => (
-            <motion.div className="flex flex-col basis-[48%] my-4" {...collapseAnimation} key={i}>
+            <motion.div
+              className="flex flex-col lg:basis-1/2 my-4"
+              key={i}
+              initial="collapsed"
+              animate="expanded"
+              exit="collapsed"
+              variants={{
+                collapsed: { scale: 0, opacity: 0 },
+                expanded: { scale: 1, opacity: 1 },
+              }}
+            >
               <p className="font-bold">
                 {item.firstName} {item.secondName}
               </p>
@@ -40,8 +50,8 @@ const Reviews: React.FC = () => {
         )}
       </div>
       {data?.data?.length > 2 && (
-        <button onClick={() => setShowAllReviews(!showAllReviews)} className="font-bold underline">
-          {showAllReviews ? 'Show Less Reviews' : 'Show More Reviews'}
+        <button onClick={() => setShowAllReviews(!showAllReviews)} className="font-bold underline text-gray">
+          {showAllReviews ? 'Less Reviews' : 'More Reviews'}
         </button>
       )}
     </div>

@@ -19,6 +19,8 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
   const currentPage = convertToTitleCase(window.location.pathname.slice(1));
   const parts = currentPage.split('/');
 
+  const lastPartStartsWithNumber = /^\d/.test(parts[parts.length - 1]);
+
   return (
     <div
       className={`${styles.body1} ${styles.container} ${className} pb-2 pt-0  flex text-${color} justify-center  sm:text-sm`}
@@ -29,12 +31,18 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
           <p className="mx-2">{'/'}</p>
         </>
       )}
-      {parts.map((part, index) => (
-        <p key={index} className={index === parts.length - 1 ? 'font-bold' : undefined}>
-          {part}
-          {index !== parts.length - 1 && <span className="mx-2">/</span>}
-        </p>
-      ))}
+      {parts.map((part, index) => {
+        if (index === parts.length - 1 && lastPartStartsWithNumber) {
+          return null;
+        }
+
+        return (
+          <p key={index} className={index === parts.length - 1 ? 'font-bold' : undefined}>
+            {part}
+            {index !== parts.length - 1 && <span className="mx-2"></span>}
+          </p>
+        );
+      })}
     </div>
   );
 };

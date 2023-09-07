@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedDetail } from '@/store/reducers/constructor/SelectedShoePartsReducer';
+import styles from '@styles/Styles.module.scss';
 
 interface Color {
   name: string;
