@@ -69,6 +69,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
+
   useLayoutEffect(() => {
     toggleOpen();
   }, [location.pathname]);
