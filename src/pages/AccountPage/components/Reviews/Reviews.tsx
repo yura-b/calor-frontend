@@ -83,7 +83,6 @@ const Reviews: React.FC = (): React.ReactElement => {
     }
     return text;
   };
-  console.log(userProducts, 'userProducts');
 
   return (
     <AccountLayout>
@@ -119,6 +118,7 @@ const Reviews: React.FC = (): React.ReactElement => {
                       onClick={() => {
                         setReview(item);
                         setIsReviewOpen(!isReviewOpen);
+                        setProductId(item?.product_id);
                       }}
                     >
                       Rewrite Review

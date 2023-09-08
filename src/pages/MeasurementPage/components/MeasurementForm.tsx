@@ -24,7 +24,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
 
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
-      navigate('/')
+      navigate('/');
     },
   });
 
@@ -47,7 +47,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         count: 1,
         photo: constructorImage,
         measurement: { selectedShoeSize, ...values },
-        details: [selectedDetails]
+        details: [selectedDetails],
       };
 
       mutation.mutate({ userId, requestData });

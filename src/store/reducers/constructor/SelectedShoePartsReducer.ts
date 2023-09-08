@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   selectedDetail: {
     part: 'part01',
-    name: ''
+    name: '',
   },
   selectedMaterial: 'leather',
   selectedColor: '',
@@ -41,8 +41,7 @@ const selectedShoePartsSlice = createSlice({
             material,
             color: color.name,
           },
-        }
-
+        },
       };
       state.details = {
         ...state.details,
@@ -52,12 +51,7 @@ const selectedShoePartsSlice = createSlice({
   },
 });
 
-export const {
-  setSelectedDetail,
-  setSelectedMaterial,
-  setSelectedColor,
-  setSelectedModel,
-  setDetails,
-} = selectedShoePartsSlice.actions;
+export const { setSelectedDetail, setSelectedMaterial, setSelectedColor, setSelectedModel, setDetails } =
+  selectedShoePartsSlice.actions;
 
 export default selectedShoePartsSlice.reducer;

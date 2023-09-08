@@ -9,7 +9,7 @@ import {
   minLengthValidation,
   oneLowerCaseValidation,
   oneNumberValidation,
-  oneUpperCaseValidation
+  oneUpperCaseValidation,
 } from '@/helpers/validation/formValidation.ts';
 import { signUp } from '@/api/authorization.ts';
 import { IUser } from '@/store/reducers/UserReducer.ts';
@@ -71,10 +71,18 @@ const Password: React.FC<IProps> = ({ setUserData }) => {
       <div className={'w-full'}>
         <h3 className={'font-bold'}>Create Password</h3>
         <div className={'flex flex-col '}>
-          <PasswordIdentifier text={'One uppercase character'} handler={oneUpperCaseValidation} property={'upperCase'} />
+          <PasswordIdentifier
+            text={'One uppercase character'}
+            handler={oneUpperCaseValidation}
+            property={'upperCase'}
+          />
           <PasswordIdentifier text={'8 characters minimum'} handler={minLengthValidation} property={'minLength'} />
           <PasswordIdentifier text={'One number'} handler={oneNumberValidation} property={'number'} />
-          <PasswordIdentifier text={'One lowercase character'} handler={oneLowerCaseValidation} property={'lowerCase'} />
+          <PasswordIdentifier
+            text={'One lowercase character'}
+            handler={oneLowerCaseValidation}
+            property={'lowerCase'}
+          />
         </div>
       </div>
 

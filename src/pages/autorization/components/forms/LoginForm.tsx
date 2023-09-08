@@ -31,12 +31,12 @@ const LoginForm = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: ''
+      password: '',
     },
     validationSchema: validationSchemaForLogin,
     onSubmit: (values) => {
       logInHandler(values);
-    }
+    },
   });
 
   return (
