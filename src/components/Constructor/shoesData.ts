@@ -18,7 +18,7 @@ export const shoes = [
               {
                 img: 'part01_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part01_leather_03.png',
@@ -88,7 +88,7 @@ export const shoes = [
               {
                 img: 'part01_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part01_leather_17.png',
@@ -183,7 +183,7 @@ export const shoes = [
               {
                 img: 'part01_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part01_suede_17.png',
@@ -210,7 +210,7 @@ export const shoes = [
               {
                 img: 'part02_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part02_leather_03.png',
@@ -280,7 +280,7 @@ export const shoes = [
               {
                 img: 'part02_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part02_leather_17.png',
@@ -375,7 +375,7 @@ export const shoes = [
               {
                 img: 'part02_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part02_suede_17.png',
@@ -472,7 +472,7 @@ export const shoes = [
               {
                 img: 'part03_laces_polyester_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part03_laces_polyester_17.png',
@@ -564,7 +564,7 @@ export const shoes = [
               {
                 img: 'part04_lower_eyelets_metal_14.png',
                 name: 'Nickel',
-                hex: '8D8D8D',
+                hex: '#8D8D8D',
               },
               {
                 img: 'part04_lower_eyelets_metal_15.png',
@@ -703,7 +703,7 @@ export const shoes = [
               {
                 img: 'part06_stitch_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part06_stitch_17.png',
@@ -735,7 +735,7 @@ export const shoes = [
               {
                 img: 'part07_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part07_leather_03.png',
@@ -805,7 +805,7 @@ export const shoes = [
               {
                 img: 'part07_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part07_leather_17.png',
@@ -900,7 +900,7 @@ export const shoes = [
               {
                 img: 'part07_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part07_suede_17.png',
@@ -927,7 +927,7 @@ export const shoes = [
               {
                 img: 'part08_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part08_leather_03.png',
@@ -997,7 +997,7 @@ export const shoes = [
               {
                 img: 'part08_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part08_leather_17.png',
@@ -1092,7 +1092,7 @@ export const shoes = [
               {
                 img: 'part08_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part08_suede_17.png',
@@ -1134,7 +1134,7 @@ export const shoes = [
               {
                 img: 'part10_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part10_leather_03.png',
@@ -1204,7 +1204,7 @@ export const shoes = [
               {
                 img: 'part10_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part10_leather_17.png',
@@ -1299,7 +1299,7 @@ export const shoes = [
               {
                 img: 'part10_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part10_suede_17.png',
@@ -1326,7 +1326,7 @@ export const shoes = [
               {
                 img: 'part11_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part11_leather_03.png',
@@ -1396,7 +1396,7 @@ export const shoes = [
               {
                 img: 'part11_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part11_leather_17.png',
@@ -1491,7 +1491,7 @@ export const shoes = [
               {
                 img: 'part11_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part11_suede_17.png',
@@ -1518,7 +1518,7 @@ export const shoes = [
               {
                 img: 'part12_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part12_leather_03.png',
@@ -1588,7 +1588,7 @@ export const shoes = [
               {
                 img: 'part12_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part12_leather_17.png',
@@ -1683,7 +1683,7 @@ export const shoes = [
               {
                 img: 'part12_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part12_suede_17.png',
@@ -1710,7 +1710,7 @@ export const shoes = [
               {
                 img: 'part13_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part13_leather_03.png',
@@ -1780,7 +1780,7 @@ export const shoes = [
               {
                 img: 'part13_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part13_leather_17.png',
@@ -1875,7 +1875,7 @@ export const shoes = [
               {
                 img: 'part13_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part13_suede_17.png',
@@ -1962,7 +1962,7 @@ export const shoes = [
               {
                 img: 'part14_eyelets_metal_14.png',
                 name: 'Nickel',
-                hex: '8D8D8D',
+                hex: '#8D8D8D',
               },
               {
                 img: 'part14_eyelets_metal_15.png',
@@ -2009,7 +2009,7 @@ export const shoes = [
               {
                 img: 'part01_quarter_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part01_quarter_leather_03.png',
@@ -2079,7 +2079,7 @@ export const shoes = [
               {
                 img: 'part01_quarter_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part01_quarter_leather_17.png',
@@ -2174,7 +2174,7 @@ export const shoes = [
               {
                 img: 'part01_quarter_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part01_quarter_suede_17.png',
@@ -2201,7 +2201,7 @@ export const shoes = [
               {
                 img: 'part02_tongue_toe_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part02_tongue_toe_leather_03.png',
@@ -2271,7 +2271,7 @@ export const shoes = [
               {
                 img: 'part02_tongue_toe_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part02_tongue_toe_leather_17.png',
@@ -2366,7 +2366,7 @@ export const shoes = [
               {
                 img: 'part02_tongue_toe_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part02_tongue_toe_suede_17.png',
@@ -2393,7 +2393,7 @@ export const shoes = [
               {
                 img: 'part03_back_strap_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part03_back_strap_leather_03.png',
@@ -2463,7 +2463,7 @@ export const shoes = [
               {
                 img: 'part03_back_strap_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part03_back_strap_leather_17.png',
@@ -2558,7 +2558,7 @@ export const shoes = [
               {
                 img: 'part03_back_strap_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part03_back_strap_suede_17.png',
@@ -2585,7 +2585,7 @@ export const shoes = [
               {
                 img: 'part04_lace_guard_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part04_lace_guard_leather_03.png',
@@ -2655,7 +2655,7 @@ export const shoes = [
               {
                 img: 'part04_lace_guard_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part04_lace_guard_leather_17.png',
@@ -2750,7 +2750,7 @@ export const shoes = [
               {
                 img: 'part04_lace_guard_suede_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part04_lace_guard_suede_17.png',
@@ -2774,11 +2774,11 @@ export const shoes = [
                 name: 'White',
                 hex: '#FFFFFF',
               },
-              {
-                img: 'part05_sole_02.png',
-                name: 'Denim Blue',
-                hex: '#131E3A',
-              },
+              // {
+              //   img: 'part05_sole_02.png',
+              //   name: 'Denim Blue',
+              //   hex: '#131E3A',
+              // },
               {
                 img: 'part05_sole_04.png',
                 name: 'Upsdell Red',
@@ -2879,7 +2879,7 @@ export const shoes = [
               {
                 img: 'part06_laces_polyester_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part06_laces_polyester_17.png',
@@ -2971,7 +2971,7 @@ export const shoes = [
               {
                 img: 'part07_eyelets_metal_14.png',
                 name: 'Nickel',
-                hex: '8D8D8D',
+                hex: '#8D8D8D',
               },
               {
                 img: 'part07_eyelets_metal_15.png',
@@ -3078,7 +3078,7 @@ export const shoes = [
               {
                 img: 'part08_stitch_15.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part08_stitch_16.png',
@@ -3180,7 +3180,7 @@ export const shoes = [
               {
                 img: 'part09_lining_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part09_lining_leather_17.png',
@@ -3573,7 +3573,7 @@ export const shoes = [
               {
                 img: 'part04_laces_polyester_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part04_laces_polyester_17.png',
@@ -3665,7 +3665,7 @@ export const shoes = [
               {
                 img: 'part05_eyelets_metal_14.png',
                 name: 'Nickel',
-                hex: '8D8D8D',
+                hex: '#8D8D8D',
               },
               {
                 img: 'part05_eyelets_metal_15.png',
@@ -3707,7 +3707,7 @@ export const shoes = [
               {
                 img: 'part06_back_strap_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part06_back_strap_leather_03.png',
@@ -3777,7 +3777,7 @@ export const shoes = [
               {
                 img: 'part06_lace_guard_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part06_lace_guard_leather_17.png',
@@ -3899,7 +3899,7 @@ export const shoes = [
               {
                 img: 'part07_detail_3_leather_02.png',
                 name: 'Powder White',
-                hex: '#FEFEFA',
+                hex: '#ded9d2',
               },
               {
                 img: 'part07_detail_3_leather_03.png',
@@ -3969,7 +3969,7 @@ export const shoes = [
               {
                 img: 'part07_detail_3_leather_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part07_detail_3_leather_17.png',
@@ -4289,11 +4289,11 @@ export const shoes = [
                 name: 'White',
                 hex: '#FFFFFF',
               },
-              {
-                img: 'part11_sole_02.png',
-                name: 'Denim Blue',
-                hex: '#131E3A',
-              },
+              // {
+              //   img: 'part11_sole_02.png',
+              //   name: 'Denim Blue',
+              //   hex: '#131E3A',
+              // },
               {
                 img: 'part11_sole_04.png',
                 name: 'Upsdell Red',
@@ -4389,7 +4389,7 @@ export const shoes = [
               {
                 img: 'part12_stitch_16.png',
                 name: 'Olive',
-                hex: '#BFAE2B',
+                hex: '#2a3417',
               },
               {
                 img: 'part12_stitch_17.png',
