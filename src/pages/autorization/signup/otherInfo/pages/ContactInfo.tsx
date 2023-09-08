@@ -28,7 +28,7 @@ const ContactInfo = () => {
     },
   });
   return (
-    <div className={'flex flex-col p-5 w-full items-center '}>
+    <div className={'flex flex-col p-5 w-full items-center max-w-2xl'}>
       <form onSubmit={formik.handleSubmit} className={'w-full'}>
         <CustomInput
           id={'firstName'}

@@ -64,7 +64,7 @@ export const oneUpperCaseValidation = (password: string) => {
 };
 
 export const minLengthValidation = (password: string, length: number) => {
-  if (!password) return ValidationResult.OK;
+  // if (!password) return ValidationResult.OK;
 
   if (password.length >= length) return ValidationResult.SUCCESS;
 
