@@ -46,7 +46,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         product: id,
         count: 1,
         photo: constructorImage,
-        measurement: [{ selectedShoeSize, ...values }],
+        measurement: { selectedShoeSize, ...values },
         details: [selectedDetails]
       };
 

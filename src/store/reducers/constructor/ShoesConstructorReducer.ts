@@ -13,7 +13,7 @@ const shoesConstructorSlice = createSlice({
       const validView2Numbers = Object.keys(shoesImages[selectedModel].view2);
       const validView3Numbers = Object.keys(shoesImages[selectedModel].view3);
       const validView4Numbers = Object.keys(shoesImages[selectedModel].view4);
-      console.log(selectedDetail, 'asdasdasd')
+
       if (validView1Numbers.includes(selectedDetail.part)) {
         state[selectedModel].view1[
           selectedDetail.part
