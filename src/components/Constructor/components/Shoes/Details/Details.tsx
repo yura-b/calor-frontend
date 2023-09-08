@@ -32,11 +32,11 @@ const Details: FC<IProps> = ({ details }) => {
   const handleDetailClick = (detailPart) => {
     dispatch(setSelectedDetail(detailPart));
   };
-
+  
   useEffect(() => {
-    if (selectedDetail && materialRefs.current[selectedDetail]) {
+    if (selectedDetail.part && materialRefs.current[selectedDetail.part]) {
       const container = containerRef.current;
-      const selectedElement = materialRefs.current[selectedDetail];
+      const selectedElement = materialRefs.current[selectedDetail.part];
 
       const containerWidth = container.offsetWidth;
       const selectedElementLeft = selectedElement.offsetLeft;
@@ -61,17 +61,17 @@ const Details: FC<IProps> = ({ details }) => {
           return (
             <div
               className="min-h-[70px] justify-center items-center flex flex-col cursor-pointer"
-              onClick={() => handleDetailClick(detail.part)}
+              onClick={() => handleDetailClick({part: detail.part, name: detail.name})}
             >
               <div
                 ref={(element) => (materialRefs.current[detail.part] = element)}
                 className={`flex items-center justify-center w-20 h-20 rounded-full ${
-                  selectedDetail === detail.part ? 'bg-grayLight' : 'bg-grayExtraLight'
+                  selectedDetail.part === detail.part ? 'bg-grayLight' : 'bg-grayExtraLight'
                 }`}
               >
                 <img src={detail.image} alt={detail.name} />
               </div>
-              <span className={`inline-block text-center ${selectedDetail === detail.part ? 'font-bold' : ''}`}>
+              <span className={`inline-block text-center ${selectedDetail.part === detail.part ? 'font-bold' : ''}`}>
                 {detail.name}
               </span>
             </div>

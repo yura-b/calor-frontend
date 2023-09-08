@@ -9,7 +9,6 @@ export const getUsers = (credential, filter: string) => {
 };
 
 export const getUser = (credential: string, id: string) => {
-  console.log(credential, 'credential');
   return axios.get(`${BASE_URL}/user/${id}`, authorization(credential));
 };
 

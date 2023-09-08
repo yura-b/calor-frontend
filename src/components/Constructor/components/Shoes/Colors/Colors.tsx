@@ -34,8 +34,7 @@ const Colors: FC<IProps> = ({ details }) => {
   );
   const containerRef = useRef(null);
   const colorRefs = useRef({});
-
-  const selectedDetailObj = details.find((item) => item.part === selectedDetail);
+  const selectedDetailObj = details.find((item) => item.part === selectedDetail.part);
   const materials = selectedDetailObj?.materials || [];
   const selectedMaterialObj = materials.find((item) => item.name === selectedMaterial);
   const colors = selectedMaterialObj?.colors || [];

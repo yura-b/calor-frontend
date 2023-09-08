@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
 import { InputType } from '@/constants/interfaces/inputTypes.ts';
-import { imageWidthAndHeight } from '@/helpers/functions/imgHeightAndWidth';
 
 const PhotoInput: FC<{ handler: (e: File) => void }> = ({ handler }) => {
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
-    const { width, height } = await imageWidthAndHeight(e.target.files[0]);
-    if (height && height > 1024) return;
+    // const { width, height } = await imageWidthAndHeight(e.target.files[0]);
+    // if (height && height > 1024) return;
     handler(e.target.files[0]);
   };
 

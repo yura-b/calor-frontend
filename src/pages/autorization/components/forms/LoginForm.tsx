@@ -24,19 +24,19 @@ const LoginForm = () => {
         dispatch(setUserData({ ...response, rememberMe }));
       })
       .catch((e) => {
-        dispatch(errorCorrupted(e?.meesage));
+        dispatch(errorCorrupted(e.response.data.message));
       });
   };
 
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
+      password: ''
     },
     validationSchema: validationSchemaForLogin,
     onSubmit: (values) => {
       logInHandler(values);
-    },
+    }
   });
 
   return (

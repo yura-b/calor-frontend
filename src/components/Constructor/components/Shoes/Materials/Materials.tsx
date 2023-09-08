@@ -26,7 +26,7 @@ interface IProps {
 const Materials: FC<IProps> = ({ details }) => {
   const dispatch = useDispatch();
   const { selectedMaterial, selectedDetail, selectedModel } = useSelector((state) => state.selectedShoeParts);
-  const selectedDetailObj = details.find((item) => item.part === selectedDetail);
+  const selectedDetailObj = details.find((item) => item.part === selectedDetail.part);
   const materials = selectedDetailObj?.materials || [];
 
   const handleMaterialClick = (materialName) => {
