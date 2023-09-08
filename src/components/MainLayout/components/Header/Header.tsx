@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
@@ -69,7 +69,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     toggleOpen();
   }, [location.pathname]);
 
