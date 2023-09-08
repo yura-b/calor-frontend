@@ -13,28 +13,28 @@ const shoesConstructorSlice = createSlice({
       const validView2Numbers = Object.keys(shoesImages[selectedModel].view2);
       const validView3Numbers = Object.keys(shoesImages[selectedModel].view3);
       const validView4Numbers = Object.keys(shoesImages[selectedModel].view4);
-
-      if (validView1Numbers.includes(selectedDetail)) {
+      console.log(selectedDetail, 'asdasdasd')
+      if (validView1Numbers.includes(selectedDetail.part)) {
         state[selectedModel].view1[
-          selectedDetail
+          selectedDetail.part
         ] = `/assets/images/constructor/parts/${selectedModel}/view1/view1_${selectedColor.img}`;
       }
 
-      if (validView2Numbers.includes(selectedDetail)) {
+      if (validView2Numbers.includes(selectedDetail.part)) {
         state[selectedModel].view2[
-          selectedDetail
+          selectedDetail.part
         ] = `/assets/images/constructor/parts/${selectedModel}/view2/view2_${selectedColor.img}`;
       }
 
-      if (validView3Numbers.includes(selectedDetail)) {
+      if (validView3Numbers.includes(selectedDetail.part)) {
         state[selectedModel].view3[
-          selectedDetail
+          selectedDetail.part
         ] = `/assets/images/constructor/parts/${selectedModel}/view3/view3_${selectedColor.img}`;
       }
 
-      if (validView4Numbers.includes(selectedDetail)) {
+      if (validView4Numbers.includes(selectedDetail.part)) {
         state[selectedModel].view4[
-          selectedDetail
+          selectedDetail.part
         ] = `/assets/images/constructor/parts/${selectedModel}/view4/view4_${selectedColor.img}`;
       }
     },
