@@ -8,13 +8,12 @@ import {
   minLengthValidation,
   oneLowerCaseValidation,
   oneNumberValidation,
-  oneUpperCaseValidation,
+  oneUpperCaseValidation
 } from '@/helpers/validation/formValidation.ts';
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import AlreadyRegistered from '@pages/autorization/signup/otherInfo/components/AlreadyRegistered.tsx';
 import AuthorizationHeader from '@pages/autorization/components/header/AuthorizationHeader.tsx';
-import { X } from '@phosphor-icons/react';
 
 const ResetPassword = () => {
   const [firstPasswordInputValue, setfirstPasswordInputValue] = useState('');
@@ -27,7 +26,7 @@ const ResetPassword = () => {
 
   const [matchError, setMatchError] = useState({
     isError: false,
-    errorMessage: '',
+    errorMessage: ''
   });
 
   const params = useParams();
@@ -66,14 +65,14 @@ const ResetPassword = () => {
 
       setMatchError({
         errorMessage: 'Passwords do not match',
-        isError: true,
+        isError: true
       });
     }
   };
   return (
     <div>
       <AuthorizationHeader />
-      <div className={'flex flex-col p-5 mt-10'}>
+      <div className={'flex flex-col p-5 mt-10 md:max-w-2xl relative mx-auto'}>
         <h3 className={'font-bold'}>New Password</h3>
         <div className={'flex flex-col'}>
           <PasswordIdentifier

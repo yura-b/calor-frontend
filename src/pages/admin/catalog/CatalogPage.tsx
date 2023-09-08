@@ -19,7 +19,7 @@ const CatalogPage = () => {
   useEffect(() => {
     dispatch(loading());
     getProducts().then((res) => {
-      setProducts(res.data);
+      setProducts([...res.data.shoes, ...res.data.accessories]);
     });
 
     dispatch(loadingFinished());

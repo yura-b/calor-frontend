@@ -6,24 +6,29 @@ import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import { validationMeasurement } from '@/helpers/validation/formValidation.ts';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserMeasurement } from '@/store/reducers/UserMeasurement';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { addToBasket } from '@/api/basket';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 interface IProps {
   selectedShoeSize: number;
 }
 
 const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
-  const { id } = useParams();
+  const { id, model } = useParams();
   const dispatch = useDispatch();
-  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { userId } = useSelector((state) => state.user);
+  const { details } = useSelector((state) => state.selectedShoeParts);
   const constructorImage = useSelector((state) => state.constructorImage);
 
   const mutation = useMutation(addToBasket, {
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+      navigate('/')
+    },
   });
+
+  const selectedDetails = details[model];
 
   const formik = useFormik({
     initialValues: {
@@ -41,11 +46,17 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         product: id,
         count: 1,
         photo: constructorImage,
-        details: [{ selectedShoeSize, ...values }],
+        measurement: { selectedShoeSize, ...values },
+        details: [selectedDetails]
       };
+
       mutation.mutate({ userId, requestData });
     },
   });
+
+  const validatePositiveNumber = (value) => {
+    return value < 0 ? 0 : value;
+  };
 
   return (
     <form onSubmit={formik.handleSubmit} className={'mb-4 w-full'}>
@@ -55,7 +66,10 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         name={'rightFootLength'}
         placeholder={'Input Length'}
         value={formik.values.rightFootLength}
-        onChange={formik.handleChange}
+        onChange={(e) => {
+          const newValue = validatePositiveNumber(e.target.value);
+          formik.setFieldValue('rightFootLength', newValue);
+        }}
         error={formik.touched.rightFootLength && Boolean(formik.errors.rightFootLength)}
         errorMessage={formik.errors.rightFootLength}
         disableUnderline={true}
@@ -71,7 +85,10 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         name={'rightFootWidth'}
         placeholder={'Input Width'}
         value={formik.values.rightFootWidth}
-        onChange={formik.handleChange}
+        onChange={(e) => {
+          const newValue = validatePositiveNumber(e.target.value);
+          formik.setFieldValue('rightFootWidth', newValue);
+        }}
         error={formik.touched.rightFootWidth && Boolean(formik.errors.rightFootWidth)}
         errorMessage={formik.errors.rightFootWidth}
         disableUnderline={true}
@@ -87,7 +104,10 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         name={'leftFootLength'}
         placeholder={'Input Length'}
         value={formik.values.leftFootLength}
-        onChange={formik.handleChange}
+        onChange={(e) => {
+          const newValue = validatePositiveNumber(e.target.value);
+          formik.setFieldValue('leftFootLength', newValue);
+        }}
         error={formik.touched.leftFootLength && Boolean(formik.errors.leftFootLength)}
         errorMessage={formik.errors.leftFootLength}
         disableUnderline={true}
@@ -103,7 +123,10 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         name={'leftFootWidth'}
         placeholder={'Input Width'}
         value={formik.values.leftFootWidth}
-        onChange={formik.handleChange}
+        onChange={(e) => {
+          const newValue = validatePositiveNumber(e.target.value);
+          formik.setFieldValue('leftFootWidth', newValue);
+        }}
         error={formik.touched.leftFootWidth && Boolean(formik.errors.leftFootWidth)}
         errorMessage={formik.errors.leftFootWidth}
         disableUnderline={true}
@@ -123,7 +146,10 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         name={'insoleLength'}
         placeholder={'Input Width'}
         value={formik.values.insoleLength}
-        onChange={formik.handleChange}
+        onChange={(e) => {
+          const newValue = validatePositiveNumber(e.target.value);
+          formik.setFieldValue('insoleLength', newValue);
+        }}
         error={formik.touched.insoleLength && Boolean(formik.errors.insoleLength)}
         errorMessage={formik.errors.insoleLength}
         disableUnderline={true}
@@ -139,7 +165,10 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         name={'insoleWidth'}
         placeholder={'Input Width'}
         value={formik.values.insoleWidth}
-        onChange={formik.handleChange}
+        onChange={(e) => {
+          const newValue = validatePositiveNumber(e.target.value);
+          formik.setFieldValue('insoleWidth', newValue);
+        }}
         error={formik.touched.insoleWidth && Boolean(formik.errors.insoleWidth)}
         errorMessage={formik.errors.insoleWidth}
         disableUnderline={true}
