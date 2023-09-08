@@ -14,6 +14,7 @@ const MainMenu: React.FC = (): React.ReactElement => {
   const handleToggle = (index) => {
     setIsOpen(isOpen === index ? null : index);
   };
+
   const [headerHeight, setHeaderHeight] = useState(0);
   const mobileBreakpoint = 1024;
   const updateHeaderHeight = () => {

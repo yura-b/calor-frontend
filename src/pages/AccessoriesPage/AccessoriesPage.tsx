@@ -7,6 +7,8 @@ import SubCategoriesProductsList from '@/components/SubCategoriesProductsList/Su
 import { useQuery } from 'react-query';
 import { getAccessories } from '@/api/products';
 import Loader from '@/components/ui/Loader';
+import { useLocation } from 'react-router-dom';
+import { AccessoriesProduct } from '@/constants/enums/products.enum';
 
 const AccessoriesPage: React.FC = (): React.ReactElement => {
   const {
@@ -17,17 +19,27 @@ const AccessoriesPage: React.FC = (): React.ReactElement => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
-  console.log(products);
-  const accessories = products?.data || [];
 
+  const accessories = products?.data || [];
+  const location = useLocation();
+  const filteredAccessories = accessories.filter(
+    (category) => category.category.categoryTitle === AccessoriesProduct.ACCESSORIES
+  );
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.accessories} />
       <MainLayout>
         {isLoading && <Loader />}
-        <div className={`${styles.container}`}>
-          <SubCategoriesProductsList products={accessories} />
-        </div>
+        {!filteredAccessories.length && (
+          <p className={`${styles.header1} ${styles.container} py-6 text-gray`}>
+            {AccessoriesProduct.ACCESSORIES} coming soon
+          </p>
+        )}
+        {filteredAccessories && (
+          <div className={`${styles.container}`}>
+            <SubCategoriesProductsList products={filteredAccessories} path={location.pathname} />
+          </div>
+        )}
       </MainLayout>
     </div>
   );

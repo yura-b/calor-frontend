@@ -2,6 +2,7 @@ import { paths } from '@routes/paths';
 import privacy from '../../../../public/Privacy Policy_CALOR.pdf';
 import conditions from './../../../../public/Terms and Conditions_CALOR.pdf';
 import cookie from '../../../../public/Use of Cookies_CALOR.pdf';
+import { CareProduct, AccessoriesProduct } from '@/constants/enums/products.enum';
 
 export const menuItems = [
   {
@@ -36,23 +37,23 @@ export const menuItems = [
       },
       {
         subTitle: 'Belts',
-        path: paths.accessories + '#belts_accessories',
+        path: paths.accessories + '/' + AccessoriesProduct.BELTS.toLowerCase(),
       },
       {
         subTitle: 'Bracelets',
-        path: paths.accessories + '#bracelets_accessories',
+        path: paths.accessories + '/' + AccessoriesProduct.BRACELETS.toLowerCase(),
       },
       {
         subTitle: 'Laces',
-        path: paths.accessories + '#laces_accessories',
+        path: paths.accessories + '/' + AccessoriesProduct.LACES.toLowerCase(),
       },
       {
         subTitle: 'Souvenirs',
-        path: paths.accessories + '#souvenirs_accessories',
+        path: paths.accessories + '/' + AccessoriesProduct.SOUVENIRS.toLowerCase(),
       },
       {
         subTitle: 'T-Shirts',
-        path: paths.accessories + '#t-shirts_accessories',
+        path: paths.accessories + '/' + AccessoriesProduct.TSHIRTS.toLowerCase(),
       },
     ],
   },
@@ -62,19 +63,19 @@ export const menuItems = [
     subItems: [
       {
         subTitle: 'All',
-        path: paths.shoe_care_product + '#all_shoe',
+        path: paths.shoe_care_product,
       },
       {
-        subTitle: 'Brushes',
-        path: paths.shoe_care_product + '#brushes_shoe',
+        subTitle: CareProduct.BRUSHES,
+        path: paths.shoe_care_product + '/' + CareProduct.BRUSHES.toLowerCase(),
       },
       {
-        subTitle: 'Cleaners',
-        path: paths.shoe_care_product + '#cleaners_shoe',
+        subTitle: CareProduct.CLEANERS,
+        path: paths.shoe_care_product + '/' + CareProduct.CLEANERS.toLowerCase(),
       },
       {
-        subTitle: 'Protectors',
-        path: paths.shoe_care_product + '#protectors_shoe',
+        subTitle: CareProduct.PROTECTORS,
+        path: paths.shoe_care_product + '/' + CareProduct.PROTECTORS.toLowerCase(),
       },
     ],
   },

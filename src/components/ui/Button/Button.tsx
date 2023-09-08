@@ -24,6 +24,9 @@ const Button: React.FC<Props> = ({ disabled, color, children, className, onClick
     }
   };
   const getButtonStyle = () => {
+    if (disabled) {
+      return 'bg-lighterGray cursor-not-allowed opacity-50';
+    }
     switch (color) {
       case 'gray':
         return 'bg-gray text-white focus:text-mint hover:drop-shadow-2md';
