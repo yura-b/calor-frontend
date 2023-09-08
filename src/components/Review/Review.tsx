@@ -94,12 +94,12 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
             <div className="p-4">
               <div className="lg:flex lg:justify-between lg:w-full">
                 <div className="lg:w-1/2 lg:p-4">
-                  <div className="flex">
+                  <div>
+                    <h4 className={`${styles.subtitle} text-gray mb-2 `}>{product?.title}</h4>
                     <img
-                      src={shoeModel1}
+                      src={product?.photos[0]}
                       className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:transform "
                     />
-                    <h4 className={`${styles.subtitle} text-gray ml-5 mt-2 `}>{product?.title}</h4>
                   </div>
                   <h2 className={'font-bold'}>Rate This Product*</h2>
 

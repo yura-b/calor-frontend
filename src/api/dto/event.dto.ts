@@ -7,9 +7,9 @@ export interface EventDto {
 }
 
 export interface PatchEventDto {
-  id:string
+  id: string;
 
-  title: string
+  title: string;
 
-  announcement: string
+  announcement: string;
 }

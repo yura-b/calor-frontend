@@ -26,7 +26,9 @@ const CustomizedSnackbars = () => {
 
   return (
     <div className={'fixed right-10 bottom-10'}>
-      <Alert severity="error" color={severity}>{message}</Alert>
+      <Alert severity="error" color={severity}>
+        {message}
+      </Alert>
     </div>
   );
 };
