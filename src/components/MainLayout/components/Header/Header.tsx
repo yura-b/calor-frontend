@@ -69,6 +69,10 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
+  useEffect(() => {
+    toggleOpen();
+  }, [location.pathname]);
+
   return (
     <div
       className="w-full max-h-[140px] bg-custom-red pt-2 pb-1  xl:fixed xl:z-20 xl:top-0 relative xl:h-[108px] "

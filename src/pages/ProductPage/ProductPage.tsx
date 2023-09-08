@@ -72,7 +72,7 @@ const ProductPage = () => {
           <div
             className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident} w-full`}
           >
-            <div>
+            <div className="w-full">
               <ProductDescription
                 description={product?.data.description}
                 title={product?.data.title}
