@@ -21,9 +21,7 @@ const HomeShowRoom: React.FC<Props> = ({
   perfectFit,
 }): React.ReactElement => {
   const handleClick = () => {
-    window.open(
-      'https://calendly.com/magic-0ba?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=e70033&primary_color=afe8db'
-    );
+    window.open('https://calendly.com/magic-0ba?background_color=b8e4d8&text_color=4e4e4d&primary_color=e22d21');
   };
   return (
     <div className={`${styles.container} w-full`}>

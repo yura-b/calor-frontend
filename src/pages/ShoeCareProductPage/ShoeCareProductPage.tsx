@@ -9,6 +9,7 @@ import styles from '@styles/Styles.module.scss';
 import Loader from '@/components/ui/Loader';
 import { useLocation } from 'react-router-dom';
 import { CareProduct } from '@/constants/enums/products.enum';
+import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 
 const ShoeCareProductPage: React.FC = (): React.ReactElement => {
   const {
@@ -28,6 +29,9 @@ const ShoeCareProductPage: React.FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.shoeCareProductPage} />
       <MainLayout>
+        <div className=" hidden lg:block lg:mt-4 lg:mb-2">
+          <NavigationLinks color="gray" className=" w-auto" />
+        </div>
         {isLoading && <Loader />}
         {!filteredCareProduct.length && (
           <p className={`${styles.header1} ${styles.container} py-6 text-gray`}>

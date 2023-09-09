@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from '@styles/Styles.module.scss';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import { useParams } from 'react-router';
 import { getProductById } from '@/api/products';
 import Head from '@/layouts/Head';
@@ -14,9 +14,12 @@ import Button from '@components/ui/Button';
 import Loader from '@/components/ui/Loader';
 import { paths } from '@routes/paths.ts';
 import AccordionSection from '@components/AccordionSection';
+import { addToBasket } from '@/api/basket';
+import { useSelector } from 'react-redux';
 
 const ProductPage = () => {
   const { id } = useParams();
+  const { userId } = useSelector((state) => state.user);
   const {
     data: product,
     isLoading,
@@ -26,6 +29,19 @@ const ProductPage = () => {
     refetchOnWindowFocus: false,
   });
 
+  const mutation = useMutation(addToBasket, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+
+  const requestData = {
+    product: product?.data._id,
+    count: 1,
+    photo: product?.data.photos[0],
+    measurement: {},
+    details: [{}],
+  };
   const initialSectionsState = [
     {
       title: 'Product details',
@@ -119,7 +135,11 @@ const ProductPage = () => {
                     </Button>
                   </>
                 )}
-                {product?.data.category !== 'shoes' && <Button color="gray">Add To Cart</Button>}
+                {product?.data.category !== 'shoes' && (
+                  <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
+                    Add To Cart
+                  </Button>
+                )}
               </div>
               <div className="py-2">
                 {sections.map((section, index) => (
