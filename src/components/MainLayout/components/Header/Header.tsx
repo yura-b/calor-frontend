@@ -12,7 +12,7 @@ import { layoutFadeAnimation } from '@styles/Animations';
 import { motion, useCycle } from 'framer-motion';
 import userIcon from '@assets/images/userIcon.svg';
 import NavigationLinks from './components/NavigationLinks';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { paths } from '@/routes/paths';
 import styles from '@/styles/Styles.module.scss';
 import { useAppSelector, useAppDispatch } from '@/store/hooks/hooks.ts';
@@ -20,6 +20,8 @@ import { Role } from '@/constants/enums/role.enum.ts';
 import { useNavigate } from 'react-router';
 import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
 import { cleanUserData } from '@/store/reducers/UserReducer.ts';
+import { menuItems } from '../../helpers/data';
+import { MainMenuEnum } from '@/constants/enums/pages.enum';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
@@ -69,10 +71,30 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
+  const { subCategory } = useParams();
+  const { subCareProduct } = useParams();
 
   useLayoutEffect(() => {
-    toggleOpen();
-  }, [location.pathname]);
+    const isMobile = window.innerWidth < 1280;
+    const allowedSubCategories = menuItems
+      ?.find((obj) => obj.title === MainMenuEnum.ACCESSORIES)
+      ?.subItems?.map((subItem) => subItem.subTitle.toLocaleLowerCase());
+
+    if (isMobile && subCategory && allowedSubCategories?.includes(subCategory)) {
+      toggleOpen();
+    }
+  }, [location.pathname, subCategory]);
+
+  useLayoutEffect(() => {
+    const isMobile = window.innerWidth < 1280;
+    const allowedSubShoeCare = menuItems
+      ?.find((obj) => obj.title === MainMenuEnum.SHOECAREPRODUCT)
+      ?.subItems?.map((subItem) => subItem.subTitle.toLocaleLowerCase());
+
+    if (isMobile && subCareProduct && allowedSubShoeCare?.includes(subCareProduct)) {
+      toggleOpen();
+    }
+  }, [location.pathname, subCareProduct]);
 
   return (
     <div
