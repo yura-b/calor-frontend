@@ -61,7 +61,13 @@ const App = () => {
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path={'/'} element={<HomePage />} />
+          <Route path={'/'}>
+            <Route index element={<HomePage />} />
+            <Route path={'model/:model/:id'}>
+              <Route index element={<Constructor />} />
+              <Route path={'measurement'} element={<MeasurementPage />} />
+            </Route>
+          </Route>
           <Route path={paths.home} element={<HomePage />} />
           <Route path={'login'} element={<TokenGuard children={<LoginPage />} />} />
           <Route path={'signup'} element={<TokenGuard children={<SignupPage />} />} />

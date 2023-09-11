@@ -113,9 +113,9 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
               <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
             </Link>
             <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
-              <div className="mr-4">
+              {/* <div className="mr-4">
                 <SearchInput />
-              </div>
+              </div> */}
               <div className="hidden xl:block">
                 <Busket count={2} onClick={openCart} />
               </div>
@@ -182,7 +182,8 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
         </div>
 
         <div className="mt-9 mb-3  sm:w-[320px] sm:mx-auto xl:hidden px-6">
-          <SearchInput />
+          <div className="min-h-[24px] sm:min-h-[20px]"></div>
+          {/* <SearchInput /> */}
         </div>
       </div>
       {!isHome && <NavigationLinks color="white" className={'lg:hidden'} />}

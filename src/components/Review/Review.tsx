@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
-import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
@@ -8,8 +7,7 @@ import CustomInput from '@/components/input/CustomInput';
 import { useFormik } from 'formik';
 import { PostReviewDto } from '@/api/dto/review/postReview.dto';
 import CustomButton from '@/components/button/CustomButton';
-import { createReview, editReview } from '@/api/reviews';
-import Link from '@mui/material/Link';
+import { createReview } from '@/api/reviews';
 import CustomUploadPhoto from '@/pages/AccountPage/components/Reviews/CustomUploadPhoto';
 import ReviewHeader from './ReviewHeader';
 import { useAppSelector } from '@/store/hooks/hooks';
