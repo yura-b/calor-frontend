@@ -23,11 +23,10 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
   const pathnames = location.pathname.split('/').filter((x) => x);
   const [productNames, setProductNames] = useState({});
   const { data: products, isLoading, isError } = useQuery('products', getProducts);
-  const { id } = useParams();
 
+  const { id } = useParams();
   const { data: product } = useQuery(['productById', id], () => getProductById(id), {
-    keepPreviousData: true,
-    refetchOnWindowFocus: false,
+    enabled: !!id,
   });
 
   useEffect(() => {
