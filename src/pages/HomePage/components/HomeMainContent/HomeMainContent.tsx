@@ -117,7 +117,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
           {/* Waiting videos */}
           {/* <VideoGuideLink className="lg:hidden" /> */}
         </motion.div>
-        <img src={homeSemiCircle} className="absolute z-1 top-40 left-0 h-56 sm:hidden" />
+        <img src={homeSemiCircle} className="absolute z-1 top-36 left-0 h-56 sm:hidden" />
         <img
           src={homeCircle}
           className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-36 lg:left-[10%] xl:top-36 xl:h-80 ${
