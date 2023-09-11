@@ -66,6 +66,7 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
     <div className={'flex flex-col p-5 w-full items-center'}>
       <div className={'flex flex-col flex-start w-full'}>
         <h2 className={'text-xl my-4 font-bold'}>Shipping Information</h2>
+        <h2 className={'mb-5'}>This product is custom-made and shipped to you in 7-10 days.</h2>
       </div>
       <form onSubmit={formik.handleSubmit} className={'w-full'}>
         <CustomInput

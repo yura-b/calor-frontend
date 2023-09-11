@@ -10,6 +10,8 @@ export const paths = {
   cookies: '/cookies',
   terms_condition: '/terms_condition',
   checkout: '/checkout',
+  checkout_success: '/checkout_success',
+  checkout_failed: '/checkout_failed',
   account: '/account',
   accountDelete: '/account/delete',
   accountDetails: '/account/details',
