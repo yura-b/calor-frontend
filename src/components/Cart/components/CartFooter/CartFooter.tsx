@@ -6,13 +6,17 @@ import CustomInput from '@/components/input/CustomInput';
 import { validationSchemaForPromoCode } from '@/helpers/validation/formValidation.ts';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
-
+import { Navigate, useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 interface Props {
   title: string;
   data?: object[];
 }
 
 const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
+  const navigate = useNavigate();
+  const { basket } = useSelector((state) => state.user);
+
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(false);
   const [promoCodeApplied, setPromoCodeApplied] = useState(false);
 
@@ -22,7 +26,7 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
   };
 
   const handleClick = () => {
-    console.log('Checkout Button clicked!');
+    navigate('/checkout')
   };
 
   const handlePromoCodeApplied = () => {
