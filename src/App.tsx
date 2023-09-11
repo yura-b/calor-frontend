@@ -15,7 +15,9 @@ import MainPage from '@pages/admin/main/MainPage.tsx';
 import DesignBagPage from '@pages/DesignBagPage';
 import ReadyMadeProductsPage from '@pages/ReadyMadeProductsPage';
 import AccessoriesPage from '@pages/AccessoriesPage';
+import Accessories from '@pages/AccessoriesPage/components/Accessories';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
+import SubCareProduct from '@pages/ShoeCareProductPage/components/SubCareProduct';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
 import CookiesPage from '@pages/CookiesPage';
 import AccountPage from '@pages/AccountPage';
@@ -44,8 +46,9 @@ import { useMediaQuery } from '@react-hook/media-query';
 import Constructor from './components/Constructor';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Reviews from './pages/AccountPage/components/Reviews';
-
 import MeasurementPage from '@/pages/MeasurementPage/MeasurementPage';
+import NotFoundPage from '@/pages/NotFoundPage';
+
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 
 const App = () => {
@@ -86,7 +89,9 @@ const App = () => {
           <Route path={'product/:id'} element={<ProductPage />} />
           <Route path={paths.design_bag} element={<DesignBagPage />} />
           <Route path={paths.accessories} element={<AccessoriesPage />} />
+          <Route path={`${paths.accessories}/:subCategory`} element={<Accessories />} />
           <Route path={paths.shoe_care_product} element={<ShoeCareProductPage />} />
+          <Route path={`${paths.shoe_care_product}/:subCareProduct`} element={<SubCareProduct />} />
           <Route path={paths.ready_made_products} element={<ReadyMadeProductsPage />} />
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
           <Route path={paths.cookies} element={<CookiesPage />} />
@@ -111,6 +116,7 @@ const App = () => {
           <Route path={paths.checkout} element={<CheckoutPage />} />
           <Route path={paths.myOrder} element={<MyOrder />} />
           <Route path={paths.helpPage} element={<HelpPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

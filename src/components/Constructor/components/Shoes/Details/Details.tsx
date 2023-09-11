@@ -32,7 +32,7 @@ const Details: FC<IProps> = ({ details }) => {
   const handleDetailClick = (detailPart) => {
     dispatch(setSelectedDetail(detailPart));
   };
-  
+
   useEffect(() => {
     if (selectedDetail.part && materialRefs.current[selectedDetail.part]) {
       const container = containerRef.current;
@@ -61,7 +61,7 @@ const Details: FC<IProps> = ({ details }) => {
           return (
             <div
               className="min-h-[70px] justify-center items-center flex flex-col cursor-pointer"
-              onClick={() => handleDetailClick({part: detail.part, name: detail.name})}
+              onClick={() => handleDetailClick({ part: detail.part, name: detail.name })}
             >
               <div
                 ref={(element) => (materialRefs.current[detail.part] = element)}

@@ -11,8 +11,8 @@ import { showMessage } from '@/store/reducers/StatusReducer.ts';
 import CustomizedSnackbars from '@components/admin/CustomizedSnackbars.tsx';
 
 const Email = () => {
-  const dispatch = useAppDispatch()
-  
+  const dispatch = useAppDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -20,7 +20,7 @@ const Email = () => {
     validationSchema: validationSchemaForSignUp,
     onSubmit: ({ email }) => {
       sendEmailForReset(email).then(() => {
-        dispatch(showMessage('Letter was sent to your email'))
+        dispatch(showMessage('Letter was sent to your email'));
       });
     },
   });
@@ -46,7 +46,7 @@ const Email = () => {
           <AlreadyRegistered />
         </form>
       </div>
-      <CustomizedSnackbars/>
+      <CustomizedSnackbars />
     </div>
   );
 };

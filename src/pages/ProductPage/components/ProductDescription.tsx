@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from '@styles/Styles.module.scss';
 import Rating from '@/components/ui/Rating/Rating';
 
-const ProductDescription = ({ description, title, price, subcategory, rating, season }) => {
+const ProductDescription = ({ description, title, price, subcategory, rating, season, sizes, category }) => {
   return (
     <div className="text-gray">
       <div className="flex justify-start items-center py-1">
@@ -26,21 +26,23 @@ const ProductDescription = ({ description, title, price, subcategory, rating, se
 
       <div className="flex flex-col items-start">
         <div className="flex">
-          <ul className="list-disc">
-            <li className="py-1">
-              <p>
-                <span className="font-bold">Season</span> {season}
-              </p>
-            </li>
-            <li className="py-1">
-              <p>
-                <span className="font-bold">Size</span> {'size'}{' '}
-              </p>{' '}
-              <Link to="/" className="text-mint underline">
+          {category === 'shoes' && (
+            <ul className="list-disc">
+              <li className="py-1">
+                <p>
+                  <span className="font-bold">Season</span> {season}
+                </p>
+              </li>
+              <li className="py-1">
+                <p>
+                  <span className="font-bold">Size</span> {sizes && Math.min(...sizes)}-{sizes && Math.max(...sizes)}
+                </p>{' '}
+                {/* <Link to="/" className="text-mint underline">
                 Your shoe size is not on the list?
-              </Link>
-            </li>
-          </ul>
+              </Link> */}
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </div>

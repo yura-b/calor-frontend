@@ -12,7 +12,7 @@ const LoginPage = () => {
       <AuthorizationHeader />
       <LoginForm />
       <GoogleSignIn />
-      <CustomizedSnackbars/>
+      <CustomizedSnackbars />
     </div>
   );
 };

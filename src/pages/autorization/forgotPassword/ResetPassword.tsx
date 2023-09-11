@@ -8,7 +8,7 @@ import {
   minLengthValidation,
   oneLowerCaseValidation,
   oneNumberValidation,
-  oneUpperCaseValidation
+  oneUpperCaseValidation,
 } from '@/helpers/validation/formValidation.ts';
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
@@ -26,7 +26,7 @@ const ResetPassword = () => {
 
   const [matchError, setMatchError] = useState({
     isError: false,
-    errorMessage: ''
+    errorMessage: '',
   });
 
   const params = useParams();
@@ -65,7 +65,7 @@ const ResetPassword = () => {
 
       setMatchError({
         errorMessage: 'Passwords do not match',
-        isError: true
+        isError: true,
       });
     }
   };

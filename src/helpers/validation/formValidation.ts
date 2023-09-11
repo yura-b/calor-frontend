@@ -114,10 +114,34 @@ export const validationSchemaForUserAccount = yup.object({
 });
 
 export const validationMeasurement = yup.object({
-  rightFootLength: yup.number().min(1, 'Field must contain a minimum of 1 character').required('This field is required').moreThan(0, "Size cannot be negative"),
-  rightFootWidth: yup.number().min(1, 'Field must contain a minimum of 1 character').required('This field is required').moreThan(0, "Size cannot be negative"),
-  leftFootLength: yup.number().min(1, 'Field must contain a minimum of 1 character').required('This field is required').moreThan(0, "Size cannot be negative"),
-  leftFootWidth: yup.number().min(1, 'Field must contain a minimum of 1 character').required('This field is required').moreThan(0, "Size cannot be negative"),
-  insoleLength: yup.number().min(1, 'Field must contain a minimum of 1 character').required('This field is required').moreThan(0, "Size cannot be negative"),
-  insoleWidth: yup.number().min(1, 'Field must contain a minimum of 1 character').required('This field is required').moreThan(0, "Size cannot be negative"),
+  rightFootLength: yup
+    .number()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required')
+    .moreThan(0, 'Size cannot be negative'),
+  rightFootWidth: yup
+    .number()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required')
+    .moreThan(0, 'Size cannot be negative'),
+  leftFootLength: yup
+    .number()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required')
+    .moreThan(0, 'Size cannot be negative'),
+  leftFootWidth: yup
+    .number()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required')
+    .moreThan(0, 'Size cannot be negative'),
+  insoleLength: yup
+    .number()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required')
+    .moreThan(0, 'Size cannot be negative'),
+  insoleWidth: yup
+    .number()
+    .min(1, 'Field must contain a minimum of 1 character')
+    .required('This field is required')
+    .moreThan(0, 'Size cannot be negative'),
 });

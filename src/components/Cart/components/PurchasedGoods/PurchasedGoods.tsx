@@ -5,6 +5,7 @@ import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
 import { useMutation, useQueryClient } from 'react-query';
 import { deleteFromBasket } from '@/api/basket';
 import { useSelector, useDispatch } from 'react-redux';
+import { setUserData } from '@/store/reducers/UserReducer.ts';
 interface Props {
   title: string;
   size: number;
@@ -16,6 +17,7 @@ interface Props {
 
 const PurchasedGoods: React.FC<Props> = ({ id, title, size, price, countGoogs, photo }): React.ReactElement => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
   const { userId } = useSelector((state) => state.user);
   const [count, setCount] = useState(countGoogs);
 
@@ -41,11 +43,11 @@ const PurchasedGoods: React.FC<Props> = ({ id, title, size, price, countGoogs, p
   };
   return (
     <div className="mb-4">
-      <div className="flex  text-gray ">
-        <div className="basis-[30%] lg:basis-[50%] lg:relative">
+      <div className="flex text-gray gap-5">
+        <div className="basis-[30%] lg:basis-[50%] lg:relative flex justify-center items-center">
           <img
             src={photo}
-            className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:z-20 lg:absolute lg:-top-3 lg:left-1/2 lg:transform lg:-translate-x-1/2"
+            className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:z-20"
           />
           <div className="hidden lg:block w-[100px] h-[100px] lg:bg-grayExtraLight lg:rounded-full lg:absolute  lg:z-10 lg:top-1 lg:left-1/2 lg:transform -translate-x-1/2"></div>
         </div>

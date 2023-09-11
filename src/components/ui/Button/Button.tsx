@@ -24,6 +24,9 @@ const Button: React.FC<Props> = ({ disabled, color, children, className, onClick
     }
   };
   const getButtonStyle = () => {
+    if (disabled) {
+      return 'bg-lighterGray cursor-not-allowed opacity-50';
+    }
     switch (color) {
       case 'gray':
         return 'bg-gray text-white focus:text-mint hover:drop-shadow-2md';
@@ -47,7 +50,7 @@ const Button: React.FC<Props> = ({ disabled, color, children, className, onClick
     <AnimatePresence>
       <motion.button
         type={type}
-        className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold ${margin} ${className} ${getButtonStyle()}`}
+        className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-[400px] ${margin} ${className} ${getButtonStyle()}`}
         onClick={handleClick}
         disabled={disabled}
       >

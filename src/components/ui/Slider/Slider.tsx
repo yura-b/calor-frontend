@@ -9,11 +9,9 @@ interface IProps {
 }
 
 const Slider: FC<IProps> = ({ images, color }) => {
-  const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
-  const autoPlayInterval = 3000;
+  const autoPlayInterval = 5000;
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const handleAutoPlay = () => {
@@ -41,7 +39,11 @@ const Slider: FC<IProps> = ({ images, color }) => {
     setPrevIndex(currentIndex);
     setCurrentIndex(index);
   };
-
+  const slideAnimation = {
+    hidden: { opacity: 0, x: currentIndex > prevIndex ? '50%' : '-50%' },
+    visible: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: currentIndex > prevIndex ? '-50%' : '50%' },
+  };
   return (
     <>
       <motion.div className="relative h-80 max-w-full overflow-hidden" {...fadeAnimation}>
@@ -49,17 +51,18 @@ const Slider: FC<IProps> = ({ images, color }) => {
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
-            className="w-full h-full max-w-full object-contain absolute top-0 left-0"
+            className="w-full h-full max-w-full object-contain absolute top-0 left-0 "
             style={{ maxHeight: '500px', minHeight: '300px' }}
             alt={`Slider ${currentIndex}`}
             initial="hidden"
             animate="visible"
             exit="exit"
+            variants={slideAnimation}
             transition={{ duration: 0.6 }}
             onMouseEnter={stopAutoPlay}
             onMouseLeave={handleAutoPlay}
           />
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center z-10">
             {images.map((_, index) => (
               <span
                 key={index}
