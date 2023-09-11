@@ -4,6 +4,7 @@ import styles from '@/styles/Styles.module.scss';
 import MeasurementHeader from './components/MeasurementHeader';
 import MeasurementForm from './components/MeasurementForm';
 import { Link } from 'react-router-dom';
+import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 
 const MeasurementPage = () => {
   const sizeList = [
@@ -18,6 +19,9 @@ const MeasurementPage = () => {
   return (
     <div className="font-poppins h-screen">
       <MainLayout>
+        <div className=" hidden lg:block lg:mt-4 lg:mb-2">
+          <NavigationLinks color="gray" className=" w-auto" />
+        </div>
         <div className={styles.container}>
           {/*Measurement Header*/}
           <MeasurementHeader isArrowBack={true} title="Measurement" background="transparent" />

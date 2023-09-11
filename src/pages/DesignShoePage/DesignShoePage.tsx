@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import { getProducts } from '@/api/products';
 import Loader from '@/components/ui/Loader';
 import styles from '@styles/Styles.module.scss';
+import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 
 const DesignShoePage: FC = (): React.ReactElement => {
   const {
@@ -24,6 +25,9 @@ const DesignShoePage: FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.designShoePage} />
       <MainLayout>
+        <div className=" hidden lg:block lg:mt-4 lg:mb-2">
+          <NavigationLinks color="gray" className=" w-auto" />
+        </div>
         {isLoading && <Loader />}
         <div className={`${styles.container}`}>
           <ShoesList shoes={shoes} />

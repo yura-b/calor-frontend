@@ -9,6 +9,7 @@ import { getAccessories } from '@/api/products';
 import Loader from '@/components/ui/Loader';
 import { useLocation } from 'react-router-dom';
 import { AccessoriesProduct } from '@/constants/enums/products.enum';
+import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 
 const AccessoriesPage: React.FC = (): React.ReactElement => {
   const {
@@ -29,6 +30,9 @@ const AccessoriesPage: React.FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.accessories} />
       <MainLayout>
+        <div className=" hidden lg:block lg:mt-4 lg:mb-2">
+          <NavigationLinks color="gray" className=" w-auto" />
+        </div>
         {isLoading && <Loader />}
         {!filteredAccessories.length && (
           <p className={`${styles.header1} ${styles.container} py-6 text-gray`}>

@@ -50,7 +50,7 @@ const Button: React.FC<Props> = ({ disabled, color, children, className, onClick
     <AnimatePresence>
       <motion.button
         type={type}
-        className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold ${margin} ${className} ${getButtonStyle()}`}
+        className={`text-xl font-bold transition-all duration-300 h-11 w-full font-bold max-w-[400px] ${margin} ${className} ${getButtonStyle()}`}
         onClick={handleClick}
         disabled={disabled}
       >
