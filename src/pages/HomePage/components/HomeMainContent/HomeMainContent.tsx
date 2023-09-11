@@ -85,17 +85,17 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
         <motion.div
           className={`${
             styles.container
-          } flex flex-col lg:gap-4 justify-between lg:items-center ${'lg:border-t lg:border-t-2 lg:border-gray'} lg:flex-row  text-left`}
+          } flex lg:gap-4 justify-between lg:items-center ${'lg:border-t lg:border-t-2 lg:border-gray'} flex-wrap  text-left`}
           {...fadeAnimation}
         >
-          <h1 className={`${styles.header1}  mb-4 text-white lg:text-custom-red lg:basis-1/5 `}>
+          <h1 className={`${styles.header1}  mb-4 text-white lg:text-custom-red sm:basis-[25%] xl:basis-[20%] `}>
             CALOR
             <span className="hidden lg:inline">
               <br />
             </span>{' '}
             BY YOU!
           </h1>
-          <div className="lg:basis-3/5">
+          <div className="sm:basis-[70%] xl:basis-[50%]">
             <p className={`${styles.subtitle} mb-2`}>{visions}</p>
             {/* Waiting videos */}
             {/* <p className={styles.body1}>
@@ -106,13 +106,13 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
               <span className="lg:hidden">Video Guide</span>
             </p> */}
           </div>
-          <div className="lg:basis-auto mt-4 lg:mt-0">
-            <Button color="red" to={paths.design_shoe} className="mb-4">
+          <div className="basis-[100%] xl:basis-[25%] mt-4 lg:mt-0">
+            <Button color="red" to={paths.design_shoe} className="mb-4 max-w-[360px] m-auto block">
               Design Your Shoe
             </Button>
-            <Button color="mintExtraLight" to={paths.design_bag}>
+            {/* <Button color="mintExtraLight" to={paths.design_bag}>
               Design Your Bag
-            </Button>
+            </Button> */}
           </div>
           {/* Waiting videos */}
           {/* <VideoGuideLink className="lg:hidden" /> */}

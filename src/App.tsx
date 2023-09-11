@@ -46,8 +46,9 @@ import { useMediaQuery } from '@react-hook/media-query';
 import Constructor from './components/Constructor';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Reviews from './pages/AccountPage/components/Reviews';
-
 import MeasurementPage from '@/pages/MeasurementPage/MeasurementPage';
+import NotFoundPage from '@/pages/NotFoundPage';
+
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 
 const App = () => {
@@ -115,6 +116,7 @@ const App = () => {
           <Route path={paths.checkout} element={<CheckoutPage />} />
           <Route path={paths.myOrder} element={<MyOrder />} />
           <Route path={paths.helpPage} element={<HelpPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

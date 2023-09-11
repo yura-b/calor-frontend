@@ -3,18 +3,19 @@ import privacy from '../../../../public/Privacy Policy_CALOR.pdf';
 import conditions from './../../../../public/Terms and Conditions_CALOR.pdf';
 import cookie from '../../../../public/Use of Cookies_CALOR.pdf';
 import { CareProduct, AccessoriesProduct } from '@/constants/enums/products.enum';
+import { MainMenuEnum } from '@/constants/enums/pages.enum';
 
 export const menuItems = [
   {
-    title: 'Design Your Shoe',
+    title: MainMenuEnum.DESIGNYOURSHOE,
     path: paths.design_shoe,
   },
+  // {
+  //   title: MainMenuEnum.DESIGNYOURBAG,
+  //   path: paths.design_bag,
+  // },
   {
-    title: 'Design Your Bag',
-    path: paths.design_bag,
-  },
-  {
-    title: 'Ready Made Products',
+    title: MainMenuEnum.READYMADEPRODUCTS,
     path: paths.ready_made_products,
     subItems: [
       {
@@ -28,7 +29,7 @@ export const menuItems = [
     ],
   },
   {
-    title: 'Accessories',
+    title: MainMenuEnum.ACCESSORIES,
     path: paths.accessories,
     subItems: [
       {
@@ -36,29 +37,29 @@ export const menuItems = [
         path: paths.accessories,
       },
       {
-        subTitle: 'Belts',
+        subTitle: AccessoriesProduct.BELTS,
         path: paths.accessories + '/' + AccessoriesProduct.BELTS.toLowerCase(),
       },
       {
-        subTitle: 'Bracelets',
+        subTitle: AccessoriesProduct.BRACELETS,
         path: paths.accessories + '/' + AccessoriesProduct.BRACELETS.toLowerCase(),
       },
       {
-        subTitle: 'Laces',
+        subTitle: AccessoriesProduct.LACES,
         path: paths.accessories + '/' + AccessoriesProduct.LACES.toLowerCase(),
       },
       {
-        subTitle: 'Souvenirs',
+        subTitle: AccessoriesProduct.SOUVENIRS,
         path: paths.accessories + '/' + AccessoriesProduct.SOUVENIRS.toLowerCase(),
       },
       {
-        subTitle: 'T-Shirts',
+        subTitle: AccessoriesProduct.TSHIRTS,
         path: paths.accessories + '/' + AccessoriesProduct.TSHIRTS.toLowerCase(),
       },
     ],
   },
   {
-    title: 'Shoe Care Product',
+    title: MainMenuEnum.SHOECAREPRODUCT,
     path: paths.shoe_care_product,
     subItems: [
       {
@@ -80,7 +81,7 @@ export const menuItems = [
     ],
   },
   {
-    title: 'Customer Experience',
+    title: MainMenuEnum.CUSTOMEREXPERIENCE,
     path: paths.customer_experience,
   },
 ];
@@ -122,14 +123,14 @@ export const aboutLinks = [
     subTitle: 'Our Manufacture',
     path: paths.about + '#our_manufacture',
   },
-  {
-    subTitle: 'Events',
-    path: paths.about + '#events',
-  },
-  {
-    subTitle: 'In The Press',
-    path: paths.about + '#in_the_press',
-  },
+  // {
+  //   subTitle: 'Events',
+  //   path: paths.about + '#events',
+  // },
+  // {
+  //   subTitle: 'In The Press',
+  //   path: paths.about + '#in_the_press',
+  // },
 ];
 export const privacyLinks = [
   {
