@@ -23,7 +23,12 @@ const CompleteLook: React.FC = (): React.ReactElement => {
               {...hoverOnButtonAnimation}
             >
               <Link to={model.path}>
-                <img src={homeRoomSircle} alt="" className="w-full" style={{ transform: 'rotate(30deg)' }} />
+                <img
+                  src={homeRoomSircle}
+                  alt=""
+                  className="w-full min-h-[200px] md:min-h-[240px]"
+                  style={{ transform: 'rotate(30deg)' }}
+                />
                 <motion.img
                   src={model.img}
                   alt=""

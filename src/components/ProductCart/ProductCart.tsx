@@ -23,7 +23,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
     details: [{}],
   };
   return (
-    <div className="w-full flex-col  my-5 flex justify-start sm:justify-end">
+    <div className="w-full flex-col  my-5 flex  justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px]">
       {/* Product img */}
       <div className="min-h-[10vh]">
         <Link to={`/product/${product._id}`}>
