@@ -119,7 +119,7 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
                   )}
                   <h2 className={'font-bold'}>Share Your Impressions*</h2>
                   <span className={`${styles.body2} block mb-1 text-xs`}>
-                    Tell others more about the product, its quality, and the comfort of use.
+                    Share more information with others about the product, including its quality and comfort of use.
                   </span>
                   <TextareaAutosize
                     className="w-full"
