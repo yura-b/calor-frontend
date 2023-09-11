@@ -101,7 +101,7 @@ const ProductPage = () => {
               />
               <div className="py-2 w-full">
                 {product?.data.category == 'shoes' && (
-                  <span>Your order will be customized and delivared within 7-10 days</span>
+                  <span>Your order will be customized and delivered within 7-10 days.</span>
                 )}
                 {product?.data.category !== 'shoes' && (
                   <>

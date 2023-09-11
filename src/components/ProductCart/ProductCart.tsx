@@ -28,7 +28,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
       <div className="min-h-[10vh]">
         <Link to={`/product/${product._id}`}>
           <img
-            className="object-contain object-cover w-full h-full mx-auto"
+            className="object-contain object-cover w-full h-full mx-auto max-h-[400px]"
             src={product.photos?.[0] || product.photo}
             loading="lazy"
           />
