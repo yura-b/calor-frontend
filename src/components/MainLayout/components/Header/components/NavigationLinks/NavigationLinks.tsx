@@ -60,9 +60,13 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
         const formattedSegment = formatSegment(path);
         return (
           <div className="truncate">
-            {formattedSegment && !displayName && <Link to="">{formattedSegment}/</Link>}
+            {formattedSegment && !displayName && (
+              <Link to="" className={isLast ? 'font-bold' : ''}>
+                {formattedSegment}/
+              </Link>
+            )}
             {displayName && (
-              <Link to="">
+              <Link to="" className={isLast ? 'font-bold' : ''}>
                 {' '}
                 {formatSegment(displayName)}
                 {!isLast && '/'}

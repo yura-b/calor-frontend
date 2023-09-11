@@ -99,8 +99,8 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
     <div className={`${styles.container} w-full bg-white`}>
       {headerBlock('Our Shoe Models', paths.design_shoe)}
       {renderGoods(ShoeModels)}
-      {headerBlock('Our Bag Models', paths.design_bag)}
-      {renderGoods(BagModels)}
+      {/* {headerBlock('Our Bag Models', paths.design_bag)}
+      {renderGoods(BagModels)} */}
     </div>
   );
 };

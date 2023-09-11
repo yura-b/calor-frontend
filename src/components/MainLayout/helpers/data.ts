@@ -10,10 +10,10 @@ export const menuItems = [
     title: MainMenuEnum.DESIGNYOURSHOE,
     path: paths.design_shoe,
   },
-  {
-    title: MainMenuEnum.DESIGNYOURBAG,
-    path: paths.design_bag,
-  },
+  // {
+  //   title: MainMenuEnum.DESIGNYOURBAG,
+  //   path: paths.design_bag,
+  // },
   {
     title: MainMenuEnum.READYMADEPRODUCTS,
     path: paths.ready_made_products,
@@ -123,14 +123,14 @@ export const aboutLinks = [
     subTitle: 'Our Manufacture',
     path: paths.about + '#our_manufacture',
   },
-  {
-    subTitle: 'Events',
-    path: paths.about + '#events',
-  },
-  {
-    subTitle: 'In The Press',
-    path: paths.about + '#in_the_press',
-  },
+  // {
+  //   subTitle: 'Events',
+  //   path: paths.about + '#events',
+  // },
+  // {
+  //   subTitle: 'In The Press',
+  //   path: paths.about + '#in_the_press',
+  // },
 ];
 export const privacyLinks = [
   {

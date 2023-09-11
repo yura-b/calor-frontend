@@ -7,6 +7,8 @@ import homeCalorSpeed from '@assets/images/homeCalorSpeed.svg';
 import homeCalorHandMade from '@assets/images/homeCalorHandMade.svg';
 import homeCalorGuarantees from '@assets/images/homeCalorGuarantees.svg';
 import homeCalorShipping from '@assets/images/homeCalorShipping.svg';
+import { paths } from '@routes/paths';
+import { MainMenuEnum } from '@/constants/enums/pages.enum';
 
 export const processArr = [
   {
@@ -49,11 +51,13 @@ export const calorByYouItems = [
 
 export const lookModels = [
   {
-    title: 'Accessories',
     img: accesories,
+    title: MainMenuEnum.ACCESSORIES,
+    path: paths.accessories,
   },
   {
-    title: 'Care Products',
     img: care,
+    title: MainMenuEnum.SHOECAREPRODUCT,
+    path: paths.shoe_care_product,
   },
 ];

@@ -30,6 +30,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
           <img
             className="object-contain object-cover w-full h-full mx-auto"
             src={product.photos?.[0] || product.photo}
+            loading="lazy"
           />
         </Link>
       </div>
