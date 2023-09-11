@@ -38,6 +38,7 @@ import Loader from '@/components/ui/Loader/';
 import CatalogPage from '@pages/admin/catalog/CatalogPage.tsx';
 import CreateItem from '@pages/admin/catalog/CreateItem.tsx';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
+
 const HomePage = lazy(() => import('@pages/HomePage'));
 const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 import PrivateRoute from '@/components/PrivateRoute';
@@ -50,6 +51,8 @@ import MeasurementPage from '@/pages/MeasurementPage/MeasurementPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 import { useAppSelector } from '@/store/hooks/hooks.ts';
+import CheckoutSuccessPage from './pages/CheckoutPage/CheckoutSuccessPage';
+import CheckoutNotSuccessPage from './pages/CheckoutPage/CheckoutNotSuccessPage';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -114,6 +117,8 @@ const App = () => {
           <Route path={paths.changeUserPassword} element={<PrivateRoute element={<ResetUserPassword />} />} />
           <Route path={paths.reviews} element={<PrivateRoute element={<Reviews />} />} />
           <Route path={paths.checkout} element={<CheckoutPage />} />
+          <Route path={paths.checkout_success} element={<CheckoutSuccessPage />} />
+          <Route path={paths.checkout_failed} element={<CheckoutNotSuccessPage />} />
           <Route path={paths.myOrder} element={<MyOrder />} />
           <Route path={paths.helpPage} element={<HelpPage />} />
           <Route path="*" element={<NotFoundPage />} />
