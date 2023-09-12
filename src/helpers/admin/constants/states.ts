@@ -1,0 +1,17 @@
+export const states = [
+    'Texas', 'California', 'Florida',
+    'Virginia', 'Alabama', 'Alaska',
+    'Arizona', 'Arkansas', 'Colorado',
+    'Connecticut', 'District of Columbia', 'Delaware',
+    'Georgia', 'Idaho', 'Illinois',
+    'Indiana', 'Iowa', 'Kansas',
+    'Kentucky', 'Louisiana', 'Maine',
+    'Maryland', 'Massachusetts', 'Michigan',
+    'Minnesota', 'Mississippi', 'Missouri',
+    'Montana', 'Nebraska', 'Nevada',
+    'New Hampshire', 'New Jersey', 'New Mexico',
+    'New York', 'North Carolina', 'North Dakota',
+    'Ohio', 'Oklahoma', 'Pennsylvania',
+    'Rhode Island', 'South Carolina', 'South Dakota',
+    'Tennessee', 'Utah', 'Vermont',
+    'Washington', 'Wyoming', 'West Virginia']
