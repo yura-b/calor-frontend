@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
-import Slider from './components/Slider';
+import Slider from './components/Slider/Slider';
 import WhoWeAre from './components/WhoWeAre';
 import OurStory from './components/OurStory';
 import MainLayout from '@/components/MainLayout';
@@ -12,6 +12,12 @@ import styles from '@styles/Styles.module.scss';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
+import calorByYouBig1 from '@assets/aboutImages/calorByYouBig1.png';
+import calorByYou1 from '@assets/aboutImages/calorByYou1.png';
+import calorByYouBig2 from '@assets/aboutImages/calorByYouBig2.png';
+import calorByYou2 from '@assets/aboutImages/calorByYou2.png';
+import calorByYouBig3 from '@assets/aboutImages/calorByYouBig3.png';
+import calorByYou3 from '@assets/aboutImages/calorByYou3.png';
 
 const AboutPage: React.FC = (): React.ReactElement => {
   const { data } = useQuery('getPageSection', () => getPageSection());
@@ -21,6 +27,34 @@ const AboutPage: React.FC = (): React.ReactElement => {
   const ourManufacture = filteredPagesAbout?.find((section) => section?.section === 'Our Manufacture');
 
   const mobileBreakpoint = 1024;
+  const breakpoint640 = 640;
+  let sliderItems;
+  if (window.innerWidth > breakpoint640) {
+    sliderItems = [
+      {
+        img: calorByYouBig1,
+      },
+      {
+        img: calorByYouBig2,
+      },
+      {
+        img: calorByYouBig3,
+      },
+    ];
+  } else {
+    sliderItems = [
+      {
+        img: calorByYou1,
+      },
+      {
+        img: calorByYou2,
+      },
+      {
+        img: calorByYou3,
+      },
+    ];
+  }
+  console.log(sliderItems);
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.about} />
@@ -43,8 +77,8 @@ const AboutPage: React.FC = (): React.ReactElement => {
           </div>
         </div>
         <OurManufacture ourManufacture={ourManufacture} />
-        <Events />
-        <InThePress />
+        {/* <Events />
+        <InThePress /> */}
       </MainLayout>
     </div>
   );

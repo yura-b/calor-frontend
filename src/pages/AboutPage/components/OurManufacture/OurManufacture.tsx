@@ -41,12 +41,12 @@ const OurManufacture: React.FC<Props> = ({ ourManufacture }): React.ReactElement
               <Button color="red" to={paths.design_shoe}>
                 Design Your Shoe
               </Button>
-              <Button color="mintExtraLight" to={paths.design_bag} className="lg:hidden">
+              {/* <Button color="mintExtraLight" to={paths.design_bag} className="lg:hidden">
                 Design Your Bag
               </Button>
               <Button color="turquoise" to={paths.design_bag} className="hidden lg:block">
                 Design Your Bag
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

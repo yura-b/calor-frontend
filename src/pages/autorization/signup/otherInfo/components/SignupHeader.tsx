@@ -25,13 +25,13 @@ const SignupHeader = () => {
   };
 
   return (
-    <div className={'mb-12'}>
-      <div className={'flex flex-row align-baseline bg-custom-turquoise justify-between p-5 mb-12'}>
+    <div className={'flex flex-col items-center mb-12 w-full'}>
+      <div className={'flex flex-row align-baseline bg-custom-turquoise justify-between p-5 mb-12 w-full'}>
         <img src={arrow} onClick={arrowHandler} className={step === Steps.FOURTH ? 'invisible' : ''} alt="" />
         <h3 className={'uppercase font-bold'}>Sign Up</h3>
         <img onClick={xHandler} src={X} alt={''} />
       </div>
-      <div>
+      <div className={'w-full md:w-1/2'}>
         <CustomStepper />
       </div>
     </div>

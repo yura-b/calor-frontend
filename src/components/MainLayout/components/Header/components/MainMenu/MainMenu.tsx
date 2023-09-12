@@ -14,6 +14,7 @@ const MainMenu: React.FC = (): React.ReactElement => {
   const handleToggle = (index) => {
     setIsOpen(isOpen === index ? null : index);
   };
+
   const [headerHeight, setHeaderHeight] = useState(0);
   const mobileBreakpoint = 1024;
   const updateHeaderHeight = () => {
@@ -49,7 +50,7 @@ const MainMenu: React.FC = (): React.ReactElement => {
   };
   return (
     <nav className={'flex  text-2xl lg:text-base font-semibold  m-auto'}>
-      <ul className="w-full flex flex-col gap-2 xl:gap-6  xl:flex-row relative xl:justify-between">
+      <ul className="w-full flex flex-col gap-2 xl:gap-6  xl:flex-row relative xl:justify-between  xl:max-w-[54vw] m-auto">
         {menuItems.map((menuItem, index) => (
           <li key={index} className="relative py-2 xl:py-0">
             <div className="flex justify-between">
@@ -66,7 +67,7 @@ const MainMenu: React.FC = (): React.ReactElement => {
                   <motion.img
                     src={isOpen === index ? mintDownIcon : downIcon}
                     alt={''}
-                    className={'ml-4 xl:ml-1'}
+                    className={` ${isOpen === index ? '' : 'brightness-0 invert'} ml-4 xl:ml-1`}
                     animate={{ rotate: isOpen === index ? 180 : 0 }}
                     transition={{ duration: 0.4 }}
                     onClick={() => handleToggle(index)}
@@ -82,7 +83,7 @@ const MainMenu: React.FC = (): React.ReactElement => {
                   exit={isLargeScreen ? { opacity: 0, y: -10 } : 'collapsed'}
                   variants={isLargeScreen ? {} : collapseAnimation?.variants}
                   transition={isLargeScreen ? {} : collapseAnimation.transition}
-                  className="flex flex-col  p-2  mt-[7px] xl:absolute z-20 w-full xl:min-w-[8rem] shadow-lg"
+                  className="flex flex-col  p-2  mt-[4px] xl:absolute z-20 w-full xl:min-w-[8rem] shadow-lg"
                   style={{ backgroundColor: 'rgb(184, 228, 216, 0.9)' }}
                   onMouseLeave={() => setIsOpen(null)}
                 >

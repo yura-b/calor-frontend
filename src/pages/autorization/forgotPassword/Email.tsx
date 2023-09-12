@@ -6,16 +6,21 @@ import AlreadyRegistered from '@pages/autorization/signup/otherInfo/components/A
 import { useFormik } from 'formik';
 import { validationSchemaForSignUp } from '@/helpers/validation/formValidation.ts';
 import { sendEmailForReset } from '@/api/authorization.ts';
+import { useAppDispatch } from '@/store/hooks/hooks.ts';
+import { showMessage } from '@/store/reducers/StatusReducer.ts';
+import CustomizedSnackbars from '@components/admin/CustomizedSnackbars.tsx';
 
 const Email = () => {
+  const dispatch = useAppDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     validationSchema: validationSchemaForSignUp,
     onSubmit: ({ email }) => {
-      sendEmailForReset(email).then((res) => {
-        console.log(res);
+      sendEmailForReset(email).then(() => {
+        dispatch(showMessage('Letter was sent to your email'));
       });
     },
   });
@@ -41,6 +46,7 @@ const Email = () => {
           <AlreadyRegistered />
         </form>
       </div>
+      <CustomizedSnackbars />
     </div>
   );
 };

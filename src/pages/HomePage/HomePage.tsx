@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
 import HomeMainContent from './components/HomeMainContent';
@@ -8,7 +8,6 @@ import HomeShowRoom from './components/HomeShowRoom';
 import HomeCalorByYou from './components/HomeCalorByYou';
 import Purchase from './components/Purchase';
 import CompleteLook from './components/CompleteLook';
-import MyOrder from '@/components/MyOrder';
 import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
 
@@ -28,11 +27,17 @@ const HomePage: React.FC = (): React.ReactElement => {
         <HomeMainContent visions={visions} />
         <HomeGoodsContent />
         <div className="w-f`ull bg-custom-turquoise lg:hidden">
-          <HomeShowRoom backgroundButton="gray" showRoomTitleColor="gray" titleColor="gray" bodyColor="gray" />
+          <HomeShowRoom
+            backgroundButton="gray"
+            showRoomTitleColor="gray"
+            titleColor="gray"
+            bodyColor="gray"
+            perfectFit={perfectFit}
+          />
         </div>
         <CompleteLook />
         <HomeCalorByYou benefits={benefits} perfectFit={perfectFit} />
-        <Purchase />
+        {/* <Purchase /> */}
       </MainLayout>
     </div>
   );

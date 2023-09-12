@@ -54,7 +54,7 @@ const CustomStepper = () => {
   };
 
   return (
-    <Stack sx={{ width: '100%' }} spacing={4}>
+    <Stack sx={{ width: '100%' }} spacing={16}>
       <Stepper activeStep={step} alternativeLabel connector={<ColorlibConnector />}>
         {steps.map((label, index) => (
           <Step key={label}>

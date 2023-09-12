@@ -5,3 +5,11 @@ export interface EventDto {
 
   photo: string;
 }
+
+export interface PatchEventDto {
+  id: string;
+
+  title: string;
+
+  announcement: string;
+}

@@ -55,3 +55,21 @@ export interface ShippingInfoDto {
 
   receiverPhoneNumber: string;
 }
+
+export interface deliveryInfo {
+  order_id: string;
+
+  trackingNumber: string;
+
+  courier: string;
+
+  approxDeliveryDate: string;
+}
+
+export interface refundDto {
+  order_id: string;
+
+  orders_id?: string[];
+
+  custom_price?: number;
+}

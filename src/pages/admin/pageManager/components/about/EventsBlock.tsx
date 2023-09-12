@@ -23,7 +23,7 @@ const EventsBlock = () => {
     <div className={'flex flex-col gap-12'}>
       <div className={'flex flex-row justify-between'}>
         <h1 className={'text-xl font-bold'}>Events</h1>
-        <CustomButton title={'+  Add New'} handler={buttonHandler} />
+        <CustomButton styles={'!px-12'} title={'+  Add New'} handler={buttonHandler} />
       </div>
       <EventsGrid events={events} />
     </div>

@@ -3,6 +3,9 @@ import styles from '@styles/Styles.module.scss';
 import homeRoomSircle from '@assets/images/homeRoomSircle.svg';
 import { lookModels } from '../../helpers/data';
 import HomeArrowRightIcon from '@components/ui/HomeArrowRightIcon';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { hoverOnButtonAnimation } from '@styles/Animations';
 
 const CompleteLook: React.FC = (): React.ReactElement => {
   return (
@@ -14,15 +17,26 @@ const CompleteLook: React.FC = (): React.ReactElement => {
         </div>
         <div className="flex gap-6 justify-around items-center mt-4 ml-4 lg:basis-9/12">
           {lookModels.map((model, i) => (
-            <div className="relative min-w-[140px] lg:w-[200px] max-w-[220px]" key={i}>
-              <img src={homeRoomSircle} alt="" className="w-full" style={{ transform: 'rotate(30deg)' }} />
-              <img
-                src={model.img}
-                alt=""
-                className="absolute top-8 left-0 object-contain object-cover w-[200px] h-auto mx-auto"
-              />
-              <p className={`${styles.subtitle} mt-4 -ml-5 text-center uppercase`}>{model.title}</p>
-            </div>
+            <motion.div
+              className="relative min-w-[140px] lg:w-[200px] max-w-[220px]"
+              key={i}
+              {...hoverOnButtonAnimation}
+            >
+              <Link to={model.path}>
+                <img
+                  src={homeRoomSircle}
+                  alt=""
+                  className="w-full min-h-[200px] md:min-h-[240px]"
+                  style={{ transform: 'rotate(30deg)' }}
+                />
+                <motion.img
+                  src={model.img}
+                  alt=""
+                  className="absolute top-8 left-0 object-contain object-cover w-[200px] h-auto mx-auto"
+                />
+                <p className={`${styles.subtitle} mt-4 -ml-5 text-center uppercase`}>{model.title}</p>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

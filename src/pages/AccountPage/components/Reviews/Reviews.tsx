@@ -2,12 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import AccountLayout from '../AccountLayout';
 import MainFrame from '@/components/mainFrame';
-import Review from '@/components/Review/Review';
-import { motion } from 'framer-motion';
-import { layoutFadeAnimation } from '@/styles/Animations';
 import { Modal, Rating } from '@mui/material';
 import Button from '@/components/ui/Button';
-import ReviewHeader from '@/components/Review/ReviewHeader';
 import { useAppSelector } from '@/store/hooks/hooks';
 import { DateFormatter } from '@/helpers/functions/dateFormatter';
 import { Square } from '@phosphor-icons/react';
@@ -15,6 +11,8 @@ import { getBoughtProducts, getUserReviews } from '@/api/products';
 import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
 import { ProductsDto } from '@/api/dto/products.dto';
 import { PostReviewDto } from '@/api/dto/review/postReview.dto';
+import SuccessModal from '@/pages/AccountPage/components/Reviews/components/SuccessModal';
+import ReviewModal from '@/pages/AccountPage/components/Reviews/components/ReviewModal';
 
 const Reviews: React.FC = (): React.ReactElement => {
   const [isReviewOpen, setIsReviewOpen] = useState(false);
@@ -85,7 +83,6 @@ const Reviews: React.FC = (): React.ReactElement => {
     }
     return text;
   };
-  console.log(userProducts, 'userProducts');
 
   return (
     <AccountLayout>
@@ -121,6 +118,7 @@ const Reviews: React.FC = (): React.ReactElement => {
                       onClick={() => {
                         setReview(item);
                         setIsReviewOpen(!isReviewOpen);
+                        setProductId(item?.product_id);
                       }}
                     >
                       Rewrite Review
@@ -157,22 +155,10 @@ const Reviews: React.FC = (): React.ReactElement => {
               </div>
             ))}
         </div>
-
         <Modal className="flex items-center justify-center h-auto" open={isReviewOpen} onClose={closeReview}>
           <>
             {isReviewOpen && (
-              <motion.div
-                className="absolute bg-white shadow-lg w-full lg:w-[1024px] h-full  lg:max-h-[630px]  lg:rounded-md overflow-hidden"
-                {...layoutFadeAnimation}
-              >
-                <Review
-                  title="Your review"
-                  onClose={closeReview}
-                  onSuccess={openSuccessReview}
-                  review={review}
-                  productId={productId}
-                />
-              </motion.div>
+              <ReviewModal onClose={closeReview} review={review} productId={productId} onSuccess={openSuccessReview} />
             )}
           </>
         </Modal>
@@ -181,21 +167,7 @@ const Reviews: React.FC = (): React.ReactElement => {
           open={isReviewSuccessfullySent}
           onClose={closeSuccessReview}
         >
-          <>
-            {isReviewSuccessfullySent && (
-              <motion.div
-                className="absolute bg-white shadow-lg w-full lg:w-[369px] h-full  lg:max-h-[150px]  lg:rounded-md overflow-hidden"
-                {...layoutFadeAnimation}
-              >
-                <div className="font-poppins  h-full flex flex-col">
-                  <div className="flex-1 overflow-y-auto md:my-0">
-                    <ReviewHeader title="Your review" onClose={closeSuccessReview} />
-                    <h2 className="p-4">Your review will be considered and posted on our website soon.</h2>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </>
+          <>{isReviewSuccessfullySent && <SuccessModal onClose={closeSuccessReview} />}</>
         </Modal>
       </MainFrame>
     </AccountLayout>

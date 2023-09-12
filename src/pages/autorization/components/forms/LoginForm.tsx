@@ -12,7 +12,7 @@ import { setUserData } from '@/store/reducers/UserReducer.ts';
 import { validationSchemaForLogin } from '@/helpers/validation/formValidation.ts';
 import { useState } from 'react';
 
-const   LoginForm = () => {
+const LoginForm = () => {
   const dispatch = useAppDispatch();
   const [rememberMe, setRememberMe] = useState(false);
   const logInHandler = (values: LoginDto) => {
@@ -24,7 +24,7 @@ const   LoginForm = () => {
         dispatch(setUserData({ ...response, rememberMe }));
       })
       .catch((e) => {
-        dispatch(errorCorrupted(e?.meesage));
+        dispatch(errorCorrupted(e.response.data.message));
       });
   };
 
@@ -41,30 +41,30 @@ const   LoginForm = () => {
 
   return (
     <div className={'p-5 bg-custom-turquoise w-full'}>
-      <div className={'flex flex-col max-w-2xl relative mx-auto'} >
+      <div className={'flex flex-col max-w-2xl relative mx-auto'}>
         <NavigationButtons isLogin={true} />
 
         <form onSubmit={formik.handleSubmit} className={'mb-4 w-full'}>
           <CustomInput
-              id={'email'}
-              name={'email'}
-              placeholder={'input email'}
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              errorMessage={formik.errors.email}
+            id={'email'}
+            name={'email'}
+            placeholder={'input email'}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            errorMessage={formik.errors.email}
           >
             Email
           </CustomInput>
           <CustomInput
-              id={'password'}
-              name={'password'}
-              type={InputType.password}
-              placeholder={'input password'}
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              errorMessage={formik.errors.password}
+            id={'password'}
+            name={'password'}
+            type={InputType.password}
+            placeholder={'input password'}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            errorMessage={formik.errors.password}
           >
             Password
           </CustomInput>

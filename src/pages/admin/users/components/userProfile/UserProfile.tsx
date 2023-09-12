@@ -20,7 +20,7 @@ const userDataInitialState: IUser = {
   roles: [],
   secondName: '',
   shippingInfo: null,
-  registered: false
+  registered: false,
 };
 const UserProfile = () => {
   const { access_token } = useAppSelector((state) => state.user);
@@ -50,7 +50,7 @@ const UserProfile = () => {
   if (!id) return <>wrong url</>;
   return (
     <div className={'pl-16'}>
-      <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} withDelivery={false} />
+      <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} withDelivery={false} delivery={null} />
       <hr />
       <UserAdditionalInfo reviews={userReviews} orders={userOrders} />
     </div>

@@ -11,10 +11,11 @@ import Button from '@/components/ui/Button';
 import { layoutFadeAnimation, fadeAnimation } from '@styles/Animations';
 import HelpFooter from '@components/MainLayout/components/HelpFooter';
 import { mobileMenuCalorItems } from '../../../../helpers/data';
-import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { useAppSelector, useAppDispatch } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { paths } from '@routes/paths';
 import { Link } from 'react-router-dom';
+import { cleanUserData } from '@/store/reducers/UserReducer.ts';
 interface Props {
   isOpen: boolean;
   toggleOpen: () => void;
@@ -23,7 +24,9 @@ interface Props {
 
 const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.ReactElement => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const signInHandler = () => {
+    dispatch(cleanUserData());
     navigate('/login');
   };
   const signUpHandler = () => {
@@ -54,7 +57,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.Re
         >
           <motion.div className={`text-white ${isOpen ? '' : 'hidden'}`}>
             <header className="fixed right-0 z-10 top-0 bg-custom-red flex justify-between w-full right-2 align-center px-6 py-3 border-b-2 border-custom-turquoise">
-              <div className="flex">
+              <div className="flex items-center">
                 {isRegisteredUser && (
                   <Link to={paths.account}>
                     {' '}

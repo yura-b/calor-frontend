@@ -19,13 +19,13 @@ const CatalogPage = () => {
   useEffect(() => {
     dispatch(loading());
     getProducts().then((res) => {
-      setProducts(res.data);
+      setProducts([...res.data.shoes, ...res.data.accessories]);
     });
 
     dispatch(loadingFinished());
   }, []);
 
-  if (products.length === 0) return;
+  // if (products.length === 0) return;
 
   return (
     <AdminLayout>

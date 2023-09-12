@@ -34,7 +34,9 @@ const MainView: FC<IProps> = ({ model }) => {
           key={index}
           src={src}
           className={`absolute ${
-            index === array.length - 1 ? 'z-[-30]' : index === array.length - 2 ? 'z-[-20]' : 'z-[-10]'
+            index === array.length - 1 ? 'z-[-30]' 
+            : index === array.length - 2 ? 'z-[-20]'
+            : 'z-[-10]'
           }`}
           onLoad={() => {
             updateParentHeight();

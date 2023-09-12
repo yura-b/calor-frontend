@@ -12,6 +12,7 @@ import { getPageSection } from '@/api/manager/pages';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { paths } from '@/routes/paths';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface Props {
   title: string;
@@ -30,6 +31,9 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
   const mobileBreakpoint = 1024;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { hash } = location;
 
   const toggleAccordion = () => {
     if (window.innerWidth < mobileBreakpoint) {
@@ -70,6 +74,16 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
       behavior: 'smooth',
     });
   };
+  const handleTitleClick = () => {
+    navigate(paths.helpPage);
+    window.location.reload();
+    scrollToTop();
+  };
+  const handleLinkClick = (el) => {
+    window.location.reload();
+    navigate(`${paths.helpPage}${hash}`);
+    scrollToElement(el);
+  };
   return (
     <>
       {color !== 'white' ? (
@@ -80,7 +94,7 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
               paths.helpPage === window.location.pathname ? 'text-mint' : `text-${color} lg:text-custom-turquoise`
             }
           } lg:text-sm lg:font-extrabold`}
-            onClick={scrollToTop}
+            onClick={handleTitleClick}
           >
             {title}
           </Link>
@@ -89,7 +103,7 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
               key={i}
               to={link.path}
               className={'flex text-base hover:text-mint focus:outline-none py-2'}
-              scroll={scrollToElement}
+              scroll={handleLinkClick}
             >
               {link.title}
             </Link>
@@ -202,6 +216,12 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
         <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
         <span>2023 Calor</span>
       </div>
+      {/* <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-4 hidden lg:block lg:text-[12px]'}>
+        Designed & developed by{' '}
+        <Link to="https://www.bart-solutions.com/" className="underline ml-1 font-bold" target="_blank">
+          bART Solutions
+        </Link>
+      </div> */}
       {color === 'white' && (
         <>
           {isLoading ? (
@@ -245,6 +265,12 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
               </Link>
             ))}
           </div>
+          {/* <div className={'lg:hidden text-[12px] text-center my-2'}>
+            Designed & developed by{' '}
+            <Link to="https://www.bart-solutions.com/" className="underline ml-1 font-bold" target="_blank">
+              bART Solutions
+            </Link>
+          </div> */}
         </>
       )}
     </>

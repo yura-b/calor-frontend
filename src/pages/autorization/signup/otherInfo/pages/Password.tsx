@@ -14,6 +14,7 @@ import {
 import { signUp } from '@/api/authorization.ts';
 import { IUser } from '@/store/reducers/UserReducer.ts';
 import { errorCorrupted, loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
+import { InputType } from '@/constants/interfaces/inputTypes.ts';
 
 interface IProps {
   setUserData: React.Dispatch<React.SetStateAction<IUser>>;
@@ -66,19 +67,30 @@ const Password: React.FC<IProps> = ({ setUserData }) => {
   };
 
   return (
-    <div className={'flex flex-col p-5'}>
-      <h3 className={'font-bold'}>Create Password</h3>
-      <div className={'flex flex-col'}>
-        <PasswordIdentifier text={'One uppercase character'} handler={oneUpperCaseValidation} property={'upperCase'} />
-        <PasswordIdentifier text={'8 characters minimum'} handler={minLengthValidation} property={'minLength'} />
-        <PasswordIdentifier text={'One number'} handler={oneNumberValidation} property={'number'} />
-        <PasswordIdentifier text={'One lowercase character'} handler={oneLowerCaseValidation} property={'lowerCase'} />
+    <div className={'flex flex-col p-5 w-full items-center max-w-2xl'}>
+      <div className={'w-full'}>
+        <h3 className={'font-bold'}>Create Password</h3>
+        <div className={'flex flex-col '}>
+          <PasswordIdentifier
+            text={'One uppercase character'}
+            handler={oneUpperCaseValidation}
+            property={'upperCase'}
+          />
+          <PasswordIdentifier text={'8 characters minimum'} handler={minLengthValidation} property={'minLength'} />
+          <PasswordIdentifier text={'One number'} handler={oneNumberValidation} property={'number'} />
+          <PasswordIdentifier
+            text={'One lowercase character'}
+            handler={oneLowerCaseValidation}
+            property={'lowerCase'}
+          />
+        </div>
       </div>
 
       <div className={'w-full'}>
         <CustomInput
           id={'firstPassword'}
           name={'firstPassword'}
+          type={InputType.password}
           placeholder={'input password'}
           value={firstPassword.value}
           onChange={firstPasswordChangeHandler}
@@ -86,6 +98,7 @@ const Password: React.FC<IProps> = ({ setUserData }) => {
         ></CustomInput>
 
         <CustomInput
+          type={InputType.password}
           id={'secondPassword'}
           name={'secondPassword'}
           placeholder={'input password'}

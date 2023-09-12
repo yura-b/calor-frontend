@@ -14,9 +14,17 @@ interface MainFrameProps {
   children?: ReactNode;
   className?: string;
   showCloseBtn?: boolean;
+  headerBg?: string;
 }
 
-const MainFrame: React.FC<MainFrameProps> = ({ isOpen, title, children, className, showCloseBtn }) => {
+const MainFrame: React.FC<MainFrameProps> = ({
+  isOpen,
+  title,
+  children,
+  className,
+  showCloseBtn,
+  headerBg = 'custom-turquoise',
+}) => {
   const { roles, access_token } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
   useEffect(() => {
@@ -36,7 +44,7 @@ const MainFrame: React.FC<MainFrameProps> = ({ isOpen, title, children, classNam
     <AnimatePresence>
       <motion.div className={`w-full ${className}`} {...layoutFadeAnimation}>
         <motion.div>
-          <header className=" bg-custom-turquoise flex  items-center  px-6  h-[60px] lg:hidden">
+          <header className={` bg-${headerBg} flex  items-center  px-6  h-[60px] lg:hidden`}>
             <h1 className={`${styles.header2} m-auto text-gray uppercase`}>{title}</h1>
             {!showCloseBtn && isRegisteredUser && (
               <Link to={paths.account}>

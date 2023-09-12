@@ -14,7 +14,7 @@ const OtherInfo: React.FC<IProps> = ({ step }) => {
   const [userData, setUserData] = useState<IUser>(initialState);
 
   return (
-    <div>
+    <div className={'w-full flex flex-col items-center'}>
       <SignupHeader />
       {step === Steps.SECOND && <ContactInfo />}
       {step === Steps.THIRD && <Password setUserData={setUserData} />}

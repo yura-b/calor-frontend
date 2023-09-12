@@ -7,9 +7,10 @@ interface IProps {
   type?: 'submit' | 'reset';
   styles?: string;
   bgColor?: string;
+  disabled?: boolean;
 }
 
-const CustomButton: React.FC<IProps> = ({ handler, bgColor = '#4e4e4d', styles, title, type }) => {
+const CustomButton: React.FC<IProps> = ({ handler, bgColor = '#4e4e4d', styles, title, type, disabled = false }) => {
   const theme = createTheme({
     palette: {
       primary: {
@@ -20,6 +21,7 @@ const CustomButton: React.FC<IProps> = ({ handler, bgColor = '#4e4e4d', styles, 
   return (
     <ThemeProvider theme={theme}>
       <Button
+        disabled={disabled}
         variant={'contained'}
         className={styles}
         type={type}

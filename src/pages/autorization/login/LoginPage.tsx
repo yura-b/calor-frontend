@@ -2,6 +2,7 @@ import AuthorizationHeader from '@/pages/autorization/components/header/Authoriz
 import LoginForm from '@pages/autorization/components/forms/LoginForm.tsx';
 import React from 'react';
 import GoogleSignIn from '@/pages/autorization/components/google/GoogleSignIn.tsx';
+import CustomizedSnackbars from '@components/admin/CustomizedSnackbars.tsx';
 
 const LoginPage = () => {
   //  const languages = useAppSelector((state) => state.language);
@@ -11,6 +12,7 @@ const LoginPage = () => {
       <AuthorizationHeader />
       <LoginForm />
       <GoogleSignIn />
+      <CustomizedSnackbars />
     </div>
   );
 };
