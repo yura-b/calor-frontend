@@ -229,10 +229,13 @@ const selectedShoePartsSlice = createSlice({
       
       state.details = updatedDetails;
     },
+    resetDetails: () => {
+      return initialState
+    }
   },
 });
 
-export const { setSelectedDetail, setSelectedMaterial, setSelectedColor, setSelectedModel, setDetails } =
+export const { setSelectedDetail, setSelectedMaterial, setSelectedColor, setSelectedModel, setDetails, resetDetails } =
   selectedShoePartsSlice.actions;
 
 export default selectedShoePartsSlice.reducer;

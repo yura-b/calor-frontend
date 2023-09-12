@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetDesign } from '@/store/reducers/constructor/ShoesConstructorReducer';
-import { setSelectedModel } from '@/store/reducers/constructor/SelectedShoePartsReducer';
+import { setSelectedModel, resetDetails } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import { setConsctructorImage } from '@/store/reducers/constructor/ConstructorImage';
 import { titles } from '@/translations/titles';
 import Head from '@/layouts/Head';
@@ -34,6 +34,7 @@ const Constructor: FC = () => {
 
   const handleRedesign = () => {
     dispatch(resetDesign());
+    dispatch(resetDetails());
   };
 
   const goToNextPage = () => {

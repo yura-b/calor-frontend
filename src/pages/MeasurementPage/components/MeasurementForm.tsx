@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useFormik } from 'formik';
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
@@ -9,7 +9,7 @@ import { setUserMeasurement } from '@/store/reducers/UserMeasurement';
 import { useMutation } from 'react-query';
 import { addToBasket } from '@/api/basket';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { toggleCart } from "@/store/reducers/CartReducer";
 interface IProps {
   selectedShoeSize: number;
 }
@@ -22,8 +22,12 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
   const { details } = useSelector((state) => state.selectedShoeParts);
   const constructorImage = useSelector((state) => state.constructorImage);
 
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
+      setIsDisabled(false);
+      dispatch(toggleCart(true));
       navigate('/');
     },
   });
@@ -41,6 +45,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     },
     validationSchema: validationMeasurement,
     onSubmit: (values) => {
+      setIsDisabled(true);
       dispatch(setUserMeasurement({ selectedShoeSize, ...values }));
       const requestData = {
         product: id,
@@ -181,7 +186,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
       <p className="mb-2">
         If you have any questions, please, contact us by chat or any other available communication option.
       </p>
-      <CustomButton styles={'w-full'} title={'Add to cart'} type={'submit'} />
+      <CustomButton styles={'w-full'} title={'Add to cart'} type={'submit'} disabled={isDisabled}/>
     </form>
   );
 };
