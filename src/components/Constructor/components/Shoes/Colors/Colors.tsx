@@ -10,6 +10,7 @@ interface Color {
   name: string;
   color: string;
   hex: string;
+  textture: string;
 }
 
 interface Material {
@@ -78,11 +79,12 @@ const Colors: FC<IProps> = ({ details }) => {
         color.name !== null ? (
           <Tooltip key={color.name} title={color.name} placement="top" arrow>
             <button
-              style={{ backgroundColor: color.hex }}
               ref={(element) => (colorRefs.current[color.name] = element)}
-              className="min-h-[50px] min-w-[50px] rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-2 ring-grayLight focus:ring-grayLight"
+              className="min-h-[55px] min-w-[55px] rounded-full focus:outline-none ring-2 ring-grayLight focus:ring-mint"
               onClick={() => handleColorClick({ img: color.img, name: color.name })}
-            />
+            >
+              <img width={55} height={55} src={color.texture} />
+            </button>
           </Tooltip>
         ) : null
       )}
