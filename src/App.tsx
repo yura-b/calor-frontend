@@ -19,7 +19,6 @@ import Accessories from '@pages/AccessoriesPage/components/Accessories';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import SubCareProduct from '@pages/ShoeCareProductPage/components/SubCareProduct';
 import CustomerExperiencePage from '@pages/CustomerExperiencePage';
-import CookiesPage from '@pages/CookiesPage';
 import AccountPage from '@pages/AccountPage';
 import DeleteMyAccountComponent from '@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountComponent';
 import DeleteMyAccountSuccess from '@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountSuccess';
@@ -103,7 +102,6 @@ const App = () => {
           <Route path={`${paths.shoe_care_product}/:subCareProduct`} element={<SubCareProduct />} />
           <Route path={paths.ready_made_products} element={<ReadyMadeProductsPage />} />
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
-          <Route path={paths.cookies} element={<CookiesPage />} />
           <Route path={paths.about} element={<AboutPage />} />
           <Route
             path={paths.account}

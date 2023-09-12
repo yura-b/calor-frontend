@@ -6,7 +6,7 @@ import homeCustomerCreation2 from '@assets/images/homeCustomerCreation2.svg';
 
 const CustomerCreations: React.FC = (): React.ReactElement => {
   const handleClick = () => {
-    window.open('https://www.instagram.com/calor_custom_sneakers/', '_blank');
+    window.open('https://www.instagram.com/calorshoe', '_blank');
   };
 
   const homeCustomerCreations = [
@@ -31,7 +31,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
     <div className={styles.container}>
       <p className={styles.subtitle}>Customer Creations</p>
       <div className="flex justify-between items-center gap-4">
-        <h1 className={'text-2xl font-black text-gray lg:text-3xl xl:text-4xl'}>@calor_custom_sneakers</h1>
+        <h1 className={'text-2xl font-black text-gray lg:text-3xl xl:text-4xl'}>@calorshoe</h1>
         <Button color="gray" className="w-full my-4 hidden lg:block" onClick={handleClick}>
           Follow Us
         </Button>

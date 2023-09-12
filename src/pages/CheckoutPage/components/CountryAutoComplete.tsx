@@ -1,291 +1,49 @@
 import * as React from 'react';
-import { FC } from 'react';
+import {FC} from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { createTheme, ThemeProvider } from '@mui/material';
+import {createTheme, ThemeProvider} from '@mui/material';
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1EC1AA', // Your desired primary color
+    palette: {
+        primary: {
+            main: '#1EC1AA', // Your desired primary color
+        },
     },
-  },
 });
 
 interface IProps {
-  id: string;
-  handler: any;
-  value: string;
+    id: string;
+    handler: any;
+    value: string;
+    arr: string[]
 }
 
-const CountryAutoComplete: FC<IProps> = ({ handler, value }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Autocomplete
-        value={value}
-        onChange={(_event: any, newValue: string | null) => {
-          handler(newValue);
-        }}
-        options={countries}
-        autoHighlight
-        defaultValue="United States"
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            inputProps={{
-              ...params.inputProps,
-              autoComplete: 'new-password', // disable autocomplete and autofill
-            }}
-          />
-        )}
-      />
-    </ThemeProvider>
-  );
+const CountryAutoComplete: FC<IProps> = ({handler, value, arr}) => {
+    return (
+        <ThemeProvider theme={theme}>
+            <Autocomplete
+                value={value}
+                onChange={(_event: any, newValue: string | null) => {
+                    handler(newValue);
+                }}
+                options={arr}
+                autoHighlight
+                defaultValue="United States"
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        inputProps={{
+                            ...params.inputProps,
+                            autoComplete: 'new-password', // disable autocomplete and autofill
+                        }}
+                    />
+                )}
+            />
+        </ThemeProvider>
+    );
 };
 export default CountryAutoComplete;
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
-const countries: string[] = [
-  'Andorra',
-  'United Arab Emirates',
-  'Afghanistan',
-  'Antigua and Barbuda',
-  'Anguilla',
-  'Albania',
-  'Armenia',
-  'Angola',
-  'Antarctica',
-  'Argentina',
-  'American Samoa',
-  'Austria',
-  'Australia',
-  'Aruba',
-  'Alland Islands',
-  'Azerbaijan',
-  'Bosnia and Herzegovina',
-  'Barbados',
-  'Bangladesh',
-  'Belgium',
-  'Burkina Faso',
-  'Bulgaria',
-  'Bahrain',
-  'Burundi',
-  'Benin',
-  'Saint Barthelemy',
-  'Bermuda',
-  'Brunei Darussalam',
-  'Bolivia',
-  'Brazil',
-  'Bahamas',
-  'Bhutan',
-  'Bouvet Island',
-  'Botswana',
-  'Belarus',
-  'Belize',
-  'Canada',
-  'Cocos (Keeling) Islands',
-  'Congo, Democratic Republic of the',
-  'Central African Republic',
-  'Congo, Republic of the',
-  'Switzerland',
-  'Cook Islands',
-  'Chile',
-  'Cameroon',
-  'China',
-  'Colombia',
-  'Costa Rica',
-  'Cuba',
-  'Cape Verde',
-  'Curacao',
-  'Christmas Island',
-  'Cyprus',
-  'Czech Republic',
-  'Germany',
-  'Djibouti',
-  'Denmark',
-  'Dominica',
-  'Dominican Republic',
-  'Algeria',
-  'Ecuador',
-  'Estonia',
-  'Egypt',
-  'Western Sahara',
-  'Eritrea',
-  'Spain',
-  'Ethiopia',
-  'Finland',
-  'Fiji',
-  'Falkland Islands (Malvinas)',
-  'Micronesia, Federated States of',
-  'Faroe Islands',
-  'France',
-  'Gabon',
-  'United Kingdom',
-  'Grenada',
-  'Georgia',
-  'French Guiana',
-  'Guernsey',
-  'Ghana',
-  'Gibraltar',
-  'Greenland',
-  'Gambia',
-  'Guinea',
-  'Guadeloupe',
-  'Equatorial Guinea',
-  'Greece',
-  'South Georgia and the South Sandwich Islands',
-  'Guatemala',
-  'Guam',
-  'Guinea-Bissau',
-  'Guyana',
-  'Hong Kong',
-  'Heard Island and McDonald Islands',
-  'Honduras',
-  'Croatia',
-  'Haiti',
-  'Hungary',
-  'Indonesia',
-  'Ireland',
-  'Israel',
-  'Isle of Man',
-  'India',
-  'British Indian Ocean Territory',
-  'Iraq',
-  'Iran, Islamic Republic of',
-  'Iceland',
-  'Italy',
-  'Jersey',
-  'Jamaica',
-  'Jordan',
-  'Japan',
-  'Kenya',
-  'Kyrgyzstan',
-  'Cambodia',
-  'Kiribati',
-  'Comoros',
-  'Saint Kitts and Nevis',
-  'Korea, Republic of',
-  'Kuwait',
-  'Cayman Islands',
-  'Kazakhstan',
-  'Lebanon',
-  'Saint Lucia',
-  'Liechtenstein',
-  'Sri Lanka',
-  'Liberia',
-  'Lesotho',
-  'Lithuania',
-  'Luxembourg',
-  'Latvia',
-  'Libya',
-  'Morocco',
-  'Monaco',
-  'Moldova, Republic of',
-  'Montenegro',
-  'Saint Martin (French part)',
-  'Madagascar',
-  'Marshall Islands',
-  'Macedonia, the Former Yugoslav Republic of',
-  'Mali',
-  'Myanmar',
-  'Mongolia',
-  'Macao',
-  'Northern Mariana Islands',
-  'Martinique',
-  'Mauritania',
-  'Montserrat',
-  'Malta',
-  'Mauritius',
-  'Maldives',
-  'Malawi',
-  'Mexico',
-  'Malaysia',
-  'Mozambique',
-  'Namibia',
-  'New Caledonia',
-  'Niger',
-  'Norfolk Island',
-  'Nigeria',
-  'Nicaragua',
-  'Netherlands',
-  'Norway',
-  'Nepal',
-  'Nauru',
-  'Niue',
-  'New Zealand',
-  'Oman',
-  'Panama',
-  'Peru',
-  'French Polynesia',
-  'Papua New Guinea',
-  'Philippines',
-  'Pakistan',
-  'Saint Pierre and Miquelon',
-  'Pitcairn',
-  'Puerto Rico',
-  'Palestine, State of',
-  'Portugal',
-  'Palau',
-  'Paraguay',
-  'Qatar',
-  'Reunion',
-  'Romania',
-  'Serbia',
-  'Rwanda',
-  'Saudi Arabia',
-  'Solomon Islands',
-  'Seychelles',
-  'Sudan',
-  'Sweden',
-  'Singapore',
-  'Saint Helena',
-  'Slovenia',
-  'Svalbard and Jan Mayen',
-  'Slovakia',
-  'Sierra Leone',
-  'San Marino',
-  'Senegal',
-  'Somalia',
-  'Suriname',
-  'South Sudan',
-  'Sao Tome and Principe',
-  'El Salvador',
-  'Sint Maarten (Dutch part)',
-  'Syrian Arab Republic',
-  'Swaziland',
-  'Turks and Caicos Islands',
-  'Chad',
-  'French Southern Territories',
-  'Togo',
-  'Thailand',
-  'Tajikistan',
-  'Tokelau',
-  'Timor-Leste',
-  'Turkmenistan',
-  'Tunisia',
-  'Tonga',
-  'Turkey',
-  'Trinidad and Tobago',
-  'Tuvalu',
-  'Taiwan, Republic of China',
-  'United Republic of Tanzania',
-  'Uganda',
-  'United States',
-  'Uruguay',
-  'Uzbekistan',
-  'Holy See (Vatican City State)',
-  'Saint Vincent and the Grenadines',
-  'Venezuela',
-  'British Virgin Islands',
-  'US Virgin Islands',
-  'Vietnam',
-  'Vanuatu',
-  'Wallis and Futuna',
-  'Samoa',
-  'Kosovo',
-  'Yemen',
-  'Mayotte',
-  'South Africa',
-  'Zambia',
-  'Zimbabwe',
-];
+

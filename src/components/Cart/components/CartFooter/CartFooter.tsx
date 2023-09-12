@@ -6,8 +6,8 @@ import CustomInput from '@/components/input/CustomInput';
 import { validationSchemaForPromoCode } from '@/helpers/validation/formValidation.ts';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
-import { Navigate, useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { Navigate, useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 interface Props {
   title: string;
   data?: object[];
@@ -26,7 +26,7 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
   };
 
   const handleClick = () => {
-    navigate('/checkout')
+    navigate('/checkout');
   };
 
   const handlePromoCodeApplied = () => {

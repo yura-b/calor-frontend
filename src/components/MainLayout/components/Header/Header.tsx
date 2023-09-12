@@ -116,6 +116,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
               {/* <div className="mr-4">
                 <SearchInput />
               </div> */}
+
               <div className="hidden xl:block">
                 <Busket count={2} onClick={openCart} />
               </div>
@@ -182,7 +183,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
         </div>
 
         <div className="mt-9 mb-3  sm:w-[320px] sm:mx-auto xl:hidden px-6">
-          <div className="min-h-[24px] sm:min-h-[20px]"></div>
+          {isHome && <div className="min-h-[24px] sm:min-h-[20px]"></div>}
           {/* <SearchInput /> */}
         </div>
       </div>
