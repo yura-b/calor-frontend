@@ -110,7 +110,7 @@ const Slider = () => {
       </motion.div>
       <img
         src={homeCircle}
-        className={`hidden lg:block absolute z-10 right-[4%]  lg:h-64 lg:top-52 lg:right-[10%] xl:top-56 xl:h-60 ${
+        className={`hidden lg:block absolute z-10 right-[4%]  lg:h-64 lg:top-40 lg:right-[10%] xl:top-56 xl:h-60 ${
           isSmallerThan1600px ? '2xl:h-80 2xl:top-36' : '2xl:h-80 2xl:top-32'
         }`}
         style={{ maxWidth: '100%' }}
