@@ -50,7 +50,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                       title={item.title}
                       size={item.size}
                       price={item.price}
-                      countGoogs={item.countGoods}
+                      countGoogs={item.count}
                       key={index}
                       id={item._id}
                       photo={item.photo}
