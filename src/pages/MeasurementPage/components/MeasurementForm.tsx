@@ -9,7 +9,6 @@ import { setUserMeasurement } from '@/store/reducers/UserMeasurement';
 import { useMutation } from 'react-query';
 import { addToBasket } from '@/api/basket';
 import { useParams, useNavigate } from 'react-router-dom';
-import { toggleCart } from "@/store/reducers/CartReducer";
 interface IProps {
   selectedShoeSize: number;
 }
@@ -27,7 +26,6 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
       setIsDisabled(false);
-      dispatch(toggleCart(true));
       navigate('/');
     },
   });
