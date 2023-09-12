@@ -98,7 +98,7 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
           <div className="flex justify-end">
             <motion.button
               onClick={handleSeeAllClick}
-              className={'flex justify-end  cursor-pointer mt-4 underline text-sm text-gray'}
+              className={'flex justify-end  cursor-pointer mt-16 xs:mt-2 sm:mt-4 underline text-sm text-gray'}
               {...hoverOnButtonAnimation}
             >
               {showAll ? 'Show Less' : 'Learn More'}

@@ -10,7 +10,7 @@ const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement =
   const subcategories = [...new Set(products.map((item) => item.subcategory))];
   return (
     <div className="flex flex-wrap">
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         {subcategories.map((subcategory) => {
           const productsInSubcategory = products.filter((product) => product.subcategory === subcategory);
 

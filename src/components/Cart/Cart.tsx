@@ -41,7 +41,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
               <p
                 className={`${styles.body1} bg-custom-turquoise w-full h-auto  flex items-center justify-center text-center p-2 lg:my-4 lg:text-[18px]`}
               >
-                Items in your cart are not reserved - checkout now to make them yours
+                The items in your cart are not reserved. Check out now to make them yours.
               </p>
               <div className="lg:flex lg:gap-2">
                 <div className="h-auto lg:basis-[52%] lg:overflow-auto lg:max-h-[480px] lg:px-4">
@@ -50,7 +50,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                       title={item.title}
                       size={item.size}
                       price={item.price}
-                      countGoogs={item.countGoods}
+                      countGoogs={item.count}
                       key={index}
                       id={item._id}
                       photo={item.photo}

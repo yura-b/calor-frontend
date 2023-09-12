@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { useFormik } from 'formik';
 import { validationSchemaForContactInfo } from '@/helpers/validation/formValidation.ts';
@@ -7,20 +7,16 @@ import CustomButton from '@components/button/CustomButton.tsx';
 import { useNavigate } from 'react-router';
 import { CheckoutSteps, setCheckoutStep, setContactInfo } from '@/store/reducers/CheckoutReducer.ts';
 import { useGetUserIfRefresh } from '@/hooks/getUserIfRefresh.ts';
-import { IUser } from '@/constants/interfaces/user.ts';
 
 const ContactInformation = () => {
   const { access_token, firstName, secondName, phoneNumber, email } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  const [initialValues, setInitialValues] = useState<IUser>();
 
   const getUser = useGetUserIfRefresh();
   useEffect(() => {
     getUser();
   }, []);
   const navigate = useNavigate();
-
-  console.log(access_token);
 
   const formik = useFormik({
     initialValues: {
@@ -49,14 +45,14 @@ const ContactInformation = () => {
     <div className={'flex flex-col p-5 w-full items-center '}>
       <div className={'flex flex-col flex-start w-full'}>
         <h2 className={'text-xl my-4 font-bold'}>Contact Information</h2>
-        {access_token && (
-          <div className="flex flex-row justify-between">
+        {!access_token && (
+          <div className="flex flex-row justify-between mb-5">
             Sign In and checkout faster
             <span
               onClick={() => {
                 navigate('/login');
               }}
-              className={'underline'}
+              className={'underline cursor-pointer text-mint'}
             >
               Sign In
             </span>

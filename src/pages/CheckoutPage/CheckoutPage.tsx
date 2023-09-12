@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MainLayout from '@components/MainLayout';
 import CheckoutHeader from '@pages/CheckoutPage/components/CheckoutHeader.tsx';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
@@ -58,21 +58,20 @@ const CheckoutPage = () => {
     dispatch(loadingFinished());
   }, [data]);
 
-  // {
-  //   product: '64f0b9060c1c98ee88262c87',
-  //   count: 1,
-  //   details: {},
-  // },
   return (
-    <div className="font-poppins h-screen">
+    <div className="font-poppins h-screen ">
       <MainLayout>
-        <CheckoutHeader />
-        <CheckoutStepper />
-        {step === CheckoutSteps.FIRST && <ContactInformation />}
-        {step === CheckoutSteps.SECOND && (
-          <ShippingInformation setData={setData} buttonTitle={'Save'} shippingData={data} />
-        )}
-        {step === CheckoutSteps.THIRD && <Payment />}
+        <div className=" flex flex-col justify-center items-center w-full mb-12">
+          <div className=" lg:w-[40%]">
+            <CheckoutHeader />
+            <CheckoutStepper />
+            {step === CheckoutSteps.FIRST && <ContactInformation />}
+            {step === CheckoutSteps.SECOND && (
+              <ShippingInformation setData={setData} buttonTitle={'Save'} shippingData={data} />
+            )}
+            {step === CheckoutSteps.THIRD && <Payment />}
+          </div>
+        </div>
       </MainLayout>
     </div>
   );

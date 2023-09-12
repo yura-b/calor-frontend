@@ -14,7 +14,7 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
   };
   return (
     <>
-      <PayPalScriptProvider
+      {/* <PayPalScriptProvider
         options={{
           clientId: 'test',
           components: 'buttons',
@@ -44,7 +44,7 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
             console.log(err);
           }}
         />
-      </PayPalScriptProvider>
+      </PayPalScriptProvider> */}
 
       <CustomButton title={'Credit Cart'} handler={stripeHandler} />
     </>

@@ -12,7 +12,7 @@ const SuccessModal = ({ onClose }) => {
       <div className="font-poppins h-full flex flex-col">
         <div className="flex-1 overflow-y-auto md:my-0">
           <ReviewHeader title="Your review" onClose={onClose} />
-          <h2 className="p-4">Your review will be considered and posted on our website soon.</h2>
+          <h2 className="p-4">Your review will be reviewed and posted on our website soon.</h2>
         </div>
       </div>
     </motion.div>
