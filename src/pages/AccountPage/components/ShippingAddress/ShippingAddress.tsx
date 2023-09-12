@@ -19,7 +19,7 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
 
   useEffect(() => {
     if (!access_token || !shippingInfo) return;
-    getShippingById(access_token, shippingInfo).then((res) => {
+    getShippingById(access_token, shippingInfo._id).then((res) => {
       setShippingData(res.data);
     });
   }, [shippingInfo]);
@@ -30,7 +30,7 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
     assignAdditionalInfo({ ...data, user_id: userId }).then((res) => {
       if (res.status === 200) {
         if (!access_token || !shippingInfo) return;
-        getShippingById(access_token, shippingInfo).then((res) => {
+        getShippingById(access_token, shippingInfo._id).then((res) => {
           setShippingData(res.data);
           dispatch(showMessage(`Your shipping information has been updated`));
         });
