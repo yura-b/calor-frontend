@@ -35,7 +35,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
       <CartHeader title={title} onClose={onClose} cartCount={cartPurchasedItems.length} />
       <div className="flex-1 overflow-y-auto md:my-0">
         <div className="flex flex-col  justify-center mx-6 my-4 gap-4 text-gray lg:max-h-[500px] ">
-          {!cartPurchasedItems.length ? <EmptyCart title="The are no items in your card" /> : null}
+          {!cartPurchasedItems.length ? <EmptyCart title="No items in your cart" /> : null}
           {cartPurchasedItems.length ? (
             <>
               <p

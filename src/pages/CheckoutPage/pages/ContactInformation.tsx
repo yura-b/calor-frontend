@@ -94,7 +94,7 @@ const ContactInformation = () => {
           errorMessage={formik.errors.secondName}
           border={'1px solid #D9D9D9'}
         >
-          Second Name
+          Last Name
         </CustomInput>
 
         <CustomInput
