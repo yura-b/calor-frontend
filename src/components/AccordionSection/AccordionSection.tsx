@@ -9,13 +9,14 @@ interface AccordionSectionProps {
   isOpen?: boolean;
   toggleAccordion: () => void;
   children?: React.ReactNode;
+  className?: string;
 }
 
-const AccordionSection: React.FC<AccordionSectionProps> = ({ title, isOpen, toggleAccordion, children }) => {
+const AccordionSection: React.FC<AccordionSectionProps> = ({ title, isOpen, toggleAccordion, children, className }) => {
   return (
     <div className={'border-b border-white lg:border-none lg:py-0 w-full'}>
       <motion.div
-        className="flex justify-between items-center py-2 w-full border-b border-grayLight"
+        className={`${className} flex justify-between items-center py-2 w-full border-b border-grayLight`}
         onClick={toggleAccordion}
       >
         <h1 className={`${styles.body2} font-semibold`}>{title}</h1>
