@@ -216,12 +216,12 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
         <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
         <span>2023 Calor</span>
       </div>
-      <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-4 hidden lg:block lg:text-[12px]'}>
+      {/* <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-4 hidden lg:block lg:text-[12px]'}>
         Designed & developed by{' '}
         <Link to="https://www.bart-solutions.com/" className="underline ml-1 font-bold" target="_blank">
           bART Solutions
         </Link>
-      </div>
+      </div> */}
       {color === 'white' && (
         <>
           {isLoading ? (
@@ -265,12 +265,12 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
               </Link>
             ))}
           </div>
-          <div className={'lg:hidden text-[12px] text-center my-2'}>
+          {/* <div className={'lg:hidden text-[12px] text-center my-2'}>
             Designed & developed by{' '}
             <Link to="https://www.bart-solutions.com/" className="underline ml-1 font-bold" target="_blank">
               bART Solutions
             </Link>
-          </div>
+          </div> */}
         </>
       )}
     </>

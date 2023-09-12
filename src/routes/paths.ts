@@ -7,7 +7,6 @@ export const paths = {
   shoe_care_product: '/shoe_care_product',
   customer_experience: '/customer_experience',
   about: '/about',
-  cookies: '/cookies',
   terms_condition: '/terms_condition',
   checkout: '/checkout',
   checkout_success: '/checkout_success',
