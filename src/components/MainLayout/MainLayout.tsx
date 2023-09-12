@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 import CustomizedSnackbars from '../admin/CustomizedSnackbars';
+import FacebookMessenger from "../FacebookMessenger/FacebookMessenger";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');
@@ -37,6 +38,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </motion.div>
       <CustomizedSnackbars />
+      <div className="fixed bottom-0 right-0 p-4">
+        <FacebookMessenger />
+      </div>
       <Footer />
     </div>
   );

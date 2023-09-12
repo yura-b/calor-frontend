@@ -7,7 +7,7 @@ const PAGE_ID = import.meta.env.VITE_FB_PAGE_ID;
 const FacebookMessenger = () => {
     return (
         <FacebookProvider appId={APP_ID} chatSupport>
-            <CustomChat pageId={PAGE_ID} minimized={true} />
+            <CustomChat pageId={PAGE_ID} minimized={true}/>
         </FacebookProvider>
     );
 
