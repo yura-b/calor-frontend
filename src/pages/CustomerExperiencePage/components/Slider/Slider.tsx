@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import IconButton from '@mui/material/IconButton';
 import rightArrowIcon from '@assets/images/rightArrowIcon.svg';
 import { ReactSVG } from 'react-svg';
+import { debounce } from 'lodash';
 
 const Slider = ({ images }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -21,12 +22,13 @@ const Slider = ({ images }) => {
     };
   }, []);
 
-  const handleNext = () => {
+  const throttledHandleNext = debounce(() => {
     setCurrentIndex((prevIndex) => (prevIndex >= images.length * 3 - 1 ? 0 : prevIndex + 1));
-  };
-  const handlePrev = () => {
+  }, 200);
+
+  const throttledHandlePrev = debounce(() => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-  };
+  }, 200);
 
   const slideWidth = 200;
   const translateX = -currentIndex * slideWidth;
@@ -56,7 +58,7 @@ const Slider = ({ images }) => {
         </motion.div>
       </div>
       <div className="flex gap-8 items-center justify-center mt-4">
-        <button onClick={handlePrev} className="rounded-full bg-gray p-1 hover:bg-mint">
+        <button onClick={throttledHandlePrev} className="rounded-full bg-gray p-1 hover:bg-mint">
           <IconButton>
             <ReactSVG
               className="rotate-180"
@@ -68,7 +70,7 @@ const Slider = ({ images }) => {
             />
           </IconButton>
         </button>
-        <button onClick={handleNext} className="rounded-full bg-gray p-1 hover:bg-mint">
+        <button onClick={throttledHandleNext} className="rounded-full bg-gray p-1 hover:bg-mint">
           <IconButton>
             <ReactSVG
               src={rightArrowIcon}
