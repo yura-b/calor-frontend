@@ -13,7 +13,7 @@ import sunrise4 from '@images/inspiration/sunrise4.jpg';
 import sunrise5 from '@images/inspiration/sunrise5.jpg';
 import sunrise6 from '@images/inspiration/sunrise6.jpg';
 import sunrise7 from '@images/inspiration/sunrise7.jpg';
-import sunrise8 from '@images/inspiration/sunrise8.jpg';
+import sunrise8 from '@images/inspiration/sunrise8.jpeg';
 import sunrise9 from '@images/inspiration/sunrise9.jpg';
 import sunrise10 from '@images/inspiration/sunrise10.jpg';
 import sunrise11 from '@images/inspiration/sunrise11.jpg';
