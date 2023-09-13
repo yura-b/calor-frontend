@@ -18,7 +18,7 @@ import AccessoriesPage from '@pages/AccessoriesPage';
 import Accessories from '@pages/AccessoriesPage/components/Accessories';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import SubCareProduct from '@pages/ShoeCareProductPage/components/SubCareProduct';
-import CustomerExperiencePage from '@pages/CustomerExperiencePage';
+const CustomerExperiencePage = lazy(() => import('@pages/CustomerExperiencePage'));
 import AccountPage from '@pages/AccountPage';
 import DeleteMyAccountComponent from '@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountComponent';
 import DeleteMyAccountSuccess from '@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountSuccess';

@@ -1,7 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
-import { useMediaQuery } from '@react-hook/media-query';
 
 interface IProps {
   images: string[];

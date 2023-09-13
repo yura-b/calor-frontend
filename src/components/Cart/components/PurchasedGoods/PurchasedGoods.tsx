@@ -68,12 +68,12 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
             </div>
           </div>
           <p className={`${styles.body2} lg:text-[16px]  lg:hidden`}>
-            This product is custom-made and delivered to you in X weeks.
+            Your order will be customized and delivered within 7-10 days.
           </p>
         </div>
       </div>
       <p className={`${styles.body2} lg:text-[16px] hidden lg:block `}>
-        This product is custom-made and delivered to you in X weeks.
+        Your order will be customized and delivered within 7-10 days
       </p>
     </div>
   );

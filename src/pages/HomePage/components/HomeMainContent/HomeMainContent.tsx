@@ -40,7 +40,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
         </div>
         <div className="flex basis-1/3 justify-end  grow 2xl:basis-auto">
           <motion.p className={`${headingClass} text-custom-turquoise  text-left  hidden lg:block`} {...fadeAnimation}>
-            IT’S <br /> SIMPLY AS <br />
+            IT’S <br /> SIMPLE AS <br />
             <div className="flex justify-between items-center max-w-[16rem]">
               1 <HomeArrowRightIcon color="#B8E4D8" /> 2 <HomeArrowRightIcon color="#B8E4D8" /> 3
             </div>
@@ -50,7 +50,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
           className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow  lg:hidden absolute -bottom-3 sm:-bottom-1.5`}
           {...fadeAnimation}
         >
-          IT’S SIMPLY AS
+          IT’S SIMPLE AS
         </motion.p>
       </div>
       <div className="w-full bg-custom-turquoise text-center">

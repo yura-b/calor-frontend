@@ -13,7 +13,7 @@ const Details: React.FC = (): React.ReactElement => {
           <div className="basis-[30%]">
             <p className={'font-bold pt-8'}>First Name </p>
             <p>{firstName} </p>
-            <p className={'font-bold pt-8'}>Second Name </p>
+            <p className={'font-bold pt-8'}>Last Name </p>
             <p>{secondName}</p>
           </div>
           <div className="basis-[30%]">

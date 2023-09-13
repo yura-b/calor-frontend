@@ -31,7 +31,7 @@ const DefaultShippingInfo: FC<IProps> = ({ shippingInfo }) => {
         <p>Customer’s First Name</p>
         <p className={'font-medium'}>{shippingInfo.receiverFirstName}</p>
 
-        <p>Customer’s Second Name</p>
+        <p>Customer’s Last Name</p>
         <p className={'font-medium'}>{shippingInfo.receiverSecondName}</p>
 
         <p>Country / Region</p>

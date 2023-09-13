@@ -93,7 +93,7 @@ export const helpLinks = [
   // },
 
   {
-    title: 'Size Guide',
+    title: 'Our Size Guide',
     path: paths.helpPage + '#sizeGuide',
   },
   {
@@ -111,7 +111,7 @@ export const helpLinks = [
 ];
 export const aboutLinks = [
   {
-    subTitle: 'Who We Are',
+    subTitle: 'A Word From the Founder',
     path: paths.about + '#who_we_are',
   },
   {
@@ -144,4 +144,4 @@ export const privacyLinks = [
   },
 ];
 
-export const mobileMenuCalorItems = ['Faster Checkout', 'Access Your Order History', 'Discount Rewards Program'];
+export const mobileMenuCalorItems = ['Faster Checkout', 'Access Your Order History', 'Discounts', 'Rewards Program'];
