@@ -106,13 +106,13 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
 
   return (
     <div
-      className="w-full max-h-[140px] bg-custom-red pt-2 pb-1  xl:fixed xl:z-20 xl:top-0 relative xl:h-[108px] "
+      className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
       id="header"
     >
       <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
         <div
           className={
-            'flex flex-col w-full  fixed  z-20 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
+            'flex flex-col w-full fixed z-50 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
           }
         >
           <div className="flex justify-between">
