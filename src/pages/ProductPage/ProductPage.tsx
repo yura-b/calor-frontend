@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import { useQuery, useMutation } from 'react-query';
 import { useParams } from 'react-router';
@@ -11,15 +11,22 @@ import ProductReviews from './components/ProductReviews';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 import Slider from '@/components/ui/Slider';
 import Button from '@components/ui/Button';
-import Loader from '@/components/ui/Loader';
 import { paths } from '@routes/paths.ts';
 import AccordionSection from '@components/AccordionSection';
 import { addToBasket } from '@/api/basket';
-import { useSelector } from 'react-redux';
+import { SealCheck } from '@phosphor-icons/react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { userId } = useSelector((state) => state.user);
+  const { userId, access_token } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  const { items: basketProducts } = useAppSelector((state) => state.basket);
+
+  const isProductExistInBasket = basketProducts.some((item: BasketProduct) => item._id === id || item.accessory === id);
+
   const {
     data: product,
     isLoading,
@@ -31,6 +38,7 @@ const ProductPage = () => {
 
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
+      dispatch(appendToBasket(product?.data));
       console.log(data);
     },
   });
@@ -72,11 +80,9 @@ const ProductPage = () => {
     );
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <div className="font-poppins h-screen">
-      <Head title={titles.product} />
+      <Head title="Product" />
       <MainLayout>
         <div className="hidden lg:flex w-full h-[50px] justify-center items-center pt-10 box-border">
           <NavigationLinks color="gray" className="z-10 w-auto" />
@@ -135,10 +141,16 @@ const ProductPage = () => {
                     </Button>
                   </>
                 )}
-                {product?.data.category !== 'shoes' && (
+                {product?.data.category !== 'shoes' && !isProductExistInBasket && (
                   <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
                     Add To Cart
                   </Button>
+                )}
+                {product?.data.category !== 'shoes' && isProductExistInBasket && (
+                  <div className="flex justify-center items-center text-mint">
+                    <SealCheck className="mr-2" size={32} weight="fill" />
+                    Already in your cart
+                  </div>
                 )}
               </div>
               <div className="py-2">
