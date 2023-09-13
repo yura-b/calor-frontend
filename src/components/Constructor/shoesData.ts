@@ -1,4 +1,4 @@
-import { textures } from "./textures";
+import { textures } from './textures';
 export const shoes = [
   {
     product: 'dayger',
@@ -15,73 +15,73 @@ export const shoes = [
                 img: 'part01_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part01_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part01_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part01_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part01_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part01_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part01_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part01_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part01_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part01_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part01_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part01_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part01_leather_13.png',
@@ -167,7 +167,7 @@ export const shoes = [
                 img: 'part01_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part01_suede_11.png',
@@ -203,7 +203,7 @@ export const shoes = [
                 img: 'part01_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -221,73 +221,73 @@ export const shoes = [
                 img: 'part02_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part02_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part02_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part02_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part02_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part02_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part02_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part02_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part02_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part02_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part02_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part02_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part02_leather_13.png',
@@ -373,7 +373,7 @@ export const shoes = [
                 img: 'part02_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part02_suede_11.png',
@@ -409,7 +409,7 @@ export const shoes = [
                 img: 'part02_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -472,7 +472,7 @@ export const shoes = [
                 img: 'part03_laces_polyester_10.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part03_laces_polyester_11.png',
@@ -483,7 +483,7 @@ export const shoes = [
                 img: 'part03_laces_polyester_12.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part03_laces_polyester_13.png',
@@ -509,7 +509,7 @@ export const shoes = [
                 img: 'part03_laces_polyester_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part03_laces_polyester_18.png',
@@ -612,7 +612,7 @@ export const shoes = [
                 img: 'part04_lower_eyelets_metal_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part04_lower_eyelets_metal_18.png',
@@ -764,73 +764,73 @@ export const shoes = [
                 img: 'part07_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part07_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part07_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part07_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part07_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part07_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part07_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part07_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part07_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part07_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part07_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part07_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part07_leather_13.png',
@@ -916,7 +916,7 @@ export const shoes = [
                 img: 'part07_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part07_suede_11.png',
@@ -952,7 +952,7 @@ export const shoes = [
                 img: 'part07_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -970,73 +970,73 @@ export const shoes = [
                 img: 'part08_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part08_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part08_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part08_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part08_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part08_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part08_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part08_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part08_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part08_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part08_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part08_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part08_leather_13.png',
@@ -1122,7 +1122,7 @@ export const shoes = [
                 img: 'part08_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part08_suede_11.png',
@@ -1158,7 +1158,7 @@ export const shoes = [
                 img: 'part08_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -1191,73 +1191,73 @@ export const shoes = [
                 img: 'part10_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part10_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part10_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part10_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part10_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part10_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part10_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part10_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part10_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part10_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part10_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part10_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part10_leather_13.png',
@@ -1343,7 +1343,7 @@ export const shoes = [
                 img: 'part10_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part10_suede_11.png',
@@ -1379,7 +1379,7 @@ export const shoes = [
                 img: 'part10_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -1397,73 +1397,73 @@ export const shoes = [
                 img: 'part11_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part11_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part11_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part11_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part11_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part11_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part11_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part11_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part11_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part11_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part11_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part11_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part11_leather_13.png',
@@ -1549,7 +1549,7 @@ export const shoes = [
                 img: 'part11_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part11_suede_11.png',
@@ -1585,7 +1585,7 @@ export const shoes = [
                 img: 'part11_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -1603,73 +1603,73 @@ export const shoes = [
                 img: 'part12_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part12_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part12_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part12_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part12_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part12_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part12_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part12_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part12_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part12_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part12_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part12_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part12_leather_13.png',
@@ -1755,7 +1755,7 @@ export const shoes = [
                 img: 'part12_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part12_suede_11.png',
@@ -1791,7 +1791,7 @@ export const shoes = [
                 img: 'part12_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -1809,73 +1809,73 @@ export const shoes = [
                 img: 'part13_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part13_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part13_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part13_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part13_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part13_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part13_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part13_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part13_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part13_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part13_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part13_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part13_leather_13.png',
@@ -1961,7 +1961,7 @@ export const shoes = [
                 img: 'part13_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part13_suede_11.png',
@@ -1997,7 +1997,7 @@ export const shoes = [
                 img: 'part13_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -2095,7 +2095,7 @@ export const shoes = [
                 img: 'part14_eyelets_metal_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part14_eyelets_metal_18.png',
@@ -2123,73 +2123,73 @@ export const shoes = [
                 img: 'part01_quarter_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part01_quarter_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part01_quarter_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part01_quarter_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part01_quarter_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part01_quarter_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part01_quarter_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part01_quarter_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part01_quarter_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part01_quarter_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part01_quarter_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part01_quarter_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part01_quarter_leather_13.png',
@@ -2275,7 +2275,7 @@ export const shoes = [
                 img: 'part01_quarter_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part01_quarter_suede_11.png',
@@ -2311,7 +2311,7 @@ export const shoes = [
                 img: 'part01_quarter_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -2329,73 +2329,73 @@ export const shoes = [
                 img: 'part02_tongue_toe_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part02_tongue_toe_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part02_tongue_toe_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part02_tongue_toe_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part02_tongue_toe_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part02_tongue_toe_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part02_tongue_toe_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part02_tongue_toe_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part02_tongue_toe_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part02_tongue_toe_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part02_tongue_toe_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part02_tongue_toe_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part02_tongue_toe_leather_13.png',
@@ -2481,7 +2481,7 @@ export const shoes = [
                 img: 'part02_tongue_toe_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part02_tongue_toe_suede_11.png',
@@ -2517,7 +2517,7 @@ export const shoes = [
                 img: 'part02_tongue_toe_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -2535,73 +2535,73 @@ export const shoes = [
                 img: 'part03_back_strap_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part03_back_strap_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part03_back_strap_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part03_back_strap_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part03_back_strap_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part03_back_strap_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part03_back_strap_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part03_back_strap_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part03_back_strap_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part03_back_strap_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part03_back_strap_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part03_back_strap_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part03_back_strap_leather_13.png',
@@ -2687,7 +2687,7 @@ export const shoes = [
                 img: 'part03_back_strap_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part03_back_strap_suede_11.png',
@@ -2723,7 +2723,7 @@ export const shoes = [
                 img: 'part03_back_strap_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -2741,73 +2741,73 @@ export const shoes = [
                 img: 'part04_lace_guard_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part04_lace_guard_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part04_lace_guard_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part04_lace_guard_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part04_lace_guard_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part04_lace_guard_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part04_lace_guard_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part04_lace_guard_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part04_lace_guard_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part04_lace_guard_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part04_lace_guard_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part04_lace_guard_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part04_lace_guard_leather_13.png',
@@ -2893,7 +2893,7 @@ export const shoes = [
                 img: 'part04_lace_guard_suede_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part04_lace_guard_suede_11.png',
@@ -2929,7 +2929,7 @@ export const shoes = [
                 img: 'part04_lace_guard_suede_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -3024,7 +3024,6 @@ export const shoes = [
                 img: 'part06_laces_polyester_10.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                
               },
               {
                 img: 'part06_laces_polyester_11.png',
@@ -3035,7 +3034,7 @@ export const shoes = [
                 img: 'part06_laces_polyester_12.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part06_laces_polyester_13.png',
@@ -3061,7 +3060,7 @@ export const shoes = [
                 img: 'part06_laces_polyester_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part06_laces_polyester_18.png',
@@ -3164,7 +3163,7 @@ export const shoes = [
                 img: 'part07_eyelets_metal_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part07_eyelets_metal_18.png',
@@ -3329,7 +3328,7 @@ export const shoes = [
                 img: 'part09_lining_leather_10.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part09_lining_leather_11.png',
@@ -3365,7 +3364,7 @@ export const shoes = [
                 img: 'part09_lining_leather_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
             ],
           },
@@ -3388,67 +3387,67 @@ export const shoes = [
                 img: 'part01_tongue_toe_cotton_01.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part01_tongue_toe_cotton_02.png',
                 name: 'Warm White',
                 hex: '#E8E4D1',
-                texture: textures.warmWhite
+                texture: textures.warmWhite,
               },
               {
                 img: 'part01_tongue_toe_cotton_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.greaseBlack
+                texture: textures.greaseBlack,
               },
               {
                 img: 'part01_tongue_toe_cotton_04.png',
                 name: 'Mint Green',
                 hex: '#ABf1E4',
-                texture: textures.mintGreen
+                texture: textures.mintGreen,
               },
               {
                 img: 'part01_tongue_toe_cotton_05.png',
                 name: 'Espresso Brown',
                 hex: '#4C2829',
-                texture: textures.expressoBrown
+                texture: textures.expressoBrown,
               },
               {
                 img: 'part01_tongue_toe_cotton_06.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part01_tongue_toe_cotton_07.png',
                 name: 'Irish Purple',
                 hex: '#6A5ACD',
-                texture: textures.irishPurple
+                texture: textures.irishPurple,
               },
               {
                 img: 'part01_tongue_toe_cotton_08.png',
                 name: 'Crimson Red',
                 hex: '#E41737',
-                texture: textures.crimsonRed
+                texture: textures.crimsonRed,
               },
               {
                 img: 'part01_tongue_toe_cotton_09.png',
                 name: 'Lemonade Pink',
                 hex: '#FFEAEB',
-                texture: textures.lemonadePink
+                texture: textures.lemonadePink,
               },
               {
                 img: 'part01_tongue_toe_cotton_10.png',
                 name: 'Watermelon Pink',
                 hex: '#EF7F97',
-                texture: textures.watermelonPink
+                texture: textures.watermelonPink,
               },
               {
                 img: 'part01_tongue_toe_cotton_11.png',
                 name: 'Space Blue',
                 hex: '#1C284E',
-                texture: textures.spaceBlue
+                texture: textures.spaceBlue,
               },
               {
                 img: 'part01_tongue_toe_cotton_12.png',
@@ -3460,31 +3459,31 @@ export const shoes = [
                 img: 'part01_tongue_toe_cotton_13.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part01_tongue_toe_cotton_14.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.pineappleYelow
+                texture: textures.pineappleYelow,
               },
               {
                 img: 'part01_tongue_toe_cotton_15.png',
                 name: 'Biscotti Yellow',
                 hex: '#DCC07E',
-                texture: textures.biscottiYellow
+                texture: textures.biscottiYellow,
               },
               {
                 img: 'part01_tongue_toe_cotton_16.png',
                 name: 'Seaweed Green',
                 hex: '#444625',
-                texture: textures.seaweedGreen
+                texture: textures.seaweedGreen,
               },
               {
                 img: 'part01_tongue_toe_cotton_17.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.berryRed
+                texture: textures.berryRed,
               },
             ],
           },
@@ -3502,67 +3501,67 @@ export const shoes = [
                 img: 'part02_detail_1_cotton_01.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part02_detail_1_cotton_02.png',
                 name: 'Warm White',
                 hex: '#E8E4D1',
-                texture: textures.warmWhite
+                texture: textures.warmWhite,
               },
               {
                 img: 'part02_detail_1_cotton_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.greaseBlack
+                texture: textures.greaseBlack,
               },
               {
                 img: 'part02_detail_1_cotton_04.png',
                 name: 'Mint Green',
                 hex: '#ABf1E4',
-                texture: textures.mintGreen
+                texture: textures.mintGreen,
               },
               {
                 img: 'part02_detail_1_cotton_05.png',
                 name: 'Espresso Brown',
                 hex: '#4C2829',
-                texture: textures.expressoBrown
+                texture: textures.expressoBrown,
               },
               {
                 img: 'part02_detail_1_cotton_06.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part02_detail_1_cotton_07.png',
                 name: 'Irish Purple',
                 hex: '#6A5ACD',
-                texture: textures.irishPurple
+                texture: textures.irishPurple,
               },
               {
                 img: 'part02_detail_1_cotton_08.png',
                 name: 'Crimson Red',
                 hex: '#E41737',
-                texture: textures.crimsonRed
+                texture: textures.crimsonRed,
               },
               {
                 img: 'part02_detail_1_cotton_09.png',
                 name: 'Lemonade Pink',
                 hex: '#FFEAEB',
-                texture: textures.lemonadePink
+                texture: textures.lemonadePink,
               },
               {
                 img: 'part02_detail_1_cotton_10.png',
                 name: 'Watermelon Pink',
                 hex: '#EF7F97',
-                texture: textures.watermelonPink
+                texture: textures.watermelonPink,
               },
               {
                 img: 'part02_detail_1_cotton_11.png',
                 name: 'Space Blue',
                 hex: '#1C284E',
-                texture: textures.spaceBlue
+                texture: textures.spaceBlue,
               },
               {
                 img: 'part02_detail_1_cotton_12.png',
@@ -3574,31 +3573,31 @@ export const shoes = [
                 img: 'part02_detail_1_cotton_13.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part02_detail_1_cotton_14.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.pineappleYelow
+                texture: textures.pineappleYelow,
               },
               {
                 img: 'part02_detail_1_cotton_15.png',
                 name: 'Biscotti Yellow',
                 hex: '#DCC07E',
-                texture: textures.biscottiYellow
+                texture: textures.biscottiYellow,
               },
               {
                 img: 'part02_detail_1_cotton_16.png',
                 name: 'Seaweed Green',
                 hex: '#444625',
-                texture: textures.seaweedGreen
+                texture: textures.seaweedGreen,
               },
               {
                 img: 'part02_detail_1_cotton_17.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.berryRed
+                texture: textures.berryRed,
               },
             ],
           },
@@ -3616,67 +3615,67 @@ export const shoes = [
                 img: 'part03_detail_2_cotton_01.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part03_detail_2_cotton_02.png',
                 name: 'Warm White',
                 hex: '#E8E4D1',
-                texture: textures.warmWhite
+                texture: textures.warmWhite,
               },
               {
                 img: 'part03_detail_2_cotton_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.greaseBlack
+                texture: textures.greaseBlack,
               },
               {
                 img: 'part03_detail_2_cotton_04.png',
                 name: 'Mint Green',
                 hex: '#ABf1E4',
-                texture: textures.mintGreen
+                texture: textures.mintGreen,
               },
               {
                 img: 'part03_detail_2_cotton_05.png',
                 name: 'Espresso Brown',
                 hex: '#4C2829',
-                texture: textures.expressoBrown
+                texture: textures.expressoBrown,
               },
               {
                 img: 'part03_detail_2_cotton_06.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part03_detail_2_cotton_07.png',
                 name: 'Irish Purple',
                 hex: '#6A5ACD',
-                texture: textures.irishPurple
+                texture: textures.irishPurple,
               },
               {
                 img: 'part03_detail_2_cotton_08.png',
                 name: 'Crimson Red',
                 hex: '#E41737',
-                texture: textures.crimsonRed
+                texture: textures.crimsonRed,
               },
               {
                 img: 'part03_detail_2_cotton_09.png',
                 name: 'Lemonade Pink',
                 hex: '#FFEAEB',
-                texture: textures.lemonadePink
+                texture: textures.lemonadePink,
               },
               {
                 img: 'part03_detail_2_cotton_10.png',
                 name: 'Watermelon Pink',
                 hex: '#EF7F97',
-                texture: textures.watermelonPink
+                texture: textures.watermelonPink,
               },
               {
                 img: 'part03_detail_2_cotton_11.png',
                 name: 'Space Blue',
                 hex: '#1C284E',
-                texture: textures.spaceBlue
+                texture: textures.spaceBlue,
               },
               {
                 img: 'part03_detail_2_cotton_12.png',
@@ -3688,31 +3687,31 @@ export const shoes = [
                 img: 'part03_detail_2_cotton_13.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part03_detail_2_cotton_14.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.pineappleYelow
+                texture: textures.pineappleYelow,
               },
               {
                 img: 'part03_detail_2_cotton_15.png',
                 name: 'Biscotti Yellow',
                 hex: '#DCC07E',
-                texture: textures.biscottiYellow
+                texture: textures.biscottiYellow,
               },
               {
                 img: 'part03_detail_2_cotton_16.png',
                 name: 'Seaweed Green',
                 hex: '#444625',
-                texture: textures.seaweedGreen
+                texture: textures.seaweedGreen,
               },
               {
                 img: 'part03_detail_2_cotton_17.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.berryRed
+                texture: textures.berryRed,
               },
             ],
           },
@@ -3775,7 +3774,7 @@ export const shoes = [
                 img: 'part04_laces_polyester_10.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part04_laces_polyester_11.png',
@@ -3786,7 +3785,7 @@ export const shoes = [
                 img: 'part04_laces_polyester_12.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part04_laces_polyester_13.png',
@@ -3812,7 +3811,7 @@ export const shoes = [
                 img: 'part04_laces_polyester_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part04_laces_polyester_18.png',
@@ -3915,7 +3914,7 @@ export const shoes = [
                 img: 'part05_eyelets_metal_17.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part05_eyelets_metal_18.png',
@@ -3938,73 +3937,73 @@ export const shoes = [
                 img: 'part06_back_strap_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part06_back_strap_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part06_back_strap_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part06_back_strap_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part06_back_strap_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part06_back_strap_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part06_back_strap_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part06_back_strap_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part06_back_strap_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part06_back_strap_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part06_back_strap_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part06_back_strap_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part06_back_strap_leather_13.png',
@@ -4052,67 +4051,67 @@ export const shoes = [
                 img: 'part07_detail_3_cotton_01.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part07_detail_3_cotton_02.png',
                 name: 'Warm White',
                 hex: '#E8E4D1',
-                texture: textures.warmWhite
+                texture: textures.warmWhite,
               },
               {
                 img: 'part07_detail_3_cotton_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.greaseBlack
+                texture: textures.greaseBlack,
               },
               {
                 img: 'part07_detail_3_cotton_04.png',
                 name: 'Mint Green',
                 hex: '#ABf1E4',
-                texture: textures.mintGreen
+                texture: textures.mintGreen,
               },
               {
                 img: 'part07_detail_3_cotton_05.png',
                 name: 'Espresso Brown',
                 hex: '#4C2829',
-                texture: textures.expressoBrown
+                texture: textures.expressoBrown,
               },
               {
                 img: 'part07_detail_3_cotton_06.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part07_detail_3_cotton_07.png',
                 name: 'Irish Purple',
                 hex: '#6A5ACD',
-                texture: textures.irishPurple
+                texture: textures.irishPurple,
               },
               {
                 img: 'part07_detail_3_cotton_08.png',
                 name: 'Crimson Red',
                 hex: '#E41737',
-                texture: textures.crimsonRed
+                texture: textures.crimsonRed,
               },
               {
                 img: 'part07_detail_3_cotton_09.png',
                 name: 'Lemonade Pink',
                 hex: '#FFEAEB',
-                texture: textures.lemonadePink
+                texture: textures.lemonadePink,
               },
               {
                 img: 'part07_detail_3_cotton_10.png',
                 name: 'Watermelon Pink',
                 hex: '#EF7F97',
-                texture: textures.watermelonPink
+                texture: textures.watermelonPink,
               },
               {
                 img: 'part07_detail_3_cotton_11.png',
                 name: 'Space Blue',
                 hex: '#1C284E',
-                texture: textures.spaceBlue
+                texture: textures.spaceBlue,
               },
               {
                 img: 'part07_detail_3_cotton_12.png',
@@ -4124,31 +4123,31 @@ export const shoes = [
                 img: 'part07_detail_3_cotton_13.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part07_detail_3_cotton_14.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.pineappleYelow
+                texture: textures.pineappleYelow,
               },
               {
                 img: 'part07_detail_3_cotton_15.png',
                 name: 'Biscotti Yellow',
                 hex: '#DCC07E',
-                texture: textures.biscottiYellow
+                texture: textures.biscottiYellow,
               },
               {
                 img: 'part07_detail_3_cotton_16.png',
                 name: 'Seaweed Green',
                 hex: '#444625',
-                texture: textures.seaweedGreen
+                texture: textures.seaweedGreen,
               },
               {
                 img: 'part07_detail_3_cotton_17.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.berryRed
+                texture: textures.berryRed,
               },
             ],
           },
@@ -4159,73 +4158,73 @@ export const shoes = [
                 img: 'part07_detail_3_leather_01.png',
                 name: 'Basil Green',
                 hex: '#829F82',
-                texture: textures.leatherBasilGreen
+                texture: textures.leatherBasilGreen,
               },
               {
                 img: 'part07_detail_3_leather_02.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-                texture: textures.leatherPowderWhite
+                texture: textures.leatherPowderWhite,
               },
               {
                 img: 'part07_detail_3_leather_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.leatherGreaseBlack
+                texture: textures.leatherGreaseBlack,
               },
               {
                 img: 'part07_detail_3_leather_04.png',
                 name: 'Aegean Blue',
                 hex: '#456178',
-                texture: textures.leatherAegeanBlue
+                texture: textures.leatherAegeanBlue,
               },
               {
                 img: 'part07_detail_3_leather_05.png',
                 name: 'Merlot Red',
                 hex: '#6E3345',
-                texture: textures.leatherMerlotRed
+                texture: textures.leatherMerlotRed,
               },
               {
                 img: 'part07_detail_3_leather_06.png',
                 name: 'Cedar Brown',
                 hex: '#52412E',
-                texture: textures.leatherCedarBrown
+                texture: textures.leatherCedarBrown,
               },
               {
                 img: 'part07_detail_3_leather_07.png',
                 name: 'Grape Purple',
                 hex: '#5D345C',
-                texture: textures.leatherGrapePurple
+                texture: textures.leatherGrapePurple,
               },
               {
                 img: 'part07_detail_3_leather_08.png',
                 name: 'Bubblegum Pink',
                 hex: '#FDC8DA',
-                texture: textures.leatherBubblegumPink
+                texture: textures.leatherBubblegumPink,
               },
               {
                 img: 'part07_detail_3_leather_09.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.leatherFireOrange
+                texture: textures.leatherFireOrange,
               },
               {
                 img: 'part07_detail_3_leather_10.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.leatherBerryRed
+                texture: textures.leatherBerryRed,
               },
               {
                 img: 'part07_detail_3_leather_11.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.leatherDaisyWhite
+                texture: textures.leatherDaisyWhite,
               },
               {
                 img: 'part07_detail_3_leather_12.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.leatherPineappleYellow
+                texture: textures.leatherPineappleYellow,
               },
               {
                 img: 'part07_detail_3_leather_13.png',
@@ -4273,7 +4272,7 @@ export const shoes = [
                 img: 'part08_lining_cotton_01.png',
                 name: 'Seaweed Green',
                 hex: '#444625',
-                texture: textures.seaweedGreen
+                texture: textures.seaweedGreen,
               },
               {
                 img: 'part08_lining_cotton_02.png',
@@ -4284,13 +4283,13 @@ export const shoes = [
                 img: 'part08_lining_cotton_03.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part08_lining_cotton_04.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.greaseBlack
+                texture: textures.greaseBlack,
               },
               {
                 img: 'part08_lining_cotton_05.png',
@@ -4311,7 +4310,7 @@ export const shoes = [
                 img: 'part08_lining_cotton_08.png',
                 name: 'Crimson Red',
                 hex: '#E41737',
-                texture: textures.crimsonRed
+                texture: textures.crimsonRed,
               },
               {
                 img: 'part08_lining_cotton_09.png',
@@ -4327,7 +4326,7 @@ export const shoes = [
                 img: 'part08_lining_cotton_11.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part08_lining_cotton_12.png',
@@ -4338,13 +4337,13 @@ export const shoes = [
                 img: 'part08_lining_cotton_13.png',
                 name: 'Irish Purple',
                 hex: '#6A5ACD',
-                texture: textures.irishPurple
+                texture: textures.irishPurple,
               },
               {
                 img: 'part08_lining_cotton_14.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part08_lining_cotton_15.png',
@@ -4355,13 +4354,13 @@ export const shoes = [
                 img: 'part08_lining_cotton_16.png',
                 name: 'Mint Green',
                 hex: '#ABf1E4',
-                texture: textures.mintGreen
+                texture: textures.mintGreen,
               },
               {
                 img: 'part08_lining_cotton_17.png',
                 name: 'Watermelon Pink',
                 hex: '#EF7F97',
-                texture: textures.watermelonPink
+                texture: textures.watermelonPink,
               },
             ],
           },
@@ -4379,67 +4378,67 @@ export const shoes = [
                 img: 'part09_detail_4_cotton_01.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part09_detail_4_cotton_02.png',
                 name: 'Warm White',
                 hex: '#E8E4D1',
-                texture: textures.warmWhite
+                texture: textures.warmWhite,
               },
               {
                 img: 'part09_detail_4_cotton_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.greaseBlack
+                texture: textures.greaseBlack,
               },
               {
                 img: 'part09_detail_4_cotton_04.png',
                 name: 'Mint Green',
                 hex: '#ABf1E4',
-                texture: textures.mintGreen
+                texture: textures.mintGreen,
               },
               {
                 img: 'part09_detail_4_cotton_05.png',
                 name: 'Espresso Brown',
                 hex: '#4C2829',
-                texture: textures.expressoBrown
+                texture: textures.expressoBrown,
               },
               {
                 img: 'part09_detail_4_cotton_06.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part09_detail_4_cotton_07.png',
                 name: 'Irish Purple',
                 hex: '#6A5ACD',
-                texture: textures.irishPurple
+                texture: textures.irishPurple,
               },
               {
                 img: 'part09_detail_4_cotton_08.png',
                 name: 'Crimson Red',
                 hex: '#E41737',
-                texture: textures.crimsonRed
+                texture: textures.crimsonRed,
               },
               {
                 img: 'part09_detail_4_cotton_09.png',
                 name: 'Lemonade Pink',
                 hex: '#FFEAEB',
-                texture: textures.lemonadePink
+                texture: textures.lemonadePink,
               },
               {
                 img: 'part09_detail_4_cotton_10.png',
                 name: 'Watermelon Pink',
                 hex: '#EF7F97',
-                texture: textures.watermelonPink
+                texture: textures.watermelonPink,
               },
               {
                 img: 'part09_detail_4_cotton_11.png',
                 name: 'Space Blue',
                 hex: '#1C284E',
-                texture: textures.spaceBlue
+                texture: textures.spaceBlue,
               },
               {
                 img: 'part09_detail_4_cotton_12.png',
@@ -4451,31 +4450,31 @@ export const shoes = [
                 img: 'part09_detail_4_cotton_13.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part09_detail_4_cotton_14.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.pineappleYelow
+                texture: textures.pineappleYelow,
               },
               {
                 img: 'part09_detail_4_cotton_15.png',
                 name: 'Biscotti Yellow',
                 hex: '#DCC07E',
-                texture: textures.biscottiYellow
+                texture: textures.biscottiYellow,
               },
               {
                 img: 'part09_detail_4_cotton_16.png',
                 name: 'Seaweed Green',
                 hex: '#444625',
-                texture: textures.seaweedGreen
+                texture: textures.seaweedGreen,
               },
               {
                 img: 'part09_detail_4_cotton_17.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.berryRed
+                texture: textures.berryRed,
               },
             ],
           },
@@ -4493,67 +4492,67 @@ export const shoes = [
                 img: 'part10_details_5_cotton_01.png',
                 name: 'Daisy White',
                 hex: '#F7F7F6',
-                texture: textures.daisyWhite
+                texture: textures.daisyWhite,
               },
               {
                 img: 'part10_details_5_cotton_02.png',
                 name: 'Warm White',
                 hex: '#E8E4D1',
-                texture: textures.warmWhite
+                texture: textures.warmWhite,
               },
               {
                 img: 'part10_details_5_cotton_03.png',
                 name: 'Grease Black',
                 hex: '#211C1A',
-                texture: textures.greaseBlack
+                texture: textures.greaseBlack,
               },
               {
                 img: 'part10_details_5_cotton_04.png',
                 name: 'Mint Green',
                 hex: '#ABf1E4',
-                texture: textures.mintGreen
+                texture: textures.mintGreen,
               },
               {
                 img: 'part10_details_5_cotton_05.png',
                 name: 'Espresso Brown',
                 hex: '#4C2829',
-                texture: textures.expressoBrown
+                texture: textures.expressoBrown,
               },
               {
                 img: 'part10_details_5_cotton_06.png',
                 name: 'Sky Blue',
                 hex: '#77C4FE',
-                texture: textures.skyBlue
+                texture: textures.skyBlue,
               },
               {
                 img: 'part10_details_5_cotton_07.png',
                 name: 'Irish Purple',
                 hex: '#6A5ACD',
-                texture: textures.irishPurple
+                texture: textures.irishPurple,
               },
               {
                 img: 'part10_details_5_cotton_08.png',
                 name: 'Crimson Red',
                 hex: '#E41737',
-                texture: textures.crimsonRed
+                texture: textures.crimsonRed,
               },
               {
                 img: 'part10_details_5_cotton_09.png',
                 name: 'Lemonade Pink',
                 hex: '#FFEAEB',
-                texture: textures.lemonadePink
+                texture: textures.lemonadePink,
               },
               {
                 img: 'part10_details_5_cotton_10.png',
                 name: 'Watermelon Pink',
                 hex: '#EF7F97',
-                texture: textures.watermelonPink
+                texture: textures.watermelonPink,
               },
               {
                 img: 'part10_details_5_cotton_11.png',
                 name: 'Space Blue',
                 hex: '#1C284E',
-                texture: textures.spaceBlue
+                texture: textures.spaceBlue,
               },
               {
                 img: 'part10_details_5_cotton_12.png',
@@ -4565,31 +4564,31 @@ export const shoes = [
                 img: 'part10_details_5_cotton_13.png',
                 name: 'Fire Orange',
                 hex: '#FF7700',
-                texture: textures.fireOrange
+                texture: textures.fireOrange,
               },
               {
                 img: 'part10_details_5_cotton_14.png',
                 name: 'Pineapple Yellow',
                 hex: '#FEE12B',
-                texture: textures.pineappleYelow
+                texture: textures.pineappleYelow,
               },
               {
                 img: 'part10_details_5_cotton_15.png',
                 name: 'Biscotti Yellow',
                 hex: '#DCC07E',
-                texture: textures.biscottiYellow
+                texture: textures.biscottiYellow,
               },
               {
                 img: 'part10_details_5_cotton_16.png',
                 name: 'Seaweed Green',
                 hex: '#444625',
-                texture: textures.seaweedGreen
+                texture: textures.seaweedGreen,
               },
               {
                 img: 'part10_details_5_cotton_17.png',
                 name: 'Berry Red',
                 hex: '#CE4458',
-                texture: textures.berryRed
+                texture: textures.berryRed,
               },
             ],
           },

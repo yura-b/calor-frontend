@@ -52,6 +52,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import CheckoutSuccessPage from './pages/CheckoutPage/CheckoutSuccessPage';
 import CheckoutNotSuccessPage from './pages/CheckoutPage/CheckoutNotSuccessPage';
+import AppointmentyPage from '@/pages/AppointmentPage';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -125,6 +126,7 @@ const App = () => {
           <Route path={paths.checkout_failed} element={<CheckoutNotSuccessPage />} />
           <Route path={paths.myOrder} element={<MyOrder />} />
           <Route path={paths.helpPage} element={<HelpPage />} />
+          <Route path={paths.appointmentPage} element={<AppointmentyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

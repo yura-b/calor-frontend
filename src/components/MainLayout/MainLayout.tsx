@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 import CustomizedSnackbars from '../admin/CustomizedSnackbars';
-import FacebookMessenger from "../FacebookMessenger/FacebookMessenger";
+import FacebookMessenger from '../FacebookMessenger/FacebookMessenger';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');

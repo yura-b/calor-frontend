@@ -13,11 +13,10 @@ const GTM_ID = import.meta.env.VITE_GTM_ID;
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 const tagManagerArgs = {
-  gtmId: GTM_ID
-}
+  gtmId: GTM_ID,
+};
 
-TagManager.initialize(tagManagerArgs)
-
+TagManager.initialize(tagManagerArgs);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
