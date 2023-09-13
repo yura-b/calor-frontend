@@ -47,7 +47,9 @@ const AppointmentPage: React.FC = (): React.ReactElement => {
                     <p className={`${styles.body2} normal-case text-center `}>
                       <span className="font-bold">{fullName ? fullName + ',' : ''}</span> {fullName ? 'your' : 'Your'}{' '}
                       appointment is scheduled {formattedStartTime && formattedEndTime ? 'for' : ''} <br />
-                      {formattedStartTime && formattedEndTime ? formattedStartTime + '-' + formattedEndTime : ''}
+                      <span className="font-semibold text-[15px]">
+                        {formattedStartTime && formattedEndTime ? formattedStartTime + '-' + formattedEndTime : ''}
+                      </span>
                     </p>
                     <p className={`${styles.body2} normal-case font-bold mt-2`}>See You</p>
                     <img src={calor} className="max-w-[100%] lg:w-[300px] mt-[120px]" />
