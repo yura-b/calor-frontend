@@ -38,7 +38,7 @@ const ProductPage = () => {
 
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
-      dispatch(appendToBasket(product?.data));
+      dispatch(appendToBasket({ ...product?.data, count: 1 }));
       console.log(data);
     },
   });
