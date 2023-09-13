@@ -22,6 +22,7 @@ import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
 import { cleanUserData } from '@/store/reducers/UserReducer.ts';
 import { menuItems } from '../../helpers/data';
 import { MainMenuEnum } from '@/constants/enums/pages.enum';
+import { fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
@@ -38,8 +39,16 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
     navigate('/signup');
   };
 
+  const { roles, access_token, firstName, userId, secondName } = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(fetchUserProductsInBasket({ access_token, userId }));
+  }, [access_token, userId]);
+  const { items: basketProducts } = useAppSelector((state) => state.basket);
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isOpen, toggleOpen] = useCycle(false, true);
+
   const openCart = () => {
     setIsCartOpen(true);
   };
@@ -68,7 +77,6 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
 
   const [isAccountVisible, setIsAccountVisible] = useState(false);
 
-  const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
   const { subCategory } = useParams();
@@ -118,8 +126,9 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
               </div> */}
 
               <div className="hidden xl:block">
-                <Busket count={2} onClick={openCart} />
+                <Busket count={basketProducts.length} onClick={openCart} />
               </div>
+
               <div>
                 {isRegisteredUser && (
                   <>
@@ -166,8 +175,9 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
             </div>
             <div className="flex xl:hidden items-baseline">
               <div className="xl:hidden mt-1">
-                <Busket count={2} onClick={openCart} />
+                <Busket count={basketProducts.length} onClick={openCart} />
               </div>
+
               <img
                 src={burgerIcon}
                 alt="Menu"

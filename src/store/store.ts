@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import languageReducer from '@/store/reducers/LanguageReducer.ts';
 import statusReducer from '@/store/reducers/StatusReducer.ts';
 import cartReducer from '@/store/reducers/CartReducer';
+import basketReducer from '@/store/reducers/BasketSlice';
 import userReducer from '@/store/reducers/UserReducer.ts';
 import registrationReducer from '@/store/reducers/RegistrationReducer.ts';
 import dialogReducer from '@/store/reducers/DialogReducer.ts';
@@ -17,6 +18,8 @@ const cartState = persistedCartState !== null ? JSON.parse(persistedCartState) :
 
 export const store = configureStore({
   reducer: {
+
+    basket:basketReducer,
     user: userReducer,
     cart: cartReducer,
     language: languageReducer,
