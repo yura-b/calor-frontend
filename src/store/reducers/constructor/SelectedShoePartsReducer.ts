@@ -48,7 +48,7 @@ const initialState = {
       part08: {
         name: 'Tongue',
         material: 'leather',
-        color: 'Daisy White'
+        color: 'Daisy White',
       },
       part09: {
         name: 'Lining',
@@ -79,7 +79,7 @@ const initialState = {
         name: 'Top eyelets',
         material: 'metal',
         color: 'White',
-      }
+      },
     },
     sunrise: {
       part01: {
@@ -120,7 +120,7 @@ const initialState = {
       part08: {
         name: 'Thread stitching',
         material: 'stitch',
-        color: 'White'
+        color: 'White',
       },
       part09: {
         name: 'Lining',
@@ -167,7 +167,7 @@ const initialState = {
       part08: {
         name: 'Lining',
         material: 'cotton',
-        color: 'Daisy White'
+        color: 'Daisy White',
       },
       part09: {
         name: 'Detail 4',
@@ -190,7 +190,7 @@ const initialState = {
         color: 'White',
       },
     },
-  }
+  },
 };
 
 const selectedShoePartsSlice = createSlice({
@@ -226,12 +226,12 @@ const selectedShoePartsSlice = createSlice({
           },
         },
       };
-      
+
       state.details = updatedDetails;
     },
     resetDetails: () => {
-      return initialState
-    }
+      return initialState;
+    },
   },
 });
 

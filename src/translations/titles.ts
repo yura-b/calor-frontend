@@ -11,4 +11,5 @@ export const titles = {
   helpPage: 'Help',
   product: 'Product',
   notFound: 'Not Found',
+  appointment: 'Appointment',
 };

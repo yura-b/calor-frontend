@@ -5,12 +5,12 @@ import { motion } from 'framer-motion';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 import CustomizedSnackbars from '../admin/CustomizedSnackbars';
-import FacebookMessenger from "../FacebookMessenger/FacebookMessenger";
+import FacebookMessenger from '../FacebookMessenger/FacebookMessenger';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');
   const [headerHeight, setHeaderHeight] = useState(0);
-  
+
   const updateHeaderHeight = () => {
     const headerElement = document.getElementById('header');
     if (headerElement) {
@@ -34,12 +34,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       fbIframeWidgets.forEach((element) => {
         element.remove();
       });
-  
+
       fbDialogs.forEach((element) => {
         element.remove();
       });
     }
-
   }, []);
 
   return (

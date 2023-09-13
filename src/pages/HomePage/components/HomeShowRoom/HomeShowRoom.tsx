@@ -3,6 +3,7 @@ import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import { Modal } from '@mui/material';
 import { useMediaQuery } from '@react-hook/media-query';
+import closeBtnImage from '@/assets/cartImages/closeBtn.png';
 interface Props {
   backgroundButton: 'gray' | 'turquoise';
   showRoomTitleColor?: string;
@@ -22,12 +23,10 @@ const HomeShowRoom: React.FC<Props> = ({
   perfectFit,
 }): React.ReactElement => {
   const [open, setOpen] = useState(false);
-  const [appointmentScheduled, setAppointmentScheduled] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   const handleOpen = () => {
     setOpen(true);
-    setAppointmentScheduled(false);
   };
 
   const handleClose = () => {
@@ -56,9 +55,14 @@ const HomeShowRoom: React.FC<Props> = ({
       </Button>
       <Modal className="flex items-center justify-center" open={open} onClose={handleClose}>
         <div className="bg-white p-0 shadow-lg w-full md:w-[90%] xl:w-[60%] max-w-[1200px] relative lg:pb-8">
-          <p onClick={handleClose} color="transparentGray" className="w-20 absolute z-10 top-0 lg:px-4">
-            Close
-          </p>
+          <div className="py-3 flex items-center w-full bg-custom-red lg:bg-mint sticky top-0 justify-end lg:h-[50px]">
+            <h1 className={`${styles.header2} text-white absolute left-1/2 transform -translate-x-1/2 uppercase`}>
+              Make an Appointment
+            </h1>
+            <div className="flex h-5 items-center justify-center">
+              <img src={closeBtnImage} onClick={handleClose} className="mr-6" />
+            </div>
+          </div>
           <div className="z-6 relative px-0 pt-[80px] sm:p-0">
             <iframe
               ref={iframeRef}

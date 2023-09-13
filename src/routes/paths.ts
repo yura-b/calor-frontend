@@ -22,4 +22,5 @@ export const paths = {
   reviews: '/account/reviews',
   myOrder: '/my_order',
   helpPage: '/help',
+  appointmentPage: '/appointment',
 };

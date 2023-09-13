@@ -18,8 +18,7 @@ const cartState = persistedCartState !== null ? JSON.parse(persistedCartState) :
 
 export const store = configureStore({
   reducer: {
-
-    basket:basketReducer,
+    basket: basketReducer,
     user: userReducer,
     cart: cartReducer,
     language: languageReducer,

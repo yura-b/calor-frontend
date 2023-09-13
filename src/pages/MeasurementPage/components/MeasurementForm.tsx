@@ -184,7 +184,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
       <p className="mb-2">
         If you have any questions, please, contact us by chat or any other available communication option.
       </p>
-      <CustomButton styles={'w-full'} title={'Add to cart'} type={'submit'} disabled={isDisabled}/>
+      <CustomButton styles={'w-full'} title={'Add to cart'} type={'submit'} disabled={isDisabled} />
     </form>
   );
 };
