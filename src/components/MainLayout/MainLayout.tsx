@@ -6,10 +6,8 @@ import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 import CustomizedSnackbars from '../admin/CustomizedSnackbars';
 import FacebookMessenger from '../FacebookMessenger/FacebookMessenger';
-import { useLocation } from "react-router";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const location = useLocation();
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');
   const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -29,17 +27,14 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    const fbIframeWidgets = document.querySelectorAll('.fb_iframe_widget');
-    const fbDialogs = document.querySelectorAll('.fb_dialog');
+    if (document.querySelector('.fb-customerchat')) {
+      const customerChat = document.querySelectorAll('.fb-customerchat');
 
-    fbIframeWidgets.forEach((element) => {
-      element.remove();
-    });
-
-    fbDialogs.forEach((element) => {
-      element.remove();
-    });
-  }, [location.pathname]);
+      customerChat.forEach((element) => {
+        element.remove();
+      });
+    }
+  }, []);
 
   return (
     <div className="overflow-x-hidden flex flex-col min-h-screen justify-between">
