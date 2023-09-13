@@ -44,9 +44,12 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
         </div>
         <div className="w-full basis-[70%]">
           <div className="flex justify-between items-center">
-            <h2 className={`${styles.header2} text-gray text-xl`}>{item.title}</h2>
-            <div className="p-1 flex items-center justify-center cursor-pointer" onClick={handleClick}>
-              <img src={deleteIcon} />
+            <div className="w-[80%]">
+              <h2 className={`${styles.header2} text-gray text-base`}>{item?.title}</h2>
+            </div>
+
+            <div className="p-1 flex items-center justify-center cursor-pointer text-lg" onClick={handleClick}>
+              <img width={15} height={15} src={deleteIcon} />
             </div>
           </div>
           <p className={`${styles.body2} mt-2`}>

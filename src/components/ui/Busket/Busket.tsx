@@ -1,5 +1,6 @@
 import React from 'react';
 import basketImage from '@/assets/cartImages/basketIcon.svg';
+import { useAppSelector } from '@/store/hooks/hooks';
 
 interface Props {
   count: number;

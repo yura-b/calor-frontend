@@ -19,7 +19,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
   );
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
-      dispatch(appendToBasket(product));
+      dispatch(appendToBasket({ ...product, count: 1 }));
       console.log(data);
     },
   });
