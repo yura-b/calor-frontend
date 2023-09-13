@@ -27,15 +27,10 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (document.querySelector('.fb_iframe_widget')) {
-      const fbIframeWidgets = document.querySelectorAll('.fb_iframe_widget');
-      const fbDialogs = document.querySelectorAll('.fb_dialog');
+    if (document.querySelector('.fb-customerchat')) {
+      const customerChat = document.querySelectorAll('.fb-customerchat');
 
-      fbIframeWidgets.forEach((element) => {
-        element.remove();
-      });
-
-      fbDialogs.forEach((element) => {
+      customerChat.forEach((element) => {
         element.remove();
       });
     }

@@ -6,14 +6,15 @@ import CustomInput from '@/components/input/CustomInput';
 import { validationSchemaForPromoCode } from '@/helpers/validation/formValidation.ts';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
-import { Navigate, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
-interface Props {
+import { BasketProduct } from '@/store/reducers/BasketSlice';
+interface IProps {
   title: string;
-  data?: object[];
+  data?: BasketProduct[];
 }
 
-const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
+const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
   const navigate = useNavigate();
   const { basket } = useSelector((state) => state.user);
 

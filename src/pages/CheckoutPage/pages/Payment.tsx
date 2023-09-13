@@ -14,10 +14,10 @@ const Payment = () => {
         <p>{totalPrice}$</p>
 
         <p>Order Delivery</p>
-        <p>{shippingPrice}$</p>
+        <p>{shippingPrice.toFixed(2)}$</p>
 
         <p>Taxes</p>
-        <p>{tax}$</p>
+        <p>{tax.toFixed(2)}$</p>
       </div>
 
       <p className={'font-bold'}>Payment Method</p>
