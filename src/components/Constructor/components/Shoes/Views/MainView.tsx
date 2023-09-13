@@ -35,6 +35,16 @@ const MainView: FC<IProps> = ({ model }) => {
           src={src}
           className={`absolute ${
             index === array.length - 1 ? 'z-[-30]' 
+            : model === 'dayger' && index === 12 ? 'z-[20]'
+            : model === 'dayger' && index === 4 ? 'z-[10]'
+            : model === 'dayger' && index === 3 ? 'z-[20]'
+            : model === 'dayger' && index === 5 ? 'z-[20]'
+            : model === 'sunrise' && index === 4 ? 'z-[30]'
+            : model === 'sunrise' && index === 7 ? 'z-[20]'
+            : model === 'sunrise' && index === 6 ? 'z-[20]'
+            : model === 'yolo' && index === 11 ? 'z-[20]'
+            : model === 'yolo' && index === 10 ? 'z-[10]'
+            : model === 'yolo' && index === 11 ? 'z-[20]'
             : index === array.length - 2 ? 'z-[-20]'
             : 'z-[-10]'
           }`}
