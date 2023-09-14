@@ -25,7 +25,9 @@ const ProductPage = () => {
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
 
-  const isProductExistInBasket = basketProducts.some((item: BasketProduct) => item._id === id || item.accessory === id);
+  const isProductExistInBasket = basketProducts.some(
+    (item: BasketProduct) => item?._id === id || item?.accessory?._id === id || item?.shoes?._id === id
+  );
 
   const {
     data: product,
@@ -141,12 +143,12 @@ const ProductPage = () => {
                     </Button>
                   </>
                 )}
-                {product?.data.category !== 'shoes' && !isProductExistInBasket && (
+                {!isProductExistInBasket && (
                   <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
                     Add To Cart
                   </Button>
                 )}
-                {product?.data.category !== 'shoes' && isProductExistInBasket && (
+                {isProductExistInBasket && (
                   <div className="flex justify-center items-center text-mint">
                     <SealCheck className="mr-2" size={32} weight="fill" />
                     Already in your cart
