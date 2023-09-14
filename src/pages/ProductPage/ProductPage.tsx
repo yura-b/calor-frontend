@@ -134,7 +134,7 @@ const ProductPage = () => {
                 )}
                 {product?.data.category !== 'shoes' && (
                   <>
-                    <span>{product?.data.description}</span>
+                    <div dangerouslySetInnerHTML={{ __html: product?.data.description }} />
                     {!!product?.data.size.length && (
                       <>
                         <p className={`${styles.body2} font-bold py-4`}>Please select your size</p>
@@ -205,7 +205,7 @@ const ProductPage = () => {
                     {index == 0 && (
                       <div>
                         <h1 className={styles.header2}>{product?.data.title}</h1>
-                        <h1>{product?.data.productDetails}</h1>
+                        <div dangerouslySetInnerHTML={{ __html: product?.data.productDetails }} />
                       </div>
                     )}
                     {index == 1 && (
