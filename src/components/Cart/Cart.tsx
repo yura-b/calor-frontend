@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styles from '@styles/Styles.module.scss';
 import EmptyCart from './components/EmptyCart';
 import PurchasedGoods from './components/PurchasedGoods';
