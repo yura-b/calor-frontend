@@ -9,7 +9,7 @@ interface Props {
 
 const ReviewHeader: React.FC<Props> = ({ title, onClose }): React.ReactElement => {
   return (
-    <div className="py-3 flex items-center w-full bg-custom-red lg:bg-mint sticky top-0 justify-end lg:h-[50px]">
+    <div className="py-3 flex items-center w-full bg-custom-red lg:bg-mint sticky top-0 justify-end lg:h-[50px] z-50">
       <h1 className={`${styles.header2} text-white absolute left-1/2 transform -translate-x-1/2 uppercase`}>{title}</h1>
       <div className="flex h-5 items-center justify-center">
         <img src={closeBtnImage} onClick={onClose} className="mr-6" />

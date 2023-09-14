@@ -22,11 +22,11 @@ const Reviews: React.FC = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header1}>Reviews</h1>
-      <div className="flex lg:flex-row overflow-x-auto flex-col gap-2 lg:gap-6 text-gray" {...fadeAnimation}>
+      <div className="grid grid-cols-1 lg:grid-cols-2  wrap overflow-x-auto  gap-2 lg:gap-6 text-gray" {...fadeAnimation}>
         {reviewsToDisplay?.length ? (
           reviewsToDisplay.map((item, i) => (
             <motion.div
-              className="flex flex-col lg:basis-1/2 my-4"
+              className="flex flex-col  my-4 p-2 shadow-lg"
               key={i}
               initial="collapsed"
               animate="expanded"
