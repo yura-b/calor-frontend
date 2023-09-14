@@ -135,7 +135,7 @@ const ProductPage = () => {
                 {product?.data.category !== 'shoes' && (
                   <>
                     <span>{product?.data.description}</span>
-                    {product?.data.size.length && (
+                    {!!product?.data.size.length && (
                       <>
                         <p className={`${styles.body2} font-bold py-4`}>Please select your size</p>
                         <div className="flex gap-6 flex-wrap">
@@ -205,7 +205,7 @@ const ProductPage = () => {
                     {index == 0 && (
                       <div>
                         <h1 className={styles.header2}>{product?.data.title}</h1>
-                        <h1>{product?.data.description}</h1>
+                        <h1>{product?.data.productDetails}</h1>
                       </div>
                     )}
                     {index == 1 && (
