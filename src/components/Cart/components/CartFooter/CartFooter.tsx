@@ -23,17 +23,17 @@ const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
   useEffect(() => {
     const productsTotal = data?.reduce((acc, item) => {
       if (!!item?.shoes) {
-        return acc + item?.shoes?.price;
+        return acc + item?.shoes?.price * item?.shoes?.count;
       } else if (!!item?.accessory) {
-        return acc + item?.accessory?.price;
+        return acc + item?.accessory?.price * item?.accessory?.count;
       } else if (!!item?.price) {
-        return acc + item?.price;
+        return acc + item?.price * item?.count;
       } else {
         return acc + 0;
       }
     }, 0);
 
-    setTotal(productsTotal);
+    setTotal(productsTotal?.toFixed(2));
   }, [data]);
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(false);
   const [promoCodeApplied, setPromoCodeApplied] = useState(false);
