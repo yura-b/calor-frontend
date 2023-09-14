@@ -6,6 +6,7 @@ import { deleteFromBasket } from '@/api/basket';
 import { useDispatch } from 'react-redux';
 import { BasketProduct, decreaseQuantity, increaseQuantity, removeFromBasket } from '@/store/reducers/BasketSlice';
 import { useAppSelector } from '@/store/hooks/hooks';
+import { removeFromCartNonRegisterUser, decreaseQuantityNonRegisterUser, increaseQuantityNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
 
 const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement => {
   const queryClient = useQueryClient();
@@ -13,10 +14,18 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
   const { userId } = useAppSelector((state) => state.user);
 
   const incrementCount = () => {
-    dispatch(increaseQuantity({ id: item._id }));
+    if (userId) {
+      dispatch(increaseQuantity({ id: item._id }));
+    } else {
+      dispatch(increaseQuantityNonRegisterUser({ id: item._id }));
+    }
   };
   const decrementCount = () => {
-    dispatch(decreaseQuantity({ id: item._id }));
+    if (userId) {
+      dispatch(decreaseQuantity({ id: item._id }));
+    } else {
+      dispatch(decreaseQuantityNonRegisterUser({ id: item._id }));
+    }
   };
   const mutation = useMutation(deleteFromBasket, {
     onSuccess: (data) => {
@@ -29,7 +38,11 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
       recordId: item._id,
       userId: userId,
     };
-    mutation.mutate(requestData);
+    if (userId) {
+      mutation.mutate(requestData);
+    } else {
+      dispatch(removeFromCartNonRegisterUser(item._id));
+    }
   };
 
   return (

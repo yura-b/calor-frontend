@@ -26,6 +26,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.Re
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   const signInHandler = () => {
     dispatch(cleanUserData());
@@ -85,7 +86,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.Re
                 )}
               </div>
               <div className="flex">
-                <Busket count={basketProducts.length} onClick={openCart} />
+                <Busket count={isRegisteredUser ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
                 <img
                   src={closeBtn}
                   alt="Menu"

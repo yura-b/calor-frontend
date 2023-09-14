@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserMeasurement } from '@/store/reducers/UserMeasurement';
 import { useMutation } from 'react-query';
 import { addToBasket } from '@/api/basket';
+import { addToCartNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
 import { useParams, useNavigate } from 'react-router-dom';
 interface IProps {
   selectedShoeSize: number;
@@ -45,15 +46,33 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     onSubmit: (values) => {
       setIsDisabled(true);
       dispatch(setUserMeasurement({ selectedShoeSize, ...values }));
-      const requestData = {
-        product: id,
-        count: 1,
-        photo: constructorImage,
-        measurement: { selectedShoeSize, ...values },
-        details: [selectedDetails],
-      };
 
-      mutation.mutate({ userId, requestData });
+      let requestData = {};
+      if (userId) {
+        requestData = {
+          product: id,
+          count: 1,
+          photo: constructorImage,
+          measurement: { selectedShoeSize, ...values },
+          details: [selectedDetails],
+        };
+      } else {
+        requestData = {
+          product: id,
+          count: 1,
+          photos: [constructorImage],
+          measurement: { selectedShoeSize, ...values },
+          details: [selectedDetails],
+        };
+      }
+
+      if (userId) {
+        mutation.mutate({ userId, requestData });
+      } else {
+        dispatch(addToCartNonRegisterUser(requestData));
+        setIsDisabled(false);
+        navigate('/');
+      }
     },
   });
 

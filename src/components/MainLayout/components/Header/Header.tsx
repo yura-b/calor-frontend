@@ -40,6 +40,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   };
 
   const { roles, access_token, firstName, userId, secondName } = useAppSelector((state) => state.user);
+  const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   useEffect(() => {
     dispatch(fetchUserProductsInBasket({ access_token, userId }));
@@ -126,7 +127,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
               </div> */}
 
               <div className="hidden xl:block">
-                <Busket count={basketProducts.length} onClick={openCart} />
+                <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
               </div>
 
               <div>
@@ -175,7 +176,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
             </div>
             <div className="flex xl:hidden items-baseline">
               <div className="xl:hidden mt-1">
-                <Busket count={basketProducts.length} onClick={openCart} />
+                <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
               </div>
 
               <img
