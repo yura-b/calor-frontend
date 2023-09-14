@@ -28,7 +28,8 @@ const Purchase: React.FC = (): React.ReactElement => {
           Get 5% Off Your First Purchase
         </h2>
         <p className={`${styles.body1} p-4 pl-0   lg:mt-0 basis-[70%]`}>
-          Join our mailing list to receive 5% off your first purchase and be the first to get content updates.
+          Join our mailing list to receive a 5% discount on your first purchase and be the first to receive content
+          updates.
         </p>
       </div>
       <form
