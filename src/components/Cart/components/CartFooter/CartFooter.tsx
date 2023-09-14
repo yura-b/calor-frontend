@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@components/ui/Button';
 import styles from '@styles/Styles.module.scss';
 import { useFormik } from 'formik';
@@ -7,8 +7,9 @@ import { validationSchemaForPromoCode } from '@/helpers/validation/formValidatio
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
+
 import { BasketProduct } from '@/store/reducers/BasketSlice';
+
 interface IProps {
   title: string;
   data?: BasketProduct[];
@@ -16,8 +17,24 @@ interface IProps {
 
 const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
   const navigate = useNavigate();
-  const { basket } = useSelector((state) => state.user);
 
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const productsTotal = data?.reduce((acc, item) => {
+      if (!!item?.shoes) {
+        return acc + item?.shoes?.price;
+      } else if (!!item?.accessory) {
+        return acc + item?.accessory?.price;
+      } else if (!!item?.price) {
+        return acc + item?.price;
+      } else {
+        return acc + 0;
+      }
+    }, 0);
+
+    setTotal(productsTotal);
+  }, [data]);
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(false);
   const [promoCodeApplied, setPromoCodeApplied] = useState(false);
 
@@ -58,7 +75,7 @@ const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
         </div>
         <div className={`${styles.body2} flex justify-between mt-4 items-center font-bold text-mint`}>
           <p>Subtotal</p>
-          <p>$ XXX</p>
+          <p>$ {total}</p>
         </div>
         {!promoCodeApplied && !showPromoCodeForm && (
           <Button color="transparentMint" onClick={addPromoCode} className="mt-6 max-w-[100%] block m-auto">
