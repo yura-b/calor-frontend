@@ -30,6 +30,7 @@ const CreateItem = () => {
   const [amount, setAmount] = useState<string>('');
   const [productName, setProductName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const [productDetails, setProductDetails] = useState<string>('');
 
   useEffect(() => {
     dispatch(loading());
@@ -114,6 +115,7 @@ const CreateItem = () => {
               size: sizes.map((size) => size.size),
               name: productName,
               description: description,
+              productDetails: productDetails
             },
             access_token
           )
@@ -189,6 +191,12 @@ const CreateItem = () => {
             <CustomTextField
               defaultValue={description}
               setValue={textAreaHandler(setDescription)}
+              disabledField={false}
+            />
+            <p>Product Details</p>
+            <CustomTextField
+              defaultValue={productDetails}
+              setValue={textAreaHandler(setProductDetails)}
               disabledField={false}
             />
 
