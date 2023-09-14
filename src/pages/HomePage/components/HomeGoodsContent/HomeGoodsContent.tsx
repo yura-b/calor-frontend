@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 import { getProducts } from '@/api/products';
 import ShoesList from '@/pages/DesignShoePage/ShoesList';
 import Loader from '@/components/ui/Loader';
-import constants from "@/constants/constants";
+import constants from '@/constants/constants';
 
 const headerBlock = (title: string, linkPath: string) => (
   <div className="flex justify-between items-center mt-4">

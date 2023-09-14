@@ -95,8 +95,6 @@ const Reviews: React.FC = (): React.ReactElement => {
     };
   }, [isReviewOpen]);
 
-  console.log(userProducts, 'userProducts');
-
   return (
     <AccountLayout>
       <MainFrame title={'Reviews'} className="overflow-hidden">

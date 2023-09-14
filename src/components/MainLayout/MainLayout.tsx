@@ -32,7 +32,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     customerChat.forEach((element) => {
       element.remove();
     });
-
   }, []);
 
   return (
