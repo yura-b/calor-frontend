@@ -120,7 +120,7 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
                     Share more information with others about the product, including its quality and comfort of use.
                   </span>
                   <TextareaAutosize
-                    className="w-full"
+                    className="w-full h-[60px] pb-8 pt-2 px-2 border-2 border-[#CBD2E0] resize-none "
                     minRows={3}
                     id={'experience'}
                     name={'experience'}

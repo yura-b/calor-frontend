@@ -53,16 +53,16 @@ const Reviews: React.FC = (): React.ReactElement => {
     let color;
     switch (status) {
       case 'PUBLISHED':
-        color = 'green';
+        color = 'mint';
         break;
       case 'PENDING':
-        color = 'orange';
+        color = 'mintLight';
         break;
       case 'CANCELED':
-        color = 'red';
+        color = 'custom-red';
         break;
       default:
-        color = 'black';
+        color = 'gray';
     }
     return color;
   };
@@ -84,24 +84,40 @@ const Reviews: React.FC = (): React.ReactElement => {
     return text;
   };
 
+  useEffect(() => {
+    if (isReviewOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isReviewOpen]);
+
+  console.log(userProducts, 'userProducts');
+
   return (
     <AccountLayout>
       <MainFrame title={'Reviews'} className="overflow-hidden">
-        <h2 className={`${styles.header2} text-gray mt-4 ml-4`}>Your Review</h2>
-        <div className="p-4 w-full grid grid-cols-2 gap-2">
+        <h2 className={`${styles.header2} text-gray mt-4 ml-4`}>Your Reviews</h2>
+        <div className="p-4 w-auto grid grid-cols-1 xl:grid-cols-2 gap-2 h-fit">
           {Boolean(userReviews) &&
             userReviews?.map((item: PostReviewDto, i) => (
-              <div className="p-4 " key={i}>
+              <div
+                className={`p-4 shadow-lg border border-${statusTextColor(item.status)} basis-[50%] min-w-[300px] grow`}
+                key={i}
+              >
                 <div>{DateFormatter(item?.date)}</div>
                 <div className="w-full flex justify-center mt-2">
                   <img src={item.photo} className=" w-full h-auto sm:w-[170px] md:w-[190px] lg:w-[190px]  " />
                 </div>
-                <h2 className="mt-2">{item.productName}</h2>
+                <h2 className={`${styles.body1} mt-2 font-bold`}>{item.productName}</h2>
                 <Rating name="read-only" value={item.rating} readOnly />
                 <h2 className="text-slate-500">{item.category}</h2>
                 <h2>From ${item.price}</h2>
-                <h2 className={`${styles.body1} font-bold text-gray mt-3`}>Your Review</h2>
-                <div className={`text-${statusTextColor(item.status)}-500 flex items-center mt-1`}>
+                <h2 className={`${styles.body1} text-${statusTextColor(item.status)} font-bold mt-3`}>Your Review</h2>
+                <div className={`text-${statusTextColor(item.status)} flex items-center mt-1`}>
                   <Square size={15} weight="fill" />
                   <div className="ml-2">{statusText(item.status)}</div>
                 </div>
@@ -130,21 +146,20 @@ const Reviews: React.FC = (): React.ReactElement => {
         </div>
 
         <h2 className={`${styles.header2} text-gray mt-4 ml-4`}>Write review</h2>
-        <div className="p-4 w-full grid grid-cols-2 gap-2">
+        <div className="p-4 w-full grid grid-cols-1 xl:grid-cols-2 gap-2">
           {Boolean(userProducts) &&
             userProducts?.map((item: ProductsDto, i) => (
-              <div className="p-4 " key={i}>
-                <div>18:00 29.08.23</div>
+              <div className="p-4 bg-mintExtraLight shadow-lg flex flex-col justify-center items-center" key={i}>
                 <div className="w-full flex justify-center mt-2">
-                  <img src={shoeModel1} className=" w-full h-auto sm:w-[170px] md:w-[190px] lg:w-[190px]  " />
+                  <img src={item.photos[0]} className=" w-full h-auto sm:w-[170px] md:w-[190px] lg:w-[190px]  " />
                 </div>
-                <h2 className="mt-2">{item.title}</h2>
+                <h2 className={`${styles.body1} mt-2 font-bold m-auto`}>{item.title}</h2>
                 <Rating name="read-only" value={item.rating} readOnly />
-                <h2 className="text-slate-500">Shoes</h2>
+                <h2 className="text-slate-500">{item.subcategory}</h2>
                 <h2>From ${item.price}</h2>
                 <Button
                   color="gray"
-                  className="w-full my-4 lg:block"
+                  className="w-full my-4 lg:block m-auto"
                   onClick={() => {
                     setProductId(item?._id);
                     setIsReviewOpen(!isReviewOpen);

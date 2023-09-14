@@ -136,9 +136,9 @@ const ProductPage = () => {
                     >
                       Design Your Shoe
                     </Button>
-                    <Button color="transparentGray" to={paths.ready_made_products}>
+                    {/* <Button color="transparentGray" to={paths.ready_made_products}>
                       Choose From Existing
-                    </Button>
+                    </Button> */}
                   </>
                 )}
                 {product?.data.category !== 'shoes' && !isProductExistInBasket && (
