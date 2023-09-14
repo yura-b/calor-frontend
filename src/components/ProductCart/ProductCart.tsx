@@ -35,9 +35,9 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
     photo: product?.photos[0],
     measurement: {},
     details: [{}],
-    price: product?.price
+    price: product?.price,
   };
-  
+
   const handleAddToCart = () => {
     if (userId) {
       if (type === 'shoes') {
@@ -52,7 +52,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         dispatch(addToCartNonRegisterUser({ ...product, count: 1 }));
       }
     }
-  }
+  };
 
   return (
     <div className="w-full flex-col  my-5 flex  justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px]">

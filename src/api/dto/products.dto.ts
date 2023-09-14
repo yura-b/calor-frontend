@@ -9,5 +9,5 @@ export interface ProductsDto {
   _id?: string;
   rating?: number;
   title?: string;
-  productDetails: string
+  productDetails: string;
 }

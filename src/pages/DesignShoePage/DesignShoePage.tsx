@@ -8,7 +8,7 @@ import { getProducts } from '@/api/products';
 import Loader from '@/components/ui/Loader';
 import styles from '@styles/Styles.module.scss';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
-import constants from "@/constants/constants";
+import constants from '@/constants/constants';
 
 const DesignShoePage: FC = (): React.ReactElement => {
   const {

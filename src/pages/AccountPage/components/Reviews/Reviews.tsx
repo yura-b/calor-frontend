@@ -95,8 +95,6 @@ const Reviews: React.FC = (): React.ReactElement => {
     };
   }, [isReviewOpen]);
 
-  console.log(userProducts, 'userProducts');
-
   return (
     <AccountLayout>
       <MainFrame title={'Reviews'} className="overflow-hidden">
@@ -104,10 +102,7 @@ const Reviews: React.FC = (): React.ReactElement => {
         <div className="p-4 w-auto grid grid-cols-1 xl:grid-cols-2 gap-2 h-fit">
           {Boolean(userReviews) &&
             userReviews?.map((item: PostReviewDto, i) => (
-              <div
-                className={'p-4 shadow-lg  basis-[50%] min-w-[300px] grow'}
-                key={i}
-              >
+              <div className={'p-4 shadow-lg  basis-[50%] min-w-[300px] grow'} key={i}>
                 <div>{DateFormatter(item?.date)}</div>
                 <div className="w-full flex justify-center mt-2">
                   <img src={item.photo} className=" w-full h-auto sm:w-[170px] md:w-[190px] lg:w-[190px]  " />

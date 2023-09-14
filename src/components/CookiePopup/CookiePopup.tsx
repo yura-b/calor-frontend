@@ -4,25 +4,23 @@ import { motion } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@/styles/Animations';
 
 const CookiePopup = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasConsented, setHasConsented] = useState(localStorage.getItem('cookieConsent') === 'true');
+  const [isVisible, setIsVisible] = useState(localStorage.getItem('cookieConsent') !== 'true');
 
   useEffect(() => {
-    if (!hasConsented) {
-      setIsVisible(true);
+    if (isVisible) {
+      // Display the popup only when cookieConsent is not 'true' in localStorage
+      setIsVisible(!localStorage.getItem('cookieConsent'));
     }
-  }, [hasConsented]);
+  }, [isVisible]);
 
   const handleAcceptCookies = () => {
-    setHasConsented(true);
-    setIsVisible(false);
     localStorage.setItem('cookieConsent', 'true');
+    setIsVisible(false);
   };
 
   const handleDeclineCookies = () => {
-    setHasConsented(false);
-    setIsVisible(false);
     localStorage.setItem('cookieConsent', 'false');
+    setIsVisible(false);
   };
 
   return isVisible ? (
