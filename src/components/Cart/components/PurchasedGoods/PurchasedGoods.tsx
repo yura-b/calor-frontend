@@ -6,6 +6,7 @@ import { deleteFromBasket } from '@/api/basket';
 import { useDispatch } from 'react-redux';
 import { BasketProduct, decreaseQuantity, increaseQuantity, removeFromBasket } from '@/store/reducers/BasketSlice';
 import { useAppSelector } from '@/store/hooks/hooks';
+import { removeFromCartNonRegisterUser, decreaseQuantityNonRegisterUser, increaseQuantityNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
 
 const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement => {
   const queryClient = useQueryClient();
@@ -13,10 +14,18 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
   const { userId } = useAppSelector((state) => state.user);
 
   const incrementCount = () => {
-    dispatch(increaseQuantity({ id: item._id }));
+    if (userId) {
+      dispatch(increaseQuantity({ id: item._id }));
+    } else {
+      dispatch(increaseQuantityNonRegisterUser({ id: item._id }));
+    }
   };
   const decrementCount = () => {
-    dispatch(decreaseQuantity({ id: item._id }));
+    if (userId) {
+      dispatch(decreaseQuantity({ id: item._id }));
+    } else {
+      dispatch(decreaseQuantityNonRegisterUser({ id: item._id }));
+    }
   };
   const mutation = useMutation(deleteFromBasket, {
     onSuccess: (data) => {
@@ -29,7 +38,11 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
       recordId: item._id,
       userId: userId,
     };
-    mutation.mutate(requestData);
+    if (userId) {
+      mutation.mutate(requestData);
+    } else {
+      dispatch(removeFromCartNonRegisterUser(item._id));
+    }
   };
 
   return (
@@ -45,19 +58,26 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
         <div className="w-full basis-[70%]">
           <div className="flex justify-between items-center">
             <div className="w-[80%]">
-              <h2 className={`${styles.header2} text-gray text-base`}>{item?.title}</h2>
+              {Boolean(item?.shoes) && <h2 className={`${styles.header2} text-gray text-base`}>{item?.shoes.title}</h2>}
+              {Boolean(item?.accessory) && (
+                <h2 className={`${styles.header2} text-gray text-base`}>{item?.accessory.title}</h2>
+              )}
+              {Boolean(item?.title) && <h2 className={`${styles.header2} text-gray text-base`}>{item?.title}</h2>}
             </div>
 
             <div className="p-1 flex items-center justify-center cursor-pointer text-lg" onClick={handleClick}>
               <img width={15} height={15} src={deleteIcon} />
             </div>
           </div>
-          <p className={`${styles.body2} mt-2`}>
-            {' '}
-            Size: <span>{item.size}</span>
-          </p>
+          {Boolean(item?.shoes) && (
+            <p className={`${styles.body2} mt-2`}>
+              Size: <span>{item.size}</span>
+            </p>
+          )}
           <div className="flex justify-between items-baseline">
-            <p className={`${styles.body2} font-bold`}>$ {item.price}</p>
+            {Boolean(item?.shoes) && <p className={`${styles.body2} font-bold`}>$ {item.shoes.price}</p>}
+            {Boolean(item?.accessory) && <p className={`${styles.body2} font-bold`}>$ {item.accessory.price}</p>}
+            {Boolean(item?.price) && <p className={`${styles.body2} font-bold`}>$ {item.price}</p>}
             <div className="flex justify-between items-center w-12 mt-2 mb-2">
               <div className="cursor-pointer" onClick={decrementCount}>
                 -

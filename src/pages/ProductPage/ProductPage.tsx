@@ -17,6 +17,7 @@ import { addToBasket } from '@/api/basket';
 import { SealCheck } from '@phosphor-icons/react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
+import { addToCartNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -24,8 +25,12 @@ const ProductPage = () => {
   const dispatch = useAppDispatch();
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
-  const isProductExistInBasket = basketProducts.some((item: BasketProduct) => item._id === id || item.accessory === id);
+  const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some((item: BasketProduct) => item.product === id || item._id === id || item.accessory === id);
+  const isProductExistInBasket = basketProducts.some(
+    (item: BasketProduct) => item?._id === id || item?.accessory?._id === id || item?.shoes?._id === id
+  );
 
   const {
     data: product,
@@ -42,14 +47,30 @@ const ProductPage = () => {
       console.log(data);
     },
   });
+  let requestData = {};
 
-  const requestData = {
-    product: product?.data._id,
-    count: 1,
-    photo: product?.data.photos[0],
-    measurement: {},
-    details: [{}],
-  };
+  if (userId) {
+    requestData = {
+      product: product?.data._id,
+      count: 1,
+      photo: product?.data.photos[0],
+      measurement: {},
+      details: [{}],
+    };
+  } else {
+    requestData = {
+      product: product?.data._id,
+      count: 1,
+      photos: [product?.data.photos[0]],
+      measurement: {},
+      details: [{}],
+    };
+  }
+
+  const handleAddToCartNonRegisterUser = () => {
+    dispatch(addToCartNonRegisterUser(requestData));
+  }
+
   const initialSectionsState = [
     {
       title: 'Product details',
@@ -141,17 +162,35 @@ const ProductPage = () => {
                     </Button> */}
                   </>
                 )}
-                {product?.data.category !== 'shoes' && !isProductExistInBasket && (
-                  <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
-                    Add To Cart
-                  </Button>
-                )}
-                {product?.data.category !== 'shoes' && isProductExistInBasket && (
-                  <div className="flex justify-center items-center text-mint">
-                    <SealCheck className="mr-2" size={32} weight="fill" />
-                    Already in your cart
-                  </div>
-                )}
+                {userId ? (
+                  <>
+                    {product?.data.category !== 'shoes' && !isProductExistInBasket && (
+                      <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
+                        Add To Cart
+                      </Button>
+                    )}
+                    {product?.data.category !== 'shoes' && isProductExistInBasket && (
+                      <div className="flex justify-center items-center text-mint">
+                        <SealCheck className="mr-2" size={32} weight="fill" />
+                        Already in your cart
+                      </div>
+                    )}
+                  </>
+                ) : 
+                <>
+                  {product?.data.category !== 'shoes' && !isProductExistInBasketNonRegisterUser && (
+                    <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
+                      Add To Cart
+                    </Button>
+                  )}
+                  {product?.data.category !== 'shoes' && isProductExistInBasketNonRegisterUser && (
+                    <div className="flex justify-center items-center text-mint">
+                      <SealCheck className="mr-2" size={32} weight="fill" />
+                      Already in your cart
+                    </div>
+                  )}
+                </>
+                }
               </div>
               <div className="py-2">
                 {sections.map((section, index) => (

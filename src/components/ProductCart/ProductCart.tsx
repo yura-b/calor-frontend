@@ -8,19 +8,24 @@ import { useMutation } from 'react-query';
 
 import { SealCheck } from '@phosphor-icons/react';
 import { appendToBasket } from '@/store/reducers/BasketSlice';
+import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 
 const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const { userId, access_token } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
   const isProductExistInBasket = basketProducts.some(
+    (item: any) =>
+      item._id === product?._id || item?.accessory?._id === product?._id || item?.shoes?._id === product?._id
+  );
+  const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
     (item: any) => item._id === product?._id || item.accessory === product?._id
   );
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
       dispatch(appendToBasket({ ...product, count: 1 }));
-      console.log(data);
     },
   });
 
@@ -30,7 +35,25 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
     photo: product?.photos[0],
     measurement: {},
     details: [{}],
+    price: product?.price
   };
+  
+  const handleAddToCart = () => {
+    if (userId) {
+      if (type === 'shoes') {
+        return null;
+      } else {
+        mutation.mutate({ userId, requestData });
+      }
+    } else {
+      if (type === 'shoes') {
+        return null;
+      } else {
+        dispatch(addToCartNonRegisterUser({ ...product, count: 1 }));
+      }
+    }
+  }
+
   return (
     <div className="w-full flex-col  my-5 flex  justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px]">
       {/* Product img */}
@@ -54,22 +77,22 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         <span>From</span>
         <span className="font-bold">{product.price} $</span>
       </div>
-      {isProductExistInBasket && (
+      {(userId && isProductExistInBasket) || (!userId && isProductExistInBasketNonRegisterUser) ? (
         <div className="flex justify-center items-center text-mint mt-2">
           <SealCheck className="mr-2" size={32} weight="fill" />
           Already in your cart
         </div>
-      )}
-      {!isProductExistInBasket && (
+      ) : null}
+      {(!userId && !isProductExistInBasketNonRegisterUser) || (userId && !isProductExistInBasket) ? (
         <Button
           className="max-w-full mt-2"
           color="transparentMint"
           to={type === 'shoes' ? `model/${product.title.toLowerCase()}/${product._id}` : null}
-          onClick={() => (type === 'shoes' ? null : mutation.mutate({ userId, requestData }))}
+          onClick={handleAddToCart}
         >
           {type === 'shoes' ? 'Design' : 'Add to cart'}
         </Button>
-      )}
+      ) : null}
     </div>
   );
 };

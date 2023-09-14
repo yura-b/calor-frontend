@@ -7,10 +7,43 @@ interface IMeasurement {
   insoleLength: number;
   insoleWidth: number;
   leftFootLength: number;
-  leftFootWidth: number;
-  rightFootLength: number;
-  rightFootWidth: number;
-}
+  leftFootWidth:number;
+  rightFootLength:number;
+  rightFootWidth:number;
+  }
+  interface IShoes {
+    category:string;
+    description:string;
+    details:string[];
+    insole:string;
+    isAvailable:boolean;
+    liningMaterial:string;
+    photos:string[];
+    price:number;
+    rating:number;
+    season:string;
+    sizes?:number[];
+    sole:string;
+    stripeID:string;
+    subcategory:string;
+    title:string;
+    upperMaterial:string;
+    _id:string;
+  }
+interface IAccessory {
+  category:string;
+  description:string;
+  isAvailable:boolean;
+  photos:string[];
+  price:number;
+  rating:number;
+  size?:[];
+  stripeID:string;
+  subcategory:string;
+  title:string;
+  _id:string;
+  }
+
 
 export interface BasketProduct {
   _id: string;
@@ -20,8 +53,8 @@ export interface BasketProduct {
   details: [];
   measurement: IMeasurement;
   photo: string;
-  shoes: string;
-  accessory?: string;
+  shoes?: IShoes;
+  accessory?:IAccessory
 }
 
 interface CartState {
@@ -42,8 +75,9 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     appendToBasket(state, action: PayloadAction<BasketProduct>) {
-      const item = { ...action.payload, photo: action.payload.photos[0] };
-      state.items.push(item);
+   
+      const item = {...action.payload, photo: action.payload.photos[0]};
+      state.items.push(item)
     },
     removeFromBasket(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item._id !== action.payload);

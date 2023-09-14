@@ -12,9 +12,7 @@ import selectedShoePartsReducer from '@/store/reducers/constructor/SelectedShoeP
 import shoesConstructorReducer from '@/store/reducers/constructor/ShoesConstructorReducer';
 import userMeasurement from './reducers/UserMeasurement';
 import constructorImage from './reducers/constructor/ConstructorImage';
-
-const persistedCartState = localStorage.getItem('cartState');
-const cartState = persistedCartState !== null ? JSON.parse(persistedCartState) : {};
+import basketForNonRegisterUser from './reducers/BasketForNonRegisterUser';
 
 export const store = configureStore({
   reducer: {
@@ -31,19 +29,12 @@ export const store = configureStore({
     shoesConstructor: shoesConstructorReducer,
     userMeasurement: userMeasurement,
     constructorImage: constructorImage,
-  },
-  preloadedState: {
-    cart: cartState,
+    basketForNonRegisterUser: basketForNonRegisterUser,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-});
-
-store.subscribe(() => {
-  const { cart } = store.getState();
-  localStorage.setItem('cartState', JSON.stringify(cart));
 });
 
 export type RootState = ReturnType<typeof store.getState>;
