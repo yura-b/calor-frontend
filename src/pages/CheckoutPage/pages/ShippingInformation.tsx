@@ -31,9 +31,7 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
   const [stateValue, setStateValue] = useState('Texas');
 
   const { shippingInfo } = useAppSelector((state) => state.user);
-  if (typeof shippingInfo === 'string') {
-    console.log();
-  }
+
   const initialValues = {
     city: '',
     streetAddress: '',
@@ -61,6 +59,7 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
     validationSchema: validationSchemaForShippingInfo,
     initialValues: initialValues,
     onSubmit: (values) => {
+      console.log('shipping');
       setData({
         ...values,
         country,
