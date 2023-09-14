@@ -105,7 +105,7 @@ const Reviews: React.FC = (): React.ReactElement => {
           {Boolean(userReviews) &&
             userReviews?.map((item: PostReviewDto, i) => (
               <div
-                className={`p-4 shadow-lg border border-${statusTextColor(item.status)} basis-[50%] min-w-[300px] grow`}
+                className={'p-4 shadow-lg  basis-[50%] min-w-[300px] grow'}
                 key={i}
               >
                 <div>{DateFormatter(item?.date)}</div>
