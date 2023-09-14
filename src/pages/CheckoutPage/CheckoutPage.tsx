@@ -12,11 +12,25 @@ import { createOrder } from '@/api/orders.ts';
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
-  const { userId } = useAppSelector((state) => state.user);
+
+  const { userId, access_token } = useAppSelector((state) => state.user);
   const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { items: basketProductsForNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
+
+  const purchasesData = Boolean(access_token)
+    ? basketProducts?.map((item) => ({
+        count: item.count,
+        product: item?.shoes?._id || item?.accessory?._id,
+        details: item?.category || item?.details[0],
+      }))
+    : basketProductsForNonRegisterUser?.map((item) => ({
+        count: item?.count,
+        product: item?._id || item?.product,
+        details: item?.category || item?.details[0],
+      }));
 
   useEffect(() => {
     if (!data) return;
@@ -31,11 +45,7 @@ const CheckoutPage = () => {
         user_id: userId,
         save: data.save,
       },
-      purchases: basketProducts.map((item) => ({
-        count: item.count,
-        product: item.shoes || item.accessory,
-        details: item.details[0],
-      })),
+      purchases: purchasesData,
     })
       .then((res) => {
         dispatch(saveOrderIds(res.data));

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styles from '@styles/Styles.module.scss';
 import EmptyCart from './components/EmptyCart';
 import PurchasedGoods from './components/PurchasedGoods';
@@ -19,7 +18,11 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
 
   return (
     <div className="font-poppins  h-full flex flex-col">
-      <CartHeader title={title} onClose={onClose} cartCount={userId ? basketProducts.length : basketNonRegisterUser.length} />
+      <CartHeader
+        title={title}
+        onClose={onClose}
+        cartCount={userId ? basketProducts.length : basketNonRegisterUser.length}
+      />
       <div className="flex-1 overflow-y-auto md:my-0">
         <div className="flex flex-col  justify-center mx-6 my-4 gap-4 text-gray lg:max-h-[500px] ">
           {!basketProducts.length && !basketNonRegisterUser.length ? <EmptyCart title="No items in your cart" /> : null}
@@ -43,7 +46,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                 }
               </div>
             </>
-          ) : null }
+          ) : null}
           {!userId && basketNonRegisterUser.length ? (
             <>
               <p
@@ -64,7 +67,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                 }
               </div>
             </>
-          ) : null }
+          ) : null}
         </div>
       </div>
     </div>
