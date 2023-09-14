@@ -59,7 +59,6 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
     validationSchema: validationSchemaForShippingInfo,
     initialValues: initialValues,
     onSubmit: (values) => {
-      console.log('shipping');
       setData({
         ...values,
         country,

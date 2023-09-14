@@ -48,7 +48,6 @@ const CheckoutPage = () => {
       purchases: purchasesData,
     })
       .then((res) => {
-        console.log(res.data, 'data');
         dispatch(saveOrderIds(res.data));
         dispatch(setCheckoutStep(CheckoutSteps.THIRD));
       })
