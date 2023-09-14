@@ -22,7 +22,10 @@ const Reviews: React.FC = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header1}>Reviews</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2  wrap overflow-x-auto  gap-2 lg:gap-6 text-gray" {...fadeAnimation}>
+      <div
+        className="grid grid-cols-1 lg:grid-cols-2  wrap overflow-x-auto  gap-2 lg:gap-6 text-gray"
+        {...fadeAnimation}
+      >
         {reviewsToDisplay?.length ? (
           reviewsToDisplay.map((item, i) => (
             <motion.div

@@ -6,7 +6,11 @@ import { deleteFromBasket } from '@/api/basket';
 import { useDispatch } from 'react-redux';
 import { BasketProduct, decreaseQuantity, increaseQuantity, removeFromBasket } from '@/store/reducers/BasketSlice';
 import { useAppSelector } from '@/store/hooks/hooks';
-import { removeFromCartNonRegisterUser, decreaseQuantityNonRegisterUser, increaseQuantityNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
+import {
+  removeFromCartNonRegisterUser,
+  decreaseQuantityNonRegisterUser,
+  increaseQuantityNonRegisterUser,
+} from '@/store/reducers/BasketForNonRegisterUser';
 
 const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement => {
   const queryClient = useQueryClient();

@@ -115,7 +115,7 @@ const CreateItem = () => {
               size: sizes.map((size) => size.size),
               name: productName,
               description: description,
-              productDetails: productDetails
+              productDetails: productDetails,
             },
             access_token
           )

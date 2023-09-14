@@ -86,7 +86,10 @@ const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.Re
                 )}
               </div>
               <div className="flex">
-                <Busket count={isRegisteredUser ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
+                <Busket
+                  count={isRegisteredUser ? basketProducts.length : basketNonRegisterUser.length}
+                  onClick={openCart}
+                />
                 <img
                   src={closeBtn}
                   alt="Menu"

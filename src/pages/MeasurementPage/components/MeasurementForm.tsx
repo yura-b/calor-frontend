@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserMeasurement } from '@/store/reducers/UserMeasurement';
 import { useMutation } from 'react-query';
 import { addToBasket } from '@/api/basket';
-import { addToCartNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
+import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { useParams, useNavigate } from 'react-router-dom';
 interface IProps {
   selectedShoeSize: number;
