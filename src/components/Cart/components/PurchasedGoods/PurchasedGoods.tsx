@@ -58,19 +58,26 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
         <div className="w-full basis-[70%]">
           <div className="flex justify-between items-center">
             <div className="w-[80%]">
-              <h2 className={`${styles.header2} text-gray text-base`}>{item?.title}</h2>
+              {Boolean(item?.shoes) && <h2 className={`${styles.header2} text-gray text-base`}>{item?.shoes.title}</h2>}
+              {Boolean(item?.accessory) && (
+                <h2 className={`${styles.header2} text-gray text-base`}>{item?.accessory.title}</h2>
+              )}
+              {Boolean(item?.title) && <h2 className={`${styles.header2} text-gray text-base`}>{item?.title}</h2>}
             </div>
 
             <div className="p-1 flex items-center justify-center cursor-pointer text-lg" onClick={handleClick}>
               <img width={15} height={15} src={deleteIcon} />
             </div>
           </div>
-          <p className={`${styles.body2} mt-2`}>
-            {' '}
-            Size: <span>{item.size}</span>
-          </p>
+          {Boolean(item?.shoes) && (
+            <p className={`${styles.body2} mt-2`}>
+              Size: <span>{item.size}</span>
+            </p>
+          )}
           <div className="flex justify-between items-baseline">
-            <p className={`${styles.body2} font-bold`}>$ {item.price}</p>
+            {Boolean(item?.shoes) && <p className={`${styles.body2} font-bold`}>$ {item.shoes.price}</p>}
+            {Boolean(item?.accessory) && <p className={`${styles.body2} font-bold`}>$ {item.accessory.price}</p>}
+            {Boolean(item?.price) && <p className={`${styles.body2} font-bold`}>$ {item.price}</p>}
             <div className="flex justify-between items-center w-12 mt-2 mb-2">
               <div className="cursor-pointer" onClick={decrementCount}>
                 -

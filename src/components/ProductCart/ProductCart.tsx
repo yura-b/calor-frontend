@@ -17,7 +17,8 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
   const isProductExistInBasket = basketProducts.some(
-    (item: any) => item._id === product?._id || item.accessory === product?._id
+    (item: any) =>
+      item._id === product?._id || item?.accessory?._id === product?._id || item?.shoes?._id === product?._id
   );
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
     (item: any) => item._id === product?._id || item.accessory === product?._id

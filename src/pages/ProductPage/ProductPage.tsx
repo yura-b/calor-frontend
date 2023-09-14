@@ -27,10 +27,11 @@ const ProductPage = () => {
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
-  const isProductExistInBasket = basketProducts.some((item: BasketProduct) => item._id === id || item.accessory === id);
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some((item: BasketProduct) => item.product === id || item._id === id || item.accessory === id);
-  console.log(basketProductsNonRegisterUser, 'isProductExistInBasket')
-  console.log(isProductExistInBasketNonRegisterUser, 'isProductExistInBasketNonRegisterUser')
+  const isProductExistInBasket = basketProducts.some(
+    (item: BasketProduct) => item?._id === id || item?.accessory?._id === id || item?.shoes?._id === id
+  );
+
   const {
     data: product,
     isLoading,
