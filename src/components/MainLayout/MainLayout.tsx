@@ -27,13 +27,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (document.querySelector('.fb-customerchat')) {
-      const customerChat = document.querySelectorAll('.fb-customerchat');
+    const customerChat = document.querySelectorAll('.fb-customerchat');
 
-      customerChat.forEach((element) => {
-        element.remove();
-      });
-    }
+    customerChat.forEach((element) => {
+      element.remove();
+    });
+
   }, []);
 
   return (
