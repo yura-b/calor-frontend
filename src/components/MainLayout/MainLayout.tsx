@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { motion } from 'framer-motion';
+import { useLocation } from "react-router";
 import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 import CustomizedSnackbars from '../admin/CustomizedSnackbars';
 import FacebookMessenger from '../FacebookMessenger/FacebookMessenger';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');
   const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -38,7 +40,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         element.remove();
       });
     }
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className="overflow-x-hidden flex flex-col min-h-screen justify-between">
