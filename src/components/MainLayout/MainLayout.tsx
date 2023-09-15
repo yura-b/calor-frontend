@@ -28,7 +28,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!sessionStorage.getItem('fb-messanger') || sessionStorage.getItem('fb-messanger') === 'false') {
-      if (document.querySelectorAll('.fb_iframe_widget').length === 0) {
+      if (document.querySelectorAll('.fb-customerchat').length === 1) {
         sessionStorage.setItem('fb-messanger', 'true')
       }
     }
