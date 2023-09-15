@@ -321,7 +321,7 @@ const SizeGuide: React.FC = () => {
     },
   ];
   const tShirtdata = [
-    { column1: 'Size', column2: 'XS', column3: 'S', column4: 'M', column5: 'L', column6: 'XL', column7: '2XL' },
+    { column1: 'Size', column2: 'XS', column3: 'S', column4: 'M', column5: 'L', column6: 'XL', column7: 'XXL' },
     { column1: 'Shoulders ', column2: '44', column3: '47', column4: '50', column5: '53', column6: '56', column7: '59' },
     { column1: 'Bust ', column2: '94', column3: '100', column4: '106', column5: '112', column6: '118', column7: '124' },
     { column1: 'Length ', column2: '65', column3: '68', column4: '71', column5: '74', column6: '77', column7: '80' },
