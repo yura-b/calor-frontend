@@ -16,7 +16,7 @@ import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import rawEditorTextToHTML from "@/helpers/functions/rawEditorTextToHTML";
+import rawEditorTextToHTML from '@/helpers/functions/rawEditorTextToHTML';
 
 const border = '1px #CBD2E0 solid';
 
@@ -42,7 +42,7 @@ const CreateItem = () => {
   const onEditorStateProductDetailsChange = (newEditorState) => {
     setEditorStateProductDetails(newEditorState);
   };
-  
+
   useEffect(() => {
     dispatch(loading());
     getCategories().then((res) => {
@@ -102,10 +102,10 @@ const CreateItem = () => {
 
   const handleAddNewItem = () => {
     const descriptionState = editorStateDescription.getCurrentContent();
-    const descriptionHtmlContent = rawEditorTextToHTML(descriptionState)
+    const descriptionHtmlContent = rawEditorTextToHTML(descriptionState);
 
     const productDetailsState = editorStateProductDetails.getCurrentContent();
-    const productDetailsHtmlContent = rawEditorTextToHTML(productDetailsState)
+    const productDetailsHtmlContent = rawEditorTextToHTML(productDetailsState);
 
     if (!access_token || !categories || !price || !productName) return;
     dispatch(loading());
@@ -209,7 +209,7 @@ const CreateItem = () => {
               <Editor
                 editorState={editorStateDescription}
                 onEditorStateChange={onEditorStateDescriptionChange}
-                wrapperStyle={{ border: '2px solid #CBD2E0'}}
+                wrapperStyle={{ border: '2px solid #CBD2E0' }}
                 toolbar={{
                   options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
                 }}
@@ -220,7 +220,7 @@ const CreateItem = () => {
               <Editor
                 editorState={editorStateProductDetails}
                 onEditorStateChange={onEditorStateProductDetailsChange}
-                wrapperStyle={{ border: '2px solid #CBD2E0'}}
+                wrapperStyle={{ border: '2px solid #CBD2E0' }}
                 toolbar={{
                   options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
                 }}

@@ -29,13 +29,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (!sessionStorage.getItem('fb-messanger') || sessionStorage.getItem('fb-messanger') === 'false') {
       if (document.querySelectorAll('.fb_iframe_widget').length === 0) {
-        sessionStorage.setItem('fb-messanger', 'true')
+        sessionStorage.setItem('fb-messanger', 'true');
       }
     }
 
     const addFacebookMessangerToSession = () => {
       sessionStorage.setItem('fb-messanger', 'false');
-    }
+    };
 
     window.addEventListener('beforeunload', addFacebookMessangerToSession);
 
@@ -67,13 +67,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </motion.div>
       <CustomizedSnackbars />
-      {
-        sessionStorage.getItem('fb-messanger') !== 'true' ?
-          <div className="fixed bottom-0 right-0 p-4">
-            <FacebookMessenger />
-          </div>
-          : null
-      }
+      {sessionStorage.getItem('fb-messanger') !== 'true' ? (
+        <div className="fixed bottom-0 right-0 p-4">
+          <FacebookMessenger />
+        </div>
+      ) : null}
       <Footer />
     </div>
   );
