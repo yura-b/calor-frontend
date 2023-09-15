@@ -44,6 +44,17 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   return (
     <div className="overflow-x-hidden flex flex-col min-h-screen justify-between">
       <Header headerHeight={headerHeight} updateHeaderHeight={updateHeaderHeight} />
