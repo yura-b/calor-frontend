@@ -27,17 +27,21 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (document.querySelectorAll('.fb_iframe_widget')) {
-      const fbIframeWidgets = document.querySelectorAll('.fb_iframe_widget');
-      const fbDialogs = document.querySelectorAll('.fb_dialog');
-  
-      fbIframeWidgets.forEach((element) => {
-        element.remove();
-      });
-      fbDialogs.forEach((element) => {
-        element.remove();
-      });
+    if (!sessionStorage.getItem('fb-messanger') || sessionStorage.getItem('fb-messanger') === 'false') {
+      if (document.querySelectorAll('.fb_iframe_widget').length === 0) {
+        sessionStorage.setItem('fb-messanger', 'true')
+      }
     }
+
+    const addFacebookMessangerToSession = () => {
+      sessionStorage.setItem('fb-messanger', 'false');
+    }
+
+    window.addEventListener('beforeunload', addFacebookMessangerToSession);
+
+    return () => {
+      window.removeEventListener('beforeunload', addFacebookMessangerToSession);
+    };
   }, []);
 
   return (
@@ -52,9 +56,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </motion.div>
       <CustomizedSnackbars />
-      <div className="fixed bottom-0 right-0 p-4">
-        <FacebookMessenger />
-      </div>
+      {
+        sessionStorage.getItem('fb-messanger') !== 'true' ?
+          <div className="fixed bottom-0 right-0 p-4">
+            <FacebookMessenger />
+          </div>
+          : null
+      }
       <Footer />
     </div>
   );
