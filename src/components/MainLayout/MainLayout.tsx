@@ -27,11 +27,21 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    const customerChat = document.querySelectorAll('.fb-customerchat');
+    if (!sessionStorage.getItem('fb-messanger') || sessionStorage.getItem('fb-messanger') === 'false') {
+      if (document.querySelectorAll('.fb_iframe_widget').length === 0) {
+        sessionStorage.setItem('fb-messanger', 'true')
+      }
+    }
 
-    customerChat.forEach((element) => {
-      element.remove();
-    });
+    const addFacebookMessangerToSession = () => {
+      sessionStorage.setItem('fb-messanger', 'false');
+    }
+
+    window.addEventListener('beforeunload', addFacebookMessangerToSession);
+
+    return () => {
+      window.removeEventListener('beforeunload', addFacebookMessangerToSession);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -57,9 +67,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </motion.div>
       <CustomizedSnackbars />
-      <div className="fixed bottom-0 right-0 p-4">
-        <FacebookMessenger />
-      </div>
+      {
+        sessionStorage.getItem('fb-messanger') !== 'true' ?
+          <div className="fixed bottom-0 right-0 p-4">
+            <FacebookMessenger />
+          </div>
+          : null
+      }
       <Footer />
     </div>
   );
