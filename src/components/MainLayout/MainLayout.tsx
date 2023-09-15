@@ -27,11 +27,17 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    const customerChat = document.querySelectorAll('.fb-customerchat');
-
-    customerChat.forEach((element) => {
-      element.remove();
-    });
+    if (document.querySelectorAll('.fb_iframe_widget')) {
+      const fbIframeWidgets = document.querySelectorAll('.fb_iframe_widget');
+      const fbDialogs = document.querySelectorAll('.fb_dialog');
+  
+      fbIframeWidgets.forEach((element) => {
+        element.remove();
+      });
+      fbDialogs.forEach((element) => {
+        element.remove();
+      });
+    }
   }, []);
 
   return (
