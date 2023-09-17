@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { motion } from 'framer-motion';
-import { useLocation } from "react-router";
+import { useLocation } from 'react-router';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 import CustomizedSnackbars from '../admin/CustomizedSnackbars';
@@ -29,18 +29,33 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (document.querySelectorAll('.fb_iframe_widget')) {
-      const fbIframeWidgets = document.querySelectorAll('.fb_iframe_widget');
-      const fbDialogs = document.querySelectorAll('.fb_dialog');
-  
-      fbIframeWidgets.forEach((element) => {
-        element.remove();
-      });
-      fbDialogs.forEach((element) => {
-        element.remove();
-      });
+    if (!sessionStorage.getItem('fb-messanger') || sessionStorage.getItem('fb-messanger') === 'false') {
+      if (document.querySelectorAll('.fb-customerchat').length === 1) {
+        sessionStorage.setItem('fb-messanger', 'true');
+      }
     }
-  }, [location.pathname]);
+
+    const addFacebookMessangerToSession = () => {
+      sessionStorage.setItem('fb-messanger', 'false');
+    };
+
+    window.addEventListener('beforeunload', addFacebookMessangerToSession);
+
+    return () => {
+      window.removeEventListener('beforeunload', addFacebookMessangerToSession);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
     <div className="overflow-x-hidden flex flex-col min-h-screen justify-between">
@@ -54,9 +69,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </motion.div>
       <CustomizedSnackbars />
-      <div className="fixed bottom-0 right-0 p-4">
-        <FacebookMessenger />
-      </div>
+      {sessionStorage.getItem('fb-messanger') !== 'true' ? (
+        <div className="fixed bottom-0 right-0 p-4">
+          <FacebookMessenger />
+        </div>
+      ) : null}
       <Footer />
     </div>
   );

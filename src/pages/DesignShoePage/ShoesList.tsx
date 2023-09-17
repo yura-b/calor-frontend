@@ -15,7 +15,11 @@ const ShoesList: React.FC = ({ shoes }): React.ReactElement => {
       } flex  gap-6 lg:justify-between justify-center`}
     >
       {shoes.map((product) => (
-        <div className={`${isHome ? 'min-w-[200px] 2xl:min-h-[460px] lg:min-h-[380px]' : ''} flex  sm:basis-[40%]  lg:basis-[30%] `}>
+        <div
+          className={`${
+            isHome ? 'min-w-[200px] 2xl:min-h-[460px] lg:min-h-[380px]' : ''
+          } flex  sm:basis-[40%]  lg:basis-[30%] `}
+        >
           <ProductCart product={product} type="shoes" />
         </div>
       ))}

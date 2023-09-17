@@ -213,6 +213,7 @@ const CreateItem = () => {
                 toolbar={{
                   options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
                 }}
+                handlePastedText={() => false}
               />
             </div>
             <p>Product Details</p>
@@ -224,6 +225,7 @@ const CreateItem = () => {
                 toolbar={{
                   options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
                 }}
+                handlePastedText={() => false}
               />
             </div>
             <CustomInput
