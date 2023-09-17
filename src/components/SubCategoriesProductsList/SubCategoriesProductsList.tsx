@@ -13,7 +13,9 @@ const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement =
       <div className="flex flex-col w-full">
         {subcategories.map((subcategory) => {
           const productsInSubcategory = products.filter((product) => product.subcategory === subcategory);
-
+          const shuffledProducts = productsInSubcategory.sort(() => Math.random() - 0.5);
+          const randomProducts = shuffledProducts.slice(0, 3);
+          
           return (
             <>
               <div className="flex items-center justify-between">
@@ -24,9 +26,9 @@ const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement =
                   </Link>
                 </motion.div>
               </div>
-              <div className="flex gap-6 justify-start flex-wrap mb-4">
-                {productsInSubcategory.map((product) => (
-                  <div className="lg:basis-[32%] sm:basis-[45%] basis-[100%]">
+              <div className="flex gap-6 justify-items-stretch flex-wrap mb-4">
+                {randomProducts.map((product) => (
+                  <div className="lg:basis-[30%] sm:basis-[45%] basis-[100%]">
                     <ProductCart product={product} type="accessories" />
                   </div>
                 ))}
