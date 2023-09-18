@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import styles from '@styles/Styles.module.scss';
 import { motion } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@/styles/Animations';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { Role } from '@/constants/enums/role.enum.ts';
 
 const CookiePopup = () => {
+  const { access_token, roles } = useAppSelector((state) => state.user);
+  const isAdmin = !!(roles?.includes(Role.ADMIN) || (roles?.includes(Role.MANAGER) && access_token));
   const [isVisible, setIsVisible] = useState(localStorage.getItem('cookieConsent') !== 'true');
 
   useEffect(() => {
@@ -17,12 +20,12 @@ const CookiePopup = () => {
     setIsVisible(false);
   };
 
-  const handleDeclineCookies = () => {
-    localStorage.setItem('cookieConsent', 'false');
-    setIsVisible(false);
-  };
+  // const handleDeclineCookies = () => {
+  //   localStorage.setItem('cookieConsent', 'false');
+  //   setIsVisible(false);
+  // };
 
-  return isVisible ? (
+  return isVisible && !isAdmin ? (
     <div id="cookie-popup" className={'fixed bottom-0 right-0 w-full bg-grayLight text-[14px] m-auto'}>
       <div
         className={
@@ -39,20 +42,20 @@ const CookiePopup = () => {
         <div className="flex flex-row   lg:basis-[40%] xl:basis-[30%] justify-center gap-2 w-full">
           <motion.button
             id="accept-cookie"
-            className="w-full bg-white py-2 font-bold max-w-[260px]  basis-[60%]"
+            className="w-full bg-white py-2 font-bold max-w-[360px] "
             onClick={handleAcceptCookies}
             {...hoverOnButtonAnimation}
           >
             Accept
           </motion.button>
-          <motion.button
+          {/* <motion.button
             id="decline-cookie"
             className="w-full bg-grayLight py-2 font-bold max-w-[260px] basis-[40%]"
             onClick={handleDeclineCookies}
             {...hoverOnButtonAnimation}
           >
             Decline
-          </motion.button>
+          </motion.button> */}
         </div>
       </div>
     </div>

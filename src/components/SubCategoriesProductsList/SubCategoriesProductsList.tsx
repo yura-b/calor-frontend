@@ -15,7 +15,7 @@ const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement =
           const productsInSubcategory = products.filter((product) => product.subcategory === subcategory);
           const shuffledProducts = productsInSubcategory.sort(() => Math.random() - 0.5);
           const randomProducts = shuffledProducts.slice(0, 3);
-          
+
           return (
             <>
               <div className="flex items-center justify-between">
