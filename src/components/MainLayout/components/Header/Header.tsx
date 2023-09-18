@@ -3,7 +3,7 @@ import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
 import logoText from '@assets/images/logoText.svg';
-import logoImg from '@assets/images/logoImg.svg';
+import logoImg from '@assets/images/logo.svg';
 import burgerIcon from '@assets/images/burgerIcon.svg';
 import SearchInput from '@/components/ui/SearchInput';
 import { Modal } from '@mui/material';
@@ -107,25 +107,24 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   }, [location.pathname, subCareProduct]);
 
   return (
-    <>
-      <div
-        className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
-        id="header"
-      >
-        <CustomSnackBar />
-        <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
-          <div
-            className={
-              'flex flex-col w-full fixed z-50 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
-            }
-          >
-            <div className="flex justify-between">
-              <Link to={paths.home} className="flex items-center justify-center xl:flex flex-initial ">
-                <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10" />
-                <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
-              </Link>
-              <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
-                {/* <div className="mr-4">
+    <div
+      className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
+      id="header"
+    >
+    
+      <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
+        <div
+          className={
+            'flex flex-col w-full fixed z-50 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
+          }
+        >
+          <div className="flex justify-between">
+            <Link to={paths.home} className="flex items-center justify-center xl:flex flex-initial ">
+              <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10 brightness-0 invert" />
+              <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
+            </Link>
+            <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
+              {/* <div className="mr-4">
                 <SearchInput />
               </div> */}
 
