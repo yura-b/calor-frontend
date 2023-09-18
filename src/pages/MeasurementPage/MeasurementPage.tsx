@@ -5,6 +5,7 @@ import MeasurementHeader from './components/MeasurementHeader';
 import MeasurementForm from './components/MeasurementForm';
 import { Link } from 'react-router-dom';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
+import { paths } from '@routes/paths.ts';
 
 const MeasurementPage = () => {
   const sizeList = [
@@ -17,7 +18,7 @@ const MeasurementPage = () => {
   };
 
   return (
-    <div className="font-poppins h-screen">
+    <div className="font-poppins h-screen text-gray">
       <MainLayout>
         <div className=" hidden lg:block lg:mt-4 lg:mb-2">
           <NavigationLinks color="gray" className=" w-auto" />
@@ -44,7 +45,9 @@ const MeasurementPage = () => {
                 items-center"
               >
                 <span className="font-bold">Step 1. Please Select Your Size</span>
-                <span className="underline text-mint">Size Guide</span>
+                <Link to={paths.helpPage + '#sizeGuide'} className="underline text-mint">
+                  Size Guide
+                </Link>
               </div>
               <div className="w-full grid grid-cols-3 gap-4">
                 {sizeList.map((size) => (
@@ -64,9 +67,9 @@ const MeasurementPage = () => {
                   </div>
                 ))}
               </div>
-              <div className="my-2">
+              {/* <div className="my-2">
                 <span className="underline text-mint">Your shoe size is not on the list?</span>
-              </div>
+              </div> */}
             </div>
             <div className="w-full flex flex-col">
               <span className="font-bold">Step 2. Please Measure Your Feet</span>
@@ -78,10 +81,10 @@ const MeasurementPage = () => {
                 gap-2 
                 my-2"
               >
-                <span>Don't know how to do it?</span>
+                {/* <span>Don't know how to do it?</span>
                 <Link className="underline text-mint font-bold" to={''}>
                   Video Guide
-                </Link>
+                </Link> */}
               </div>
               <MeasurementForm selectedShoeSize={selectedShoeSize} />
             </div>

@@ -5,10 +5,10 @@ const phoneNumberRegex = /^\+?\d{0,3}\s?(\(\d{1,4}\))?\s?\d{1,4}[\s.-]?\d{1,4}[\
 
 export const validationSchemaForLogin = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
-  password: yup.string().min(8, 'password should be of minimum 8 characters length').required('password is required')
+  password: yup.string().min(8, 'password should be of minimum 8 characters length').required('password is required'),
 });
 export const validationSchemaForSignUp = yup.object({
-  email: yup.string().email('Enter a valid email').required('Email is required')
+  email: yup.string().email('Enter a valid email').required('Email is required'),
 });
 export const validationSchemaForContactInfo = yup.object({
   firstName: yup
@@ -20,7 +20,7 @@ export const validationSchemaForContactInfo = yup.object({
     .min(3, 'Last Name should be of minimum 3 characters length')
     .required('Last Name is required'),
   phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
-  email: yup.string().email('email is not valid')
+  email: yup.string().email('email is not valid'),
 });
 
 export const validationSchemaForCreateReview = yup.object({
@@ -34,7 +34,7 @@ export const validationSchemaForCreateReview = yup.object({
     .string()
     .min(3, 'Last Name should be of minimum 3 characters length')
     .required('Last Name is required'),
-  email: yup.string().email('Email is not valid').required('Email is required')
+  email: yup.string().email('Email is not valid').required('Email is required'),
 });
 
 export const validationSchemaForShippingInfo = yup.object({
@@ -46,11 +46,11 @@ export const validationSchemaForShippingInfo = yup.object({
   receiverPhoneNumber: yup
     .string()
     .matches(phoneNumberRegex, 'Phone number is not valid')
-    .required('Phone number is required')
+    .required('Phone number is required'),
 });
 
 export const validationSchemaForCheckout = yup.object({
-  city: yup.string()
+  city: yup.string(),
 });
 
 export const oneUpperCaseValidation = (password: string) => {
@@ -81,19 +81,19 @@ export const oneLowerCaseValidation = (password: string) => {
 };
 
 export const validationSchemaForPurchase = yup.object({
-  email: yup.string().email('Enter a valid email').required('Email is required')
+  email: yup.string().email('Enter a valid email').required('Email is required'),
 });
 
 export const validationSchemaForOrderNumber = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
-  order_id: yup.number().required('Order Number is required')
+  order_id: yup.number().required('Order Number is required'),
 });
 
 export const validationSchemaForPromoCode = yup.object({
   promoCode: yup
     .string()
     .min(3, 'Your promo code is not valid. Please enter  again')
-    .required('Promo Code is required')
+    .required('Promo Code is required'),
 });
 
 export const validationSchemaForUserAccount = yup.object({
@@ -106,7 +106,7 @@ export const validationSchemaForUserAccount = yup.object({
     .min(3, 'Last Name should be of minimum 3 characters length')
     .required('Last Name is required'),
   email: yup.string().email('Enter a valid email').required('Email is required'),
-  phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required')
+  phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
 });
 
 export const validationMeasurement = yup.object({
@@ -139,5 +139,5 @@ export const validationMeasurement = yup.object({
     .number()
     .min(1, 'Field must contain a minimum of 1 character')
     .required('This field is required')
-    .moreThan(0, 'Size cannot be negative')
+    .moreThan(0, 'Size cannot be negative'),
 });

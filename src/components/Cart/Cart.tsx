@@ -40,7 +40,8 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                   ))}
                 </div>
                 {
-                  <div className="hidden lg:block lg:basis-[48%]">
+                  <div className="lg:block lg:basis-[48%]">
+                    <hr className="lg:hidden mt-10" />
                     <CartFooter title={'ORDER SUMMARY'} data={basketProducts} />
                   </div>
                 }
@@ -54,14 +55,15 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
               >
                 The items in your cart are not reserved. Check out now to make them yours.
               </p>
-              <div className="lg:flex lg:gap-2">
+              <div className="lg:flex lg:gap-2 mt-5">
                 <div className="h-auto lg:basis-[52%] lg:overflow-auto lg:max-h-[480px] lg:px-4">
                   {basketNonRegisterUser.map((item: BasketProduct, index) => (
                     <PurchasedGoods item={item} key={index} />
                   ))}
                 </div>
                 {
-                  <div className="hidden lg:block lg:basis-[48%]">
+                  <div className="lg:block lg:basis-[48%]">
+                    <hr className="lg:hidden mt-10" />
                     <CartFooter title={'ORDER SUMMARY'} data={basketNonRegisterUser} />
                   </div>
                 }

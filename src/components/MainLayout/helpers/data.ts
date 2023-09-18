@@ -111,11 +111,11 @@ export const helpLinks = [
 ];
 export const aboutLinks = [
   {
-    subTitle: 'A Word From the Founder',
+    subTitle: 'Our Story',
     path: paths.about + '#who_we_are',
   },
   {
-    subTitle: 'Our Story',
+    subTitle: 'A Word From the Founder',
     path: paths.about + '#our_story',
   },
   {

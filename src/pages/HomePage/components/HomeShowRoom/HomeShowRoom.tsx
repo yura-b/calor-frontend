@@ -44,7 +44,7 @@ const HomeShowRoom: React.FC<Props> = ({
     };
   }, [open]);
 
-  const isMobile = useMediaQuery('(max-width: 640px)');
+  const isMobile = useMediaQuery('(max-width: 1023px)');
   return (
     <div className={`${styles.container} w-full`}>
       <p className={`${styles.subtitle} text-${showRoomTitleColor} uppercase mb-1`}>Visit Our CALOR Showroom!</p>
@@ -54,22 +54,22 @@ const HomeShowRoom: React.FC<Props> = ({
         Make an Appointment
       </Button>
       <Modal className="flex items-center justify-center" open={open} onClose={handleClose}>
-        <div className="bg-white p-0 shadow-lg w-full md:w-[90%] xl:w-[60%] max-w-[1200px] relative lg:pb-8">
-          <div className="py-3 flex items-center w-full bg-custom-red lg:bg-mint sticky top-0 justify-end lg:h-[50px]">
-            <h1 className={`${styles.header2} text-white absolute left-1/2 transform -translate-x-1/2 uppercase`}>
-              Make an Appointment
-            </h1>
-            <div className="flex h-5 items-center justify-center">
-              <img src={closeBtnImage} onClick={handleClose} className="mr-6" />
-            </div>
-          </div>
-          <div className="z-6 relative px-0 pt-[80px] sm:p-0">
+        <div className="bg-white p-0 shadow-lg w-full md:w-[90%] xl:w-[80%] max-w-[1200px] relative lg:pb-8">
+          <div className="py-3 flex items-center w-full  top-0 justify-end"></div>
+          <div className="z-6 relative px-0 sm:p-0">
             <iframe
               ref={iframeRef}
               src="https://calendly.com/magic-0ba?background_color=b8e4d8&text_color=4e4e4d&primary_color=e22d21"
               frameBorder="0"
-              style={{ width: '100%', height: '100%', minHeight: isMobile ? '60vh' : '80vh' }}
+              style={{ width: '100%', height: '100%', minHeight: isMobile ? '92vh' : '88vh' }}
             ></iframe>
+            <Button
+              color="gray"
+              className="flex w-[50px] items-center justify-center absolute bottom-[20px] z-10 lg:bottom-0 right-[20px] lg:right-[20px]"
+              onClick={handleClose}
+            >
+              <img className="" src={closeBtnImage} />
+            </Button>
           </div>
         </div>
       </Modal>

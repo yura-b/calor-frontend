@@ -3,7 +3,7 @@ import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
 import logoText from '@assets/images/logoText.svg';
-import logoImg from '@assets/images/logoImg.svg';
+import logoImg from '@assets/images/logo.svg';
 import burgerIcon from '@assets/images/burgerIcon.svg';
 import SearchInput from '@/components/ui/SearchInput';
 import { Modal } from '@mui/material';
@@ -23,6 +23,7 @@ import { cleanUserData } from '@/store/reducers/UserReducer.ts';
 import { menuItems } from '../../helpers/data';
 import { MainMenuEnum } from '@/constants/enums/pages.enum';
 import { fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
+import CustomSnackBar from '@/components/ui/SnackBar/CustomSnackBar';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
@@ -110,6 +111,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
       className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
       id="header"
     >
+      <CustomSnackBar />
       <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
         <div
           className={
@@ -118,7 +120,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
         >
           <div className="flex justify-between">
             <Link to={paths.home} className="flex items-center justify-center xl:flex flex-initial ">
-              <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10" />
+              <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10 brightness-0 invert" />
               <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
             </Link>
             <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">

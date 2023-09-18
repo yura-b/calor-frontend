@@ -5,14 +5,14 @@ import Button from '@/components/ui/Button';
 import styles from '@styles/Styles.module.scss';
 import { addToBasket } from '@/api/basket';
 import { useMutation } from 'react-query';
-
 import { SealCheck } from '@phosphor-icons/react';
 import { appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import { showMessage } from '@/store/reducers/StatusClientReducer';
 
 const ProductCart: FC = ({ product, type }): React.ReactElement => {
-  const { userId, access_token } = useAppSelector((state) => state.user);
+  const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
@@ -26,6 +26,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
       dispatch(appendToBasket({ ...product, count: 1 }));
+      dispatch(showMessage(`A ${product?.title} added successfully!`));
     },
   });
 
@@ -50,6 +51,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         return null;
       } else {
         dispatch(addToCartNonRegisterUser({ ...product, count: 1 }));
+        dispatch(showMessage(`A ${product?.title} added successfully!`));
       }
     }
   };
@@ -77,13 +79,16 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         <span>From</span>
         <span className="font-bold">{product.price} $</span>
       </div>
-      {(userId && isProductExistInBasket) || (!userId && isProductExistInBasketNonRegisterUser) ? (
+      {(userId && type !== 'shoes' && isProductExistInBasket) ||
+      (!userId && type !== 'shoes' && isProductExistInBasketNonRegisterUser) ? (
         <div className="flex justify-center items-center text-mint mt-2">
           <SealCheck className="mr-2" size={32} weight="fill" />
           Already in your cart
         </div>
       ) : null}
-      {(!userId && !isProductExistInBasketNonRegisterUser) || (userId && !isProductExistInBasket) ? (
+      {(!userId && !isProductExistInBasketNonRegisterUser) ||
+      (userId && !isProductExistInBasket) ||
+      type === 'shoes' ? (
         <Button
           className="max-w-full mt-2"
           color="transparentMint"

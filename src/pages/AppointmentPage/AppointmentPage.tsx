@@ -65,7 +65,7 @@ const AppointmentPage: React.FC = (): React.ReactElement => {
                   ref={iframeRef}
                   src="https://calendly.com/magic-0ba?background_color=b8e4d8&text_color=4e4e4d&primary_color=e22d21"
                   frameBorder="0"
-                  style={{ width: '100%', height: '100%', minHeight: isMobile ? '80vh' : '80vh' }}
+                  style={{ width: '100%', height: '100%', minHeight: isMobile ? '60vh' : '80vh' }}
                 ></iframe>
               </div>
             </div>

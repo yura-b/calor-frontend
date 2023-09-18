@@ -6,16 +6,24 @@ import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import { validationMeasurement } from '@/helpers/validation/formValidation.ts';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserMeasurement } from '@/store/reducers/UserMeasurement';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { addToBasket } from '@/api/basket';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { useParams, useNavigate } from 'react-router-dom';
+import { showMessage } from '@/store/reducers/StatusClientReducer';
+import { getProductById } from '@/api/products';
 interface IProps {
   selectedShoeSize: number;
 }
 
 const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
   const { id, model } = useParams();
+
+  const { data: product } = useQuery(['productById', id], () => getProductById(id), {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userId } = useSelector((state) => state.user);
@@ -28,6 +36,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     onSuccess: (data) => {
       setIsDisabled(false);
       navigate('/');
+      dispatch(showMessage(`A shoes added successfyly!`));
     },
   });
 
@@ -48,6 +57,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
       dispatch(setUserMeasurement({ selectedShoeSize, ...values }));
 
       let requestData = {};
+
       if (userId) {
         requestData = {
           product: id,
@@ -58,7 +68,9 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         };
       } else {
         requestData = {
-          product: id,
+          _id: id,
+          title: product?.data?.title,
+          price: product?.data?.price,
           count: 1,
           photos: [constructorImage],
           measurement: { selectedShoeSize, ...values },
@@ -70,6 +82,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         mutation.mutate({ userId, requestData });
       } else {
         dispatch(addToCartNonRegisterUser(requestData));
+        dispatch(showMessage(`A shoes added successfyly!`));
         setIsDisabled(false);
         navigate('/');
       }
