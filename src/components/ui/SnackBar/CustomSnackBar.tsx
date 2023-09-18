@@ -25,7 +25,7 @@ const CustomSnackBar = () => {
   if (!message) return <></>;
 
   return (
-    <div className={'fixed top-12 lg:right-10 lg:top-20 z-999'}>
+    <div className={'fixed top-12 right-0 lg:right-10 lg:top-20 z-999'}>
       <Alert severity="error" color={severity} sx={{ backgroundColor: '#1EC1AA' }}>
         {message}
       </Alert>
