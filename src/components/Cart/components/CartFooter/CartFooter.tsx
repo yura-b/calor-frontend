@@ -7,7 +7,6 @@ import { validationSchemaForPromoCode } from '@/helpers/validation/formValidatio
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
 import { useNavigate } from 'react-router';
-
 import { BasketProduct } from '@/store/reducers/BasketSlice';
 
 interface IProps {
@@ -22,15 +21,9 @@ const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
 
   useEffect(() => {
     const productsTotal = data?.reduce((acc, item) => {
-      if (!!item?.shoes) {
-        return acc + item?.shoes?.price * item?.shoes?.count;
-      } else if (!!item?.accessory) {
-        return acc + item?.accessory?.price * item?.accessory?.count;
-      } else if (!!item?.price) {
-        return acc + item?.price * item?.count;
-      } else {
-        return acc + 0;
-      }
+      const price = item?.shoes?.price || item?.accessory?.price || item?.price || 0;
+      const count = item?.shoes?.count || item?.accessory?.count || item?.count || 0;
+      return acc + price * count;
     }, 0);
 
     setTotal(productsTotal?.toFixed(2));
@@ -77,7 +70,7 @@ const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
           <p>Subtotal</p>
           <p>$ {total}</p>
         </div>
-        {!promoCodeApplied && !showPromoCodeForm && (
+        {promoCodeApplied && !showPromoCodeForm && (
           <Button color="transparentMint" onClick={addPromoCode} className="mt-6 max-w-[100%] block m-auto">
             Add Promo Code +
           </Button>
