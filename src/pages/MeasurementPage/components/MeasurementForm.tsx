@@ -10,6 +10,7 @@ import { useMutation } from 'react-query';
 import { addToBasket } from '@/api/basket';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { useParams, useNavigate } from 'react-router-dom';
+import { showMessage } from '@/store/reducers/StatusClientReducer';
 interface IProps {
   selectedShoeSize: number;
 }
@@ -28,6 +29,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     onSuccess: (data) => {
       setIsDisabled(false);
       navigate('/');
+      dispatch(showMessage(`A shoes added successfyly!`));
     },
   });
 
@@ -70,6 +72,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         mutation.mutate({ userId, requestData });
       } else {
         dispatch(addToCartNonRegisterUser(requestData));
+        dispatch(showMessage(`A shoes added successfyly!`));
         setIsDisabled(false);
         navigate('/');
       }

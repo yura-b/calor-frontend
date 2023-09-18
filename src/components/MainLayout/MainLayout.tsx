@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
-import CustomizedSnackbars from '../admin/CustomizedSnackbars';
 import FacebookMessenger from '../FacebookMessenger/FacebookMessenger';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const location = useLocation();
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');
   const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -60,6 +57,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="overflow-x-hidden flex flex-col min-h-screen justify-between">
       <Header headerHeight={headerHeight} updateHeaderHeight={updateHeaderHeight} />
+
       <motion.div
         {...layoutFadeAnimation}
         id="content"
@@ -68,7 +66,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       >
         {children}
       </motion.div>
-      <CustomizedSnackbars />
+
       {sessionStorage.getItem('fb-messanger') !== 'true' ? (
         <div className="fixed bottom-0 right-0 p-4">
           <FacebookMessenger />
