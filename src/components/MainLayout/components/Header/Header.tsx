@@ -110,7 +110,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
     <div
       className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
       id="header"
-    >
+      >
       <CustomSnackBar />
       <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
         <div
@@ -124,10 +124,6 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
               <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
             </Link>
             <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
-              {/* <div className="mr-4">
-                <SearchInput />
-              </div> */}
-
               <div className="hidden xl:block">
                 <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
               </div>
