@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import { useQuery, useMutation } from 'react-query';
 import { useParams } from 'react-router';
 import { getProductById } from '@/api/products';
 import Head from '@/layouts/Head';
-import { titles } from '@/translations/titles';
 import MainLayout from '@/components/MainLayout';
 import ProductDescription from './components/ProductDescription';
 import ProductReviews from './components/ProductReviews';
@@ -18,6 +17,7 @@ import { SealCheck } from '@phosphor-icons/react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
+import { showMessage } from '@/store/reducers/StatusClientReducer';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -34,11 +34,7 @@ const ProductPage = () => {
     (item: BasketProduct) => item?._id === id || item?.accessory?._id === id || item?.shoes?._id === id
   );
 
-  const {
-    data: product,
-    isLoading,
-    isError,
-  } = useQuery(['productById', id], () => getProductById(id), {
+  const { data: product } = useQuery(['productById', id], () => getProductById(id), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
@@ -46,7 +42,7 @@ const ProductPage = () => {
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
       dispatch(appendToBasket({ ...product?.data, count: 1 }));
-      console.log(data);
+      dispatch(showMessage(`A ${product?.data?.title} added successfully!`));
     },
   });
   let requestData = {};
@@ -129,9 +125,7 @@ const ProductPage = () => {
                 category={product?.data.category}
               />
               <div className="py-2 w-full">
-                {product?.data.category == 'shoes' && (
-                  <span>Your order will be customized and delivered within 7-10 days.</span>
-                )}
+                {product?.data.category == 'shoes' && <span>Your shoes will be manufactured in 7-10 days.</span>}
                 {product?.data.category !== 'shoes' && (
                   <>
                     <div dangerouslySetInnerHTML={{ __html: product?.data.description }} />

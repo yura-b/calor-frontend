@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import languageReducer from '@/store/reducers/LanguageReducer.ts';
 import statusReducer from '@/store/reducers/StatusReducer.ts';
+import statusClientReducer from '@/store/reducers/StatusClientReducer.ts';
 import cartReducer from '@/store/reducers/CartReducer';
 import basketReducer from '@/store/reducers/BasketSlice';
 import userReducer from '@/store/reducers/UserReducer.ts';
@@ -21,6 +22,7 @@ export const store = configureStore({
     cart: cartReducer,
     language: languageReducer,
     status: statusReducer,
+    statusClient: statusClientReducer,
     registration: registrationReducer,
     checkout: checkoutReducer,
     dialog: dialogReducer,

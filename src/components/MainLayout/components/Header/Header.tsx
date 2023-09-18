@@ -23,6 +23,7 @@ import { cleanUserData } from '@/store/reducers/UserReducer.ts';
 import { menuItems } from '../../helpers/data';
 import { MainMenuEnum } from '@/constants/enums/pages.enum';
 import { fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
+import CustomSnackBar from '@/components/ui/SnackBar/CustomSnackBar';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
@@ -106,112 +107,115 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   }, [location.pathname, subCareProduct]);
 
   return (
-    <div
-      className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
-      id="header"
-    >
-      <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
-        <div
-          className={
-            'flex flex-col w-full fixed z-50 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
-          }
-        >
-          <div className="flex justify-between">
-            <Link to={paths.home} className="flex items-center justify-center xl:flex flex-initial ">
-              <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10" />
-              <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
-            </Link>
-            <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
-              {/* <div className="mr-4">
+    <>
+      <div
+        className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
+        id="header"
+      >
+        <CustomSnackBar />
+        <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
+          <div
+            className={
+              'flex flex-col w-full fixed z-50 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
+            }
+          >
+            <div className="flex justify-between">
+              <Link to={paths.home} className="flex items-center justify-center xl:flex flex-initial ">
+                <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10" />
+                <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
+              </Link>
+              <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
+                {/* <div className="mr-4">
                 <SearchInput />
               </div> */}
 
-              <div className="hidden xl:block">
-                <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
-              </div>
+                <div className="hidden xl:block">
+                  <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
+                </div>
 
-              <div>
-                {isRegisteredUser && (
-                  <>
-                    <img
-                      src={userIcon}
-                      className="hidden xl:block cursor-pointer"
-                      onClick={() => setIsAccountVisible(!isAccountVisible)}
-                    />
-                    {isAccountVisible && (
-                      <motion.div
-                        className="absolute bg-custom-turquoise px-4 z-20 mt-3 right-[12%] shadow-2xl"
-                        {...layoutFadeAnimation}
+                <div>
+                  {isRegisteredUser && (
+                    <>
+                      <img
+                        src={userIcon}
+                        className="hidden xl:block cursor-pointer"
+                        onClick={() => setIsAccountVisible(!isAccountVisible)}
+                      />
+                      {isAccountVisible && (
+                        <motion.div
+                          className="absolute bg-custom-turquoise px-4 z-20 mt-3 right-[12%] shadow-2xl"
+                          {...layoutFadeAnimation}
+                        >
+                          <div
+                            className="absolute -top-[16px] right-11 w-0 h-0 -rotate-90 hidden xl:block"
+                            style={{
+                              borderWidth: '8px',
+                              borderStyle: 'solid',
+                              borderColor: 'transparent transparent transparent rgb(184, 228, 216, 0.9)',
+                            }}
+                          />
+                          <AccountMenuLinks firstName={firstName} secondName={secondName} />
+                        </motion.div>
+                      )}
+                    </>
+                  )}
+                  {!isRegisteredUser && (
+                    <div className="text-white text-[14px]">
+                      <button
+                        className="px-2 py-1 focus:text-mint hover:drop-shadow-2md hover:font-bold"
+                        onClick={signUpHandler}
                       >
-                        <div
-                          className="absolute -top-[16px] right-11 w-0 h-0 -rotate-90 hidden xl:block"
-                          style={{
-                            borderWidth: '8px',
-                            borderStyle: 'solid',
-                            borderColor: 'transparent transparent transparent rgb(184, 228, 216, 0.9)',
-                          }}
-                        />
-                        <AccountMenuLinks firstName={firstName} secondName={secondName} />
-                      </motion.div>
-                    )}
-                  </>
-                )}
-                {!isRegisteredUser && (
-                  <div className="text-white text-[14px]">
-                    <button
-                      className="px-2 py-1 focus:text-mint hover:drop-shadow-2md hover:font-bold"
-                      onClick={signUpHandler}
-                    >
-                      Sign Up
-                    </button>{' '}
-                    <button
-                      className="bg-gray px-2 py-1 focus:text-mint hover:drop-shadow-2md hover:font-bold"
-                      onClick={signInHandler}
-                    >
-                      Sign In
-                    </button>
-                  </div>
-                )}
+                        Sign Up
+                      </button>{' '}
+                      <button
+                        className="bg-gray px-2 py-1 focus:text-mint hover:drop-shadow-2md hover:font-bold"
+                        onClick={signInHandler}
+                      >
+                        Sign In
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className="flex xl:hidden items-baseline">
-              <div className="xl:hidden mt-1">
-                <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
-              </div>
+              <div className="flex xl:hidden items-baseline">
+                <div className="xl:hidden mt-1">
+                  <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
+                </div>
 
-              <img
-                src={burgerIcon}
-                alt="Menu"
-                onClick={() => toggleOpen()}
-                className="block xl:hidden cursor-pointer w-[30px]"
-              />
+                <img
+                  src={burgerIcon}
+                  alt="Menu"
+                  onClick={() => toggleOpen()}
+                  className="block xl:hidden cursor-pointer w-[30px]"
+                />
+              </div>
+              <MobileMenu isOpen={isOpen} toggleOpen={toggleOpen} openCart={openCart} />
             </div>
-            <MobileMenu isOpen={isOpen} toggleOpen={toggleOpen} openCart={openCart} />
+            <div className={'hidden  xl:block '}>
+              <MainMenu />
+            </div>
           </div>
-          <div className={'hidden  xl:block '}>
-            <MainMenu />
+
+          <div className="mt-9 mb-3  sm:w-[320px] sm:mx-auto xl:hidden px-6">
+            {isHome && <div className="min-h-[24px] sm:min-h-[20px]"></div>}
+            {/* <SearchInput /> */}
           </div>
         </div>
-
-        <div className="mt-9 mb-3  sm:w-[320px] sm:mx-auto xl:hidden px-6">
-          {isHome && <div className="min-h-[24px] sm:min-h-[20px]"></div>}
-          {/* <SearchInput /> */}
-        </div>
+        {!isHome && <NavigationLinks color="white" className={'lg:hidden'} />}
+        <Modal className="flex items-center justify-center h-auto" open={isCartOpen} onClose={closeCart}>
+          <>
+            {isCartOpen && (
+              <motion.div
+                className="absolute bg-white shadow-lg w-full lg:w-[760px] h-full  lg:max-h-[90%]  lg:rounded-md overflow-hidden "
+                {...layoutFadeAnimation}
+              >
+                <Cart title="Cart" onClose={closeCart} />
+              </motion.div>
+            )}
+          </>
+        </Modal>
       </div>
-      {!isHome && <NavigationLinks color="white" className={'lg:hidden'} />}
-      <Modal className="flex items-center justify-center h-auto" open={isCartOpen} onClose={closeCart}>
-        <>
-          {isCartOpen && (
-            <motion.div
-              className="absolute bg-white shadow-lg w-full lg:w-[760px] h-full  lg:max-h-[90%]  lg:rounded-md overflow-hidden "
-              {...layoutFadeAnimation}
-            >
-              <Cart title="Cart" onClose={closeCart} />
-            </motion.div>
-          )}
-        </>
-      </Modal>
-    </div>
+    </>
   );
 };
 

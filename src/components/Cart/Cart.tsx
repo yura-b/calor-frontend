@@ -40,7 +40,8 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
                   ))}
                 </div>
                 {
-                  <div className="hidden lg:block lg:basis-[48%]">
+                  <div className="lg:block lg:basis-[48%]">
+                    <hr className="lg:hidden mt-10" />
                     <CartFooter title={'ORDER SUMMARY'} data={basketProducts} />
                   </div>
                 }

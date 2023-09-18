@@ -57,7 +57,6 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
             src={item.photo}
             className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:z-20"
           />
-          <div className="hidden lg:block w-[100px] h-[100px] lg:bg-grayExtraLight lg:rounded-full lg:absolute  lg:z-10 lg:top-1 lg:left-1/2 lg:transform -translate-x-1/2"></div>
         </div>
         <div className="w-full basis-[70%]">
           <div className="flex justify-between items-center">
@@ -94,14 +93,16 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
               </div>
             </div>
           </div>
-          <p className={`${styles.body2} lg:text-[16px]  lg:hidden`}>
-            Your order will be customized and delivered within 7-10 days.
-          </p>
+          {Boolean(item?.shoes) && (
+            <p className={`${styles.body2} lg:text-[16px]  lg:hidden`}>Your shoes will be manufactured in 7-10 days.</p>
+          )}
         </div>
       </div>
-      <p className={`${styles.body2} lg:text-[16px] hidden lg:block `}>
-        Your order will be customized and delivered within 7-10 days
-      </p>
+      {Boolean(item?.shoes) && (
+        <p className={`${styles.body2} lg:text-[16px] hidden lg:block `}>
+          Your shoes will be manufactured in 7-10 days.
+        </p>
+      )}
     </div>
   );
 };
