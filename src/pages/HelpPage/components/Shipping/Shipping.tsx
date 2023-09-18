@@ -5,7 +5,7 @@ import styles from '@styles/Styles.module.scss';
 
 const Shipping: React.FC = () => {
   return (
-    < {...fadeAnimation} className={`${styles.container} border-b border-gray w-full min-h-[100px]`}>
+    <motion.div {...fadeAnimation} className={`${styles.container} border-b border-gray w-full min-h-[100px]`}>
       <div className="flex flex-col  justify-between mb-2 lg:mb-6">
         <h1 className={`${styles.header1} text-center `}>Shipping</h1>
         <p className="py-2 font-bold">Do you offer international shipping?</p>
@@ -15,7 +15,7 @@ const Shipping: React.FC = () => {
           the list of countries we currently ship to and more details.
         </p>
       </div>
-    </>
+    </motion.div>
   );
 };
 
