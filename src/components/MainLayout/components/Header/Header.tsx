@@ -111,7 +111,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
       className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
       id="header"
     >
-    
+    <CustomSnackBar/>
       <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
         <div
           className={
