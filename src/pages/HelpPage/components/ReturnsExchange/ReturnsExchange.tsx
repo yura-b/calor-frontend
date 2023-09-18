@@ -5,7 +5,7 @@ import styles from '@styles/Styles.module.scss';
 
 const ReturnsExchange: React.FC = () => {
   return (
-    <motion.div {...fadeAnimation} className={`${styles.container}`} id="returns&Exchange">
+    <motion.div {...fadeAnimation} className={`${styles.container}`}>
       <div className="flex flex-col  justify-between mb-2 lg:mb-6">
         <h1 className={`${styles.header1} text-center `}>Returns & Exchange</h1>
         <p className="py-2 font-bold">What is your return and exchange policy?</p>
