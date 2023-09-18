@@ -67,6 +67,7 @@ const ProductPage = () => {
 
   const handleAddToCartNonRegisterUser = () => {
     dispatch(addToCartNonRegisterUser(requestData));
+    dispatch(showMessage(`A ${product?.data?.title} added successfully!`));
   };
 
   const initialSectionsState = [

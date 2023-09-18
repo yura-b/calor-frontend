@@ -51,6 +51,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         return null;
       } else {
         dispatch(addToCartNonRegisterUser({ ...product, count: 1 }));
+        dispatch(showMessage(`A ${product?.title} added successfully!`));
       }
     }
   };
