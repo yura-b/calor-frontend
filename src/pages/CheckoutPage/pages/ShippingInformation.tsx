@@ -75,31 +75,6 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
         <h2 className={'mb-5'}>This product is custom-made and shipped to you in 7-10 days.</h2>
       </div>
       <form onSubmit={formik.handleSubmit} className={'w-full'}>
-        <CustomInput
-          id={'receiverFirstName'}
-          name={'receiverFirstName'}
-          placeholder={'input first name'}
-          value={formik.values.receiverFirstName}
-          onChange={formik.handleChange}
-          error={formik.touched.receiverFirstName && Boolean(formik.errors.receiverFirstName)}
-          errorMessage={formik.errors.receiverFirstName}
-          border={'1px solid #D9D9D9'}
-        >
-          First Name
-        </CustomInput>
-        <CustomInput
-          id={'receiverSecondName'}
-          name={'receiverSecondName'}
-          placeholder={'e.g James'}
-          value={formik.values.receiverSecondName}
-          onChange={formik.handleChange}
-          error={formik.touched.receiverSecondName && Boolean(formik.errors.receiverSecondName)}
-          errorMessage={formik.errors.receiverSecondName}
-          border={'1px solid #D9D9D9'}
-        >
-          Last Name
-        </CustomInput>
-
         <div className={'mb-4'}>
           <p className={'font-bold'}>Country/Region</p>
           <CountryAutoComplete id="country" handler={setCountry} value={country} arr={countries} />
