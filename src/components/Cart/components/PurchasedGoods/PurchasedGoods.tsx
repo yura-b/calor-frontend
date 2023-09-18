@@ -50,7 +50,7 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-10">
       <div className="flex text-gray gap-5">
         <div className="basis-[30%] lg:basis-[50%] lg:relative flex justify-center items-center">
           <img
