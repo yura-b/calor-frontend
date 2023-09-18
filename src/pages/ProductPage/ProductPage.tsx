@@ -42,7 +42,7 @@ const ProductPage = () => {
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
       dispatch(appendToBasket({ ...product?.data, count: 1 }));
-      dispatch(showMessage(`A ${product?.data?.title} added successfully!`));
+      dispatch(showMessage('The product has been successfully added'));
     },
   });
   let requestData = {};
@@ -67,7 +67,7 @@ const ProductPage = () => {
 
   const handleAddToCartNonRegisterUser = () => {
     dispatch(addToCartNonRegisterUser(requestData));
-    dispatch(showMessage(`A ${product?.data?.title} added successfully!`));
+    dispatch(showMessage('The product has been successfully added'));
   };
 
   const initialSectionsState = [
@@ -121,7 +121,6 @@ const ProductPage = () => {
                 price={product?.data.price}
                 subcategory={product?.data.subcategory}
                 rating={product?.data.rating}
-                season={product?.data.season}
                 sizes={product?.data.sizes}
                 category={product?.data.category}
               />

@@ -26,7 +26,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
       dispatch(appendToBasket({ ...product, count: 1 }));
-      dispatch(showMessage(`A ${product?.title} added successfully!`));
+      dispatch(showMessage('The product has been successfully added'));
     },
   });
 
@@ -51,7 +51,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         return null;
       } else {
         dispatch(addToCartNonRegisterUser({ ...product, count: 1 }));
-        dispatch(showMessage(`A ${product?.title} added successfully!`));
+        dispatch(showMessage('The product has been successfully added'));
       }
     }
   };

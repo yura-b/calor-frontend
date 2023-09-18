@@ -12,6 +12,13 @@ export const scaleAnimation = {
   transition: { duration: 3 },
 };
 
+export const scaleAnimationFast = {
+  initial: { scale: 1 },
+  animate: { scale: [0, 1, 1, 1, 1] },
+  exit: { scale: 0 },
+  transition: { duration: 1 },
+};
+
 export const fadeAnimation = {
   initial: { opacity: 0, y: -20 },
   animate: { opacity: 1, y: 0 },
