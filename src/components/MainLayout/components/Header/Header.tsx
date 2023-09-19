@@ -213,4 +213,4 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   );
 };
 
-export default Header;
+export default React.memo(Header);

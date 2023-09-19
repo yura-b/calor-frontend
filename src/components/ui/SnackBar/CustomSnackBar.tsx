@@ -21,13 +21,16 @@ const CustomSnackBar = () => {
 
     setTimeout(() => {
       dispatch(showMessage(null));
-    }, 4000);
+    }, 6000);
   }, [message, status]);
 
   if (!message) return <></>;
 
   return (
-    <motion.div className="absolute right-3 top-3 z-[3000] opacity-95" {...scaleAnimationFast}>
+    <motion.div
+      className="fixed right-3 top-11 lg:right-[16%] lg:top-[10%] z-[3000] opacity-95"
+      {...scaleAnimationFast}
+    >
       <Alert severity="success" color={severity} sx={{ backgroundColor: '#1EC1AA' }}>
         {message}
       </Alert>

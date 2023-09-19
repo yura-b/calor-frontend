@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { motion } from 'framer-motion';
@@ -10,12 +10,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');
   const [headerHeight, setHeaderHeight] = useState(0);
 
-  const updateHeaderHeight = () => {
+  const updateHeaderHeight = useCallback(() => {
     const headerElement = document.getElementById('header');
     if (headerElement) {
       setHeaderHeight(headerElement.offsetHeight);
     }
-  };
+  }, []);
 
   useEffect(() => {
     updateHeaderHeight();
