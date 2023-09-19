@@ -3,7 +3,7 @@ import React, { memo, useEffect } from 'react';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { EStatus, showMessage } from '@/store/reducers/StatusClientReducer.ts';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import { scaleAnimationFast } from '@styles/Animations';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
@@ -21,13 +21,16 @@ const CustomSnackBar = () => {
 
     setTimeout(() => {
       dispatch(showMessage(null));
-    }, 4000);
+    }, 6000);
   }, [message, status]);
 
   if (!message) return <></>;
 
   return (
-    <motion.div className="absolute right-3 top-3 z-[3000] opacity-95" {...scaleAnimationFast}>
+    <motion.div
+      className="fixed right-3 top-11 lg:right-[16%] lg:top-[10%] z-[3000] opacity-95"
+      {...scaleAnimationFast}
+    >
       <Alert severity="success" color={severity} sx={{ backgroundColor: '#1EC1AA' }}>
         {message}
       </Alert>
