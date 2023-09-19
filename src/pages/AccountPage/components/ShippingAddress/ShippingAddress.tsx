@@ -19,7 +19,7 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
 
   useEffect(() => {
     if (!access_token || !shippingInfo) return;
-    getShippingById(access_token, shippingInfo).then((res) => {
+    getShippingById(access_token, shippingInfo._id).then((res) => {
       setShippingData(res.data);
     });
   }, [shippingInfo]);
@@ -30,7 +30,7 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
     assignAdditionalInfo({ ...data, user_id: userId }).then((res) => {
       if (res.status === 200) {
         if (!access_token || !shippingInfo) return;
-        getShippingById(access_token, shippingInfo).then((res) => {
+        getShippingById(access_token, shippingInfo._id).then((res) => {
           setShippingData(res.data);
           dispatch(showMessage(`Your shipping information has been updated`));
         });
@@ -55,51 +55,51 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
       <AccountLayout>
         <MainFrame title={'Shipping Address'} className="overflow-hidden">
           {!isVisible && (
-            <div>
-              <div className=" w-[340px] lg:w-[640px] flex justify-end">
+            <div className={styles.container}>
+              <div className=" w-full lg:w-[640px] flex justify-end">
                 <Link color="inherit" onClick={handleEditShippingAddress}>
                   Edit Shipping Address
                 </Link>
               </div>
-              <div className="lg:flex lg:justify-between lg:w-[640px]">
+              <div className={`${styles.body2} lg:flex lg:justify-between lg:w-[640px]`}>
                 <div className="lg:w-1/2 lg:p-4">
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>First Name</p>
-                    <p className={`${styles.body1}`}>{shippingData?.receiverFirstName}</p>
+                    <p className={'font-bold'}>First Name</p>
+                    <p>{shippingData?.receiverFirstName}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>Last Name</p>
-                    <p className={`${styles.body1}`}>{shippingData?.receiverSecondName}</p>
+                    <p className={'font-bold'}>Last Name</p>
+                    <p>{shippingData?.receiverSecondName}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>Country</p>
-                    <p className={`${styles.body1}`}>{shippingData?.country}</p>
+                    <p className={'font-bold'}>Country</p>
+                    <p>{shippingData?.country}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>Street Address</p>
-                    <p className={`${styles.body1}`}>{shippingData?.streetAddress}</p>
+                    <p className={'font-bold'}>Street Address</p>
+                    <p>{shippingData?.streetAddress}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>Apt, Suite, Building</p>
-                    <p className={`${styles.body1}`}>{shippingData?.ASB}</p>
+                    <p className={'font-bold'}>Apt, Suite, Building</p>
+                    <p>{shippingData?.ASB}</p>
                   </div>
                 </div>
                 <div className="lg:w-1/2 lg:p-4">
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>City</p>
-                    <p className={`${styles.body1}`}>{shippingData?.city}</p>
+                    <p className={'font-bold'}>City</p>
+                    <p>{shippingData?.city}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>State</p>
-                    <p className={`${styles.body1}`}>{shippingData?.state}</p>
+                    <p className={'font-bold'}>State</p>
+                    <p>{shippingData?.state}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>ZIP Code</p>
-                    <p className={`${styles.body1}`}>{shippingData?.ZIP}</p>
+                    <p className={'font-bold'}>ZIP Code</p>
+                    <p>{shippingData?.ZIP}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
-                    <p className={`${styles.subtitle}`}>Phone Number</p>
-                    <p className={`${styles.body1}`}>{shippingData?.receiverPhoneNumber}</p>
+                    <p className={'font-bold'}>Phone Number</p>
+                    <p>{shippingData?.receiverPhoneNumber}</p>
                   </div>
                 </div>
               </div>

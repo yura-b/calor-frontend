@@ -18,18 +18,21 @@ interface Props {
 }
 const AccountMenuLinks: React.FC<Props> = ({ firstName, secondName, account }): React.ReactElement => {
   const location = useLocation();
-  const { userId } = useAppSelector((state) => state.user);
+  const { googleAccount } = useAppSelector((state) => state.user);
 
   const menuItems = [
     { path: paths.accountDetails, label: 'Account Details', img: Details },
-    // { path: paths.accountDetails.replace(':id', userId), label: 'Account Details', img: Details },
     { path: paths.myOrders, label: 'My Orders', img: Orders },
     // TODO
     // { path: paths.designList, label: 'Design List', img: Design },
     { path: paths.shippingAddress, label: 'Shipping Address', img: Address },
-    { path: paths.changePassword, label: 'Change Password', img: Password },
-    { path: paths.reviews, label: 'Reviews', img: Preview },
   ];
+
+  if (!googleAccount) {
+    menuItems.push({ path: paths.changePassword, label: 'Change Password', img: Password });
+  }
+
+  menuItems.push({ path: paths.reviews, label: 'Reviews', img: Preview });
 
   return (
     <div className="h-auto py-2">

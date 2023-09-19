@@ -27,7 +27,7 @@ const Email = () => {
   return (
     <div>
       <AuthorizationHeader />
-      <div className={'flex flex-col p-5 mt-16'}>
+      <div className={'flex flex-col p-5 mt-[160px] max-w-2xl  m-auto'}>
         <form onSubmit={formik.handleSubmit} className={'w-full'}>
           <CustomInput
             id={'email'}

@@ -1,7 +1,6 @@
 import { paths } from '@routes/paths';
 import privacy from '../../../../public/Privacy Policy_CALOR.pdf';
 import conditions from './../../../../public/Terms and Conditions_CALOR.pdf';
-import cookie from '../../../../public/Use of Cookies_CALOR.pdf';
 import { CareProduct, AccessoriesProduct } from '@/constants/enums/products.enum';
 import { MainMenuEnum } from '@/constants/enums/pages.enum';
 
@@ -14,20 +13,20 @@ export const menuItems = [
   //   title: MainMenuEnum.DESIGNYOURBAG,
   //   path: paths.design_bag,
   // },
-  {
-    title: MainMenuEnum.READYMADEPRODUCTS,
-    path: paths.ready_made_products,
-    subItems: [
-      {
-        subTitle: 'Item1',
-        path: '',
-      },
-      {
-        subTitle: 'Item2',
-        path: '',
-      },
-    ],
-  },
+  // {
+  //   title: MainMenuEnum.READYMADEPRODUCTS,
+  //   path: paths.ready_made_products,
+  //   subItems: [
+  //     {
+  //       subTitle: 'Item1',
+  //       path: '',
+  //     },
+  //     {
+  //       subTitle: 'Item2',
+  //       path: '',
+  //     },
+  //   ],
+  // },
   {
     title: MainMenuEnum.ACCESSORIES,
     path: paths.accessories,
@@ -94,7 +93,7 @@ export const helpLinks = [
   // },
 
   {
-    title: 'Size Guide',
+    title: 'Our Size Guide',
     path: paths.helpPage + '#sizeGuide',
   },
   {
@@ -112,11 +111,11 @@ export const helpLinks = [
 ];
 export const aboutLinks = [
   {
-    subTitle: 'Who We Are',
+    subTitle: 'Our Story',
     path: paths.about + '#who_we_are',
   },
   {
-    subTitle: 'Our Story',
+    subTitle: 'A Word From the Founder',
     path: paths.about + '#our_story',
   },
   {
@@ -139,15 +138,10 @@ export const privacyLinks = [
     isPdfLink: true,
   },
   {
-    name: 'Cookies',
-    path: cookie,
-    isPdfLink: true,
-  },
-  {
-    name: 'Terms & Condition',
+    name: 'Terms & Conditions',
     path: conditions,
     isPdfLink: true,
   },
 ];
 
-export const mobileMenuCalorItems = ['Faster Checkout', 'Access Your Order History', 'Discount Rewards Program'];
+export const mobileMenuCalorItems = ['Faster Checkout', 'Access Your Order History', 'Discounts', 'Rewards Program'];

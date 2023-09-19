@@ -18,8 +18,10 @@ import AccessoriesPage from '@pages/AccessoriesPage';
 import Accessories from '@pages/AccessoriesPage/components/Accessories';
 import ShoeCareProductPage from '@pages/ShoeCareProductPage';
 import SubCareProduct from '@pages/ShoeCareProductPage/components/SubCareProduct';
-import CustomerExperiencePage from '@pages/CustomerExperiencePage';
-import CookiesPage from '@pages/CookiesPage';
+const HomePage = lazy(() => import('@pages/HomePage'));
+const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
+const Constructor = lazy(() => import('./components/Constructor'));
+const CustomerExperiencePage = lazy(() => import('@pages/CustomerExperiencePage'));
 import AccountPage from '@pages/AccountPage';
 import DeleteMyAccountComponent from '@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountComponent';
 import DeleteMyAccountSuccess from '@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountSuccess';
@@ -38,13 +40,9 @@ import Loader from '@/components/ui/Loader/';
 import CatalogPage from '@pages/admin/catalog/CatalogPage.tsx';
 import CreateItem from '@pages/admin/catalog/CreateItem.tsx';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
-
-const HomePage = lazy(() => import('@pages/HomePage'));
-const DesignShoePage = lazy(() => import('@pages/DesignShoePage'));
 import PrivateRoute from '@/components/PrivateRoute';
 import ResetUserPassword from './pages/AccountPage/components/ChangePassword/ResetUserPassword';
 import { useMediaQuery } from '@react-hook/media-query';
-import Constructor from './components/Constructor';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Reviews from './pages/AccountPage/components/Reviews';
 import MeasurementPage from '@/pages/MeasurementPage/MeasurementPage';
@@ -53,6 +51,8 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import CheckoutSuccessPage from './pages/CheckoutPage/CheckoutSuccessPage';
 import CheckoutNotSuccessPage from './pages/CheckoutPage/CheckoutNotSuccessPage';
+import AppointmentyPage from '@/pages/AppointmentPage';
+import CookiePopup from '@components/CookiePopup';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -103,7 +103,6 @@ const App = () => {
           <Route path={`${paths.shoe_care_product}/:subCareProduct`} element={<SubCareProduct />} />
           <Route path={paths.ready_made_products} element={<ReadyMadeProductsPage />} />
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
-          <Route path={paths.cookies} element={<CookiesPage />} />
           <Route path={paths.about} element={<AboutPage />} />
           <Route
             path={paths.account}
@@ -127,8 +126,10 @@ const App = () => {
           <Route path={paths.checkout_failed} element={<CheckoutNotSuccessPage />} />
           <Route path={paths.myOrder} element={<MyOrder />} />
           <Route path={paths.helpPage} element={<HelpPage />} />
+          <Route path={paths.appointmentPage} element={<AppointmentyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <CookiePopup />
       </Suspense>
     </BrowserRouter>
   );

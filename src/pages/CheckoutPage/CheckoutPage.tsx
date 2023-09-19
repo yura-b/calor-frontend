@@ -9,24 +9,28 @@ import ShippingInformation, { shippingForm } from '@pages/CheckoutPage/pages/Shi
 import Payment from '@pages/CheckoutPage/pages/Payment.tsx';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import { createOrder } from '@/api/orders.ts';
-import { useQuery } from 'react-query';
-import { getUser } from '@/api/users';
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
+
   const { userId, access_token } = useAppSelector((state) => state.user);
-  const {
-    data: user,
-    isLoading,
-    isError,
-  } = useQuery('userBasket', () => getUser(access_token, userId), {
-    keepPreviousData: true,
-    refetchOnWindowFocus: false,
-    enabled: !!userId,
-  });
+  const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { items: basketProductsForNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
+
+  const purchasesData = Boolean(access_token)
+    ? basketProducts?.map((item) => ({
+        count: item.count,
+        product: item?.shoes?._id || item?.accessory?._id,
+        details: item?.category || item?.details[0],
+      }))
+    : basketProductsForNonRegisterUser?.map((item) => ({
+        count: item?.count,
+        product: item?._id || item?.product,
+        details: item?.category || item?.details[0],
+      }));
 
   useEffect(() => {
     if (!data) return;
@@ -41,14 +45,9 @@ const CheckoutPage = () => {
         user_id: userId,
         save: data.save,
       },
-      purchases: user?.data?.user.basket.map((item) => ({
-        count: item.count,
-        product: item.shoes,
-        details: item.details[0],
-      })),
+      purchases: purchasesData,
     })
       .then((res) => {
-        console.log(res.data);
         dispatch(saveOrderIds(res.data));
         dispatch(setCheckoutStep(CheckoutSteps.THIRD));
       })

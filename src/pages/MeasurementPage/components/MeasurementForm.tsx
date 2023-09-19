@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useFormik } from 'formik';
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
@@ -6,25 +6,37 @@ import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import { validationMeasurement } from '@/helpers/validation/formValidation.ts';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserMeasurement } from '@/store/reducers/UserMeasurement';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { addToBasket } from '@/api/basket';
+import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { showMessage } from '@/store/reducers/StatusClientReducer';
+import { getProductById } from '@/api/products';
 interface IProps {
   selectedShoeSize: number;
 }
 
 const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
   const { id, model } = useParams();
+
+  const { data: product } = useQuery(['productById', id], () => getProductById(id), {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userId } = useSelector((state) => state.user);
   const { details } = useSelector((state) => state.selectedShoeParts);
   const constructorImage = useSelector((state) => state.constructorImage);
 
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
+      setIsDisabled(false);
       navigate('/');
+      dispatch(showMessage('The product has been successfully added'));
     },
   });
 
@@ -41,16 +53,39 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     },
     validationSchema: validationMeasurement,
     onSubmit: (values) => {
+      setIsDisabled(true);
       dispatch(setUserMeasurement({ selectedShoeSize, ...values }));
-      const requestData = {
-        product: id,
-        count: 1,
-        photo: constructorImage,
-        measurement: { selectedShoeSize, ...values },
-        details: [selectedDetails],
-      };
 
-      mutation.mutate({ userId, requestData });
+      let requestData = {};
+
+      if (userId) {
+        requestData = {
+          product: id,
+          count: 1,
+          photo: constructorImage,
+          measurement: { selectedShoeSize, ...values },
+          details: [selectedDetails],
+        };
+      } else {
+        requestData = {
+          _id: id,
+          title: product?.data?.title,
+          price: product?.data?.price,
+          count: 1,
+          photos: [constructorImage],
+          measurement: { selectedShoeSize, ...values },
+          details: [selectedDetails],
+        };
+      }
+
+      if (userId) {
+        mutation.mutate({ userId, requestData });
+      } else {
+        dispatch(addToCartNonRegisterUser(requestData));
+        dispatch(showMessage('The product has been successfully added'));
+        setIsDisabled(false);
+        navigate('/');
+      }
     },
   });
 
@@ -181,7 +216,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
       <p className="mb-2">
         If you have any questions, please, contact us by chat or any other available communication option.
       </p>
-      <CustomButton styles={'w-full'} title={'Add to cart'} type={'submit'} />
+      <CustomButton styles={'w-full'} title={'Add to cart'} type={'submit'} disabled={isDisabled} />
     </form>
   );
 };

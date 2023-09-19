@@ -63,7 +63,7 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
         <div className="hidden lg:block">
           <img src={calorCircle} className="lg:m-auto lg:pt-4" />
         </div>
-        <div className="absolute max-w-[400px] w-[400px] min-w-[200px] hidden top-4 lg:right-[5vw] xl:right-[15vw] lg:block">
+        <div className="absolute max-w-[400px] w-[400px] min-w-[200px] hidden -top-1 lg:right-[5vw] xl:right-[15vw] lg:block">
           <HomeShowRoom
             backgroundButton="turquoise"
             showRoomTitleColor="white"
@@ -88,7 +88,7 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
                 </div>
                 <div className="basis-4/5">
                   <h2 className={`${styles.header2} lg:text-xl`}>{calorBy.title}</h2>
-                  <p className={`${styles.body2} text-justify mt-1`}>{calorBy.value}</p>
+                  <p className={`${styles.body2}  mt-1 text-[16px]`}>{calorBy.value}</p>
                 </div>
               </div>
             ))}

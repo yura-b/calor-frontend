@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from '@styles/Styles.module.scss';
 import Rating from '@/components/ui/Rating/Rating';
 
-const ProductDescription = ({ description, title, price, subcategory, rating, season, sizes, category }) => {
+const ProductDescription = ({title, price, rating, sizes, category }) => {
   return (
     <div className="text-gray">
       <div className="flex justify-start items-center py-1">
@@ -28,11 +27,6 @@ const ProductDescription = ({ description, title, price, subcategory, rating, se
         <div className="flex">
           {category === 'shoes' && (
             <ul className="list-disc">
-              <li className="py-1">
-                <p>
-                  <span className="font-bold">Season</span> {season}
-                </p>
-              </li>
               <li className="py-1">
                 <p>
                   <span className="font-bold">Size</span> {sizes && Math.min(...sizes)}-{sizes && Math.max(...sizes)}

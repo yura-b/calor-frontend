@@ -84,7 +84,7 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
               errorMessage={formik.errors.secondName}
               border={'1px solid #D9D9D9'}
             >
-              Second Name
+              Last Name
             </CustomInput>
           </div>
           <div className="basis-[48%] 2xl:basis-[40%]">

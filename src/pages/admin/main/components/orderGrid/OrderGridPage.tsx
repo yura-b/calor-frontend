@@ -41,7 +41,7 @@ const OrderGridPage = () => {
 
   let filteredOrder = data?.data as IOrder[];
 
-  filteredOrder = filteredOrder.filter((order) => {
+  filteredOrder = filteredOrder?.filter((order) => {
     if (chosenSection === chosenOrders.history)
       return order.status === OrderStatus.Shipped || order.status === OrderStatus.Refunded;
 
@@ -67,8 +67,13 @@ const OrderGridPage = () => {
           );
         })}
       </div>
-      {chosenSection === chosenOrders.current && <OrdersTable orderList={filteredOrder} />}
-      {chosenSection === chosenOrders.history && <OrderHistoryGrid orders={filteredOrder} />}
+      {filteredOrder && filteredOrder.length > 0 && chosenSection === chosenOrders.current && (
+        <OrdersTable orderList={filteredOrder} />
+      )}
+      {filteredOrder && filteredOrder.length > 0 && chosenSection === chosenOrders.history && (
+        <OrderHistoryGrid orders={filteredOrder} />
+      )}
+      {filteredOrder && filteredOrder.length === 0 && <div>No orders found.</div>}
     </div>
   );
 };

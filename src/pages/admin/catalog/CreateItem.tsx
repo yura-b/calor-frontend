@@ -12,8 +12,11 @@ import { createProduct, getCategories } from '@/api/products.ts';
 import { CustomSelect } from '@components/select/CustomSelect.tsx';
 import { SelectChangeEvent } from '@mui/material/Select';
 import CustomInput from '@components/input/CustomInput.tsx';
-import CustomTextField from '@components/admin/CustomTextField.tsx';
 import { InputType } from '@/constants/interfaces/inputTypes.ts';
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import rawEditorTextToHTML from '@/helpers/functions/rawEditorTextToHTML';
 
 const border = '1px #CBD2E0 solid';
 
@@ -29,8 +32,16 @@ const CreateItem = () => {
   const [price, setPrice] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
   const [productName, setProductName] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [productDetails, setProductDetails] = useState<string>('');
+
+  const [editorStateDescription, setEditorStateDescription] = useState(EditorState.createEmpty());
+  const [editorStateProductDetails, setEditorStateProductDetails] = useState(EditorState.createEmpty());
+
+  const onEditorStateDescriptionChange = (newEditorState) => {
+    setEditorStateDescription(newEditorState);
+  };
+  const onEditorStateProductDetailsChange = (newEditorState) => {
+    setEditorStateProductDetails(newEditorState);
+  };
 
   useEffect(() => {
     dispatch(loading());
@@ -90,6 +101,12 @@ const CreateItem = () => {
   };
 
   const handleAddNewItem = () => {
+    const descriptionState = editorStateDescription.getCurrentContent();
+    const descriptionHtmlContent = rawEditorTextToHTML(descriptionState);
+
+    const productDetailsState = editorStateProductDetails.getCurrentContent();
+    const productDetailsHtmlContent = rawEditorTextToHTML(productDetailsState);
+
     if (!access_token || !categories || !price || !productName) return;
     dispatch(loading());
     Promise.all(
@@ -114,8 +131,8 @@ const CreateItem = () => {
               photos: photos,
               size: sizes.map((size) => size.size),
               name: productName,
-              description: description,
-              productDetails: productDetails
+              description: descriptionHtmlContent,
+              productDetails: productDetailsHtmlContent,
             },
             access_token
           )
@@ -188,18 +205,29 @@ const CreateItem = () => {
             />
 
             <p>Description</p>
-            <CustomTextField
-              defaultValue={description}
-              setValue={textAreaHandler(setDescription)}
-              disabledField={false}
-            />
+            <div>
+              <Editor
+                editorState={editorStateDescription}
+                onEditorStateChange={onEditorStateDescriptionChange}
+                wrapperStyle={{ border: '2px solid #CBD2E0' }}
+                toolbar={{
+                  options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
+                }}
+                handlePastedText={() => false}
+              />
+            </div>
             <p>Product Details</p>
-            <CustomTextField
-              defaultValue={productDetails}
-              setValue={textAreaHandler(setProductDetails)}
-              disabledField={false}
-            />
-
+            <div>
+              <Editor
+                editorState={editorStateProductDetails}
+                onEditorStateChange={onEditorStateProductDetailsChange}
+                wrapperStyle={{ border: '2px solid #CBD2E0' }}
+                toolbar={{
+                  options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
+                }}
+                handlePastedText={() => false}
+              />
+            </div>
             <CustomInput
               type={InputType.number}
               description={'Price'}

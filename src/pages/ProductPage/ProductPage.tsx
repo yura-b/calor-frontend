@@ -4,44 +4,72 @@ import { useQuery, useMutation } from 'react-query';
 import { useParams } from 'react-router';
 import { getProductById } from '@/api/products';
 import Head from '@/layouts/Head';
-import { titles } from '@/translations/titles';
 import MainLayout from '@/components/MainLayout';
 import ProductDescription from './components/ProductDescription';
 import ProductReviews from './components/ProductReviews';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 import Slider from '@/components/ui/Slider';
 import Button from '@components/ui/Button';
-import Loader from '@/components/ui/Loader';
 import { paths } from '@routes/paths.ts';
 import AccordionSection from '@components/AccordionSection';
 import { addToBasket } from '@/api/basket';
-import { useSelector } from 'react-redux';
+import { SealCheck } from '@phosphor-icons/react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
+import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
+import { showMessage } from '@/store/reducers/StatusClientReducer';
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { userId } = useSelector((state) => state.user);
-  const {
-    data: product,
-    isLoading,
-    isError,
-  } = useQuery(['productById', id], () => getProductById(id), {
+  const { userId, access_token } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
+
+  const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
+    (item: BasketProduct) => item.product === id || item._id === id || item.accessory === id
+  );
+  const isProductExistInBasket = basketProducts.some(
+    (item: BasketProduct) => item?._id === id || item?.accessory?._id === id || item?.shoes?._id === id
+  );
+
+  const { data: product } = useQuery(['productById', id], () => getProductById(id), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
 
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
-      console.log(data);
+      dispatch(appendToBasket({ ...product?.data, count: 1 }));
+      dispatch(showMessage('The product has been successfully added'));
     },
   });
+  let requestData = {};
 
-  const requestData = {
-    product: product?.data._id,
-    count: 1,
-    photo: product?.data.photos[0],
-    measurement: {},
-    details: [{}],
+  if (userId) {
+    requestData = {
+      product: product?.data._id,
+      count: 1,
+      photo: product?.data.photos[0],
+      measurement: {},
+      details: [{}],
+    };
+  } else {
+    requestData = {
+      product: product?.data._id,
+      count: 1,
+      photos: [product?.data.photos[0]],
+      measurement: {},
+      details: [{}],
+    };
+  }
+
+  const handleAddToCartNonRegisterUser = () => {
+    dispatch(addToCartNonRegisterUser(requestData));
+    dispatch(showMessage('The product has been successfully added'));
   };
+
   const initialSectionsState = [
     {
       title: 'Product details',
@@ -72,11 +100,9 @@ const ProductPage = () => {
     );
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <div className="font-poppins h-screen">
-      <Head title={titles.product} />
+      <Head title="Product" />
       <MainLayout>
         <div className="hidden lg:flex w-full h-[50px] justify-center items-center pt-10 box-border">
           <NavigationLinks color="gray" className="z-10 w-auto" />
@@ -95,18 +121,15 @@ const ProductPage = () => {
                 price={product?.data.price}
                 subcategory={product?.data.subcategory}
                 rating={product?.data.rating}
-                season={product?.data.season}
                 sizes={product?.data.sizes}
                 category={product?.data.category}
               />
               <div className="py-2 w-full">
-                {product?.data.category == 'shoes' && (
-                  <span>Your order will be customized and delivered within 7-10 days.</span>
-                )}
+                {product?.data.category == 'shoes' && <span>Your shoes will be manufactured in 7-10 days.</span>}
                 {product?.data.category !== 'shoes' && (
                   <>
-                    <span>{product?.data.description}</span>
-                    {product?.data.size.length && (
+                    <div dangerouslySetInnerHTML={{ __html: product?.data.description }} />
+                    {!!product?.data.size.length && (
                       <>
                         <p className={`${styles.body2} font-bold py-4`}>Please select your size</p>
                         <div className="flex gap-6 flex-wrap">
@@ -130,15 +153,39 @@ const ProductPage = () => {
                     >
                       Design Your Shoe
                     </Button>
-                    <Button color="transparentGray" to={paths.ready_made_products}>
+                    {/* <Button color="transparentGray" to={paths.ready_made_products}>
                       Choose From Existing
-                    </Button>
+                    </Button> */}
                   </>
                 )}
-                {product?.data.category !== 'shoes' && (
-                  <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
-                    Add To Cart
-                  </Button>
+                {userId ? (
+                  <>
+                    {product?.data.category !== 'shoes' && !isProductExistInBasket && (
+                      <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
+                        Add To Cart
+                      </Button>
+                    )}
+                    {product?.data.category !== 'shoes' && isProductExistInBasket && (
+                      <div className="flex justify-center items-center text-mint">
+                        <SealCheck className="mr-2" size={32} weight="fill" />
+                        Already in your cart
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {product?.data.category !== 'shoes' && !isProductExistInBasketNonRegisterUser && (
+                      <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
+                        Add To Cart
+                      </Button>
+                    )}
+                    {product?.data.category !== 'shoes' && isProductExistInBasketNonRegisterUser && (
+                      <div className="flex justify-center items-center text-mint">
+                        <SealCheck className="mr-2" size={32} weight="fill" />
+                        Already in your cart
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
               <div className="py-2">
@@ -152,7 +199,7 @@ const ProductPage = () => {
                     {index == 0 && (
                       <div>
                         <h1 className={styles.header2}>{product?.data.title}</h1>
-                        <h1>{product?.data.description}</h1>
+                        <div dangerouslySetInnerHTML={{ __html: product?.data.productDetails }} />
                       </div>
                     )}
                     {index == 1 && (

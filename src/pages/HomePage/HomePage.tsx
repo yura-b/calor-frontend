@@ -12,7 +12,9 @@ import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
 
 const HomePage: React.FC = (): React.ReactElement => {
-  const { data } = useQuery('getPageSection', () => getPageSection());
+  const { data } = useQuery('getPageSection', () => getPageSection(), {
+    staleTime: Infinity
+  });
 
   const filteredPagesHome = data?.data.filter((page) => page.page === 'Home Page');
   const benefits = filteredPagesHome?.filter((section) => section?.section === 'Benefits');

@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import { getProducts } from '@/api/products';
 import ShoesList from '@/pages/DesignShoePage/ShoesList';
 import Loader from '@/components/ui/Loader';
+import constants from '@/constants/constants';
 
 const headerBlock = (title: string, linkPath: string) => (
   <div className="flex justify-between items-center mt-4">
@@ -36,7 +37,7 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
     refetchOnWindowFocus: false,
   });
 
-  const shoes = products?.data?.shoes || [];
+  const shoes = products?.data?.shoes.filter((item) => item.stripeID !== constants.DAYGER_WINTER_STRIPE_ID) || [];
 
   return (
     <div className={`${styles.container} w-full bg-white`}>

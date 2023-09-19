@@ -12,6 +12,7 @@ import healthcareMob from '@assets/images/ourShoesFor/healthcareMob.jpg';
 import corporate from '@assets/images/ourShoesFor/corporate.jpg';
 import gift from '@assets/images/ourShoesFor/gift.jpg';
 import giftMob from '@assets/images/ourShoesFor/giftMob.jpg';
+import lovers from '@assets/images/ourShoesFor/lovers.jpg';
 import { motion } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -73,6 +74,13 @@ const OurShoesFor: React.FC = () => {
       description:
         'Tired of generic gifts from local shops? Be the first to give your loved ones the opportunity to become the designers of their own shoes. Create a truly unique and memorable gift experience.',
       mt: '-30px',
+    },
+    {
+      img: lovers,
+      title: 'Sneaker Lovers',
+      description:
+        'If you`re a passionate sneaker enthusiast with a growing collection of unique kicks, you`ve found your perfect destination. At CALOR, we understand the devotion that sneaker lovers have for their footwear. That`s why we offer an exciting opportunity to take your sneaker game to the next level.',
+      mt: '0px',
     },
   ];
   return (

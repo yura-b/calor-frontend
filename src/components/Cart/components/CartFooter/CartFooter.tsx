@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@components/ui/Button';
 import styles from '@styles/Styles.module.scss';
 import { useFormik } from 'formik';
@@ -6,17 +6,28 @@ import CustomInput from '@/components/input/CustomInput';
 import { validationSchemaForPromoCode } from '@/helpers/validation/formValidation.ts';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
-import { Navigate, useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-interface Props {
+import { useNavigate } from 'react-router';
+import { BasketProduct } from '@/store/reducers/BasketSlice';
+
+interface IProps {
   title: string;
-  data?: object[];
+  data?: BasketProduct[];
 }
 
-const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
+const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
   const navigate = useNavigate();
-  const { basket } = useSelector((state) => state.user);
 
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const productsTotal = data?.reduce((acc, item) => {
+      const price = item?.shoes?.price || item?.accessory?.price || item?.price || 0;
+      const count = item?.shoes?.count || item?.accessory?.count || item?.count || 0;
+      return acc + price * count;
+    }, 0);
+
+    setTotal(productsTotal?.toFixed(2));
+  }, [data]);
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(false);
   const [promoCodeApplied, setPromoCodeApplied] = useState(false);
 
@@ -26,7 +37,7 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
   };
 
   const handleClick = () => {
-    navigate('/checkout')
+    navigate('/checkout');
   };
 
   const handlePromoCodeApplied = () => {
@@ -57,9 +68,9 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
         </div>
         <div className={`${styles.body2} flex justify-between mt-4 items-center font-bold text-mint`}>
           <p>Subtotal</p>
-          <p>$ XXX</p>
+          <p>$ {total}</p>
         </div>
-        {!promoCodeApplied && !showPromoCodeForm && (
+        {promoCodeApplied && !showPromoCodeForm && (
           <Button color="transparentMint" onClick={addPromoCode} className="mt-6 max-w-[100%] block m-auto">
             Add Promo Code +
           </Button>

@@ -13,12 +13,12 @@ export const validationSchemaForSignUp = yup.object({
 export const validationSchemaForContactInfo = yup.object({
   firstName: yup
     .string()
-    .min(3, 'First name should be of minimum 3 characters length')
-    .required('First name is required'),
+    .min(3, 'First Name should be of minimum 3 characters length')
+    .required('First Name is required'),
   secondName: yup
     .string()
-    .min(3, 'Second name should be of minimum 3 characters length')
-    .required('Second name is required'),
+    .min(3, 'Last Name should be of minimum 3 characters length')
+    .required('Last Name is required'),
   phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
   email: yup.string().email('email is not valid'),
 });
@@ -28,33 +28,29 @@ export const validationSchemaForCreateReview = yup.object({
   user_id: yup.string().required(),
   firstName: yup
     .string()
-    .min(3, 'First name should be of minimum 3 characters length')
-    .required('First name is required'),
+    .min(3, 'First Name should be of minimum 3 characters length')
+    .required('First Name is required'),
   secondName: yup
     .string()
-    .min(3, 'Second name should be of minimum 3 characters length')
-    .required('Second name is required'),
+    .min(3, 'Last Name should be of minimum 3 characters length')
+    .required('Last Name is required'),
   email: yup.string().email('Email is not valid').required('Email is required'),
 });
 
 export const validationSchemaForShippingInfo = yup.object({
   city: yup.string().required('city is required').min(2, 'city should have at least 2 characters'),
   streetAddress: yup.string().required('city is required').min(2, 'street address should have at least 2 characters'),
-  receiverFirstName: yup
-    .string()
-    .min(3, 'First name should be of minimum 3 characters length')
-    .required('First name is required'),
-  receiverSecondName: yup
-    .string()
-    .min(3, 'Second name should be of minimum 3 characters length')
-    .required('Second name is required'),
   ZIP: yup.number().required(),
-  ASB: yup.string().required(),
-  state: yup.string().required(),
+  ASB: yup.string(),
+  state: yup.string().min(2),
   receiverPhoneNumber: yup
     .string()
     .matches(phoneNumberRegex, 'Phone number is not valid')
     .required('Phone number is required'),
+});
+
+export const validationSchemaForCheckout = yup.object({
+  city: yup.string(),
 });
 
 export const oneUpperCaseValidation = (password: string) => {
@@ -103,12 +99,12 @@ export const validationSchemaForPromoCode = yup.object({
 export const validationSchemaForUserAccount = yup.object({
   firstName: yup
     .string()
-    .min(3, 'First name should be of minimum 3 characters length')
-    .required('First name is required'),
+    .min(3, 'First Name should be of minimum 3 characters length')
+    .required('First Name is required'),
   secondName: yup
     .string()
-    .min(3, 'Second name should be of minimum 3 characters length')
-    .required('Second name is required'),
+    .min(3, 'Last Name should be of minimum 3 characters length')
+    .required('Last Name is required'),
   email: yup.string().email('Enter a valid email').required('Email is required'),
   phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
 });

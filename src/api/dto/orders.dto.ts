@@ -33,10 +33,6 @@ export interface detail {
 }
 
 export interface ShippingInfoDto {
-  receiverFirstName: string;
-
-  receiverSecondName: string;
-
   streetAddress: string;
 
   ASB: string;

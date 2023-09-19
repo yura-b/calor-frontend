@@ -1,14 +1,13 @@
 import { FC, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
-import { useMediaQuery } from '@react-hook/media-query';
 
 interface IProps {
   images: string[];
   color?: string;
 }
 
-const Slider: FC<IProps> = ({ images, color }) => {
+const Slider: FC<IProps> = ({ images = [], color }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
   const autoPlayInterval = 5000;
@@ -31,14 +30,14 @@ const Slider: FC<IProps> = ({ images, color }) => {
     const autoPlay = () => {
       if (isAutoPlaying) {
         setPrevIndex(currentIndex);
-        setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+        setCurrentIndex((prevIndex) => (prevIndex === images?.length - 1 ? 0 : prevIndex + 1));
       }
     };
     const autoPlayTimer = setInterval(autoPlay, autoPlayInterval);
     return () => {
       clearInterval(autoPlayTimer);
     };
-  }, [isAutoPlaying, currentIndex, images.length]);
+  }, [isAutoPlaying, currentIndex, images?.length]);
 
   const handleIndicatorClick = (index) => {
     setPrevIndex(currentIndex);
