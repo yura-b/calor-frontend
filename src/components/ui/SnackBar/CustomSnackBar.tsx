@@ -3,7 +3,7 @@ import React, { memo, useEffect } from 'react';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { EStatus, showMessage } from '@/store/reducers/StatusClientReducer.ts';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import { scaleAnimationFast } from '@styles/Animations';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {

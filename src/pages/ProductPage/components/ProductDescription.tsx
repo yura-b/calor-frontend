@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '@styles/Styles.module.scss';
 import Rating from '@/components/ui/Rating/Rating';
 
-const ProductDescription = ({title, price, rating, sizes, category }) => {
+const ProductDescription = ({ title, price, rating, sizes, category }) => {
   return (
     <div className="text-gray">
       <div className="flex justify-start items-center py-1">

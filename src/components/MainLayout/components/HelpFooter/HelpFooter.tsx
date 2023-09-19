@@ -21,7 +21,7 @@ interface Props {
 
 const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection(), {
-    staleTime: Infinity
+    staleTime: Infinity,
   });
   const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
   const phone = filteredPagesFooter?.find((section) => section?.section === 'Phone Number').value;
