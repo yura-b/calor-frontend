@@ -49,7 +49,7 @@ const Header = () => {
           <img src={logo} className={'w-full h-full p-3 mt-6 ' + styles.image} alt="" />
         </div>
 
-        <div className={'flex flex-col gap-8 w-full justify-center ml-6  mt-16 ' + styles.navContainer}>
+        <div className={'flex flex-col gap-4 w-full justify-center ml-6  mt-16 ' + styles.navContainer + ' lg:gap-8'}>
           <HeaderElement icon={<ChartBar size={size} weight="fill" />} title={'Analytics'} />
           <div>
             <Storefront size={size} weight="fill" />

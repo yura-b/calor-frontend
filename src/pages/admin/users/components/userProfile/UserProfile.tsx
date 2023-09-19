@@ -38,7 +38,6 @@ const UserProfile = () => {
     dispatch(loading());
 
     getUser(access_token, id).then((res) => {
-      console.log(res.data);
       setUserInfo(res.data.user);
       setUserReviews(res.data.reviews);
       setUserOrders(res.data.orders);
