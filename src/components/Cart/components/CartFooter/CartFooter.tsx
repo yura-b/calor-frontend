@@ -62,10 +62,6 @@ const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
     <div className="px-6 py-2.5 text-gray lg:pt-0">
       <h1 className={`${styles.header1} my-4 lg:mt-0 lg:text-[1.5rem]`}>{title}</h1>
       <div className={`${styles.body2} lg:text-[]`}>
-        <div className="flex justify-between mt-4 items-center">
-          <p>Discount</p>
-          <p>-$ XXX</p>
-        </div>
         <div className={`${styles.body2} flex justify-between mt-4 items-center font-bold text-mint`}>
           <p>Subtotal</p>
           <p>$ {total}</p>

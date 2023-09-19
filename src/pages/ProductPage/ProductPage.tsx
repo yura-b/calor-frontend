@@ -21,7 +21,7 @@ import { showMessage } from '@/store/reducers/StatusClientReducer';
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { userId, access_token } = useAppSelector((state) => state.user);
+  const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
@@ -62,11 +62,13 @@ const ProductPage = () => {
       photos: [product?.data.photos[0]],
       measurement: {},
       details: [{}],
+      price: product?.data?.price,
+      title: product?.data?.title,
     };
   }
 
   const handleAddToCartNonRegisterUser = () => {
-    dispatch(addToCartNonRegisterUser(requestData));
+    dispatch(addToCartNonRegisterUser({ ...product?.data, count: 1 }));
     dispatch(showMessage('The product has been successfully added'));
   };
 
