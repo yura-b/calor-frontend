@@ -40,16 +40,8 @@ export const validationSchemaForCreateReview = yup.object({
 export const validationSchemaForShippingInfo = yup.object({
   city: yup.string().required('city is required').min(2, 'city should have at least 2 characters'),
   streetAddress: yup.string().required('city is required').min(2, 'street address should have at least 2 characters'),
-  receiverFirstName: yup
-    .string()
-    .min(3, 'First Name should be of minimum 3 characters length')
-    .required('First Name is required'),
-  receiverSecondName: yup
-    .string()
-    .min(3, 'Last Name should be of minimum 3 characters length')
-    .required('Last Name is required'),
   ZIP: yup.number().required(),
-  ASB: yup.string().required(),
+  ASB: yup.string(),
   state: yup.string().min(2),
   receiverPhoneNumber: yup
     .string()
