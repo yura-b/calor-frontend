@@ -49,7 +49,10 @@ const HomeShowRoom: React.FC<Props> = ({
     <div className={`${styles.container} w-full`}>
       <p className={`${styles.subtitle} text-${showRoomTitleColor} uppercase mb-1`}>Visit Our CALOR Showroom!</p>
       <h2 className={`${styles.header1} text-${titleColor}`}>{perfectFit?.title}</h2>
-      <p className={`${styles.body1}  text-${bodyColor} text-justify mt-2`}>{perfectFit?.value}</p>
+      <p
+        className={`${styles.body1}  text-${bodyColor} text-justify mt-2`}
+        dangerouslySetInnerHTML={{ __html: perfectFit?.value || '' }}
+      />
       <Button color={backgroundButton} className="w-full my-6" onClick={handleOpen}>
         Make an Appointment
       </Button>

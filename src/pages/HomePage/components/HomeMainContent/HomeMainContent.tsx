@@ -20,6 +20,9 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
   const headingClass = `text-[2.4rem] leading-tight font-black sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl  ${
     isSmallerThan1800px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
   }`;
+  const visionsContent = {
+    __html: visions || '',
+  };
   return (
     <div className="w-full bg-custom-red  lg:pt-5">
       <div
@@ -96,7 +99,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
             BY YOU!
           </h1>
           <div className="sm:basis-[70%] xl:basis-[50%]">
-            <p className={`${styles.subtitle} mb-2`}>{visions}</p>
+            <div dangerouslySetInnerHTML={visionsContent} className={`${styles.subtitle} mb-2`} />
             {/* Waiting videos */}
             {/* <p className={styles.body1}>
               Learn how to do it in our {''}
