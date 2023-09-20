@@ -1,26 +1,59 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
-import CustomTextField from '@components/admin/CustomTextField.tsx';
 import { setSpecificField } from '@/store/admin/PageManagerReducer.ts';
+import { EditorState, ContentState, convertFromHTML } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { stateToHTML } from 'draft-js-export-html';
 
 const Section: React.FC<{ value: string; title: string | null; id: string }> = ({ value, id, title }) => {
   const { isDisable } = useAppSelector((state) => state.pageManager);
   const dispatch = useAppDispatch();
-  const handler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setSpecificField({ id, value: event.target.value }));
+  const [editorState, setEditorState] = useState(() => {
+    const blocksFromHTML = convertFromHTML(value);
+    const contentState = ContentState.createFromBlockArray(blocksFromHTML.contentBlocks, blocksFromHTML.entityMap);
+    return EditorState.createWithContent(contentState);
+  });
+
+  useEffect(() => {
+    const blocksFromHTML = convertFromHTML(value);
+    const contentState = ContentState.createFromBlockArray(blocksFromHTML.contentBlocks, blocksFromHTML.entityMap);
+    setEditorState(EditorState.createWithContent(contentState));
+  }, [value]);
+
+  const onEditorStateChange = (newEditorState: EditorState) => {
+    setEditorState(newEditorState);
+    const contentState = newEditorState.getCurrentContent();
+    const htmlContent = stateToHTML(contentState);
+    dispatch(setSpecificField({ id, value: htmlContent }));
   };
+
+  const renderText = (htmlContent: string) => {
+    const div = document.createElement('div');
+    div.innerHTML = htmlContent;
+    return div.textContent || div.innerText || '';
+  };
+
   return (
     <div className={'w-[45%]'}>
       {title && <p className={'font-medium'}>{title}</p>}
 
       {isDisable ? (
-        <p>{value}</p>
+        <div dangerouslySetInnerHTML={{ __html: renderText(value) }} />
       ) : (
-        <CustomTextField disabledField={isDisable} defaultValue={value} setValue={handler} />
+        <Editor
+          editorState={editorState}
+          onEditorStateChange={onEditorStateChange}
+          toolbarHidden={isDisable}
+          wrapperStyle={{ border: '2px solid #CBD2E0' }}
+          handlePastedText={() => false}
+          toolbar={{
+            options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
+          }}
+        />
       )}
     </div>
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default memo(Section);
