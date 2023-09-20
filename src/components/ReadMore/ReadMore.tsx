@@ -29,7 +29,7 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
         >
-          {showFullText ? expandedText : initialText}
+          <span dangerouslySetInnerHTML={{ __html: showFullText ? expandedText : initialText + '...' }} />
           <span className="hidden lg:inline-block">
             {initialText != '' && (
               <motion.a

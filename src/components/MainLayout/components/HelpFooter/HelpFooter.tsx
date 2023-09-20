@@ -205,7 +205,7 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
                 className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`}
                 alt=""
               />
-              <span> {phone}</span>
+              <span dangerouslySetInnerHTML={{ __html: phone || '' }} />
             </div>
           </a>
         )}
@@ -236,15 +236,15 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
                 <a href={`tel:+${phone}`} className="cursor-pointer hidden lg:block">
                   <div className={'mb-1   lg:text-custom-turquoise lg:flex'}>
                     <img src={mintTelcon} className={'mr-2  '} alt="" />
-                    <span className="lg:text-sm lg:font-extrabold">{phone}</span>
+                    <span className="lg:text-sm lg:font-extrabold" dangerouslySetInnerHTML={{ __html: phone || '' }} />
                   </div>
                 </a>
                 <div className="font-semibold leading-6">
-                  <p>{address1},</p>
-                  <p>{address2}</p>
+                  <p dangerouslySetInnerHTML={{ __html: address1 || '' }} />
+                  <p dangerouslySetInnerHTML={{ __html: address2 || '' }} />
                 </div>
                 <p className="font-semibold leading-6">
-                  <a href={`mailto:${email}`}>{email}</a>
+                  <a href={`mailto:${email}`} dangerouslySetInnerHTML={{ __html: email || '' }} />
                 </p>
               </div>
             </div>

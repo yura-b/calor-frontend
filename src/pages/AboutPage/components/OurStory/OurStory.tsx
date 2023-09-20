@@ -12,7 +12,7 @@ interface Props {
   };
 }
 const OurStory: React.FC<Props> = ({ ourStory }): React.ReactElement => {
-  const initialText = ourStory?.value.match(/[^.!]+[.!]/g)?.slice(0, 3) || '';
+  const initialText = (ourStory?.value || '').split(' ').slice(0, 66).join(' ');
   const expandedText = ourStory?.value || '';
   return (
     <motion.div
@@ -39,9 +39,11 @@ const OurStory: React.FC<Props> = ({ ourStory }): React.ReactElement => {
       <div className="my-auto hidden lg:block">
         <img src={ourStoryArrow} />
       </div>
-      <div className=" lg:flex lg:items-center">
+      <div className=" lg:flex lg:items-center mt-10 lg:mt-0">
         <div>
-          <h1 className={`${styles.header1} text-gray text-center lg:text-left lg:pb-3 z-20`}>{ourStory?.title}</h1>
+          <h1 className={`${styles.header1} text-gray text-center lg:text-left lg:pb-3 z-20 hidden lg:block`}>
+            {ourStory?.title}
+          </h1>
           <ReadMore
             initialText={initialText}
             expandedText={expandedText}

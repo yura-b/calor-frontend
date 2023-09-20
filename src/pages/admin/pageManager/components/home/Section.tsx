@@ -28,21 +28,15 @@ const Section: React.FC<{ value: string; title: string | null; id: string }> = (
     dispatch(setSpecificField({ id, value: htmlContent }));
   };
 
-  const renderText = (htmlContent: string) => {
-    const div = document.createElement('div');
-    div.innerHTML = htmlContent;
-    return div.textContent || div.innerText || '';
-  };
-
   return (
     <div className={'w-[45%]'}>
       {title && <p className={'font-medium'}>{title}</p>}
 
       {isDisable ? (
-        <div dangerouslySetInnerHTML={{ __html: renderText(value) }} />
+        <div dangerouslySetInnerHTML={{ __html: value }} />
       ) : (
         <Editor
-          editorState={editorState}
+          defaultEditorState={editorState}
           onEditorStateChange={onEditorStateChange}
           toolbarHidden={isDisable}
           wrapperStyle={{ border: '2px solid #CBD2E0' }}
