@@ -21,7 +21,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
     isSmallerThan1800px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
   }`;
   return (
-    <div className="w-full bg-custom-red">
+    <div className="w-full bg-custom-red  lg:pt-5">
       <div
         className={`flex w-full justify-around flex-wrap items-center relative z-10  mx-auto ${styles.container} py-0`}
       >
@@ -120,7 +120,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
         <img src={homeSemiCircle} className="absolute z-1 top-36 left-0 h-56 sm:hidden" />
         <img
           src={homeCircle}
-          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-36 lg:left-[10%] xl:top-36 xl:h-80 ${
+          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-32 md:h-96 md:top-28  lg:h-64 lg:top-36 lg:left-[10%] xl:top-36 xl:h-80 ${
             isSmallerThan1800px ? '2xl:h-96 2xl:top-32' : '2xl:h-[430px] 2xl:top-44'
           }`}
           style={{ maxWidth: '100%' }}

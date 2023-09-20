@@ -3,7 +3,7 @@ import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import { Modal } from '@mui/material';
 import { useMediaQuery } from '@react-hook/media-query';
-import closeBtnImage from '@/assets/cartImages/closeBtn.png';
+import X from '@assets/images/SignUpHeaderImg/X.png';
 interface Props {
   backgroundButton: 'gray' | 'turquoise';
   showRoomTitleColor?: string;
@@ -55,7 +55,9 @@ const HomeShowRoom: React.FC<Props> = ({
       </Button>
       <Modal className="flex items-center justify-center" open={open} onClose={handleClose}>
         <div className="bg-white p-0 shadow-lg w-full md:w-[90%] xl:w-[80%] max-w-[1200px] relative lg:pb-8">
-          <div className="py-3 flex items-center w-full  top-0 justify-end"></div>
+          <div className="px-6 py-4 m-auto">
+            <img src={X} alt="Close" className="cursor-pointer w-5 h-5 ml-auto" onClick={handleClose} />
+          </div>
           <div className="z-6 relative px-0 sm:p-0">
             <iframe
               ref={iframeRef}
@@ -63,13 +65,6 @@ const HomeShowRoom: React.FC<Props> = ({
               frameBorder="0"
               style={{ width: '100%', height: '100%', minHeight: isMobile ? '92vh' : '88vh' }}
             ></iframe>
-            <Button
-              color="gray"
-              className="flex w-[50px] items-center justify-center absolute bottom-[20px] z-10 lg:bottom-0 right-[20px] lg:right-[20px]"
-              onClick={handleClose}
-            >
-              <img className="" src={closeBtnImage} />
-            </Button>
           </div>
         </div>
       </Modal>

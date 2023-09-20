@@ -48,7 +48,7 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
 
   return (
     <div className={'flex flex-col gap-5 w-1/5'}>
-      <img src={photos[0]} alt={'photo'} className={'aspect-[2/1] h-[200px] object-contain'}/>
+      <img src={photos[0]} alt={'photo'} className={'aspect-[2/1] h-[200px] object-contain'} />
       <p className={'font-bold'}>{title}</p>
       <div className={'flex flex-row'}>
         {isShoes ? (

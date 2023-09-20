@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
 import styles from '@styles/Styles.module.scss';
@@ -9,6 +9,8 @@ import moment from 'moment';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 import { useMediaQuery } from '@react-hook/media-query';
 import MainLayout from '@/components/MainLayout';
+import Button from '@/components/ui/Button';
+import { paths } from '@routes/paths.ts';
 
 const AppointmentPage: React.FC = (): React.ReactElement => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -22,8 +24,8 @@ const AppointmentPage: React.FC = (): React.ReactElement => {
   const startTime = getParameterByName('event_start_time');
   const endTime = getParameterByName('event_end_time');
 
-  const formattedStartTime = moment(startTime).format('MM/DD/YYYY hh:mm A');
-  const formattedEndTime = moment(endTime).format('MM/DD/YYYY hh:mm A');
+  const formattedStartTime = moment(startTime).format('MM.DD.YYYY hh:mm A');
+  const formattedEndTime = moment(endTime).format('MM.DD.YYYY hh:mm A');
 
   return (
     <div className="font-poppins h-screen">
@@ -52,7 +54,10 @@ const AppointmentPage: React.FC = (): React.ReactElement => {
                       </span>
                     </p>
                     <p className={`${styles.body2} normal-case font-bold mt-2`}>See You</p>
-                    <img src={calor} className="max-w-[100%] lg:w-[300px] mt-[120px]" />
+                    <img src={calor} className="max-w-[100%] lg:w-[300px] mt-[100px]" />
+                    <Button to={paths.home} color="gray" className="w-full mt-20">
+                      Home
+                    </Button>
                   </div>
                 </div>
               </div>

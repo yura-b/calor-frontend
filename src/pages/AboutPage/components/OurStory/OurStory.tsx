@@ -31,7 +31,7 @@ const OurStory: React.FC<Props> = ({ ourStory }): React.ReactElement => {
               alt="Our Story"
               className="rounded-full  border  border-white border-[12px] border-opacity-70 object-contain object-cover w-[16rem] h-[16rem] "
             />
-            <p className={`${styles.header2} text-gray lg:mt-4 lg:mr-10`}>Kseniia Kondart</p>
+            <p className={`${styles.header2} text-gray lg:mt-4 lg:mr-10`}>Kseniia Kondrat</p>
             <div className="absolute top-2 right-0 w-[4rem] h-[4rem] rounded-full bg-white opacity-70"></div>
           </div>
         </div>

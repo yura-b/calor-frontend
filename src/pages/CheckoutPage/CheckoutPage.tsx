@@ -9,6 +9,7 @@ import ShippingInformation, { shippingForm } from '@pages/CheckoutPage/pages/Shi
 import Payment from '@pages/CheckoutPage/pages/Payment.tsx';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import { createOrder } from '@/api/orders.ts';
+import styles from '@styles/Styles.module.scss';
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
@@ -61,7 +62,7 @@ const CheckoutPage = () => {
     <div className="font-poppins h-screen ">
       <MainLayout>
         <div className=" flex flex-col justify-center items-center w-full mb-12">
-          <div className=" lg:w-[40%]">
+          <div className={`${styles.container} lg:w-[40%]`}>
             <CheckoutHeader />
             <CheckoutStepper />
             {step === CheckoutSteps.FIRST && <ContactInformation />}

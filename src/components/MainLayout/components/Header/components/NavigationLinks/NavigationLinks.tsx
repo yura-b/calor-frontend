@@ -22,8 +22,12 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const [productNames, setProductNames] = useState({});
-  const { data: products, isLoading, isError } = useQuery('products', getProducts, {
-    staleTime: Infinity
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery('products', getProducts, {
+    staleTime: Infinity,
   });
 
   const { id } = useParams();
