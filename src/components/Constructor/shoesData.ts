@@ -1387,11 +1387,16 @@ export const shoes = [
               },
               {
                 img: 'part09_leather_17.png',
+                name: 'Cornflower blue',
+                hex: '#6495ED',
+              },
+              {
+                img: 'part09_leather_18.png',
                 name: 'Spring Green',
                 hex: '#0CB35D',
               },
               {
-                img: 'part09_leather_18.png',
+                img: 'part09_leather_19.png',
                 name: 'Real Red',
                 hex: '#D81525',
               },
