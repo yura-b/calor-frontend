@@ -1284,12 +1284,119 @@ export const shoes = [
         materials: [
           {
             name: 'fur',
-            img: 'part09_fur_01.png',
+            colors: [
+              {
+                img: 'part09_fur_01.png',
+                name: 'Powder White',
+                hex: '#ded9d2',
+              }
+            ]
           },
           {
             name: 'wool',
-            img: 'part09_wool_01.png',
+            colors: [
+              {
+                img: 'part09_wool_01.png',
+                name: 'Powder White',
+                hex: '#ded9d2',
+              }
+            ]
           },
+          {
+            name: 'leather',
+            colors: [
+              {
+                img: 'part09_leather_01.png',
+                name: 'Basil Green',
+                hex: '#829F82',
+              },
+              {
+                img: 'part09_leather_02.png',
+                name: 'Powder White',
+                hex: '#ded9d2',
+              },
+              {
+                img: 'part09_leather_03.png',
+                name: 'Grease Black',
+                hex: '#211C1A',
+              },
+              {
+                img: 'part09_leather_04.png',
+                name: 'Aegean Blue',
+                hex: '#456178',
+              },
+              {
+                img: 'part09_leather_05.png',
+                name: 'Merlot Red',
+                hex: '#6E3345',
+              },
+              {
+                img: 'part09_leather_06.png',
+                name: 'Cedar Brown',
+                hex: '#52412E',
+              },
+              {
+                img: 'part09_leather_07.png',
+                name: 'Grape Purple',
+                hex: '#5D345C',
+              },
+              {
+                img: 'part09_leather_08.png',
+                name: 'Bubblegum Pink',
+                hex: '#FDC8DA',
+              },
+              {
+                img: 'part09_leather_09.png',
+                name: 'Fire Orange',
+                hex: '#FF7700',
+              },
+              {
+                img: 'part09_leather_10.png',
+                name: 'Berry Red',
+                hex: '#CE4458',
+              },
+              {
+                img: 'part09_leather_11.png',
+                name: 'Daisy White',
+                hex: '#F7F7F6',
+              },
+              {
+                img: 'part09_leather_12.png',
+                name: 'Pineapple Yellow',
+                hex: '#FEE12B',
+              },
+              {
+                img: 'part09_leather_13.png',
+                name: 'Mustard',
+                hex: '#CB812D',
+              },
+              {
+                img: 'part09_leather_14.png',
+                name: 'Slate Gray',
+                hex: '#708090',
+              },
+              {
+                img: 'part09_leather_15.png',
+                name: 'Crepe Pink',
+                hex: '#D6ADB9',
+              },
+              {
+                img: 'part09_leather_16.png',
+                name: 'Olive',
+                hex: '#2a3417',
+              },
+              {
+                img: 'part09_leather_17.png',
+                name: 'Spring Green',
+                hex: '#0CB35D',
+              },
+              {
+                img: 'part09_leather_18.png',
+                name: 'Real Red',
+                hex: '#D81525',
+              },
+            ]
+          }
         ],
       },
       {
