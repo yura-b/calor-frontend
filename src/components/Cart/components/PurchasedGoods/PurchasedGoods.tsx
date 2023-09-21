@@ -72,11 +72,11 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
               <img width={15} height={15} src={deleteIcon} />
             </div>
           </div>
-          {Boolean(item?.shoes) && (
+          {/* {Boolean(item?.shoes) && (
             <p className={`${styles.body2} mt-2`}>
               Size: <span>{item.size}</span>
             </p>
-          )}
+          )} */}
           <div className="flex justify-between items-baseline">
             {Boolean(item?.shoes) && <p className={`${styles.body2} font-bold`}>$ {item.shoes.price}</p>}
             {Boolean(item?.accessory) && <p className={`${styles.body2} font-bold`}>$ {item.accessory.price}</p>}
