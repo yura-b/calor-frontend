@@ -25,8 +25,11 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
       />
       <div className="flex-1 overflow-y-auto md:my-4">
         <div className="flex flex-col  justify-center mx-6 my-4 gap-4 text-gray lg:max-h-[500px] ">
-          {!basketProducts.length && userId && <EmptyCart title="No items in your cart" />}
-          {!basketNonRegisterUser.length && <EmptyCart title="No items in your cart" />}
+          {
+            !basketNonRegisterUser.length && !userId || 
+            !basketProducts.length && userId ? 
+            <EmptyCart title="No items in your cart" /> : null
+          }
           {basketProducts.length ? (
             <>
               <p
