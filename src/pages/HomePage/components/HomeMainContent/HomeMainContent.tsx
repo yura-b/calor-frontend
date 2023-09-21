@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@styles/Styles.module.scss';
-import homeMainImg from '@assets/images/homeMainImg.png';
+import homeMainImg from '@assets/images/homeMainImg.webp';
 import homeSemiCircle from '@assets/images/homeSemiCircle.svg';
 import homeCircle from '@assets/images/homeCircle.svg';
 import Button from '@components/ui/Button';
