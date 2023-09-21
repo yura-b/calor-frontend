@@ -5270,7 +5270,7 @@ export const shoesImages = {
       part09: '/assets/images/constructor/parts/yolo/view3/view3_part09_detail_4_cotton_01.png',
       part10: '/assets/images/constructor/parts/yolo/view3/view3_part10_details_5_cotton_01.png',
       part11: '/assets/images/constructor/parts/yolo/view3/view3_part11_sole_01.png',
-      // part12: '/assets/images/constructor/parts/yolo/view3/view3_podlozhka.png',
+      part12: '/assets/images/constructor/parts/yolo/view3/view3_podlozhka.png',
     },
     view4: {
       part01: '/assets/images/constructor/parts/yolo/view4/view4_part01_tongue_toe_cotton_01.png',
