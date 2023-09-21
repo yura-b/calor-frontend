@@ -46,7 +46,7 @@ const MainView: FC<IProps> = ({ model }) => {
               : model === 'sunrise' && index === 4
               ? 'z-[30]'
               : model === 'sunrise' && index === 7
-              ? 'z-[20]'
+              ? 'z-[30]'
               : model === 'sunrise' && index === 6
               ? 'z-[20]'
               : model === 'yolo' && index === 11
