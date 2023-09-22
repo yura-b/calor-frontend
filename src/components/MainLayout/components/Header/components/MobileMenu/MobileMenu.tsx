@@ -124,7 +124,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.Re
                   </>
                 )}
                 <div className="xl:hidden min-h-[54vh] pt-10">
-                  <HelpFooter title={'Need Help?'} color="gray" />
+                  <HelpFooter title={'Need Help?'} color="gray" isOpen={isOpen} toggleOpen={toggleOpen} />
                 </div>
               </footer>
             </motion.div>

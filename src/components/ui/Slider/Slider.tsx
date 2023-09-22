@@ -57,9 +57,7 @@ const Slider: FC<IProps> = ({ images = [], color }) => {
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
-            className={`object-cover ${
-              isEnlarged ? 'cursor-pointer' : ''
-            }`}
+            className={`object-cover ${isEnlarged ? 'cursor-pointer' : ''}`}
             style={{ maxHeight: '500px' }}
             alt={`Slider ${currentIndex}`}
             initial="hidden"

@@ -1289,8 +1289,8 @@ export const shoes = [
                 img: 'part09_fur_01.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-              }
-            ]
+              },
+            ],
           },
           {
             name: 'wool',
@@ -1299,8 +1299,8 @@ export const shoes = [
                 img: 'part09_wool_01.png',
                 name: 'Powder White',
                 hex: '#ded9d2',
-              }
-            ]
+              },
+            ],
           },
           {
             name: 'leather',
@@ -1400,8 +1400,8 @@ export const shoes = [
                 name: 'Real Red',
                 hex: '#D81525',
               },
-            ]
-          }
+            ],
+          },
         ],
       },
       {

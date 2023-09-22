@@ -28,8 +28,12 @@ const Accessories = lazy(() => import('@pages/AccessoriesPage/components/Accesso
 const ShoeCareProductPage = lazy(() => import('@pages/ShoeCareProductPage'));
 const SubCareProduct = lazy(() => import('@pages/ShoeCareProductPage/components/SubCareProduct'));
 const AccountPage = lazy(() => import('@pages/AccountPage'));
-const DeleteMyAccountComponent = lazy(() => import('@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountComponent'));
-const DeleteMyAccountSuccess = lazy(() => import('@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountSuccess'));
+const DeleteMyAccountComponent = lazy(
+  () => import('@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountComponent')
+);
+const DeleteMyAccountSuccess = lazy(
+  () => import('@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountSuccess')
+);
 const AccountDetails = lazy(() => import('@pages/AccountPage/components/AccountDetails'));
 const MyOrders = lazy(() => import('@pages/AccountPage/components/MyOrders'));
 const DesignList = lazy(() => import('@pages/AccountPage/components/DesignList'));
@@ -57,7 +61,7 @@ import Loader from '@/components/ui/Loader/';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
-  
+
   getUser();
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const { access_token } = useAppSelector((state) => state.user);

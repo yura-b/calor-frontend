@@ -11,6 +11,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 import MainLayout from '@/components/MainLayout';
 import Button from '@/components/ui/Button';
 import { paths } from '@routes/paths.ts';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 
 const AppointmentPage: React.FC = (): React.ReactElement => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -36,28 +37,35 @@ const AppointmentPage: React.FC = (): React.ReactElement => {
             <NavigationLinks color="gray" className=" w-auto" />
           </div>
           {urlParams.size !== 0 ? (
-            <div className="flex justify-center items-center lg:min-h-[80vh] h-full uppercase">
+            <div className="flex justify-center items-center  uppercase">
               <div className={`${styles.container} m-auto pt-0 mt-2`}>
-                <div className="bg-custom-turquoise min-h-[80vh]  lg:min-h-[78vh] m-auto relative shadow-lg rounded-lg mt-3 lg:mt-0">
+                <div className="bg-custom-turquoise  m-auto relative shadow-lg rounded-lg mt-3 lg:mt-0 pb-[2px]">
                   <div className="py-3  w-full bg-transparent lg:bg-mint sticky lg:top-0  h-[50px] rounded-t-lg">
                     <h1 className={`${styles.header2} text-white text-center uppercase`}>Appointment</h1>
                   </div>
-                  <img src={heel} className="absolute top-[12%] left-1/2 transform -translate-x-1/2" />
-                  <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 lg:min-w-[500px] w-full px-4 flex flex-col items-center">
-                    <h2 className={`${styles.header2} normal-case mb-[30px]`}>Congratulations!</h2>
-                    <img src={appointmentCheck} className="block max-w-[50px] mb-[30px]" />
-                    <p className={`${styles.body2} normal-case text-center `}>
-                      <span className="font-bold">{fullName ? fullName + ',' : ''}</span> {fullName ? 'your' : 'Your'}{' '}
-                      appointment is scheduled {formattedStartTime && formattedEndTime ? 'for' : ''} <br />
-                      <span className="font-semibold text-[15px]">
-                        {formattedStartTime && formattedEndTime ? formattedStartTime + '-' + formattedEndTime : ''}
-                      </span>
-                    </p>
-                    <p className={`${styles.body2} normal-case font-bold mt-2`}>See You</p>
-                    <img src={calor} className="max-w-[100%] lg:w-[300px] mt-[100px]" />
-                    <Button to={paths.home} color="gray" className="w-full mt-20">
-                      Home
-                    </Button>
+                  <div
+                    style={{ backgroundImage: `url(${heel})` }}
+                    className="bg-cover bg-center  w-[260px] h-[600px] mx-auto my-2 lg:my-10 flex items-center justify-center "
+                  >
+                    <div className="min-w-[300px] xs:min-w-[360px] lg:min-w-[400px] min-h-[400px] lg:min-h-[500px] flex flex-col items-center justify-between">
+                      <h2 className={`${styles.header2} normal-case mb-[30px]`}>Congratulations!</h2>
+                      <img src={appointmentCheck} className="block max-w-[50px] " />
+                      <p className={`${styles.body2} normal-case text-center `}>
+                        <span className="font-bold">{fullName ? fullName + ',' : ''}</span> {fullName ? 'your' : 'Your'}{' '}
+                        appointment is scheduled {formattedStartTime && formattedEndTime ? 'for' : ''} <br />
+                        <span className="font-semibold text-[15px]">
+                          {formattedStartTime && formattedEndTime ? formattedStartTime + '-' + formattedEndTime : ''}
+                        </span>
+                      </p>
+                      <p className={`${styles.body2} normal-case font-bold mt-2`}>See You</p>
+                      <img src={calor} className="w-[240px] lg:w-[300px] mt-[20px]" />
+                      <Button to={paths.home} color="gray" className="w-[300px] mt-[40px] lg:mt-[50px]">
+                        Home{' '}
+                        <span className="ml-4">
+                          <HomeRoundedIcon />
+                        </span>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
