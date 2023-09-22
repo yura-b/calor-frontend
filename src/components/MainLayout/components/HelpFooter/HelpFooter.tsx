@@ -5,7 +5,6 @@ import styles from '@/styles/Styles.module.scss';
 import atIcon from '@/assets/images/atIcon.svg';
 import grayTelIcon from '@assets/images/grayTelIcon.svg';
 import mintTelcon from '@assets/images/mintTelcon.svg';
-import { motion, AnimatePresence } from 'framer-motion';
 import { collapseAnimation } from '@styles/Animations';
 import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
@@ -13,13 +12,16 @@ import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { paths } from '@/routes/paths';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
   title: string;
   color?: 'gray' | 'white';
+  isOpen: boolean;
+  toggleOpen: () => void;
 }
 
-const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
+const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): React.ReactElement => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection(), {
     staleTime: Infinity,
   });
@@ -84,6 +86,14 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const handleLinkClick = (el) => {
     scrollToElement(el);
   };
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 1280;
+    if (isMobile && isOpen) {
+      toggleOpen();
+    }
+  }, [window.location.hash]);
+
   return (
     <>
       {color !== 'white' ? (
