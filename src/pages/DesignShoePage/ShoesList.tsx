@@ -12,7 +12,7 @@ const ShoesList: React.FC = ({ shoes }): React.ReactElement => {
         isHome
           ? 'flex justify-between items-center m-auto overflow-x-auto gap-2 flex-row lg:py-6 lg:gap-10 2xl:max-w-screen-2xl'
           : 'flex-wrap '
-      } flex  gap-6 lg:justify-between justify-center`}
+      } flex gap-6 sm:justify-start justify-center`}
     >
       {shoes.map((product, i) => (
         <div

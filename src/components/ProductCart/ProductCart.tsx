@@ -10,6 +10,8 @@ import { appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const { userId } = useAppSelector((state) => state.user);
@@ -57,14 +59,14 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
   };
 
   return (
-    <div className="w-full flex-col  my-5 flex  justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px]">
+    <div className="w-full flex-col my-5 flex justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px]">
       {/* Product img */}
       <div className="min-h-[10vh]">
         <Link to={`/product/${product._id}`}>
-          <img
-            className="object-contain object-cover w-full h-full mx-auto max-h-[400px]"
+          <LazyLoadImage
+            className="object-cover w-full h-full mx-auto max-h-[400px]"
             src={product.photos?.[0] || product.photo}
-            loading="lazy"
+            effect="blur"
           />
         </Link>
       </div>
