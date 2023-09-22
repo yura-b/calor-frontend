@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedColor } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import { updateParts } from '@/store/reducers/constructor/ShoesConstructorReducer';
 import { Tooltip } from '@mui/material';
-import { motion } from "framer-motion";
-import { layoutFadeAnimation } from "@/styles/Animations";
+import { motion } from 'framer-motion';
+import { layoutFadeAnimation } from '@/styles/Animations';
 import styles from '@styles/Styles.module.scss';
 
 interface Color {
@@ -71,7 +71,8 @@ const Colors: FC<IProps> = ({ details }) => {
   }, [selectedColor]);
 
   return (
-    <motion.div {...layoutFadeAnimation}
+    <motion.div
+      {...layoutFadeAnimation}
       key={selectedDetail?.name + selectedMaterial}
       ref={containerRef}
       className={`flex ${
@@ -87,9 +88,7 @@ const Colors: FC<IProps> = ({ details }) => {
               className="min-h-[55px] min-w-[55px] p-1 rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-3 ring-grayLight"
               onClick={() => handleColorClick({ img: color.img, name: color.name })}
             >
-            {
-              color.texture ? <img src={color.texture} alt={color.name} height={55} width={55} key={index}/> : null
-            }
+              {color.texture ? <img src={color.texture} alt={color.name} height={55} width={55} key={index} /> : null}
             </button>
           </Tooltip>
         ) : null
