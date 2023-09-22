@@ -24,8 +24,8 @@ dist-ssr
 *.sw?
 
 # Environments
-.env
-.env.prod
+dev.env
+prod.env
 
 # rollup-plugin-visualizer
 stats.html
