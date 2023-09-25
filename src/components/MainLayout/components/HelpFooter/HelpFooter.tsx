@@ -17,11 +17,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface Props {
   title: string;
   color?: 'gray' | 'white';
-  isOpen: boolean;
-  toggleOpen: () => void;
 }
 
-const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): React.ReactElement => {
+const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection(), {
     staleTime: Infinity,
   });
@@ -86,13 +84,6 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
   const handleLinkClick = (el) => {
     scrollToElement(el);
   };
-
-  useEffect(() => {
-    const isMobile = window.innerWidth < 1280;
-    if (isMobile && isOpen) {
-      toggleOpen();
-    }
-  }, [window.location.hash]);
 
   return (
     <>

@@ -26,7 +26,7 @@ const CompleteLook: React.FC = (): React.ReactElement => {
                 <img
                   src={homeRoomSircle}
                   alt=""
-                  className="w-full min-h-[200px] md:min-h-[240px] h-[260px]  md:h-[360px]"
+                  className="w-full min-h-[200px] md:min-h-[240px] h-[260px]  md:h-[380px]"
                   style={{ transform: 'rotate(30deg)' }}
                 />
                 <motion.img
