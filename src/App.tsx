@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from '@pages/autorization/login/LoginPage.tsx';
 import SignupPage from '@pages/autorization/signup/SignupPage.tsx';
 import Email from '@pages/autorization/forgotPassword/Email.tsx';
@@ -54,6 +54,7 @@ import CheckoutSuccessPage from './pages/CheckoutPage/CheckoutSuccessPage';
 import CheckoutNotSuccessPage from './pages/CheckoutPage/CheckoutNotSuccessPage';
 import AppointmentyPage from '@/pages/AppointmentPage';
 import CookiePopup from '@components/CookiePopup';
+import EditItem from '@pages/admin/catalog/EditItem.tsx';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -87,6 +88,7 @@ const App = () => {
             <Route path={'createevent'} element={<CreateEvent />} />
             <Route path={'catalog'} element={<CatalogPage />} />
             <Route path={'createitem'} element={<CreateItem />} />
+            <Route path={'edititem/:id'} element={<EditItem/>} />
             <Route path={'warehouse'} element={<WarehousePage />} />
           </Route>
           <Route path={'design_your_shoe'}>

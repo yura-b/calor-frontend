@@ -6,10 +6,12 @@ import CustomButton from '@/components/button/CustomButton';
 import { deleteAccessory, saveNewPrice } from '@/api/products.ts';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { loading, loadingFinished, showMessage } from '@/store/reducers/StatusReducer.ts';
+import { useNavigate } from 'react-router';
 
 const ProductComponent: FC<Product> = ({ price, photos, title, category, subcategory, _id }) => {
   const isShoes = typeof category === 'string';
 
+  const navigate = useNavigate()
   const { access_token } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
@@ -48,7 +50,9 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
 
   return (
     <div className={'flex flex-col gap-5 w-1/5'}>
-      <img src={photos[0]} alt={'photo'} className={'aspect-[2/1]'} />
+      <img src={photos[0]} alt={'photo'} className={'aspect-[2/1]'} onClick={()=>{
+        navigate(`/admin/edititem/${_id}`)
+      }}/>
       <p className={'font-bold'}>{title}</p>
       <div className={'flex flex-row'}>
         {isShoes ? (
