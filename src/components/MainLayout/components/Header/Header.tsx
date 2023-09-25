@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
@@ -12,7 +12,7 @@ import { layoutFadeAnimation } from '@styles/Animations';
 import { motion, useCycle } from 'framer-motion';
 import userIcon from '@assets/images/userIcon.svg';
 import NavigationLinks from './components/NavigationLinks';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { paths } from '@/routes/paths';
 import styles from '@/styles/Styles.module.scss';
 import { useAppSelector, useAppDispatch } from '@/store/hooks/hooks.ts';
@@ -20,8 +20,6 @@ import { Role } from '@/constants/enums/role.enum.ts';
 import { useNavigate } from 'react-router';
 import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
 import { cleanUserData } from '@/store/reducers/UserReducer.ts';
-import { menuItems } from '../../helpers/data';
-import { MainMenuEnum } from '@/constants/enums/pages.enum';
 import { fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
 import CustomSnackBar from '@/components/ui/SnackBar/CustomSnackBar';
 
@@ -81,31 +79,6 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
 
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
-  const { subCategory } = useParams();
-  const { subCareProduct } = useParams();
-
-  useLayoutEffect(() => {
-    const isMobile = window.innerWidth < 1280;
-    const allowedSubCategories = menuItems
-      ?.find((obj) => obj.title === MainMenuEnum.ACCESSORIES)
-      ?.subItems?.map((subItem) => subItem.subTitle.toLocaleLowerCase());
-
-    if (isMobile && subCategory && allowedSubCategories?.includes(subCategory)) {
-      toggleOpen();
-    }
-  }, [location.pathname, subCategory]);
-
-  useLayoutEffect(() => {
-    const isMobile = window.innerWidth < 1280;
-    const allowedSubShoeCare = menuItems
-      ?.find((obj) => obj.title === MainMenuEnum.SHOECAREPRODUCT)
-      ?.subItems?.map((subItem) => subItem.subTitle.toLocaleLowerCase());
-
-    if (isMobile && subCareProduct && allowedSubShoeCare?.includes(subCareProduct)) {
-      toggleOpen();
-    }
-  }, [location.pathname, subCareProduct]);
-
   return (
     <div
       className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
@@ -124,10 +97,6 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
               <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
             </Link>
             <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
-              {/* <div className="mr-4">
-                <SearchInput />
-              </div> */}
-
               <div className="hidden xl:block">
                 <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
               </div>
@@ -191,7 +160,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
             <MobileMenu isOpen={isOpen} toggleOpen={toggleOpen} openCart={openCart} />
           </div>
           <div className={'hidden  xl:block '}>
-            <MainMenu />
+            <MainMenu isMobileMenuOpen={isOpen} toggleOpen={toggleOpen} />
           </div>
         </div>
 
@@ -217,4 +186,4 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   );
 };
 
-export default Header;
+export default React.memo(Header);

@@ -26,11 +26,9 @@ const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement =
                   </Link>
                 </motion.div>
               </div>
-              <div className="flex gap-6 justify-items-stretch flex-wrap mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
                 {randomProducts.map((product) => (
-                  <div className="lg:basis-[30%] sm:basis-[45%] basis-[100%]">
-                    <ProductCart product={product} type="accessories" />
-                  </div>
+                  <ProductCart product={product} type="accessories" />
                 ))}
               </div>
             </>

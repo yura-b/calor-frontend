@@ -52,15 +52,13 @@ const Slider: FC<IProps> = ({ images = [], color }) => {
 
   return (
     <>
-      <motion.div className="relative h-80 max-w-full overflow-hidden" {...fadeAnimation}>
-        <div className="w-full h-full max-w-full m-auto flex flex-col-reverse">
+      <motion.div className="flex justify-center items-center m-auto flex-col" {...fadeAnimation}>
+        <div className="flex justify-center items-center m-auto flex-col">
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
-            className={`w-full h-full max-w-full object-contain absolute top-0 left-0 ${
-              isEnlarged ? 'cursor-pointer' : ''
-            }`}
-            style={{ maxHeight: '500px', minHeight: '300px' }}
+            className={`object-cover ${isEnlarged ? 'cursor-pointer' : ''}`}
+            style={{ maxHeight: '500px' }}
             alt={`Slider ${currentIndex}`}
             initial="hidden"
             animate="visible"
@@ -84,7 +82,7 @@ const Slider: FC<IProps> = ({ images = [], color }) => {
               />
             </div>
           )}
-          <div className="flex justify-center items-center z-10">
+          <div className="flex justify-center items-center z-10 mt-2">
             {images.map((_, index) => (
               <span
                 key={index}

@@ -42,7 +42,7 @@ const ContactInformation = () => {
   }, [email, firstName, secondName, phoneNumber]);
 
   return (
-    <div className={'flex flex-col p-5 w-full items-center '}>
+    <div className={'flex flex-col py-5 w-full items-center '}>
       <div className={'flex flex-col flex-start w-full'}>
         <h2 className={'text-xl my-4 font-bold'}>Contact Information</h2>
         {!access_token && (

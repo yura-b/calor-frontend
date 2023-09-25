@@ -24,11 +24,11 @@ const Slider = ({ images }) => {
 
   const throttledHandleNext = debounce(() => {
     setCurrentIndex((prevIndex) => (prevIndex >= images.length * 3 - 1 ? 0 : prevIndex + 1));
-  }, 200);
+  }, 100);
 
   const throttledHandlePrev = debounce(() => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-  }, 200);
+  }, 100);
 
   const slideWidth = 200;
   const translateX = -currentIndex * slideWidth;

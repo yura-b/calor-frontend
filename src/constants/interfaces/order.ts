@@ -98,7 +98,6 @@ interface shoes {
   photos: string;
   liningMaterial: string;
   price: number;
-  season: string;
   sizes: number[];
   sole: string;
   stripeID: string;

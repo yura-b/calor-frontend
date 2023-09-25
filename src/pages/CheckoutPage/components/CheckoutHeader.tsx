@@ -1,25 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import arrow from '../../../assets/images/SignUpHeaderImg/arrow.png';
 import { useNavigate } from 'react-router';
 import styles from '@styles/Styles.module.scss';
 
 const CheckoutHeader = () => {
   const navigate = useNavigate();
-  const xHandler = () => {
-    navigate('/');
-  };
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const arrowHandler = () => {
-    console.log('1');
-    window.location.reload();
-    navigate('/checkout');
+    navigate(-1);
+    setIsCartOpen(true);
   };
+
   return (
-    <div className={'flex flex-row justify-center align-baseline p-5 mb-12 mt-7 relative'}>
-      <div className={'cursor-pointer absolute top-0 left-0 lg:left-[-70%] md:left-[-50%] '}>
+    <div className={` ${styles.container} flex flex-row justify-center items-center align-baseline mb-4 py-4 relative`}>
+      <div className={'cursor-pointer mr-auto'}>
         <img src={arrow} onClick={arrowHandler} alt={''} />
       </div>
-      <h2 className={`${styles.header1} text-gray uppercase font-bold`}>Checkout</h2>
+      <h2 className={`${styles.header1} text-gray uppercase font-bold m-auto ml-0`}>Checkout</h2>
     </div>
   );
 };

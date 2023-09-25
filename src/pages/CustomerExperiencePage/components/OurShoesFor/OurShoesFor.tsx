@@ -16,6 +16,8 @@ import lovers from '@assets/images/ourShoesFor/lovers.jpg';
 import { motion } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const OurShoesFor: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
@@ -95,10 +97,11 @@ const OurShoesFor: React.FC = () => {
               style={{ marginTop: window.innerWidth >= 1024 ? item.mt : '' }}
               {...hoverOnButtonAnimation}
             >
-              <img
+              <LazyLoadImage
                 src={item.img}
                 alt={`Image ${index + 1}`}
                 className={'w-full object-contain object-cover mx-auto h-auto  lg:sm:max-h-none'}
+                effect="blur"
               />
               <p className="font-bold mt-4">{item.title}</p>
               <p>{item.description}</p>

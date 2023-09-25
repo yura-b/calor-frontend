@@ -76,7 +76,7 @@ const Inspiration: React.FC = () => {
                 <div className={'w-36 lg:w-full'}>
                   <img
                     src={item}
-                    className=" object-contain object-cover  mx-auto z-10 min-h-[180px] max-h-[180px] w-[120px]"
+                    className=" object-contain object-cover  mx-auto z-10 min-h-[220px] max-h-[220px] w-[120px]"
                   />
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect } from 'react';
+import React, { FC, useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 interface IProps {
@@ -46,7 +46,7 @@ const MainView: FC<IProps> = ({ model }) => {
               : model === 'sunrise' && index === 4
               ? 'z-[30]'
               : model === 'sunrise' && index === 7
-              ? 'z-[20]'
+              ? 'z-[30]'
               : model === 'sunrise' && index === 6
               ? 'z-[20]'
               : model === 'yolo' && index === 11
@@ -72,4 +72,4 @@ const MainView: FC<IProps> = ({ model }) => {
   );
 };
 
-export default MainView;
+export default React.memo(MainView);

@@ -50,7 +50,7 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
 
   return (
     <div className={'flex flex-col gap-5 w-1/5'}>
-      <img src={photos[0]} alt={'photo'} className={'aspect-[2/1]'} onClick={()=>{
+      <img src={photos[0]} alt={'photo'} className={'aspect-[2/1] h-[200px] object-contain'} onClick={()=>{
         navigate(`/admin/edititem/${_id}`)
       }}/>
       <p className={'font-bold'}>{title}</p>

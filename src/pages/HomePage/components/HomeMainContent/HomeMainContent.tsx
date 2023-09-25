@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@styles/Styles.module.scss';
-import homeMainImg from '@assets/images/homeMainImg.png';
+import homeMainImg from '@assets/images/homeMainImg.webp';
 import homeSemiCircle from '@assets/images/homeSemiCircle.svg';
 import homeCircle from '@assets/images/homeCircle.svg';
 import Button from '@components/ui/Button';
@@ -20,8 +20,11 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
   const headingClass = `text-[2.4rem] leading-tight font-black sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl  ${
     isSmallerThan1800px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
   }`;
+  const visionsContent = {
+    __html: visions || '',
+  };
   return (
-    <div className="w-full bg-custom-red">
+    <div className="w-full bg-custom-red  lg:pt-5">
       <div
         className={`flex w-full justify-around flex-wrap items-center relative z-10  mx-auto ${styles.container} py-0`}
       >
@@ -96,7 +99,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
             BY YOU!
           </h1>
           <div className="sm:basis-[70%] xl:basis-[50%]">
-            <p className={`${styles.subtitle} mb-2`}>{visions}</p>
+            <div dangerouslySetInnerHTML={visionsContent} className={`${styles.subtitle} mb-2`} />
             {/* Waiting videos */}
             {/* <p className={styles.body1}>
               Learn how to do it in our {''}
@@ -120,7 +123,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
         <img src={homeSemiCircle} className="absolute z-1 top-36 left-0 h-56 sm:hidden" />
         <img
           src={homeCircle}
-          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-36 lg:left-[10%] xl:top-36 xl:h-80 ${
+          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-32 md:h-96 md:top-28  lg:h-64 lg:top-36 lg:left-[10%] xl:top-36 xl:h-80 ${
             isSmallerThan1800px ? '2xl:h-96 2xl:top-32' : '2xl:h-[430px] 2xl:top-44'
           }`}
           style={{ maxWidth: '100%' }}

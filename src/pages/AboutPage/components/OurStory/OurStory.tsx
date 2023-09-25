@@ -12,7 +12,7 @@ interface Props {
   };
 }
 const OurStory: React.FC<Props> = ({ ourStory }): React.ReactElement => {
-  const initialText = ourStory?.value.match(/[^.!]+[.!]/g)?.slice(0, 3) || '';
+  const initialText = (ourStory?.value || '').split(' ').slice(0, 66).join(' ');
   const expandedText = ourStory?.value || '';
   return (
     <motion.div
@@ -31,17 +31,19 @@ const OurStory: React.FC<Props> = ({ ourStory }): React.ReactElement => {
               alt="Our Story"
               className="rounded-full  border  border-white border-[12px] border-opacity-70 object-contain object-cover w-[16rem] h-[16rem] "
             />
-            <p className={`${styles.header2} text-gray lg:mt-4 lg:mr-10`}>Kseniia Kondart</p>
-            <div className="absolute top-2 right-0 w-[4rem] h-[4rem] rounded-full bg-white opacity-70"></div>
+            <p className={`${styles.header2} text-gray lg:mt-4 lg:mr-10`}>Kseniia Kondrat</p>
+            <div className="absolute top-2 right-0 lg:right-12 w-[4rem] h-[4rem] rounded-full bg-white opacity-70"></div>
           </div>
         </div>
       </div>
       <div className="my-auto hidden lg:block">
         <img src={ourStoryArrow} />
       </div>
-      <div className=" lg:flex lg:items-center">
+      <div className=" lg:flex lg:items-center mt-10 lg:mt-0">
         <div>
-          <h1 className={`${styles.header1} text-gray text-center lg:text-left lg:pb-3 z-20`}>{ourStory?.title}</h1>
+          <h1 className={`${styles.header1} text-gray text-center lg:text-left lg:pb-3 z-20 hidden lg:block`}>
+            {ourStory?.title}
+          </h1>
           <ReadMore
             initialText={initialText}
             expandedText={expandedText}

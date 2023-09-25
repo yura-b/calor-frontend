@@ -13,7 +13,7 @@ interface Props {
   };
 }
 const OurManufacture: React.FC<Props> = ({ ourManufacture }): React.ReactElement => {
-  const initialText = ourManufacture?.value.match(/[^.!]+[.!]/g)?.slice(0, 3) || '';
+  const initialText = (ourManufacture?.value || '').split(' ').slice(0, 66).join(' ');
   const expandedText = ourManufacture?.value || '';
 
   // const youtubeVideoId = 'J7YYYLJOKFI';

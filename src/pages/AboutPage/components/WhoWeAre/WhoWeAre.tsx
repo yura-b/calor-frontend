@@ -10,7 +10,7 @@ interface Props {
   };
 }
 const WhoWeAre: React.FC<Props> = ({ whoWeAre }): React.ReactElement => {
-  const initialText = whoWeAre?.value.match(/[^.!]+[.!]/g)?.slice(0, 3) || '';
+  const initialText = (whoWeAre?.value || '').split(' ').slice(0, 66).join(' ');
   const expandedText = whoWeAre?.value || '';
   <h1 className={`${styles.header1} text-white text-center`}>?</h1>;
   return (

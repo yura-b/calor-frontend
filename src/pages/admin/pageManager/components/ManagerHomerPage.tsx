@@ -5,6 +5,7 @@ import CustomButton from '@components/button/CustomButton.tsx';
 import { saveChanges } from '@/api/manager/pages.ts';
 import { toggleEditing } from '@/store/admin/PageManagerReducer.ts';
 import SectionBlock from '@pages/admin/pageManager/components/SectionBlock.tsx';
+import rawEditorTextToHTML from '@/helpers/functions/rawEditorTextToHTML';
 
 const ManagerHomerPage = () => {
   const { pageSections, isDisable } = useAppSelector((state) => state.pageManager);
@@ -19,10 +20,20 @@ const ManagerHomerPage = () => {
   );
 
   const submitHandler = () => {
-    if (access_token)
-      saveChanges(access_token, pageSections).then(() => {
+    if (access_token) {
+      const updatedPageSections = pageSections.map((section) => {
+        if (section.editorState) {
+          return {
+            ...section,
+            value: rawEditorTextToHTML(section.editorState.getCurrentContent()),
+          };
+        }
+        return section;
+      });
+      saveChanges(access_token, updatedPageSections).then(() => {
         dispatch(toggleEditing(true));
       });
+    }
   };
 
   return (

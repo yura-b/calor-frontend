@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedColor } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import { updateParts } from '@/store/reducers/constructor/ShoesConstructorReducer';
 import { Tooltip } from '@mui/material';
+import { motion } from 'framer-motion';
+import { layoutFadeAnimation } from '@/styles/Animations';
 import styles from '@styles/Styles.module.scss';
 
 interface Color {
@@ -10,6 +12,7 @@ interface Color {
   name: string;
   color: string;
   hex: string;
+  texture: string;
 }
 
 interface Material {
@@ -68,25 +71,29 @@ const Colors: FC<IProps> = ({ details }) => {
   }, [selectedColor]);
 
   return (
-    <div
+    <motion.div
+      {...layoutFadeAnimation}
+      key={selectedDetail?.name + selectedMaterial}
       ref={containerRef}
       className={`flex ${
         colors.length < 5 ? 'justify-center' : 'justify-between'
       } items-center m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 md:w-wrapper no-scrollbar`}
     >
-      {colors.map((color) =>
+      {colors.map((color, index) =>
         color.name !== null ? (
           <Tooltip key={color.name} title={color.name} placement="top" arrow>
             <button
-              style={{ backgroundColor: color.hex }}
+              style={{ background: !color.texture ? color.hex : 'none' }}
               ref={(element) => (colorRefs.current[color.name] = element)}
-              className="min-h-[50px] min-w-[50px] rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-2 ring-grayLight focus:ring-grayLight"
+              className="min-h-[55px] min-w-[55px] p-1 rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-3 ring-grayLight"
               onClick={() => handleColorClick({ img: color.img, name: color.name })}
-            />
+            >
+              {color.texture ? <img src={color.texture} alt={color.name} height={55} width={55} key={index} /> : null}
+            </button>
           </Tooltip>
         ) : null
       )}
-    </div>
+    </motion.div>
   );
 };
 

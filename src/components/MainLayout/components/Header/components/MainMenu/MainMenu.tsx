@@ -6,11 +6,19 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { menuItems } from '../../../../helpers/data';
 import { collapseAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
+import { useNavigate } from 'react-router';
 
-const MainMenu: React.FC = (): React.ReactElement => {
+interface Props {
+  isMobileMenuOpen: boolean;
+  toggleOpen: () => void;
+}
+
+const MainMenu: React.FC<Props> = ({ isMobileMenuOpen, toggleOpen }): React.ReactElement => {
   const isLargeScreen = useMediaQuery('(min-width: 1024px)');
   const [isOpen, setIsOpen] = useState(-1);
   const [isHovered, setIsHovered] = useState(-1);
+  const isMobile = window.innerWidth < 1280;
+  const navigate = useNavigate();
 
   const handleToggle = (index) => {
     setIsOpen(isOpen === index ? -1 : index);
@@ -44,6 +52,12 @@ const MainMenu: React.FC = (): React.ReactElement => {
     }, 200);
   };
 
+  const hangleClick = (path) => {
+    navigate(path);
+    if (isMobile && isMobileMenuOpen) {
+      toggleOpen();
+    }
+  };
   return (
     <nav className={'flex text-2xl lg:text-base font-semibold m-auto'}>
       <ul className="w-full flex flex-col gap-2 xl:gap-6 xl:flex-row relative xl:justify-between xl:max-w-[54vw] m-auto">
@@ -98,9 +112,13 @@ const MainMenu: React.FC = (): React.ReactElement => {
                   />
                   {menuItem.subItems?.map((option, optionIndex) => (
                     <motion.li key={optionIndex} className="font-medium text-gray xl:hover:font-bold py-1">
-                      <Link to={option.path} scroll={scrollToElement}>
-                        {option.subTitle}
-                      </Link>
+                      {isMobile ? (
+                        <button onClick={() => hangleClick(option.path)}> {option.subTitle}</button>
+                      ) : (
+                        <Link to={option.path} scroll={scrollToElement}>
+                          {option.subTitle}
+                        </Link>
+                      )}
                     </motion.li>
                   ))}
                 </motion.nav>
