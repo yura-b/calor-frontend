@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
@@ -12,7 +12,7 @@ import { layoutFadeAnimation } from '@styles/Animations';
 import { motion, useCycle } from 'framer-motion';
 import userIcon from '@assets/images/userIcon.svg';
 import NavigationLinks from './components/NavigationLinks';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { paths } from '@/routes/paths';
 import styles from '@/styles/Styles.module.scss';
 import { useAppSelector, useAppDispatch } from '@/store/hooks/hooks.ts';
@@ -22,8 +22,6 @@ import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
 import { cleanUserData } from '@/store/reducers/UserReducer.ts';
 import { fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
 import CustomSnackBar from '@/components/ui/SnackBar/CustomSnackBar';
-import { menuItems } from '../../helpers/data';
-import { MainMenuEnum } from '@/constants/enums/pages.enum';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
@@ -80,33 +78,6 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const [isAccountVisible, setIsAccountVisible] = useState(false);
 
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
-
-  const { subCategory } = useParams();
-  const { subCareProduct } = useParams();
-
-  useLayoutEffect(() => {
-    const isMobile = window.innerWidth < 1280;
-    const allowedSubCategories = menuItems
-      ?.find((obj) => obj.title === MainMenuEnum.ACCESSORIES)
-      ?.subItems?.map((subItem) => subItem.subTitle.toLocaleLowerCase());
-
-    if (isMobile && subCategory && allowedSubCategories?.includes(subCategory)) {
-      toggleOpen();
-    }
-  }, [location.pathname, subCategory]);
-
-  useEffect(() => {
-    const isMobile = window.innerWidth < 1280;
-    const allowedSubShoeCare = menuItems
-      ?.find((obj) => obj.title === MainMenuEnum.SHOECAREPRODUCT)
-      ?.subItems?.map((subItem) => subItem.subTitle.toLocaleLowerCase());
-
-    if (isMobile && subCareProduct && allowedSubShoeCare?.includes(subCareProduct)) {
-      if (isMobile && isOpen) {
-        toggleOpen();
-      }
-    }
-  }, [location.pathname, subCareProduct]);
 
   return (
     <div
@@ -189,7 +160,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
             <MobileMenu isOpen={isOpen} toggleOpen={toggleOpen} openCart={openCart} />
           </div>
           <div className={'hidden  xl:block '}>
-            <MainMenu />
+            <MainMenu isMobileMenuOpen={isOpen} toggleOpen={toggleOpen} />
           </div>
         </div>
 

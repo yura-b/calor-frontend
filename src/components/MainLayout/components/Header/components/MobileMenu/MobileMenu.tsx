@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MainMenu from '../MainMenu';
 import closeBtn from '@assets/cartImages/closeBtnIcon.png';
@@ -100,7 +100,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.Re
             </header>
             <motion.div className="mt-16 overflow-y-auto" {...fadeAnimation}>
               <main className="px-6">
-                <MainMenu />
+                <MainMenu isMobileMenuOpen={isOpen} toggleOpen={toggleOpen} />
                 <h1 className="mt-6 -mb-2 text-custom-turquoise text-4xl font-black sm:text-5xl md:text-6xl uppercase">
                   calor by you!
                 </h1>
@@ -124,7 +124,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, toggleOpen, openCart }): React.Re
                   </>
                 )}
                 <div className="xl:hidden min-h-[54vh] pt-10">
-                  <HelpFooter title={'Need Help?'} color="gray" />
+                  <HelpFooter title={'Need Help?'} color="gray" isOpen={isOpen} toggleOpen={toggleOpen} />
                 </div>
               </footer>
             </motion.div>

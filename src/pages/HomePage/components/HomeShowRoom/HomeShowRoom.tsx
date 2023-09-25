@@ -67,12 +67,15 @@ const HomeShowRoom: React.FC<Props> = ({
       </Button>
       <Modal className="flex items-center justify-center" open={open} onClose={handleClose}>
         <motion.div
-          className="bg-white p-0 shadow-lg w-full md:w-[90%] xl:w-[80%] max-w-[1200px] relative lg:pb-8"
+          className="bg-white p-0 shadow-lg w-full md:w-[80%] xl:w-[56%] max-w-[1200px] relative lg:pb-8 lg:rounded-lg"
           {...layoutFadeAnimation}
         >
-          <div className="px-6 py-4 m-auto">
-            <img src={X} alt="Close" className="cursor-pointer w-5 h-5 ml-auto" onClick={handleClose} />
-          </div>
+          <img
+            src={X}
+            alt="Close"
+            className="cursor-pointer w-5 h-5 ml-auto absolute right-4 top-3 z-10"
+            onClick={handleClose}
+          />
           <div className="z-6 relative px-0 sm:p-0 my-auto">
             {iframeLoading && <Loader />}
             <iframe
@@ -82,8 +85,9 @@ const HomeShowRoom: React.FC<Props> = ({
               style={{
                 width: '100%',
                 height: '100%',
-                minHeight: isMobile ? '92vh' : '88vh',
+                minHeight: isMobile ? '88vh' : '80vh',
                 display: iframeLoading ? 'none' : 'block',
+                marginTop: '44px',
               }}
               onLoad={handleIframeLoad}
             ></iframe>
