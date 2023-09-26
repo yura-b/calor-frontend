@@ -2,7 +2,6 @@ import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { Basket } from '@/constants/interfaces/basket.ts';
 import { shippingDetails } from '@/constants/interfaces/order.ts';
-import { boolean } from 'yup';
 
 export interface IUser {
   access_token: string | null;
@@ -46,7 +45,6 @@ export const UserSlice = createSlice({
         firstName,
         secondName,
         roles,
-        rememberMe = true,
         basket,
         email,
         shippingInfo,
@@ -64,8 +62,8 @@ export const UserSlice = createSlice({
       state.shippingInfo = shippingInfo;
       state.googleAccount = googleAccount;
 
-      if (access_token && rememberMe) localStorage.setItem('access_token', access_token);
-      if (access_token && rememberMe && roles) localStorage.setItem('roles', roles?.join(','));
+      if (access_token) localStorage.setItem('access_token', access_token);
+      if (access_token && roles) localStorage.setItem('roles', roles?.join(','));
     },
     cleanUserData: (state: Draft<IUser>) => {
       localStorage.removeItem('access_token');

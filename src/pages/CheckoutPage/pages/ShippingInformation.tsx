@@ -37,8 +37,6 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
   const initialValues = {
     city: '',
     streetAddress: '',
-    receiverFirstName: '',
-    receiverSecondName: '',
     ZIP: 0,
     ASB: '',
     state: '',
@@ -46,8 +44,6 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
   } as Omit<ShippingInfoDto, 'user_id' | 'save'>;
 
   if (shippingInfo || typeof shippingInfo === 'object') {
-    initialValues.receiverFirstName = (shippingInfo as shippingDetails)?.receiverFirstName;
-    initialValues.receiverSecondName = (shippingInfo as shippingDetails)?.receiverSecondName;
     initialValues.city = (shippingInfo as shippingDetails)?.city;
     initialValues.streetAddress = (shippingInfo as shippingDetails)?.streetAddress;
     initialValues.state = (shippingInfo as shippingDetails)?.state;
