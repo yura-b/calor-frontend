@@ -35,7 +35,7 @@ const CreateItem = () => {
           createProduct(
             {
               ...values,
-              photos: photos
+              photos: photos,
             },
             access_token
           )
@@ -53,7 +53,6 @@ const CreateItem = () => {
         dispatch(errorCorrupted(e.response.data.message));
       });
   };
-
 
   return (
     <AdminLayout>

@@ -12,21 +12,23 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import { Editor } from 'react-draft-wysiwyg';
 import rawEditorTextToHTML from '@/helpers/functions/rawEditorTextToHTML.ts';
 import { ProductsDto } from '@/api/dto/products.dto.ts';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import './editor.scss';
 
 const border = '1px #CBD2E0 solid';
-export type productForm = Omit<ProductsDto, 'photos' | '_id'>
+export type productForm = Omit<ProductsDto, 'photos' | '_id'>;
 
 interface IInputs {
-  category: boolean
-  subcategory: boolean
-  productName: boolean
-  description: boolean
-  productDetails: boolean
-  price: boolean,
-  amount: boolean,
-  size: boolean,
+  category: boolean;
+  subcategory: boolean;
+  productName: boolean;
+  description: boolean;
+  productDetails: boolean;
+  price: boolean;
+  amount: boolean;
+  size: boolean;
 }
-const defaultInputAvailability:IInputs = {
+const defaultInputAvailability: IInputs = {
   price: true,
   size: true,
   amount: true,
@@ -34,18 +36,23 @@ const defaultInputAvailability:IInputs = {
   description: true,
   subcategory: true,
   category: true,
-  productName: true
-}
+  productName: true,
+};
 interface IProps {
   onSubmitHandler: (values: productForm) => void;
   initialValues?: productForm;
-  buttonTitle: string,
-  unavailableInputs?: IInputs
-  isShoes: boolean
+  buttonTitle: string;
+  unavailableInputs?: IInputs;
+  isShoes: boolean;
 }
 
-const ItemForm: FC<IProps> = ({ onSubmitHandler, initialValues, buttonTitle, unavailableInputs = defaultInputAvailability , isShoes}) => {
-
+const ItemForm: FC<IProps> = ({
+  onSubmitHandler,
+  initialValues,
+  buttonTitle,
+  unavailableInputs = defaultInputAvailability,
+  isShoes,
+}) => {
   if (isShoes) {
     initialValues = {
       productDetails: initialValues?.productDetails || '',
@@ -53,17 +60,15 @@ const ItemForm: FC<IProps> = ({ onSubmitHandler, initialValues, buttonTitle, una
       name: '',
       size: [],
       category: '',
-      subcategory:'',
+      subcategory: '',
       price: 0,
       rating: 0,
-      title: ''
-    }
+      title: '',
+    };
   }
   const initialsSizes = initialValues?.size.map((size, index) => {
     return { index, size };
   });
-
-
 
   const dispatch = useAppDispatch();
   const [categories, setCategories] = useState<ProductCategories[]>();
@@ -84,8 +89,16 @@ const ItemForm: FC<IProps> = ({ onSubmitHandler, initialValues, buttonTitle, una
       const productDetailsAsHTML = initialValues.productDetails;
       const descriptionFromHTML = convertFromHTML(descriptionAsHTML);
       const productDetailsFromHTML = convertFromHTML(productDetailsAsHTML);
-      setEditorStateDescription(EditorState.createWithContent(ContentState.createFromBlockArray(descriptionFromHTML.contentBlocks, descriptionFromHTML.entityMap)));
-      onEditorStateProductDetailsChange(EditorState.createWithContent(ContentState.createFromBlockArray(productDetailsFromHTML.contentBlocks, productDetailsFromHTML.entityMap)));
+      setEditorStateDescription(
+        EditorState.createWithContent(
+          ContentState.createFromBlockArray(descriptionFromHTML.contentBlocks, descriptionFromHTML.entityMap)
+        )
+      );
+      onEditorStateProductDetailsChange(
+        EditorState.createWithContent(
+          ContentState.createFromBlockArray(productDetailsFromHTML.contentBlocks, productDetailsFromHTML.entityMap)
+        )
+      );
     }
   }, []);
   const onEditorStateDescriptionChange = (newEditorState) => {
@@ -119,7 +132,7 @@ const ItemForm: FC<IProps> = ({ onSubmitHandler, initialValues, buttonTitle, una
       size: sizes.map((size) => size.size),
       name: productName,
       description: descriptionHtmlContent,
-      productDetails: productDetailsHtmlContent
+      productDetails: productDetailsHtmlContent,
     });
   };
 
@@ -162,50 +175,56 @@ const ItemForm: FC<IProps> = ({ onSubmitHandler, initialValues, buttonTitle, una
     <div className={'flex flex-col gap-5 w-full'}>
       <p className={'font-bold'}>2. Item Detail</p>
 
-      {unavailableInputs.category && <>
-        <p>Category</p>
-        <CustomSelect
-          value={selectedCategory}
-          array={categories.map((el) => el.categoryTitle)}
-          defaultValue={initialValues?.category.toString() || ''}
-          handleFunc={changeHandler(setSelectedCategory)}
-        />
-      </>
-      }
-      {unavailableInputs.subcategory && <>
-        <p>Subcategory</p>
-        <CustomSelect
-          value={valueOfSubCategory}
-          array={subcategories}
-          defaultValue={initialValues?.subcategory.toString() || ''}
-          handleFunc={changeHandler(setSelectedSubCategory)}
-        /></>
-      }
-
-      {unavailableInputs.productName && <CustomInput
-        description={'Product name'}
-        value={productName}
-        onChange={changeHandler(setProductName)}
-        border={border}
-      />}
-
-      {unavailableInputs.description && <>
-        <p>Description</p>
-        <div>
-          <Editor
-            editorState={editorStateDescription}
-            onEditorStateChange={onEditorStateDescriptionChange}
-            wrapperStyle={{ border: '2px solid #CBD2E0' }}
-            toolbar={{
-              options: ['inline', 'blockType', 'list', 'textAlign', 'history']
-            }}
-            handlePastedText={() => false}
+      {unavailableInputs.category && (
+        <>
+          <p>Category</p>
+          <CustomSelect
+            value={selectedCategory}
+            array={categories.map((el) => el.categoryTitle)}
+            defaultValue={initialValues?.category.toString() || ''}
+            handleFunc={changeHandler(setSelectedCategory)}
           />
-        </div>
-      </>}
+        </>
+      )}
+      {unavailableInputs.subcategory && (
+        <>
+          <p>Subcategory</p>
+          <CustomSelect
+            value={valueOfSubCategory}
+            array={subcategories}
+            defaultValue={initialValues?.subcategory.toString() || ''}
+            handleFunc={changeHandler(setSelectedSubCategory)}
+          />
+        </>
+      )}
 
-      {
-        unavailableInputs.productDetails &&
+      {unavailableInputs.productName && (
+        <CustomInput
+          description={'Product name'}
+          value={productName}
+          onChange={changeHandler(setProductName)}
+          border={border}
+        />
+      )}
+
+      {unavailableInputs.description && (
+        <>
+          <p>Description</p>
+          <div>
+            <Editor
+              editorState={editorStateDescription}
+              onEditorStateChange={onEditorStateDescriptionChange}
+              wrapperStyle={{ border: '2px solid #CBD2E0' }}
+              toolbar={{
+                options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
+              }}
+              handlePastedText={() => false}
+            />
+          </div>
+        </>
+      )}
+
+      {unavailableInputs.productDetails && (
         <>
           <p>Product Details</p>
           <div>
@@ -214,15 +233,15 @@ const ItemForm: FC<IProps> = ({ onSubmitHandler, initialValues, buttonTitle, una
               onEditorStateChange={onEditorStateProductDetailsChange}
               wrapperStyle={{ border: '2px solid #CBD2E0' }}
               toolbar={{
-                options: ['inline', 'blockType', 'list', 'textAlign', 'history']
+                options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
               }}
               handlePastedText={() => false}
             />
           </div>
         </>
-      }
+      )}
 
-      {unavailableInputs.price &&
+      {unavailableInputs.price && (
         <CustomInput
           type={InputType.number}
           description={'Price'}
@@ -230,35 +249,37 @@ const ItemForm: FC<IProps> = ({ onSubmitHandler, initialValues, buttonTitle, una
           onChange={changeHandler(setPrice)}
           border={border}
         />
+      )}
 
-      }
+      {unavailableInputs.amount && (
+        <CustomInput
+          type={InputType.number}
+          description={'Amount'}
+          value={amount}
+          onChange={changeHandler(setAmount)}
+          border={border}
+        />
+      )}
 
-      {unavailableInputs.amount && <CustomInput
-        type={InputType.number}
-        description={'Amount'}
-        value={amount}
-        onChange={changeHandler(setAmount)}
-        border={border}
-      />}
+      {unavailableInputs.size && (
+        <div className={'flex flex-row flex-wrap gap-6'}>
+          {Array.from({ length: sizes.length }).map((_, index) => {
+            const value = sizes.find((size) => size.index === index + 1)?.size.toString();
+            return (
+              <div key={Math.random()} className={'w-1/5'}>
+                <CustomInput
+                  type={InputType.number}
+                  value={value}
+                  onChange={sizeHandler(setSizes, index + 1)}
+                  border={border}
+                />
+              </div>
+            );
+          })}
 
-      {unavailableInputs.size && <div className={'flex flex-row flex-wrap gap-6'}>
-        {Array.from({ length: sizes.length }).map((_, index) => {
-          const value = sizes.find((size) => size.index === index + 1)?.size.toString();
-          return (
-            <div key={Math.random()} className={'w-1/5'}>
-              <CustomInput
-                type={InputType.number}
-                value={value}
-                onChange={sizeHandler(setSizes, index + 1)}
-                border={border}
-              />
-            </div>
-          );
-        })}
-
-        <CustomButton title={'Add size'} handler={addNewSize} styles={'w-1/6 !mx-[18px] !my-[15px]'} />
-      </div>
-      }
+          <CustomButton title={'Add size'} handler={addNewSize} styles={'w-1/6 !mx-[18px] !my-[15px]'} />
+        </div>
+      )}
       <CustomButton title={buttonTitle} handler={clickHandler} />
     </div>
   );

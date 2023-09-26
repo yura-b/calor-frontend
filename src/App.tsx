@@ -92,7 +92,7 @@ const App = () => {
             <Route path={'createevent'} element={<CreateEvent />} />
             <Route path={'catalog'} element={<CatalogPage />} />
             <Route path={'createitem'} element={<CreateItem />} />
-            <Route path={'edititem/:id'} element={<EditItem/>} />
+            <Route path={'edititem/:id'} element={<EditItem />} />
             <Route path={'warehouse'} element={<WarehousePage />} />
           </Route>
           <Route path={'design_your_shoe'}>

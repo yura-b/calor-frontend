@@ -3,16 +3,14 @@ import PhotoInput from '@components/admin/PhotoInput.tsx';
 import { X } from '@phosphor-icons/react';
 
 interface IProps {
-  getPhotos: React.Dispatch<React.SetStateAction<File[]>>,
-  clearPhotos?: number
+  getPhotos: React.Dispatch<React.SetStateAction<File[]>>;
+  clearPhotos?: number;
 }
-const InputForPhotos:FC<IProps> = ({getPhotos, clearPhotos}) => {
-
+const InputForPhotos: FC<IProps> = ({ getPhotos, clearPhotos }) => {
   const [photos, setPhotos] = useState<File[]>([]);
 
-
   useEffect(() => {
-    setPhotos([])
+    setPhotos([]);
   }, [clearPhotos]);
   const photoHandler = (photo: File) => {
     if (photos.includes(photo) || photos.length === 5) return;
@@ -21,10 +19,10 @@ const InputForPhotos:FC<IProps> = ({getPhotos, clearPhotos}) => {
   const deletePhoto = (name: string) => {
     return () => {
       setPhotos((prevState) => prevState.filter((photo) => photo.name !== name));
-      };
+    };
   };
   useEffect(() => {
-    getPhotos(photos)
+    getPhotos(photos);
   }, [photos]);
 
   return (
