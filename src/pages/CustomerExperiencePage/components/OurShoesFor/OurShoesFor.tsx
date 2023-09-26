@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import families from '@assets/images/ourShoesFor/families.jpg';
 import creative from '@assets/images/ourShoesFor/creative.jpg';
@@ -18,6 +18,7 @@ import { hoverOnButtonAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import Spinner from '@components/ui/Spinner';
 
 const OurShoesFor: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
@@ -85,6 +86,7 @@ const OurShoesFor: React.FC = () => {
       mt: '0px',
     },
   ];
+  const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div className="bg-grayExtraLight">
       <div className={styles.container}>
@@ -93,16 +95,25 @@ const OurShoesFor: React.FC = () => {
           {OurShoesFor.map((item, index) => (
             <motion.div
               key={index}
-              className={'relative'}
+              className={'relative '}
               style={{ marginTop: window.innerWidth >= 1024 ? item.mt : '' }}
               {...hoverOnButtonAnimation}
             >
-              <LazyLoadImage
-                src={item.img}
-                alt={`Image ${index + 1}`}
-                className={'w-full object-contain object-cover mx-auto h-auto  lg:sm:max-h-none'}
-                effect="blur"
-              />
+              <div className="relative min-h-[300px]">
+                <LazyLoadImage
+                  src={item.img}
+                  alt={`Image ${index + 1}`}
+                  className={'w-full object-contain object-cover mx-auto h-auto  lg:sm:max-h-none'}
+                  effect="blur"
+                  afterLoad={() => {
+                    setImageLoaded(true);
+                  }}
+                  beforeLoad={() => {
+                    setImageLoaded(false);
+                  }}
+                />
+                {imageLoaded ? null : <Spinner className="absolute" />}
+              </div>
               <p className="font-bold mt-4">{item.title}</p>
               <p>{item.description}</p>
             </motion.div>
