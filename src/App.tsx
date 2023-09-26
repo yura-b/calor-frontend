@@ -57,6 +57,7 @@ import Constructor from '@/components/Constructor';
 import MyOrder from '@components/MyOrder';
 import PrivateRoute from '@/components/PrivateRoute';
 import CookiePopup from '@components/CookiePopup';
+import EditItem from '@pages/admin/catalog/EditItem.tsx';
 import Loader from '@/components/ui/Loader/';
 
 const App = () => {
@@ -91,6 +92,7 @@ const App = () => {
             <Route path={'createevent'} element={<CreateEvent />} />
             <Route path={'catalog'} element={<CatalogPage />} />
             <Route path={'createitem'} element={<CreateItem />} />
+            <Route path={'edititem/:id'} element={<EditItem/>} />
             <Route path={'warehouse'} element={<WarehousePage />} />
           </Route>
           <Route path={'design_your_shoe'}>

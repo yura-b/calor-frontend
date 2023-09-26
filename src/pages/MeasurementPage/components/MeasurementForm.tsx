@@ -71,13 +71,13 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           _id: id,
           title: product?.data?.title,
           price: product?.data?.price,
+          category: product?.data?.category,
           count: 1,
           photos: [constructorImage],
           measurement: { selectedShoeSize, ...values },
           details: [selectedDetails],
         };
       }
-
       if (userId) {
         mutation.mutate({ userId, requestData });
       } else {

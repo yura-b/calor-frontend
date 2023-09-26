@@ -111,7 +111,10 @@ const ProductPage = () => {
         </div>
         <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-10 ${styles.container}`}>
           {/* Product Slider */}
-          <Slider images={product?.data.photos} color="gray" />
+          <div className="min-h-[431.66px]">
+            <Slider images={product?.data.photos} color="gray" />
+          </div>
+
           {/* Product Desription */}
           <div
             className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident} w-full`}

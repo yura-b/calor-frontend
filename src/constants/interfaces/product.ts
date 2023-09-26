@@ -1,10 +1,11 @@
 export interface Product {
-  _id;
+  _id: string;
   title: string;
   price: number;
   photos: string[];
   category: category | string;
   subcategory: string;
+  productDetails: string
   description: string;
   size: number[];
 }

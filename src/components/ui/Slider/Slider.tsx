@@ -54,21 +54,24 @@ const Slider: FC<IProps> = ({ images = [], color }) => {
     <>
       <motion.div className="flex justify-center items-center m-auto flex-col" {...fadeAnimation}>
         <div className="flex justify-center items-center m-auto flex-col">
-          <motion.img
-            key={currentIndex}
-            src={images[currentIndex]}
-            className={`object-cover ${isEnlarged ? 'cursor-pointer' : ''}`}
-            style={{ maxHeight: '500px' }}
-            alt={`Slider ${currentIndex}`}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={slideAnimation}
-            transition={{ duration: 0.6 }}
-            onMouseEnter={stopAutoPlay}
-            onMouseLeave={handleAutoPlay}
-            onClick={handleImageClick}
-          />
+          <div className="min-h-[343px] sm:min-h-[500px] md:min-h-[500px] lg:min-h-[460.44px] xl:min-h-[500px]  ">
+            <motion.img
+              key={currentIndex}
+              src={images[currentIndex]}
+              className={`object-cover ${isEnlarged ? 'cursor-pointer' : ''}`}
+              style={{ maxHeight: '500px' }}
+              alt={`Slider ${currentIndex}`}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={slideAnimation}
+              transition={{ duration: 0.6 }}
+              onMouseEnter={stopAutoPlay}
+              onMouseLeave={handleAutoPlay}
+              onClick={handleImageClick}
+            />
+          </div>
+
           {isEnlarged && (
             <div
               className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-black bg-opacity-80"
