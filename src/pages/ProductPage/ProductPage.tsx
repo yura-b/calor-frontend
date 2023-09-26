@@ -203,7 +203,7 @@ const ProductPage = () => {
                   >
                     {index == 0 && (
                       <div>
-                        <h1 className={styles.header2}>{product?.data.title}</h1>
+                        <h1 className={`${styles.body1} font-bold`}>{product?.data.title}</h1>
                         <div dangerouslySetInnerHTML={{ __html: product?.data.productDetails }} />
                       </div>
                     )}
