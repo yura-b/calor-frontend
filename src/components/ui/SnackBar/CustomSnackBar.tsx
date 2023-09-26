@@ -28,7 +28,7 @@ const CustomSnackBar = () => {
 
   return (
     <motion.div
-      className="fixed right-3 top-11 lg:right-[16%] lg:top-[10%] z-[3000] opacity-95"
+      className="fixed right-3 top-11 lg:right-[3%] xl:right-[16%] lg:top-[4%] xl:top-[6%] 2xl:top-[8%] z-[3000] opacity-95"
       {...scaleAnimationFast}
     >
       <Alert severity="success" color={severity} sx={{ backgroundColor: '#1EC1AA' }}>

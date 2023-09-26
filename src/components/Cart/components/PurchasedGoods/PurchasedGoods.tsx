@@ -98,7 +98,7 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
           )}
         </div>
       </div>
-      {Boolean(item?.shoes) && (
+      {Boolean(item?.category == 'shoes') && (
         <p className={`${styles.body2} lg:text-[16px] hidden lg:block `}>
           Your shoes will be manufactured in 7-10 days.
         </p>
