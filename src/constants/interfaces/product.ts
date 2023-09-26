@@ -5,7 +5,7 @@ export interface Product {
   photos: string[];
   category: category | string;
   subcategory: string;
-  productDetails: string
+  productDetails: string;
   description: string;
   size: number[];
 }

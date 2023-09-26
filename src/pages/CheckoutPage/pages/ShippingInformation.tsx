@@ -26,11 +26,14 @@ const USA = 'United States';
 const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
   const [saveAddress, setSaveAddress] = useState(false);
   const [country, setCountry] = useState(USA);
-
+  const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
+  console.log(basketProducts, 'basketProducts');
+  console.log(basketNonRegisterUser, 'basketNonRegisterUser');
   // if selected country === USA
   const [stateValue, setStateValue] = useState('Texas');
 
-  const { shippingInfo } = useAppSelector((state) => state.user);
+  const { shippingInfo, userId } = useAppSelector((state) => state.user);
 
   const initialValues = {
     city: '',
@@ -68,7 +71,16 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
     <div className={'flex flex-col p-5 w-full items-center'}>
       <div className={'flex flex-col flex-start w-full'}>
         <h2 className={'text-xl my-4 font-bold'}>Shipping Information</h2>
-        <h2 className={'mb-5'}>This product is custom-made and shipped to you in 7-10 days.</h2>
+        {userId && basketProducts.some((product) => product.shoes !== null) && (
+          <h2 className={'mb-5'}>
+            The order contains a custom-made product and it will be shipped to you in 7-10 days
+          </h2>
+        )}
+        {!userId && basketNonRegisterUser.some((product) => product.category === 'shoes') && (
+          <h2 className={'mb-5'}>
+            The order contains a custom-made product and it will be shipped to you in 7-10 days
+          </h2>
+        )}
       </div>
       <form onSubmit={formik.handleSubmit} className={'w-full'}>
         <div className={'mb-4'}>
