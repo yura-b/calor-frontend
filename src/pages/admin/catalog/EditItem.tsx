@@ -13,34 +13,33 @@ import { uploadEventPhoto } from '@/api/manager/pages.ts';
 import { IProperty } from '@/api/dto/products.dto.ts';
 
 const EditItem = () => {
-  const { access_token } = useAppSelector(state => state.user);
+  const { access_token } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-
 
   const [photos, getPhotos] = useState<File[]>([]);
 
   const [product, setProduct] = useState<Product>();
-  const [_, refreshPage] = useState<number>(0)
+  const [_, refreshPage] = useState<number>(0);
 
   const { id } = useParams();
 
-
   useEffect(() => {
     if (!id) return;
-    getProductById(id).then(res => {
+    getProductById(id).then((res) => {
       setProduct(res.data);
     });
   }, [id, _]);
   if (!product) return;
   const isShoes = !(typeof product.category === 'object' && product.category !== null);
-  const deletePhotoHandler = (url: string) =>{
-    if(!product) return
+  const deletePhotoHandler = (url: string) => {
+    if (!product) return;
     setProduct(() => {
       return {
         ...product,
-       photos: product.photos.filter(currentUrl => currentUrl !== url),
-   }})
-  }
+        photos: product.photos.filter((currentUrl) => currentUrl !== url),
+      };
+    });
+  };
   const submitHandler = (values: productForm) => {
     if (!access_token || !id) return;
     dispatch(loading());
@@ -49,19 +48,19 @@ const EditItem = () => {
         if (!photo) return;
         return await uploadEventPhoto(photo);
       })
-    ).then(res => {
+    ).then((res) => {
       let photoRequest: IProperty = { shouldChange: true, propertyName: 'photos', propertyValue: product.photos };
       if (Array.isArray(res) && res.length > 0) {
         const data = res.map((response) => response?.data); // Access the data property for each response
         const photos = data.map((el) => el.url);
-      
+
         photoRequest = {
           shouldChange: !isShoes,
           propertyValue: [...(product?.photos || ['']), ...photos],
-          propertyName: 'photos'
+          propertyName: 'photos',
         };
       }
-      
+
       editItem(access_token, {
         id,
         values: {
@@ -69,54 +68,54 @@ const EditItem = () => {
           productDetails: {
             propertyValue: values.productDetails,
             propertyName: 'productDetails',
-            shouldChange: true
+            shouldChange: true,
           },
           description: {
             propertyValue: values.description,
             propertyName: 'description',
-            shouldChange: true
+            shouldChange: true,
           },
           title: {
             propertyValue: values.name,
             propertyName: 'title',
-            shouldChange: !isShoes
+            shouldChange: !isShoes,
           },
           // title: {
           //   propertyValue: values.ca,
           //   propertyName: 'title',
           //   shouldChange: !isShoes
           // }
-        }
+        },
       }).then(() => {
-        dispatch(loadingFinished())
-        dispatch(showMessage('changes are successfully saved'))
+        dispatch(loadingFinished());
+        dispatch(showMessage('changes are successfully saved'));
 
-        refreshPage(prevState => prevState + 1)
+        refreshPage((prevState) => prevState + 1);
       });
     });
   };
 
-
-
-  const unavailableInputs = isShoes ? {
-    price: false,
-    productDetails: true,
-    amount: false,
-    category: false,
-    description: true,
-    productName: false,
-    subcategory: false,
-    size: false
-  } : {
-    price: false,
-    productDetails: true,
-    amount: false,
-    category: false,
-    subcategory: false,
-    description: true,
-    productName: true,
-    size: false
-  };
+  const unavailableInputs = isShoes
+    ? {
+        price: false,
+        productDetails: true,
+        amount: false,
+        category: false,
+        description: true,
+        productName: false,
+        subcategory: false,
+        size: false,
+      }
+    : {
+        price: false,
+        productDetails: true,
+        amount: false,
+        category: false,
+        subcategory: false,
+        description: true,
+        productName: true,
+        size: false,
+      };
 
   return (
     <AdminLayout>
@@ -129,27 +128,35 @@ const EditItem = () => {
       <div className={'m-24'}>
         <div className={'flex flex-row gap-12'}>
           <div className={'flex flex-col w-1/2  '}>
-            {product.photos.length !== 0 ?
-              <Slider images={product.photos} />:
-              <p className={'text-red-800 font-bold text-xl '}>There are no photos here</p> }
-            {!isShoes && <div className={'flex flex-col gap-5 my-6'}>
-              {
-                product.photos.map((url, index) => {
-                  return <div className={'text-mint font-bold cursor-pointer'} onClick={() => deletePhotoHandler(url)}
-                              key={url}>
-                    <span className={'text-red-800'}>Delete photo n.</span> {index + 1}
-                  </div>;
-                })
-              }
-            </div>}
+            {product.photos.length !== 0 ? (
+              <Slider images={product.photos} />
+            ) : (
+              <p className={'text-red-800 font-bold text-xl '}>There are no photos here</p>
+            )}
+            {!isShoes && (
+              <div className={'flex flex-col gap-5 my-6'}>
+                {product.photos.map((url, index) => {
+                  return (
+                    <div
+                      className={'text-mint font-bold cursor-pointer'}
+                      onClick={() => deletePhotoHandler(url)}
+                      key={url}
+                    >
+                      <span className={'text-red-800'}>Delete photo n.</span> {index + 1}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
             {(!isShoes || _) && <InputForPhotos getPhotos={getPhotos} clearPhotos={_} />}
           </div>
           <div className={'w-1/2'}>
-            <ItemForm onSubmitHandler={submitHandler}
-                      initialValues={{ ...product, name: product?.title, productDetails: product?.productDetails }}
-                      buttonTitle={'save changes'}
-                      isShoes={isShoes}
-                      unavailableInputs={unavailableInputs}
+            <ItemForm
+              onSubmitHandler={submitHandler}
+              initialValues={{ ...product, name: product?.title, productDetails: product?.productDetails }}
+              buttonTitle={'save changes'}
+              isShoes={isShoes}
+              unavailableInputs={unavailableInputs}
             />
           </div>
         </div>

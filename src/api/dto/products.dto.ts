@@ -15,23 +15,18 @@ export interface ProductsDto {
 }
 
 export interface IProperty {
-  shouldChange: boolean
+  shouldChange: boolean;
 
-  propertyValue: string | number | string[]
+  propertyValue: string | number | string[];
 
-  propertyName: string
+  propertyName: string;
 }
 class IValues {
-  [name: string]: IProperty
+  [name: string]: IProperty;
 }
 
 export interface EditItemDto {
+  id: string;
 
-  id: string
-
-  values: IValues
+  values: IValues;
 }
-
-
-
-
