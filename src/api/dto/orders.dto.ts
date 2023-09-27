@@ -28,6 +28,7 @@ export interface Purchases {
 }
 
 export interface detail {
+  name: string
   material: string;
   color: string;
 }

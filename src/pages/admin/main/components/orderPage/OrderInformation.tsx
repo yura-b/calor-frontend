@@ -13,7 +13,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
   const { payment, shoes, accessory, totalPrice } = order;
   console.log(order);
   return (
-    <>
+    <div className={'mb-8'}>
       <div className={'pl-5 mb-8  gap-5 flex flex-col justify-start'}>
         <div className={'flex items-center'}>
           <ClipboardText size={32} weight="fill" />
@@ -43,7 +43,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
         </TableContainer>
       </div>
       <hr />
-    </>
+    </div>
   );
 };
 
