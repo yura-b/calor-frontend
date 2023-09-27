@@ -38,7 +38,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
     count: 1,
     photo: product?.photos[0],
     measurement: {},
-    details: [{}],
+    details: {},
     price: product?.price,
   };
 
