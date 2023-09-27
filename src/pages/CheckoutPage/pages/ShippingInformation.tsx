@@ -28,8 +28,7 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
   const [country, setCountry] = useState(USA);
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
-  console.log(basketProducts, 'basketProducts');
-  console.log(basketNonRegisterUser, 'basketNonRegisterUser');
+
   // if selected country === USA
   const [stateValue, setStateValue] = useState('Texas');
 

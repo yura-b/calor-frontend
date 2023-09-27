@@ -25,12 +25,14 @@ const CheckoutPage = () => {
     ? basketProducts?.map((item) => ({
         count: item.count,
         product: item?.shoes?._id || item?.accessory?._id,
-        details: item?.category || item?.details[0],
+        details: item?.details || [{}],
+        measurement: item?.measurement || {}
       }))
     : basketProductsForNonRegisterUser?.map((item) => ({
         count: item?.count,
         product: item?._id || item?.product,
-        details: item?.category || item?.details[0],
+        details: item?.details || [{}],
+        measurement: item?.measurement || {}
       }));
 
   useEffect(() => {
