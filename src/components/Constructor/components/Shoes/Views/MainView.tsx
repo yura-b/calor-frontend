@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
+import Spinner from '@components/ui/Spinner';
 interface IProps {
   model: string;
 }
@@ -26,13 +26,14 @@ const MainView: FC<IProps> = ({ model }) => {
     };
   }, []);
 
+  const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div ref={parentRef} className="mt-10 mb-2 relative flex justify-center items-center w-wrapper mx-auto">
       {Object.values(view1).map((src, index, array) => (
         <img
           key={index}
           src={src}
-          className={`absolute ${
+          className={`absolute min-h-[120px] sm:min-h-[200px] md:min-h-[280px] lg:min-h-[300px] ${
             index === array.length - 1
               ? 'z-[-30]'
               : model === 'dayger' && index === 12
@@ -61,6 +62,7 @@ const MainView: FC<IProps> = ({ model }) => {
           }`}
           onLoad={() => {
             updateParentHeight();
+            setImageLoaded(true);
           }}
           ref={(ref) => {
             imageRefs.current[index] = ref;
@@ -68,6 +70,7 @@ const MainView: FC<IProps> = ({ model }) => {
           alt={`Image ${index}`}
         />
       ))}
+      {imageLoaded ? null : <Spinner className="absolute top-1/2 left-1/2" />}
     </div>
   );
 };

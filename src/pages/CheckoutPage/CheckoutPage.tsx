@@ -20,12 +20,11 @@ const CheckoutPage = () => {
 
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
-  useEffect(()=>{
-    return ()=>{
-      dispatch(setCheckoutStep(CheckoutSteps.FIRST))
-    }
-
-  },[])
+  useEffect(() => {
+    return () => {
+      dispatch(setCheckoutStep(CheckoutSteps.FIRST));
+    };
+  }, []);
 
   const purchasesData = access_token
     ? basketProducts?.map((item) => ({
