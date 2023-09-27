@@ -105,7 +105,12 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
                 }`}
               >
                 <div className={`basis-[80px] 2xl:${isSmallerThan1600px ? 'basis-[80px]' : 'basis-1/5'}`}>
-                  <img src={calorBy.img} className="w-[55px] h-[45px]" />
+                  <img
+                    src={calorBy.img}
+                    className={`w-[55px] h-[45px] ${
+                      i === 0 || i === benefitsWithImg.length - 1 ? 'w-[68px] h-[58px] -ml-[8px] -mt-[6px]' : ''
+                    } ${i === benefitsWithImg.length - 1 ? '-mt-[12px]' : ''}`}
+                  />
                 </div>
                 <div className="basis-4/5">
                   <h2 className={`${styles.header2} lg:text-xl`}>{calorBy.title}</h2>
