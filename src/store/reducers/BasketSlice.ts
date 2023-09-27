@@ -45,6 +45,7 @@ interface IAccessory {
 }
 
 export interface BasketProduct {
+  category: string;
   _id: string;
   name: string;
   price: number;
