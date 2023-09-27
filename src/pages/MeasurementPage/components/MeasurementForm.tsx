@@ -63,7 +63,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           product: id,
           count: 1,
           photo: constructorImage,
-          measurement: { selectedShoeSize, ...values },
+          measurement: { size: selectedShoeSize, ...values },
           details: [selectedDetails],
         };
       } else {
@@ -74,7 +74,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           category: product?.data?.category,
           count: 1,
           photos: [constructorImage],
-          measurement: { selectedShoeSize, ...values },
+          measurement: { size: selectedShoeSize, ...values },
           details: [selectedDetails],
         };
       }
