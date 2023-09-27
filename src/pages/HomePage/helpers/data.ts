@@ -1,4 +1,5 @@
 import homeCalorMade from '@assets/images/homeCalorMade.svg';
+import allInOnePlace from '@assets/images/allInOnePlace.svg';
 import homeCalorQuality from '@assets/images/homeCalorQuality.svg';
 import homeCalorDesign from '@assets/images/homeCalorDesign.svg';
 import accesories from '@assets/images/accesories.png';
@@ -46,6 +47,9 @@ export const calorByYouItems = [
   },
   {
     img: homeCalorSpeed,
+  },
+  {
+    img: allInOnePlace,
   },
 ];
 

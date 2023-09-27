@@ -30,6 +30,7 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
   }));
 
   const isLargeScreen = useMediaQuery('(min-width: 1024px)');
+  const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
   const maxItemsToShowLargeScreen = benefitsWithImg?.length || 0;
   const maxItemsToShowSmallScreen = 3;
 
@@ -76,15 +77,22 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
       <div className={`${styles.container}`}>
         <AnimatePresence initial={false}>
           <motion.div
-            className="flex flex-col justify-start gap-2  pt-6 lg:flex-row lg:flex-wrap lg:gap-6"
+            className={`flex flex-col justify-start gap-2  pt-6 lg:flex-row lg:flex-wrap lg:gap-6 xl:gap-8 ${
+              showAll ? 'mb-0' : 'mb-0'
+            } min-h-[480px] xl:min-h-[360px]`}
             variants={containerVariants}
             initial="collapsed"
             animate={showAll ? 'expanded' : 'collapsed'}
           >
             {benefitsWithImg?.slice(0, showAll ? benefitsWithImg?.length : maxItemsToShow).map((calorBy, i) => (
-              <div key={i} className="flex gap-2 mb-2 items-start basis-[23%]">
-                <div className="basis-1/5">
-                  <img src={calorBy.img} />
+              <div
+                key={i}
+                className={`flex gap-2 mb-2 items-start  lg:basis-[48%] 2xl:${
+                  isSmallerThan1600px ? 'basis-[48%]' : 'basis-[23%]'
+                }`}
+              >
+                <div className={`basis-[80px] 2xl:${isSmallerThan1600px ? 'basis-[80px]' : 'basis-1/5'}`}>
+                  <img src={calorBy.img} className="w-[55px] h-[45px]" />
                 </div>
                 <div className="basis-4/5">
                   <h2 className={`${styles.header2} lg:text-xl`}>{calorBy.title}</h2>
@@ -98,10 +106,10 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
           </motion.div>
         </AnimatePresence>
         {benefitsWithImg && benefitsWithImg.length > maxItemsToShow && (
-          <div className="flex justify-end">
+          <div className={'flex justify-end'}>
             <motion.button
               onClick={handleSeeAllClick}
-              className={'flex justify-end  cursor-pointer mt-16 xs:mt-2 sm:mt-4 underline text-sm text-gray'}
+              className={'flex justify-end  cursor-pointer  underline text-sm text-gray'}
               {...hoverOnButtonAnimation}
             >
               {showAll ? 'Show Less' : 'Learn More'}
