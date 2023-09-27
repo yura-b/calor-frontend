@@ -21,7 +21,7 @@ const SignupPage = () => {
           <SignupForm />
         </div>
       )}
-      <CustomizedSnackbars/>
+      <CustomizedSnackbars />
     </>
   );
 };

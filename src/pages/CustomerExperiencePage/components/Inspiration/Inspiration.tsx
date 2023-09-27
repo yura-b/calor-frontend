@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import yolo1 from '@images/inspiration/yolo1.jpg';
 import yolo2 from '@images/inspiration/yolo2.jpg';
@@ -30,6 +30,9 @@ import dayger6 from '@images/inspiration/dayger6.jpg';
 import dayger7 from '@images/inspiration/dayger7.jpg';
 import Slider from '../Slider';
 import { useMediaQuery } from '@react-hook/media-query';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import Spinner from '@components/ui/Spinner';
 
 const Inspiration: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
@@ -64,6 +67,7 @@ const Inspiration: React.FC = () => {
     dayger6,
     dayger7,
   ];
+  const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div className="bg-custom-turquoise">
       <div className={styles.container}>
@@ -73,11 +77,19 @@ const Inspiration: React.FC = () => {
           <div className="flex justify-between overflow-x-auto flex-row gap-2 mx-auto lg:gap-10">
             {homeCustomerCreations.map((item, i) => (
               <div className="flex justify-center items-center lg:basis-1/5  my-4" key={i}>
-                <div className={'w-36 lg:w-full'}>
-                  <img
+                <div className={'w-36 lg:w-full relative'}>
+                  <LazyLoadImage
                     src={item}
                     className=" object-contain object-cover  mx-auto z-10 min-h-[220px] max-h-[220px] w-[120px]"
+                    effect="blur"
+                    afterLoad={() => {
+                      setImageLoaded(true);
+                    }}
+                    beforeLoad={() => {
+                      setImageLoaded(false);
+                    }}
                   />
+                  {imageLoaded ? null : <Spinner className="absolute left-1/2 top-1/2" />}
                 </div>
               </div>
             ))}

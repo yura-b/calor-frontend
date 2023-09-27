@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BasicRating from '@/components/ui/Rating/Rating';
 import Button from '@/components/ui/Button';
@@ -8,10 +8,11 @@ import { useMutation } from 'react-query';
 import { SealCheck } from '@phosphor-icons/react';
 import { appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
-import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import Spinner from '@components/ui/Spinner';
 
 const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const { userId } = useAppSelector((state) => state.user);
@@ -58,17 +59,24 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
     }
   };
 
+  const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div className="w-full flex-col my-5 flex justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px]">
-      {/* Product img */}
-      <div className=" min-h-[10vh]">
+      <div className="min-h-[10vh] flex justify-center items-center">
         <Link to={`/product/${product._id}`}>
-          <div className="flex justify-center items-center min-h-[200px]">
+          <div className="flex justify-center items-center min-h-[340px] relative">
             <LazyLoadImage
               className="flex justify-center items-center object-cover w-full h-full mx-auto max-h-[400px]"
               src={product.photos?.[0] || product.photo}
               effect="blur"
+              afterLoad={() => {
+                setImageLoaded(true);
+              }}
+              beforeLoad={() => {
+                setImageLoaded(false);
+              }}
             />
+            {imageLoaded ? null : <Spinner className="absolute" />}
           </div>
         </Link>
       </div>
