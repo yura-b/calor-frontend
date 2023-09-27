@@ -8,7 +8,7 @@ export interface IOrder {
   status: OrderStatus;
 
   details: {
-    [name: string]: detail[];
+    [name: string]: detail;
   };
 
   shoes: shoes | null;
