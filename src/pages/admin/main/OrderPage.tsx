@@ -14,6 +14,7 @@ import CustomButton from '@components/button/CustomButton.tsx';
 import reloadPage from '@/helpers/functions/reloadPage.ts';
 import DeliveryInfo from '@pages/admin/main/components/orderPage/DeliveryInfo.tsx';
 import Details from './components/orderPage/Details';
+import Measurement from '@pages/admin/main/components/orderPage/Measurement.tsx';
 
 const OrderPage = () => {
   const dispatch = useAppDispatch();
@@ -54,7 +55,8 @@ const OrderPage = () => {
       <OrderPageHeader id={id} />
       <OrderStatusComponent status={status} id={id} />
       <OrderInformation order={orderData} />
-      <Details details={orderData.details} />
+      <Details details={orderData.details}/>
+      <Measurement measurement={orderData.measurement}/>
       <div className={'pl-7'}>
         <UserInfo
           withDelivery={true}
