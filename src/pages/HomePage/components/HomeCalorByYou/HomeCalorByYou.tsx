@@ -31,6 +31,10 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
 
   const isLargeScreen = useMediaQuery('(min-width: 1024px)');
   const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
+  const isLarge400 = useMediaQuery('(min-width: 400px)');
+  const isLarge500 = useMediaQuery('(min-width: 500px)');
+  const isLarge600 = useMediaQuery('(min-width: 600px)');
+  const isLarge800 = useMediaQuery('(min-width: 800px)');
   const maxItemsToShowLargeScreen = benefitsWithImg?.length || 0;
   const maxItemsToShowSmallScreen = 3;
 
@@ -47,10 +51,21 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
       transition: { duration: 0.4 },
     },
     collapsed: {
-      height: isLargeScreen ? 'auto' : '360px',
+      height: isLargeScreen
+        ? 'auto'
+        : isLarge800
+        ? '320px'
+        : isLarge600
+        ? '360px'
+        : isLarge500
+        ? '360px'
+        : isLarge400
+        ? '400px'
+        : '460px',
       transition: { duration: 0.4 },
     },
   };
+
   return (
     <div className="w-full bg-white">
       <div
@@ -74,12 +89,10 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
           />
         </div>
       </div>
-      <div className={`${styles.container}`}>
+      <div className={`${styles.container} responsive`}>
         <AnimatePresence initial={false}>
           <motion.div
-            className={`flex flex-col justify-start gap-2  pt-6 lg:flex-row lg:flex-wrap lg:gap-6 xl:gap-8 ${
-              showAll ? 'mb-0' : 'mb-0'
-            } min-h-[480px] xl:min-h-[360px]`}
+            className={'flex flex-col justify-start gap-2  pt-6 lg:flex-row lg:flex-wrap lg:gap-6 xl:gap-8 h-auto'}
             variants={containerVariants}
             initial="collapsed"
             animate={showAll ? 'expanded' : 'collapsed'}
@@ -87,8 +100,8 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
             {benefitsWithImg?.slice(0, showAll ? benefitsWithImg?.length : maxItemsToShow).map((calorBy, i) => (
               <div
                 key={i}
-                className={`flex gap-2 mb-2 items-start  lg:basis-[48%] 2xl:${
-                  isSmallerThan1600px ? 'basis-[48%]' : 'basis-[23%]'
+                className={`flex gap-2 mb-2 items-start  lg:basis-[48%] ${
+                  isSmallerThan1600px ? '2xl:basis-[48%]' : '2xl:basis-[23%]'
                 }`}
               >
                 <div className={`basis-[80px] 2xl:${isSmallerThan1600px ? 'basis-[80px]' : 'basis-1/5'}`}>
@@ -106,7 +119,7 @@ const HomeCalorByYou: React.FC<Props> = ({ benefits, perfectFit }): React.ReactE
           </motion.div>
         </AnimatePresence>
         {benefitsWithImg && benefitsWithImg.length > maxItemsToShow && (
-          <div className={'flex justify-end'}>
+          <div className={`flex justify-end ${showAll ? '' : 'mt-8'}`}>
             <motion.button
               onClick={handleSeeAllClick}
               className={'flex justify-end  cursor-pointer  underline text-sm text-gray'}
