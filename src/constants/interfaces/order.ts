@@ -11,6 +11,8 @@ export interface IOrder {
     [name: string]: detail;
   };
 
+  measurement: IMeasurement
+
   shoes: shoes | null;
 
   accessory: accessory | null;
@@ -40,6 +42,7 @@ export interface IOrder {
   payment: PaymentEnum;
 
   shippingPrice: number;
+
   order_id: number;
 
   size?: number;
