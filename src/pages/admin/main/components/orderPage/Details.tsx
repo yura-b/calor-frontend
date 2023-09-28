@@ -7,7 +7,7 @@ import { detail } from '@/api/dto/orders.dto.ts';
 
 interface IProps {
   details: {
-    [name: string]: detail
+    [detailName: string]: detail
   } | undefined;
 }
 
@@ -38,9 +38,9 @@ const Details: FC<IProps> = ({ details }) => {
             </TableHead>
             <TableBody>
               {
-                detailsObj.map(([detailName, { material, color }]) => {
+                detailsObj.map(([detailName, { name, material, color }]) => {
                   return <TableRow>
-                    <TableCell>{detailName}</TableCell>
+                    <TableCell>{name}</TableCell>
 
                     <TableCell align={'right'}>{material}</TableCell>
 

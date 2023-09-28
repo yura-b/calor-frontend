@@ -23,22 +23,22 @@ const CheckoutPage = () => {
   useEffect(() => {
     return () => {
       dispatch(setCheckoutStep(CheckoutSteps.FIRST));
-    };
-  }, []);
+    }
+  }, [])
 
   const purchasesData = access_token
     ? basketProducts?.map((item) => ({
-        count: item.count,
-        product: item?.shoes?._id || item?.accessory?._id,
-        details: item?.details || {},
-        measurement: item?.measurement || {}
-      }))
+      count: item.count,
+      product: item?.shoes?._id || item?.accessory?._id,
+      details: item?.details || {},
+      measurement: { _id: item?.measurement._id || {} }
+    }))
     : basketProductsForNonRegisterUser?.map((item) => ({
-        count: item?.count,
-        product: item?._id || item?.product,
-        details: item?.details || {},
-        measurement: item?.measurement || {}
-      }));
+      count: item?.count,
+      product: item?._id || item?.product,
+      details: item?.details || {},
+      measurement: item?.measurement || {}
+    }));
 
   useEffect(() => {
     if (!data) return;
