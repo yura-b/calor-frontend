@@ -32,6 +32,7 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
 
   const { id } = useParams();
   const { data: product } = useQuery(['productById', id], () => getProductById(id), {
+    staleTime: Infinity,
     enabled: !!id,
   });
 
