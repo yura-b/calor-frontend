@@ -98,7 +98,7 @@ interface shoes {
   description: string;
   details: string;
   insole: string;
-  photos: string;
+  photo: string;
   liningMaterial: string;
   price: number;
   sizes: number[];
@@ -113,7 +113,7 @@ interface accessory {
   category: string;
   description: string;
   title: string;
-  photos: string;
+  photo: string;
   price: number;
   rating: number;
   size: number[];

@@ -30,7 +30,6 @@ const OrderPage = () => {
       getOrder(access_token, id).then((res) => {
         setOrderData(res.data.order);
         setUserData(res.data.user);
-
         dispatch(loadingFinished());
       });
     }
