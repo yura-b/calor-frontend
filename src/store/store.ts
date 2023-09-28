@@ -14,6 +14,7 @@ import shoesConstructorReducer from '@/store/reducers/constructor/ShoesConstruct
 import userMeasurement from './reducers/UserMeasurement';
 import constructorImage from './reducers/constructor/ConstructorImage';
 import basketForNonRegisterUser from './reducers/BasketForNonRegisterUser';
+import completeLook from './reducers/CompleteLookReducer';
 
 export const store = configureStore({
   reducer: {
@@ -32,6 +33,7 @@ export const store = configureStore({
     userMeasurement: userMeasurement,
     constructorImage: constructorImage,
     basketForNonRegisterUser: basketForNonRegisterUser,
+    completeLook: completeLook,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

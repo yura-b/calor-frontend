@@ -102,7 +102,7 @@ const ProductPage = () => {
     );
   };
 
-  console.log(product)
+  console.log(product);
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />

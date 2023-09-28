@@ -55,8 +55,8 @@ const OrderPage = () => {
       <OrderPageHeader id={id} />
       <OrderStatusComponent status={status} id={id} />
       <OrderInformation order={orderData} />
-      <Details details={orderData.details}/>
-      <Measurement measurement={orderData.measurement}/>
+      <Details details={orderData.details} />
+      <Measurement measurement={orderData.measurement} />
       <div className={'pl-7'}>
         <UserInfo
           withDelivery={true}

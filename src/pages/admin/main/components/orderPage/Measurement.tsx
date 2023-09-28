@@ -6,10 +6,10 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { IMeasurement } from '@/constants/interfaces/order.ts';
 
 interface IProps {
- measurement: IMeasurement
+  measurement: IMeasurement;
 }
 const Measurement: FC<IProps> = ({ measurement }) => {
-  if (!measurement) return <></>
+  if (!measurement) return <></>;
   return (
     <>
       <div className={'pl-5 mb-8  gap-5 flex flex-col justify-start'}>
@@ -44,7 +44,6 @@ const Measurement: FC<IProps> = ({ measurement }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-
               <TableCell align={'right'}>{measurement.size}</TableCell>
               <TableCell align={'right'}>{measurement.rightFootLength}</TableCell>
               <TableCell align={'right'}>{measurement.rightFootWidth}</TableCell>
@@ -52,14 +51,12 @@ const Measurement: FC<IProps> = ({ measurement }) => {
               <TableCell align={'right'}>{measurement.leftFootWidth}</TableCell>
               <TableCell align={'right'}>{measurement.insoleLength}</TableCell>
               <TableCell align={'right'}>{measurement.insoleWidth}</TableCell>
-
             </TableBody>
           </Table>
         </TableContainer>
       </div>
       <hr />
     </>
-
   );
 };
 
