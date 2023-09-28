@@ -52,6 +52,8 @@ export interface IOrder {
   courier?: string;
 
   approxDeliveryDate?: string;
+
+  photo: string;
 }
 
 export enum OrderStatus {

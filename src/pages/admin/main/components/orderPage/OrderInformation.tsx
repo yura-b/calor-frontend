@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const OrderInformation: React.FC<IProps> = ({ order }) => {
-  const { payment, shoes, accessory, totalPrice } = order;
+  const { payment, shoes, accessory, totalPrice, photo } = order;
 
   return (
     <div className={'mb-8'}>
@@ -34,7 +34,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableCell>{shoes?.photo || accessory?.photo}</TableCell>
+              <TableCell><img className="h-[50px] object-contain" src={photo} /></TableCell>
 
               <TableCell>{shoes?.title || accessory?.title}</TableCell>
 
