@@ -2,57 +2,79 @@ import styles from '@styles/Styles.module.scss';
 import CheckoutOrderItem from './CheckoutOrderItem';
 import CustomButton from '@/components/button/CustomButton';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '@/store/hooks/hooks';
+import { useEffect, useState } from 'react';
+import { sendOrderForNotAuthUser } from '@/api/orders.ts';
+import { useParams } from 'react-router';
+import { ShippingInfoDto } from '@/api/dto/orders.dto.ts';
+import { Product } from '@/constants/interfaces/product.ts';
+
+
+interface OrderInfo {
+  date: string
+  products: Product[],
+  shippingInfo: ShippingInfoDto
+  shippingPrice: number
+  subtotal: number
+  tax: number
+  total: number
+}
 
 const CheckoutOrderSuccessfully = () => {
   const navigate = useNavigate();
-  const { shippingInfo } = useAppSelector((state) => state.user);
 
+  const [order, setOrder] = useState<OrderInfo>();
+  const { id } = useParams();
+
+  const [email, order_number] = atob(id || '').split(' ');
+
+
+
+  useEffect(() => {
+
+    sendOrderForNotAuthUser(email, Number(order_number)).then(res => {
+      setOrder(res.data);
+    });
+  }, []);
+
+  if (!order) return;
   return (
     <div>
       <div className="flex flex-col justify-center items-center mt-20 w-full">
         <h2 className={`${styles.body2} text-mint font-bold`}>Order Successfully</h2>
         <h2 className={`${styles.body2} text-mint`}>Check your email for your order confirmation</h2>
       </div>
-      <div className="lg:flex mb-10  w-full">
-        <CheckoutOrderItem />
+      <div className="lg:flex mb-10 w-full justify-center">
+        <CheckoutOrderItem order_number={Number(order_number)} date={order.date} products={order.products} />
         <div className="lg:ml-20 lg:w-[50%]">
           <div>
             <h3 className="font-bold mt-5">Shipping Information</h3>
             <p>
-              Name Surname<span className="float-right">{shippingInfo?.receiverFirstName}</span>
-            </p>
-            <p>Company</p>
-            <p>
-              Address<span className="float-right">{shippingInfo?.streetAddress}</span>
+              Address<span className="float-right">{order.shippingInfo.streetAddress}</span>
             </p>
             <p>
               City, State, ZIP
               <span className="float-right">
-                {shippingInfo?.city}, {shippingInfo?.state}, {shippingInfo?.ZIP}
+                {order.shippingInfo.city}, {order.shippingInfo.state}, {order.shippingInfo.ZIP}
               </span>
             </p>
             <p>
-              Country/Region <span className="float-right">{shippingInfo?.country}</span>
-            </p>
-            <p>
-              Phone Number<span className="float-right">{shippingInfo?.receiverPhoneNumber}</span>
+              Country/Region <span className="float-right">{order.shippingInfo.country}</span>
             </p>
           </div>
           <hr className="lg:hidden mt-3 mb-3" />
           <div>
             <h3 className="font-bold mt-5">Order Summary </h3>
             <p>
-              Item <span className="float-right">$ XXX</span>
+              Item <span className="float-right">{order.total} $</span>
             </p>
             <p>
-              Order Delivery<span className="float-right">$ XXX</span>
+              Order Delivery<span className="float-right">{order.shippingPrice} $</span>
             </p>
             <p>
-              Taxes<span className="float-right">$ XXX</span>
+              Taxes<span className="float-right">{(order.tax).toFixed(2)} $ </span>
             </p>
             <p className="text-mint font-bold">
-              Subtotal<span className="float-right">$ XXX</span>
+              Subtotal<span className="float-right">{(order.subtotal).toFixed(2)} $ </span>
             </p>
             <hr className="lg:hidden mt-3 mb-3 text-mint" />
           </div>
