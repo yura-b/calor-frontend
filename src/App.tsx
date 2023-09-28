@@ -129,7 +129,7 @@ const App = () => {
           <Route path={paths.changeUserPassword} element={<PrivateRoute element={<ResetUserPassword />} />} />
           <Route path={paths.reviews} element={<PrivateRoute element={<Reviews />} />} />
           <Route path={paths.checkout} element={<CheckoutPage />} />
-          <Route path={paths.checkout_success} element={<CheckoutSuccessPage />} />
+          <Route path={`${paths.checkout_success}/:id`} element={<CheckoutSuccessPage />} />
           <Route path={paths.checkout_failed} element={<CheckoutNotSuccessPage />} />
           <Route path={paths.myOrder} element={<MyOrder />} />
           <Route path={paths.helpPage} element={<HelpPage />} />
