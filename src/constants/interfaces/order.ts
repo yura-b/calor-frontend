@@ -11,7 +11,7 @@ export interface IOrder {
     [name: string]: detail;
   };
 
-  measurement: IMeasurement
+  measurement: IMeasurement;
 
   shoes: shoes | null;
 

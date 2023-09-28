@@ -15,7 +15,7 @@ const CompleteYourLookHeader = () => {
 
   const arrowHandler = () => {
     if (step === Steps.FIRST) {
-      navigate(-1);
+      navigate('/design_your_shoe');
     }
     if (step === Steps.SECOND) {
       dispatch(setStep(Steps.FIRST));
@@ -26,11 +26,11 @@ const CompleteYourLookHeader = () => {
   };
 
   return (
-    <div className={'flex flex-col items-center mb-12 w-full'}>
-      <div className={'bg-custom-turquoise  p-0 mb-12 w-full'}>
-        <div className={`${styles.container} p-4  flex flex-row items-center align-baseline justify-between`}>
-          <img src={arrow} onClick={arrowHandler} className={step === Steps.THIRD ? 'invisible' : 'h-6'} alt="" />
-          <h3 className={`${styles.header2} uppercase font-bold text-gray`}>Complete your look</h3>
+    <div className={'flex flex-col items-center mb-4 lg:mb-12 w-full'}>
+      <div className={'p-0 mb-6 lg:mb-12 w-full'}>
+        <div className={`${styles.container} p-0   flex flex-row items-center align-baseline justify-between`}>
+          <img src={arrow} onClick={arrowHandler} className={'h-6 -mr-4'} alt="" />
+          <h3 className={`${styles.header2} uppercase font-bold text-gray mx-auto`}>Complete your look</h3>
         </div>
       </div>
       <div className={'w-full md:w-1/2'}>

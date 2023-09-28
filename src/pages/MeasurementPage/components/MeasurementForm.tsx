@@ -35,7 +35,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
       setIsDisabled(false);
-      navigate('/');
+      navigate('complete_your_look');
       dispatch(showMessage('The product has been successfully added'));
     },
   });
@@ -84,7 +84,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         dispatch(addToCartNonRegisterUser(requestData));
         dispatch(showMessage('The product has been successfully added'));
         setIsDisabled(false);
-        navigate('/');
+        navigate('complete_your_look');
       }
     },
   });

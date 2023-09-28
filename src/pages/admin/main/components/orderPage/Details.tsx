@@ -6,14 +6,15 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { detail } from '@/api/dto/orders.dto.ts';
 
 interface IProps {
-  details: {
-    [detailName: string]: detail
-  } | undefined;
+  details:
+    | {
+        [detailName: string]: detail;
+      }
+    | undefined;
 }
 
 const Details: FC<IProps> = ({ details }) => {
-  if (!details) return <></>
-
+  if (!details) return <></>;
 
   const detailsObj = Object.entries(details);
   return (
@@ -37,17 +38,18 @@ const Details: FC<IProps> = ({ details }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {
-                detailsObj.map(([detailName, { name, material, color }]) => {
-                  return <TableRow>
+              {detailsObj.map(([detailName, { name, material, color }]) => {
+                return (
+                  <TableRow>
                     <TableCell>{name}</TableCell>
 
                     <TableCell align={'right'}>{material}</TableCell>
 
                     <TableCell align={'right'}>{color}</TableCell>
-                  </TableRow>;
-                })
-              }</TableBody>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
           </Table>
         </TableContainer>
       </div>

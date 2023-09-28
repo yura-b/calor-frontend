@@ -64,8 +64,7 @@ const CustomStepper = () => {
                 if (index === 1 && step !== Steps.THIRD) secondClick();
               }}
               StepIconComponent={ColorlibStepIcon}
-            >
-            </StepLabel>
+            ></StepLabel>
           </Step>
         ))}
       </Stepper>

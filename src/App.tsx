@@ -75,7 +75,10 @@ const App = () => {
             <Route index element={<HomePage />} />
             <Route path={'model/:model/:id'}>
               <Route index element={<Constructor />} />
-              <Route path={'measurement'} element={<MeasurementPage />} />
+              <Route path={'measurement'}>
+                <Route index element={<MeasurementPage />} />
+                <Route path={'complete_your_look'} element={<CompleteYourLookPage />} />
+              </Route>
             </Route>
           </Route>
           <Route path={paths.home} element={<HomePage />} />
@@ -101,7 +104,7 @@ const App = () => {
             <Route path={'model/:model/:id'}>
               <Route index element={<Constructor />} />
               <Route path={'measurement'}>
-              <Route index element={<MeasurementPage />} />
+                <Route index element={<MeasurementPage />} />
                 <Route path={'complete_your_look'} element={<CompleteYourLookPage />} />
               </Route>
             </Route>
