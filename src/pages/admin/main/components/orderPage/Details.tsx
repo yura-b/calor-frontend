@@ -13,9 +13,9 @@ interface IProps {
 
 const Details: FC<IProps> = ({ details }) => {
   if (!details) return <></>
+  
+  const flattenedDetails = Object.values(details[0]);
 
-
-  const detailsObj = Object.entries(details);
   return (
     <div className={'mb-8'}>
       <div className={'pl-5 mb-8  gap-5 flex flex-col justify-start'}>
@@ -38,13 +38,13 @@ const Details: FC<IProps> = ({ details }) => {
             </TableHead>
             <TableBody>
               {
-                detailsObj.map(([detailName, { name, material, color }]) => {
+                flattenedDetails.map((item) => {
                   return <TableRow>
-                    <TableCell>{name}</TableCell>
+                    <TableCell>{item.name}</TableCell>
 
-                    <TableCell align={'right'}>{material}</TableCell>
+                    <TableCell align={'right'}>{item.material}</TableCell>
 
-                    <TableCell align={'right'}>{color}</TableCell>
+                    <TableCell align={'right'}>{item.color}</TableCell>
                   </TableRow>;
                 })
               }</TableBody>
