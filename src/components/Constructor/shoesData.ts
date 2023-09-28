@@ -1293,16 +1293,6 @@ export const shoes = [
             ],
           },
           {
-            name: 'wool',
-            colors: [
-              {
-                img: 'part09_wool_01.png',
-                name: 'Powder White',
-                hex: '#ded9d2',
-              },
-            ],
-          },
-          {
             name: 'leather',
             colors: [
               {
@@ -1399,6 +1389,16 @@ export const shoes = [
                 img: 'part09_leather_19.png',
                 name: 'Real Red',
                 hex: '#D81525',
+              },
+            ],
+          },
+          {
+            name: 'wool',
+            colors: [
+              {
+                img: 'part09_wool_01.png',
+                name: 'Powder White',
+                hex: '#ded9d2',
               },
             ],
           },
@@ -5264,7 +5264,7 @@ export const shoesImages = {
       part05: '/assets/images/constructor/parts/dayger/view3/view3_part05_sole_01.png',
       part07: '/assets/images/constructor/parts/dayger/view3/view3_part07_leather_11.png',
       part08: '/assets/images/constructor/parts/dayger/view3/view3_part08_leather_11.png',
-      part09: '/assets/images/constructor/parts/dayger/view3/view3_part09_fur_01.png',
+      part09: '/assets/images/constructor/parts/dayger/view3/view3_part09_wool_01.png',
       part10: '/assets/images/constructor/parts/dayger/view3/view3_part10_leather_11.png',
       part11: '/assets/images/constructor/parts/dayger/view3/view3_part11_leather_11.png',
       part12: '/assets/images/constructor/parts/dayger/view3/view3_part12_leather_11.png',
