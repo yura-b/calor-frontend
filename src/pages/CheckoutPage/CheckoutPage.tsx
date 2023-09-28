@@ -31,7 +31,7 @@ const CheckoutPage = () => {
       count: item.count,
       product: item?.shoes?._id || item?.accessory?._id,
       details: item?.details || {},
-      measurement: { _id: item?.measurement._id || {} }
+      measurement: { _id: item?.measurement?._id || {} }
     }))
     : basketProductsForNonRegisterUser?.map((item) => ({
       count: item?.count,
