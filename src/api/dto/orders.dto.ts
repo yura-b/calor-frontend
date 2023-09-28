@@ -29,7 +29,7 @@ export interface Purchases {
 }
 
 export interface detail {
-  name: string
+  name: string;
   material: string;
   color: string;
 }

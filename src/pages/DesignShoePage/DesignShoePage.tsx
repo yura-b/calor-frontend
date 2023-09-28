@@ -20,8 +20,8 @@ const DesignShoePage: FC = (): React.ReactElement => {
     refetchOnWindowFocus: false,
   });
 
-  const shoes = products?.data?.shoes.filter((item) => item.stripeID !== constants.DAYGER_WINTER_STRIPE_ID) || [];
-
+  const shoes = products?.data?.shoes.filter((item) => item._id !== constants.DAYGER_WINTER_ID) || [];
+  
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.designShoePage} />

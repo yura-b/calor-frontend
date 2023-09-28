@@ -53,7 +53,7 @@ const ProductPage = () => {
       count: 1,
       photo: product?.data.photos[0],
       measurement: {},
-      details: [{}],
+      details: {},
     };
   } else {
     requestData = {
@@ -61,7 +61,7 @@ const ProductPage = () => {
       count: 1,
       photos: [product?.data.photos[0]],
       measurement: {},
-      details: [{}],
+      details: {},
       price: product?.data?.price,
       title: product?.data?.title,
     };
@@ -102,6 +102,7 @@ const ProductPage = () => {
     );
   };
 
+  console.log(product)
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
