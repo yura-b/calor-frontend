@@ -23,8 +23,8 @@ const CheckoutPage = () => {
   useEffect(() => {
     return () => {
       dispatch(setCheckoutStep(CheckoutSteps.FIRST));
-    }
-  }, [])
+    };
+  }, []);
 
   const purchasesData = access_token
     ? basketProducts?.map((item) => ({
@@ -34,11 +34,11 @@ const CheckoutPage = () => {
       measurement: { _id: item?.measurement?._id || {} }
     }))
     : basketProductsForNonRegisterUser?.map((item) => ({
-      count: item?.count,
-      product: item?._id || item?.product,
-      details: item?.details || {},
-      measurement: item?.measurement || {}
-    }));
+        count: item?.count,
+        product: item?._id || item?.product,
+        details: item?.details || {},
+        measurement: item?.measurement || {},
+      }));
 
   useEffect(() => {
     if (!data) return;

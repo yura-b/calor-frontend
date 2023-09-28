@@ -6,9 +6,11 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { detail } from '@/api/dto/orders.dto.ts';
 
 interface IProps {
-  details: {
-    [detailName: string]: detail
-  } | undefined;
+  details:
+    | {
+        [detailName: string]: detail;
+      }
+    | undefined;
 }
 
 const Details: FC<IProps> = ({ details }) => {
