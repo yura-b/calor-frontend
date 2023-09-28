@@ -50,6 +50,7 @@ const ResetUserPassword = lazy(() => import('@/pages/AccountPage/components/Chan
 const ProductPage = lazy(() => import('@/pages/ProductPage/ProductPage'));
 const Reviews = lazy(() => import('@/pages/AccountPage/components/Reviews'));
 const MeasurementPage = lazy(() => import('@/pages/MeasurementPage/MeasurementPage'));
+const CompleteYourLookPage = lazy(() => import('@/pages/CompleteYourLookPage/CompleteYourLookPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 import TokenGuard from '@routes/TokenGuard.tsx';
@@ -99,7 +100,10 @@ const App = () => {
             <Route index element={<DesignShoePage />} />
             <Route path={'model/:model/:id'}>
               <Route index element={<Constructor />} />
-              <Route path={'measurement'} element={<MeasurementPage />} />
+              <Route path={'measurement'}>
+              <Route index element={<MeasurementPage />} />
+                <Route path={'complete_your_look'} element={<CompleteYourLookPage />} />
+              </Route>
             </Route>
           </Route>
           <Route path={'product/:id'} element={<ProductPage />} />
