@@ -21,7 +21,7 @@ const DesignShoePage: FC = (): React.ReactElement => {
   });
 
   const shoes = products?.data?.shoes.filter((item) => item._id !== constants.DAYGER_WINTER_ID) || [];
-  
+
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.designShoePage} />

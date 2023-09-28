@@ -15,7 +15,6 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
   const { userId } = useAppSelector((state) => state.user);
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
-
   return (
     <div className="font-poppins  h-full flex flex-col">
       <CartHeader
@@ -28,7 +27,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
           {(!basketNonRegisterUser.length && !userId) || (!basketProducts.length && userId) ? (
             <EmptyCart title="No items in your cart" />
           ) : null}
-          {basketProducts.length ? (
+          {userId && basketProducts.length ? (
             <>
               <p
                 className={`${styles.body1} bg-custom-turquoise w-full h-auto  flex items-center justify-center text-center p-2 lg:my-4 lg:text-[18px]`}
