@@ -1,4 +1,4 @@
-import { OrderStatus } from '@/constants/interfaces/order.ts';
+import { IMeasurement, OrderStatus } from '@/constants/interfaces/order.ts';
 
 export interface changeOrderStatusInterface {
   _id: string;
@@ -24,6 +24,7 @@ export interface Purchases {
   details: {
     [name: string]: detail[];
   };
+  measurement: IMeasurement
   count: number;
 }
 
