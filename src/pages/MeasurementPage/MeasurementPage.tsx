@@ -6,12 +6,14 @@ import MeasurementForm from './components/MeasurementForm';
 import { Link } from 'react-router-dom';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 import { paths } from '@routes/paths.ts';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
 
 const MeasurementPage = () => {
+  const measurement = useAppSelector((state) => state.userMeasurement);
   const sizeList = [
     6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17,
   ];
-  const [selectedShoeSize, setSelectedShoeSize] = useState(0);
+  const [selectedShoeSize, setSelectedShoeSize] = useState<number>(0 || measurement.selectedShoeSize);
 
   const handleSize = (size) => {
     setSelectedShoeSize(size);

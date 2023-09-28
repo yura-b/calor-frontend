@@ -52,7 +52,7 @@ const initialState = {
       },
       part09: {
         name: 'Lining',
-        material: 'fur',
+        material: 'wool',
         color: '',
       },
       part10: {

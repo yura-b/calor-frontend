@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
+import { Product } from '@/constants/interfaces/product.ts';
 
-const CheckoutOrderItem = () => {
-  return (
-    <div>
-      <h3 className="font-bold mt-5">Order № XXX</h3>
-      <p className="text-[#A7A7A7]">Date </p>
-      <hr className="lg:hidden mt-3 mb-3" />
-      <div className="flex">
-        <div>
-          Item Name Qty:x <br /> Color: Color Name / Category
+interface IProps {
+  order_number: number,
+  date: string,
+  products: Product[]
+}
+
+const CheckoutOrderItem: FC<IProps> = ({ order_number, date, products }) => {
+    return (
+      <div>
+        <h3 className="font-bold mt-5">Order № {order_number}</h3>
+        <p className="text-[#A7A7A7]">{DateFormatter(date)}</p>
+        <hr className="lg:hidden mt-3 mb-3" />
+        <div className="flex">
+          <div>
+            {products.map(product => {
+              return <div key={Math.random()} className={'grid grid-cols-2 gap-10'}>
+                <p>{product.title}</p>
+                <p>{product.price}$</p>
+              </div>;
+            })}
+          </div>
         </div>
-        <div className="ml-10">$ XXX</div>
+        <hr className="lg:hidden mt-3 mb-3" />
       </div>
-      <hr className="lg:hidden mt-3 mb-3" />
-    </div>
-  );
+    );
 };
 
 export default CheckoutOrderItem;
