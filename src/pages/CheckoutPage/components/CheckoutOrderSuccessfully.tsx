@@ -8,15 +8,14 @@ import { useParams } from 'react-router';
 import { ShippingInfoDto } from '@/api/dto/orders.dto.ts';
 import { Product } from '@/constants/interfaces/product.ts';
 
-
 interface OrderInfo {
-  date: string
-  products: Product[],
-  shippingInfo: ShippingInfoDto
-  shippingPrice: number
-  subtotal: number
-  tax: number
-  total: number
+  date: string;
+  products: Product[];
+  shippingInfo: ShippingInfoDto;
+  shippingPrice: number;
+  subtotal: number;
+  tax: number;
+  total: number;
 }
 
 const CheckoutOrderSuccessfully = () => {
@@ -27,11 +26,8 @@ const CheckoutOrderSuccessfully = () => {
 
   const [email, order_number] = atob(id || '').split(' ');
 
-
-
   useEffect(() => {
-
-    sendOrderForNotAuthUser(email, Number(order_number)).then(res => {
+    sendOrderForNotAuthUser(email, Number(order_number)).then((res) => {
       setOrder(res.data);
     });
   }, []);
