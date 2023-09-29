@@ -88,7 +88,7 @@ export const OrderHistory: React.FC<{
                       <div className={'flex flex-col gap-12 items-end'}>
                         <p>{order.payment}</p>
                         {order.status === OrderStatus.Shipped && (
-                          <CustomButton title={'return'} handler={returnHandler} />
+                          <CustomButton title={'refund'} handler={returnHandler} />
                         )}
                       </div>
                     </TableCell>

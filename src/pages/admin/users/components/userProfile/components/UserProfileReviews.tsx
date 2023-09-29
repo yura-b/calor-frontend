@@ -4,7 +4,7 @@ import ReviewComponent from '@pages/admin/reviews/textReviews/components/ReviewC
 
 const UserProfileReviews: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
   if (reviews.length === 0) {
-    return <div>this user haven reviews</div>;
+    return <div>This user has not posted a review yet</div>;
   }
   return (
     <div>

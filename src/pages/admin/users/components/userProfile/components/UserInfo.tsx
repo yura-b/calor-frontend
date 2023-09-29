@@ -17,14 +17,13 @@ interface UserInfoState {
 
 const UserInfo: React.FC<IProps> = ({ userDataState, withDelivery = false, delivery }) => {
   const { state, setState } = userDataState;
-
   return (
     <div className={'flex mb-4'}>
       <div className={'flex flex-col gap-5 mt-4 w-1/2'}>
         <div className={'flex flex-row gap-5 items-center'}>
           <User size={32} weight="fill" />
           <h2 className={'font-bold'}>Personal Information </h2>
-          <IsRegistered isUserRegistered={state.registered} />
+          <IsRegistered role={state.roles} />
         </div>
         <div className={'grid grid-cols-2 w-2/3'}>
           <p>Customer`s name </p>

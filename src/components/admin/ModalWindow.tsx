@@ -14,7 +14,7 @@ import { InputType } from '@/constants/interfaces/inputTypes.ts';
 import { refundMoney } from '@/api/orders.ts';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
-import { showMessage } from '@/store/reducers/StatusReducer.ts';
+import { errorCorrupted, showMessage } from '@/store/reducers/StatusReducer.ts';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -55,9 +55,13 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
 
   const handleReturn = () => {
     if (!access_token || (payment !== 'stripe' && payment !== 'paypal')) return;
-    refundMoney(access_token, { custom_price: customPrice, order_id, orders_id: ids }, payment).then((res) => {
-      console.log(res);
-      dispatch(showMessage('orders was successfully refunded'));
+
+    if (!customPrice || ids.length === 0) {
+      dispatch(errorCorrupted('choose items or enter custom value'))
+      return;
+    }
+    refundMoney(access_token, { custom_price: customPrice, order_id, orders_id: ids }, payment).then(() => {
+        dispatch(showMessage('orders was successfully refunded'));
       setOpen(false);
     });
   };
@@ -77,13 +81,13 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
       <DialogTitle>{'This order contain:'}</DialogTitle>
       <DialogContent>
         <div className={'flex flex-col gap-12'}>
-          <div className={'grid grid-cols-3 gap-5 w-[400px]'}>
+          <div className={'grid grid-cols-4 gap-5 w-[450px]'}>
             {orders.map((order) => {
               return (
                 <Fragment key={order._id}>
-                  <span>{order.shoes?.title || order.accessory?.price}</span>
-                  <span>{order.shoes?.price || order.accessory?.price}$</span>
-                  {/* <span>{order.tax || order.tax}$</span>*/}
+                  <span>{order.shoes?.title || order.accessory?.title}</span>
+                  <span>{order.totalPrice}$</span>
+                   <span>{order.status}</span>
                   <RefundToggle available={false} _id={order._id} handler={setIds} />
                 </Fragment>
               );
@@ -91,7 +95,7 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
           </div>
           <div className={'flex flex-row gap-6'}>
             <p>Shipping Price: 20$</p>
-            <p>tax: {tax}$</p>
+            <p>tax: {tax.toFixed(2)}$</p>
           </div>
           <div className={'flex flex-col gap-3'}>
             <p className={'font-medium'}>
