@@ -20,24 +20,26 @@ const CheckoutPage = () => {
 
   const dispatch = useAppDispatch();
   const [data, setData] = useState<shippingForm | null>(null);
+
   useEffect(() => {
     return () => {
       dispatch(setCheckoutStep(CheckoutSteps.FIRST));
-    }
-  }, [])
-
+    };
+  }, []);
   const purchasesData = access_token
     ? basketProducts?.map((item) => ({
       count: item.count,
       product: item?.shoes?._id || item?.accessory?._id,
+      photo: item?.photo,
       details: item?.details || {},
       measurement: { _id: item?.measurement?._id || {} }
     }))
     : basketProductsForNonRegisterUser?.map((item) => ({
       count: item?.count,
       product: item?._id || item?.product,
-      details: item?.details || {},
-      measurement: item?.measurement || {}
+      photo: item?.photo,
+      details: [item?.details || {}] || {},
+      measurement: item?.measurement || {},
     }));
 
   useEffect(() => {

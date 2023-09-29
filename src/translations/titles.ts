@@ -12,4 +12,5 @@ export const titles = {
   product: 'Product',
   notFound: 'Not Found',
   appointment: 'Appointment',
+  completeYourLook: 'Complete Your Look',
 };

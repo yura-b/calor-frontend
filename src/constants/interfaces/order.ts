@@ -11,7 +11,7 @@ export interface IOrder {
     [name: string]: detail;
   };
 
-  measurement: IMeasurement
+  measurement: IMeasurement;
 
   shoes: shoes | null;
 
@@ -52,6 +52,8 @@ export interface IOrder {
   courier?: string;
 
   approxDeliveryDate?: string;
+
+  photo: string;
 }
 
 export enum OrderStatus {
@@ -98,7 +100,7 @@ interface shoes {
   description: string;
   details: string;
   insole: string;
-  photos: string;
+  photo: string;
   liningMaterial: string;
   price: number;
   sizes: number[];
@@ -113,7 +115,7 @@ interface accessory {
   category: string;
   description: string;
   title: string;
-  photos: string;
+  photo: string;
   price: number;
   rating: number;
   size: number[];

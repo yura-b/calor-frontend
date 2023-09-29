@@ -9,7 +9,7 @@ import InputForPhotos from './components/InputForPhotos';
 import Slider from '@components/ui/Slider/Slider.tsx';
 import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHeader.tsx';
 import { loading, loadingFinished, showMessage } from '@/store/reducers/StatusReducer.ts';
-import { uploadEventPhoto } from '@/api/manager/pages.ts';
+import { uploadPhoto } from "@/api/do";
 import { IProperty } from '@/api/dto/products.dto.ts';
 
 const EditItem = () => {
@@ -46,7 +46,7 @@ const EditItem = () => {
     Promise.all(
       photos.map(async (photo) => {
         if (!photo) return;
-        return await uploadEventPhoto(photo);
+        return await uploadPhoto(photo, 'products');
       })
     ).then((res) => {
       let photoRequest: IProperty = { shouldChange: true, propertyName: 'photos', propertyValue: product.photos };

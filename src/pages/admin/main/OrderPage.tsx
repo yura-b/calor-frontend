@@ -30,7 +30,6 @@ const OrderPage = () => {
       getOrder(access_token, id).then((res) => {
         setOrderData(res.data.order);
         setUserData(res.data.user);
-
         dispatch(loadingFinished());
       });
     }
@@ -55,8 +54,8 @@ const OrderPage = () => {
       <OrderPageHeader id={id} />
       <OrderStatusComponent status={status} id={id} />
       <OrderInformation order={orderData} />
-      <Details details={orderData.details}/>
-      <Measurement measurement={orderData.measurement}/>
+      <Details details={orderData.details} />
+      <Measurement measurement={orderData.measurement} />
       <div className={'pl-7'}>
         <UserInfo
           withDelivery={true}

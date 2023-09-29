@@ -71,10 +71,10 @@ const CheckoutOrderSuccessfully = () => {
               Order Delivery<span className="float-right">{order.shippingPrice} $</span>
             </p>
             <p>
-              Taxes<span className="float-right">{(order.tax).toFixed(2)} $ </span>
+              Taxes<span className="float-right">{order.tax.toFixed(2)} $ </span>
             </p>
             <p className="text-mint font-bold">
-              Subtotal<span className="float-right">{(order.subtotal).toFixed(2)} $ </span>
+              Subtotal<span className="float-right">{order.subtotal.toFixed(2)} $ </span>
             </p>
             <hr className="lg:hidden mt-3 mb-3 text-mint" />
           </div>

@@ -37,7 +37,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     onSuccess: (data) => {
       setIsDisabled(false);
       dispatch(showMessage('The product has been successfully added'));
-      navigate('/');
+      navigate('complete_your_look');
     },
   });
 
