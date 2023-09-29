@@ -15,4 +15,4 @@ export interface IUser {
   registered: boolean;
 }
 
-export type IUserForProfile = Omit<IUser, 'registrationDate' | 'roles' | '_id' | 'googleAccount' | 'email_verified'>;
+export type IUserForProfile = Omit<IUser, 'registrationDate' | '_id' | 'googleAccount' | 'email_verified'>;

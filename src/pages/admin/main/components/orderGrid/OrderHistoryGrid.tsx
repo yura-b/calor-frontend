@@ -60,7 +60,7 @@ const OrderHistoryGrid: FC<{ orders: IOrder[] }> = ({ orders }) => {
           ))}
         </TableBody>
       </Table>
-      <ModalWindow open={openModal} setOpen={setOpenModal} orders={orders} order_id={currentOrder} />
+      <ModalWindow open={openModal} setOpen={setOpenModal} orders={relativeOrders} order_id={currentOrder} />
     </TableContainer>
   );
 };

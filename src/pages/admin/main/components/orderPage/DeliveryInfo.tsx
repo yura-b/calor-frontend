@@ -59,7 +59,7 @@ const DeliveryInfo: FC<{ _id: string }> = ({ _id }) => {
       )}
 
       {openDeliveryInfo ? (
-        <CustomButton title={'Start production'} handler={uploadDeliveryInfo} />
+        <CustomButton title={'set status to "Shipped"'} handler={uploadDeliveryInfo} />
       ) : (
         <CustomButton
           title={'+ add delivery information'}
