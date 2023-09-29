@@ -12,7 +12,7 @@ import CustomUploadPhoto from '@/pages/AccountPage/components/Reviews/CustomUplo
 import ReviewHeader from './ReviewHeader';
 import { useAppSelector } from '@/store/hooks/hooks';
 import { useMutation } from 'react-query';
-import { uploadEventPhoto } from '@/api/manager/pages';
+import { uploadPhoto } from "@/api/do";
 import { validationSchemaForCreateReview } from '@/helpers/validation/formValidation';
 import { getProductById } from '@/api/products';
 import { ProductsDto } from '@/api/dto/products.dto';
@@ -77,7 +77,7 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
 
   const handleSelectFile = (selectedFile) => {
     if (selectedFile) {
-      uploadEventPhoto(selectedFile).then((res) => {
+      uploadPhoto(selectedFile, 'reviews').then((res) => {
         formik.setFieldValue('photo', res.data.url);
       });
     }
