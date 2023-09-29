@@ -9,10 +9,17 @@ import { ShippingInfoDto } from '@/api/dto/orders.dto.ts';
 import { Product } from '@/constants/interfaces/product.ts';
 
 
+export interface IOrderPurchaseInfo {
+  price: number,
+  productTitle: string,
+  photo: string
+}
+
 interface OrderInfo {
   date: string
   products: Product[],
   shippingInfo: ShippingInfoDto
+  purchases: IOrderPurchaseInfo[]
   shippingPrice: number
   subtotal: number
   tax: number
@@ -26,7 +33,6 @@ const CheckoutOrderSuccessfully = () => {
   const { id } = useParams();
 
   const [email, order_number] = atob(id || '').split(' ');
-
 
 
   useEffect(() => {
@@ -44,7 +50,7 @@ const CheckoutOrderSuccessfully = () => {
         <h2 className={`${styles.body2} text-mint`}>Check your email for your order confirmation</h2>
       </div>
       <div className="lg:flex mb-10 w-full justify-center">
-        <CheckoutOrderItem order_number={Number(order_number)} date={order.date} products={order.products} />
+        <CheckoutOrderItem order_number={Number(order_number)} date={order.date} products={order.purchases} />
         <div className="lg:ml-20 lg:w-[50%]">
           <div>
             <h3 className="font-bold mt-5">Shipping Information</h3>
