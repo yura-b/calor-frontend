@@ -57,11 +57,11 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
     if (!access_token || (payment !== 'stripe' && payment !== 'paypal')) return;
 
     if (!customPrice || ids.length === 0) {
-      dispatch(errorCorrupted('choose items or enter custom value'))
+      dispatch(errorCorrupted('choose items or enter custom value'));
       return;
     }
     refundMoney(access_token, { custom_price: customPrice, order_id, orders_id: ids }, payment).then(() => {
-        dispatch(showMessage('orders was successfully refunded'));
+      dispatch(showMessage('orders was successfully refunded'));
       setOpen(false);
     });
   };
@@ -87,7 +87,7 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
                 <Fragment key={order._id}>
                   <span>{order.shoes?.title || order.accessory?.title}</span>
                   <span>{order.totalPrice}$</span>
-                   <span>{order.status}</span>
+                  <span>{order.status}</span>
                   <RefundToggle available={false} _id={order._id} handler={setIds} />
                 </Fragment>
               );
