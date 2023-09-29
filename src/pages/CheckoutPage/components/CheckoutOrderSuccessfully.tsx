@@ -34,10 +34,8 @@ const CheckoutOrderSuccessfully = () => {
 
   const [email, order_number] = atob(id || '').split(' ');
 
-
   useEffect(() => {
-
-    sendOrderForNotAuthUser(email, Number(order_number)).then(res => {
+    sendOrderForNotAuthUser(email, Number(order_number)).then((res) => {
       setOrder(res.data);
     });
   }, []);

@@ -24,7 +24,7 @@ export interface Purchases {
   details: {
     [name: string]: detail[];
   };
-  measurement: IMeasurement
+  measurement: IMeasurement;
   count: number;
 }
 

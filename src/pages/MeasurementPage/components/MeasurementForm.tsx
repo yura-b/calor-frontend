@@ -42,7 +42,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
   });
 
   const selectedDetails = details[model];
-  
+
   const formik = useFormik({
     initialValues: {
       rightFootLength: measurement.rightFootLength || '',

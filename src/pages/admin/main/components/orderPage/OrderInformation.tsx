@@ -23,7 +23,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
           <Table sx={{ minWidth: 650, paddingRight: '30px' }} aria-label="simple table">
             <TableHead>
               <TableRow sx={{ background: '#DDE1E6', fontWeight: 'bold' }}>
-              <TableCell sx={{ width: '15%', fontWeight: 'bold' }}>Item`s Photo</TableCell>
+                <TableCell sx={{ width: '15%', fontWeight: 'bold' }}>Item`s Photo</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }}>Item`s Name</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }} align="right">
                   Price
@@ -34,7 +34,9 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableCell><img className="h-[50px] object-contain" src={photo} /></TableCell>
+              <TableCell>
+                <img className="h-[50px] object-contain" src={photo} />
+              </TableCell>
 
               <TableCell>{shoes?.title || accessory?.title}</TableCell>
 

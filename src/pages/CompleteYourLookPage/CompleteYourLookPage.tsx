@@ -131,15 +131,14 @@ const CompleteYourLookPage: FC<IProps> = () => {
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
-  console.log(basketProducts, 'basketProducts');
-  console.log(completeLookItems[step]?.product?._id, 'completeLookItems[step]?.product?._id');
+
   const isProductExistInBasket = basketProducts.some(
     (item: any) => item?.accessory?._id === completeLookItems[step]?.product?._id
   );
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
     (item: any) => item._id === completeLookItems[step]?.product?._id
   );
-  console.log(isProductExistInBasket, 'isProductExistInBasket');
+
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.completeYourLook} />
