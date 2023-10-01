@@ -19,16 +19,16 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
 
   const incrementCount = () => {
     if (userId) {
-      dispatch(increaseQuantity({ id: item._id }));
+      dispatch(increaseQuantity({ basketItemId: item.basketItemId }));
     } else {
-      dispatch(increaseQuantityNonRegisterUser({ id: item._id }));
+      dispatch(increaseQuantityNonRegisterUser({ basketItemId: item.basketItemId }));
     }
   };
   const decrementCount = () => {
     if (userId) {
-      dispatch(decreaseQuantity({ id: item._id }));
+      dispatch(decreaseQuantity({ basketItemId: item.basketItemId }));
     } else {
-      dispatch(decreaseQuantityNonRegisterUser({ id: item._id }));
+      dispatch(decreaseQuantityNonRegisterUser({ basketItemId: item.basketItemId }));
     }
   };
   const mutation = useMutation(deleteFromBasket, {

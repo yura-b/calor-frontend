@@ -28,16 +28,16 @@ const basketForNonRegisterUser = createSlice({
       saveCartToLocalStorage(state.items);
     },
     increaseQuantityNonRegisterUser(state, action) {
-      const { id } = action.payload;
-      const item = state.items.find((i) => i._id === id);
+      const { basketItemId } = action.payload;
+      const item = state.items.find((i) => i.basketItemId === basketItemId);
       if (item) {
         item.count += 1;
       }
       saveCartToLocalStorage(state.items);
     },
     decreaseQuantityNonRegisterUser(state, action) {
-      const { id } = action.payload;
-      const item = state.items.find((i) => i._id === id);
+      const { basketItemId } = action.payload;
+      const item = state.items.find((i) => i.basketItemId === basketItemId);
       if (item && item.count > 1) {
         item.count -= 1;
       }

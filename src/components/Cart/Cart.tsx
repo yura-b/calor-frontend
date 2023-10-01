@@ -36,8 +36,8 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
               </p>
               <div className="lg:flex lg:gap-2">
                 <div className="h-auto lg:basis-[52%] lg:overflow-auto lg:max-h-[480px] lg:px-4">
-                  {basketProducts.map((item: BasketProduct, index) => (
-                    <PurchasedGoods item={item} key={index} />
+                  {basketProducts.map((item: BasketProduct) => (
+                    <PurchasedGoods item={item} key={item.basketItemId} />
                   ))}
                 </div>
                 {
