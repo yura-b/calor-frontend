@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
 import { useMutation, useQueryClient } from 'react-query';
@@ -11,32 +11,44 @@ import {
   decreaseQuantityNonRegisterUser,
   increaseQuantityNonRegisterUser,
 } from '@/store/reducers/BasketForNonRegisterUser';
+import { updateBasketItemQuantity } from "@/api/basket";
+import { debounce } from 'lodash';
 
 const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement => {
-  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const { userId } = useAppSelector((state) => state.user);
+  const [count] = useState(item.count);
 
-  const incrementCount = () => {
+  const mutationUpdateItemQuantity = useMutation(updateBasketItemQuantity);
+  
+  const mutation = useMutation(deleteFromBasket, {
+    onSuccess: (data) => {
+      dispatch(removeFromBasket(item._id));
+    },
+  });
+  
+  useEffect(() => {
+    //Temporary fix to avoid unnecessary call after component render. Call only after item.count changed
+    if (count !== item.count) {
+      mutationUpdateItemQuantity.mutate({ userId, basketItemId: item.basketItemId, count: item.count })
+    }
+  }, [item.count])
+  
+  const incrementCount = debounce(() => {
     if (userId) {
       dispatch(increaseQuantity({ basketItemId: item.basketItemId }));
     } else {
       dispatch(increaseQuantityNonRegisterUser({ basketItemId: item.basketItemId }));
     }
-  };
-  const decrementCount = () => {
+  }, 200);
+  
+  const decrementCount = debounce(() => {
     if (userId) {
       dispatch(decreaseQuantity({ basketItemId: item.basketItemId }));
     } else {
       dispatch(decreaseQuantityNonRegisterUser({ basketItemId: item.basketItemId }));
     }
-  };
-  const mutation = useMutation(deleteFromBasket, {
-    onSuccess: (data) => {
-      dispatch(removeFromBasket(item._id));
-      queryClient.invalidateQueries('userBasket');
-    },
-  });
+  }, 200);
   const handleClick = () => {
     const requestData = {
       recordId: item._id,

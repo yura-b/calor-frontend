@@ -4,10 +4,14 @@ const saveCartToLocalStorage = (cartData) => {
   localStorage.setItem('basket', JSON.stringify(cartData));
 };
 
-export const loadCartFromLocalStorage = () => {
+const loadCartFromLocalStorage = () => {
   const cartData = localStorage.getItem('basket');
   return cartData ? JSON.parse(cartData) : [];
 };
+
+const clearCartOnLocalStorage = () => {
+  localStorage.removeItem('basket');
+}
 
 const initialState = {
   items: loadCartFromLocalStorage(),
@@ -23,7 +27,6 @@ const basketForNonRegisterUser = createSlice({
       saveCartToLocalStorage(state.items);
     },
     removeFromCartNonRegisterUser: (state, action) => {
-      console.log(action.payload);
       state.items = state.items.filter((item) => item._id !== action.payload);
       saveCartToLocalStorage(state.items);
     },
@@ -43,6 +46,10 @@ const basketForNonRegisterUser = createSlice({
       }
       saveCartToLocalStorage(state.items);
     },
+    clearBasketNonRegisterUser(state) {
+      clearCartOnLocalStorage();
+      state.items= []
+    }
   },
 });
 
@@ -51,5 +58,6 @@ export const {
   removeFromCartNonRegisterUser,
   increaseQuantityNonRegisterUser,
   decreaseQuantityNonRegisterUser,
+  clearBasketNonRegisterUser,
 } = basketForNonRegisterUser.actions;
 export default basketForNonRegisterUser.reducer;
