@@ -43,21 +43,22 @@ const CompleteYourLookPage: FC<IProps> = () => {
 
   if (!isLoading) {
     completeLookItems = {
+      // 0: {
+      //   title: 'How about a matching belt?',
+      //   emptyProduct: 'Belt coming soon',
+      //   product: products?.data.accessories.filter((item) => item.subcategory === 'Belts')[0],
+      // },
       0: {
-        title: 'How about a matching belt?',
-        emptyProduct: 'Belt coming soon',
-        product: products?.data.accessories.filter((item) => item.subcategory === 'Belts')[0],
-      },
-      1: {
         title: 'Would you like to add some accessories?',
         emptyProduct: 'Accessories coming soon',
         product: products?.data.accessories.filter(
           (item) => item.category.categoryTitle === 'Accessories' && item.subcategory !== 'Belts'
         )[0],
       },
-      2: {
-        title:
-          'In order to keep your leather/fabric in a good condition for a long time, we recommend to try this product',
+      1: {
+        title: `In order to keep your ${
+          location.pathname.includes('yolo') ? 'fabric' : 'leather'
+        } in a good condition for a long time, we recommend to try this product`,
         emptyProduct: 'Product coming soon',
         product: products?.data.accessories
           .filter((item) => item.category.categoryTitle === 'Care Product')
@@ -69,7 +70,8 @@ const CompleteYourLookPage: FC<IProps> = () => {
   }
 
   const handleSkip = () => {
-    if (step < 2) {
+    // if (step < 2) {
+    if (step < 1) {
       dispatch(setStep(step + 1));
     } else {
       navigate('/');
@@ -77,13 +79,14 @@ const CompleteYourLookPage: FC<IProps> = () => {
   };
 
   const handleViewAll = () => {
-    step === 0
-      ? navigate('/accessories/belts')
-      : step === 1
-      ? navigate('/accessories')
-      : step === 2
-      ? navigate('/shoe_care_product')
-      : navigate('/');
+    // step === 0
+    //   ? navigate('/accessories/belts')
+    //   : step === 1
+    //   ? navigate('/accessories')
+    //   : step === 2
+    //   ? navigate('/shoe_care_product')
+    //   : navigate('/');
+    step === 0 ? navigate('/accessories') : step === 1 ? navigate('/shoe_care_product') : navigate('/');
   };
 
   const mutation = useMutation(addToBasket, {

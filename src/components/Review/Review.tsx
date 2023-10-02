@@ -12,7 +12,7 @@ import CustomUploadPhoto from '@/pages/AccountPage/components/Reviews/CustomUplo
 import ReviewHeader from './ReviewHeader';
 import { useAppSelector } from '@/store/hooks/hooks';
 import { useMutation } from 'react-query';
-import { uploadPhoto } from "@/api/do";
+import { uploadPhoto } from '@/api/do';
 import { validationSchemaForCreateReview } from '@/helpers/validation/formValidation';
 import { getProductById } from '@/api/products';
 import { ProductsDto } from '@/api/dto/products.dto';

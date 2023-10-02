@@ -3,7 +3,7 @@ import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 export enum Steps {
   FIRST = 0,
   SECOND = 1,
-  THIRD = 2,
+  // THIRD = 2,
 }
 
 export interface IState {

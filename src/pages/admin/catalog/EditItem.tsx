@@ -9,7 +9,7 @@ import InputForPhotos from './components/InputForPhotos';
 import Slider from '@components/ui/Slider/Slider.tsx';
 import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHeader.tsx';
 import { loading, loadingFinished, showMessage } from '@/store/reducers/StatusReducer.ts';
-import { uploadPhoto } from "@/api/do";
+import { uploadPhoto } from '@/api/do';
 import { IProperty } from '@/api/dto/products.dto.ts';
 
 const EditItem = () => {

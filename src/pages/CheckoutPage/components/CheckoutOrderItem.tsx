@@ -3,9 +3,9 @@ import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
 import { IOrderPurchaseInfo } from '@pages/CheckoutPage/components/CheckoutOrderSuccessfully.tsx';
 
 interface IProps {
-  order_number: number,
-  date: string,
-  products: IOrderPurchaseInfo[]
+  order_number: number;
+  date: string;
+  products: IOrderPurchaseInfo[];
 }
 
 const CheckoutOrderItem: FC<IProps> = ({ order_number, date, products }) => {
@@ -16,11 +16,13 @@ const CheckoutOrderItem: FC<IProps> = ({ order_number, date, products }) => {
       <hr className="lg:hidden mt-3 mb-3" />
       <div className="flex">
         <div>
-          {products.map(product => {
-            return <div key={Math.random()} className={'grid grid-cols-2 gap-10'}>
-              <p>{product.productTitle}</p>
-              <p>{product.price}$</p>
-            </div>;
+          {products.map((product) => {
+            return (
+              <div key={Math.random()} className={'grid grid-cols-2 gap-10'}>
+                <p>{product.productTitle}</p>
+                <p>{product.price}$</p>
+              </div>
+            );
           })}
         </div>
       </div>

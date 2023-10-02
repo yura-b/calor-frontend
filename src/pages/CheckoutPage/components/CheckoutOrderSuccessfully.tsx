@@ -9,21 +9,22 @@ import { ShippingInfoDto } from '@/api/dto/orders.dto.ts';
 import { Product } from '@/constants/interfaces/product.ts';
 import { useDispatch } from "react-redux";
 import { clearBasketNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
+
 export interface IOrderPurchaseInfo {
-  price: number,
-  productTitle: string,
-  photo: string
+  price: number;
+  productTitle: string;
+  photo: string;
 }
 
 interface OrderInfo {
-  date: string
-  products: Product[],
-  shippingInfo: ShippingInfoDto
-  purchases: IOrderPurchaseInfo[]
-  shippingPrice: number
-  subtotal: number
-  tax: number
-  total: number
+  date: string;
+  products: Product[];
+  shippingInfo: ShippingInfoDto;
+  purchases: IOrderPurchaseInfo[];
+  shippingPrice: number;
+  subtotal: number;
+  tax: number;
+  total: number;
 }
 
 const CheckoutOrderSuccessfully = () => {
