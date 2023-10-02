@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
+import { v4 as uuidv4 } from 'uuid';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -54,6 +55,7 @@ const ProductPage = () => {
       photo: product?.data.photos[0],
       measurement: {},
       details: {},
+      basketItemId: uuidv4(),
     };
   } else {
     requestData = {
@@ -64,6 +66,7 @@ const ProductPage = () => {
       details: {},
       price: product?.data?.price,
       title: product?.data?.title,
+      basketItemId: uuidv4(),
     };
   }
 

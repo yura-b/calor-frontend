@@ -18,6 +18,7 @@ import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { SealCheck } from '@phosphor-icons/react';
 import { useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 interface IProps {}
 
@@ -105,6 +106,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
       measurement: {},
       details: {},
       price: completeLookItems[step]?.product?.price,
+      basketItemId: uuidv4(),
     };
   } else {
     requestData = {
@@ -115,6 +117,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
       details: {},
       price: completeLookItems[step]?.product?.price,
       title: completeLookItems[step]?.product?.title,
+      basketItemId: uuidv4(),
     };
   }
 

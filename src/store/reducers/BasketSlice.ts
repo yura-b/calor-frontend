@@ -55,6 +55,7 @@ export interface BasketProduct {
   photo: string;
   shoes?: IShoes;
   accessory?: IAccessory;
+  basketItemId: string;
 }
 
 interface CartState {
@@ -81,16 +82,16 @@ const basketSlice = createSlice({
     removeFromBasket(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item._id !== action.payload);
     },
-    increaseQuantity(state, action: PayloadAction<{ id: string }>) {
-      const { id } = action.payload;
-      const item = state.items.find((i) => i._id === id);
+    increaseQuantity(state, action: PayloadAction<{ basketItemId: string }>) {
+      const { basketItemId } = action.payload;
+      const item = state.items.find((i) => i.basketItemId === basketItemId);
       if (item) {
         item.count += 1;
       }
     },
-    decreaseQuantity(state, action: PayloadAction<{ id: string }>) {
-      const { id } = action.payload;
-      const item = state.items.find((i) => i._id === id);
+    decreaseQuantity(state, action: PayloadAction<{ basketItemId: string }>) {
+      const { basketItemId } = action.payload;
+      const item = state.items.find((i) => i.basketItemId === basketItemId);
       if (item && item.count > 1) {
         item.count -= 1;
       }

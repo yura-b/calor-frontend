@@ -1,20 +1,27 @@
+import { useEffect } from "react";
 import styles from '@styles/Styles.module.scss';
 import EmptyCart from './components/EmptyCart';
 import PurchasedGoods from './components/PurchasedGoods';
 import CartFooter from './components/CartFooter';
 import CartHeader from './components/CartHeader';
-import { useAppSelector } from '@/store/hooks/hooks';
+import { useAppSelector, useAppDispatch } from '@/store/hooks/hooks';
 import { BasketProduct } from '@/store/reducers/BasketSlice';
-
+import { fetchUserProductsInBasket } from "@/store/reducers/BasketSlice";
 interface Props {
   title: string;
   onClose: () => void;
 }
 
 const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
-  const { userId } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const { userId, access_token } = useAppSelector((state) => state.user);
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
+  
+  useEffect(() => {
+    dispatch(fetchUserProductsInBasket({ access_token, userId }));
+  }, [access_token, userId]);
+
   return (
     <div className="font-poppins  h-full flex flex-col">
       <CartHeader
