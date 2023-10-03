@@ -15,6 +15,8 @@ import reloadPage from '@/helpers/functions/reloadPage.ts';
 import DeliveryInfo from '@pages/admin/main/components/orderPage/DeliveryInfo.tsx';
 import Details from './components/orderPage/Details';
 import Measurement from '@pages/admin/main/components/orderPage/Measurement.tsx';
+import { Role } from '@/constants/enums/role.enum';
+import ShippingAddress from '@pages/admin/main/components/orderPage/ShippingAddress.tsx';
 
 const OrderPage = () => {
   const dispatch = useAppDispatch();
@@ -55,7 +57,12 @@ const OrderPage = () => {
       <OrderStatusComponent status={status} id={id} />
       <OrderInformation order={orderData} />
       <Details details={orderData.details} />
-      <Measurement measurement={orderData.measurement} />
+
+      <div className={'flex flex-row gap-20 justify-start mx-8 mb-8 '}>
+        <Measurement measurement={orderData.measurement} />
+        <ShippingAddress info={orderData.shippingInfo}/>
+      </div>
+      <hr/>
       <div className={'pl-7'}>
         <UserInfo
           withDelivery={true}
@@ -66,6 +73,7 @@ const OrderPage = () => {
               secondName,
               phoneNumber,
               email,
+              roles: userData?.roles || [Role.USER],
               registered: userData?.registered || false,
             },
           }}

@@ -28,12 +28,6 @@ const DefaultShippingInfo: FC<IProps> = ({ shippingInfo }) => {
       </div>
 
       <div className={'grid grid-cols-2 gap-y-2'}>
-        <p>Customer’s First Name</p>
-        <p className={'font-medium'}>{shippingInfo.receiverFirstName}</p>
-
-        <p>Customer’s Last Name</p>
-        <p className={'font-medium'}>{shippingInfo.receiverSecondName}</p>
-
         <p>Country / Region</p>
         <p className={'font-medium'}>{shippingInfo.country}</p>
 

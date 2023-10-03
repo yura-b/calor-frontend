@@ -137,11 +137,8 @@ export interface shippingDetails {
 
   ZIP: string;
 
-  receiverFirstName: string;
-
   receiverPhoneNumber: string;
 
-  receiverSecondName: string;
 }
 
 export interface IMeasurement {
