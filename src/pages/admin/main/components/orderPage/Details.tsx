@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const Details: FC<IProps> = ({ details }) => {
-  if (!details) return <></>
+  if (!details) return <></>;
 
   const flattenedDetails = Object.values(details[0] || details);
 

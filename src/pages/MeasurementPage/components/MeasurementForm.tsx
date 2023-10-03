@@ -12,6 +12,7 @@ import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterU
 import { useParams, useNavigate } from 'react-router-dom';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { getProductById } from '@/api/products';
+import { v4 as uuidv4 } from 'uuid';
 interface IProps {
   selectedShoeSize: number;
 }
@@ -42,7 +43,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
   });
 
   const selectedDetails = details[model];
-  
+
   const formik = useFormik({
     initialValues: {
       rightFootLength: measurement.rightFootLength || '',
@@ -66,6 +67,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           photo: constructorImage,
           measurement: { size: selectedShoeSize, ...values },
           details: selectedDetails,
+          basketItemId: uuidv4(),
         };
       } else {
         requestData = {
@@ -77,6 +79,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           photos: [constructorImage],
           measurement: { size: selectedShoeSize, ...values },
           details: selectedDetails,
+          basketItemId: uuidv4(),
         };
       }
       if (userId) {

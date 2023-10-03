@@ -13,6 +13,7 @@ import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
+import { v4 as uuidv4 } from 'uuid';
 
 const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const { userId } = useAppSelector((state) => state.user);
@@ -40,6 +41,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
     measurement: {},
     details: {},
     price: product?.price,
+    basketItemId: uuidv4(),
   };
 
   const handleAddToCart = () => {

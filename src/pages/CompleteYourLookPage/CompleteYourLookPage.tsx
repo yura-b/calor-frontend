@@ -18,6 +18,7 @@ import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { SealCheck } from '@phosphor-icons/react';
 import { useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 interface IProps {}
 
@@ -42,21 +43,22 @@ const CompleteYourLookPage: FC<IProps> = () => {
 
   if (!isLoading) {
     completeLookItems = {
+      // 0: {
+      //   title: 'How about a matching belt?',
+      //   emptyProduct: 'Belt coming soon',
+      //   product: products?.data.accessories.filter((item) => item.subcategory === 'Belts')[0],
+      // },
       0: {
-        title: 'How about a matching belt?',
-        emptyProduct: 'Belt coming soon',
-        product: products?.data.accessories.filter((item) => item.subcategory === 'Belts')[0],
-      },
-      1: {
         title: 'Would you like to add some accessories?',
         emptyProduct: 'Accessories coming soon',
         product: products?.data.accessories.filter(
           (item) => item.category.categoryTitle === 'Accessories' && item.subcategory !== 'Belts'
         )[0],
       },
-      2: {
-        title:
-          'In order to keep your leather/fabric in a good condition for a long time, we recommend to try this product',
+      1: {
+        title: `In order to keep your ${
+          location.pathname.includes('yolo') ? 'fabric' : 'leather'
+        } in a good condition for a long time, we recommend to try this product`,
         emptyProduct: 'Product coming soon',
         product: products?.data.accessories
           .filter((item) => item.category.categoryTitle === 'Care Product')
@@ -68,7 +70,8 @@ const CompleteYourLookPage: FC<IProps> = () => {
   }
 
   const handleSkip = () => {
-    if (step < 2) {
+    // if (step < 2) {
+    if (step < 1) {
       dispatch(setStep(step + 1));
     } else {
       navigate('/');
@@ -76,13 +79,14 @@ const CompleteYourLookPage: FC<IProps> = () => {
   };
 
   const handleViewAll = () => {
-    step === 0
-      ? navigate('/accessories/belts')
-      : step === 1
-      ? navigate('/accessories')
-      : step === 2
-      ? navigate('/shoe_care_product')
-      : navigate('/');
+    // step === 0
+    //   ? navigate('/accessories/belts')
+    //   : step === 1
+    //   ? navigate('/accessories')
+    //   : step === 2
+    //   ? navigate('/shoe_care_product')
+    //   : navigate('/');
+    step === 0 ? navigate('/accessories') : step === 1 ? navigate('/shoe_care_product') : navigate('/');
   };
 
   const mutation = useMutation(addToBasket, {
@@ -102,6 +106,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
       measurement: {},
       details: {},
       price: completeLookItems[step]?.product?.price,
+      basketItemId: uuidv4(),
     };
   } else {
     requestData = {
@@ -112,11 +117,12 @@ const CompleteYourLookPage: FC<IProps> = () => {
       details: {},
       price: completeLookItems[step]?.product?.price,
       title: completeLookItems[step]?.product?.title,
+      basketItemId: uuidv4(),
     };
   }
 
   const handleAddToCart = () => {
-    if (userId) {
+    if (userId && step >= 1) {
       mutation.mutate({ userId, requestData });
     } else {
       dispatch(addToCartNonRegisterUser({ ...completeLookItems[step]?.product, count: 1 }));
@@ -131,15 +137,14 @@ const CompleteYourLookPage: FC<IProps> = () => {
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
-  console.log(basketProducts, 'basketProducts');
-  console.log(completeLookItems[step]?.product?._id, 'completeLookItems[step]?.product?._id');
+
   const isProductExistInBasket = basketProducts.some(
     (item: any) => item?.accessory?._id === completeLookItems[step]?.product?._id
   );
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
     (item: any) => item._id === completeLookItems[step]?.product?._id
   );
-  console.log(isProductExistInBasket, 'isProductExistInBasket');
+
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.completeYourLook} />

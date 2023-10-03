@@ -85,7 +85,7 @@ const Colors: FC<IProps> = ({ details }) => {
             <button
               style={{ background: !color.texture ? color.hex : 'none' }}
               ref={(element) => (colorRefs.current[color.name] = element)}
-              className="min-h-[55px] min-w-[55px] p-1 rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-3 ring-grayLight"
+              className="min-h-[55px] min-w-[55px] rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-3 ring-grayLight"
               onClick={() => handleColorClick({ img: color.img, name: color.name })}
             >
               {color.texture ? <img src={color.texture} alt={color.name} height={55} width={55} key={index} /> : null}

@@ -2,7 +2,6 @@ import React from 'react';
 import { Role } from '@/constants/enums/role.enum.ts';
 
 const IsRegistered: React.FC<{ role: Role | Role[] }> = ({ role }) => {
-
   if (role === Role.DELETED) {
     return (
       <span className={'flex flex-row items-center gap-5 py-2 px-4 rounded-full bg-red-500 text-white'}>

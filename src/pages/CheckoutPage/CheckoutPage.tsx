@@ -28,19 +28,19 @@ const CheckoutPage = () => {
   }, []);
   const purchasesData = access_token
     ? basketProducts?.map((item) => ({
-      count: item.count,
-      product: item?.shoes?._id || item?.accessory?._id,
-      photo: item?.photo,
-      details: item?.details || {},
-      measurement: { _id: item?.measurement?._id || {} }
-    }))
+        count: item.count,
+        product: item?.shoes?._id || item?.accessory?._id,
+        photo: item?.photo,
+        details: item?.details || {},
+        measurement: { _id: item?.measurement?._id || {} },
+      }))
     : basketProductsForNonRegisterUser?.map((item) => ({
-      count: item?.count,
-      product: item?._id || item?.product,
-      photo: item?.photo,
-      details: [item?.details || {}] || {},
-      measurement: item?.measurement || {},
-    }));
+        count: item?.count,
+        product: item?._id || item?.product,
+        photo: item?.photo,
+        details: [item?.details || {}] || {},
+        measurement: item?.measurement || {},
+      }));
 
   useEffect(() => {
     if (!data) return;

@@ -42,7 +42,8 @@ function ColorlibStepIcon(props: StepIconProps) {
 }
 
 const CustomStepper = () => {
-  const steps = ['1', '2', '3'];
+  // const steps = ['1', '2', '3'];
+  const steps = ['1', '2'];
   const { step } = useAppSelector((state) => state.completeLook);
   const dispatch = useAppDispatch();
 
@@ -60,8 +61,9 @@ const CustomStepper = () => {
           <Step key={label}>
             <StepLabel
               onClick={() => {
-                if (index === 0 && step !== Steps.THIRD) firstClick();
-                if (index === 1 && step !== Steps.THIRD) secondClick();
+                // if (index === 0 && step !== Steps.THIRD) firstClick();
+                // if (index === 1 && step !== Steps.THIRD) secondClick();
+                if (index === 0 && step !== Steps.SECOND) firstClick();
               }}
               StepIconComponent={ColorlibStepIcon}
             ></StepLabel>

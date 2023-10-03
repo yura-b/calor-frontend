@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminLayout from '@layouts/admin/AdminLayout.tsx';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
-import { uploadPhoto } from "@/api/do";
+import { uploadPhoto } from '@/api/do';
 import { errorCorrupted, loading, loadingFinished, showMessage } from '@/store/reducers/StatusReducer.ts';
 import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHeader.tsx';
 import { PlusCircle } from '@phosphor-icons/react';
