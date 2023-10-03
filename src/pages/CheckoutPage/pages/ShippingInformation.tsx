@@ -12,6 +12,7 @@ import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { shippingDetails } from '@/constants/interfaces/order.ts';
 import { countries } from '@/helpers/admin/constants/countries.ts';
 import { states } from '@/helpers/admin/constants/states.ts';
+import { useLocation } from 'react-router-dom';
 
 interface IProps {
   setData: React.Dispatch<React.SetStateAction<shippingForm | null>>;
@@ -24,6 +25,10 @@ export type shippingForm = Omit<ShippingInfoDto, 'user_id'>;
 const USA = 'United States';
 
 const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
+  const location = useLocation();
+  const pathElements = location.pathname.split('/');
+  const shippingAddress = pathElements[2];
+
   const [saveAddress, setSaveAddress] = useState(false);
   const [country, setCountry] = useState(USA);
   const { items: basketProducts } = useAppSelector((state) => state.basket);
@@ -63,6 +68,7 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
         save: saveAddress,
         state: country === USA ? stateValue : values.city,
       });
+      if (shippingAddress === 'shipping_address') window.location.reload();
     },
   });
 
