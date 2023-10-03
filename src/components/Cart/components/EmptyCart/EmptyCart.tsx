@@ -10,7 +10,7 @@ const EmptyCart: React.FC<Props> = ({ title }): React.ReactElement => {
   return (
     <>
       <div
-        className={`${styles.body1} bg-custom-turquoise w-full h-12 mb-6 flex items-center justify-center text-center p-2`}
+        className={`${styles.body1} bg-custom-turquoise w-full flex items-center justify-center text-center p-2 mt-4 sm:mt-0 lg:mb-4 lg:text-[18px]`}
       >
         {title}
       </div>

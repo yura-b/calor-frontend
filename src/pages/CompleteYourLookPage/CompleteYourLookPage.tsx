@@ -122,7 +122,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
   }
 
   const handleAddToCart = () => {
-    if (userId) {
+    if (userId && step >= 1) {
       mutation.mutate({ userId, requestData });
     } else {
       dispatch(addToCartNonRegisterUser({ ...completeLookItems[step]?.product, count: 1 }));
