@@ -114,10 +114,8 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         }}
         error={formik.touched.rightFootLength && Boolean(formik.errors.rightFootLength)}
         errorMessage={formik.errors.rightFootLength}
-        disableUnderline={true}
-        border="1px solid"
-        height="45px"
         gap="1"
+        border={'1px solid #D9D9D9'}
       >
         Right Foot Length (in)
       </CustomInput>
@@ -133,10 +131,8 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         }}
         error={formik.touched.rightFootWidth && Boolean(formik.errors.rightFootWidth)}
         errorMessage={formik.errors.rightFootWidth}
-        disableUnderline={true}
-        border="1px solid"
-        height="45px"
         gap="1"
+        border={'1px solid #D9D9D9'}
       >
         Right Foot Width (in)
       </CustomInput>
@@ -152,10 +148,8 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         }}
         error={formik.touched.leftFootLength && Boolean(formik.errors.leftFootLength)}
         errorMessage={formik.errors.leftFootLength}
-        disableUnderline={true}
-        border="1px solid"
-        height="45px"
         gap="1"
+        border={'1px solid #D9D9D9'}
       >
         Left Foot Length (in)
       </CustomInput>
@@ -171,10 +165,8 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         }}
         error={formik.touched.leftFootWidth && Boolean(formik.errors.leftFootWidth)}
         errorMessage={formik.errors.leftFootWidth}
-        disableUnderline={true}
-        border="1px solid"
-        height="45px"
         gap="1"
+        border={'1px solid #D9D9D9'}
       >
         Left Foot Width (in)
       </CustomInput>
@@ -194,10 +186,8 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         }}
         error={formik.touched.insoleLength && Boolean(formik.errors.insoleLength)}
         errorMessage={formik.errors.insoleLength}
-        disableUnderline={true}
-        border="1px solid"
-        height="45px"
         gap="1"
+        border={'1px solid #D9D9D9'}
       >
         Insole Length (in)
       </CustomInput>
@@ -213,17 +203,23 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         }}
         error={formik.touched.insoleWidth && Boolean(formik.errors.insoleWidth)}
         errorMessage={formik.errors.insoleWidth}
-        disableUnderline={true}
-        border="1px solid"
-        height="45px"
         gap="1"
+        border={'1px solid #D9D9D9'}
       >
         Insole Width (in)
       </CustomInput>
       <p className="mb-2">
         If you have any questions, please, leave a comment, contact us by chat or any other available communication option.
       </p>
-      <CustomTextArea className="mt-4 mb-8" placeholder="Comment" variant="outlined" height={4} id={'comment'} name={'comment'} defaultValue={formik.values.comment || ''} onChange={(e) => {
+      <CustomTextArea 
+        className="mt-4 mb-8" 
+        placeholder="Comment" 
+        variant="soft" 
+        height={4} 
+        id={'comment'} 
+        name={'comment'} 
+        defaultValue={formik.values.comment || ''} 
+        onChange={(e) => {
           const newValue = validatePositiveNumber(e.target.value);
           formik.setFieldValue('comment', newValue);
         }}/>
