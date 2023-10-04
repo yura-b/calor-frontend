@@ -19,6 +19,7 @@ import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { v4 as uuidv4 } from 'uuid';
+import { addToCartGTMEvent } from "@/helpers/functions/gtm";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -73,6 +74,8 @@ const ProductPage = () => {
   const handleAddToCartNonRegisterUser = () => {
     dispatch(addToCartNonRegisterUser({ ...product?.data, count: 1 }));
     dispatch(showMessage('The product has been successfully added'));
+
+    addToCartGTMEvent('addToCart', { id: product?.data._id, title: product?.data.title });
   };
 
   const initialSectionsState = [
