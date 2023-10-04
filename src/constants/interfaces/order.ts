@@ -139,6 +139,8 @@ export interface shippingDetails {
 
   receiverPhoneNumber: string;
 
+  _id: string
+
 }
 
 export interface IMeasurement {

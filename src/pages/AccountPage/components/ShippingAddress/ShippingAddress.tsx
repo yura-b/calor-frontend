@@ -8,6 +8,7 @@ import AccountLayout from '../AccountLayout';
 import { assignAdditionalInfo, getShippingById } from '@/api/users';
 import Link from '@mui/material/Link';
 import MainFrame from '@/components/mainFrame';
+import { shippingDetails } from '@/constants/interfaces/order.ts';
 
 const ShippingAddress: React.FC = (): React.ReactElement => {
   const { userId, shippingInfo, access_token } = useAppSelector((state) => state.user);
@@ -19,10 +20,17 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
 
   useEffect(() => {
     if (!access_token || !shippingInfo) return;
-    getShippingById(access_token, shippingInfo._id).then((res) => {
+    dispatch(loading())
+    getShippingById(access_token, (shippingInfo as shippingDetails)._id).then((res) => {
       setShippingData(res.data);
+
+      dispatch(loadingFinished())
+    }).catch(()=>{
+
+      dispatch(loadingFinished())
     });
-  }, [shippingInfo]);
+
+  }, [shippingInfo, data]);
 
   useEffect(() => {
     if (!data) return;
@@ -30,15 +38,16 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
     assignAdditionalInfo({ ...data, user_id: userId }).then((res) => {
       if (res.status === 200) {
         if (!access_token || !shippingInfo) return;
-        getShippingById(access_token, shippingInfo._id).then((res) => {
+        getShippingById(access_token, (shippingInfo as shippingDetails)._id).then((res) => {
           setShippingData(res.data);
-          dispatch(showMessage(`Your shipping information has been updated`));
+          dispatch(showMessage('Your shipping information has been updated'));
         });
       }
+
     });
 
     dispatch(loadingFinished());
-    setIsVisible(!isVisible);
+     setIsVisible(!isVisible);
   }, [data]);
 
   const handleClick = () => {
@@ -57,20 +66,12 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
           {!isVisible && (
             <div className={styles.container}>
               <div className=" w-full lg:w-[640px] flex justify-end">
-                <Link color="inherit" onClick={handleEditShippingAddress}>
+                <Link color="inherit" className={'cursor-pointer'} onClick={handleEditShippingAddress}>
                   Edit Shipping Address
                 </Link>
               </div>
               <div className={`${styles.body2} lg:flex lg:justify-between lg:w-[640px]`}>
                 <div className="lg:w-1/2 lg:p-4">
-                  <div className="mb-2 lg:mb-10">
-                    <p className={'font-bold'}>First Name</p>
-                    <p>{shippingData?.receiverFirstName}</p>
-                  </div>
-                  <div className="mb-2 lg:mb-10">
-                    <p className={'font-bold'}>Last Name</p>
-                    <p>{shippingData?.receiverSecondName}</p>
-                  </div>
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>Country</p>
                     <p>{shippingData?.country}</p>
@@ -82,6 +83,10 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>Apt, Suite, Building</p>
                     <p>{shippingData?.ASB}</p>
+                  </div>
+                  <div className="mb-2 lg:mb-10">
+                    <p className={'font-bold'}>Phone Number</p>
+                    <p>{shippingData?.receiverPhoneNumber}</p>
                   </div>
                 </div>
                 <div className="lg:w-1/2 lg:p-4">
@@ -97,15 +102,11 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
                     <p className={'font-bold'}>ZIP Code</p>
                     <p>{shippingData?.ZIP}</p>
                   </div>
-                  <div className="mb-2 lg:mb-10">
-                    <p className={'font-bold'}>Phone Number</p>
-                    <p>{shippingData?.receiverPhoneNumber}</p>
-                  </div>
                 </div>
               </div>
             </div>
           )}
-          {isVisible && <ShippingInformation setData={setData} buttonTitle={buttonName} shippingData={shippingData} />}{' '}
+          {isVisible && <ShippingInformation setData={setData} buttonTitle={buttonName} shippingData={shippingData} />}
         </MainFrame>
       </AccountLayout>
     </div>
