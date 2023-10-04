@@ -57,7 +57,7 @@ const Slider: FC<IProps> = ({ images = [], color }) => {
     <>
       <motion.div className="flex justify-center items-center m-auto flex-col" {...fadeAnimation}>
         <div className="flex justify-center items-center m-auto flex-col">
-          <div className="min-h-[343px] sm:min-h-[500px] md:min-h-[500px] lg:min-h-[460.44px] xl:min-h-[500px] relative ">
+          <div className="relative">
             <div className="relative min-h-[300px]">
               <LazyLoadImage
                 key={currentIndex}
