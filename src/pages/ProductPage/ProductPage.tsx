@@ -19,6 +19,7 @@ import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { v4 as uuidv4 } from 'uuid';
+import { addToCartGTMEvent } from "@/helpers/functions/gtm";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -73,6 +74,8 @@ const ProductPage = () => {
   const handleAddToCartNonRegisterUser = () => {
     dispatch(addToCartNonRegisterUser({ ...product?.data, count: 1 }));
     dispatch(showMessage('The product has been successfully added'));
+
+    addToCartGTMEvent('addToCart', { id: product?.data._id, title: product?.data.title });
   };
 
   const initialSectionsState = [
@@ -105,7 +108,6 @@ const ProductPage = () => {
     );
   };
 
-  console.log(product);
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -115,10 +117,7 @@ const ProductPage = () => {
         </div>
         <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-10 ${styles.container}`}>
           {/* Product Slider */}
-          <div className="min-h-[431.66px]">
-            <Slider images={product?.data.photos} color="gray" />
-          </div>
-
+          <Slider images={product?.data.photos} color="gray" />
           {/* Product Desription */}
           <div
             className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident} w-full`}

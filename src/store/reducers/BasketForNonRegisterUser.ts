@@ -27,7 +27,7 @@ const basketForNonRegisterUser = createSlice({
       saveCartToLocalStorage(state.items);
     },
     removeFromCartNonRegisterUser: (state, action) => {
-      state.items = state.items.filter((item) => item._id !== action.payload);
+      state.items = state.items.filter((item) => item.basketItemId !== action.payload);
       saveCartToLocalStorage(state.items);
     },
     increaseQuantityNonRegisterUser(state, action) {
