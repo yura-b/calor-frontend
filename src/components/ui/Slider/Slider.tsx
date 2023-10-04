@@ -90,12 +90,12 @@ const Slider: FC<IProps> = ({ images = [], color }) => {
               className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-black bg-opacity-80"
               onClick={handleImageClick}
             >
-              <div className="relative min-h-[300px]">
+              <div className="relative">
                 <LazyLoadImage
                   key={currentIndex}
                   src={images[currentIndex]}
                   alt={`Slider ${currentIndex}`}
-                  className="max-w-full max-h-full cursor-pointer"
+                  className="h-[100vh] object-contain cursor-pointer"
                   effect="blur"
                   afterLoad={() => {
                     setImageLoaded(true);
