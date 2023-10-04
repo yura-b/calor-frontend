@@ -57,7 +57,7 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
     if (userId) {
       mutation.mutate(requestData);
     } else {
-      dispatch(removeFromCartNonRegisterUser(item._id));
+      dispatch(removeFromCartNonRegisterUser(item.basketItemId));
     }
   };
 
