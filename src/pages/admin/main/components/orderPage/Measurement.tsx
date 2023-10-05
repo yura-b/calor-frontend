@@ -12,15 +12,15 @@ const Measurement: FC<IProps> = ({ measurement }) => {
       <div className={'flex flex-col gap-5'}>
         <p className={'font-bold'}>Measurement</p>
         <div className={'grid grid-cols-2 gap-y-2 gap-x-8'}>
-          <p>size</p>
+          <p>Size</p>
           <span>{measurement.size}</span>
           <p>Right foot length</p>
           <span>{measurement.rightFootLength}</span>
           <p>Right foot width</p>
           <span>{measurement.rightFootWidth}</span>
-          <p>Right foot length</p>
+          <p>Left foot length</p>
           <span>{measurement.leftFootLength}</span>
-          <p>Right foot width</p>
+          <p>Left foot width</p>
           <span>{measurement.leftFootWidth}</span>
           <p>Insole length</p>
           <span>{measurement.insoleLength}</span>
