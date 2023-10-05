@@ -157,4 +157,6 @@ export interface IMeasurement {
   insoleLength: number;
 
   insoleWidth: number;
+
+  comment: string;
 }
