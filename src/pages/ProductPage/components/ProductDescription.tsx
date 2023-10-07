@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '@styles/Styles.module.scss';
 import Rating from '@/components/ui/Rating/Rating';
 
-const ProductDescription = ({ title, price, rating, sizes, category }) => {
+const ProductDescription = ({ title, price, rating, sizes, category, description }) => {
   return (
     <div className="text-gray">
       <div className="flex justify-start items-center py-1">
@@ -22,7 +22,9 @@ const ProductDescription = ({ title, price, rating, sizes, category }) => {
           From <span className="font-bold ml-4">${price}</span>
         </div>
       </div>
-
+      <div className="py-2 w-full">
+        <div dangerouslySetInnerHTML={{ __html: description }} />
+      </div>
       <div className="flex flex-col items-start">
         <div className="flex">
           {category === 'shoes' && (
