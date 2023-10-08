@@ -46,3 +46,7 @@ export const deleteAccessory = (access_token: string, id: string) => {
 export const editItem = (access_token: string, item: EditItemDto) => {
   return axios.patch(`${BASE_URL}/product/edit`, item, authorization(access_token));
 };
+
+export const assignVariation =(access_token: string, product_ids: string[]) =>{
+  return axios.put(`${BASE_URL}/accessories`, { accessory_ids: product_ids }, authorization(access_token))
+}

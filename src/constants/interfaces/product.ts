@@ -8,6 +8,7 @@ export interface Product {
   productDetails: string;
   description: string;
   size: number[];
+  variations: string[]
 }
 export interface category {
   _id: string;

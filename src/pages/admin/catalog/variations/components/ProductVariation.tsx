@@ -1,0 +1,30 @@
+import React, { FC, useState } from 'react';
+
+interface IProduct {
+  photos: string[],
+  title: string,
+  _id: string
+}
+const ProductVariation:FC<{ productList: IProduct[], handler: (_id: string)=> void }> = ({productList, handler}) => {
+  // const [isChosen, setIsChosen] = useState(false)
+  // const onClick = () =>{
+  //   setIsChosen(prevState => !prevState)
+  // }
+
+  return (
+    <div className={'flex flex-row flex-wrap gap-12 '}>
+      {productList.map(({ photos, title , _id}) => {
+        return <div className={'flex flex-col gap-5 w-1/5'} onClick={()=> handler(_id)}>
+          <img
+            src={photos[0]}
+            alt={'photo'}
+            className={'aspect-[2/1] h-[200px] object-contain'}
+          />
+          <p className={'font-bold'}>{title}</p>
+        </div>;
+      })}
+    </div>
+  );
+};
+
+export default ProductVariation;
