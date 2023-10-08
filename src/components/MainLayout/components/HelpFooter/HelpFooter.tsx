@@ -31,6 +31,8 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
   const commaIndex = address?.indexOf(',');
   const address1 = address?.substring(0, commaIndex);
   const address2 = address?.substring(commaIndex + 1).trim();
+
+  const [currentYear] = useState(new Date().getFullYear());
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
   const mobileBreakpoint = 1024;
@@ -58,6 +60,7 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
       window.removeEventListener('resize', updateHeaderHeight);
     };
   }, []);
+
   const scrollToElement = (el) => {
     setTimeout(() => {
       const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
@@ -209,12 +212,12 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
         )}
         <div className={'flex'}>
           <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
-          <span>2023 Calor</span>
+          <span>{currentYear}</span>
         </div>
       </div>
       <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-10 hidden lg:block lg:text-sm'}>
         <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
-        <span>2023 Calor</span>
+        <span>{currentYear}</span>
       </div>
       {/* <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-4 hidden lg:block lg:text-[12px]'}>
         Designed & developed by{' '}
