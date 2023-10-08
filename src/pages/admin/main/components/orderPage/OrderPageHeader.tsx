@@ -1,16 +1,30 @@
 import React from 'react';
 import { ArrowSquareLeft } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router';
+import { useAppDispatch } from "@/store/hooks/hooks.ts";
+import { errorCorrupted } from "@/store/reducers/StatusReducer.ts";
 
 interface IProps {
   id: string;
+  invoiceUrl: string
 }
+const buttonStyles = 'px-16 flex items-center bg-black text-white cursor-pointer'
 
-const OrderPageHeader: React.FC<IProps> = ({ id }) => {
+const OrderPageHeader: React.FC<IProps> = ({ id,invoiceUrl }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch()
   const returnHandler = () => {
     navigate('/admin');
   };
+  const downloadInvoice = () =>{
+    if(!invoiceUrl) {
+      dispatch(errorCorrupted('This order does not have an invoice'))
+      return
+    }
+
+    window.location.href = invoiceUrl
+  }
+
   return (
     <div className={'mb-4'}>
       <div className={'flex flex-row justify-between mx-12 py-6'}>
@@ -22,8 +36,8 @@ const OrderPageHeader: React.FC<IProps> = ({ id }) => {
           </div>
         </div>
         <div className={'flex gap-8'}>
-          <div className={'px-16 flex items-center bg-black text-white'}>Invoice</div>
-          <div className={'px-16 flex items-center bg-black text-white'}>Checklist</div>
+          <div className={buttonStyles} onClick={downloadInvoice}>Invoice</div>
+          <div className={buttonStyles}>Checklist</div>
         </div>
       </div>
       <hr />

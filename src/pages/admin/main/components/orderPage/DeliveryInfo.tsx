@@ -48,10 +48,10 @@ const DeliveryInfo: FC<{ _id: string }> = ({ _id }) => {
             Courier
           </CustomInput>
           <CustomInput value={trackingNumber} onChange={changeHandler(setTrackingNumber)}>
-            trackingNumber
+            Tracking number
           </CustomInput>
           <CustomInput value={approxDeliveryDate} onChange={changeHandler(setApproxDeliveryDate)}>
-            approxDeliveryDate
+            Approx delivery date
           </CustomInput>
         </div>
       ) : (
