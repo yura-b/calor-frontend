@@ -127,7 +127,6 @@ const ProductPage = () => {
                 description={product?.data.description}
                 title={product?.data.title}
                 price={product?.data.price}
-                subcategory={product?.data.subcategory}
                 rating={product?.data.rating}
                 sizes={product?.data.sizes}
                 category={product?.data.category}
@@ -136,7 +135,6 @@ const ProductPage = () => {
                 {product?.data.category == 'shoes' && <span>Your shoes will be manufactured in 7-10 days.</span>}
                 {product?.data.category !== 'shoes' && (
                   <>
-                    <div dangerouslySetInnerHTML={{ __html: product?.data.description }} />
                     {!!product?.data.size.length && (
                       <>
                         <p className={`${styles.body2} font-bold py-4`}>Please select your size</p>
