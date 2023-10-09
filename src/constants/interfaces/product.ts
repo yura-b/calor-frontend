@@ -17,3 +17,9 @@ export interface category {
 
   subCategory: string[];
 }
+
+export interface IBaseProduct {
+  _id: string,
+  photo: string,
+  title: string
+}

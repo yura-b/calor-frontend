@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 interface IProduct {
   photos: string[],
@@ -14,7 +14,7 @@ const ProductVariation:FC<{ productList: IProduct[], handler: (_id: string)=> vo
   return (
     <div className={'flex flex-row flex-wrap gap-12 '}>
       {productList.map(({ photos, title , _id}) => {
-        return <div className={'flex flex-col gap-5 w-1/5'} onClick={()=> handler(_id)}>
+        return <div key={_id} className={'flex flex-col gap-5 w-1/5 items-center'} onClick={()=> handler(_id)}>
           <img
             src={photos[0]}
             alt={'photo'}
