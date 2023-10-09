@@ -19,7 +19,7 @@ import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { v4 as uuidv4 } from 'uuid';
-import { addToCartGTMEvent } from "@/helpers/functions/gtm";
+import { addToCartGTMEvent } from '@/helpers/functions/gtm';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -107,7 +107,6 @@ const ProductPage = () => {
       prevSections.map((section, i) => (i === index ? { ...section, isOpen: !section.isOpen } : section))
     );
   };
-
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -117,7 +116,11 @@ const ProductPage = () => {
         </div>
         <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-10 ${styles.container}`}>
           {/* Product Slider */}
-          <Slider images={product?.data.photos} color="gray" />
+          <Slider
+            images={product?.data.photos}
+            color="gray"
+            dataShoes={product?.data.category === 'shoes' ? true : false}
+          />
           {/* Product Desription */}
           <div
             className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident} w-full`}

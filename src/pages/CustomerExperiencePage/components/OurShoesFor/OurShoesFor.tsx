@@ -112,7 +112,7 @@ const OurShoesFor: React.FC = () => {
                     setImageLoaded(false);
                   }}
                 />
-                {imageLoaded ? null : <Spinner className="absolute" />}
+                {imageLoaded ? null : <Spinner className="absolute left-1/2 top-1/2" />}
               </div>
               <p className="font-bold mt-4">{item.title}</p>
               <p>{item.description}</p>

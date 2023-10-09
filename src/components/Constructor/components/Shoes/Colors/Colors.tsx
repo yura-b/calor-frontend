@@ -5,8 +5,8 @@ import { updateParts } from '@/store/reducers/constructor/ShoesConstructorReduce
 import { Tooltip } from '@mui/material';
 import { motion } from 'framer-motion';
 import { layoutFadeAnimation } from '@/styles/Animations';
-import { useNavigate } from "react-router";
-import constants from '@/constants/constants'
+import { useNavigate } from 'react-router';
+import constants from '@/constants/constants';
 
 interface Color {
   img: string;
@@ -56,7 +56,7 @@ const Colors: FC<IProps> = ({ details }) => {
       const id = material === 'fur' ? constants.DAYGER_WINTER_ID : constants.DAYGER_ID;
       navigate(`/design_your_shoe/model/dayger/${id}`);
     }
-    
+
     if (selectedColor) {
       dispatch(updateParts({ selectedMaterial, selectedDetail, selectedColor, selectedModel }));
     }

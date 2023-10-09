@@ -7,7 +7,10 @@ export const addToBasket = (data) => {
 };
 
 export const updateBasketItemQuantity = (data) => {
-  return axios.patch(`${BASE_URL}/basket/${data.userId}/quantity`, { basketItemId: data.basketItemId, quantity: data.count });
+  return axios.patch(`${BASE_URL}/basket/${data.userId}/quantity`, {
+    basketItemId: data.basketItemId,
+    quantity: data.count,
+  });
 };
 
 export const deleteFromBasket = (data) => {

@@ -60,9 +60,9 @@ const OrderPage = () => {
 
       <div className={'flex flex-row gap-20 justify-start mx-8 mb-8 '}>
         <Measurement measurement={orderData.measurement} />
-        <ShippingAddress info={orderData.shippingInfo}/>
+        <ShippingAddress info={orderData.shippingInfo} />
       </div>
-      <hr/>
+      <hr />
       <div className={'pl-7'}>
         <UserInfo
           withDelivery={true}
