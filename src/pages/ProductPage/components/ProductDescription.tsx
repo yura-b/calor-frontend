@@ -25,7 +25,7 @@ const ProductDescription = ({ title, price, rating, sizes, category, description
       <div className="py-2 w-full">
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
-      <div className="flex flex-col items-start">
+      {/* <div className="flex flex-col items-start">
         <div className="flex">
           {category === 'shoes' && (
             <ul className="list-disc">
@@ -33,14 +33,14 @@ const ProductDescription = ({ title, price, rating, sizes, category, description
                 <p>
                   <span className="font-bold">Size</span> {sizes && Math.min(...sizes)}-{sizes && Math.max(...sizes)}
                 </p>{' '}
-                {/* <Link to="/" className="text-mint underline">
+                <Link to="/" className="text-mint underline">
                 Your shoe size is not on the list?
-              </Link> */}
+              </Link>
               </li>
             </ul>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
