@@ -20,16 +20,16 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
 
   useEffect(() => {
     if (!access_token || !shippingInfo) return;
-    dispatch(loading())
-    getShippingById(access_token, (shippingInfo as shippingDetails)._id).then((res) => {
-      setShippingData(res.data);
+    dispatch(loading());
+    getShippingById(access_token, (shippingInfo as shippingDetails)._id)
+      .then((res) => {
+        setShippingData(res.data);
 
-      dispatch(loadingFinished())
-    }).catch(()=>{
-
-      dispatch(loadingFinished())
-    });
-
+        dispatch(loadingFinished());
+      })
+      .catch(() => {
+        dispatch(loadingFinished());
+      });
   }, [shippingInfo, data]);
 
   useEffect(() => {
@@ -43,11 +43,10 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
           dispatch(showMessage('Your shipping information has been updated'));
         });
       }
-
     });
 
     dispatch(loadingFinished());
-     setIsVisible(!isVisible);
+    setIsVisible(!isVisible);
   }, [data]);
 
   const handleClick = () => {

@@ -7,8 +7,8 @@ import { sendOrderForNotAuthUser } from '@/api/orders.ts';
 import { useParams } from 'react-router';
 import { ShippingInfoDto } from '@/api/dto/orders.dto.ts';
 import { Product } from '@/constants/interfaces/product.ts';
-import { useDispatch } from "react-redux";
-import { clearBasketNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
+import { useDispatch } from 'react-redux';
+import { clearBasketNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 
 export interface IOrderPurchaseInfo {
   price: number;

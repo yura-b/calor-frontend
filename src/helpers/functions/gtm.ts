@@ -1,7 +1,7 @@
 type Product = {
-  id: string,
-  title: string,
-}
+  id: string;
+  title: string;
+};
 
 export const addToCartGTMEvent = (event: string, payload: Product) => {
   window.dataLayer.push({
@@ -9,6 +9,6 @@ export const addToCartGTMEvent = (event: string, payload: Product) => {
     product: {
       id: payload.id,
       title: payload.title,
-    }
+    },
   });
-}
+};

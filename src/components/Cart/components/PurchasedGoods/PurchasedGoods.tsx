@@ -11,7 +11,7 @@ import {
   decreaseQuantityNonRegisterUser,
   increaseQuantityNonRegisterUser,
 } from '@/store/reducers/BasketForNonRegisterUser';
-import { updateBasketItemQuantity } from "@/api/basket";
+import { updateBasketItemQuantity } from '@/api/basket';
 import { debounce } from 'lodash';
 
 const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement => {
@@ -20,20 +20,20 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
   const [count] = useState(item.count);
 
   const mutationUpdateItemQuantity = useMutation(updateBasketItemQuantity);
-  
+
   const mutation = useMutation(deleteFromBasket, {
     onSuccess: (data) => {
       dispatch(removeFromBasket(item._id));
     },
   });
-  
+
   useEffect(() => {
     //Temporary fix to avoid unnecessary call after component render. Call only after item.count changed
     if (count !== item.count) {
-      mutationUpdateItemQuantity.mutate({ userId, basketItemId: item.basketItemId, count: item.count })
+      mutationUpdateItemQuantity.mutate({ userId, basketItemId: item.basketItemId, count: item.count });
     }
-  }, [item.count])
-  
+  }, [item.count]);
+
   const incrementCount = debounce(() => {
     if (userId) {
       dispatch(increaseQuantity({ basketItemId: item.basketItemId }));
@@ -41,7 +41,7 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
       dispatch(increaseQuantityNonRegisterUser({ basketItemId: item.basketItemId }));
     }
   }, 200);
-  
+
   const decrementCount = debounce(() => {
     if (userId) {
       dispatch(decreaseQuantity({ basketItemId: item.basketItemId }));

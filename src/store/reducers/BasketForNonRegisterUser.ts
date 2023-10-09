@@ -11,7 +11,7 @@ const loadCartFromLocalStorage = () => {
 
 const clearCartOnLocalStorage = () => {
   localStorage.removeItem('basket');
-}
+};
 
 const initialState = {
   items: loadCartFromLocalStorage(),
@@ -48,8 +48,8 @@ const basketForNonRegisterUser = createSlice({
     },
     clearBasketNonRegisterUser(state) {
       clearCartOnLocalStorage();
-      state.items= []
-    }
+      state.items = [];
+    },
   },
 });
 
