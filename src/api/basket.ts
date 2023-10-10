@@ -16,3 +16,7 @@ export const updateBasketItemQuantity = (data) => {
 export const deleteFromBasket = (data) => {
   return axios.delete(`${BASE_URL}/basket`, { data });
 };
+
+export const clearBasketAuthUser = (id: string, data: string[]) => {
+  return axios.delete(`${BASE_URL}/basket/clear`, { data: { recordsId: data, userId: id } });
+};
