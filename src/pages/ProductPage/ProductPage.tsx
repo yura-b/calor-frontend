@@ -31,10 +31,10 @@ const ProductPage = () => {
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
-    (item: BasketProduct) => item.product === id || item._id === id || item.accessory === id
+    (item: BasketProduct) => item.product === dynamicId || item._id === dynamicId || item?.accessory?._id === dynamicId
   );
   const isProductExistInBasket = basketProducts.some(
-    (item: BasketProduct) => item?._id === id || item?.accessory?._id === id || item?.shoes?._id === id
+    (item: BasketProduct) => item?._id === dynamicId || item?.accessory?._id === dynamicId || item?.shoes?._id === dynamicId
   );
 
   const { data: product } = useQuery(['productById', dynamicId], () => getProductById(dynamicId), {
@@ -226,9 +226,9 @@ const ProductPage = () => {
                 ))}
               </div>
             </div>
-            <div>
+            <div className={'flex flex-row flex-wrap'}>
               {variations?.map(variation =>{
-                return <div onClick={()=> setDynamicId(variation._id)}>
+                return <div  onClick={()=> setDynamicId(variation._id)}>
                   <p>{variation.title}</p>
                   <img className={'w-[150px]'} src={variation.photo} alt="" />
                 </div>
