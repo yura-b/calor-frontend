@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 
-interface IProduct {
+export interface IProduct {
   photos: string[],
   title: string,
   _id: string
 }
 const ProductVariation:FC<{ productList: IProduct[], handler: (_id: string)=> void }> = ({productList, handler}) => {
-  // const [isChosen, setIsChosen] = useState(false)
-  // const onClick = () =>{
-  //   setIsChosen(prevState => !prevState)
-  // }
+
+  if (productList.length === 0) {
+    return <p className={'text-lg font-medium'}> List is empty</p>
+  }
 
   return (
     <div className={'flex flex-row flex-wrap gap-12 '}>

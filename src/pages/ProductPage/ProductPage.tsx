@@ -10,7 +10,6 @@ import ProductReviews from './components/ProductReviews';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 import Slider from '@/components/ui/Slider';
 import Button from '@components/ui/Button';
-import { paths } from '@routes/paths.ts';
 import AccordionSection from '@components/AccordionSection';
 import { addToBasket } from '@/api/basket';
 import { SealCheck } from '@phosphor-icons/react';
@@ -19,10 +18,12 @@ import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { v4 as uuidv4 } from 'uuid';
-import { addToCartGTMEvent } from "@/helpers/functions/gtm";
+import { addToCartGTMEvent } from '@/helpers/functions/gtm';
 
 const ProductPage = () => {
   const { id } = useParams();
+
+  const [dynamicId, setDynamicId] = useState(id || '')
   const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
@@ -36,13 +37,16 @@ const ProductPage = () => {
     (item: BasketProduct) => item?._id === id || item?.accessory?._id === id || item?.shoes?._id === id
   );
 
-  const { data: product } = useQuery(['productById', id], () => getProductById(id), {
+  const { data: product } = useQuery(['productById', dynamicId], () => getProductById(dynamicId), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
 
+
+  const variations = product?.data?.variations?.variations?.filter(variant=> variant._id !== product.data._id)
+
   const mutation = useMutation(addToBasket, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       dispatch(appendToBasket({ ...product?.data, count: 1 }));
       dispatch(showMessage('The product has been successfully added'));
     },
@@ -221,6 +225,14 @@ const ProductPage = () => {
                   </AccordionSection>
                 ))}
               </div>
+            </div>
+            <div>
+              {variations?.map(variation =>{
+                return <div onClick={()=> setDynamicId(variation._id)}>
+                  <p>{variation.title}</p>
+                  <img className={'w-[150px]'} src={variation.photo} alt="" />
+                </div>
+              })}
             </div>
           </div>
           <div>
