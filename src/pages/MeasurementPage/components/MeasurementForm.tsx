@@ -14,6 +14,7 @@ import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { getProductById } from '@/api/products';
 import { v4 as uuidv4 } from 'uuid';
 import CustomTextArea from '@/components/ui/TextArea/CustomTextArea';
+import { addToCartGTMEvent } from "@/helpers/functions/gtm";
 interface IProps {
   selectedShoeSize: number;
 }
@@ -57,9 +58,9 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     },
     validationSchema: validationMeasurement,
     onSubmit: (values) => {
-      console.log(values);
       setIsDisabled(true);
       dispatch(setUserMeasurement({ selectedShoeSize, ...values }));
+      addToCartGTMEvent('add_to_cart', { id, title: product?.data?.title })
 
       let requestData = {};
 
@@ -225,7 +226,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           formik.setFieldValue('comment', newValue);
         }}
       />
-      <CustomButton styles={'w-full'} title={'Add to cart'} type={'submit'} disabled={isDisabled} />
+      <CustomButton id="gtm-add-to-cart-product" styles={'w-full'} title={'Add to cart'} type={'submit'} disabled={isDisabled} />
     </form>
   );
 };

@@ -62,7 +62,7 @@ const HomeShowRoom: React.FC<Props> = ({
         className={`${styles.body1}  text-${bodyColor} text-justify mt-2`}
         dangerouslySetInnerHTML={{ __html: perfectFit?.value || '' }}
       />
-      <Button color={backgroundButton} className="w-full my-6" onClick={handleOpen}>
+      <Button id="gtm-make-an-appointment" color={backgroundButton} className="w-full my-6" onClick={handleOpen}>
         Make an Appointment
       </Button>
       <Modal className="flex items-center justify-center" open={open} onClose={handleClose}>

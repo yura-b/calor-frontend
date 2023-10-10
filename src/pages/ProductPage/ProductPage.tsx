@@ -75,7 +75,7 @@ const ProductPage = () => {
     dispatch(addToCartNonRegisterUser({ ...product?.data, count: 1 }));
     dispatch(showMessage('The product has been successfully added'));
 
-    addToCartGTMEvent('addToCart', { id: product?.data._id, title: product?.data.title });
+    addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
   };
 
   const initialSectionsState = [
@@ -170,7 +170,10 @@ const ProductPage = () => {
                 {userId ? (
                   <>
                     {product?.data.category !== 'shoes' && !isProductExistInBasket && (
-                      <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
+                      <Button id="gtm-add-to-cart-product" color="gray" onClick={() => { 
+                        addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title })
+                        mutation.mutate({ userId, requestData })
+                      }}>
                         Add To Cart
                       </Button>
                     )}
