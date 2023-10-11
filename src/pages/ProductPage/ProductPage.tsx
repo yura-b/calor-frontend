@@ -19,6 +19,11 @@ import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterU
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { v4 as uuidv4 } from 'uuid';
 import { addToCartGTMEvent } from '@/helpers/functions/gtm';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import Spinner from '@components/ui/Spinner';
+import { motion } from 'framer-motion';
+import { hoverOnButtonAnimation } from '@styles/Animations';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -110,6 +115,7 @@ const ProductPage = () => {
       prevSections.map((section, i) => (i === index ? { ...section, isOpen: !section.isOpen } : section))
     );
   };
+  const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -156,7 +162,33 @@ const ProductPage = () => {
                   </>
                 )}
               </div>
-              <div className="flex flex-col justify-center items-center gap-6 py-8">
+              <div className="flex flex-col justify-center items-center gap-6 py-2">
+                <motion.div className={'flex  flex-wrap justify-start items-start text-center w-full gap-4'}>
+                  {variations?.map((variation) => {
+                    return (
+                      <motion.div
+                        onClick={() => setDynamicId(variation._id)}
+                        className="relative basis-[46%] md:basis-[30%] min-w-[120px] cursor-pointer hover:text-mint"
+                        {...hoverOnButtonAnimation}
+                      >
+                        <LazyLoadImage
+                          src={variation.photo}
+                          className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] rounded-full object-contain object-cover  h-full mx-auto "
+                          alt=""
+                          effect="blur"
+                          afterLoad={() => {
+                            setImageLoaded(true);
+                          }}
+                          beforeLoad={() => {
+                            setImageLoaded(false);
+                          }}
+                        />
+                        {imageLoaded ? null : <Spinner className="absolute top-1/2 left-1/2" />}
+                        <p className="truncate">{variation.title}</p>
+                      </motion.div>
+                    );
+                  })}
+                </motion.div>
                 {product?.data.category == 'shoes' && (
                   <>
                     <Button
@@ -234,16 +266,6 @@ const ProductPage = () => {
                   </AccordionSection>
                 ))}
               </div>
-            </div>
-            <div className={'flex flex-row flex-wrap'}>
-              {variations?.map((variation) => {
-                return (
-                  <div onClick={() => setDynamicId(variation._id)}>
-                    <p>{variation.title}</p>
-                    <img className={'w-[150px]'} src={variation.photo} alt="" />
-                  </div>
-                );
-              })}
             </div>
           </div>
           <div>
