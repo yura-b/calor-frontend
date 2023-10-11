@@ -116,6 +116,7 @@ const ProductPage = () => {
     );
   };
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -129,6 +130,8 @@ const ProductPage = () => {
             images={product?.data.photos}
             color="gray"
             dataShoes={product?.data.category === 'shoes' ? true : false}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
           />
           {/* Product Desription */}
           <div
@@ -167,13 +170,16 @@ const ProductPage = () => {
                   {variations?.map((variation) => {
                     return (
                       <motion.div
-                        onClick={() => setDynamicId(variation._id)}
+                        onClick={() => {
+                          setDynamicId(variation._id);
+                          setCurrentIndex(0);
+                        }}
                         className="relative basis-[46%] md:basis-[30%] min-w-[120px] cursor-pointer hover:text-mint"
                         {...hoverOnButtonAnimation}
                       >
                         <LazyLoadImage
                           src={variation.photo}
-                          className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] rounded-full object-contain object-cover  h-full mx-auto "
+                          className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] rounded-full object-contain object-cover mx-auto "
                           alt=""
                           effect="blur"
                           afterLoad={() => {
