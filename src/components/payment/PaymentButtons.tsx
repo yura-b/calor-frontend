@@ -46,7 +46,7 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
         />
       </PayPalScriptProvider> */}
 
-      <CustomButton title={'Credit Cart'} handler={stripeHandler} />
+      <CustomButton title={'Credit Card'} handler={stripeHandler} />
     </>
   );
 };
