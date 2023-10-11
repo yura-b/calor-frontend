@@ -81,7 +81,7 @@ const basketSlice = createSlice({
       state.items.push(item);
     },
     removeFromBasket(state, action: PayloadAction<string>) {
-      state.items = state.items.filter((item) => item.basketItemId !== action.payload);
+      state.items = state.items.filter((item) => item._id !== action.payload);
     },
     increaseQuantity(state, action: PayloadAction<{ basketItemId: string }>) {
       const { basketItemId } = action.payload;
