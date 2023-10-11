@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 const saveCartToLocalStorage = (cartData) => {
   localStorage.setItem('basket', JSON.stringify(cartData));
@@ -11,7 +12,7 @@ const loadCartFromLocalStorage = () => {
 
 const clearCartOnLocalStorage = () => {
   localStorage.removeItem('basket');
-}
+};
 
 const initialState = {
   items: loadCartFromLocalStorage(),
@@ -22,7 +23,7 @@ const basketForNonRegisterUser = createSlice({
   initialState: initialState,
   reducers: {
     addToCartNonRegisterUser: (state, action) => {
-      const item = { ...action.payload, photo: action.payload.photos[0] };
+      const item = { ...action.payload, photo: action.payload.photos[0], basketItemId: uuidv4() };
       state.items.push(item);
       saveCartToLocalStorage(state.items);
     },
@@ -48,8 +49,8 @@ const basketForNonRegisterUser = createSlice({
     },
     clearBasketNonRegisterUser(state) {
       clearCartOnLocalStorage();
-      state.items= []
-    }
+      state.items = [];
+    },
   },
 });
 

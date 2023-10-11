@@ -4765,7 +4765,7 @@ export const shoes = [
                 img: 'part08_lining_cotton_01.png',
                 name: 'Seaweed Green',
                 hex: '#444625',
-                texture: '/assets/images/constructor/colors/yolo/lining/Y_0004s_0001_Seaweed-Green.webp',
+                texture: '/assets/images/constructor/colors/yolo/lining/Y_0002s_0000_Seaweed-Green.webp',
               },
               {
                 img: 'part08_lining_cotton_02.png',

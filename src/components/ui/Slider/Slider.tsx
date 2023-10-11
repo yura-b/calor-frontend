@@ -7,14 +7,15 @@ import Spinner from '@components/ui/Spinner';
 interface IProps {
   images: string[];
   color?: string;
+  dataShoes?: boolean;
 }
 
-const Slider: FC<IProps> = ({ images = [], color }) => {
+const Slider: FC<IProps> = ({ images = [], color, dataShoes }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
   const autoPlayInterval = 5000;
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [isEnlarged, setIsEnlarged] = useState(false); // Added state for enlarged image
+  const [isEnlarged, setIsEnlarged] = useState(false);
 
   const handleAutoPlay = () => {
     setIsAutoPlaying(true);
@@ -55,15 +56,23 @@ const Slider: FC<IProps> = ({ images = [], color }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <>
-      <motion.div className="flex justify-center items-center m-auto flex-col" {...fadeAnimation}>
-        <div className="flex justify-center items-center m-auto flex-col">
-          <div className="relative">
-            <div className="relative min-h-[300px]">
+      <motion.div className="flex justify-center items-center m-auto flex-col w-full" {...fadeAnimation}>
+        <div className="flex justify-center items-center m-auto flex-col w-full">
+          <div className={'relative w-[100%]'}>
+            <div
+              className={`relative  w-full flex justify-center ${
+                dataShoes
+                  ? 'z-[-1] min-h-[300px] lg:min-h-[400px] items-center'
+                  : 'min-h-[380px] xs:min-h-[500px] sm:min-h-[500px] lg:min-h-[450px] xl:min-h-[480px] 2xl:min-h-[500px]'
+              }`}
+            >
               <LazyLoadImage
                 key={currentIndex}
                 src={images[currentIndex]}
-                className={`object-cover ${isEnlarged ? 'cursor-pointer' : ''}`}
-                style={{ maxHeight: '500px' }}
+                className={`object-cover ${isEnlarged ? 'cursor-pointer' : ''} ${
+                  dataShoes ? '-mt-[60px] lg:-mt-[100px]' : ''
+                }`}
+                style={{ maxHeight: !dataShoes ? '500px' : '' }}
                 alt={`Slider ${currentIndex}`}
                 initial="hidden"
                 animate="visible"
@@ -108,7 +117,11 @@ const Slider: FC<IProps> = ({ images = [], color }) => {
               </div>
             </div>
           )}
-          <div className="flex justify-center items-center z-10 mt-2">
+          <div
+            className={`flex justify-center items-center z-10 mt-2 ${
+              dataShoes ? '-mt-[14%] lg:-mt-[20%] xl:-mt-[14%]' : ''
+            }`}
+          >
             {images.map((_, index) => (
               <span
                 key={index}

@@ -117,18 +117,21 @@ const CompleteYourLookPage: FC<IProps> = () => {
       details: {},
       price: completeLookItems[step]?.product?.price,
       title: completeLookItems[step]?.product?.title,
-      basketItemId: uuidv4(),
     };
   }
 
   const handleAddToCart = () => {
-    if (userId && step >= 1) {
+    if (userId && step >= 0) {
       mutation.mutate({ userId, requestData });
     } else {
       dispatch(addToCartNonRegisterUser({ ...completeLookItems[step]?.product, count: 1 }));
       dispatch(showMessage('The product has been successfully added'));
     }
-    navigate('/');
+    if (step < 1) {
+      dispatch(setStep(step + 1));
+    } else {
+      navigate('/');
+    }
   };
 
   useEffect(() => {

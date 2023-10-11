@@ -45,7 +45,7 @@ export interface IOrder {
 
   order_id: number;
 
-  invoiceUrl: string
+  invoiceUrl: string;
 
   size?: number;
 
@@ -141,8 +141,7 @@ export interface shippingDetails {
 
   receiverPhoneNumber: string;
 
-  _id: string
-
+  _id: string;
 }
 
 export interface IMeasurement {

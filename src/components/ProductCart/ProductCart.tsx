@@ -14,6 +14,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 import { v4 as uuidv4 } from 'uuid';
+import { addToCartGTMEvent } from "@/helpers/functions/gtm";
 
 const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const { userId } = useAppSelector((state) => state.user);
@@ -49,12 +50,14 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
       if (type === 'shoes') {
         return null;
       } else {
+        addToCartGTMEvent('add_to_cart', { id: product?._id, title: product?.title })
         mutation.mutate({ userId, requestData });
       }
     } else {
       if (type === 'shoes') {
         return null;
       } else {
+        addToCartGTMEvent('add_to_cart', { id: product?._id, title: product?.title })
         dispatch(addToCartNonRegisterUser({ ...product, count: 1 }));
         dispatch(showMessage('The product has been successfully added'));
       }
@@ -104,6 +107,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
       (userId && !isProductExistInBasket) ||
       type === 'shoes' ? (
         <Button
+          id="gtm-add-to-cart-product"
           className="max-w-full mt-2"
           color="transparentMint"
           to={type === 'shoes' ? `model/${product.title.toLowerCase()}/${product._id}` : null}

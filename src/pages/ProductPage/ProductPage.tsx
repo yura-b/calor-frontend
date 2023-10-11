@@ -71,7 +71,6 @@ const ProductPage = () => {
       details: {},
       price: product?.data?.price,
       title: product?.data?.title,
-      basketItemId: uuidv4(),
     };
   }
 
@@ -79,7 +78,7 @@ const ProductPage = () => {
     dispatch(addToCartNonRegisterUser({ ...product?.data, count: 1 }));
     dispatch(showMessage('The product has been successfully added'));
 
-    addToCartGTMEvent('addToCart', { id: product?.data._id, title: product?.data.title });
+    addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
   };
 
   const initialSectionsState = [
@@ -111,7 +110,6 @@ const ProductPage = () => {
       prevSections.map((section, i) => (i === index ? { ...section, isOpen: !section.isOpen } : section))
     );
   };
-
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -121,7 +119,11 @@ const ProductPage = () => {
         </div>
         <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-10 ${styles.container}`}>
           {/* Product Slider */}
-          <Slider images={product?.data.photos} color="gray" />
+          <Slider
+            images={product?.data.photos}
+            color="gray"
+            dataShoes={product?.data.category === 'shoes' ? true : false}
+          />
           {/* Product Desription */}
           <div
             className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident} w-full`}
@@ -171,7 +173,10 @@ const ProductPage = () => {
                 {userId ? (
                   <>
                     {product?.data.category !== 'shoes' && !isProductExistInBasket && (
-                      <Button color="gray" onClick={() => mutation.mutate({ userId, requestData })}>
+                      <Button id="gtm-add-to-cart-product" color="gray" onClick={() => { 
+                        addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title })
+                        mutation.mutate({ userId, requestData })
+                      }}>
                         Add To Cart
                       </Button>
                     )}

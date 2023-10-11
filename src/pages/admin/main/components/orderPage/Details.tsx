@@ -39,17 +39,18 @@ const Details: FC<IProps> = ({ details }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {
-                flattenedDetails.map((item) => {
-                  return <TableRow>
+              {flattenedDetails.map((item) => {
+                return (
+                  <TableRow>
                     <TableCell>{item.name}</TableCell>
 
                     <TableCell align={'right'}>{item.material}</TableCell>
 
                     <TableCell align={'right'}>{item.color}</TableCell>
-                  </TableRow>;
-                })
-              }</TableBody>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
           </Table>
         </TableContainer>
       </div>

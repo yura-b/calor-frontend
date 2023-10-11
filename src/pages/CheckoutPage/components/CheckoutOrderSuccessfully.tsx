@@ -7,8 +7,11 @@ import { sendOrderForNotAuthUser } from '@/api/orders.ts';
 import { useParams } from 'react-router';
 import { ShippingInfoDto } from '@/api/dto/orders.dto.ts';
 import { Product } from '@/constants/interfaces/product.ts';
-import { useDispatch } from "react-redux";
-import { clearBasketNonRegisterUser } from "@/store/reducers/BasketForNonRegisterUser";
+import { useDispatch } from 'react-redux';
+import { clearBasketNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
+import { useAppSelector } from '@/store/hooks/hooks';
+import { useQuery } from 'react-query';
+import { clearBasketAuthUser } from '@/api/basket';
 
 export interface IOrderPurchaseInfo {
   price: number;
@@ -29,11 +32,18 @@ interface OrderInfo {
 
 const CheckoutOrderSuccessfully = () => {
   const navigate = useNavigate();
-
+  const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { userId } = useAppSelector((state) => state.user);
   const [order, setOrder] = useState<OrderInfo>();
   const { id } = useParams();
   const dispatch = useDispatch();
   const [email, order_number] = atob(id || '').split(' ');
+
+  const basketProductsIds = basketProducts.map((id) => id._id);
+  const { data } = useQuery('clearBasketAuthUser', () => clearBasketAuthUser(userId, basketProductsIds), {
+    staleTime: Infinity,
+    enabled: !!userId && !!basketProducts,
+  });
 
   useEffect(() => {
     sendOrderForNotAuthUser(email, Number(order_number)).then((res) => {

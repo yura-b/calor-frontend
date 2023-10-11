@@ -13,7 +13,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { getProductById } from '@/api/products';
 import { v4 as uuidv4 } from 'uuid';
-import CustomTextArea from "@/components/ui/TextArea/CustomTextArea";
+import CustomTextArea from '@/components/ui/TextArea/CustomTextArea';
+import { addToCartGTMEvent } from "@/helpers/functions/gtm";
 interface IProps {
   selectedShoeSize: number;
 }
@@ -57,9 +58,9 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     },
     validationSchema: validationMeasurement,
     onSubmit: (values) => {
-      console.log(values)
       setIsDisabled(true);
       dispatch(setUserMeasurement({ selectedShoeSize, ...values }));
+      addToCartGTMEvent('add_to_cart', { id, title: product?.data?.title })
 
       let requestData = {};
 
@@ -70,7 +71,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           photo: constructorImage,
           measurement: { size: selectedShoeSize, ...values },
           details: selectedDetails,
-          basketItemId: uuidv4(),
+          basketItemId: uuidv4(),         
         };
       } else {
         requestData = {
@@ -82,7 +83,6 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           photos: [constructorImage],
           measurement: { size: selectedShoeSize, ...values },
           details: selectedDetails,
-          basketItemId: uuidv4(),
         };
       }
       if (userId) {
@@ -209,21 +209,23 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
         Insole Width (in)
       </CustomInput>
       <p className="mb-2">
-        If you have any questions, please, leave a comment, contact us by chat or any other available communication option.
+        If you have any questions, please, leave a comment, contact us by chat or any other available communication
+        option.
       </p>
-      <CustomTextArea 
-        className="mt-4 mb-8" 
-        placeholder="Comment" 
-        variant="soft" 
-        height={4} 
-        id={'comment'} 
-        name={'comment'} 
-        defaultValue={formik.values.comment || ''} 
+      <CustomTextArea
+        className="mt-4 mb-8"
+        placeholder="Comment"
+        variant="soft"
+        height={4}
+        id={'comment'}
+        name={'comment'}
+        defaultValue={formik.values.comment || ''}
         onChange={(e) => {
           const newValue = validatePositiveNumber(e.target.value);
           formik.setFieldValue('comment', newValue);
-        }}/>
-      <CustomButton styles={'w-full'} title={'Add to cart'} type={'submit'} disabled={isDisabled} />
+        }}
+      />
+      <CustomButton id="gtm-add-to-cart-product" styles={'w-full'} title={'Add to cart'} type={'submit'} disabled={isDisabled} />
     </form>
   );
 };

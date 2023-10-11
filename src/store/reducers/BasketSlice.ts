@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-
+import { v4 as uuidv4 } from 'uuid';
 import { getUser } from '@/api/users';
 
 interface IMeasurement {
@@ -56,6 +56,7 @@ export interface BasketProduct {
   shoes?: IShoes;
   accessory?: IAccessory;
   basketItemId: string;
+  title?: string;
 }
 
 interface CartState {
@@ -80,7 +81,7 @@ const basketSlice = createSlice({
       state.items.push(item);
     },
     removeFromBasket(state, action: PayloadAction<string>) {
-      state.items = state.items.filter((item) => item._id !== action.payload);
+      state.items = state.items.filter((item) => item.basketItemId !== action.payload);
     },
     increaseQuantity(state, action: PayloadAction<{ basketItemId: string }>) {
       const { basketItemId } = action.payload;
