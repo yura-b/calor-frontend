@@ -31,10 +31,8 @@ export interface EditItemDto {
   values: IValues;
 }
 
-
 export interface EditVariationElementDto {
-  variantId: string
+  variantId: string;
 
-  elementId: string
-
+  elementId: string;
 }

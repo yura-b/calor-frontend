@@ -13,7 +13,7 @@ import {
 } from '@/store/reducers/BasketForNonRegisterUser';
 import { updateBasketItemQuantity } from '@/api/basket';
 import { debounce } from 'lodash';
-import { removeFromCartGTMEvent } from "@/helpers/functions/gtm";
+import { removeFromCartGTMEvent } from '@/helpers/functions/gtm';
 
 const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
       dispatch(decreaseQuantityNonRegisterUser({ basketItemId: item.basketItemId }));
     }
   }, 200);
- 
+
   const handleClick = () => {
     const requestData = {
       recordId: item._id,
@@ -58,10 +58,13 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
     };
     if (userId) {
       mutation.mutate(requestData);
-      removeFromCartGTMEvent('remove_from_cart', { id: item?.accessory?._id || item?.shoes?._id, title: item?.accessory?.title || item?.shoes?.title });
+      removeFromCartGTMEvent('remove_from_cart', {
+        id: item?.accessory?._id || item?.shoes?._id,
+        title: item?.accessory?.title || item?.shoes?.title,
+      });
     } else {
       dispatch(removeFromCartNonRegisterUser(item.basketItemId));
-      removeFromCartGTMEvent('remove_from_cart', { id: item._id, title: item.title  });
+      removeFromCartGTMEvent('remove_from_cart', { id: item._id, title: item.title });
     }
   };
 

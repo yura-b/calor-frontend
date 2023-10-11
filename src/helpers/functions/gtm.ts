@@ -1,6 +1,6 @@
 type Event = {
   event: 'add_to_cart' | 'remove_from_cart';
-}
+};
 
 type Product = {
   id?: string;

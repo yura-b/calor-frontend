@@ -23,7 +23,7 @@ import { addToCartGTMEvent } from '@/helpers/functions/gtm';
 const ProductPage = () => {
   const { id } = useParams();
 
-  const [dynamicId, setDynamicId] = useState(id || '')
+  const [dynamicId, setDynamicId] = useState(id || '');
   const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
@@ -34,7 +34,8 @@ const ProductPage = () => {
     (item: BasketProduct) => item.product === dynamicId || item._id === dynamicId || item?.accessory?._id === dynamicId
   );
   const isProductExistInBasket = basketProducts.some(
-    (item: BasketProduct) => item?._id === dynamicId || item?.accessory?._id === dynamicId || item?.shoes?._id === dynamicId
+    (item: BasketProduct) =>
+      item?._id === dynamicId || item?.accessory?._id === dynamicId || item?.shoes?._id === dynamicId
   );
 
   const { data: product } = useQuery(['productById', dynamicId], () => getProductById(dynamicId), {
@@ -42,8 +43,7 @@ const ProductPage = () => {
     refetchOnWindowFocus: false,
   });
 
-
-  const variations = product?.data?.variations?.variations?.filter(variant=> variant._id !== product.data._id)
+  const variations = product?.data?.variations?.variations?.filter((variant) => variant._id !== product.data._id);
 
   const mutation = useMutation(addToBasket, {
     onSuccess: () => {
@@ -173,10 +173,14 @@ const ProductPage = () => {
                 {userId ? (
                   <>
                     {product?.data.category !== 'shoes' && !isProductExistInBasket && (
-                      <Button id="gtm-add-to-cart-product" color="gray" onClick={() => { 
-                        addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title })
-                        mutation.mutate({ userId, requestData })
-                      }}>
+                      <Button
+                        id="gtm-add-to-cart-product"
+                        color="gray"
+                        onClick={() => {
+                          addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
+                          mutation.mutate({ userId, requestData });
+                        }}
+                      >
                         Add To Cart
                       </Button>
                     )}
@@ -232,11 +236,13 @@ const ProductPage = () => {
               </div>
             </div>
             <div className={'flex flex-row flex-wrap'}>
-              {variations?.map(variation =>{
-                return <div  onClick={()=> setDynamicId(variation._id)}>
-                  <p>{variation.title}</p>
-                  <img className={'w-[150px]'} src={variation.photo} alt="" />
-                </div>
+              {variations?.map((variation) => {
+                return (
+                  <div onClick={() => setDynamicId(variation._id)}>
+                    <p>{variation.title}</p>
+                    <img className={'w-[150px]'} src={variation.photo} alt="" />
+                  </div>
+                );
               })}
             </div>
           </div>

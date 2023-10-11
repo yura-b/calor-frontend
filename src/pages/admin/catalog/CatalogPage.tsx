@@ -31,7 +31,7 @@ const CatalogPage = () => {
   return (
     <AdminLayout>
       <GridHeader title={'Catalog'} click={headerClickHandler} buttonTitle={'+ create item'} />
-      <CatalogEvents/>
+      <CatalogEvents />
       <ProductsGrid products={products} />
     </AdminLayout>
   );

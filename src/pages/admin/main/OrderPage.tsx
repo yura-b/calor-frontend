@@ -53,39 +53,39 @@ const OrderPage = () => {
 
   return (
     <AdminLayout>
-     <div className={'mb-24'}>
-       <OrderPageHeader id={id} invoiceUrl={orderData.invoiceUrl} />
-       <OrderStatusComponent status={status} id={id} />
-       <OrderInformation order={orderData} />
-       <Details details={orderData.details} />
+      <div className={'mb-24'}>
+        <OrderPageHeader id={id} invoiceUrl={orderData.invoiceUrl} />
+        <OrderStatusComponent status={status} id={id} />
+        <OrderInformation order={orderData} />
+        <Details details={orderData.details} />
 
-      <div className={'flex flex-row gap-20 justify-start mx-8 mb-8 '}>
-        <Measurement measurement={orderData.measurement} />
-        <ShippingAddress info={orderData.shippingInfo} />
-      </div>
-      <hr />
-      <div className={'pl-7'}>
-        <UserInfo
-          withDelivery={true}
-          userDataState={{
-            state: {
-              ...userData,
-              firstName,
-              secondName,
-              phoneNumber,
-              email,
-              roles: userData?.roles || [Role.USER],
-              registered: userData?.registered || false,
-            },
-          }}
-          delivery={<DeliveryInfo _id={id} />}
-        />
-      </div>
-      {orderData.status === OrderStatus.PROCESSING && orderData.shoes && (
-        <div className={'flex justify-end mr-32'}>
-          <CustomButton title={'Start Production'} handler={startProduction} />
+        <div className={'flex flex-row gap-20 justify-start mx-8 mb-8 '}>
+          <Measurement measurement={orderData.measurement} />
+          <ShippingAddress info={orderData.shippingInfo} />
         </div>
-      )}
+        <hr />
+        <div className={'pl-7'}>
+          <UserInfo
+            withDelivery={true}
+            userDataState={{
+              state: {
+                ...userData,
+                firstName,
+                secondName,
+                phoneNumber,
+                email,
+                roles: userData?.roles || [Role.USER],
+                registered: userData?.registered || false,
+              },
+            }}
+            delivery={<DeliveryInfo _id={id} />}
+          />
+        </div>
+        {orderData.status === OrderStatus.PROCESSING && orderData.shoes && (
+          <div className={'flex justify-end mr-32'}>
+            <CustomButton title={'Start Production'} handler={startProduction} />
+          </div>
+        )}
       </div>
     </AdminLayout>
   );

@@ -12,7 +12,7 @@ const style = {
   bgcolor: 'background.paper',
   border: '1px solid #000',
   boxShadow: 24,
-  p: 4
+  p: 4,
 };
 
 interface IProps {
@@ -24,11 +24,10 @@ interface IProps {
 }
 
 const ModalWindow: FC<IProps> = ({ open, closeModal, items, handler, currentId }) => {
-
   const clickHandler = (productId: string) => {
-    if (!currentId) return
+    if (!currentId) return;
     handler({ elementId: productId, variantId: currentId });
-    closeModal(false)
+    closeModal(false);
   };
 
   return (
@@ -41,8 +40,8 @@ const ModalWindow: FC<IProps> = ({ open, closeModal, items, handler, currentId }
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
-          timeout: 500
-        }
+          timeout: 500,
+        },
       }}
     >
       <div>
@@ -50,13 +49,18 @@ const ModalWindow: FC<IProps> = ({ open, closeModal, items, handler, currentId }
           <Typography id="transition-modal-title" variant="h6" component="h2">
             Add to variation
           </Typography>
-          {items.length === 0? <p>List is empty</p> :
-            items?.map(item => {
-              return <div key={item._id} onClick={() => clickHandler(item._id)}>
-                <img src={item.photo} alt="" />
-                <p>{item.title}</p>
-              </div>;
-          })}
+          {items.length === 0 ? (
+            <p>List is empty</p>
+          ) : (
+            items?.map((item) => {
+              return (
+                <div key={item._id} onClick={() => clickHandler(item._id)}>
+                  <img src={item.photo} alt="" />
+                  <p>{item.title}</p>
+                </div>
+              );
+            })
+          )}
         </Box>
       </div>
     </Modal>
