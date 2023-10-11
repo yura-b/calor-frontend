@@ -8,11 +8,13 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: '60vw',
   bgcolor: 'background.paper',
   border: '1px solid #000',
   boxShadow: 24,
   p: 4,
+  maxHeight: '80vh',
+  overflowY: 'auto',
 };
 
 interface IProps {
@@ -49,18 +51,24 @@ const ModalWindow: FC<IProps> = ({ open, closeModal, items, handler, currentId }
           <Typography id="transition-modal-title" variant="h6" component="h2">
             Add to variation
           </Typography>
-          {items.length === 0 ? (
-            <p>List is empty</p>
-          ) : (
-            items?.map((item) => {
-              return (
-                <div key={item._id} onClick={() => clickHandler(item._id)}>
-                  <img src={item.photo} alt="" />
-                  <p>{item.title}</p>
-                </div>
-              );
-            })
-          )}
+          <div className="flex flex-wrap gap-8 w-full py-4">
+            {items.length === 0 ? (
+              <p>List is empty</p>
+            ) : (
+              items?.map((item) => {
+                return (
+                  <div
+                    key={item._id}
+                    onClick={() => clickHandler(item._id)}
+                    className="min-w-[200px] w-[200px] basis-[30%]"
+                  >
+                    <img src={item.photo} alt="" className="object-contain object-cover w-[200px] h-[200px] mx-auto" />
+                    <p className="text-center">{item.title}</p>
+                  </div>
+                );
+              })
+            )}
+          </div>
         </Box>
       </div>
     </Modal>
