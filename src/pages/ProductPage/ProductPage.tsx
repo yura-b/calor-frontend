@@ -67,7 +67,6 @@ const ProductPage = () => {
       details: {},
       price: product?.data?.price,
       title: product?.data?.title,
-      basketItemId: uuidv4(),
     };
   }
 

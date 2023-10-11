@@ -212,12 +212,12 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
         )}
         <div className={'flex'}>
           <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
-          <span>{currentYear}</span>
+          <span>{currentYear} Calor</span>
         </div>
       </div>
       <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-10 hidden lg:block lg:text-sm'}>
         <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
-        <span>{currentYear}</span>
+        <span>{currentYear} Calor</span>
       </div>
       {/* <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-4 hidden lg:block lg:text-[12px]'}>
         Designed & developed by{' '}

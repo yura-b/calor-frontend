@@ -71,7 +71,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           photo: constructorImage,
           measurement: { size: selectedShoeSize, ...values },
           details: selectedDetails,
-          basketItemId: uuidv4(),
+          basketItemId: uuidv4(),         
         };
       } else {
         requestData = {
@@ -83,7 +83,6 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           photos: [constructorImage],
           measurement: { size: selectedShoeSize, ...values },
           details: selectedDetails,
-          basketItemId: uuidv4(),
         };
       }
       if (userId) {

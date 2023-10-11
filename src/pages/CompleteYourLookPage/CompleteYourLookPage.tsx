@@ -117,7 +117,6 @@ const CompleteYourLookPage: FC<IProps> = () => {
       details: {},
       price: completeLookItems[step]?.product?.price,
       title: completeLookItems[step]?.product?.title,
-      basketItemId: uuidv4(),
     };
   }
 
