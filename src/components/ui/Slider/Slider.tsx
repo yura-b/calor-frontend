@@ -4,18 +4,28 @@ import { fadeAnimation } from '@styles/Animations';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
+
 interface IProps {
   images: string[];
   color?: string;
   dataShoes?: boolean;
+  currentIndex?: number;
+  setCurrentIndex?: (index: number) => void;
 }
 
-const Slider: FC<IProps> = ({ images = [], color, dataShoes }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const Slider: FC<IProps> = ({
+  images = [],
+  color,
+  dataShoes,
+  currentIndex: propCurrentIndex,
+  setCurrentIndex: propSetCurrentIndex,
+}) => {
   const [prevIndex, setPrevIndex] = useState(0);
   const autoPlayInterval = 5000;
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isEnlarged, setIsEnlarged] = useState(false);
+  const currentIndex = propCurrentIndex || 0;
+  const setCurrentIndex = propSetCurrentIndex || (() => {});
 
   const handleAutoPlay = () => {
     setIsAutoPlaying(true);
@@ -32,8 +42,9 @@ const Slider: FC<IProps> = ({ images = [], color, dataShoes }) => {
   useEffect(() => {
     const autoPlay = () => {
       if (isAutoPlaying) {
+        const nextIndex = currentIndex === images?.length - 1 ? 0 : currentIndex + 1;
         setPrevIndex(currentIndex);
-        setCurrentIndex((prevIndex) => (prevIndex === images?.length - 1 ? 0 : prevIndex + 1));
+        setCurrentIndex(nextIndex);
       }
     };
     const autoPlayTimer = setInterval(autoPlay, autoPlayInterval);
@@ -118,19 +129,21 @@ const Slider: FC<IProps> = ({ images = [], color, dataShoes }) => {
             </div>
           )}
           <div
-            className={`flex justify-center items-center z-10 mt-2 ${
+            className={`flex justify-center items-center z-10 mt-2 h-[20px] ${
               dataShoes ? '-mt-[14%] lg:-mt-[20%] xl:-mt-[14%]' : ''
-            }`}
+            } `}
           >
-            {images.map((_, index) => (
-              <span
-                key={index}
-                className={`inline-block w-4 h-4 rounded-full ${
-                  currentIndex === index ? `bg-${color}` : 'bg-transparent'
-                } border-2 border-${color} mx-1 cursor-pointer`}
-                onClick={() => handleIndicatorClick(index)}
-              />
-            ))}
+            <div className={`${images.length > 1 ? 'block' : 'hidden'}`}>
+              {images.map((_, index) => (
+                <span
+                  key={index}
+                  className={`inline-block w-4 h-4 rounded-full ${
+                    currentIndex === index ? `bg-${color}` : 'bg-transparent'
+                  } border-2 border-${color} mx-1 cursor-pointer`}
+                  onClick={() => handleIndicatorClick(index)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </motion.div>

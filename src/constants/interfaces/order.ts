@@ -47,6 +47,8 @@ export interface IOrder {
 
   invoiceUrl: string;
 
+  checkListUrl: string
+
   size?: number;
 
   trackingNumber?: string;

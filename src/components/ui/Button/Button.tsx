@@ -14,7 +14,17 @@ interface Props {
   id?: string;
 }
 
-const Button: React.FC<Props> = ({ disabled, color, children, className, onClick, type, to, margin = 'my2', ...props }) => {
+const Button: React.FC<Props> = ({
+  disabled,
+  color,
+  children,
+  className,
+  onClick,
+  type,
+  to,
+  margin = 'my2',
+  ...props
+}) => {
   const navigate = useNavigate();
   const handleClick = () => {
     if (to) {

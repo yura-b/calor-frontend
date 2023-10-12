@@ -30,3 +30,9 @@ export interface EditItemDto {
 
   values: IValues;
 }
+
+export interface EditVariationElementDto {
+  variantId: string;
+
+  elementId: string;
+}

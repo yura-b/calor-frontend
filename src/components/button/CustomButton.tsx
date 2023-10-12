@@ -11,7 +11,15 @@ interface IProps {
   id?: string;
 }
 
-const CustomButton: React.FC<IProps> = ({ handler, bgColor = '#4e4e4d', styles, title, type, disabled = false, ...props}) => {
+const CustomButton: React.FC<IProps> = ({
+  handler,
+  bgColor = '#4e4e4d',
+  styles,
+  title,
+  type,
+  disabled = false,
+  ...props
+}) => {
   const theme = createTheme({
     palette: {
       primary: {
