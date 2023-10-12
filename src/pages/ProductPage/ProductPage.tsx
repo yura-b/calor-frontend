@@ -25,6 +25,7 @@ const ProductPage = () => {
   const { id } = useParams();
   const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const [selectedSize, setSelectedSize] = useState(0);
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
@@ -57,6 +58,7 @@ const ProductPage = () => {
       measurement: {},
       details: {},
       basketItemId: uuidv4(),
+      size: selectedSize,
     };
   } else {
     requestData = {
@@ -67,6 +69,7 @@ const ProductPage = () => {
       details: {},
       price: product?.data?.price,
       title: product?.data?.title,
+      size: selectedSize,
     };
   }
 
@@ -76,7 +79,6 @@ const ProductPage = () => {
 
     addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
   };
-
   const initialSectionsState = [
     {
       title: 'Product details',
@@ -106,6 +108,11 @@ const ProductPage = () => {
       prevSections.map((section, i) => (i === index ? { ...section, isOpen: !section.isOpen } : section))
     );
   };
+
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
+
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -143,7 +150,9 @@ const ProductPage = () => {
                         <div className="flex gap-6 flex-wrap">
                           {product?.data.size?.map((size) => (
                             <div className="basis-[26%] lg:basis-[25%]">
-                              <Button color="transparentGray">{size}</Button>
+                              <Button color="transparentGray" onClick={() => handleSizeClick(size)} data-size={size}>
+                                {size}
+                              </Button>
                             </div>
                           ))}
                         </div>
@@ -169,10 +178,14 @@ const ProductPage = () => {
                 {userId ? (
                   <>
                     {product?.data.category !== 'shoes' && !isProductExistInBasket && (
-                      <Button id="gtm-add-to-cart-product" color="gray" onClick={() => { 
-                        addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title })
-                        mutation.mutate({ userId, requestData })
-                      }}>
+                      <Button
+                        id="gtm-add-to-cart-product"
+                        color="gray"
+                        onClick={() => {
+                          addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
+                          mutation.mutate({ userId, requestData });
+                        }}
+                      >
                         Add To Cart
                       </Button>
                     )}

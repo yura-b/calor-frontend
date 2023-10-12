@@ -57,6 +57,7 @@ export interface BasketProduct {
   accessory?: IAccessory;
   basketItemId: string;
   title?: string;
+  size?: number[];
 }
 
 interface CartState {
