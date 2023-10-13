@@ -1,25 +1,28 @@
 import homeCalorMade from '@assets/images/homeCalorMade.svg';
+import allInOnePlace from '@assets/images/allInOnePlace.svg';
 import homeCalorQuality from '@assets/images/homeCalorQuality.svg';
 import homeCalorDesign from '@assets/images/homeCalorDesign.svg';
-import accesories from '@assets/images/accesories.svg';
-import care from '@assets/images/care.svg';
+import accesories from '@assets/images/accesories.png';
+import care from '@assets/images/care.png';
 import homeCalorSpeed from '@assets/images/homeCalorSpeed.svg';
 import homeCalorHandMade from '@assets/images/homeCalorHandMade.svg';
 import homeCalorGuarantees from '@assets/images/homeCalorGuarantees.svg';
 import homeCalorShipping from '@assets/images/homeCalorShipping.svg';
+import { paths } from '@routes/paths';
+import { MainMenuEnum } from '@/constants/enums/pages.enum';
 
 export const processArr = [
   {
     title: 'DESIGN',
-    content: 'Make a unique design for your shoes with the help of our online designer.',
+    content: 'Create a unique design for your shoes using our online 3D - constructor.',
   },
   {
     title: 'MANUFACTURE',
-    content: 'We produce shoes according to your design and foot sizes in 7-10 business days.',
+    content: 'We produce shoes according to your design and foot measurements within 7-10 business days.',
   },
   {
     title: 'DELIVERY',
-    content: 'We pack and send your Calors to the nearest post office in your area around the globe',
+    content: 'We pack and send your calors to the nearest post office in your area worldwide.',
   },
 ];
 
@@ -45,15 +48,20 @@ export const calorByYouItems = [
   {
     img: homeCalorSpeed,
   },
+  {
+    img: allInOnePlace,
+  },
 ];
 
 export const lookModels = [
   {
-    title: 'Accessories',
     img: accesories,
+    title: MainMenuEnum.ACCESSORIES,
+    path: paths.accessories,
   },
   {
-    title: 'Care Products',
     img: care,
+    title: MainMenuEnum.SHOECAREPRODUCT,
+    path: paths.shoe_care_product,
   },
 ];

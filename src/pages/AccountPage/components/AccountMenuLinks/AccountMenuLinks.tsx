@@ -4,11 +4,13 @@ import { paths } from '@routes/paths.ts';
 import CustomSignOut from '@components/logout/SignOut.tsx';
 import styles from '@styles/Styles.module.scss';
 import Orders from '@assets/images/account/orders.svg';
-import Design from '@assets/images/account/design.svg';
+// import Design from '@assets/images/account/design.svg';
 import Preview from '@assets/images/account/preview.svg';
 import Details from '@assets/images/account/details.svg';
 import Address from '@assets/images/account/address.svg';
 import Password from '@assets/images/account/password.svg';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
+
 interface Props {
   firstName: string;
   secondName: string;
@@ -16,15 +18,21 @@ interface Props {
 }
 const AccountMenuLinks: React.FC<Props> = ({ firstName, secondName, account }): React.ReactElement => {
   const location = useLocation();
+  const { googleAccount } = useAppSelector((state) => state.user);
 
   const menuItems = [
     { path: paths.accountDetails, label: 'Account Details', img: Details },
     { path: paths.myOrders, label: 'My Orders', img: Orders },
-    { path: paths.designList, label: 'Design List', img: Design },
+    // TODO
+    // { path: paths.designList, label: 'Design List', img: Design },
     { path: paths.shippingAddress, label: 'Shipping Address', img: Address },
-    { path: paths.changePassword, label: 'Change Password', img: Password },
-    { path: paths.reviews, label: 'Reviews', img: Preview },
   ];
+
+  if (!googleAccount) {
+    menuItems.push({ path: paths.changePassword, label: 'Change Password', img: Password });
+  }
+
+  menuItems.push({ path: paths.reviews, label: 'Reviews', img: Preview });
 
   return (
     <div className="h-auto py-2">

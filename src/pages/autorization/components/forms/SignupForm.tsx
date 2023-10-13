@@ -22,7 +22,7 @@ const SignupForm = () => {
   });
 
   return (
-    <div className={'flex flex-col p-5 w-full items-center '}>
+    <div className={'flex flex-col p-5 w-full items-center max-w-2xl'}>
       <p className={'mb-8'}>or</p>
       <form onSubmit={formik.handleSubmit} className={'w-full'}>
         <CustomInput

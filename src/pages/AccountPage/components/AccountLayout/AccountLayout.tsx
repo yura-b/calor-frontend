@@ -9,7 +9,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 
-const AccountLayout = ({ children }: { children: React.ReactNode }) => {
+const AccountLayout = ({ children, bgColor = 'mintExtraLight' }: { children: React.ReactNode; bgColor?: string }) => {
   const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
   const isMobile = useMediaQuery('(max-width: 1023px)');
@@ -19,7 +19,7 @@ const AccountLayout = ({ children }: { children: React.ReactNode }) => {
       <MainLayout>
         <div
           className={`${isMobile ? 'px-0 py-0 max-w-full' : styles.container} ${
-            isRegisteredUser && isMobile ? 'bg-mintExtraLight' : ''
+            isRegisteredUser && isMobile ? `bg-${bgColor}` : ''
           } `}
         >
           <div className="relative hidden lg:block">

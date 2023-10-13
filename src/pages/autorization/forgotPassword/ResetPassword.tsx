@@ -14,7 +14,6 @@ import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import AlreadyRegistered from '@pages/autorization/signup/otherInfo/components/AlreadyRegistered.tsx';
 import AuthorizationHeader from '@pages/autorization/components/header/AuthorizationHeader.tsx';
-import { X } from '@phosphor-icons/react';
 
 const ResetPassword = () => {
   const [firstPasswordInputValue, setfirstPasswordInputValue] = useState('');
@@ -73,7 +72,7 @@ const ResetPassword = () => {
   return (
     <div>
       <AuthorizationHeader />
-      <div className={'flex flex-col p-5 mt-10'}>
+      <div className={'flex flex-col p-5 mt-10 md:max-w-2xl relative mx-auto'}>
         <h3 className={'font-bold'}>New Password</h3>
         <div className={'flex flex-col'}>
           <PasswordIdentifier

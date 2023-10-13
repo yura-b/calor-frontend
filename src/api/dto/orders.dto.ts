@@ -1,4 +1,4 @@
-import { OrderStatus } from '@/constants/interfaces/order.ts';
+import { IMeasurement, OrderStatus } from '@/constants/interfaces/order.ts';
 
 export interface changeOrderStatusInterface {
   _id: string;
@@ -24,19 +24,17 @@ export interface Purchases {
   details: {
     [name: string]: detail[];
   };
+  measurement: IMeasurement;
   count: number;
 }
 
 export interface detail {
+  name: string;
   material: string;
   color: string;
 }
 
 export interface ShippingInfoDto {
-  receiverFirstName: string;
-
-  receiverSecondName: string;
-
   streetAddress: string;
 
   ASB: string;
@@ -54,4 +52,22 @@ export interface ShippingInfoDto {
   user_id?: string;
 
   receiverPhoneNumber: string;
+}
+
+export interface deliveryInfo {
+  order_id: string;
+
+  trackingNumber: string;
+
+  courier: string;
+
+  approxDeliveryDate: string;
+}
+
+export interface refundDto {
+  order_id: string;
+
+  orders_id?: string[];
+
+  custom_price?: number;
 }

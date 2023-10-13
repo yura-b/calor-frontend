@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
-import shoeModel1 from '@assets/cartImages/shoeModel1.svg';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
@@ -8,16 +7,16 @@ import CustomInput from '@/components/input/CustomInput';
 import { useFormik } from 'formik';
 import { PostReviewDto } from '@/api/dto/review/postReview.dto';
 import CustomButton from '@/components/button/CustomButton';
-import { createReview, editReview } from '@/api/reviews';
-import Link from '@mui/material/Link';
+import { createReview } from '@/api/reviews';
 import CustomUploadPhoto from '@/pages/AccountPage/components/Reviews/CustomUploadPhoto';
 import ReviewHeader from './ReviewHeader';
 import { useAppSelector } from '@/store/hooks/hooks';
 import { useMutation } from 'react-query';
-import { uploadEventPhoto } from '@/api/manager/pages';
+import { uploadPhoto } from '@/api/do';
 import { validationSchemaForCreateReview } from '@/helpers/validation/formValidation';
 import { getProductById } from '@/api/products';
 import { ProductsDto } from '@/api/dto/products.dto';
+import conditions from '../../../public/Terms and Conditions_CALOR.pdf';
 
 interface Props {
   title: string;
@@ -78,7 +77,7 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
 
   const handleSelectFile = (selectedFile) => {
     if (selectedFile) {
-      uploadEventPhoto(selectedFile).then((res) => {
+      uploadPhoto(selectedFile, 'reviews').then((res) => {
         formik.setFieldValue('photo', res.data.url);
       });
     }
@@ -93,12 +92,12 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
             <div className="p-4">
               <div className="lg:flex lg:justify-between lg:w-full">
                 <div className="lg:w-1/2 lg:p-4">
-                  <div className="flex">
+                  <div>
+                    <h4 className={`${styles.subtitle} text-gray mb-2 `}>{product?.title}</h4>
                     <img
-                      src={shoeModel1}
+                      src={product?.photos[0]}
                       className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:transform "
                     />
-                    <h4 className={`${styles.subtitle} text-gray ml-5 mt-2 `}>{product?.title}</h4>
                   </div>
                   <h2 className={'font-bold'}>Rate This Product*</h2>
 
@@ -118,10 +117,10 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
                   )}
                   <h2 className={'font-bold'}>Share Your Impressions*</h2>
                   <span className={`${styles.body2} block mb-1 text-xs`}>
-                    Tell others more about the product, its quality, and the comfort of use.
+                    Share more information with others about the product, including its quality and comfort of use.
                   </span>
                   <TextareaAutosize
-                    className="w-full"
+                    className="w-full h-[60px] pb-8 pt-2 px-2 border-2 border-[#CBD2E0] resize-none "
                     minRows={3}
                     id={'experience'}
                     name={'experience'}
@@ -171,7 +170,9 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
                   </CustomInput>
                   <div className="mb-4 text-xs">
                     By submitting a review you agree to our&nbsp;
-                    <Link color="inherit">Terms and Condition</Link>
+                    <a href={conditions} target="_blank" className="underline hover:font-bold">
+                      Terms and Conditions
+                    </a>
                   </div>
                   <div className="mb-4">
                     <CustomUploadPhoto handler={handleSelectFile} />

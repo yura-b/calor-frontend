@@ -21,7 +21,7 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
   };
 
   return (
-    <div className={`text-left m-auto min-h-max ${styles.container} ${className} py-0`}>
+    <div className={`text-left m-auto min-h-max ${styles.container} ${className} py-0 flex flex-col`}>
       <AnimatePresence initial={false}>
         <motion.p
           key={showFullText ? 'expandedText' : 'initialText'}
@@ -29,13 +29,26 @@ const ReadMore: React.FC<Props> = ({ initialText, expandedText, className }) => 
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
         >
-          {showFullText ? expandedText : initialText}
+          <span dangerouslySetInnerHTML={{ __html: showFullText ? expandedText : initialText + '...' }} />
+          <span className="hidden lg:inline-block">
+            {initialText != '' && (
+              <motion.a
+                onClick={handleToggleText}
+                className={`text-gray text-base underline cursor-pointer text-center p-3 pl-[3px] max-w-max  mx-auto font-bold ${
+                  showFullText && 'focus:text-mint'
+                } md:text-lg `}
+                {...hoverOnButtonAnimation}
+              >
+                {showFullText ? 'Read Less' : 'Read More'}
+              </motion.a>
+            )}
+          </span>
         </motion.p>
       </AnimatePresence>
       {initialText != '' && (
         <motion.a
           onClick={handleToggleText}
-          className={`text-gray text-base underline cursor-pointer block text-center p-3 max-w-max  mx-auto hover:font-bold ${
+          className={`text-gray text-base underline cursor-pointer text-center p-3 max-w-max  mx-auto font-bold lg:hidden ${
             showFullText && 'focus:text-mint'
           } md:text-lg `}
           {...hoverOnButtonAnimation}

@@ -4,8 +4,10 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { useQuery } from 'react-query';
 import { getOrders } from '@/api/orders.ts';
 import { useCleanUserDataAndNavigateToLogin } from '@/hooks/CleanUserData.ts';
-import OrdersTable from '@pages/admin/main/components/OrdersGrid.tsx';
+import OrdersTable from '@pages/admin/main/components/orderGrid/OrdersGrid.tsx';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
+import { IOrder, OrderStatus } from '@/constants/interfaces/order.ts';
+import OrderHistoryGrid from '@pages/admin/main/components/orderGrid/OrderHistoryGrid.tsx';
 
 enum chosenOrders {
   current = 'Current Orders',
@@ -21,7 +23,7 @@ const OrderGridPage = () => {
   const { access_token } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
-  const { data, isLoading, error } = useQuery('getOrders', () => getOrders(access_token));
+  const { data, isLoading, error } = useQuery('getOrders', () => getOrders(access_token, filter));
 
   const cleanAndRedirect = useCleanUserDataAndNavigateToLogin();
   const defaultStyles = ' font-bold px-6 cursor-pointer font-bold border-b-2 border-black';
@@ -36,6 +38,15 @@ const OrderGridPage = () => {
     return <></>;
   }
   dispatch(loadingFinished());
+
+  let filteredOrder = data?.data as IOrder[];
+
+  filteredOrder = filteredOrder?.filter((order) => {
+    if (chosenSection === chosenOrders.history)
+      return order.status === OrderStatus.Shipped || order.status === OrderStatus.Refunded;
+
+    return order.status !== OrderStatus.Shipped && order.status !== OrderStatus.Refunded;
+  });
 
   return (
     <div className={'pl-5'}>
@@ -56,7 +67,13 @@ const OrderGridPage = () => {
           );
         })}
       </div>
-      <OrdersTable orderList={data?.data} />
+      {filteredOrder && filteredOrder.length > 0 && chosenSection === chosenOrders.current && (
+        <OrdersTable orderList={filteredOrder} />
+      )}
+      {filteredOrder && filteredOrder.length > 0 && chosenSection === chosenOrders.history && (
+        <OrderHistoryGrid orders={filteredOrder} />
+      )}
+      {filteredOrder && filteredOrder.length === 0 && <div>No orders found.</div>}
     </div>
   );
 };

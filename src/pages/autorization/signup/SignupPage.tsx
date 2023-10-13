@@ -5,6 +5,7 @@ import { useAppSelector } from '@/store/hooks/hooks.ts';
 import React from 'react';
 import OtherInfo from '@pages/autorization/signup/otherInfo/OtherInfo.tsx';
 import { Steps } from '@/store/reducers/RegistrationReducer.ts';
+import CustomizedSnackbars from '@components/admin/CustomizedSnackbars.tsx';
 
 const SignupPage = () => {
   const { step } = useAppSelector((state) => state.registration);
@@ -20,6 +21,7 @@ const SignupPage = () => {
           <SignupForm />
         </div>
       )}
+      <CustomizedSnackbars />
     </>
   );
 };

@@ -10,7 +10,7 @@ const GoogleSignIn = () => {
   };
 
   return (
-    <div className={'flex flex-col flex-1 items-center gap-2 mt-2 w-full p-5'}>
+    <div className={'flex flex-col w-full items-center gap-2 max-w-2xl m-5'}>
       <div>or</div>
       <GoogleButton>
         <p>

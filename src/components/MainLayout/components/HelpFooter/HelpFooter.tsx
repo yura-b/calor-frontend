@@ -5,21 +5,25 @@ import styles from '@/styles/Styles.module.scss';
 import atIcon from '@/assets/images/atIcon.svg';
 import grayTelIcon from '@assets/images/grayTelIcon.svg';
 import mintTelcon from '@assets/images/mintTelcon.svg';
-import { motion, AnimatePresence } from 'framer-motion';
 import { collapseAnimation } from '@styles/Animations';
 import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { paths } from '@/routes/paths';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
   title: string;
   color?: 'gray' | 'white';
+  isOpen: boolean;
+  toggleOpen: () => void;
 }
 
-const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
-  const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
+const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): React.ReactElement => {
+  const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection(), {
+    staleTime: Infinity,
+  });
   const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
   const phone = filteredPagesFooter?.find((section) => section?.section === 'Phone Number').value;
   const email = filteredPagesFooter?.find((section) => section?.section === 'Email').value;
@@ -27,9 +31,12 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
   const commaIndex = address?.indexOf(',');
   const address1 = address?.substring(0, commaIndex);
   const address2 = address?.substring(commaIndex + 1).trim();
+
+  const [currentYear] = useState(new Date().getFullYear());
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
   const mobileBreakpoint = 1024;
+  const isMobile = window.innerWidth < 1280;
 
   const toggleAccordion = () => {
     if (window.innerWidth < mobileBreakpoint) {
@@ -53,12 +60,14 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
       window.removeEventListener('resize', updateHeaderHeight);
     };
   }, []);
+
   const scrollToElement = (el) => {
     setTimeout(() => {
       const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-      const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight : headerHeight + 110;
+      const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight - 20 : headerHeight + 10;
+      const scrollToY = yCoordinate - yOffset;
       window.scrollTo({
-        top: yCoordinate - yOffset,
+        top: scrollToY,
         behavior: 'smooth',
       });
     }, 200);
@@ -70,26 +79,32 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
       behavior: 'smooth',
     });
   };
+
+  const handleLinkClick = (el) => {
+    scrollToElement(el);
+    if (isMobile && isOpen) {
+      toggleOpen();
+    }
+  };
+
   return (
     <>
       {color !== 'white' ? (
         <>
-          <Link
-            to={paths.helpPage}
+          <div
             className={`${styles.subtitle} ${
               paths.helpPage === window.location.pathname ? 'text-mint' : `text-${color} lg:text-custom-turquoise`
             }
-          } lg:text-sm lg:font-extrabold`}
-            onClick={scrollToTop}
+           lg:text-sm lg:font-extrabold`}
           >
             {title}
-          </Link>
+          </div>
           {helpLinks.map((link, i) => (
             <Link
               key={i}
               to={link.path}
               className={'flex text-base hover:text-mint focus:outline-none py-2'}
-              scroll={scrollToElement}
+              scroll={handleLinkClick}
             >
               {link.title}
             </Link>
@@ -124,6 +139,7 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
                     key={i}
                     to={link.path}
                     className={'flex text-base hover:text-custom-turquoise focus:outline-none py-2'}
+                    scroll={handleLinkClick}
                   >
                     {link.title}
                   </Link>
@@ -137,6 +153,7 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
                 key={i}
                 to={link.path}
                 className={'flex text-xs font-semibold hover:text-custom-turquoise focus:outline-none py-1'}
+                scroll={handleLinkClick}
               >
                 {link.title}
               </Link>
@@ -189,19 +206,25 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
                 className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`}
                 alt=""
               />
-              <span> {phone}</span>
+              <span dangerouslySetInnerHTML={{ __html: phone || '' }} />
             </div>
           </a>
         )}
         <div className={'flex'}>
           <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
-          <span>2023 Calor</span>
+          <span>{currentYear} Calor</span>
         </div>
       </div>
       <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-10 hidden lg:block lg:text-sm'}>
         <img src={atIcon} className={`mr-2 filter ${color === 'white' ? 'brightness-0 invert' : ''}`} alt="" />
-        <span>2023 Calor</span>
+        <span>{currentYear} Calor</span>
       </div>
+      {/* <div className={'lg:flex lg:absolute lg:right-0 lg:bottom-4 hidden lg:block lg:text-[12px]'}>
+        Designed & developed by{' '}
+        <Link to="https://www.bart-solutions.com/" className="underline ml-1 font-bold" target="_blank">
+          bART Solutions
+        </Link>
+      </div> */}
       {color === 'white' && (
         <>
           {isLoading ? (
@@ -214,15 +237,15 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
                 <a href={`tel:+${phone}`} className="cursor-pointer hidden lg:block">
                   <div className={'mb-1   lg:text-custom-turquoise lg:flex'}>
                     <img src={mintTelcon} className={'mr-2  '} alt="" />
-                    <span className="lg:text-sm lg:font-extrabold">{phone}</span>
+                    <span className="lg:text-sm lg:font-extrabold" dangerouslySetInnerHTML={{ __html: phone || '' }} />
                   </div>
                 </a>
                 <div className="font-semibold leading-6">
-                  <p>{address1},</p>
-                  <p>{address2}</p>
+                  <p dangerouslySetInnerHTML={{ __html: address1 || '' }} />
+                  <p dangerouslySetInnerHTML={{ __html: address2 || '' }} />
                 </div>
                 <p className="font-semibold leading-6">
-                  <a href={`mailto:${email}`}>{email}</a>
+                  <a href={`mailto:${email}`} dangerouslySetInnerHTML={{ __html: email || '' }} />
                 </p>
               </div>
             </div>
@@ -245,6 +268,12 @@ const HelpFooter: React.FC<Props> = ({ title, color }): React.ReactElement => {
               </Link>
             ))}
           </div>
+          {/* <div className={'lg:hidden text-[12px] text-center my-2'}>
+            Designed & developed by{' '}
+            <Link to="https://www.bart-solutions.com/" className="underline ml-1 font-bold" target="_blank">
+              bART Solutions
+            </Link>
+          </div> */}
         </>
       )}
     </>

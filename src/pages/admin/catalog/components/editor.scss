@@ -1,0 +1,18 @@
+.editor-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+.rdw-option-wrapper {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: background-color 0.2s;
+  }
+
+.rdw-option-wrapper:hover {
+   background-color: #e2e8f0;
+}

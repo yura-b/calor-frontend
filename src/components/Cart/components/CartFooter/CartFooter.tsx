@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@components/ui/Button';
 import styles from '@styles/Styles.module.scss';
 import { useFormik } from 'formik';
@@ -6,13 +6,28 @@ import CustomInput from '@/components/input/CustomInput';
 import { validationSchemaForPromoCode } from '@/helpers/validation/formValidation.ts';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
+import { useNavigate } from 'react-router';
+import { BasketProduct } from '@/store/reducers/BasketSlice';
 
-interface Props {
+interface IProps {
   title: string;
-  data?: object[];
+  data?: BasketProduct[];
 }
 
-const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
+const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
+  const navigate = useNavigate();
+
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const productsTotal = data?.reduce((acc, item) => {
+      const price = item?.shoes?.price || item?.accessory?.price || item?.price || 0;
+      const count = item?.shoes?.count || item?.accessory?.count || item?.count || 0;
+      return acc + price * count;
+    }, 0);
+
+    setTotal(productsTotal?.toFixed(2));
+  }, [data]);
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(false);
   const [promoCodeApplied, setPromoCodeApplied] = useState(false);
 
@@ -22,7 +37,7 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
   };
 
   const handleClick = () => {
-    console.log('Checkout Button clicked!');
+    navigate('/checkout');
   };
 
   const handlePromoCodeApplied = () => {
@@ -44,18 +59,14 @@ const CartFooter: React.FC<Props> = ({ title }): React.ReactElement => {
   });
 
   return (
-    <div className="px-6 py-2.5 text-gray lg:pt-0">
+    <div className="lg:px-6 py-2.5 text-gray lg:pt-0 ">
       <h1 className={`${styles.header1} my-4 lg:mt-0 lg:text-[1.5rem]`}>{title}</h1>
       <div className={`${styles.body2} lg:text-[]`}>
-        <div className="flex justify-between mt-4 items-center">
-          <p>Discount</p>
-          <p>-$ XXX</p>
-        </div>
         <div className={`${styles.body2} flex justify-between mt-4 items-center font-bold text-mint`}>
           <p>Subtotal</p>
-          <p>$ XXX</p>
+          <p>$ {total}</p>
         </div>
-        {!promoCodeApplied && !showPromoCodeForm && (
+        {promoCodeApplied && !showPromoCodeForm && (
           <Button color="transparentMint" onClick={addPromoCode} className="mt-6 max-w-[100%] block m-auto">
             Add Promo Code +
           </Button>

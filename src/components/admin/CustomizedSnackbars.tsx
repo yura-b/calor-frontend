@@ -12,6 +12,8 @@ const CustomizedSnackbars = () => {
   const { message, status } = useAppSelector((state) => state.status);
   const dispatch = useAppDispatch();
 
+  const severity = status === EStatus.ERROR ? 'error' : 'success';
+
   useEffect(() => {
     if (status === EStatus.OK && message === null) return;
 
@@ -24,7 +26,9 @@ const CustomizedSnackbars = () => {
 
   return (
     <div className={'fixed right-10 bottom-10'}>
-      <Alert severity="success">{message}</Alert>
+      <Alert severity="error" color={severity}>
+        {message}
+      </Alert>
     </div>
   );
 };

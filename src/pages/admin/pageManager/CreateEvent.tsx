@@ -5,7 +5,7 @@ import PhotoInput from '@components/admin/PhotoInput.tsx';
 import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHeader.tsx';
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
-import { uploadEventPhoto } from '@/api/manager/pages.ts';
+import { uploadPhoto } from '@/api/do';
 import { createEvent } from '@/api/manager/event.ts';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { showMessage } from '@/store/reducers/StatusReducer.ts';
@@ -27,7 +27,7 @@ const CreateEvent = () => {
 
   const handleAddNewEvent = () => {
     if (!(title && announcement && access_token)) return;
-    uploadEventPhoto(photo).then((res) => {
+    uploadPhoto(photo, 'events').then((res) => {
       createEvent(
         {
           photo: res.data.url,

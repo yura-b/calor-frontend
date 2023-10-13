@@ -8,18 +8,28 @@ export interface IOrder {
   status: OrderStatus;
 
   details: {
-    [name: string]: detail[];
+    [name: string]: detail;
   };
 
-  product: product;
+  measurement: IMeasurement;
 
-  address: shippingDetails;
+  shoes: shoes | null;
+
+  accessory: accessory | null;
+
+  shippingInfo: shippingDetails;
 
   totalPrice: number;
 
   email: string;
 
-  username: string;
+  firstName: string;
+
+  tax: number;
+
+  subtotal: number;
+
+  secondName: string;
 
   phoneNumber: string;
 
@@ -30,13 +40,33 @@ export interface IOrder {
   productionDays: number;
 
   payment: PaymentEnum;
+
+  shippingPrice: number;
+
+  order_id: number;
+
+  invoiceUrl: string;
+
+  checkListUrl: string
+
+  size?: number;
+
+  trackingNumber?: string;
+
+  courier?: string;
+
+  approxDeliveryDate?: string;
+
+  photo: string;
 }
 
 export enum OrderStatus {
+  NotPaid = 'Not paid yet',
   PROCESSING = 'Processing',
   PRODUCTION = 'Production',
   QualityControl = 'Quality  Control',
   Shipped = 'Shipped',
+  Refunded = 'Refunded',
 }
 
 export const OrderStatusArray: OrderStatus[] = [
@@ -70,6 +100,34 @@ export interface product {
   description: string;
 }
 
+interface shoes {
+  description: string;
+  details: string;
+  insole: string;
+  photo: string;
+  liningMaterial: string;
+  price: number;
+  sizes: number[];
+  sole: string;
+  stripeID: string;
+  title: string;
+  upperMaterial: string;
+  _id: string;
+}
+
+interface accessory {
+  category: string;
+  description: string;
+  title: string;
+  photo: string;
+  price: number;
+  rating: number;
+  size: number[];
+  stripeID: string;
+  subcategory: string;
+  _id: string;
+}
+
 export interface shippingDetails {
   country: string;
 
@@ -82,6 +140,10 @@ export interface shippingDetails {
   state: string;
 
   ZIP: string;
+
+  receiverPhoneNumber: string;
+
+  _id: string;
 }
 
 export interface IMeasurement {
@@ -98,4 +160,6 @@ export interface IMeasurement {
   insoleLength: number;
 
   insoleWidth: number;
+
+  comment: string;
 }

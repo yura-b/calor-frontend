@@ -4,9 +4,12 @@ import StarRating from '@components/ui/StarRating';
 import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { approveReview, deleteReview } from '@/api/reviews.ts';
-import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { HttpStatusCode } from 'axios';
 import IsRegistered from '@components/admin/IsRegistered.tsx';
+import { blockUser } from '@/api/users.ts';
+import { showMessage } from '@/store/reducers/StatusReducer.ts';
+import { Role } from '@/constants/enums/role.enum.ts';
 
 interface IProps extends Review {
   possibilityToApproveAndBlock: boolean;
@@ -22,14 +25,15 @@ interface ReviewsState {
 
 const ReviewComponent: React.FC<IProps> = ({
   _id,
-  isUserRegistered,
   photo,
   product_id,
   user_id,
   status,
   date,
-  name,
+  firstName,
+  secondName,
   experience,
+  isUserRegistered,
   rating,
   email,
   possibilityToApproveAndBlock,
@@ -38,6 +42,8 @@ const ReviewComponent: React.FC<IProps> = ({
   onlyForReview = false,
 }) => {
   const { access_token } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
   if (!access_token) return <></>;
 
   const removeReview = () => {
@@ -55,10 +61,29 @@ const ReviewComponent: React.FC<IProps> = ({
         publishedReviews?.setState((prevState) => {
           return [
             ...prevState,
-            { _id, date, name, experience, rating, email, status, photo, product_id, isUserRegistered, user_id },
+            {
+              _id,
+              date,
+              isUserRegistered,
+              firstName,
+              secondName,
+              experience,
+              rating,
+              email,
+              status,
+              photo,
+              product_id,
+              user_id,
+            },
           ];
         });
       }
+    });
+  };
+  const role = isUserRegistered ? Role.USER : Role.GUEST;
+  const blockUserHandler = (user_id: string) => {
+    blockUser(access_token, user_id).then(() => {
+      dispatch(showMessage('user was successfully blocked'));
     });
   };
 
@@ -73,9 +98,9 @@ const ReviewComponent: React.FC<IProps> = ({
   return (
     <div className={'flex flex-col gap-5 w-full mb-6'}>
       <div className={'flex flex-row gap-5 items-baseline'}>
-        <p className={'underline font-bold'}>{name}</p>
+        <p className={'underline font-bold'}>{firstName + ' ' + secondName}</p>
         <p>
-          <IsRegistered isUserRegistered={isUserRegistered} />
+          <IsRegistered role={role} />
         </p>
       </div>
       <p>{email}</p>
@@ -84,9 +109,13 @@ const ReviewComponent: React.FC<IProps> = ({
         <p>{DateFormatter(date)}</p>
       </div>
       <p>{experience}</p>
+
+      <div>{photo && <img className={'w-[150px]'} src={photo} alt="" />}</div>
       {!onlyForReview && (
         <div className={'relative mx-auto flex flex-row gap-8'}>
-          {possibilityToApproveAndBlock && <CustomButton title={'Block User'} bgColor={'red'} />}
+          {possibilityToApproveAndBlock && (
+            <CustomButton title={'Block User'} bgColor={'red'} handler={() => blockUserHandler(user_id)} />
+          )}
           <CustomButton title={'Delete Review'} handler={deleteHandler} bgColor={'red'} />
           {possibilityToApproveAndBlock && (
             <CustomButton title={'Public Review'} handler={publicHandler} bgColor={'black'} />

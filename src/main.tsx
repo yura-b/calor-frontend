@@ -7,12 +7,22 @@ import { Provider } from 'react-redux';
 import { store } from '@/store/store.ts';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import TagManager from 'react-gtm-module';
+
+const GTM_ID = import.meta.env.VITE_GTM_ID;
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+const tagManagerArgs = {
+  gtmId: GTM_ID,
+};
+
+TagManager.initialize(tagManagerArgs);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={new QueryClient()}>
-        <GoogleOAuthProvider clientId="352361031995-3huasr1q21c4l3mktm2l64pvddkbac7j.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
           <App />
         </GoogleOAuthProvider>
       </QueryClientProvider>

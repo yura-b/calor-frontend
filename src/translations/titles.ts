@@ -6,8 +6,11 @@ export const titles = {
   accessories: 'Accessories Page',
   shoeCareProductPage: 'Shoe Care Product Page',
   customerExperiencePage: 'Customer Experience Page',
-  cookiesPage: 'Cookies Page',
   about: 'About Page',
   accountPage: 'Account',
   helpPage: 'Help',
+  product: 'Product',
+  notFound: 'Not Found',
+  appointment: 'Appointment',
+  completeYourLook: 'Complete Your Look',
 };

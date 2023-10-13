@@ -10,10 +10,10 @@ interface IProps {
 }
 
 const OrderInformation: React.FC<IProps> = ({ order }) => {
-  const { payment, product, totalPrice } = order;
-  console.log(order);
+  const { payment, shoes, accessory, totalPrice, photo } = order;
+
   return (
-    <>
+    <div className={'mb-8'}>
       <div className={'pl-5 mb-8  gap-5 flex flex-col justify-start'}>
         <div className={'flex items-center'}>
           <ClipboardText size={32} weight="fill" />
@@ -23,6 +23,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
           <Table sx={{ minWidth: 650, paddingRight: '30px' }} aria-label="simple table">
             <TableHead>
               <TableRow sx={{ background: '#DDE1E6', fontWeight: 'bold' }}>
+                <TableCell sx={{ width: '15%', fontWeight: 'bold' }}>Item`s Photo</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }}>Item`s Name</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }} align="right">
                   Price
@@ -33,7 +34,11 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableCell>{product.title}</TableCell>
+              <TableCell>
+                <img className="h-[50px] object-contain" src={photo} />
+              </TableCell>
+
+              <TableCell>{shoes?.title || accessory?.title}</TableCell>
 
               <TableCell align={'right'}>{totalPrice}$</TableCell>
 
@@ -43,7 +48,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
         </TableContainer>
       </div>
       <hr />
-    </>
+    </div>
   );
 };
 

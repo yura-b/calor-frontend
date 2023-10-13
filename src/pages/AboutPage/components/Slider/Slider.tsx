@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import slider1 from '@assets/aboutImages/slider1.svg';
-import calorByYou from '@assets/images/calorByYou.svg';
-import calorByYouBig from '@assets/images/calorByYouBig.png';
+import calorByYouBig1 from '@assets/aboutImages/calorByYouBig1.png';
+import calorByYou1 from '@assets/aboutImages/calorByYou1.png';
+import calorByYouBig2 from '@assets/aboutImages/calorByYouBig2.png';
+import calorByYou2 from '@assets/aboutImages/calorByYou2.png';
+import calorByYouBig3 from '@assets/aboutImages/calorByYouBig3.png';
+import calorByYou3 from '@assets/aboutImages/calorByYou3.png';
 import homeCircle from '@assets/images/homeCircle.svg';
 import { fadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
-import calorSliderLogo from '@assets/aboutImages/calorSliderLogo.svg';
 
 const Slider = () => {
   const breakpoint640 = 640;
@@ -15,25 +17,25 @@ const Slider = () => {
   if (window.innerWidth > breakpoint640) {
     sliderItems = [
       {
-        img: calorByYouBig,
+        img: calorByYouBig1,
       },
       {
-        img: calorByYouBig,
+        img: calorByYouBig2,
       },
       {
-        img: calorByYouBig,
+        img: calorByYouBig3,
       },
     ];
   } else {
     sliderItems = [
       {
-        img: slider1,
+        img: calorByYou1,
       },
       {
-        img: calorByYou,
+        img: calorByYou2,
       },
       {
-        img: slider1,
+        img: calorByYou3,
       },
     ];
   }
@@ -93,7 +95,6 @@ const Slider = () => {
             onMouseEnter={stopAutoPlay}
             onMouseLeave={handleAutoPlay}
           />
-          <div className="absolute top-0 left-0 w-full h-full bg-custom-red opacity-80" />
           <div className="absolute bottom-2 left-0 right-0 text-center">
             {sliderItems.map((_, index) => (
               <span
@@ -105,12 +106,11 @@ const Slider = () => {
               />
             ))}
           </div>
-          <img src={calorSliderLogo} className="absolute inset-0 mx-auto mt-24 w-[80vw] lg:w-[20vw]" />
         </div>
       </motion.div>
       <img
         src={homeCircle}
-        className={`hidden lg:block absolute z-10 right-[4%]  lg:h-64 lg:top-52 lg:right-[10%] xl:top-56 xl:h-60 ${
+        className={`hidden lg:block absolute z-10 right-[4%]  lg:h-64 lg:top-40 lg:right-[10%] xl:top-56 xl:h-60 ${
           isSmallerThan1600px ? '2xl:h-80 2xl:top-36' : '2xl:h-80 2xl:top-32'
         }`}
         style={{ maxWidth: '100%' }}

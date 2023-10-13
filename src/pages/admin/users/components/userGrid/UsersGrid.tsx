@@ -15,6 +15,7 @@ import { useCleanUserDataAndNavigateToLogin } from '@/hooks/CleanUserData.ts';
 import { useNavigate } from 'react-router';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
+import IsRegistered from '@components/admin/IsRegistered.tsx';
 
 interface Column {
   id: 'name' | 'Registration' | 'Phone  Number' | 'Registration Date' | 'email';
@@ -26,7 +27,7 @@ interface Column {
 
 const columns: readonly Column[] = [
   { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'Registration', label: 'Registration', minWidth: 100 },
+  { id: 'Registration', label: 'Registration', minWidth: 60 },
   {
     id: 'Registration Date',
     label: 'Registration Date',
@@ -122,7 +123,7 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
                     <p>{user.firstName + ' ' + user.secondName}</p>
                   </TableCell>
                   <TableCell>
-                    <p>{user.email_verified + ''}</p>
+                    <IsRegistered role={user.roles} />
                   </TableCell>
                   <TableCell align={'center'}>
                     <p>{DateFormatter(user.registrationDate)}</p>

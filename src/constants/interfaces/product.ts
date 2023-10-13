@@ -1,11 +1,14 @@
 export interface Product {
-  name: string;
+  _id: string;
+  title: string;
   price: number;
   photos: string[];
-  category: category;
+  category: category | string;
   subcategory: string;
+  productDetails: string;
   description: string;
   size: number[];
+  variations: string[];
 }
 export interface category {
   _id: string;
@@ -13,4 +16,10 @@ export interface category {
   categoryTitle: string;
 
   subCategory: string[];
+}
+
+export interface IBaseProduct {
+  _id: string;
+  photo: string;
+  title: string;
 }

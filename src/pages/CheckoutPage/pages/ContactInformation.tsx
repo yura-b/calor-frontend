@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { useFormik } from 'formik';
 import { validationSchemaForContactInfo } from '@/helpers/validation/formValidation.ts';
@@ -6,12 +6,16 @@ import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { useNavigate } from 'react-router';
 import { CheckoutSteps, setCheckoutStep, setContactInfo } from '@/store/reducers/CheckoutReducer.ts';
+import { useGetUserIfRefresh } from '@/hooks/getUserIfRefresh.ts';
 
 const ContactInformation = () => {
   const { access_token, firstName, secondName, phoneNumber, email } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
-  const contactInfo = useAppSelector((state) => state.checkout);
+  const getUser = useGetUserIfRefresh();
+  useEffect(() => {
+    getUser();
+  }, []);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -27,20 +31,28 @@ const ContactInformation = () => {
       dispatch(setCheckoutStep(CheckoutSteps.SECOND));
     },
   });
-  console.log(formik.values.email);
+
+  useEffect(() => {
+    formik.setValues({
+      email: email,
+      firstName: firstName,
+      secondName: secondName,
+      phoneNumber: phoneNumber,
+    });
+  }, [email, firstName, secondName, phoneNumber]);
 
   return (
-    <div className={'flex flex-col p-5 w-full items-center '}>
+    <div className={'flex flex-col py-5 w-full items-center '}>
       <div className={'flex flex-col flex-start w-full'}>
         <h2 className={'text-xl my-4 font-bold'}>Contact Information</h2>
-        {access_token && (
-          <div className="flex flex-row justify-between">
+        {!access_token && (
+          <div className="flex flex-row justify-between mb-5">
             Sign In and checkout faster
             <span
               onClick={() => {
                 navigate('/login');
               }}
-              className={'underline'}
+              className={'underline cursor-pointer text-mint'}
             >
               Sign In
             </span>
@@ -82,7 +94,7 @@ const ContactInformation = () => {
           errorMessage={formik.errors.secondName}
           border={'1px solid #D9D9D9'}
         >
-          Second Name
+          Last Name
         </CustomInput>
 
         <CustomInput

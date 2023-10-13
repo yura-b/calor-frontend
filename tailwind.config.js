@@ -6,6 +6,9 @@ module.exports = {
     ],
     theme: {
         extend: {
+            screens: {
+                xs: '480px'
+            },
             width: {
                 wrapper: '90vw'
             },
@@ -21,6 +24,7 @@ module.exports = {
                 'grayExtraLight': '#F6F6F6',
                 'lightGray': '#F7F7F7',
                 'lighterGray': '#D9D9D9',
+                'thinGray': '#8F8F8F',
                 'white': '#FFFFFF',
                 'mint': '#1EC1AA',
                 'mintLight': '#1EE6C9',

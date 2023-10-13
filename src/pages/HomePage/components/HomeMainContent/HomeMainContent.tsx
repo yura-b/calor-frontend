@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@styles/Styles.module.scss';
-import homeMainImg from '@assets/images/homeMainImg.png';
+import homeMainImg from '@assets/images/homeMainImg.webp';
 import homeSemiCircle from '@assets/images/homeSemiCircle.svg';
 import homeCircle from '@assets/images/homeCircle.svg';
 import Button from '@components/ui/Button';
@@ -16,12 +16,15 @@ interface Props {
   visions?: string;
 }
 const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
-  const isSmallerThan1600px = useMediaQuery('(max-width: 1600px)');
+  const isSmallerThan1800px = useMediaQuery('(max-width: 1800px)');
   const headingClass = `text-[2.4rem] leading-tight font-black sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl  ${
-    isSmallerThan1600px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
+    isSmallerThan1800px ? '2xl:text-6xl 2xl:leading-tight' : '2xl:text-7xl 2xl:leading-tight'
   }`;
+  const visionsContent = {
+    __html: visions || '',
+  };
   return (
-    <div className="w-full bg-custom-red">
+    <div className="w-full bg-custom-red  lg:pt-5">
       <div
         className={`flex w-full justify-around flex-wrap items-center relative z-10  mx-auto ${styles.container} py-0`}
       >
@@ -40,7 +43,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
         </div>
         <div className="flex basis-1/3 justify-end  grow 2xl:basis-auto">
           <motion.p className={`${headingClass} text-custom-turquoise  text-left  hidden lg:block`} {...fadeAnimation}>
-            IT’S <br /> SIMPLY AS <br />
+            IT’S <br /> SIMPLE AS <br />
             <div className="flex justify-between items-center max-w-[16rem]">
               1 <HomeArrowRightIcon color="#B8E4D8" /> 2 <HomeArrowRightIcon color="#B8E4D8" /> 3
             </div>
@@ -50,7 +53,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
           className={`${headingClass} text-custom-turquoise text-center basis-1/3 grow  lg:hidden absolute -bottom-3 sm:-bottom-1.5`}
           {...fadeAnimation}
         >
-          IT’S SIMPLY AS
+          IT’S SIMPLE AS
         </motion.p>
       </div>
       <div className="w-full bg-custom-turquoise text-center">
@@ -85,41 +88,43 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
         <motion.div
           className={`${
             styles.container
-          } flex flex-col lg:gap-4 justify-between lg:items-center ${'lg:border-t lg:border-t-2 lg:border-gray'} lg:flex-row  text-left`}
+          } flex lg:gap-4 justify-between lg:items-center ${'lg:border-t lg:border-t-2 lg:border-gray'} flex-wrap  text-left`}
           {...fadeAnimation}
         >
-          <h1 className={`${styles.header1}  mb-4 text-white lg:text-custom-red lg:basis-1/5 `}>
+          <h1 className={`${styles.header1}  mb-4 text-white lg:text-custom-red sm:basis-[25%] xl:basis-[20%] `}>
             CALOR
             <span className="hidden lg:inline">
               <br />
             </span>{' '}
             BY YOU!
           </h1>
-          <div className="lg:basis-3/5">
-            <p className={`${styles.subtitle} mb-2`}>{visions}</p>
-            <p className={styles.body1}>
+          <div className="sm:basis-[70%] xl:basis-[50%]">
+            <div dangerouslySetInnerHTML={visionsContent} className={`${styles.subtitle} mb-2`} />
+            {/* Waiting videos */}
+            {/* <p className={styles.body1}>
               Learn how to do it in our {''}
               <span className="hidden lg:inline-block">
                 <VideoGuideLink color="custom-red" />
               </span>
               <span className="lg:hidden">Video Guide</span>
-            </p>
+            </p> */}
           </div>
-          <div className="lg:basis-auto mt-4 lg:mt-0">
-            <Button color="red" to={paths.design_shoe} className="mb-4">
+          <div className="basis-[100%] xl:basis-[25%] mt-4 lg:mt-0">
+            <Button color="red" to={paths.design_shoe} className="mb-4 max-w-[360px] m-auto block">
               Design Your Shoe
             </Button>
-            <Button color="mintExtraLight" to={paths.design_bag}>
+            {/* <Button color="mintExtraLight" to={paths.design_bag}>
               Design Your Bag
-            </Button>
+            </Button> */}
           </div>
-          <VideoGuideLink className="lg:hidden" />
+          {/* Waiting videos */}
+          {/* <VideoGuideLink className="lg:hidden" /> */}
         </motion.div>
-        <img src={homeSemiCircle} className="absolute z-1 top-40 left-0 h-56 sm:hidden" />
+        <img src={homeSemiCircle} className="absolute z-1 top-36 left-0 h-56 sm:hidden" />
         <img
           src={homeCircle}
-          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-44 md:h-96 md:top-36  lg:h-64 lg:top-40 lg:left-[10%] xl:top-36 xl:h-80 ${
-            isSmallerThan1600px ? '2xl:h-96 2xl:top-32' : '2xl:h-1/2 2xl:top-44'
+          className={`hidden sm:block absolute z-1 left-[4%] sm:h-80  sm:top-32 md:h-96 md:top-28  lg:h-64 lg:top-36 lg:left-[10%] xl:top-36 xl:h-80 ${
+            isSmallerThan1800px ? '2xl:h-96 2xl:top-32' : '2xl:h-[430px] 2xl:top-44'
           }`}
           style={{ maxWidth: '100%' }}
         />

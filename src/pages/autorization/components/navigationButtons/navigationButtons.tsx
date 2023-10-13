@@ -10,7 +10,7 @@ const NavigationButtons = ({ isLogin = false }) => {
     navigate('/signup');
   };
   return (
-    <div className={'flex flex-row justify-end mb-12'}>
+    <div className={'flex flex-row justify-end mb-12 w-full'}>
       <p className={`underline ${isLogin && 'font-bold'}`} onClick={signInHandler}>
         Sign In
       </p>

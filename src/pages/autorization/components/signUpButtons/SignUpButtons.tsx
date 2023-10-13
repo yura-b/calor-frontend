@@ -4,14 +4,16 @@ import GoogleButton from '@components/googleButton/GoogleButton.tsx';
 
 const SignUpButtons = () => {
   return (
-    <div className={'flex flex-col p-5 bg-custom-turquoise w-full'}>
-      <NavigationButtons isLogin={false} />
-      <div className={'flex flex-col items-center mb-12'}>
-        <GoogleButton>
-          <p>
-            Sign Up with <span className={'font-bold'}>Google</span>
-          </p>
-        </GoogleButton>
+    <div className={'flex flex-col p-5 bg-custom-turquoise w-full items-center'}>
+      <div className={'flex flex-col max-w-2xl w-full'}>
+        <NavigationButtons isLogin={false} />
+        <div className={'flex flex-col mb-12 w-full'}>
+          <GoogleButton>
+            <p>
+              Sign Up with <span className={'font-bold'}>Google</span>
+            </p>
+          </GoogleButton>
+        </div>
       </div>
     </div>
   );

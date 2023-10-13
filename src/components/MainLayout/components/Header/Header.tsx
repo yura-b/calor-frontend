@@ -3,7 +3,7 @@ import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
 import logoText from '@assets/images/logoText.svg';
-import logoImg from '@assets/images/logoImg.svg';
+import logoImg from '@assets/images/logo.svg';
 import burgerIcon from '@assets/images/burgerIcon.svg';
 import SearchInput from '@/components/ui/SearchInput';
 import { Modal } from '@mui/material';
@@ -15,26 +15,40 @@ import NavigationLinks from './components/NavigationLinks';
 import { Link, useLocation } from 'react-router-dom';
 import { paths } from '@/routes/paths';
 import styles from '@/styles/Styles.module.scss';
-import { useAppSelector } from '@/store/hooks/hooks.ts';
+import { useAppSelector, useAppDispatch } from '@/store/hooks/hooks.ts';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { useNavigate } from 'react-router';
 import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
+import { cleanUserData } from '@/store/reducers/UserReducer.ts';
+import { fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
+import CustomSnackBar from '@/components/ui/SnackBar/CustomSnackBar';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
 }): React.ReactElement => {
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const isHome = location.pathname === paths.home;
   const navigate = useNavigate();
   const signInHandler = () => {
+    dispatch(cleanUserData());
     navigate('/login');
   };
   const signUpHandler = () => {
     navigate('/signup');
   };
 
+  const { roles, access_token, firstName, userId, secondName } = useAppSelector((state) => state.user);
+  const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
+
+  useEffect(() => {
+    dispatch(fetchUserProductsInBasket({ access_token, userId }));
+  }, [access_token, userId]);
+  const { items: basketProducts } = useAppSelector((state) => state.basket);
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isOpen, toggleOpen] = useCycle(false, true);
+
   const openCart = () => {
     setIsCartOpen(true);
   };
@@ -63,32 +77,30 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
 
   const [isAccountVisible, setIsAccountVisible] = useState(false);
 
-  const { roles, access_token, firstName, secondName } = useAppSelector((state) => state.user);
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
   return (
     <div
-      className="w-full max-h-[140px] bg-custom-red pt-2 pb-1  xl:fixed xl:z-20 xl:top-0 relative xl:h-[108px] "
+      className="w-full max-h-[140px] bg-custom-red pt-2 pb-1 xl:fixed xl:z-50 xl:top-0 relative xl:h-[108px]"
       id="header"
     >
+      <CustomSnackBar />
       <div className={`${styles.container} max-w-[100vw]  xl:max-w-[70vw] pt-2 pb-0`}>
         <div
           className={
-            'flex flex-col w-full  fixed  z-20 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
+            'flex flex-col w-full fixed z-50 top-0 bg-custom-red py-2 md:px-20 lg:px-[7.5rem] sm:px-[3rem] px-6 xl:px-0 xl:p-1 xl:static'
           }
         >
           <div className="flex justify-between">
             <Link to={paths.home} className="flex items-center justify-center xl:flex flex-initial ">
-              <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10" />
+              <img src={logoImg} alt="" className="w-7 h-7 mr-2 sm:w-7 sm:h-7 xl:w-10 xl:h-10 brightness-0 invert" />
               <img src={logoText} alt="" className="hidden mb-2 sm:block sm:w-[100px] xl:w-[130px]" />
             </Link>
             <div className="hidden xl:block xl:flex xl:flex-row xl:gap-2 xl:items-center">
-              <div className="mr-4">
-                <SearchInput />
-              </div>
               <div className="hidden xl:block">
-                <Busket count={2} onClick={openCart} />
+                <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
               </div>
+
               <div>
                 {isRegisteredUser && (
                   <>
@@ -135,8 +147,9 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
             </div>
             <div className="flex xl:hidden items-baseline">
               <div className="xl:hidden mt-1">
-                <Busket count={2} onClick={openCart} />
+                <Busket count={userId ? basketProducts.length : basketNonRegisterUser.length} onClick={openCart} />
               </div>
+
               <img
                 src={burgerIcon}
                 alt="Menu"
@@ -147,12 +160,13 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
             <MobileMenu isOpen={isOpen} toggleOpen={toggleOpen} openCart={openCart} />
           </div>
           <div className={'hidden  xl:block '}>
-            <MainMenu />
+            <MainMenu isMobileMenuOpen={isOpen} toggleOpen={toggleOpen} />
           </div>
         </div>
 
         <div className="mt-9 mb-3  sm:w-[320px] sm:mx-auto xl:hidden px-6">
-          <SearchInput />
+          {isHome && <div className="min-h-[24px] sm:min-h-[20px]"></div>}
+          {/* <SearchInput /> */}
         </div>
       </div>
       {!isHome && <NavigationLinks color="white" className={'lg:hidden'} />}
@@ -172,4 +186,4 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   );
 };
 
-export default Header;
+export default React.memo(Header);

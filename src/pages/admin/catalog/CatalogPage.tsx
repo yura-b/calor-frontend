@@ -7,6 +7,7 @@ import { useAppDispatch } from '@/store/hooks/hooks.ts';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import ProductsGrid from '@pages/admin/catalog/components/ProductsGrid.tsx';
 import { Product } from '@/constants/interfaces/product.ts';
+import CatalogEvents from '@pages/admin/catalog/components/CatalogEvents.tsx';
 
 const CatalogPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,17 +20,18 @@ const CatalogPage = () => {
   useEffect(() => {
     dispatch(loading());
     getProducts().then((res) => {
-      setProducts(res.data);
+      setProducts([...res.data.shoes, ...res.data.accessories]);
     });
 
     dispatch(loadingFinished());
   }, []);
 
-  if (products.length === 0) return;
+  // if (products.length === 0) return;
 
   return (
     <AdminLayout>
       <GridHeader title={'Catalog'} click={headerClickHandler} buttonTitle={'+ create item'} />
+      <CatalogEvents />
       <ProductsGrid products={products} />
     </AdminLayout>
   );

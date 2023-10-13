@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { authorization } from '@/api/config.ts';
-import { changeOrderStatusInterface, CreateOrderDto } from '@/api/dto/orders.dto.ts';
+import { changeOrderStatusInterface, CreateOrderDto, deliveryInfo, refundDto } from '@/api/dto/orders.dto.ts';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const getOrders = (credential) => {
-  return axios.get(`${BASE_URL}/order/all`, authorization(credential));
+export const getOrders = (credential: string | null, emailFilter: string) => {
+  if (!credential) return;
+  return axios.get(`${BASE_URL}/order/all/?email=${emailFilter}`, authorization(credential));
 };
 
 export const getOrder = (credential: string, id: string) => {
@@ -24,4 +25,22 @@ export const changeOrderStatus = (credentials: string, data: changeOrderStatusIn
 
 export const createOrder = (order: CreateOrderDto) => {
   return axios.post(`${BASE_URL}/order`, order);
+};
+export const patchOrderDeliveryInfo = (info: deliveryInfo, credentials: string) => {
+  return axios.patch(`${BASE_URL}/order`, info, authorization(credentials));
+};
+
+export const getRelativeOrders = (access_token: string, order_id: string) => {
+  return axios.get(`${BASE_URL}/order/relative/${order_id}`, authorization(access_token));
+};
+
+export const refundMoney = (access_token: string, refund: refundDto, payment: 'paypal' | 'stripe') => {
+  return axios.post(`${BASE_URL}/${payment}/refund`, refund, authorization(access_token));
+};
+export const getOrdersForUser = (access_token: string) => {
+  return axios.get(`${BASE_URL}/order`, authorization(access_token));
+};
+
+export const sendOrderForNotAuthUser = (email: string, order_id: number) => {
+  return axios.put(`${BASE_URL}/order`, { email, order_id });
 };

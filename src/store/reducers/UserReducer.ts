@@ -1,7 +1,7 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import { Role } from '@/constants/enums/role.enum.ts';
 import { Basket } from '@/constants/interfaces/basket.ts';
-import { ShippingInfoDto } from '@/api/dto/orders.dto';
+import { shippingDetails } from '@/constants/interfaces/order.ts';
 
 export interface IUser {
   access_token: string | null;
@@ -12,7 +12,8 @@ export interface IUser {
   userId: string;
   roles: Role[] | null;
   basket: Basket[] | null;
-  shippingInfo: string | null;
+  shippingInfo: string | null | shippingDetails;
+  googleAccount: boolean;
 }
 
 export const initialState: IUser = {
@@ -25,6 +26,7 @@ export const initialState: IUser = {
   roles: localStorage.getItem('roles')?.split(',') as Role[],
   basket: null,
   shippingInfo: null,
+  googleAccount: false,
 };
 
 export interface ISetUserData extends IUser {
@@ -43,10 +45,10 @@ export const UserSlice = createSlice({
         firstName,
         secondName,
         roles,
-        rememberMe = true,
         basket,
         email,
         shippingInfo,
+        googleAccount,
       } = action.payload;
       if (access_token) state.access_token = access_token;
 
@@ -58,9 +60,10 @@ export const UserSlice = createSlice({
       state.basket = basket;
       state.email = email;
       state.shippingInfo = shippingInfo;
+      state.googleAccount = googleAccount;
 
-      if (access_token && rememberMe) localStorage.setItem('access_token', access_token);
-      if (access_token && rememberMe && roles) localStorage.setItem('roles', roles?.join(','));
+      if (access_token) localStorage.setItem('access_token', access_token);
+      if (access_token && roles) localStorage.setItem('roles', roles?.join(','));
     },
     cleanUserData: (state: Draft<IUser>) => {
       localStorage.removeItem('access_token');
@@ -73,7 +76,8 @@ export const UserSlice = createSlice({
       state.firstName = initialState.firstName;
       state.secondName = initialState.secondName;
       state.basket = initialState.basket;
-      (state.email = initialState.email), (state.shippingInfo = initialState.shippingInfo);
+      state.email = initialState.email;
+      state.shippingInfo = initialState.shippingInfo;
     },
   },
 });

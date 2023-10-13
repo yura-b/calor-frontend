@@ -1,66 +1,132 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
-import purchasedGoodsImg from '@assets/cartImages/purchasedGoodsImg.svg';
 import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
-interface Props {
-  title: string;
-  size: number;
-  price: number;
-  countGoogs: number;
-}
+import { useMutation, useQueryClient } from 'react-query';
+import { deleteFromBasket } from '@/api/basket';
+import { useDispatch } from 'react-redux';
+import { BasketProduct, decreaseQuantity, increaseQuantity, removeFromBasket } from '@/store/reducers/BasketSlice';
+import { useAppSelector } from '@/store/hooks/hooks';
+import {
+  removeFromCartNonRegisterUser,
+  decreaseQuantityNonRegisterUser,
+  increaseQuantityNonRegisterUser,
+} from '@/store/reducers/BasketForNonRegisterUser';
+import { updateBasketItemQuantity } from '@/api/basket';
+import { debounce } from 'lodash';
+import { removeFromCartGTMEvent } from '@/helpers/functions/gtm';
 
-const PurchasedGoods: React.FC<Props> = ({ title, size, price, countGoogs }): React.ReactElement => {
-  const [count, setCount] = useState(countGoogs);
-  const incrementCount = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
-  const decrementCount = () => {
-    if (count > 0) {
-      setCount((prevCount) => prevCount - 1);
+const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement => {
+  const dispatch = useDispatch();
+  const { userId } = useAppSelector((state) => state.user);
+  const [count] = useState(item.count);
+
+  const mutationUpdateItemQuantity = useMutation(updateBasketItemQuantity);
+
+  const mutation = useMutation(deleteFromBasket, {
+    onSuccess: (data) => {
+      dispatch(removeFromBasket(item._id));
+    },
+  });
+
+  useEffect(() => {
+    //Temporary fix to avoid unnecessary call after component render. Call only after item.count changed
+    if (count !== item.count) {
+      mutationUpdateItemQuantity.mutate({ userId, basketItemId: item.basketItemId, count: item.count });
+    }
+  }, [item.count]);
+
+  const incrementCount = debounce(() => {
+    if (userId) {
+      dispatch(increaseQuantity({ basketItemId: item.basketItemId }));
+    } else {
+      dispatch(increaseQuantityNonRegisterUser({ basketItemId: item.basketItemId }));
+    }
+  }, 200);
+
+  const decrementCount = debounce(() => {
+    if (userId) {
+      dispatch(decreaseQuantity({ basketItemId: item.basketItemId }));
+    } else {
+      dispatch(decreaseQuantityNonRegisterUser({ basketItemId: item.basketItemId }));
+    }
+  }, 200);
+
+  const handleClick = () => {
+    const requestData = {
+      recordId: item._id,
+      userId: userId,
+    };
+    if (userId) {
+      mutation.mutate(requestData);
+      removeFromCartGTMEvent('remove_from_cart', {
+        id: item?.accessory?._id || item?.shoes?._id,
+        title: item?.accessory?.title || item?.shoes?.title,
+      });
+    } else {
+      dispatch(removeFromCartNonRegisterUser(item.basketItemId));
+      removeFromCartGTMEvent('remove_from_cart', { id: item._id, title: item.title });
     }
   };
-  const handleClick = () => {
-    console.log('Button clicked!');
-  };
+
   return (
-    <div className="mb-4">
-      <div className="flex  text-gray ">
-        <div className="basis-[30%] lg:basis-[50%] lg:relative">
+    <div className="mb-10">
+      <div className="flex text-gray gap-5">
+        <div className="basis-[30%] lg:basis-[50%] lg:relative flex justify-center items-center">
           <img
-            src={purchasedGoodsImg}
-            className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:z-20 lg:absolute lg:-top-3 lg:left-1/2 lg:transform lg:-translate-x-1/2"
+            src={item.photo}
+            className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:z-20"
           />
-          <div className="hidden lg:block w-[100px] h-[100px] lg:bg-grayExtraLight lg:rounded-full lg:absolute  lg:z-10 lg:top-1 lg:left-1/2 lg:transform -translate-x-1/2"></div>
         </div>
         <div className="w-full basis-[70%]">
           <div className="flex justify-between items-center">
-            <h2 className={`${styles.header2} text-gray text-xl`}>{title}</h2>
-            <div className="p-1 flex items-center justify-center" onClick={handleClick}>
-              <img src={deleteIcon} />
+            <div className="w-[80%]">
+              {Boolean(item?.shoes) && <h2 className={`${styles.header2} text-gray text-base`}>{item?.shoes.title}</h2>}
+              {Boolean(item?.accessory) && (
+                <h2 className={`${styles.header2} text-gray text-base`}>{item?.accessory.title}</h2>
+              )}
+              {Boolean(item?.title) && <h2 className={`${styles.header2} text-gray text-base`}>{item?.title}</h2>}
+            </div>
+
+            <div className="p-1 flex items-center justify-center cursor-pointer text-lg" onClick={handleClick}>
+              <img width={15} height={15} src={deleteIcon} />
             </div>
           </div>
-          <p className={`${styles.body2} mt-2`}>
-            {' '}
-            Size: <span>{size}</span>
-          </p>
+          {/* {Boolean(item?.shoes) && (
+            <p className={`${styles.body2} mt-2`}>
+              Size: <span>{item.size}</span>
+            </p>
+          )} */}
           <div className="flex justify-between items-baseline">
-            <p className={`${styles.body2} font-bold`}>$ {price}</p>
+            {Boolean(item?.shoes) && <p className={`${styles.body2} font-bold`}>$ {item.shoes.price}</p>}
+            {Boolean(item?.accessory) && <p className={`${styles.body2} font-bold`}>$ {item.accessory.price}</p>}
+            {Boolean(item?.price) && <p className={`${styles.body2} font-bold`}>$ {item.price}</p>}
             <div className="flex justify-between items-center w-12 mt-2 mb-2">
-              <div onClick={decrementCount}>-</div>
-              <div>
-                <span>{count}</span>
+              <div className="cursor-pointer" onClick={decrementCount}>
+                -
               </div>
-              <div onClick={incrementCount}>+</div>
+              <div>
+                <span>{item.count}</span>
+              </div>
+              <div className="cursor-pointer" onClick={incrementCount}>
+                +
+              </div>
             </div>
           </div>
-          <p className={`${styles.body2} lg:text-[16px]  lg:hidden`}>
-            This product is custom-made and delivered to you in X weeks.
-          </p>
+          {Boolean(item?.shoes) && (
+            <p className={`${styles.body2} lg:text-[16px]  lg:hidden`}>Your shoes will be manufactured in 7-10 days.</p>
+          )}
         </div>
       </div>
-      <p className={`${styles.body2} lg:text-[16px] hidden lg:block `}>
-        This product is custom-made and delivered to you in X weeks.
-      </p>
+      {Boolean(item?.category == 'shoes') && (
+        <p className={`${styles.body2} lg:text-[16px] hidden lg:block `}>
+          Your shoes will be manufactured in 7-10 days.
+        </p>
+      )}
+      {Boolean(item?.shoes) && (
+        <p className={`${styles.body2} lg:text-[16px] hidden lg:block`}>
+          Your shoes will be manufactured in 7-10 days.
+        </p>
+      )}
     </div>
   );
 };
