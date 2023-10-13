@@ -73,7 +73,6 @@ const ProductPage = () => {
     checkProductExistence();
   }, [selectedSize, basketProductsNonRegisterUser, id]);
 
-
   const variations = product?.data?.variations?.variations?.filter((variant) => variant._id !== product.data._id);
 
   let requestData = {};
