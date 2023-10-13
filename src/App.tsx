@@ -60,6 +60,7 @@ import PrivateRoute from '@/components/PrivateRoute';
 import CookiePopup from '@components/CookiePopup';
 import EditItem from '@pages/admin/catalog/EditItem.tsx';
 import Loader from '@/components/ui/Loader/';
+import VariationsPage from '@pages/admin/catalog/variations/VariationsPage.tsx';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -95,6 +96,7 @@ const App = () => {
             <Route path={'manager'} element={<PageManagerPage />} />
             <Route path={'createevent'} element={<CreateEvent />} />
             <Route path={'catalog'} element={<CatalogPage />} />
+            <Route path={'catalog/variations'} element={<VariationsPage />} />
             <Route path={'createitem'} element={<CreateItem />} />
             <Route path={'edititem/:id'} element={<EditItem />} />
             <Route path={'warehouse'} element={<WarehousePage />} />

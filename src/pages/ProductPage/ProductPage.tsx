@@ -20,9 +20,16 @@ import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { v4 as uuidv4 } from 'uuid';
 import { addToCartGTMEvent } from '@/helpers/functions/gtm';
 import SizeSelection from '@components/ui/SizeSelection';
+import { motion } from 'framer-motion';
+import { hoverOnButtonAnimation } from '@/styles/Animations';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import Spinner from '@components/ui/Spinner';
 
 const ProductPage = () => {
   const { id } = useParams();
+
+  const [dynamicId, setDynamicId] = useState(id || '');
   const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
@@ -32,13 +39,14 @@ const ProductPage = () => {
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
-    (item: BasketProduct) => item.product === id || item._id === id || item.accessory === id
+    (item: BasketProduct) => item.product === dynamicId || item._id === dynamicId || item?.accessory?._id === dynamicId
   );
   const isProductExistInBasket = basketProducts.some(
-    (item: BasketProduct) => item?._id === id || item?.accessory?._id === id || item?.shoes?._id === id
+    (item: BasketProduct) =>
+      item?._id === dynamicId || item?.accessory?._id === dynamicId || item?.shoes?._id === dynamicId
   );
 
-  const { data: product } = useQuery(['productById', id], () => getProductById(id), {
+  const { data: product } = useQuery(['productById', dynamicId], () => getProductById(dynamicId), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
@@ -64,6 +72,9 @@ const ProductPage = () => {
     };
     checkProductExistence();
   }, [selectedSize, basketProductsNonRegisterUser, id]);
+
+
+  const variations = product?.data?.variations?.variations?.filter((variant) => variant._id !== product.data._id);
 
   let requestData = {};
 
@@ -144,6 +155,8 @@ const ProductPage = () => {
     setIsProductExistAndSizeInBasketNonRegisterUser(product?.data.size[0] === selectedSize);
   };
 
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -157,6 +170,8 @@ const ProductPage = () => {
             images={product?.data.photos}
             color="gray"
             dataShoes={product?.data.category === 'shoes' ? true : false}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
           />
           {/* Product Desription */}
           <div
@@ -186,7 +201,36 @@ const ProductPage = () => {
                   </>
                 )}
               </div>
-              <div className="flex flex-col justify-center items-center gap-6 py-8">
+              <div className="flex flex-col justify-center items-center gap-6 py-2">
+                <motion.div className={'flex  flex-wrap justify-start items-start text-center w-full gap-4'}>
+                  {variations?.map((variation) => {
+                    return (
+                      <motion.div
+                        onClick={() => {
+                          setDynamicId(variation._id);
+                          setCurrentIndex(0);
+                        }}
+                        className="relative basis-[46%] md:basis-[30%] min-w-[120px] cursor-pointer hover:text-mint"
+                        {...hoverOnButtonAnimation}
+                      >
+                        <LazyLoadImage
+                          src={variation.photo}
+                          className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] rounded-full object-contain object-cover mx-auto "
+                          alt=""
+                          effect="blur"
+                          afterLoad={() => {
+                            setImageLoaded(true);
+                          }}
+                          beforeLoad={() => {
+                            setImageLoaded(false);
+                          }}
+                        />
+                        {imageLoaded ? null : <Spinner className="absolute top-1/2 left-1/2" />}
+                        <p className="truncate">{variation.title}</p>
+                      </motion.div>
+                    );
+                  })}
+                </motion.div>
                 {product?.data.category == 'shoes' && (
                   <>
                     <Button

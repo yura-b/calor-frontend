@@ -8,6 +8,7 @@ export interface Product {
   productDetails: string;
   description: string;
   size: number[];
+  variations: string[];
 }
 export interface category {
   _id: string;
@@ -15,4 +16,10 @@ export interface category {
   categoryTitle: string;
 
   subCategory: string[];
+}
+
+export interface IBaseProduct {
+  _id: string;
+  photo: string;
+  title: string;
 }

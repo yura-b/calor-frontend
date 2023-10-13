@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { EditItemDto, ProductsDto } from '@/api/dto/products.dto.ts';
+import { EditItemDto, EditVariationElementDto, ProductsDto } from '@/api/dto/products.dto.ts';
 import { authorization } from '@/api/config.ts';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -45,4 +45,19 @@ export const deleteAccessory = (access_token: string, id: string) => {
 
 export const editItem = (access_token: string, item: EditItemDto) => {
   return axios.patch(`${BASE_URL}/product/edit`, item, authorization(access_token));
+};
+
+export const assignVariation = (access_token: string, product_ids: string[]) => {
+  return axios.put(`${BASE_URL}/accessories`, { accessory_ids: product_ids }, authorization(access_token));
+};
+export const getVariants = () => {
+  return axios.get(`${BASE_URL}/accessories/variants`);
+};
+
+export const deleteVariant = (access_token: string, data: EditVariationElementDto) => {
+  return axios.post(`${BASE_URL}/accessories/variants/delete`, data, authorization(access_token));
+};
+
+export const addVariant = (access_token: string, data: EditVariationElementDto) => {
+  return axios.patch(`${BASE_URL}/accessories/variants`, data, authorization(access_token));
 };
