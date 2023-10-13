@@ -27,7 +27,7 @@ const OrderPageHeader: React.FC<IProps> = ({ id,invoiceUrl, checkListUrl }) => {
   }
   const downloadChecklist = () =>{
     if(!checkListUrl) {
-      dispatch(errorCorrupted('This order does not have an invoice'))
+      dispatch(errorCorrupted('This order does not have an checklist'))
       return
     }
 
