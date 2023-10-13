@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '@styles/Styles.module.scss';
 import { useQuery, useMutation } from 'react-query';
 import { useParams } from 'react-router';
@@ -10,7 +10,6 @@ import ProductReviews from './components/ProductReviews';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 import Slider from '@/components/ui/Slider';
 import Button from '@components/ui/Button';
-import { paths } from '@routes/paths.ts';
 import AccordionSection from '@components/AccordionSection';
 import { addToBasket } from '@/api/basket';
 import { SealCheck } from '@phosphor-icons/react';
@@ -20,12 +19,14 @@ import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterU
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { v4 as uuidv4 } from 'uuid';
 import { addToCartGTMEvent } from '@/helpers/functions/gtm';
+import SizeSelection from '@components/ui/SizeSelection';
 
 const ProductPage = () => {
   const { id } = useParams();
   const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  const [selectedSize, setSelectedSize] = useState(0);
+
+  const [sizeButtonStyles, setSizeButtonStyles] = useState({});
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
@@ -41,13 +42,29 @@ const ProductPage = () => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [isProductExistAndSizeInBasketNonRegisterUser, setIsProductExistAndSizeInBasketNonRegisterUser] =
+    useState(false);
 
-  const mutation = useMutation(addToBasket, {
-    onSuccess: (data) => {
-      dispatch(appendToBasket({ ...product?.data, count: 1 }));
-      dispatch(showMessage('The product has been successfully added'));
-    },
-  });
+  useEffect(() => {
+    if (product && product.data && product.data.size && product.data.size.length > 0) {
+      setSelectedSize(product.data.size[0]);
+      setIsProductExistAndSizeInBasketNonRegisterUser(product?.data?.size[0] === selectedSize);
+    }
+  }, [product]);
+
+  useEffect(() => {
+    const checkProductExistence = () => {
+      const exists = basketProductsNonRegisterUser.some((item: BasketProduct) => {
+        const hasMatchingAccessoryAndSize =
+          (item.product === id || item._id === id || item.accessory === id) && item.size === selectedSize;
+        return hasMatchingAccessoryAndSize;
+      });
+      setIsProductExistAndSizeInBasketNonRegisterUser(exists);
+    };
+    checkProductExistence();
+  }, [selectedSize, basketProductsNonRegisterUser, id]);
+
   let requestData = {};
 
   if (userId) {
@@ -73,12 +90,21 @@ const ProductPage = () => {
     };
   }
 
+  const mutation = useMutation(addToBasket, {
+    onSuccess: (data) => {
+      dispatch(appendToBasket({ ...product?.data, count: 1 }));
+      dispatch(showMessage('The product has been successfully added'));
+    },
+  });
+
   const handleAddToCartNonRegisterUser = () => {
-    dispatch(addToCartNonRegisterUser({ ...product?.data, count: 1 }));
+    dispatch(addToCartNonRegisterUser({ ...requestData, count: 1 }));
     dispatch(showMessage('The product has been successfully added'));
 
     addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
+    // setSizeButtonStyles({ 0: 'border-2 border-mint text-mint' });
   };
+
   const initialSectionsState = [
     {
       title: 'Product details',
@@ -109,8 +135,13 @@ const ProductPage = () => {
     );
   };
 
-  const handleSizeClick = (size) => {
+  const handleSizeClick = (size, index) => {
     setSelectedSize(size);
+    const updatedStyles = {};
+    updatedStyles[index] = 'border-2 border-mint text-mint';
+    setSizeButtonStyles(updatedStyles);
+    requestData = { ...requestData, basketItemId: uuidv4() };
+    setIsProductExistAndSizeInBasketNonRegisterUser(product?.data.size[0] === selectedSize);
   };
 
   return (
@@ -145,18 +176,12 @@ const ProductPage = () => {
                 {product?.data.category !== 'shoes' && (
                   <>
                     {!!product?.data.size.length && (
-                      <>
-                        <p className={`${styles.body2} font-bold py-4`}>Please select your size</p>
-                        <div className="flex gap-6 flex-wrap">
-                          {product?.data.size?.map((size) => (
-                            <div className="basis-[26%] lg:basis-[25%]">
-                              <Button color="transparentGray" onClick={() => handleSizeClick(size)} data-size={size}>
-                                {size}
-                              </Button>
-                            </div>
-                          ))}
-                        </div>
-                      </>
+                      <SizeSelection
+                        sizes={product?.data.size || []}
+                        setSizeButtonStyles={setSizeButtonStyles}
+                        sizeButtonStyles={sizeButtonStyles}
+                        handleSizeClick={handleSizeClick}
+                      />
                     )}
                   </>
                 )}
@@ -184,6 +209,7 @@ const ProductPage = () => {
                         onClick={() => {
                           addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
                           mutation.mutate({ userId, requestData });
+                          setSizeButtonStyles({});
                         }}
                       >
                         Add To Cart
@@ -198,16 +224,34 @@ const ProductPage = () => {
                   </>
                 ) : (
                   <>
-                    {product?.data.category !== 'shoes' && !isProductExistInBasketNonRegisterUser && (
-                      <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
-                        Add To Cart
-                      </Button>
-                    )}
-                    {product?.data.category !== 'shoes' && isProductExistInBasketNonRegisterUser && (
-                      <div className="flex justify-center items-center text-mint">
-                        <SealCheck className="mr-2" size={32} weight="fill" />
-                        Already in your cart
-                      </div>
+                    {!product?.data.size || !product?.data.size.length ? (
+                      <>
+                        {product?.data.category !== 'shoes' && !isProductExistInBasketNonRegisterUser && (
+                          <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
+                            Add To Cart
+                          </Button>
+                        )}
+                        {product?.data.category !== 'shoes' && isProductExistInBasketNonRegisterUser && (
+                          <div className="flex justify-center items-center text-mint">
+                            <SealCheck className="mr-2" size={32} weight="fill" />
+                            Already in your cart
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {product?.data.category !== 'shoes' && !isProductExistAndSizeInBasketNonRegisterUser && (
+                          <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
+                            Add To Cart
+                          </Button>
+                        )}
+                        {product?.data.category !== 'shoes' && isProductExistAndSizeInBasketNonRegisterUser && (
+                          <div className="flex justify-center items-center text-mint">
+                            <SealCheck className="mr-2" size={32} weight="fill" />
+                            {`Product size ${selectedSize} is already in your cart`}
+                          </div>
+                        )}
+                      </>
                     )}
                   </>
                 )}
