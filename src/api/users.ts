@@ -4,7 +4,7 @@ import { ShippingInfoDto } from './dto/orders.dto';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const getUsers = (credential, filter: string) => {
+export const getUsers = (credential: string, filter: string) => {
   return axios.get(`${BASE_URL}/user/all?name=${filter}`, authorization(credential));
 };
 

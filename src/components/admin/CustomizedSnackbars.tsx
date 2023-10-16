@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { FC, memo, useEffect } from 'react';
 
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
@@ -8,7 +8,9 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props,
   return <MuiAlert elevation={6} ref={ref} color={'success'} variant="filled" {...props} />;
 });
 
-const CustomizedSnackbars = () => {
+const CustomizedSnackbars: FC<{ bottom?: string }> = ({ bottom = '80px' }) => {
+  
+
   const { message, status } = useAppSelector((state) => state.status);
   const dispatch = useAppDispatch();
 
@@ -25,7 +27,11 @@ const CustomizedSnackbars = () => {
   if (!message) return <></>;
 
   return (
-    <div className={'fixed right-10 bottom-10'}>
+    <div style={{
+      position: 'fixed',
+      right: '10px', // Adjust the right margin as needed
+      bottom: bottom
+    }}>
       <Alert severity="error" color={severity}>
         {message}
       </Alert>

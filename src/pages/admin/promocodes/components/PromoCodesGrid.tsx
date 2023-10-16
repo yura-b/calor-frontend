@@ -54,7 +54,9 @@ const PromoCodesGrid: FC<IProps> = ({ coupons }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
+  if (coupons.length === 0) {
+    return <p>Promo codes list is empty</p>
+  }
 
   return (
     <Paper sx={{ width: '99%', paddingLeft: '30px', height: '100%', overflow: 'hidden', marginTop: '30px' }}>

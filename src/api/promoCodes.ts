@@ -10,3 +10,10 @@ export const createCoupon = (access_token: string, data: PromoCodesDto) => {
 export const getCoupons = (access_token: string) => {
     return axios.get(`${BASE_URL}/discount/all`, authorization(access_token))
 }
+
+export const activateCoupon = (coupon: string, order_ids: string[]) =>{
+    return axios.post(`${BASE_URL}/discount/activate`, {
+        coupon,
+        order_ids
+    })
+}

@@ -8,6 +8,7 @@ import { Review } from '@/constants/interfaces/review.ts';
 import UserAdditionalInfo from '@pages/admin/users/components/userProfile/components/UserAdditionalInfo.tsx';
 import { IOrder } from '@/constants/interfaces/order.ts';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
+import { Coupon } from '@/constants/interfaces/coupon.ts';
 
 const userDataInitialState: IUser = {
   _id: '',
@@ -29,6 +30,7 @@ const UserProfile = () => {
   const [userInfo, setUserInfo] = useState<IUser>(userDataInitialState);
   const [userReviews, setUserReviews] = useState<Review[]>([]);
   const [userOrders, setUserOrders] = useState<IOrder[]>([]);
+  const [userCoupons, setUserCoupons] = useState<Coupon[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -42,7 +44,7 @@ const UserProfile = () => {
       setUserInfo(res.data.user);
       setUserReviews(res.data.reviews);
       setUserOrders(res.data.orders);
-
+      setUserCoupons(res.data.coupons)
       dispatch(loadingFinished());
     });
   }, [id]);
@@ -52,7 +54,7 @@ const UserProfile = () => {
     <div className={'pl-16'}>
       <UserInfo userDataState={{ state: userInfo, setState: setUserInfo }} withDelivery={false} delivery={null} />
       <hr />
-      <UserAdditionalInfo reviews={userReviews} orders={userOrders} />
+      <UserAdditionalInfo reviews={userReviews} orders={userOrders} coupons={userCoupons} />
     </div>
   );
 };

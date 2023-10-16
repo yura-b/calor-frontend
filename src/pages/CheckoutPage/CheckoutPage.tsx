@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainLayout from '@components/MainLayout';
 import CheckoutHeader from '@pages/CheckoutPage/components/CheckoutHeader.tsx';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
@@ -10,6 +10,7 @@ import Payment from '@pages/CheckoutPage/pages/Payment.tsx';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import { createOrder } from '@/api/orders.ts';
 import styles from '@styles/Styles.module.scss';
+import CustomizedSnackbars from '@components/admin/CustomizedSnackbars.tsx';
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
@@ -81,6 +82,7 @@ const CheckoutPage = () => {
             {step === CheckoutSteps.THIRD && <Payment />}
           </div>
         </div>
+        <CustomizedSnackbars bottom={'200px'}/>
       </MainLayout>
     </div>
   );
