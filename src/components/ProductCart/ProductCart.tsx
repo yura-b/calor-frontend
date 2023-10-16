@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BasicRating from '@/components/ui/Rating/Rating';
 import Button from '@/components/ui/Button';
@@ -19,6 +19,7 @@ import { addToCartGTMEvent } from '@/helpers/functions/gtm';
 const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const [selectedSize, setSelectedSize] = useState(null);
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
   const isProductExistInBasket = basketProducts.some(
@@ -26,7 +27,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
       item._id === product?._id || item?.accessory?._id === product?._id || item?.shoes?._id === product?._id
   );
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
-    (item: any) => item._id === product?._id || item.accessory === product?._id
+    (item: any) => (item.product === product?._id || item.accessory === product?._id) && item.size === null
   );
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
@@ -35,15 +36,38 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
     },
   });
 
-  const requestData = {
-    product: product?._id,
-    count: 1,
-    photo: product?.photos[0],
-    measurement: {},
-    details: {},
-    price: product?.price,
-    basketItemId: uuidv4(),
-  };
+  useEffect(() => {
+    if (product && product.data && product.data.size && product.data.size.length > 0) {
+      setSelectedSize(product.data.size[0]);
+    } else {
+      setSelectedSize(null);
+    }
+  }, [product]);
+
+  let requestData = {};
+
+  if (userId) {
+    requestData = {
+      product: product?._id,
+      count: 1,
+      photo: product?.photos[0],
+      measurement: {},
+      details: {},
+      basketItemId: uuidv4(),
+      size: selectedSize,
+    };
+  } else {
+    requestData = {
+      product: product?._id,
+      count: 1,
+      photos: [product?.photos[0]],
+      measurement: {},
+      details: {},
+      price: product?.price,
+      title: product?.title,
+      size: selectedSize,
+    };
+  }
 
   const handleAddToCart = () => {
     if (userId) {
@@ -58,7 +82,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         return null;
       } else {
         addToCartGTMEvent('add_to_cart', { id: product?._id, title: product?.title });
-        dispatch(addToCartNonRegisterUser({ ...product, count: 1 }));
+        dispatch(addToCartNonRegisterUser({ ...requestData, count: 1 }));
         dispatch(showMessage('The product has been successfully added'));
       }
     }
@@ -97,13 +121,13 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         <span className="font-bold">{product.price} $</span>
       </div>
       {(userId && type !== 'shoes' && isProductExistInBasket) ||
-      (!userId && type !== 'shoes' && isProductExistInBasketNonRegisterUser) ? (
+      (!userId && type !== 'shoes' && isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ? (
         <div className="flex justify-center items-center text-mint mt-2">
           <SealCheck className="mr-2" size={32} weight="fill" />
           Already in your cart
         </div>
       ) : null}
-      {(!userId && !isProductExistInBasketNonRegisterUser) ||
+      {(!userId && !isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ||
       (userId && !isProductExistInBasket) ||
       type === 'shoes' ? (
         <Button
@@ -115,7 +139,15 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         >
           {type === 'shoes' ? 'Design' : 'Add to cart'}
         </Button>
-      ) : null}
+      ) : (
+        !isProductExistInBasketNonRegisterUser && (
+          <p>
+            <Button className="max-w-full mt-2" color="transparentMint" to={`/product/${product._id}`}>
+              Choose a size
+            </Button>
+          </p>
+        )
+      )}
     </div>
   );
 };

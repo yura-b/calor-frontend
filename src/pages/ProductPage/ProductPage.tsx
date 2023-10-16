@@ -25,9 +25,11 @@ import { hoverOnButtonAnimation } from '@/styles/Animations';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 const ProductPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [dynamicId, setDynamicId] = useState(id || '');
   const { userId } = useAppSelector((state) => state.user);
@@ -57,21 +59,28 @@ const ProductPage = () => {
   useEffect(() => {
     if (product && product.data && product.data.size && product.data.size.length > 0) {
       setSelectedSize(product.data.size[0]);
-      setIsProductExistAndSizeInBasketNonRegisterUser(product?.data?.size[0] === selectedSize);
+      const updatedStyles = {};
+      updatedStyles[0] = 'border-2 border-mint text-mint';
+      setSizeButtonStyles(updatedStyles);
+    } else {
+      setSelectedSize(null);
     }
-  }, [product]);
+  }, [product, dynamicId]);
 
   useEffect(() => {
-    const checkProductExistence = () => {
-      const exists = basketProductsNonRegisterUser.some((item: BasketProduct) => {
-        const hasMatchingAccessoryAndSize =
-          (item.product === id || item._id === id || item.accessory === id) && item.size === selectedSize;
-        return hasMatchingAccessoryAndSize;
-      });
-      setIsProductExistAndSizeInBasketNonRegisterUser(exists);
-    };
-    checkProductExistence();
-  }, [selectedSize, basketProductsNonRegisterUser, id]);
+    if (product?.data?.size) {
+      const checkProductExistence = () => {
+        const exists = basketProductsNonRegisterUser.some((item: BasketProduct) => {
+          const hasMatchingAccessoryAndSize =
+            (item.product === dynamicId || item._id === dynamicId || item?.accessory?._id === dynamicId) &&
+            item.size === selectedSize;
+          return hasMatchingAccessoryAndSize;
+        });
+        setIsProductExistAndSizeInBasketNonRegisterUser(exists);
+      };
+      checkProductExistence();
+    }
+  }, [selectedSize, basketProductsNonRegisterUser, dynamicId]);
 
   const variations = product?.data?.variations?.variations?.filter((variant) => variant._id !== product.data._id);
 
@@ -151,7 +160,6 @@ const ProductPage = () => {
     updatedStyles[index] = 'border-2 border-mint text-mint';
     setSizeButtonStyles(updatedStyles);
     requestData = { ...requestData, basketItemId: uuidv4() };
-    setIsProductExistAndSizeInBasketNonRegisterUser(product?.data.size[0] === selectedSize);
   };
 
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -208,6 +216,7 @@ const ProductPage = () => {
                         onClick={() => {
                           setDynamicId(variation._id);
                           setCurrentIndex(0);
+                          navigate(`/product/${variation._id}`);
                         }}
                         className="relative basis-[46%] md:basis-[30%] min-w-[120px] cursor-pointer hover:text-mint"
                         {...hoverOnButtonAnimation}
@@ -291,7 +300,7 @@ const ProductPage = () => {
                         {product?.data.category !== 'shoes' && isProductExistAndSizeInBasketNonRegisterUser && (
                           <div className="flex justify-center items-center text-mint">
                             <SealCheck className="mr-2" size={32} weight="fill" />
-                            {`Product size ${selectedSize} is already in your cart`}
+                            {`Product with size ${selectedSize} is already in your cart`}
                           </div>
                         )}
                       </>
