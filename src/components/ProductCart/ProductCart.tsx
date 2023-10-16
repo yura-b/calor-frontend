@@ -6,7 +6,7 @@ import styles from '@styles/Styles.module.scss';
 import { addToBasket } from '@/api/basket';
 import { useMutation } from 'react-query';
 import { SealCheck } from '@phosphor-icons/react';
-import { appendToBasket } from '@/store/reducers/BasketSlice';
+import { appendToBasket, BasketProduct } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
@@ -23,11 +23,13 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
   const isProductExistInBasket = basketProducts.some(
-    (item: any) =>
-      item._id === product?._id || item?.accessory?._id === product?._id || item?.shoes?._id === product?._id
+    (item: BasketProduct) =>
+      (item._id === product?._id || item?.accessory?._id === product?._id || item?.shoes?._id === product?._id) &&
+      item?.size?.length === 0
   );
+
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
-    (item: any) => (item.product === product?._id || item.accessory === product?._id) && item.size === null
+    (item: BasketProduct) => (item.product === product?._id || item.accessory === product?._id) && item.size === null
   );
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
@@ -120,7 +122,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         <span>From</span>
         <span className="font-bold">{product.price} $</span>
       </div>
-      {(userId && type !== 'shoes' && isProductExistInBasket) ||
+      {(userId && type !== 'shoes' && isProductExistInBasket && product?.size?.length == 0) ||
       (!userId && type !== 'shoes' && isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ? (
         <div className="flex justify-center items-center text-mint mt-2">
           <SealCheck className="mr-2" size={32} weight="fill" />
@@ -128,7 +130,7 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         </div>
       ) : null}
       {(!userId && !isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ||
-      (userId && !isProductExistInBasket) ||
+      (userId && !isProductExistInBasket && product?.size?.length == 0) ||
       type === 'shoes' ? (
         <Button
           id="gtm-add-to-cart-product"
@@ -140,7 +142,8 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
           {type === 'shoes' ? 'Design' : 'Add to cart'}
         </Button>
       ) : (
-        !isProductExistInBasketNonRegisterUser && (
+        (!isProductExistInBasketNonRegisterUser || !isProductExistInBasket) &&
+        product?.size?.length !== 0 && (
           <p>
             <Button className="max-w-full mt-2" color="transparentMint" to={`/product/${product._id}`}>
               Choose a size
