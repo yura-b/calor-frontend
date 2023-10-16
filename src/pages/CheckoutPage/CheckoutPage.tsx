@@ -10,6 +10,8 @@ import Payment from '@pages/CheckoutPage/pages/Payment.tsx';
 import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
 import { createOrder } from '@/api/orders.ts';
 import styles from '@styles/Styles.module.scss';
+import Button from '@/components/ui/Button';
+import { paths } from '@/routes/paths';
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
@@ -33,6 +35,7 @@ const CheckoutPage = () => {
         photo: item?.photo,
         details: item?.details || {},
         measurement: { _id: item?.measurement?._id || {} },
+        size: item?.size || 0,
       }))
     : basketProductsForNonRegisterUser?.map((item) => ({
         count: item?.count,
@@ -40,6 +43,7 @@ const CheckoutPage = () => {
         photo: item?.photo,
         details: [item?.details || {}] || {},
         measurement: item?.measurement || {},
+        size: item?.size || 0,
       }));
 
   useEffect(() => {
@@ -70,17 +74,27 @@ const CheckoutPage = () => {
   return (
     <div className="font-poppins h-screen ">
       <MainLayout>
-        <div className=" flex flex-col justify-center items-center w-full mb-12">
-          <div className={`${styles.container} lg:w-[40%]`}>
-            <CheckoutHeader />
-            <CheckoutStepper />
-            {step === CheckoutSteps.FIRST && <ContactInformation />}
-            {step === CheckoutSteps.SECOND && (
-              <ShippingInformation setData={setData} buttonTitle={'Save'} shippingData={data} />
-            )}
-            {step === CheckoutSteps.THIRD && <Payment />}
+        {(!userId && basketProductsForNonRegisterUser.length) || (userId && basketProducts.length) ? (
+          <div className=" flex flex-col justify-center items-center w-full mb-12">
+            <div className={`${styles.container} lg:w-[40%]`}>
+              <CheckoutHeader />
+              <CheckoutStepper />
+              {step === CheckoutSteps.FIRST && <ContactInformation />}
+              {step === CheckoutSteps.SECOND && (
+                <ShippingInformation setData={setData} buttonTitle={'Save'} shippingData={data} />
+              )}
+              {step === CheckoutSteps.THIRD && <Payment />}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className={`${styles.container} lg:w-[40%] flex flex-col items-center justify-center h-full`}>
+            <CheckoutHeader />
+            <p className={`${styles.body1} mt-12`}>Please add items to the cart</p>
+            <Button color="gray" className="my-12" to={paths.home}>
+              Continue shopping
+            </Button>
+          </div>
+        )}
       </MainLayout>
     </div>
   );
