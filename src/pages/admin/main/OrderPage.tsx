@@ -54,13 +54,13 @@ const OrderPage = () => {
   return (
     <AdminLayout>
       <div className={'mb-24'}>
-        <OrderPageHeader id={id} invoiceUrl={orderData.invoiceUrl} />
+        <OrderPageHeader id={id} invoiceUrl={orderData.invoiceUrl} checkListUrl={orderData.checkListUrl}/>
         <OrderStatusComponent status={status} id={id} />
         <OrderInformation order={orderData} />
-        <Details details={orderData.details} />
+        {orderData.shoes && <Details details={orderData.details} />}
 
         <div className={'flex flex-row gap-20 justify-start mx-8 mb-8 '}>
-          <Measurement measurement={orderData.measurement} />
+          {orderData.measurement.size && <Measurement measurement={orderData.measurement} />}
           <ShippingAddress info={orderData.shippingInfo} />
         </div>
         <hr />

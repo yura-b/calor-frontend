@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { memo, ReactNode, useEffect } from 'react';
 import Header from '@layouts/admin/header/Header.tsx';
 import SubmitDialog from '@components/dialogs/admin/SubmitDialog.tsx';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
@@ -33,4 +33,4 @@ const AdminLayout: React.FC<IProps> = ({ children }) => {
   );
 };
 
-export default AdminLayout;
+export default memo(AdminLayout);

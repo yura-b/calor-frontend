@@ -15,6 +15,7 @@ import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
 import ProductionDay from '@components/admin/ProductionDay.tsx';
 import Wrapper from '@components/admin/Wrapper.tsx';
 import { useNavigate } from 'react-router';
+import DownloadDocumentation from '@pages/admin/main/components/orderGrid/DownloadDocumentation.tsx';
 
 interface Column {
   id: 'ID' | 'Customer`s name' | 'Date' | 'Status' | 'Production Day' | 'Amount' | 'Payment' | 'Invoice' | 'Checklist';
@@ -54,8 +55,6 @@ interface IProps {
 const OrdersTable: React.FC<IProps> = ({ orderList }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(20);
-
-  const align: 'right' | 'left' | 'center' | 'justify' | 'inherit' = 'left';
 
   const navigator = useNavigate();
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -126,10 +125,10 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
                     </p>
                   </TableCell>
                   <TableCell align={'center'}>
-                    <p>invoice</p>
+                    <DownloadDocumentation title={'invoice'} link={order.invoiceUrl}/>
                   </TableCell>
                   <TableCell align={'center'}>
-                    <p>checklist</p>
+                    <DownloadDocumentation title={'checklist'} link={order.checkListUrl}/>
                   </TableCell>
                 </TableRow>
               );
