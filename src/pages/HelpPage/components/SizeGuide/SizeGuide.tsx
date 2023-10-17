@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
-// import VideoFrame from '@components/VideoFrame';
+import VideoFrame from '@components/VideoFrame';
 import AccordionSection from '@components/AccordionSection';
 import SizeTable from '../SizeTable';
 import ShoeSizeTable from '../ShoeSizeTable';
@@ -345,12 +345,13 @@ const SizeGuide: React.FC = () => {
         <h1 className={`${styles.header1} text-center border-b border-gray w-full`}>Size Guide</h1>
 
         <AccordionSection title="Shoe" isOpen={isAccordionOpen} toggleAccordion={toggleAccordion}>
-          {/* Waiting videos */}
-          {/* <VideoFrame
-            src="https://drive.google.com/file/d/1l4VfItYOQO7xZxqJX93nmfNz2VT9ONXU/preview"
-            title="Video Guide"
-            className="xl:max-w-[50vw]"
-          /> */}
+          <div className="my-4">
+            <VideoFrame
+              src="https://drive.google.com/file/d/1ORbS4BvEb3GuPbkZKATVO5E2nx1damff/preview"
+              title="Video Guide"
+              className="xl:max-w-[50vw]"
+            />
+          </div>
           <div className="">
             <AccordionSection
               title="Women`s Shoe Size Chart"
