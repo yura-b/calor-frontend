@@ -61,7 +61,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
           ) : null}
           {!userId && basketNonRegisterUser.length ? (
             <div>
-              <div className={'bg-custom-turquoise h-[44px]'}>
+              <div className={` bg-custom-turquoise h-[44px]`}>
                 <p
                   className={`${styles.body1} bg-custom-turquoise w-full h-auto  flex items-center justify-center text-center p-2 mt-4 sm:mt-0 lg:mb-4 lg:text-[18px]`}
                 >

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import deleteIcon from '@/assets/cartImages/deleteIcon.svg';
 import { useMutation, useQueryClient } from 'react-query';
-import { deleteFromBasket, updateBasketItemQuantity } from '@/api/basket';
+import { deleteFromBasket } from '@/api/basket';
 import { useDispatch } from 'react-redux';
 import { BasketProduct, decreaseQuantity, increaseQuantity, removeFromBasket } from '@/store/reducers/BasketSlice';
 import { useAppSelector } from '@/store/hooks/hooks';
@@ -11,6 +11,7 @@ import {
   decreaseQuantityNonRegisterUser,
   increaseQuantityNonRegisterUser,
 } from '@/store/reducers/BasketForNonRegisterUser';
+import { updateBasketItemQuantity } from '@/api/basket';
 import { debounce } from 'lodash';
 import { removeFromCartGTMEvent } from '@/helpers/functions/gtm';
 
@@ -28,6 +29,7 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
   });
 
   useEffect(() => {
+    //Temporary fix to avoid unnecessary call after component render. Call only after item.count changed
     if (count !== item.count) {
       mutationUpdateItemQuantity.mutate({ userId, basketItemId: item.basketItemId, count: item.count });
     }
@@ -78,11 +80,9 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
         <div className="w-full basis-[70%]">
           <div className="flex justify-between items-center">
             <div className="w-[80%]">
-              {Boolean(item?.shoes) && (
-                <h2 className={`${styles.header2} text-gray text-base`}>{item?.shoes?.title}</h2>
-              )}
+              {Boolean(item?.shoes) && <h2 className={`${styles.header2} text-gray text-base`}>{item?.shoes.title}</h2>}
               {Boolean(item?.accessory) && (
-                <h2 className={`${styles.header2} text-gray text-base`}>{item?.accessory?.title}</h2>
+                <h2 className={`${styles.header2} text-gray text-base`}>{item?.accessory.title}</h2>
               )}
               {Boolean(item?.title) && <h2 className={`${styles.header2} text-gray text-base`}>{item?.title}</h2>}
             </div>
@@ -96,14 +96,9 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
               Size: <span>{item.size}</span>
             </p>
           )} */}
-          {Boolean(!item?.shoes) && !Array.isArray(item?.size) && item?.size !== null && item?.size && (
-            <p className={`${styles.body2} mt-2`}>
-              Size: <span>{item.size}</span>
-            </p>
-          )}
           <div className="flex justify-between items-baseline">
-            {Boolean(item?.shoes) && <p className={`${styles.body2} font-bold`}>$ {item?.shoes?.price}</p>}
-            {Boolean(item?.accessory) && <p className={`${styles.body2} font-bold`}>$ {item?.accessory?.price}</p>}
+            {Boolean(item?.shoes) && <p className={`${styles.body2} font-bold`}>$ {item.shoes.price}</p>}
+            {Boolean(item?.accessory) && <p className={`${styles.body2} font-bold`}>$ {item.accessory.price}</p>}
             {Boolean(item?.price) && <p className={`${styles.body2} font-bold`}>$ {item.price}</p>}
             <div className="flex justify-between items-center w-12 mt-2 mb-2">
               <div className="cursor-pointer" onClick={decrementCount}>
@@ -123,7 +118,9 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
         </div>
       </div>
       {Boolean(item?.category == 'shoes') && (
-        <p className={`${styles.body2} lg:text-[16px] block `}>Your shoes will be manufactured in 7-10 days.</p>
+        <p className={`${styles.body2} lg:text-[16px] hidden lg:block `}>
+          Your shoes will be manufactured in 7-10 days.
+        </p>
       )}
       {Boolean(item?.shoes) && (
         <p className={`${styles.body2} lg:text-[16px] hidden lg:block`}>

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useQuery, useMutation } from 'react-query';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
@@ -13,7 +13,7 @@ import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
 import styles from '@styles/Styles.module.scss';
 import { addToBasket } from '@/api/basket';
-import { appendToBasket, BasketProduct } from '@/store/reducers/BasketSlice';
+import { appendToBasket } from '@/store/reducers/BasketSlice';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { SealCheck } from '@phosphor-icons/react';
@@ -68,15 +68,6 @@ const CompleteYourLookPage: FC<IProps> = () => {
       },
     };
   }
-  const { items: basketProducts } = useAppSelector((state) => state.basket);
-  const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
-
-  const isProductExistInBasket = basketProducts.some(
-    (item: any) => item?.accessory?._id === completeLookItems[step]?.product?._id
-  );
-  const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
-    (item: any) => item._id === completeLookItems[step]?.product?._id
-  );
 
   const handleSkip = () => {
     // if (step < 2) {
@@ -98,40 +89,6 @@ const CompleteYourLookPage: FC<IProps> = () => {
     step === 0 ? navigate('/accessories') : step === 1 ? navigate('/shoe_care_product') : navigate('/');
   };
 
-  const [sizeButtonStyles, setSizeButtonStyles] = useState({});
-  const [selectedSize, setSelectedSize] = useState(null);
-  const [isProductExistAndSizeInBasketNonRegisterUser, setIsProductExistAndSizeInBasketNonRegisterUser] =
-    useState(false);
-
-  useEffect(() => {
-    if (
-      completeLookItems[step]?.product &&
-      completeLookItems[step]?.product?.size &&
-      completeLookItems[step]?.product?.size.length > 0
-    ) {
-      setSelectedSize(completeLookItems[step]?.product?.size[0]);
-      const updatedStyles = {};
-      updatedStyles[0] = 'border-2 border-mint text-mint';
-      setSizeButtonStyles(updatedStyles);
-    } else {
-      setSelectedSize(null);
-    }
-  }, [completeLookItems[step]?.product, step]);
-
-  useEffect(() => {
-    if (completeLookItems[step]?.product?.size) {
-      const checkProductExistence = () => {
-        const exists = basketProductsNonRegisterUser.some((item: BasketProduct) => {
-          const hasMatchingAccessoryAndSize =
-            item._id === completeLookItems[step]?.product?._id && item.size === selectedSize;
-          return hasMatchingAccessoryAndSize;
-        });
-        setIsProductExistAndSizeInBasketNonRegisterUser(exists);
-      };
-      checkProductExistence();
-    }
-  }, [selectedSize, basketProductsNonRegisterUser, step]);
-
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
       dispatch(appendToBasket({ ...completeLookItems[step]?.product, count: 1 }));
@@ -150,18 +107,16 @@ const CompleteYourLookPage: FC<IProps> = () => {
       details: {},
       price: completeLookItems[step]?.product?.price,
       basketItemId: uuidv4(),
-      size: selectedSize,
     };
   } else {
     requestData = {
-      product: { ...completeLookItems[step]?.product, size: selectedSize },
+      product: completeLookItems[step]?.product,
       count: 1,
       photo: [completeLookItems[step]?.product],
       measurement: {},
       details: {},
       price: completeLookItems[step]?.product?.price,
       title: completeLookItems[step]?.product?.title,
-      size: selectedSize,
     };
   }
 
@@ -169,7 +124,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
     if (userId && step >= 0) {
       mutation.mutate({ userId, requestData });
     } else {
-      dispatch(addToCartNonRegisterUser({ ...completeLookItems[step]?.product, size: selectedSize, count: 1 }));
+      dispatch(addToCartNonRegisterUser({ ...completeLookItems[step]?.product, count: 1 }));
       dispatch(showMessage('The product has been successfully added'));
     }
     if (step < 1) {
@@ -183,13 +138,15 @@ const CompleteYourLookPage: FC<IProps> = () => {
     dispatch(setStep(Steps.FIRST));
   }, []);
 
-  const handleSizeClick = (size, index) => {
-    setSelectedSize(size);
-    const updatedStyles = {};
-    updatedStyles[index] = 'border-2 border-mint text-mint';
-    setSizeButtonStyles(updatedStyles);
-    requestData = { ...requestData, size: selectedSize, basketItemId: uuidv4() };
-  };
+  const { items: basketProducts } = useAppSelector((state) => state.basket);
+  const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
+
+  const isProductExistInBasket = basketProducts.some(
+    (item: any) => item?.accessory?._id === completeLookItems[step]?.product?._id
+  );
+  const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
+    (item: any) => item._id === completeLookItems[step]?.product?._id
+  );
 
   return (
     <div className="font-poppins h-screen">
@@ -197,16 +154,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
       <MainLayout>
         <div className={`${styles.container} w-full flex flex-col items-center`}>
           <CompleteYourLookHeader />
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <CompleteYourLookItem
-              item={completeLookItems[step]}
-              setSizeButtonStyles={setSizeButtonStyles}
-              sizeButtonStyles={sizeButtonStyles}
-              handleSizeClick={handleSizeClick}
-            />
-          )}
+          {isLoading ? <Loader /> : <CompleteYourLookItem item={completeLookItems[step]} />}
           <Button color="transparentGray" className="w-full my-2  " onClick={handleSkip}>
             Skip
           </Button>
@@ -214,7 +162,6 @@ const CompleteYourLookPage: FC<IProps> = () => {
             View All
           </Button>
           {completeLookItems[step]?.product &&
-            (!completeLookItems[step]?.product?.size || !completeLookItems[step]?.product?.size?.length) &&
             ((!userId && !isProductExistInBasketNonRegisterUser) || (userId && !isProductExistInBasket)) && (
               <Button color="gray" className="w-full my-2 " onClick={handleAddToCart}>
                 Add to cart
@@ -222,28 +169,10 @@ const CompleteYourLookPage: FC<IProps> = () => {
             )}
 
           {completeLookItems[step]?.product &&
-          completeLookItems[step]?.product?.size?.length === 0 &&
           ((userId && isProductExistInBasket) || (!userId && isProductExistInBasketNonRegisterUser)) ? (
             <div className="flex justify-center items-center text-mint mt-2">
               <SealCheck className="mr-2" size={32} weight="fill" />
               Already in your cart
-            </div>
-          ) : null}
-
-          {completeLookItems[step]?.product &&
-            completeLookItems[step]?.product?.size?.length > 0 &&
-            ((!userId && !isProductExistAndSizeInBasketNonRegisterUser) || (userId && !isProductExistInBasket)) && (
-              <Button color="gray" className="w-full my-2 " onClick={handleAddToCart}>
-                Add to cart
-              </Button>
-            )}
-
-          {completeLookItems[step]?.product &&
-          completeLookItems[step]?.product?.size?.length > 0 &&
-          ((userId && isProductExistInBasket) || (!userId && isProductExistAndSizeInBasketNonRegisterUser)) ? (
-            <div className="flex justify-center items-center text-mint mt-2">
-              <SealCheck className="mr-2" size={32} weight="fill" />
-              {`Product with size ${selectedSize} is already in your cart`}
             </div>
           ) : null}
         </div>
