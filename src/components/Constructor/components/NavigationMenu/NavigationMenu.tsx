@@ -4,6 +4,7 @@ import { ReactSVG } from 'react-svg';
 import IconButton from '@mui/material/IconButton/IconButton';
 import styles from '@styles/Styles.module.scss';
 import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
+import VideoGuideLink from '@components/VideoGuideLink';
 
 const NavigationMenu = ({}) => {
   const navigate = useNavigate();
@@ -25,6 +26,12 @@ const NavigationMenu = ({}) => {
             }}
           />
         </IconButton>
+        <div>
+          <VideoGuideLink
+            className="text-gray"
+            src="https://drive.google.com/file/d/1f81GlGWzVE5LRmEqKjmBBxHPlwbaC_-e/view?usp=sharing"
+          />
+        </div>
       </div>
     </div>
   );

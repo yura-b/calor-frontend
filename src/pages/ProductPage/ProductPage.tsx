@@ -47,7 +47,7 @@ const ProductPage = () => {
     (item: BasketProduct) =>
       item?._id === dynamicId || item?.accessory?._id === dynamicId || item?.shoes?._id === dynamicId
   );
-console.log('test')
+
   const { data: product } = useQuery(['productById', dynamicId], () => getProductById(dynamicId), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,

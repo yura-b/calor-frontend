@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
 interface Props {
   color?: string;
   className?: string;
+  src: string;
 }
-const VideoGuideLink: React.FC<Props> = ({ color, className }) => {
+const VideoGuideLink: React.FC<Props> = ({ color, className, src }) => {
   return (
     <motion.a
-      href="https://www.youtube.com/watch?v=KS3ajvRQkJ8&t=50s"
+      href={src}
       className={`underline  mx-auto text-${color} pt-4 px-2 ${className}`}
       target="_blank"
       rel="noopener noreferrer"
