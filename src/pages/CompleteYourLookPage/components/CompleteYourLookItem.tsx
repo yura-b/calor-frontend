@@ -4,6 +4,7 @@ import { setStep, Steps } from '@/store/reducers/CompleteLookReducer';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
+import SizeSelection from '@components/ui/SizeSelection';
 
 interface IProps {
   item: {
@@ -12,12 +13,16 @@ interface IProps {
       title: string;
       price: number;
       photos: string[];
+      size: string[];
     };
     emptyProduct: string;
   };
+  sizeButtonStyles: Record<number, string>;
+  setSizeButtonStyles: (styles: Record<number, string>) => void;
+  handleSizeClick: (size: string, index: number) => void;
 }
 
-const CompleteYourLookItem: FC<IProps> = ({ item }) => {
+const CompleteYourLookItem: FC<IProps> = ({ item, setSizeButtonStyles, sizeButtonStyles, handleSizeClick }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div className="flex flex-col py-5 w-full items-center max-w-2xl">
@@ -51,11 +56,17 @@ const CompleteYourLookItem: FC<IProps> = ({ item }) => {
                 <span className="pr-2">$</span>
                 <span>{item?.product?.price}</span>
               </div>
-              {/* <div className="flex flex-row">
-                            <span className="font-bold pr-2">Total:</span>
-                            <span>{item?.product?.price}</span>
-                        </div> */}
             </div>
+            <>
+              {!!item?.product?.size.length && (
+                <SizeSelection
+                  sizes={item?.product?.size || []}
+                  setSizeButtonStyles={setSizeButtonStyles}
+                  sizeButtonStyles={sizeButtonStyles}
+                  handleSizeClick={handleSizeClick}
+                />
+              )}
+            </>
           </div>
         </div>
       ) : (
