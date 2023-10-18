@@ -100,14 +100,16 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
           </h1>
           <div className="sm:basis-[70%] xl:basis-[50%]">
             <div dangerouslySetInnerHTML={visionsContent} className={`${styles.subtitle} mb-2`} />
-            {/* Waiting videos */}
-            {/* <p className={styles.body1}>
+            <p className={styles.body1}>
               Learn how to do it in our {''}
               <span className="hidden lg:inline-block">
-                <VideoGuideLink color="custom-red" />
+                <VideoGuideLink
+                  color="custom-red"
+                  src="https://drive.google.com/file/d/1Y8q7wboEBcpRffHDF_gLtUg2lQ0s7zQW/view?usp=sharing"
+                />
               </span>
               <span className="lg:hidden">Video Guide</span>
-            </p> */}
+            </p>
           </div>
           <div className="basis-[100%] xl:basis-[25%] mt-4 lg:mt-0">
             <Button color="red" to={paths.design_shoe} className="mb-4 max-w-[360px] m-auto block">
@@ -117,8 +119,10 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
               Design Your Bag
             </Button> */}
           </div>
-          {/* Waiting videos */}
-          {/* <VideoGuideLink className="lg:hidden" /> */}
+          <VideoGuideLink
+            className="lg:hidden"
+            src="https://drive.google.com/file/d/1Y8q7wboEBcpRffHDF_gLtUg2lQ0s7zQW/view?usp=sharing"
+          />
         </motion.div>
         <img src={homeSemiCircle} className="absolute z-1 top-36 left-0 h-56 sm:hidden" />
         <img
