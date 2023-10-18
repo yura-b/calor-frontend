@@ -33,6 +33,7 @@ export const StatusSlice = createSlice({
       state.message = null;
     },
     showMessage: (state, action: PayloadAction<string | null>) => {
+      state.status = EStatus.OK
       state.message = action.payload;
     },
   },

@@ -12,6 +12,7 @@ import { createOrder } from '@/api/orders.ts';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import { paths } from '@/routes/paths';
+import CustomizedSnackbars from '@components/admin/CustomizedSnackbars.tsx';
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
@@ -95,6 +96,7 @@ const CheckoutPage = () => {
             </Button>
           </div>
         )}
+        <CustomizedSnackbars bottom={'200px'}/>
       </MainLayout>
     </div>
   );

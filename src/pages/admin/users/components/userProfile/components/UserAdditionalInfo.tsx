@@ -4,6 +4,8 @@ import { Review } from '@/constants/interfaces/review.ts';
 import { IOrder } from '@/constants/interfaces/order.ts';
 import OrdersTable from '@pages/admin/main/components/orderGrid/OrdersGrid.tsx';
 import Navigation from '@components/admin/Navigation.tsx';
+import { Coupon } from '@/constants/interfaces/coupon.ts';
+import PromoCodesGrid from '@/pages/admin/promocodes/components/PromoCodesGrid';
 
 export enum chosenSectionEnum {
   orderHistory = 'Orders History',
@@ -22,8 +24,9 @@ const sections: chosenSectionEnum[] = [
 interface IProps {
   reviews: Review[];
   orders: IOrder[];
+  coupons: Coupon[]
 }
-const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders }) => {
+const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders,coupons }) => {
   const [chosenSection, setChosenSection] = useState<string>(chosenSectionEnum.orderHistory);
 
   return (
@@ -31,6 +34,7 @@ const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders }) => {
       <Navigation setState={setChosenSection} state={chosenSection} array={sections} />
       <div>{chosenSection === chosenSectionEnum.reviews && <UserProfileReviews reviews={reviews} />}</div>
       <div>{chosenSection === chosenSectionEnum.orderHistory && <OrdersTable orderList={orders} />}</div>
+      <div>{chosenSection === chosenSectionEnum.promoCode && <PromoCodesGrid coupons={coupons}/>}</div>
     </div>
   );
 };

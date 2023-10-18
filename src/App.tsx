@@ -61,6 +61,7 @@ import CookiePopup from '@components/CookiePopup';
 import EditItem from '@pages/admin/catalog/EditItem.tsx';
 import Loader from '@/components/ui/Loader/';
 import VariationsPage from '@pages/admin/catalog/variations/VariationsPage.tsx';
+import PromoCodesPage from '@pages/admin/promocodes/PromocodesPage.tsx';
 
 const App = () => {
   const getUser = useGetUserIfRefresh();
@@ -100,6 +101,7 @@ const App = () => {
             <Route path={'createitem'} element={<CreateItem />} />
             <Route path={'edititem/:id'} element={<EditItem />} />
             <Route path={'warehouse'} element={<WarehousePage />} />
+            <Route path={'promocodes'} element={<PromoCodesPage />} />
           </Route>
           <Route path={'design_your_shoe'}>
             <Route index element={<DesignShoePage />} />

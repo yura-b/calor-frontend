@@ -53,8 +53,10 @@ const OrderPage = () => {
 
   return (
     <AdminLayout>
-      <div className={'mb-24'}>
+      <div className={'mb-24'}>      
+
         <OrderPageHeader id={id} invoiceUrl={orderData.invoiceUrl} checkListUrl={orderData.checkListUrl}/>
+
         <OrderStatusComponent status={status} id={id} />
         <OrderInformation order={orderData} />
         {orderData.shoes && <Details details={orderData.details} />}
