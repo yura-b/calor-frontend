@@ -5,8 +5,8 @@ import PurchasedGoods from './components/PurchasedGoods';
 import CartFooter from './components/CartFooter';
 import CartHeader from './components/CartHeader';
 import { useAppSelector, useAppDispatch } from '@/store/hooks/hooks';
-import { BasketProduct } from '@/store/reducers/BasketSlice';
-import { fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
+import { BasketProduct, fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
+
 interface Props {
   title: string;
   onClose: () => void;
@@ -36,7 +36,7 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
           ) : null}
           {userId && basketProducts.length ? (
             <div>
-              <div className={` bg-custom-turquoise h-[44px]`}>
+              <div className={'bg-custom-turquoise h-[44px]'}>
                 <p
                   className={`${styles.body1} bg-custom-turquoise w-full flex items-center justify-center text-center p-2 mt-4 sm:mt-0 lg:mb-4 lg:text-[18px]`}
                 >

@@ -22,10 +22,10 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
   const [selectedSize, setSelectedSize] = useState(null);
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
+
   const isProductExistInBasket = basketProducts.some(
     (item: BasketProduct) =>
-      (item._id === product?._id || item?.accessory?._id === product?._id || item?.shoes?._id === product?._id) &&
-      item?.size?.length === 0
+      item._id === product?._id || item?.accessory?._id === product?._id || item?.shoes?._id === product?._id
   );
 
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
@@ -53,10 +53,11 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
       product: product?._id,
       count: 1,
       photo: product?.photos[0],
-      measurement: {},
+      measurement: {
+        size: selectedSize,
+      },
       details: {},
       basketItemId: uuidv4(),
-      size: selectedSize,
     };
   } else {
     requestData = {
