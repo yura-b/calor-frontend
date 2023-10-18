@@ -57,9 +57,8 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(20);
 
   const navigator = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const handleChangePage = (event: unknown, newPage: number) => {
+
+  const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage);
   };
 
