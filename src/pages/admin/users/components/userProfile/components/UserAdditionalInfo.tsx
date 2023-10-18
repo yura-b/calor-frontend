@@ -24,9 +24,9 @@ const sections: chosenSectionEnum[] = [
 interface IProps {
   reviews: Review[];
   orders: IOrder[];
-  coupons: Coupon[]
+  coupons: Coupon[];
 }
-const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders,coupons }) => {
+const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders, coupons }) => {
   const [chosenSection, setChosenSection] = useState<string>(chosenSectionEnum.orderHistory);
 
   return (
@@ -34,7 +34,7 @@ const UserAdditionalInfo: React.FC<IProps> = ({ reviews, orders,coupons }) => {
       <Navigation setState={setChosenSection} state={chosenSection} array={sections} />
       <div>{chosenSection === chosenSectionEnum.reviews && <UserProfileReviews reviews={reviews} />}</div>
       <div>{chosenSection === chosenSectionEnum.orderHistory && <OrdersTable orderList={orders} />}</div>
-      <div>{chosenSection === chosenSectionEnum.promoCode && <PromoCodesGrid coupons={coupons}/>}</div>
+      <div>{chosenSection === chosenSectionEnum.promoCode && <PromoCodesGrid coupons={coupons} />}</div>
     </div>
   );
 };

@@ -8,8 +8,7 @@ import { activateCoupon } from '@/api/promoCodes.ts';
 import { errorCorrupted } from '@/store/reducers/StatusReducer.ts';
 
 const Payment = () => {
-
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const { order_ids, numberOfItems, totalPrice, shippingPrice, tax } = useAppSelector((state) => state.checkout);
 
@@ -18,14 +17,14 @@ const Payment = () => {
 
   if (!order_ids) return <div>order ID is missing</div>;
   const promoCodeClickHandler = () => {
-    activateCoupon(promoCode, order_ids).
-    then(res => {
-      console.log(res);
-      setDiscount(res.data.discount)
-    })
-      .catch((e)=>{
+    activateCoupon(promoCode, order_ids)
+      .then((res) => {
+        console.log(res);
+        setDiscount(res.data.discount);
+      })
+      .catch((e) => {
         console.log(e);
-        dispatch(errorCorrupted(e.response.data.message))
+        dispatch(errorCorrupted(e.response.data.message));
       });
   };
 
@@ -42,23 +41,21 @@ const Payment = () => {
         <p>Taxes</p>
         <p>{tax.toFixed(2)}$</p>
 
-        {discount &&
+        {discount && (
           <>
             <p>Discount</p>
-            <p>{discount.toFixed(2)}$
-            </p>
+            <p>{discount.toFixed(2)}$</p>
           </>
-      }
-
+        )}
       </div>
 
-      {!discount &&
+      {!discount && (
         <div className={'flex flex-col gap-5 justify-center mb-6'}>
-        <p className={'font-bold'}>Promo Code</p>
-        <CustomInput type={InputType.text} value={promoCode} onChange={(e) => setPromoCode(e.target.value)} />
-        <CustomButton title={'Activate promo code'} handler={promoCodeClickHandler} />
-      </div>}
-
+          <p className={'font-bold'}>Promo Code</p>
+          <CustomInput type={InputType.text} value={promoCode} onChange={(e) => setPromoCode(e.target.value)} />
+          <CustomButton title={'Activate promo code'} handler={promoCodeClickHandler} />
+        </div>
+      )}
 
       <p className={'font-bold'}>Payment Method</p>
       <p>Please a choose payment method</p>

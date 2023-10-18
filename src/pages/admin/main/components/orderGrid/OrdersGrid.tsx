@@ -125,10 +125,10 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
                     </p>
                   </TableCell>
                   <TableCell align={'center'}>
-                    <DownloadDocumentation title={'invoice'} link={order.invoiceUrl}/>
+                    <DownloadDocumentation title={'invoice'} link={order.invoiceUrl} />
                   </TableCell>
                   <TableCell align={'center'}>
-                    <DownloadDocumentation title={'checklist'} link={order.checkListUrl}/>
+                    <DownloadDocumentation title={'checklist'} link={order.checkListUrl} />
                   </TableCell>
                 </TableRow>
               );

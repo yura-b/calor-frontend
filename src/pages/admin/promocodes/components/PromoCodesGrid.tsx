@@ -9,9 +9,8 @@ import TableBody from '@mui/material/TableBody';
 import { TablePagination } from '@mui/material';
 import Paper from '@mui/material/Paper';
 
-
 interface Column {
-  id: 'Promo code' | 'Issue Date' | 'Expiration Date' | 'Status' | 'Value',
+  id: 'Promo code' | 'Issue Date' | 'Expiration Date' | 'Status' | 'Value';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
@@ -26,17 +25,16 @@ const columns: readonly Column[] = [
     label: 'Expiration Date',
     minWidth: 100,
     align: 'center',
-    format: (value: number) => value.toLocaleString('en-US')
+    format: (value: number) => value.toLocaleString('en-US'),
   },
   { id: 'Status', label: 'Status', minWidth: 50, align: 'center' },
   {
     id: 'Value',
     label: 'Value',
     minWidth: 50,
-    align: 'center'
-  }
+    align: 'center',
+  },
 ];
-
 
 export interface IProps {
   coupons: Coupon[];
@@ -55,7 +53,7 @@ const PromoCodesGrid: FC<IProps> = ({ coupons }) => {
     setPage(0);
   };
   if (coupons.length === 0) {
-    return <p>Promo codes list is empty</p>
+    return <p>Promo codes list is empty</p>;
   }
 
   return (
@@ -79,12 +77,7 @@ const PromoCodesGrid: FC<IProps> = ({ coupons }) => {
           <TableBody>
             {coupons.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((coupon) => {
               return (
-                <TableRow
-                  hover
-                  role="checkbox"
-                  tabIndex={-1}
-                  key={coupon._id}
-                >
+                <TableRow hover role="checkbox" tabIndex={-1} key={coupon._id}>
                   <TableCell>
                     <p>{coupon.uuid}</p>
                   </TableCell>
@@ -95,14 +88,16 @@ const PromoCodesGrid: FC<IProps> = ({ coupons }) => {
                     <p>{coupon.endDate}</p>
                   </TableCell>
                   <TableCell align={'center'}>
-                    {coupon.isUsed ?
+                    {coupon.isUsed ? (
                       <p className={'font-bolt text-red-500'}>Inactive</p>
-                      :
+                    ) : (
                       <p className={'text-mint'}>Active</p>
-                    }
+                    )}
                   </TableCell>
                   <TableCell align={'center'}>
-                    <p>{(coupon.percent_off || coupon.amount_off)} {coupon.percent_off ? '%' : '$'} </p>
+                    <p>
+                      {coupon.percent_off || coupon.amount_off} {coupon.percent_off ? '%' : '$'}{' '}
+                    </p>
                   </TableCell>
                 </TableRow>
               );

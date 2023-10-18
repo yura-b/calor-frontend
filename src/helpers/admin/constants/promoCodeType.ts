@@ -1,7 +1,6 @@
-
 export enum PromoCodeType {
   percentage = 'Percentage',
-  dollars = 'Dollars'
+  dollars = 'Dollars',
 }
 
-export const PromoCodeTypeArray = [PromoCodeType.percentage, PromoCodeType.dollars]
+export const PromoCodeTypeArray = [PromoCodeType.percentage, PromoCodeType.dollars];

@@ -96,7 +96,7 @@ const CheckoutPage = () => {
             </Button>
           </div>
         )}
-        <CustomizedSnackbars bottom={'200px'}/>
+        <CustomizedSnackbars bottom={'200px'} />
       </MainLayout>
     </div>
   );

@@ -1,17 +1,17 @@
 export interface Coupon {
-  amount_off:number
+  amount_off: number;
 
-  endDate:string
+  endDate: string;
 
-  isUsed:string
+  isUsed: string;
 
-  percent_off:number
+  percent_off: number;
 
-  startDate:string
+  startDate: string;
 
-  stripe_coupon_id:string
+  stripe_coupon_id: string;
 
-  uuid:string
+  uuid: string;
 
-  _id:string
+  _id: string;
 }
