@@ -78,9 +78,8 @@ const UsersGrid: React.FC<IProps> = ({ nameFilter }) => {
   }, [nameFilter]);
 
   if (users.length === 0) return <h2>User list is empty</h2>;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const handleChangePage = (event: unknown, newPage: number) => {
+
+  const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage);
   };
 
