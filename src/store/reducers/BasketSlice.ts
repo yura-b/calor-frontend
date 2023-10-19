@@ -10,6 +10,7 @@ interface IMeasurement {
   leftFootWidth: number;
   rightFootLength: number;
   rightFootWidth: number;
+  size: number;
 }
 interface IShoes {
   category: string;

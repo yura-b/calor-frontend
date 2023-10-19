@@ -13,7 +13,7 @@ import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
 import styles from '@styles/Styles.module.scss';
 import { addToBasket } from '@/api/basket';
-import { appendToBasket, BasketProduct } from '@/store/reducers/BasketSlice';
+import { appendToBasket, BasketProduct, fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { SealCheck } from '@phosphor-icons/react';
@@ -39,7 +39,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
   });
 
   let completeLookItems = {};
-  const { userId } = useAppSelector((state) => state.user);
+  const { userId, access_token } = useAppSelector((state) => state.user);
 
   if (!isLoading) {
     completeLookItems = {
@@ -53,7 +53,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
         emptyProduct: 'Accessories coming soon',
         product: products?.data.accessories.filter(
           (item) => item.category.categoryTitle === 'Accessories' && item.subcategory !== 'Belts'
-        )[0],
+        )[2],
       },
       1: {
         title: `In order to keep your ${
@@ -72,10 +72,13 @@ const CompleteYourLookPage: FC<IProps> = () => {
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   const isProductExistInBasket = basketProducts.some(
-    (item: any) => item?.accessory?._id === completeLookItems[step]?.product?._id
+    (item: BasketProduct) =>
+      item._id === completeLookItems[step]?.product?._id ||
+      item?.accessory?._id === completeLookItems[step]?.product?._id
   );
+
   const isProductExistInBasketNonRegisterUser = basketProductsNonRegisterUser.some(
-    (item: any) => item._id === completeLookItems[step]?.product?._id
+    (item: BasketProduct) => item._id === completeLookItems[step]?.product?._id
   );
 
   const handleSkip = () => {
@@ -102,6 +105,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [isProductExistAndSizeInBasketNonRegisterUser, setIsProductExistAndSizeInBasketNonRegisterUser] =
     useState(false);
+  const [isProductExistAndSizeInBasket, setIsProductExistAndSizeInBasket] = useState(false);
 
   useEffect(() => {
     if (
@@ -132,10 +136,31 @@ const CompleteYourLookPage: FC<IProps> = () => {
     }
   }, [selectedSize, basketProductsNonRegisterUser, step]);
 
+  useEffect(() => {
+    if (completeLookItems[step]?.product?.size) {
+      const checkProductExistence = () => {
+        const exists = basketProducts.some((item: BasketProduct) => {
+          const hasMatchingAccessoryAndSize =
+            item?.measurement?.size === selectedSize && item?.accessory?._id === completeLookItems[step]?.product?._id;
+          return hasMatchingAccessoryAndSize;
+        });
+        setIsProductExistAndSizeInBasket(exists);
+      };
+      checkProductExistence();
+    }
+  }, [selectedSize, basketProducts, step]);
+
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
-      dispatch(appendToBasket({ ...completeLookItems[step]?.product, count: 1 }));
+      dispatch(
+        appendToBasket({
+          ...completeLookItems[step]?.product,
+          size: completeLookItems[step]?.product?.size.find((i) => i === selectedSize),
+          count: 1,
+        })
+      );
       dispatch(showMessage('The product has been successfully added'));
+      dispatch(fetchUserProductsInBasket({ access_token, userId }));
     },
   });
 
@@ -146,11 +171,12 @@ const CompleteYourLookPage: FC<IProps> = () => {
       product: completeLookItems[step]?.product?._id,
       count: 1,
       photo: completeLookItems[step]?.product?.photos[0],
-      measurement: {},
+      measurement: {
+        size: selectedSize,
+      },
       details: {},
       price: completeLookItems[step]?.product?.price,
       basketItemId: uuidv4(),
-      size: selectedSize,
     };
   } else {
     requestData = {
@@ -232,7 +258,8 @@ const CompleteYourLookPage: FC<IProps> = () => {
 
           {completeLookItems[step]?.product &&
             completeLookItems[step]?.product?.size?.length > 0 &&
-            ((!userId && !isProductExistAndSizeInBasketNonRegisterUser) || (userId && !isProductExistInBasket)) && (
+            ((!userId && !isProductExistAndSizeInBasketNonRegisterUser) ||
+              (userId && !isProductExistAndSizeInBasket)) && (
               <Button color="gray" className="w-full my-2 " onClick={handleAddToCart}>
                 Add to cart
               </Button>
@@ -240,7 +267,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
 
           {completeLookItems[step]?.product &&
           completeLookItems[step]?.product?.size?.length > 0 &&
-          ((userId && isProductExistInBasket) || (!userId && isProductExistAndSizeInBasketNonRegisterUser)) ? (
+          ((userId && isProductExistAndSizeInBasket) || (!userId && isProductExistAndSizeInBasketNonRegisterUser)) ? (
             <div className="flex justify-center items-center text-mint mt-2">
               <SealCheck className="mr-2" size={32} weight="fill" />
               {`Product with size ${selectedSize} is already in your cart`}

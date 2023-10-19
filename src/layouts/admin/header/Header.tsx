@@ -110,7 +110,11 @@ const Header = () => {
 
           <HeaderElement icon={<Calendar size={size} weight="fill" />} title={'Appointments'} />
           <HeaderElement icon={<Envelope size={size} weight="fill" />} title={'Newsletter'} />
-          <HeaderElement icon={<Percent size={size} weight="fill" />} title={'Promo codes'} navigateTo={'/admin/promocodes'} />
+          <HeaderElement
+            icon={<Percent size={size} weight="fill" />}
+            title={'Promo codes'}
+            navigateTo={'/admin/promocodes'}
+          />
           <HeaderElement
             icon={<Browsers size={size} weight="fill" />}
             title={'Page manager'}

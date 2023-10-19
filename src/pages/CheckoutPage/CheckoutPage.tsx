@@ -36,7 +36,7 @@ const CheckoutPage = () => {
         photo: item?.photo,
         details: item?.details || {},
         measurement: { _id: item?.measurement?._id || {} },
-        size: item?.size || 0,
+        size: item?.measurement.size || 0,
       }))
     : basketProductsForNonRegisterUser?.map((item) => ({
         count: item?.count,
@@ -96,7 +96,7 @@ const CheckoutPage = () => {
             </Button>
           </div>
         )}
-        <CustomizedSnackbars bottom={'200px'}/>
+        <CustomizedSnackbars bottom={'200px'} />
       </MainLayout>
     </div>
   );

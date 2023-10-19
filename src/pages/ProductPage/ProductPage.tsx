@@ -14,7 +14,7 @@ import AccordionSection from '@components/AccordionSection';
 import { addToBasket } from '@/api/basket';
 import { SealCheck } from '@phosphor-icons/react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
-import { BasketProduct, appendToBasket } from '@/store/reducers/BasketSlice';
+import { BasketProduct, appendToBasket, fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
 import { addToCartNonRegisterUser } from '@/store/reducers/BasketForNonRegisterUser';
 import { showMessage } from '@/store/reducers/StatusClientReducer';
 import { v4 as uuidv4 } from 'uuid';
@@ -32,7 +32,7 @@ const ProductPage = () => {
   const navigate = useNavigate();
 
   const [dynamicId, setDynamicId] = useState(id || '');
-  const { userId } = useAppSelector((state) => state.user);
+  const { userId, access_token } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const [sizeButtonStyles, setSizeButtonStyles] = useState({});
@@ -53,8 +53,10 @@ const ProductPage = () => {
     refetchOnWindowFocus: false,
   });
   const [selectedSize, setSelectedSize] = useState(null);
+
   const [isProductExistAndSizeInBasketNonRegisterUser, setIsProductExistAndSizeInBasketNonRegisterUser] =
     useState(false);
+  const [isProductExistAndSizeInBasket, setIsProductExistAndSizeInBasket] = useState(false);
 
   useEffect(() => {
     if (product && product.data && product.data.size && product.data.size.length > 0) {
@@ -72,7 +74,7 @@ const ProductPage = () => {
       const checkProductExistence = () => {
         const exists = basketProductsNonRegisterUser.some((item: BasketProduct) => {
           const hasMatchingAccessoryAndSize =
-            (item.product === dynamicId || item._id === dynamicId || item?.accessory?._id === dynamicId) &&
+            (item?.product === dynamicId || item?.accessory?._id === dynamicId || item?.shoes?._id === dynamicId) &&
             item.size === selectedSize;
           return hasMatchingAccessoryAndSize;
         });
@@ -82,8 +84,22 @@ const ProductPage = () => {
     }
   }, [selectedSize, basketProductsNonRegisterUser, dynamicId]);
 
-  const variations = product?.data?.variations?.variations?.filter((variant) => variant._id !== product.data._id);
+  useEffect(() => {
+    if (product?.data?.size) {
+      const checkProductExistence = () => {
+        const exists = basketProducts.some((item: BasketProduct) => {
+          const hasMatchingAccessoryAndSize =
+            (item._id === dynamicId || item._id === dynamicId || item?.accessory?._id === dynamicId) &&
+            item.measurement?.size === selectedSize;
+          return hasMatchingAccessoryAndSize;
+        });
+        setIsProductExistAndSizeInBasket(exists);
+      };
+      checkProductExistence();
+    }
+  }, [selectedSize, basketProducts, dynamicId]);
 
+  const variations = product?.data?.variations?.variations?.filter((variant) => variant._id !== product.data._id);
   let requestData = {};
 
   if (userId) {
@@ -91,10 +107,11 @@ const ProductPage = () => {
       product: product?.data._id,
       count: 1,
       photo: product?.data.photos[0],
-      measurement: {},
+      measurement: {
+        size: selectedSize,
+      },
       details: {},
       basketItemId: uuidv4(),
-      size: selectedSize,
     };
   } else {
     requestData = {
@@ -111,17 +128,18 @@ const ProductPage = () => {
 
   const mutation = useMutation(addToBasket, {
     onSuccess: (data) => {
-      dispatch(appendToBasket({ ...product?.data, count: 1 }));
+      dispatch(
+        appendToBasket({ ...product?.data, size: product?.data.size.find((i) => i === selectedSize), count: 1 })
+      );
       dispatch(showMessage('The product has been successfully added'));
+      dispatch(fetchUserProductsInBasket({ access_token, userId }));
     },
   });
 
   const handleAddToCartNonRegisterUser = () => {
     dispatch(addToCartNonRegisterUser({ ...requestData, count: 1 }));
     dispatch(showMessage('The product has been successfully added'));
-
     addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
-    // setSizeButtonStyles({ 0: 'border-2 border-mint text-mint' });
   };
 
   const initialSectionsState = [
@@ -164,6 +182,7 @@ const ProductPage = () => {
 
   const [imageLoaded, setImageLoaded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -254,24 +273,47 @@ const ProductPage = () => {
                 )}
                 {userId ? (
                   <>
-                    {product?.data.category !== 'shoes' && !isProductExistInBasket && (
-                      <Button
-                        id="gtm-add-to-cart-product"
-                        color="gray"
-                        onClick={() => {
-                          addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
-                          mutation.mutate({ userId, requestData });
-                          setSizeButtonStyles({});
-                        }}
-                      >
-                        Add To Cart
-                      </Button>
-                    )}
-                    {product?.data.category !== 'shoes' && isProductExistInBasket && (
-                      <div className="flex justify-center items-center text-mint">
-                        <SealCheck className="mr-2" size={32} weight="fill" />
-                        Already in your cart
-                      </div>
+                    {!product?.data.size || !product?.data.size.length ? (
+                      <>
+                        {product?.data.category !== 'shoes' && !isProductExistInBasket && (
+                          <Button
+                            id="gtm-add-to-cart-product"
+                            color="gray"
+                            onClick={() => {
+                              addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
+                              mutation.mutate({ userId, requestData });
+                            }}
+                          >
+                            Add To Cart
+                          </Button>
+                        )}
+                        {product?.data.category !== 'shoes' && isProductExistInBasket && (
+                          <div className="flex justify-center items-center text-mint">
+                            <SealCheck className="mr-2" size={32} weight="fill" />
+                            Already in your cart
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {product?.data.category !== 'shoes' && !isProductExistAndSizeInBasket && (
+                          <Button
+                            color="gray"
+                            onClick={() => {
+                              addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
+                              mutation.mutate({ userId, requestData });
+                            }}
+                          >
+                            Add To Cart
+                          </Button>
+                        )}
+                        {product?.data.category !== 'shoes' && isProductExistAndSizeInBasket && (
+                          <div className="flex justify-center items-center text-mint">
+                            <SealCheck className="mr-2" size={32} weight="fill" />
+                            {`Product with size ${selectedSize} is already in your cart`}
+                          </div>
+                        )}
+                      </>
                     )}
                   </>
                 ) : (

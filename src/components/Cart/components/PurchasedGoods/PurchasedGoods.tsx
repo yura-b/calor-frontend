@@ -91,14 +91,19 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
               <img width={15} height={15} src={deleteIcon} />
             </div>
           </div>
-          {/* {Boolean(item?.shoes) && (
+          {Boolean(item?.shoes) && item?.measurement?.size && (
+            <p className={`${styles.body2} mt-2`}>
+              Size: <span>{item.measurement.size}</span>
+            </p>
+          )}
+          {Boolean(!item?.shoes) && !Array.isArray(item?.size) && item?.size !== null && item?.size && !userId && (
             <p className={`${styles.body2} mt-2`}>
               Size: <span>{item.size}</span>
             </p>
-          )} */}
-          {Boolean(!item?.shoes) && !Array.isArray(item?.size) && item?.size !== null && item?.size && (
+          )}
+          {Boolean(!item?.shoes) && userId && item?.measurement?.size && (
             <p className={`${styles.body2} mt-2`}>
-              Size: <span>{item.size}</span>
+              Size: <span>{item.measurement.size}</span>
             </p>
           )}
           <div className="flex justify-between items-baseline">

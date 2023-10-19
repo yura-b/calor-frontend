@@ -1,18 +1,13 @@
 export interface PromoCodesDto {
+  startDate: string;
 
-  startDate: string
+  endDate: string;
 
+  percent_off?: number;
 
-  endDate: string
+  amount_off?: number;
 
+  email?: string;
 
-  percent_off?: number
-
-
-  amount_off?: number
-
-
-  email?: string
-
-  isPercent: boolean
+  isPercent: boolean;
 }

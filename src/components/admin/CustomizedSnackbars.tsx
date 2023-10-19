@@ -9,8 +9,6 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props,
 });
 
 const CustomizedSnackbars: FC<{ bottom?: string }> = ({ bottom = '80px' }) => {
-  
-
   const { message, status } = useAppSelector((state) => state.status);
   const dispatch = useAppDispatch();
 
@@ -27,11 +25,13 @@ const CustomizedSnackbars: FC<{ bottom?: string }> = ({ bottom = '80px' }) => {
   if (!message) return <></>;
 
   return (
-    <div style={{
-      position: 'fixed',
-      right: '10px', // Adjust the right margin as needed
-      bottom: bottom
-    }}>
+    <div
+      style={{
+        position: 'fixed',
+        right: '10px', // Adjust the right margin as needed
+        bottom: bottom,
+      }}
+    >
       <Alert severity="error" color={severity}>
         {message}
       </Alert>

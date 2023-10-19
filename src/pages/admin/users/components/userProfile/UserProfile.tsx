@@ -44,7 +44,7 @@ const UserProfile = () => {
       setUserInfo(res.data.user);
       setUserReviews(res.data.reviews);
       setUserOrders(res.data.orders);
-      setUserCoupons(res.data.coupons)
+      setUserCoupons(res.data.coupons);
       dispatch(loadingFinished());
     });
   }, [id]);
