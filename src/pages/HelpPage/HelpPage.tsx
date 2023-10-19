@@ -22,7 +22,7 @@ const HelpPage: React.FC = (): React.ReactElement => {
         {/* Waiting videos */}
         {/* <VideoGuides /> */}
         <div className={`${styles.container} w-full  lg:flex lg:items-start lg:justify-around gap-6`}>
-          <div className="basis-[48%]">
+          <div className="basis-[48%] lg:max-w-[48%]">
             <SizeGuide />
             {window.innerWidth >= mobileBreakpoint && (
               <div className={'bg-mintExtraLight px-6'}>
