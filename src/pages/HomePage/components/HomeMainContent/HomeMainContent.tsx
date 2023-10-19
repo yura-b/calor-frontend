@@ -105,8 +105,9 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
               <span className="hidden lg:inline-block">
                 <VideoGuideLink
                   color="custom-red"
-                  src="https://drive.google.com/file/d/1Y8q7wboEBcpRffHDF_gLtUg2lQ0s7zQW/view?usp=sharing"
+                  src="https://drive.google.com/file/d/1Y8q7wboEBcpRffHDF_gLtUg2lQ0s7zQW/preview"
                 />
+                <div></div>
               </span>
               <span className="lg:hidden">Video Guide</span>
             </p>
@@ -119,10 +120,12 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
               Design Your Bag
             </Button> */}
           </div>
-          <VideoGuideLink
-            className="lg:hidden"
-            src="https://drive.google.com/file/d/1Y8q7wboEBcpRffHDF_gLtUg2lQ0s7zQW/view?usp=sharing"
-          />
+          <div className="m-auto">
+            <VideoGuideLink
+              className="lg:hidden"
+              src="https://drive.google.com/file/d/1Y8q7wboEBcpRffHDF_gLtUg2lQ0s7zQW/preview"
+            />
+          </div>
         </motion.div>
         <img src={homeSemiCircle} className="absolute z-1 top-36 left-0 h-56 sm:hidden" />
         <img

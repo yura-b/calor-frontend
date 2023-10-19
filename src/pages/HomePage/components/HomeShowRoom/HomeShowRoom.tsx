@@ -26,7 +26,7 @@ const HomeShowRoom: React.FC<Props> = ({
   perfectFit,
 }): React.ReactElement => {
   const [open, setOpen] = useState(false);
-  const [iframeLoading, setIframeLoading] = useState(true); // Track iframe loading
+  const [iframeLoading, setIframeLoading] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   const handleOpen = () => {

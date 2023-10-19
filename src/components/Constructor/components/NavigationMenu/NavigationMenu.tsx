@@ -29,7 +29,7 @@ const NavigationMenu = ({}) => {
         <div>
           <VideoGuideLink
             className="text-gray"
-            src="https://drive.google.com/file/d/1f81GlGWzVE5LRmEqKjmBBxHPlwbaC_-e/view?usp=sharing"
+            src="https://drive.google.com/file/d/1f81GlGWzVE5LRmEqKjmBBxHPlwbaC_-e/preview"
           />
         </div>
       </div>
