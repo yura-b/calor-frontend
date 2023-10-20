@@ -21,6 +21,7 @@ const DesignShoePage: FC = (): React.ReactElement => {
   });
 
   const shoes = products?.data?.shoes.filter((item) => item._id !== constants.DAYGER_WINTER_ID) || [];
+  const winterShoePrice = products?.data?.shoes.find((item) => item._id == constants.DAYGER_WINTER_ID).price;
 
   return (
     <div className="font-poppins h-screen">
@@ -31,7 +32,7 @@ const DesignShoePage: FC = (): React.ReactElement => {
         </div>
         {isLoading && <Loader />}
         <div className={`${styles.container}`}>
-          <ShoesList shoes={shoes} />
+          <ShoesList shoes={shoes} winterShoePrice={winterShoePrice} />
         </div>
       </MainLayout>
     </div>

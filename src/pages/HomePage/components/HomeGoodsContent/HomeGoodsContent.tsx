@@ -38,12 +38,13 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
   });
 
   const shoes = products?.data?.shoes.filter((item) => item._id !== constants.DAYGER_WINTER_ID) || [];
+  const winterShoePrice = products?.data?.shoes.find((item) => item._id == constants.DAYGER_WINTER_ID).price;
 
   return (
     <div className={`${styles.container} w-full bg-white`}>
       {headerBlock('Our Shoe Models', paths.design_shoe)}
       {isLoading && <Loader />}
-      <ShoesList shoes={shoes} />
+      <ShoesList shoes={shoes} winterShoePrice={winterShoePrice} />
     </div>
   );
 };

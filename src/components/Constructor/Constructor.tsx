@@ -16,8 +16,17 @@ import Button from '@/components/ui/Button';
 import { shoes } from './shoesData';
 import combineImages from '@/helpers/functions/combineImages';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getProductById } from '@/api/products';
+import styles from '@styles/Styles.module.scss';
 
 const Constructor: FC = () => {
+  const { id } = useParams();
+  const { data: product } = useQuery(['productById', id], () => getProductById(id), {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { model } = useParams();
@@ -60,7 +69,10 @@ const Constructor: FC = () => {
           <Colors details={modelDetails?.details} />
 
           <div className="flex w-wrapper flex-col mx-auto">
-            <div className="flex justify-center align-center">
+            <div className="flex justify-center align-center items-center gap-4">
+              <div className={`${styles.subtitle}`}>
+                {product?.data?.title} {product?.data?.price} $
+              </div>
               <Button color="gray" className="w-full my-4 lg:block max-w-sm" onClick={toggleVisibility}>
                 Preview
               </Button>

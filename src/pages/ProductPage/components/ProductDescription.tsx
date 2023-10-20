@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from '@styles/Styles.module.scss';
 import Rating from '@/components/ui/Rating/Rating';
+import constants from '@/constants/constants';
+import { useParams } from 'react-router';
 
-const ProductDescription = ({ title, price, rating, sizes, category, description }) => {
+const ProductDescription = ({ title, price, rating, sizes, category, description, winterShoePrice }) => {
+  const { id } = useParams();
   return (
     <div className="text-gray">
       <div className="flex justify-start items-center py-1">
@@ -13,14 +16,22 @@ const ProductDescription = ({ title, price, rating, sizes, category, description
         <span className="text-thinGray font-thin">Category</span>
       </div>
 
-      <div className="flex flex-row justify-between items-center">
+      <div className={'flex  justify-between items-center flex-wrap w-full'}>
         <div className="flex justify-start py-2">
           {' '}
           <Rating rating={rating} includeTitle={true} readOnly={true} className="flex flex-row-reverse" />
         </div>
-        <div className="flex justify-end">
-          From <span className="font-bold ml-4">${price}</span>
-        </div>
+        {id !== constants.DAYGER_ID && (
+          <div className="flex justify-end">
+            From <span className="font-bold ml-4">${price}</span>
+          </div>
+        )}
+        {winterShoePrice && id === constants.DAYGER_ID && (
+          <div className="flex justify-end">
+            From <span className="font-bold ml-2 mr-4">${price}</span> to{' '}
+            <span className="font-bold ml-2">${winterShoePrice}</span>
+          </div>
+        )}
       </div>
       <div className="py-2 w-full">
         <div dangerouslySetInnerHTML={{ __html: description }} />

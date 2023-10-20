@@ -26,6 +26,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 import { useNavigate } from 'react-router-dom';
+import constants from '@/constants/constants';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -52,6 +53,15 @@ const ProductPage = () => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
+
+  const { data: winterShoeProduct } = useQuery(
+    ['productById', constants.DAYGER_WINTER_ID],
+    () => getProductById(constants.DAYGER_WINTER_ID),
+    {
+      enabled: dynamicId === constants.DAYGER_ID,
+    }
+  );
+
   const [selectedSize, setSelectedSize] = useState(null);
 
   const [isProductExistAndSizeInBasketNonRegisterUser, setIsProductExistAndSizeInBasketNonRegisterUser] =
@@ -211,6 +221,7 @@ const ProductPage = () => {
                 rating={product?.data.rating}
                 sizes={product?.data.sizes}
                 category={product?.data.category}
+                winterShoePrice={winterShoeProduct?.data?.price}
               />
               <div className="py-2 w-full">
                 {product?.data.category == 'shoes' && <span>Your shoes will be manufactured in 7-10 days.</span>}
