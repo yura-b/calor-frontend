@@ -42,8 +42,11 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   useEffect(() => {
-    dispatch(fetchUserProductsInBasket({ access_token, userId }));
+    if (access_token) {
+      dispatch(fetchUserProductsInBasket({ access_token, userId }));
+    }
   }, [access_token, userId]);
+
   const { items: basketProducts } = useAppSelector((state) => state.basket);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
