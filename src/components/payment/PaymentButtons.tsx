@@ -2,11 +2,16 @@ import React, { FC } from 'react';
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { capturePayPalOrder, createPayPalOrder, deletePayPalID, stripePayment } from '@/api/payment.ts';
 import CustomButton from '@components/button/CustomButton.tsx';
+import { useNavigate } from 'react-router';
 
 interface IProps {
   order_ids: string[];
 }
 const PaymentButtons: FC<IProps> = ({ order_ids }) => {
+
+  const navigate = useNavigate()
+
+
   const stripeHandler = () => {
     stripePayment(order_ids).then((res) => {
       window.location.href = res.data?.url;
@@ -14,7 +19,7 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
   };
   return (
     <>
-      {/* <PayPalScriptProvider
+      <PayPalScriptProvider
         options={{
           clientId: 'test',
           components: 'buttons',
@@ -32,19 +37,22 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
             return res.data.id;
           }}
           onApprove={async (data) => {
-            console.log(data);
             capturePayPalOrder(data).then((res) => {
-              console.log(res);
+              navigate(`/checkout_success/${res.data}`)
+            }).catch(()=>{
+              navigate('/checkout_failed')
             });
           }}
           onCancel={(data) => {
-            deletePayPalID(data).then();
+            deletePayPalID(data).then(()=>{
+              navigate('/checkout_failed')
+            });
           }}
-          onError={(err) => {
-            console.log(err);
+          onError={() => {
+            navigate('/checkout_failed')
           }}
         />
-      </PayPalScriptProvider> */}
+      </PayPalScriptProvider>
 
       <CustomButton title={'Credit Card'} handler={stripeHandler} />
     </>
