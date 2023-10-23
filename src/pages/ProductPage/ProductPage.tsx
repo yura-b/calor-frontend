@@ -27,6 +27,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 import { useNavigate } from 'react-router-dom';
 import constants from '@/constants/constants';
+import VideoFrame from '@components/VideoFrame';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -157,25 +158,18 @@ const ProductPage = () => {
       title: 'Product details',
       isOpen: false,
     },
-    // {
-    //   title: 'Promo Videos',
-    //   isOpen: false
-    // },
+    {
+      title: 'Promo Videos',
+      isOpen: true,
+    },
     // {
     //   title: 'Inspiration',
     //   isOpen: false
     // }
   ];
-  const initialSectionsStateNotShoes = [
-    {
-      title: 'Product details',
-      isOpen: false,
-    },
-  ];
 
-  const [sections, setSections] = useState(
-    product?.data.category === 'shoes' ? initialSectionsState : initialSectionsStateNotShoes
-  );
+  const [sections, setSections] = useState(initialSectionsState);
+
   const toggleSection = (index) => {
     setSections((prevSections) =>
       prevSections.map((section, i) => (i === index ? { ...section, isOpen: !section.isOpen } : section))
@@ -368,6 +362,13 @@ const ProductPage = () => {
                     title={section.title}
                     isOpen={section.isOpen}
                     toggleAccordion={() => toggleSection(index)}
+                    className={`${
+                      product?.data.category !== 'shoes' && index > 0
+                        ? 'hidden'
+                        : (product?.data.title === 'Sunrise' && index == 1) || index == 0
+                        ? 'block'
+                        : 'hidden'
+                    }`}
                   >
                     {index == 0 && (
                       <div>
@@ -375,12 +376,16 @@ const ProductPage = () => {
                         <div dangerouslySetInnerHTML={{ __html: product?.data.productDetails }} />
                       </div>
                     )}
-                    {index == 1 && (
-                      <div>
-                        <h1>Promo Videos</h1>
+                    {product?.data.category === 'shoes' && index == 1 && product?.data.title == 'Sunrise' && (
+                      <div className="my-4">
+                        <VideoFrame
+                          src="https://drive.google.com/file/d/1mkHGQhFGCadBgfHlL4vNi_gNh-WMSjjU/preview"
+                          title="Video Guide"
+                          className="xl:max-w-[50vw]"
+                        />
                       </div>
                     )}
-                    {index == 2 && (
+                    {product?.data.category === 'shoes' && index == 2 && (
                       <div>
                         <h1>Inspiration</h1>
                       </div>

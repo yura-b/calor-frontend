@@ -19,7 +19,9 @@ const Cart: React.FC<Props> = ({ onClose, title }): React.ReactElement => {
   const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   useEffect(() => {
-    dispatch(fetchUserProductsInBasket({ access_token, userId }));
+    if (access_token) {
+      dispatch(fetchUserProductsInBasket({ access_token, userId }));
+    }
   }, [access_token, userId]);
 
   return (
