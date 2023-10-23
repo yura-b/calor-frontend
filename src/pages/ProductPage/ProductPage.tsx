@@ -167,8 +167,7 @@ const ProductPage = () => {
     //   isOpen: false
     // }
   ];
-  console.log(product?.data.title);
-  console.log(product?.data.title === 'Sunrise');
+
   const [sections, setSections] = useState(initialSectionsState);
 
   const toggleSection = (index) => {
