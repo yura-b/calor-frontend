@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
+import Spinner from '@components/ui/Spinner';
 
 interface Props {
   src: string;
@@ -10,6 +11,7 @@ interface Props {
 const VideoFrame: React.FC<Props> = ({ src, title, className }) => {
   const isLargeScreen = useMediaQuery('(min-width: 1024px)');
   const [iframeStyle, setIframeStyle] = useState({ width: '100%', height: 'auto' });
+  const [iframeLoading, setIframeLoading] = useState(true);
 
   useEffect(() => {
     const calculateSize = () => {
@@ -29,11 +31,14 @@ const VideoFrame: React.FC<Props> = ({ src, title, className }) => {
     return () => {
       window.removeEventListener('resize', calculateSize);
     };
-  }, []);
-
+  }, [isLargeScreen, src]);
+  const handleIframeLoad = () => {
+    setIframeLoading(false);
+  };
   return (
-    <div id="frame-id" className={`${className}`}>
-      <iframe src={src} title={title} frameBorder="0" allowFullScreen style={iframeStyle} />
+    <div id="frame-id" className={`${className} relative`}>
+      {iframeLoading && <Spinner className="absolute top-1/2 left-1/2" />}
+      <iframe src={src} title={title} frameBorder="0" allowFullScreen style={iframeStyle} onLoad={handleIframeLoad} />
     </div>
   );
 };
