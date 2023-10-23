@@ -12,7 +12,7 @@ interface IMeasurement {
   rightFootWidth: number;
   size: number;
 }
-interface IShoes {
+export interface IShoes {
   category: string;
   description: string;
   details: string[];

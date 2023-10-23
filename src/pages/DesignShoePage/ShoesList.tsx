@@ -2,8 +2,13 @@ import React, { FC } from 'react';
 import ProductCart from '@/components/ProductCart/ProductCart';
 import { paths } from '@/routes/paths';
 import { useLocation } from 'react-router-dom';
+import { IShoes } from '@/store/reducers/BasketSlice';
+interface Props {
+  shoes: IShoes[];
+  winterShoePrice: number;
+}
 
-const ShoesList: React.FC = ({ shoes }): React.ReactElement => {
+const ShoesList: React.FC<Props> = ({ shoes, winterShoePrice }): React.ReactElement => {
   const location = useLocation();
   const isHome = location.pathname === paths.home;
   return (
@@ -19,9 +24,9 @@ const ShoesList: React.FC = ({ shoes }): React.ReactElement => {
           key={i}
           className={`${
             isHome ? 'min-w-[200px] 2xl:min-h-[460px] lg:min-h-[380px]' : ''
-          } flex  sm:basis-[40%]  lg:basis-[30%] `}
+          } flex  sm:basis-[40%]  lg:basis-[30%]`}
         >
-          <ProductCart product={product} type="shoes" />
+          <ProductCart product={product} winterShoePrice={winterShoePrice} type="shoes" />
         </div>
       ))}
     </div>

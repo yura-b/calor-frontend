@@ -15,8 +15,9 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 import { v4 as uuidv4 } from 'uuid';
 import { addToCartGTMEvent } from '@/helpers/functions/gtm';
+import constants from '@/constants/constants';
 
-const ProductCart: FC = ({ product, type }): React.ReactElement => {
+const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => {
   const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [selectedSize, setSelectedSize] = useState(null);
@@ -119,10 +120,24 @@ const ProductCart: FC = ({ product, type }): React.ReactElement => {
         <span>{product?.rating ? product?.rating : '0'}</span>
       </div>
       <div>{product.categoryTitle}</div>
-      <div className={`${styles.body2} flex flex-row justify-between`}>
-        <span>From</span>
-        <span className="font-bold">{product.price} $</span>
-      </div>
+      {product._id !== constants.DAYGER_ID && (
+        <div className={`${styles.body2} flex flex-row justify-between`}>
+          <span>From</span>
+          <span className="font-bold">{product.price} $</span>
+        </div>
+      )}
+      {product._id == constants.DAYGER_ID && (
+        <div className={`${styles.body2} flex flex-row justify-between`}>
+          <div>
+            <span>From</span>
+            <span className="font-bold ml-2">{product.price} $</span>
+          </div>
+          <div>
+            <span>to</span>
+            <span className="font-bold ml-2">{winterShoePrice} $</span>
+          </div>
+        </div>
+      )}
       {(userId && type !== 'shoes' && isProductExistInBasket && product?.size?.length == 0) ||
       (!userId && type !== 'shoes' && isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ? (
         <div className="flex justify-center items-center text-mint mt-2">
