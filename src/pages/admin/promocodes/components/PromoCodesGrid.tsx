@@ -90,12 +90,10 @@ const PromoCodesGrid: FC<IProps> = ({ coupons }) => {
                     <p>{coupon.endDate}</p>
                   </TableCell>
                   <TableCell align={'center'}>
-                  <IsCouponActive isUsed={coupon.isUsed}/>
+                    <IsCouponActive isUsed={coupon.isUsed} />
                   </TableCell>
                   <TableCell align={'center'}>
-                    <p>
-                      {percentOrAmountCoupon(coupon.amount_off, coupon.percent_off)}
-                    </p>
+                    <p>{percentOrAmountCoupon(coupon.amount_off, coupon.percent_off)}</p>
                   </TableCell>
                 </TableRow>
               );

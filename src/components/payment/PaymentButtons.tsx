@@ -8,9 +8,7 @@ interface IProps {
   order_ids: string[];
 }
 const PaymentButtons: FC<IProps> = ({ order_ids }) => {
-
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const stripeHandler = () => {
     stripePayment(order_ids).then((res) => {
@@ -37,19 +35,21 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
             return res.data.id;
           }}
           onApprove={async (data) => {
-            capturePayPalOrder(data).then((res) => {
-              navigate(`/checkout_success/${res.data}`)
-            }).catch(()=>{
-              navigate('/checkout_failed')
-            });
+            capturePayPalOrder(data)
+              .then((res) => {
+                navigate(`/checkout_success/${res.data}`);
+              })
+              .catch(() => {
+                navigate('/checkout_failed');
+              });
           }}
           onCancel={(data) => {
-            deletePayPalID(data).then(()=>{
-              navigate('/checkout_failed')
+            deletePayPalID(data).then(() => {
+              navigate('/checkout_failed');
             });
           }}
           onError={() => {
-            navigate('/checkout_failed')
+            navigate('/checkout_failed');
           }}
         />
       </PayPalScriptProvider>

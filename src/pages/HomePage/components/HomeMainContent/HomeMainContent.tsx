@@ -105,7 +105,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
               <span className="hidden lg:inline-block">
                 <VideoGuideLink
                   color="custom-red"
-                  src="https://drive.google.com/file/d/1Y8q7wboEBcpRffHDF_gLtUg2lQ0s7zQW/preview"
+                  src="https://drive.google.com/file/d/1jADBBF8ByG7HdFKs43yMMp8qWNmXi2BH/preview"
                 />
                 <div></div>
               </span>
