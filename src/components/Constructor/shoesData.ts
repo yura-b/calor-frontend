@@ -118,6 +118,12 @@ export const shoes = [
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0001_Caribbean-Green.webp',
               },
+              {
+                img: 'part01_leather_19.png',
+                name: 'Real Red',
+                hex: '#00A58C',
+                texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
+              },
             ],
           },
           {
@@ -344,6 +350,12 @@ export const shoes = [
                 name: 'Caribbean Green',
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0001_Caribbean-Green.webp',
+              },
+              {
+                img: 'part02_leather_19.png',
+                name: 'Real Red',
+                hex: '#00A58C',
+                texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
           },
@@ -941,6 +953,12 @@ export const shoes = [
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0001_Caribbean-Green.webp',
               },
+              {
+                img: 'part07_leather_19.png',
+                name: 'Real Red',
+                hex: '#00A58C',
+                texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
+              },
             ],
           },
           {
@@ -1166,6 +1184,12 @@ export const shoes = [
                 name: 'Caribbean Green',
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0001_Caribbean-Green.webp',
+              },
+              {
+                img: 'part08_leather_19.png',
+                name: 'Real Red',
+                hex: '#00A58C',
+                texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
           },
@@ -1520,6 +1544,12 @@ export const shoes = [
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0001_Caribbean-Green.webp',
               },
+              {
+                img: 'part10_leather_19.png',
+                name: 'Real Red',
+                hex: '#00A58C',
+                texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
+              },
             ],
           },
           {
@@ -1746,6 +1776,12 @@ export const shoes = [
                 name: 'Caribbean Green',
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0001_Caribbean-Green.webp',
+              },
+              {
+                img: 'part11_leather_19.png',
+                name: 'Real Red',
+                hex: '#00A58C',
+                texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
           },
@@ -1974,6 +2010,12 @@ export const shoes = [
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0001_Caribbean-Green.webp',
               },
+              {
+                img: 'part12_leather_19.png',
+                name: 'Real Red',
+                hex: '#00A58C',
+                texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
+              },
             ],
           },
           {
@@ -2198,6 +2240,12 @@ export const shoes = [
                 name: 'Caribbean Green',
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0001_Caribbean-Green.webp',
+              },
+              {
+                img: 'part13_leather_19.png',
+                name: 'Real Red',
+                hex: '#00A58C',
+                texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
           },
