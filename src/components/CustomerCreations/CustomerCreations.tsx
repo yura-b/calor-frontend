@@ -1,34 +1,24 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
-import creation1 from '@assets/images/customerCreations/creation1.jpg';
-import creation2 from '@assets/images/customerCreations/creation2.jpg';
-import creation3 from '@assets/images/customerCreations/creation3.jpg';
-import creation4 from '@assets/images/customerCreations/creation4.jpg';
-import creation5 from '@assets/images/customerCreations/creation5.jpg';
+import { useQuery } from "react-query";
+import { instagramGetPosts } from "@/api/instagram";
 
 const CustomerCreations: React.FC = (): React.ReactElement => {
+  const { data: instagramData, isLoading } = useQuery('instagramGetPosts', () => instagramGetPosts());
+  const [instagramPhotos, setInstagramPhotos] = useState([]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const mappedInstagramData = instagramData?.data.data.filter((item) => item.media_type === 'IMAGE');
+  
+      setInstagramPhotos(mappedInstagramData.slice(0, 5));
+    }
+  }, [isLoading]);
+
   const handleClick = () => {
     window.open('https://www.instagram.com/calorshoe', '_blank');
   };
-
-  const homeCustomerCreations = [
-    {
-      img: creation1,
-    },
-    {
-      img: creation2,
-    },
-    {
-      img: creation3,
-    },
-    {
-      img: creation4,
-    },
-    {
-      img: creation5,
-    },
-  ];
 
   return (
     <div className={styles.container}>
@@ -40,10 +30,10 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
         </Button>
       </div>
       <div className="flex overflow-x-auto flex-row gap-2 mx-auto lg:gap-10">
-        {homeCustomerCreations.map((item, i) => (
-          <div className="flex justify-center items-center lg:basis-1/5  my-4" key={i}>
+        {instagramPhotos.map((item) => (
+          <div className="flex justify-center items-center lg:basis-1/5  my-4" key={item.id}>
             <div className={'w-36  text-gray lg:w-full '}>
-              <img src={item.img} className="w-full object-contain object-cover max-h-[260px] min-h-[220px] mx-auto " />
+              <img src={item.media_url} className="w-full object-contain max-h-[260px] min-h-[220px] mx-auto " />
             </div>
           </div>
         ))}
