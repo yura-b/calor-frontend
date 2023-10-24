@@ -1,6 +1,7 @@
 import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
 import { detail } from '@/api/dto/orders.dto.ts';
 import { details } from '@/constants/interfaces/basket.ts';
+import { Coupon } from '@/constants/interfaces/coupon.ts';
 
 export interface IOrder {
   _id: string;
@@ -10,6 +11,8 @@ export interface IOrder {
   details: {
     [name: string]: detail;
   };
+
+  coupon: Coupon;
 
   measurement: IMeasurement;
 

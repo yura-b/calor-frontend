@@ -8,6 +8,8 @@ import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import { TablePagination } from '@mui/material';
 import Paper from '@mui/material/Paper';
+import percentOrAmountCoupon from '@/helpers/functions/percentOrAmountCoupon';
+import IsCouponActive from '@pages/admin/promocodes/components/IsCouponActive.tsx';
 
 interface Column {
   id: 'Promo code' | 'Issue Date' | 'Expiration Date' | 'Status' | 'Value';
@@ -88,16 +90,10 @@ const PromoCodesGrid: FC<IProps> = ({ coupons }) => {
                     <p>{coupon.endDate}</p>
                   </TableCell>
                   <TableCell align={'center'}>
-                    {coupon.isUsed ? (
-                      <p className={'font-bolt text-red-500'}>Inactive</p>
-                    ) : (
-                      <p className={'text-mint'}>Active</p>
-                    )}
+                    <IsCouponActive isUsed={coupon.isUsed} />
                   </TableCell>
                   <TableCell align={'center'}>
-                    <p>
-                      {coupon.percent_off || coupon.amount_off} {coupon.percent_off ? '%' : '$'}{' '}
-                    </p>
+                    <p>{percentOrAmountCoupon(coupon.amount_off, coupon.percent_off)}</p>
                   </TableCell>
                 </TableRow>
               );
