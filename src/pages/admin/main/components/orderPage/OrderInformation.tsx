@@ -4,13 +4,14 @@ import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { IOrder } from '@/constants/interfaces/order.ts';
+import CouponComponent from '@pages/admin/promocodes/components/CouponComponent.tsx';
 
 interface IProps {
   order: IOrder;
 }
 
 const OrderInformation: React.FC<IProps> = ({ order }) => {
-  const { payment, shoes, accessory, totalPrice, photo } = order;
+  const { payment, shoes, accessory, totalPrice, photo, coupon } = order;
 
   return (
     <div className={'mb-8'}>
@@ -46,6 +47,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
             </TableBody>
           </Table>
         </TableContainer>
+        <CouponComponent coupon={coupon}/>
       </div>
       <hr />
     </div>

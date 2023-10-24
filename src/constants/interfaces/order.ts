@@ -1,165 +1,169 @@
-import { PaymentEnum } from '@/constants/enums/payments.enum.ts';
-import { detail } from '@/api/dto/orders.dto.ts';
-import { details } from '@/constants/interfaces/basket.ts';
+import {PaymentEnum} from '@/constants/enums/payments.enum.ts';
+import {detail} from '@/api/dto/orders.dto.ts';
+import {details} from '@/constants/interfaces/basket.ts';
+import {Coupon} from '@/constants/interfaces/coupon.ts';
 
 export interface IOrder {
-  _id: string;
+    _id: string;
 
-  status: OrderStatus;
+    status: OrderStatus;
 
-  details: {
-    [name: string]: detail;
-  };
+    details: {
+        [name: string]: detail;
+    };
 
-  measurement: IMeasurement;
+    coupon: Coupon
 
-  shoes: shoes | null;
+    measurement: IMeasurement;
 
-  accessory: accessory | null;
+    shoes: shoes | null;
 
-  shippingInfo: shippingDetails;
+    accessory: accessory | null;
 
-  totalPrice: number;
+    shippingInfo: shippingDetails;
 
-  email: string;
+    totalPrice: number;
 
-  firstName: string;
+    email: string;
 
-  tax: number;
+    firstName: string;
 
-  subtotal: number;
+    tax: number;
 
-  secondName: string;
+    subtotal: number;
 
-  phoneNumber: string;
+    secondName: string;
 
-  paypal_id: string;
+    phoneNumber: string;
 
-  date: Date;
+    paypal_id: string;
 
-  productionDays: number;
+    date: Date;
 
-  payment: PaymentEnum;
+    productionDays: number;
 
-  shippingPrice: number;
+    payment: PaymentEnum;
 
-  order_id: number;
+    shippingPrice: number;
 
-  invoiceUrl: string;
+    order_id: number;
 
-  checkListUrl: string;
+    invoiceUrl: string;
 
-  size?: number;
+    checkListUrl: string;
 
-  trackingNumber?: string;
+    size?: number;
 
-  courier?: string;
+    trackingNumber?: string;
 
-  approxDeliveryDate?: string;
+    courier?: string;
 
-  photo: string;
+    approxDeliveryDate?: string;
+
+    photo: string;
 }
 
 export enum OrderStatus {
-  NotPaid = 'Not paid yet',
-  PROCESSING = 'Processing',
-  PRODUCTION = 'Production',
-  QualityControl = 'Quality  Control',
-  Shipped = 'Shipped',
-  Refunded = 'Refunded',
+    NotPaid = 'Not paid yet',
+    PROCESSING = 'Processing',
+    PRODUCTION = 'Production',
+    QualityControl = 'Quality  Control',
+    Shipped = 'Shipped',
+    Refunded = 'Refunded',
 }
 
 export const OrderStatusArray: OrderStatus[] = [
-  OrderStatus.PRODUCTION,
-  OrderStatus.QualityControl,
-  OrderStatus.Shipped,
+    OrderStatus.PRODUCTION,
+    OrderStatus.QualityControl,
+    OrderStatus.Shipped,
 ];
 
 export interface IPurchase {
-  product: product;
-  count: number;
-  details: {
-    [name: string]: { material: string; color: string };
-  };
+    product: product;
+    count: number;
+    details: {
+        [name: string]: { material: string; color: string };
+    };
 }
 
 export interface lanches {
-  material: string;
-  color: string;
+    material: string;
+    color: string;
 }
 
 export interface product {
-  title: string;
+    title: string;
 
-  details: details[];
+    details: details[];
 
-  stripeID: string;
+    stripeID: string;
 
-  price: number;
+    price: number;
 
-  description: string;
+    description: string;
 }
 
 interface shoes {
-  description: string;
-  details: string;
-  insole: string;
-  photo: string;
-  liningMaterial: string;
-  price: number;
-  sizes: number[];
-  sole: string;
-  stripeID: string;
-  title: string;
-  upperMaterial: string;
-  _id: string;
+    description: string;
+    details: string;
+    insole: string;
+    photo: string;
+    liningMaterial: string;
+    price: number;
+    sizes: number[];
+    sole: string;
+    stripeID: string;
+    title: string;
+    upperMaterial: string;
+    _id: string;
 }
 
 interface accessory {
-  category: string;
-  description: string;
-  title: string;
-  photo: string;
-  price: number;
-  rating: number;
-  size: number[];
-  stripeID: string;
-  subcategory: string;
-  _id: string;
+    category: string;
+    description: string;
+    title: string;
+    photo: string;
+    price: number;
+    rating: number;
+    size: number[];
+    stripeID: string;
+    subcategory: string;
+    _id: string;
 }
 
 export interface shippingDetails {
-  country: string;
+    country: string;
 
-  streetAddress: string;
+    streetAddress: string;
 
-  ASB: string;
+    ASB: string;
 
-  city: string;
+    city: string;
 
-  state: string;
+    state: string;
 
-  ZIP: string;
+    ZIP: string;
 
-  receiverPhoneNumber: string;
+    receiverPhoneNumber: string;
 
-  _id: string;
+    _id: string;
 }
 
 export interface IMeasurement {
-  size: number;
+    size: number;
 
-  rightFootLength: number;
+    rightFootLength: number;
 
-  rightFootWidth: number;
+    rightFootWidth: number;
 
-  leftFootLength: number;
+    leftFootLength: number;
 
-  leftFootWidth: number;
+    leftFootWidth: number;
 
-  insoleLength: number;
+    insoleLength: number;
 
-  insoleWidth: number;
+    insoleWidth: number;
 
-  comment: string;
+    comment: string;
 }
+

@@ -3,7 +3,7 @@ export interface Coupon {
 
   endDate: string;
 
-  isUsed: string;
+  isUsed: boolean;
 
   percent_off: number;
 
