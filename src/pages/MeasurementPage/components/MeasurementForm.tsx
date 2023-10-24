@@ -15,11 +15,13 @@ import { getProductById } from '@/api/products';
 import { v4 as uuidv4 } from 'uuid';
 import CustomTextArea from '@/components/ui/TextArea/CustomTextArea';
 import { addToCartGTMEvent } from '@/helpers/functions/gtm';
+import { brandArray } from '../helpers/data';
 interface IProps {
-  selectedShoeSize: number;
+  selectedShoeSize?: number;
+  selectedBrand?: string;
 }
 
-const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
+const MeasurementForm: FC<IProps> = ({ selectedShoeSize, selectedBrand }) => {
   const { id, model } = useParams();
 
   const { data: product } = useQuery(['productById', id], () => getProductById(id), {
@@ -48,18 +50,18 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
 
   const formik = useFormik({
     initialValues: {
-      rightFootLength: measurement.rightFootLength || '',
-      rightFootWidth: measurement.rightFootWidth || '',
-      leftFootLength: measurement.leftFootLength || '',
-      leftFootWidth: measurement.leftFootWidth || '',
-      insoleLength: measurement.insoleLength || '',
-      insoleWidth: measurement.insoleWidth || '',
-      comment: measurement.comment || '',
+      rightFootLength: selectedBrand === brandArray[0] ? measurement.rightFootLength || '' : '',
+      rightFootWidth: selectedBrand === brandArray[0] ? measurement.rightFootWidth || '' : '',
+      leftFootLength: selectedBrand === brandArray[0] ? measurement.leftFootLength || '' : '',
+      leftFootWidth: selectedBrand === brandArray[0] ? measurement.leftFootWidth || '' : '',
+      insoleLength: selectedBrand === brandArray[0] ? measurement.insoleLength || '' : '',
+      insoleWidth: selectedBrand === brandArray[0] ? measurement.insoleWidth || '' : '',
+      comment: selectedBrand === brandArray[0] ? measurement.comment || '' : '',
     },
-    validationSchema: validationMeasurement,
+    validationSchema: validationMeasurement(selectedBrand),
     onSubmit: (values) => {
       setIsDisabled(true);
-      dispatch(setUserMeasurement({ selectedShoeSize, ...values }));
+      dispatch(setUserMeasurement({ selectedShoeSize, selectedBrand, ...values }));
       addToCartGTMEvent('add_to_cart', { id, title: product?.data?.title });
 
       let requestData = {};
@@ -69,7 +71,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           product: id,
           count: 1,
           photo: constructorImage,
-          measurement: { size: selectedShoeSize, ...values },
+          measurement: { size: selectedShoeSize, brandName: selectedBrand, ...values },
           details: selectedDetails,
           basketItemId: uuidv4(),
         };
@@ -81,7 +83,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
           category: product?.data?.category,
           count: 1,
           photos: [constructorImage],
-          measurement: { size: selectedShoeSize, ...values },
+          measurement: { size: selectedShoeSize, brandName: selectedBrand, ...values },
           details: selectedDetails,
         };
       }
@@ -100,138 +102,146 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize }) => {
     return value < 0 ? 0 : value;
   };
 
+  const isSubmitDisabled = (selectedShoeSize == undefined || selectedShoeSize == 0) && selectedBrand !== brandArray[0];
+
   return (
     <form onSubmit={formik.handleSubmit} className={'mb-4 w-full'}>
-      <CustomInput
-        id={'rightFootLength'}
-        type={InputType.number}
-        name={'rightFootLength'}
-        placeholder={'Input Length'}
-        value={formik.values.rightFootLength || measurement.rightFootLength}
-        onChange={(e) => {
-          const newValue = validatePositiveNumber(e.target.value);
-          formik.setFieldValue('rightFootLength', newValue);
-        }}
-        error={formik.touched.rightFootLength && Boolean(formik.errors.rightFootLength)}
-        errorMessage={formik.errors.rightFootLength}
-        gap="1"
-        border={'1px solid #D9D9D9'}
-      >
-        Right Foot Length (in)
-      </CustomInput>
-      <CustomInput
-        id={'rightFootWidth'}
-        type={InputType.number}
-        name={'rightFootWidth'}
-        placeholder={'Input Width'}
-        value={formik.values.rightFootWidth || measurement.rightFootWidth}
-        onChange={(e) => {
-          const newValue = validatePositiveNumber(e.target.value);
-          formik.setFieldValue('rightFootWidth', newValue);
-        }}
-        error={formik.touched.rightFootWidth && Boolean(formik.errors.rightFootWidth)}
-        errorMessage={formik.errors.rightFootWidth}
-        gap="1"
-        border={'1px solid #D9D9D9'}
-      >
-        Right Foot Width (in)
-      </CustomInput>
-      <CustomInput
-        id={'leftFootLength'}
-        type={InputType.number}
-        name={'leftFootLength'}
-        placeholder={'Input Length'}
-        value={formik.values.leftFootLength || measurement.leftFootLength}
-        onChange={(e) => {
-          const newValue = validatePositiveNumber(e.target.value);
-          formik.setFieldValue('leftFootLength', newValue);
-        }}
-        error={formik.touched.leftFootLength && Boolean(formik.errors.leftFootLength)}
-        errorMessage={formik.errors.leftFootLength}
-        gap="1"
-        border={'1px solid #D9D9D9'}
-      >
-        Left Foot Length (in)
-      </CustomInput>
-      <CustomInput
-        id={'leftFootWidth'}
-        type={InputType.number}
-        name={'leftFootWidth'}
-        placeholder={'Input Width'}
-        value={formik.values.leftFootWidth || measurement.leftFootWidth}
-        onChange={(e) => {
-          const newValue = validatePositiveNumber(e.target.value);
-          formik.setFieldValue('leftFootWidth', newValue);
-        }}
-        error={formik.touched.leftFootWidth && Boolean(formik.errors.leftFootWidth)}
-        errorMessage={formik.errors.leftFootWidth}
-        gap="1"
-        border={'1px solid #D9D9D9'}
-      >
-        Left Foot Width (in)
-      </CustomInput>
-      <p className="mb-2">
-        Please, find your most comfortable shoe similar to the shoe type you created and take out the insole (if it's
-        removable), and measure it
-      </p>
-      <CustomInput
-        id={'insoleLength'}
-        type={InputType.number}
-        name={'insoleLength'}
-        placeholder={'Input Width'}
-        value={formik.values.insoleLength || measurement.insoleLength}
-        onChange={(e) => {
-          const newValue = validatePositiveNumber(e.target.value);
-          formik.setFieldValue('insoleLength', newValue);
-        }}
-        error={formik.touched.insoleLength && Boolean(formik.errors.insoleLength)}
-        errorMessage={formik.errors.insoleLength}
-        gap="1"
-        border={'1px solid #D9D9D9'}
-      >
-        Insole Length (in)
-      </CustomInput>
-      <CustomInput
-        id={'insoleWidth'}
-        type={InputType.number}
-        name={'insoleWidth'}
-        placeholder={'Input Width'}
-        value={formik.values.insoleWidth || measurement.insoleWidth}
-        onChange={(e) => {
-          const newValue = validatePositiveNumber(e.target.value);
-          formik.setFieldValue('insoleWidth', newValue);
-        }}
-        error={formik.touched.insoleWidth && Boolean(formik.errors.insoleWidth)}
-        errorMessage={formik.errors.insoleWidth}
-        gap="1"
-        border={'1px solid #D9D9D9'}
-      >
-        Insole Width (in)
-      </CustomInput>
-      <p className="mb-2">
-        If you have any questions, please, leave a comment, contact us by chat or any other available communication
-        option.
-      </p>
-      <CustomTextArea
-        className="mt-4 mb-8"
-        placeholder="Comment"
-        variant="soft"
-        height={4}
-        id={'comment'}
-        name={'comment'}
-        defaultValue={formik.values.comment || ''}
-        onChange={(e) => {
-          const newValue = validatePositiveNumber(e.target.value);
-          formik.setFieldValue('comment', newValue);
-        }}
-      />
-      <CustomButton
-        id="gtm-add-to-cart-product"
-        styles={'w-full'}
-        title={'Add to cart'}
-        type={'submit'}
-        disabled={isDisabled}
-      />
+      {selectedBrand === brandArray[0] && (
+        <>
+          <CustomInput
+            id={'rightFootLength'}
+            type={InputType.number}
+            name={'rightFootLength'}
+            placeholder={'Input Length'}
+            value={formik.values.rightFootLength || measurement.rightFootLength}
+            onChange={(e) => {
+              const newValue = validatePositiveNumber(e.target.value);
+              formik.setFieldValue('rightFootLength', newValue);
+            }}
+            error={formik.touched.rightFootLength && Boolean(formik.errors.rightFootLength)}
+            errorMessage={formik.errors.rightFootLength}
+            gap="1"
+            border={'1px solid #D9D9D9'}
+          >
+            Right Foot Length (in)
+          </CustomInput>
+          <CustomInput
+            id={'rightFootWidth'}
+            type={InputType.number}
+            name={'rightFootWidth'}
+            placeholder={'Input Width'}
+            value={formik.values.rightFootWidth || measurement.rightFootWidth}
+            onChange={(e) => {
+              const newValue = validatePositiveNumber(e.target.value);
+              formik.setFieldValue('rightFootWidth', newValue);
+            }}
+            error={formik.touched.rightFootWidth && Boolean(formik.errors.rightFootWidth)}
+            errorMessage={formik.errors.rightFootWidth}
+            gap="1"
+            border={'1px solid #D9D9D9'}
+          >
+            Right Foot Width (in)
+          </CustomInput>
+          <CustomInput
+            id={'leftFootLength'}
+            type={InputType.number}
+            name={'leftFootLength'}
+            placeholder={'Input Length'}
+            value={formik.values.leftFootLength || measurement.leftFootLength}
+            onChange={(e) => {
+              const newValue = validatePositiveNumber(e.target.value);
+              formik.setFieldValue('leftFootLength', newValue);
+            }}
+            error={formik.touched.leftFootLength && Boolean(formik.errors.leftFootLength)}
+            errorMessage={formik.errors.leftFootLength}
+            gap="1"
+            border={'1px solid #D9D9D9'}
+          >
+            Left Foot Length (in)
+          </CustomInput>
+          <CustomInput
+            id={'leftFootWidth'}
+            type={InputType.number}
+            name={'leftFootWidth'}
+            placeholder={'Input Width'}
+            value={formik.values.leftFootWidth || measurement.leftFootWidth}
+            onChange={(e) => {
+              const newValue = validatePositiveNumber(e.target.value);
+              formik.setFieldValue('leftFootWidth', newValue);
+            }}
+            error={formik.touched.leftFootWidth && Boolean(formik.errors.leftFootWidth)}
+            errorMessage={formik.errors.leftFootWidth}
+            gap="1"
+            border={'1px solid #D9D9D9'}
+          >
+            Left Foot Width (in)
+          </CustomInput>
+          <p className="mb-2">
+            Please, find your most comfortable shoe similar to the shoe type you created and take out the insole (if
+            it's removable), and measure it
+          </p>
+          <CustomInput
+            id={'insoleLength'}
+            type={InputType.number}
+            name={'insoleLength'}
+            placeholder={'Input Width'}
+            value={formik.values.insoleLength || measurement.insoleLength}
+            onChange={(e) => {
+              const newValue = validatePositiveNumber(e.target.value);
+              formik.setFieldValue('insoleLength', newValue);
+            }}
+            error={formik.touched.insoleLength && Boolean(formik.errors.insoleLength)}
+            errorMessage={formik.errors.insoleLength}
+            gap="1"
+            border={'1px solid #D9D9D9'}
+          >
+            Insole Length (in)
+          </CustomInput>
+          <CustomInput
+            id={'insoleWidth'}
+            type={InputType.number}
+            name={'insoleWidth'}
+            placeholder={'Input Width'}
+            value={formik.values.insoleWidth || measurement.insoleWidth}
+            onChange={(e) => {
+              const newValue = validatePositiveNumber(e.target.value);
+              formik.setFieldValue('insoleWidth', newValue);
+            }}
+            error={formik.touched.insoleWidth && Boolean(formik.errors.insoleWidth)}
+            errorMessage={formik.errors.insoleWidth}
+            gap="1"
+            border={'1px solid #D9D9D9'}
+          >
+            Insole Width (in)
+          </CustomInput>
+          <p className="mb-2">
+            If you have any questions, please, leave a comment, contact us by chat or any other available communication
+            option.
+          </p>
+        </>
+      )}
+      <>
+        <CustomTextArea
+          className="mt-4 mb-8"
+          placeholder="Comment"
+          variant="soft"
+          height={4}
+          id={'comment'}
+          name={'comment'}
+          defaultValue={formik.values.comment || ''}
+          onChange={(e) => {
+            const newValue = validatePositiveNumber(e.target.value);
+            formik.setFieldValue('comment', newValue);
+          }}
+        />
+        <CustomButton
+          id="gtm-add-to-cart-product"
+          styles={'w-full'}
+          title={'Add to cart'}
+          type={'submit'}
+          disabled={isDisabled || isSubmitDisabled}
+        />
+      </>
     </form>
   );
 };

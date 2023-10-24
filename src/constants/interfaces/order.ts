@@ -162,4 +162,6 @@ export interface IMeasurement {
   insoleWidth: number;
 
   comment: string;
+
+  brandName: string;
 }

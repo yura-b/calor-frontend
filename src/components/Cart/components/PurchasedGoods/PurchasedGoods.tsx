@@ -96,6 +96,11 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
               Size: <span>{item.measurement.size}</span>
             </p>
           )}
+          {Boolean(!item?.shoes) && !userId && item?.measurement?.size && (
+            <p className={`${styles.body2} mt-2`}>
+              Size: <span>{item.measurement.size}</span>
+            </p>
+          )}
           {Boolean(!item?.shoes) && !Array.isArray(item?.size) && item?.size !== null && item?.size && !userId && (
             <p className={`${styles.body2} mt-2`}>
               Size: <span>{item.size}</span>
