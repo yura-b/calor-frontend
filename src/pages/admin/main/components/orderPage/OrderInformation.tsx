@@ -36,7 +36,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
             </TableHead>
             <TableBody>
               <TableCell>
-                <img className="h-[50px] object-contain" src={photo} />
+                <img className="h-[50px] object-contain" src={photo} alt={'photo'} />
               </TableCell>
 
               <TableCell>{shoes?.title || accessory?.title}</TableCell>
@@ -47,7 +47,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
             </TableBody>
           </Table>
         </TableContainer>
-        <CouponComponent coupon={coupon} />
+        {coupon && <CouponComponent coupon={coupon} />}
       </div>
       <hr />
     </div>
