@@ -47,7 +47,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
             </TableBody>
           </Table>
         </TableContainer>
-        <CouponComponent coupon={coupon}/>
+        <CouponComponent coupon={coupon} />
       </div>
       <hr />
     </div>

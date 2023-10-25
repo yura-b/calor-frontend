@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
-import { useQuery } from "react-query";
-import { instagramGetPosts } from "@/api/instagram";
+import { useQuery } from 'react-query';
+import { instagramGetPosts } from '@/api/instagram';
 
 const CustomerCreations: React.FC = (): React.ReactElement => {
   const { data: instagramData, isLoading } = useQuery('instagramGetPosts', instagramGetPosts, {
@@ -15,7 +15,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
   useEffect(() => {
     if (!isLoading) {
       const mappedInstagramData = instagramData?.data.data.filter((item) => item.media_type === 'IMAGE');
-  
+
       setInstagramPhotos(mappedInstagramData.slice(0, 5));
     }
   }, [isLoading]);
