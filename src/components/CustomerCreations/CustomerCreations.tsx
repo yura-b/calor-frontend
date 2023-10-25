@@ -5,7 +5,11 @@ import { useQuery } from "react-query";
 import { instagramGetPosts } from "@/api/instagram";
 
 const CustomerCreations: React.FC = (): React.ReactElement => {
-  const { data: instagramData, isLoading } = useQuery('instagramGetPosts', () => instagramGetPosts());
+  const { data: instagramData, isLoading } = useQuery('instagramGetPosts', instagramGetPosts, {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+    staleTime: Infinity,
+  });
   const [instagramPhotos, setInstagramPhotos] = useState([]);
 
   useEffect(() => {
