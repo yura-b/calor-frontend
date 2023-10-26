@@ -196,13 +196,18 @@ const ProductPage = () => {
         </div>
         <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-10 ${styles.container}`}>
           {/* Product Slider */}
-          <Slider
-            images={product?.data.photos}
-            color="gray"
-            dataShoes={product?.data.category === 'shoes' ? true : false}
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-          />
+          <div>
+            <Slider
+              images={product?.data.photos}
+              color="gray"
+              dataShoes={product?.data.category === 'shoes' ? true : false}
+              currentIndex={currentIndex}
+              setCurrentIndex={setCurrentIndex}
+            />
+            <div className="hidden lg:block">
+              <ProductReviews rating={product?.data.rating} />
+            </div>
+          </div>
           {/* Product Desription */}
           <div
             className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident} w-full`}
@@ -423,8 +428,9 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
-          <div>
+          <div className="lg:hidden">
             {/* Product Reviews */}
+
             <ProductReviews rating={product?.data.rating} />
           </div>
         </div>
