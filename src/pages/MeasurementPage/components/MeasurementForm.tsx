@@ -123,7 +123,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize, selectedBrand }) => {
             gap="1"
             border={'1px solid #D9D9D9'}
           >
-            Right Foot Length (in)
+            Right Foot Length (in)*
           </CustomInput>
           <CustomInput
             id={'rightFootWidth'}
@@ -140,7 +140,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize, selectedBrand }) => {
             gap="1"
             border={'1px solid #D9D9D9'}
           >
-            Right Foot Width (in)
+            Right Foot Width (in)*
           </CustomInput>
           <CustomInput
             id={'leftFootLength'}
@@ -157,7 +157,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize, selectedBrand }) => {
             gap="1"
             border={'1px solid #D9D9D9'}
           >
-            Left Foot Length (in)
+            Left Foot Length (in)*
           </CustomInput>
           <CustomInput
             id={'leftFootWidth'}
@@ -174,7 +174,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize, selectedBrand }) => {
             gap="1"
             border={'1px solid #D9D9D9'}
           >
-            Left Foot Width (in)
+            Left Foot Width (in)*
           </CustomInput>
           <p className="mb-2">
             Please, find your most comfortable shoe similar to the shoe type you created and take out the insole (if
@@ -195,7 +195,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize, selectedBrand }) => {
             gap="1"
             border={'1px solid #D9D9D9'}
           >
-            Insole Length (in)
+            Insole Length (in)*
           </CustomInput>
           <CustomInput
             id={'insoleWidth'}
@@ -212,7 +212,7 @@ const MeasurementForm: FC<IProps> = ({ selectedShoeSize, selectedBrand }) => {
             gap="1"
             border={'1px solid #D9D9D9'}
           >
-            Insole Width (in)
+            Insole Width (in)*
           </CustomInput>
           <p className="mb-2">
             If you have any questions, please, leave a comment, contact us by chat or any other available communication
