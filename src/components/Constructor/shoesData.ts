@@ -121,7 +121,7 @@ export const shoes = [
               {
                 img: 'part01_leather_19.png',
                 name: 'Real Red',
-                hex: '#00A58C',
+                hex: '#D81525',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
@@ -354,7 +354,7 @@ export const shoes = [
               {
                 img: 'part02_leather_19.png',
                 name: 'Real Red',
-                hex: '#00A58C',
+                hex: '#D81525',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
@@ -956,7 +956,7 @@ export const shoes = [
               {
                 img: 'part07_leather_19.png',
                 name: 'Real Red',
-                hex: '#00A58C',
+                hex: '#D81525',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
@@ -1188,7 +1188,7 @@ export const shoes = [
               {
                 img: 'part08_leather_19.png',
                 name: 'Real Red',
-                hex: '#00A58C',
+                hex: '#D81525',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
@@ -1547,7 +1547,7 @@ export const shoes = [
               {
                 img: 'part10_leather_19.png',
                 name: 'Real Red',
-                hex: '#00A58C',
+                hex: '#D81525',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
@@ -1780,7 +1780,7 @@ export const shoes = [
               {
                 img: 'part11_leather_19.png',
                 name: 'Real Red',
-                hex: '#00A58C',
+                hex: '#D81525',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
@@ -2013,7 +2013,7 @@ export const shoes = [
               {
                 img: 'part12_leather_19.png',
                 name: 'Real Red',
-                hex: '#00A58C',
+                hex: '#D81525',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
@@ -2244,7 +2244,7 @@ export const shoes = [
               {
                 img: 'part13_leather_19.png',
                 name: 'Real Red',
-                hex: '#00A58C',
+                hex: '#D81525',
                 texture: '/assets/images/constructor/colors/dayger/leather/D_0004s_0000_Real-Red.webp',
               },
             ],
@@ -2596,6 +2596,12 @@ export const shoes = [
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/sunrise/leather/S_0004s_0001_Caribbean-Green.webp',
               },
+              {
+                img: 'part01_quarter_leather_19.png',
+                name: 'Real Red',
+                hex: '#D81525',
+                texture: '/assets/images/constructor/colors/sunrise/leather/S_0004s_0000_Real-Red.webp',
+              },
             ],
           },
           {
@@ -2696,6 +2702,12 @@ export const shoes = [
                 name: 'Olive',
                 hex: '#2a3417',
                 texture: '/assets/images/constructor/colors/sunrise/suede/S_0003s_0001_Olive.webp',
+              },
+              {
+                img: 'part01_quarter_suede_17.png',
+                name: 'Sky Blue',
+                hex: '#77C4FE',
+                texture: '/assets/images/constructor/colors/sunrise/suede/S_0003s_0000_Sky-Blue.webp',
               },
               {
                 img: 'part01_quarter_suede_17.png',
@@ -2820,6 +2832,12 @@ export const shoes = [
                 name: 'Caribbean Green',
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/sunrise/leather/S_0004s_0001_Caribbean-Green.webp',
+              },
+              {
+                img: 'part02_tongue_toe_leather_19.png',
+                name: 'Real Red',
+                hex: '#D81525',
+                texture: '/assets/images/constructor/colors/sunrise/leather/S_0004s_0000_Real-Red.webp',
               },
             ],
           },
@@ -3047,6 +3065,12 @@ export const shoes = [
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/sunrise/leather/S_0004s_0001_Caribbean-Green.webp',
               },
+              {
+                img: 'part03_back_strap_leather_19.png',
+                name: 'Real Red',
+                hex: '#D81525',
+                texture: '/assets/images/constructor/colors/sunrise/leather/S_0004s_0000_Real-Red.webp',
+              },
             ],
           },
           {
@@ -3272,6 +3296,12 @@ export const shoes = [
                 name: 'Caribbean Green',
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/sunrise/leather/S_0004s_0001_Caribbean-Green.webp',
+              },
+              {
+                img: 'part04_lace_guard_leather_19.png',
+                name: 'Real Red',
+                hex: '#D81525',
+                texture: '/assets/images/constructor/colors/sunrise/leather/S_0004s_0000_Real-Red.webp',
               },
             ],
           },
@@ -4570,6 +4600,12 @@ export const shoes = [
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/yolo/leather/Y_0003s_0001_Caribbean-Green.webp',
               },
+              {
+                img: 'part06_back_strap_leather_19.png',
+                name: 'Real Red',
+                hex: '#D81525',
+                texture: '/assets/images/constructor/colors/yolo/leather/Y_0003s_0000_Real-Red.webp',
+              },
             ],
           },
         ],
@@ -4796,6 +4832,12 @@ export const shoes = [
                 name: 'Caribbean Green',
                 hex: '#00A58C',
                 texture: '/assets/images/constructor/colors/yolo/leather/Y_0003s_0001_Caribbean-Green.webp',
+              },
+              {
+                img: 'part07_detail_3_leather_19.png',
+                name: 'Real Red',
+                hex: '#D81525',
+                texture: '/assets/images/constructor/colors/yolo/leather/Y_0003s_0000_Real-Red.webp',
               },
             ],
           },

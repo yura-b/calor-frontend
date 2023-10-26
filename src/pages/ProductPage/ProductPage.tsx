@@ -362,13 +362,7 @@ const ProductPage = () => {
                     title={section.title}
                     isOpen={section.isOpen}
                     toggleAccordion={() => toggleSection(index)}
-                    className={`${
-                      product?.data.category !== 'shoes' && index > 0
-                        ? 'hidden'
-                        : (product?.data.title === 'Sunrise' && index == 1) || index == 0
-                        ? 'block'
-                        : 'hidden'
-                    }`}
+                    className={`${product?.data.category !== 'shoes' && index > 0 ? 'hidden' : 'block'}`}
                   >
                     {index == 0 && (
                       <div>
@@ -376,13 +370,47 @@ const ProductPage = () => {
                         <div dangerouslySetInnerHTML={{ __html: product?.data.productDetails }} />
                       </div>
                     )}
-                    {product?.data.category === 'shoes' && index == 1 && product?.data.title == 'Sunrise' && (
+                    {product?.data.category === 'shoes' && index == 1 && (
                       <div className="my-4">
-                        <VideoFrame
-                          src="https://drive.google.com/file/d/1mkHGQhFGCadBgfHlL4vNi_gNh-WMSjjU/preview"
-                          title="Video Guide"
-                          className="xl:max-w-[50vw]"
-                        />
+                        {product?.data.title == 'Yolo' && (
+                          <>
+                            <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
+                            <VideoFrame
+                              src={'https://drive.google.com/file/d/1it2Fujpqwq_qFWY51mCYiM1nJGdQNcON/preview'}
+                              title="Yolo Woman"
+                              className="xl:max-w-[50vw] mb-4"
+                            />
+                            <p className={`${styles.body2} font-bold mb-2`}>Yolo Man</p>
+                            <VideoFrame
+                              src="https://drive.google.com/file/d/1isJIEKMfNR-Fy8JtkHXTxZncd3WImtRQ/preview"
+                              title="Yolo Man"
+                              className="xl:max-w-[50vw]"
+                            />
+                          </>
+                        )}
+                        {product?.data.title == 'Dayger' && (
+                          <>
+                            <p className={`${styles.body2} font-bold mb-2`}>Dayger Woman</p>
+                            <VideoFrame
+                              src={'https://drive.google.com/file/d/1ipYN-Ou9JKLH7BqblcoWwdjDfjSXXaZC/preview'}
+                              title="Dayger Woman"
+                              className="xl:max-w-[50vw] mb-4"
+                            />
+                            <p className={`${styles.body2} font-bold mb-2`}>Dayger Man</p>
+                            <VideoFrame
+                              src="https://drive.google.com/file/d/1iqFCDDPV5SWEoL_vRhSHX4femTGEsg2n/preview"
+                              title="Dayger Man"
+                              className="xl:max-w-[50vw]"
+                            />
+                          </>
+                        )}
+                        {product?.data.title == 'Sunrise' && (
+                          <VideoFrame
+                            src="https://drive.google.com/file/d/1iuIWXVjvzDP75f71P56xJlOAOz8apIpX/preview"
+                            title="Video Guide"
+                            className="xl:max-w-[50vw]"
+                          />
+                        )}
                       </div>
                     )}
                     {product?.data.category === 'shoes' && index == 2 && (
