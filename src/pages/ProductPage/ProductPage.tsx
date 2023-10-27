@@ -28,10 +28,14 @@ import Spinner from '@components/ui/Spinner';
 import { useNavigate } from 'react-router-dom';
 import constants from '@/constants/constants';
 import VideoFrame from '@components/VideoFrame';
+import VideoFrameWithId from '@components/VideoFrameWithId';
+
+import { useMediaQuery } from '@react-hook/media-query';
 
 const ProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const isMobile = useMediaQuery('(max-width: 767px)');
 
   const [dynamicId, setDynamicId] = useState(id || '');
   const { userId, access_token } = useAppSelector((state) => state.user);
@@ -380,14 +384,16 @@ const ProductPage = () => {
                         {product?.data.title == 'Yolo' && (
                           <>
                             <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
-                            <VideoFrame
-                              src={'https://drive.google.com/file/d/1it2Fujpqwq_qFWY51mCYiM1nJGdQNcON/preview'}
+                            <VideoFrameWithId
+                              srcMobile="1j5aeDPA6xffrxgqPnGRgissMMr3Yom50"
+                              src={'1it2Fujpqwq_qFWY51mCYiM1nJGdQNcON'}
                               title="Yolo Woman"
                               className="xl:max-w-[50vw] mb-4"
                             />
                             <p className={`${styles.body2} font-bold mb-2`}>Yolo Man</p>
-                            <VideoFrame
-                              src="https://drive.google.com/file/d/1isJIEKMfNR-Fy8JtkHXTxZncd3WImtRQ/preview"
+                            <VideoFrameWithId
+                              srcMobile="1j6SGjygFdCBLTnE0wEE28oQLXuN76oGm"
+                              src="1isJIEKMfNR-Fy8JtkHXTxZncd3WImtRQ"
                               title="Yolo Man"
                               className="xl:max-w-[50vw]"
                             />
@@ -396,25 +402,37 @@ const ProductPage = () => {
                         {product?.data.title == 'Dayger' && (
                           <>
                             <p className={`${styles.body2} font-bold mb-2`}>Dayger Woman</p>
-                            <VideoFrame
-                              src={'https://drive.google.com/file/d/1ipYN-Ou9JKLH7BqblcoWwdjDfjSXXaZC/preview'}
+                            <VideoFrameWithId
+                              srcMobile="1izshypkHusjBZJOgFrxyEJupOWEXbTpp"
+                              src="1ipYN-Ou9JKLH7BqblcoWwdjDfjSXXaZC"
                               title="Dayger Woman"
                               className="xl:max-w-[50vw] mb-4"
                             />
                             <p className={`${styles.body2} font-bold mb-2`}>Dayger Man</p>
-                            <VideoFrame
-                              src="https://drive.google.com/file/d/1iqFCDDPV5SWEoL_vRhSHX4femTGEsg2n/preview"
+                            <VideoFrameWithId
+                              srcMobile="1j0sRbeKKtZmw5p1jGPkmKnnzNWI-fp1E"
+                              src="1iqFCDDPV5SWEoL_vRhSHX4femTGEsg2n"
                               title="Dayger Man"
                               className="xl:max-w-[50vw]"
                             />
                           </>
                         )}
                         {product?.data.title == 'Sunrise' && (
-                          <VideoFrame
-                            src="https://drive.google.com/file/d/1iuIWXVjvzDP75f71P56xJlOAOz8apIpX/preview"
-                            title="Video Guide"
-                            className="xl:max-w-[50vw]"
-                          />
+                          <>
+                            {isMobile ? (
+                              <VideoFrameWithId
+                                src="1iuIWXVjvzDP75f71P56xJlOAOz8apIpX"
+                                title="Video Guide"
+                                className="xl:max-w-[50vw]"
+                              />
+                            ) : (
+                              <VideoFrame
+                                src="https://drive.google.com/file/d/1iuIWXVjvzDP75f71P56xJlOAOz8apIpX/preview"
+                                title="Video Guide"
+                                className="xl:max-w-[50vw]"
+                              />
+                            )}
+                          </>
                         )}
                       </div>
                     )}
