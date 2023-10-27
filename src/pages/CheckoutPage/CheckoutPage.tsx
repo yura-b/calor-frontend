@@ -13,6 +13,7 @@ import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import { paths } from '@/routes/paths';
 import CustomizedSnackbars from '@components/admin/CustomizedSnackbars.tsx';
+import AdminLoader from '@components/admin/AdminLoader/AdminLoader.tsx';
 
 const CheckoutPage = () => {
   const { phoneNumber, email, secondName, firstName, step } = useAppSelector((state) => state.checkout);
@@ -97,6 +98,7 @@ const CheckoutPage = () => {
           </div>
         )}
         <CustomizedSnackbars bottom={'200px'} />
+        <AdminLoader/>
       </MainLayout>
     </div>
   );
