@@ -3,13 +3,15 @@ import Modal from '@mui/material/Modal';
 import X from '@assets/images/SignUpHeaderImg/X.png';
 import Spinner from '@components/ui/Spinner';
 import { motion } from 'framer-motion';
+import videoIcon from '@assets/images/videoIcon.png';
 interface Props {
   color?: string;
   className?: string;
   src: string;
+  showVideoIcon?: boolean;
 }
 
-const VideoGuideLink: React.FC<Props> = ({ color, className, src }) => {
+const VideoGuideLink: React.FC<Props> = ({ color, className, src, showVideoIcon }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = window.innerWidth < 1024;
@@ -62,14 +64,13 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, src }) => {
   };
 
   return (
-    <div>
-      <motion.button
-        onClick={openModal}
-        whileHover={{ fontWeight: 'bold', scale: 1.02 }}
-        className={`underline mx-auto text-${color}  p-2 ${className}`}
-      >
-        Video Guide
-      </motion.button>
+    <div className="cursor-pointer">
+      <motion.div className="flex items-center" whileHover={{ fontWeight: 'bold', scale: 1.02 }}>
+        <img src={videoIcon} alt="Video" className={`h-[20px] ${showVideoIcon ? 'block' : 'hidden'}`} />
+        <motion.button onClick={openModal} className={`mx-auto text-${color}  pl-2 py-2 ${className}`}>
+          Video Guide
+        </motion.button>
+      </motion.div>
       <Modal
         open={isOpen}
         onClose={closeModal}
@@ -80,7 +81,7 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, src }) => {
         <div
           className={`absolute left-1/2 -translate-x-1/2 ${
             isFullScreen ? 'top-0' : 'top-[30%] lg:top-[20%]'
-          } bg-lighterGray`}
+          } bg-lighterGray shadow-lg`}
         >
           <button onClick={closeModal} className="block ml-auto mr-2 p-2">
             <img src={X} alt="Close" className="cursor-pointer w-5 h-5" />
@@ -93,7 +94,7 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, src }) => {
             frameBorder="0"
             allowFullScreen
             onLoad={handleIframeLoad}
-          />
+          ></iframe>
         </div>
       </Modal>
     </div>

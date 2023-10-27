@@ -13,6 +13,7 @@ import { shippingDetails } from '@/constants/interfaces/order.ts';
 import { countries } from '@/helpers/admin/constants/countries.ts';
 import { states } from '@/helpers/admin/constants/states.ts';
 import { useLocation } from 'react-router-dom';
+import Spinner from '@components/ui/Spinner';
 
 interface IProps {
   setData: React.Dispatch<React.SetStateAction<shippingForm | null>>;
@@ -57,11 +58,12 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
     initialValues.ASB = (shippingInfo as shippingDetails)?.ASB;
     initialValues.receiverPhoneNumber = (shippingInfo as shippingDetails)?.receiverPhoneNumber;
   }
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formik = useFormik({
     validationSchema: validationSchemaForShippingInfo,
     initialValues: initialValues,
     onSubmit: (values) => {
+      setIsSubmitting(true);
       setData({
         ...values,
         country,
@@ -187,8 +189,10 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
           </ToggleButton>
           <p className={'text-sm'}>Save the shipping address for future orders</p>
         </div>
-
-        <CustomButton styles={'w-full'} title={buttonTitle} type={'submit'} />
+        <div className="relative">
+          {isSubmitting && <Spinner className="absolute top-[8px] left-1/2" />}
+          <CustomButton styles={'w-full'} title={buttonTitle} type={'submit'} disabled={isSubmitting} />
+        </div>
       </form>
     </div>
   );
