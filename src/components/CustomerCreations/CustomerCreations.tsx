@@ -14,8 +14,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
 
   useEffect(() => {
     if (!isLoading) {
-      const mappedInstagramData = instagramData?.data.data.filter((item) => item.media_type === 'IMAGE');
-
+      const mappedInstagramData = instagramData?.data.data.filter((item) => item.media_type === 'IMAGE' || item.media_type === 'VIDEO');
       setInstagramPhotos(mappedInstagramData.slice(0, 5));
     }
   }, [isLoading]);
@@ -36,9 +35,17 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
       <div className="flex overflow-x-auto flex-row gap-2 mx-auto lg:gap-10">
         {instagramPhotos.map((item) => (
           <div className="flex justify-center items-center lg:basis-1/5  my-4" key={item.id}>
-            <div className={'w-36  text-gray lg:w-full '}>
-              <img src={item.media_url} className="w-full object-contain max-h-[260px] min-h-[220px] mx-auto " />
-            </div>
+            { 
+              item.media_type === 'IMAGE' ?
+              <div className={'w-36  text-gray lg:w-full '}>
+                <img src={item.media_url} className="w-full object-contain max-h-[260px] min-h-[220px] mx-auto " />
+              </div> :
+              <div className={'w-36  text-gray lg:w-full '}>
+                <video className="w-full" controls>
+                  <source src={item.media_url} className="w-full object-contain max-h-[260px] min-h-[220px] mx-auto" type="video/mp4" />
+                </video>
+              </div>
+            }
           </div>
         ))}
       </div>
