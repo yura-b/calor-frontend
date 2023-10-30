@@ -110,9 +110,6 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
               onPlay={togglePlay}
               onLoadStart={() => setIsLoading(true)}
               onLoadedData={handleVideoLoad}
-              onError={(e) => {
-                console.error('Помилка відтворення відео:', e.target.error);
-              }}
             />
           )}
           {!isVideoSupported && (
