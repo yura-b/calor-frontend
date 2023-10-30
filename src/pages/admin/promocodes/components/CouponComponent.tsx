@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Coupon } from '@/constants/interfaces/coupon.ts';
 import percentOrAmountCoupon from '@/helpers/functions/percentOrAmountCoupon.ts';
-import IsCouponActive from '@pages/admin/promocodes/components/IsCouponActive.tsx';
+import UsesLeftComponent from '@pages/admin/promocodes/components/UsesLeftComponent.tsx';
 
 const CouponComponent: FC<{ coupon: Coupon }> = ({ coupon }) => {
   return (
@@ -10,7 +10,7 @@ const CouponComponent: FC<{ coupon: Coupon }> = ({ coupon }) => {
       <p>{coupon.uuid}</p>
       <p>{percentOrAmountCoupon(coupon.amount_off, coupon.percent_off)}</p>
       <p>
-        <IsCouponActive isUsed={coupon.isUsed} />
+        <UsesLeftComponent amountOfUses={coupon.numberOfUses} />
       </p>
     </div>
   );

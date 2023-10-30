@@ -9,10 +9,10 @@ import TableBody from '@mui/material/TableBody';
 import { TablePagination } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import percentOrAmountCoupon from '@/helpers/functions/percentOrAmountCoupon';
-import IsCouponActive from '@pages/admin/promocodes/components/IsCouponActive.tsx';
+import UsesLeftComponent from '@pages/admin/promocodes/components/UsesLeftComponent.tsx';
 
 interface Column {
-  id: 'Promo code' | 'Issue Date' | 'Expiration Date' | 'Status' | 'Value';
+  id: 'Promo code' | 'Issue Date' | 'Expiration Date' | 'Uses left' | 'Value';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
@@ -29,7 +29,7 @@ const columns: readonly Column[] = [
     align: 'center',
     format: (value: number) => value.toLocaleString('en-US'),
   },
-  { id: 'Status', label: 'Status', minWidth: 50, align: 'center' },
+  { id: 'Uses left', label: 'Uses left', minWidth: 50, align: 'center' },
   {
     id: 'Value',
     label: 'Value',
@@ -90,7 +90,7 @@ const PromoCodesGrid: FC<IProps> = ({ coupons }) => {
                     <p>{coupon.endDate}</p>
                   </TableCell>
                   <TableCell align={'center'}>
-                    <IsCouponActive isUsed={coupon.isUsed} />
+                    <UsesLeftComponent amountOfUses={coupon.numberOfUses} />
                   </TableCell>
                   <TableCell align={'center'}>
                     <p>{percentOrAmountCoupon(coupon.amount_off, coupon.percent_off)}</p>
