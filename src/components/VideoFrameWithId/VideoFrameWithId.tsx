@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
-
+import Spinner from '@components/ui/Spinner';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 interface Props {
   src: string;
   title?: string;
@@ -11,6 +12,9 @@ interface Props {
 const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
   const isMobile = useMediaQuery('(max-width: 767px)');
   const [isWidthGreaterThanHeight, setIsWidthGreaterThanHeight] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTogglePlay, setIsTogglePlay] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkWindowDimensions = () => {
@@ -31,17 +35,51 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
     };
   }, []);
 
+  const togglePlay = () => {
+    setIsTogglePlay(true);
+  };
+
+  const handleVideoLoad = () => {
+    setIsLoading(false);
+  };
   return (
-    <div id="frame-id" className={`${className} relative  mt-2 mb-8`}>
+    <div
+      className={`${className} relative mt-2 mb-8`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {isMobile && srcMobile && !isWidthGreaterThanHeight && (
-        <video className="w-full" controls>
-          <source src={`https://drive.google.com/uc?id=${srcMobile}`} type="video/mp4" />
-        </video>
+        <div className="relative">
+          {isLoading && <Spinner className="absolute top-1/2 left-1/2" />}
+          <video
+            src={`https://drive.google.com/uc?id=${srcMobile}`}
+            className="w-full h-auto"
+            controls
+            onLoadStart={() => setIsLoading(true)}
+            onLoadedData={handleVideoLoad}
+          />
+        </div>
       )}
+
       {(!isMobile || !srcMobile || isWidthGreaterThanHeight) && src && (
-        <video className="w-full" controls>
-          <source src={`https://drive.google.com/uc?id=${src}`} type="video/mp4" />
-        </video>
+        <div className="relative">
+          {isLoading && <Spinner className="absolute top-1/2 left-1/2" />}
+          {!isHovered && !isTogglePlay && !isLoading && (
+            <div className={'h-[40px] absolute top-[40%] left-[48%]'}>
+              <YouTubeIcon style={{ fontSize: '58px' }} color="error" />
+            </div>
+          )}
+          <video
+            className="w-full"
+            src={`https://drive.google.com/uc?id=${src}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            controls={isHovered}
+            onPlay={togglePlay}
+            onLoadStart={() => setIsLoading(true)}
+            onLoadedData={handleVideoLoad}
+          />
+        </div>
       )}
     </div>
   );
