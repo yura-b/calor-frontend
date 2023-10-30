@@ -21,11 +21,14 @@ const PromoCodesConstructor: FC<IProps> = ({ setData }) => {
   const dispatch = useAppDispatch();
   const [promoCodeType, setPromoCodeType] = useState<string>(PromoCodeType.percentage);
 
+  const [reload, forceReload] = useState(1);
+
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [userEmail, setUserEmail] = useState<string>('');
   const [percentOff, setPercentOff] = useState<number>(0);
   const [amountOff, setAmountOff] = useState<number>(0);
+  const [numberOfUses, setNumberOfUses] = useState<number>(1);
 
   const isPercent = promoCodeType === PromoCodeType.percentage;
 
@@ -46,13 +49,10 @@ const PromoCodesConstructor: FC<IProps> = ({ setData }) => {
       email: userEmail,
       amount_off: amountOff,
       percent_off: percentOff,
+      numberOfUses,
     });
 
-    setStartDate('');
-    setEndDate('');
-    setUserEmail('');
-    setPercentOff(0);
-    setAmountOff(0);
+    forceReload((prevState) => prevState + 1);
   };
 
   const discountValueHandler = (e: React.ChangeEvent<any>) => {
@@ -75,7 +75,7 @@ const PromoCodesConstructor: FC<IProps> = ({ setData }) => {
   };
 
   return (
-    <div className={'flex flex-col gap-5  p-5 w-2/5'}>
+    <div className={'flex flex-col gap-5  p-5 w-2/5'} key={reload}>
       <div className={'flex gap-5'}>
         <Percent size={26} weight="fill" /> <p className={'font-bold'}>Generate Promo Code</p>
       </div>
@@ -90,32 +90,48 @@ const PromoCodesConstructor: FC<IProps> = ({ setData }) => {
         />
       </div>
 
-      <div>
-        <p>User email (optional)</p>
-        <CustomInput
-          placeholder={''}
-          border={'1px solid #D9D9D9'}
-          value={userEmail}
-          onChange={(e) => setUserEmail(e.target.value)}
-        />
+      <div className={'flex flex-row gap-5'}>
+        <div className={'flex flex-col basis-3/4'}>
+          <p>User email (optional)</p>
+          <CustomInput
+            placeholder={''}
+            border={'1px solid #D9D9D9'}
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+          />
+        </div>
+        <div className={'flex flex-col basis-1/4'}>
+          <p>Number of uses</p>
+          <CustomInput
+            placeholder={''}
+            border={'1px solid #D9D9D9'}
+            type={InputType.number}
+            value={numberOfUses}
+            onChange={(e) => setNumberOfUses(Number(e.target.value))}
+          />
+        </div>
       </div>
       <div className={'flex gap-6'}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            minDate={dayjs()}
-            maxDate={dayjs(endDate)}
-            className={'w-1/2'}
-            label={'Start Date'}
-            format={format}
-            onChange={(value) => dateChangeHandler(value as Dayjs, setStartDate)}
-          />
-          <DatePicker
-            minDate={dayjs(startDate)}
-            className={'w-1/2'}
-            label={'End Date'}
-            format={format}
-            onChange={(value) => dateChangeHandler(value as Dayjs, setEndDate)}
-          />
+          {reload && (
+            <DatePicker
+              minDate={dayjs()}
+              maxDate={dayjs(endDate)}
+              className={'w-1/2'}
+              label={'Start Date'}
+              format={format}
+              onChange={(value) => dateChangeHandler(value as Dayjs, setStartDate)}
+            />
+          )}
+          {reload && (
+            <DatePicker
+              minDate={dayjs(startDate)}
+              className={'w-1/2'}
+              label={'End Date'}
+              format={format}
+              onChange={(value) => dateChangeHandler(value as Dayjs, setEndDate)}
+            />
+          )}
         </LocalizationProvider>
       </div>
       <CustomButton title={'Generate Promo Code'} styles={'!py-4'} handler={submitHandler} />

@@ -3,7 +3,7 @@ import styles from '@styles/Styles.module.scss';
 import yolo1 from '@images/inspiration/yolo1.jpg';
 import yolo2 from '@images/inspiration/yolo2.jpg';
 import yolo3 from '@images/inspiration/yolo3.jpg';
-import yolo4 from '@images/inspiration/yolo4.jpg';
+// import yolo4 from '@images/inspiration/yolo4.jpg';
 import yolo5 from '@images/inspiration/yolo5.jpg';
 import yolo6 from '@images/inspiration/yolo6.jpg';
 import sunrise1 from '@images/inspiration/sunrise1.jpg';
@@ -41,7 +41,7 @@ const Inspiration: React.FC = () => {
     yolo1,
     yolo2,
     yolo3,
-    yolo4,
+    // yolo4,
     yolo5,
     yolo6,
     sunrise1,

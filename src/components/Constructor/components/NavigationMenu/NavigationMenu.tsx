@@ -26,10 +26,11 @@ const NavigationMenu = ({}) => {
             }}
           />
         </IconButton>
-        <div>
+        <div className="flex items-center">
           <VideoGuideLink
-            className="text-gray"
+            className="text-gray underline"
             src="https://drive.google.com/file/d/1jDjvvmOsN-KXK0cFvvX2PRN27qNNB8oR/preview"
+            showVideoIcon={true}
           />
         </div>
       </div>

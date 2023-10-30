@@ -91,7 +91,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
           } flex lg:gap-4 justify-between lg:items-center ${'lg:border-t lg:border-t-2 lg:border-gray'} flex-wrap  text-left`}
           {...fadeAnimation}
         >
-          <h1 className={`${styles.header1}  mb-4 text-white lg:text-custom-red sm:basis-[25%] xl:basis-[20%] `}>
+          <h1 className={`${styles.header1}   text-white lg:text-custom-red sm:basis-[25%] xl:basis-[20%] `}>
             CALOR
             <span className="hidden lg:inline">
               <br />
@@ -100,7 +100,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
           </h1>
           <div className="sm:basis-[70%] xl:basis-[50%]">
             <div dangerouslySetInnerHTML={visionsContent} className={`${styles.subtitle} mb-2`} />
-            <p className={styles.body1}>
+            {/* <p className={styles.body1}>
               Learn how to do it in our {''}
               <span className="hidden lg:inline-block">
                 <VideoGuideLink
@@ -110,22 +110,28 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
                 <div></div>
               </span>
               <span className="lg:hidden">Video Guide</span>
-            </p>
+            </p> */}
           </div>
           <div className="basis-[100%] xl:basis-[25%] mt-4 lg:mt-0">
             <Button color="red" to={paths.design_shoe} className="mb-4 max-w-[360px] m-auto block">
               Design Your Shoe
             </Button>
+            <Button color="gray" className="mb-4 max-w-[360px] m-auto block">
+              <VideoGuideLink
+                color="white"
+                src="https://drive.google.com/file/d/1jADBBF8ByG7HdFKs43yMMp8qWNmXi2BH/preview"
+              />
+            </Button>
             {/* <Button color="mintExtraLight" to={paths.design_bag}>
               Design Your Bag
             </Button> */}
           </div>
-          <div className="m-auto">
+          {/* <div className="m-auto">
             <VideoGuideLink
               className="lg:hidden"
               src="https://drive.google.com/file/d/1Y8q7wboEBcpRffHDF_gLtUg2lQ0s7zQW/preview"
             />
-          </div>
+          </div> */}
         </motion.div>
         <img src={homeSemiCircle} className="absolute z-1 top-36 left-0 h-56 sm:hidden" />
         <img

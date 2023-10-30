@@ -10,4 +10,6 @@ export interface PromoCodesDto {
   email?: string;
 
   isPercent: boolean;
+
+  numberOfUses: number;
 }
