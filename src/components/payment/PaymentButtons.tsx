@@ -40,16 +40,16 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
                 navigate(`/checkout_success/${res.data}`);
               })
               .catch(() => {
-                navigate('/checkout_failed');
+                // navigate('/checkout_failed');
               });
           }}
           onCancel={(data) => {
             deletePayPalID(data).then(() => {
-              navigate('/checkout_failed');
+              // navigate('/checkout_failed');
             });
           }}
           onError={() => {
-            navigate('/checkout_failed');
+            // navigate('/checkout_failed');
           }}
         />
       </PayPalScriptProvider>
