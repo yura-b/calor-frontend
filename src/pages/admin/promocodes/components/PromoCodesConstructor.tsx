@@ -21,8 +21,7 @@ const PromoCodesConstructor: FC<IProps> = ({ setData }) => {
   const dispatch = useAppDispatch();
   const [promoCodeType, setPromoCodeType] = useState<string>(PromoCodeType.percentage);
 
-  const [reload, forceReload] = useState(1)
-
+  const [reload, forceReload] = useState(1);
 
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
@@ -50,12 +49,11 @@ const PromoCodesConstructor: FC<IProps> = ({ setData }) => {
       email: userEmail,
       amount_off: amountOff,
       percent_off: percentOff,
-      numberOfUses
+      numberOfUses,
     });
 
-    forceReload(prevState => prevState + 1)
+    forceReload((prevState) => prevState + 1);
   };
-
 
   const discountValueHandler = (e: React.ChangeEvent<any>) => {
     if (isPercent) {
@@ -115,21 +113,25 @@ const PromoCodesConstructor: FC<IProps> = ({ setData }) => {
       </div>
       <div className={'flex gap-6'}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          {reload && <DatePicker
-            minDate={dayjs()}
-            maxDate={dayjs(endDate)}
-            className={'w-1/2'}
-            label={'Start Date'}
-            format={format}
-            onChange={(value) => dateChangeHandler(value as Dayjs, setStartDate)}
-          />}
-          {reload && <DatePicker
-            minDate={dayjs(startDate)}
-            className={'w-1/2'}
-            label={'End Date'}
-            format={format}
-            onChange={(value) => dateChangeHandler(value as Dayjs, setEndDate)}
-          />}
+          {reload && (
+            <DatePicker
+              minDate={dayjs()}
+              maxDate={dayjs(endDate)}
+              className={'w-1/2'}
+              label={'Start Date'}
+              format={format}
+              onChange={(value) => dateChangeHandler(value as Dayjs, setStartDate)}
+            />
+          )}
+          {reload && (
+            <DatePicker
+              minDate={dayjs(startDate)}
+              className={'w-1/2'}
+              label={'End Date'}
+              format={format}
+              onChange={(value) => dateChangeHandler(value as Dayjs, setEndDate)}
+            />
+          )}
         </LocalizationProvider>
       </div>
       <CustomButton title={'Generate Promo Code'} styles={'!py-4'} handler={submitHandler} />

@@ -15,6 +15,8 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isTogglePlay, setIsTogglePlay] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isVideoSupported, setIsVideoSupported] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const checkWindowDimensions = () => {
@@ -42,6 +44,14 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
   const handleVideoLoad = () => {
     setIsLoading(false);
   };
+  const checkVideoSupport = () => {
+    const videoElement = document.createElement('video');
+    setIsVideoSupported(!!videoElement.canPlayType);
+  };
+  useEffect(() => {
+    checkVideoSupport();
+  }, []);
+
   return (
     <div
       className={`${className} relative mt-2 mb-8`}
@@ -50,35 +60,72 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
     >
       {isMobile && srcMobile && !isWidthGreaterThanHeight && (
         <div className="relative">
-          {isLoading && <Spinner className="absolute top-1/2 left-1/2" />}
-          <video
-            src={`https://drive.google.com/uc?id=${srcMobile}`}
-            className="w-full h-auto"
-            controls
-            onLoadStart={() => setIsLoading(true)}
-            onLoadedData={handleVideoLoad}
-          />
+          {isLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
+          {isVideoSupported && (
+            <video
+              src={`https://drive.google.com/uc?id=${srcMobile}`}
+              className="w-full h-auto"
+              controls
+              onLoadStart={() => setIsLoading(true)}
+              onLoadedData={handleVideoLoad}
+              onError={() => {
+                setIsError(true);
+              }}
+            />
+          )}
+          {!isVideoSupported ||
+            (isError && (
+              <div>
+                <p>
+                  Your browser doesn't support HTML5 video. Here is a{' '}
+                  <a
+                    href={`https://drive.google.com/file/d/${srcMobile}/preview`}
+                    target="_blank"
+                    className="underline"
+                  >
+                    link to the video
+                  </a>{' '}
+                  instead.
+                </p>
+              </div>
+            ))}
         </div>
       )}
 
       {(!isMobile || !srcMobile || isWidthGreaterThanHeight) && src && (
         <div className="relative">
-          {isLoading && <Spinner className="absolute top-1/2 left-1/2" />}
-          {!isHovered && !isTogglePlay && !isLoading && (
+          {isLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
+          {!isHovered && !isTogglePlay && !isLoading && isVideoSupported && (
             <div className={'h-[40px] absolute top-[40%] left-[48%]'}>
               <YouTubeIcon style={{ fontSize: '58px' }} color="error" />
             </div>
           )}
-          <video
-            className="w-full"
-            src={`https://drive.google.com/uc?id=${src}`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            controls={isHovered}
-            onPlay={togglePlay}
-            onLoadStart={() => setIsLoading(true)}
-            onLoadedData={handleVideoLoad}
-          />
+          {isVideoSupported && (
+            <video
+              className="w-full"
+              src={`https://drive.google.com/uc?id=${src}`}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              controls={isHovered}
+              onPlay={togglePlay}
+              onLoadStart={() => setIsLoading(true)}
+              onLoadedData={handleVideoLoad}
+              onError={(e) => {
+                console.error('Помилка відтворення відео:', e.target.error);
+              }}
+            />
+          )}
+          {!isVideoSupported && (
+            <div>
+              <p>
+                Your browser doesn't support HTML5 video. Here is a{' '}
+                <a href={`https://drive.google.com/file/d/${src}/preview`} target="_blank" className="underline">
+                  link to the video
+                </a>{' '}
+                instead.
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>

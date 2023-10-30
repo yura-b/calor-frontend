@@ -98,7 +98,7 @@ const CheckoutPage = () => {
           </div>
         )}
         <CustomizedSnackbars bottom={'200px'} />
-        <AdminLoader/>
+        <AdminLoader />
       </MainLayout>
     </div>
   );
