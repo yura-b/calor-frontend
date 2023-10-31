@@ -19,20 +19,6 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
   const [buttonName, setButtonName] = useState<string>('Add');
 
   useEffect(() => {
-    if (!access_token || !shippingInfo) return;
-    dispatch(loading());
-    getShippingById(access_token, (shippingInfo as shippingDetails)._id)
-      .then((res) => {
-        setShippingData(res.data);
-
-        dispatch(loadingFinished());
-      })
-      .catch(() => {
-        dispatch(loadingFinished());
-      });
-  }, [shippingInfo, data]);
-
-  useEffect(() => {
     if (!data) return;
     dispatch(loading());
     assignAdditionalInfo({ ...data, user_id: userId }).then((res) => {
@@ -73,33 +59,33 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
                 <div className="lg:w-1/2 lg:p-4">
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>Country</p>
-                    <p>{shippingData?.country}</p>
+                    <p>{shippingInfo?.country}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>Street Address</p>
-                    <p>{shippingData?.streetAddress}</p>
+                    <p>{shippingInfo?.streetAddress}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>Apt, Suite, Building</p>
-                    <p>{shippingData?.ASB}</p>
+                    <p>{shippingInfo?.ASB}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>Phone Number</p>
-                    <p>{shippingData?.receiverPhoneNumber}</p>
+                    <p>{shippingInfo?.receiverPhoneNumber}</p>
                   </div>
                 </div>
                 <div className="lg:w-1/2 lg:p-4">
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>City</p>
-                    <p>{shippingData?.city}</p>
+                    <p>{shippingInfo?.city}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>State</p>
-                    <p>{shippingData?.state}</p>
+                    <p>{shippingInfo?.state}</p>
                   </div>
                   <div className="mb-2 lg:mb-10">
                     <p className={'font-bold'}>ZIP Code</p>
-                    <p>{shippingData?.ZIP}</p>
+                    <p>{shippingInfo?.ZIP}</p>
                   </div>
                 </div>
               </div>
