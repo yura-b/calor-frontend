@@ -167,4 +167,8 @@ export interface IMeasurement {
   comment: string;
 
   brandName: string;
+
+  brandModel: string;
+
+  brandSize: string;
 }

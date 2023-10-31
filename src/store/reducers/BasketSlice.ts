@@ -12,6 +12,8 @@ interface IMeasurement {
   rightFootWidth: number;
   size: number;
   brandName: string;
+  brandModel: string;
+  brandSize: string;
 }
 
 export interface IShoes {

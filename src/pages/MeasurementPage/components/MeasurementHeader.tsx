@@ -8,25 +8,13 @@ interface IProps {
   isArrowBack?: boolean;
   title: string;
   background?: 'transparent';
-  setShowMeasureForm: React.Dispatch<React.SetStateAction<boolean>>;
-  showMeasureForm: boolean;
 }
 
-const MeasurementHeader: FC<IProps> = ({
-  isArrowBack = false,
-  title,
-  background = 'transparent',
-  setShowMeasureForm,
-  showMeasureForm,
-}) => {
+const MeasurementHeader: FC<IProps> = ({ isArrowBack = false, title, background = 'transparent' }) => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    if (showMeasureForm) {
-      setShowMeasureForm(false);
-    } else {
-      navigate(-1);
-    }
+    navigate(-1);
   };
 
   return (

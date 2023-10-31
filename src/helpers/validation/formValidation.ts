@@ -110,7 +110,7 @@ export const validationSchemaForUserAccount = yup.object({
   phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
 });
 
-export const validationMeasurement = (selectedBrand) => {
+export const validationMeasurement = () => {
   const schema = {
     rightFootLength: yup
       .number()
@@ -144,13 +144,13 @@ export const validationMeasurement = (selectedBrand) => {
 
     comment: yup.string(),
   };
-  if (selectedBrand === brandArray[0]) {
-    Object.keys(schema)
-      .filter((item) => item !== 'comment')
-      .forEach((field) => {
-        schema[field] = schema[field].required('This field is required');
-      });
-  }
+  // if (selectedBrand === brandArray[0]) {
+  //   Object.keys(schema)
+  //     .filter((item) => item !== 'comment')
+  //     .forEach((field) => {
+  //       schema[field] = schema[field].required('This field is required');
+  //     });
+  // }
 
   return yup.object(schema);
 };

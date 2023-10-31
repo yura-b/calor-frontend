@@ -31,6 +31,13 @@ export const CustomSelect: React.FC<IProps> = ({ handleFunc, array, value }) => 
         onChange={(e: SelectChangeEvent) => {
           handleFunc(e);
         }}
+        MenuProps={{
+          PaperProps: {
+            style: {
+              maxHeight: 250,
+            },
+          },
+        }}
       >
         {array.map((el) => {
           return (

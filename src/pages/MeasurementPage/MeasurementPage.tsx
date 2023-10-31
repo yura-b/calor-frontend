@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MainLayout from '@components/MainLayout';
 import styles from '@/styles/Styles.module.scss';
 import MeasurementHeader from './components/MeasurementHeader';
@@ -12,9 +12,10 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import AccordionSection from '@components/AccordionSection';
 import ShoeSizeTable from '@pages/HelpPage/components/ShoeSizeTable';
 import { dataMen, dataWomen } from '@pages/HelpPage/helpers/data';
-import { brandArray } from './helpers/data';
+import { brandArray, brandSizeArray } from './helpers/data';
 import VideoFrame from '@components/VideoFrame';
 import Button from '@/components/ui/Button';
+import CustomInput from '@/components/input/CustomInput';
 
 const MeasurementPage = () => {
   const measurement = useAppSelector((state) => state.userMeasurement);
@@ -26,23 +27,35 @@ const MeasurementPage = () => {
   const handleSize = (size) => {
     setSelectedShoeSize(size);
   };
-
+  const [isDisabled, setIsDisabled] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState<string>(brandArray[0]);
+  const [selectedOtherBrand, setSelectedOtherBrand] = useState<string>('');
+  const [brandModel, setBrandModel] = useState<string>('');
+  const [brandSize, setBrandSize] = useState<string>(brandSizeArray[0]);
+
   const [isWomenAccordionOpen, setIsWomenAccordionOpen] = useState(false);
   const [isMenAccordionOpen, setIsMenAccordionOpen] = useState(false);
-  const [isSizeGuideAccordionOpen, setIsSizeGuideAccordionOpen] = useState(true);
-  const [showMeasureForm, setShowMeasureForm] = useState(false);
-  const [showSizeError, setShowSizeError] = useState(false);
+  const [isSizeGuideAccordionOpen, setIsSizeGuideAccordionOpen] = useState(false);
 
-  const changeHandler = (setState: React.Dispatch<React.SetStateAction<string>>) => {
-    return (e: SelectChangeEvent) => {
-      setState(e.target.value);
-      if (e.target.value !== brandArray[0]) {
-        setSelectedShoeSize(0);
-      }
-    };
+  const [isFormDisabled, setIsFormDisabled] = useState(true);
+
+  const [brandModelError, setBrandModelError] = useState('');
+  const [brandOtherError, setBrandOtherError] = useState('');
+
+  const toggleDisable = () => {
+    setIsFormDisabled(!isFormDisabled);
   };
 
+  const changeBrandHandler = (setState: React.Dispatch<React.SetStateAction<string>>) => {
+    return (e: SelectChangeEvent) => {
+      setState(e.target.value);
+    };
+  };
+  const changeBrandSizeHandler = (setState: React.Dispatch<React.SetStateAction<string>>) => {
+    return (e: SelectChangeEvent) => {
+      setState(e.target.value);
+    };
+  };
   const toggleWomenAccordion = () => {
     setIsWomenAccordionOpen((prev) => !prev);
   };
@@ -52,19 +65,25 @@ const MeasurementPage = () => {
   const toggleSizeGuideAccordion = () => {
     setIsSizeGuideAccordionOpen((prev) => !prev);
   };
-  const toggleShowMeasureForm = () => {
-    if (selectedShoeSize) {
-      setShowMeasureForm(true);
-      setShowSizeError(false);
+
+  const selectedBrandChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (value.length <= 100) {
+      setSelectedOtherBrand(value);
+      setBrandOtherError('');
     } else {
-      setShowSizeError(true);
+      setBrandOtherError('The field should contain no more than 100 characters');
     }
   };
-  useEffect(() => {
-    if (selectedShoeSize) {
-      setShowSizeError(false);
+  const brandModelChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (value.length <= 100) {
+      setBrandModel(value);
+      setBrandModelError('');
+    } else {
+      setBrandModelError('The field should contain no more than 100 characters');
     }
-  }, [selectedShoeSize]);
+  };
 
   return (
     <div className="font-poppins h-screen text-gray">
@@ -73,13 +92,7 @@ const MeasurementPage = () => {
           <NavigationLinks color="gray" className=" w-auto" />
         </div>
         <div className={styles.container}>
-          <MeasurementHeader
-            isArrowBack={true}
-            showMeasureForm={showMeasureForm}
-            setShowMeasureForm={setShowMeasureForm}
-            title="Measurement"
-            background="transparent"
-          />
+          <MeasurementHeader isArrowBack={true} title="Measurement" background="transparent" />
           <div
             className="flex 
             flex-col
@@ -88,35 +101,29 @@ const MeasurementPage = () => {
             gap-4
             lg:gap-10"
           >
-            {!showMeasureForm && (
-              <div className="w-full flex flex-col basis-[1/2] ">
-                <span className="font-bold py-2">Step 1. Choose The Brand You Wear</span>
-
-                <CustomSelect
-                  value={selectedBrand}
-                  array={brandArray}
-                  defaultValue={brandArray[0] || ''}
-                  handleFunc={changeHandler(setSelectedBrand)}
-                />
-
-                <div
-                  className="mb-2
-                lg:mb-2 mt-4
+            <div className="w-full flex flex-col basis-[1/2] lg:max-w-[48%]">
+              <div
+                className="mb-2
+                lg:mb-2 
                 flex
                 flex-row
                 justify-between
                 items-center"
+              >
+                <span
+                  className={`font-bold py-2 ${isDisabled && selectedShoeSize == undefined ? 'text-custom-red' : ''}`}
                 >
-                  <span className="font-bold py-2">Step 2. Please Select Your Size*</span>
-                  {/* <Link to={paths.helpPage + '#sizeGuide'} className="underline text-mint">
+                  Please Select Your Size*
+                </span>
+                {/* <Link to={paths.helpPage + '#sizeGuide'} className="underline text-mint">
                   Size Guide
                 </Link> */}
-                </div>
-                <div className="w-full grid grid-cols-3 gap-4">
-                  {sizeList.map((size) => (
-                    <div
-                      key={size}
-                      className={`w-full 
+              </div>
+              <div className="w-full grid grid-cols-3 gap-4">
+                {sizeList.map((size) => (
+                  <div
+                    key={size}
+                    className={`w-full 
                     h-10
                     flex
                     justify-center
@@ -124,104 +131,118 @@ const MeasurementPage = () => {
                     border
                     cursor-pointer
                     ${selectedShoeSize === size ? 'bg-mint border-mint text-white' : 'hover:bg-mintExtraLight'}`}
-                      onClick={() => handleSize(size)}
-                    >
-                      {size}
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-8">
-                  {showSizeError && <p className="text-custom-red">Please select your size to proceed</p>}
-                  {selectedBrand === brandArray[0] && !showMeasureForm && (
-                    <Button className="max-w-full my-2" color="transparentMint" onClick={toggleShowMeasureForm}>
-                      Proceed
-                    </Button>
-                  )}
-                </div>
-                {selectedBrand === brandArray[0] && showMeasureForm && (
-                  <div className="w-full flex flex-col mt-4">
-                    <span className="font-bold">Step 3. Please Measure Your Feet</span>
-                    <div
-                      className="flex
-                flex-col 
-                justify-center 
-                items-center 
-                gap-2 
-                my-2"
-                    >
-                      {/* <span>Don't know how to do it?</span>
-                <Link className="underline text-mint font-bold" to={''}>
-                  Video Guide
-                </Link> */}
-                    </div>
-                    <MeasurementForm selectedShoeSize={selectedShoeSize} selectedBrand={selectedBrand} />
+                    onClick={() => handleSize(size)}
+                  >
+                    {size}
                   </div>
-                )}
-                {selectedBrand !== brandArray[0] && (
-                  <MeasurementForm selectedShoeSize={selectedShoeSize} selectedBrand={selectedBrand} />
-                )}
-                {/* <div className="my-2">
-                <span className="underline text-mint">Your shoe size is not on the list?</span>
-              </div> */}
+                ))}
               </div>
-            )}
-            {selectedBrand === brandArray[0] && showMeasureForm && (
-              <>
-                <div className="w-full flex flex-col">
-                  <span className="font-bold -mt-2">Step 3. Please Measure Your Feet</span>
-                  <div
-                    className="flex
-                flex-col 
-                justify-center 
-                items-center 
-                gap-2 
-                my-2"
-                  >
-                    {/* <span>Don't know how to do it?</span>
-                <Link className="underline text-mint font-bold" to={''}>
-                  Video Guide
-                </Link> */}
-                  </div>
-                  <MeasurementForm selectedShoeSize={selectedShoeSize} selectedBrand={selectedBrand} />
-                </div>
-              </>
-            )}
-            <div className="w-full flex flex-col lg:basis-[1/2] lg:max-w-[48%]">
-              <div>
-                {showMeasureForm && (
-                  <AccordionSection
-                    title="Size Guide"
-                    isOpen={isSizeGuideAccordionOpen}
-                    toggleAccordion={toggleSizeGuideAccordion}
-                    className="bg-lightGray px-2"
-                  >
-                    <VideoFrame
-                      src="https://drive.google.com/file/d/1ORbS4BvEb3GuPbkZKATVO5E2nx1damff/preview"
-                      title="Video Guide"
-                      className="xl:max-w-[50vw]"
-                    />
-                  </AccordionSection>
-                )}
-                {!showMeasureForm && (
+              <div className="my-2">
+                <AccordionSection
+                  title="Women`s Shoe Size Chart"
+                  isOpen={isWomenAccordionOpen}
+                  toggleAccordion={toggleWomenAccordion}
+                  className="bg-lightGray px-2 my-4"
+                >
+                  <ShoeSizeTable data={dataWomen} title={['Women`s Shoe Size Chart', 'Foot Width, inch/mm']} />
+                </AccordionSection>
+                <AccordionSection
+                  title="Men`s Shoe Size Chart"
+                  isOpen={isMenAccordionOpen}
+                  toggleAccordion={toggleMenAccordion}
+                  className="bg-lightGray px-2 my-4"
+                >
+                  <ShoeSizeTable data={dataMen} title={['Men`s Shoe Size Chart', 'Foot Width, inch/mm']} />
+                </AccordionSection>
+              </div>
+              <span className="py-2">
+                We kindly request information about your most comfortable pair of sneakers. This will help us create
+                CALOR's pair of shoes that will fit comfortably.
+              </span>
+              <div className="pb-4 flex flex-col">
+                <span className="font-bold py-2">Choose The Brand You Wear</span>
+                <CustomSelect
+                  value={selectedBrand}
+                  array={brandArray}
+                  defaultValue={brandArray[0] || ''}
+                  handleFunc={changeBrandHandler(setSelectedBrand)}
+                />
+                {selectedBrand == brandArray[brandArray.length - 1] && (
                   <>
-                    <AccordionSection
-                      title="Women`s Shoe Size Chart"
-                      isOpen={isWomenAccordionOpen}
-                      toggleAccordion={toggleWomenAccordion}
-                      className="bg-lightGray px-2"
-                    >
-                      <ShoeSizeTable data={dataWomen} title={['Women`s Shoe Size Chart', 'Foot Width, inch/mm']} />
-                    </AccordionSection>
-                    <AccordionSection
-                      title="Men`s Shoe Size Chart"
-                      isOpen={isMenAccordionOpen}
-                      toggleAccordion={toggleMenAccordion}
-                      className="bg-lightGray px-2"
-                    >
-                      <ShoeSizeTable data={dataMen} title={['Men`s Shoe Size Chart', 'Foot Width, inch/mm']} />
-                    </AccordionSection>
+                    <span className="font-bold pt-8 -mb-2">Input The Brand You Wear</span>
+                    <CustomInput
+                      id={'brand'}
+                      name={'brand'}
+                      placeholder={'input the brand'}
+                      value={selectedOtherBrand}
+                      onChange={selectedBrandChangeHandler}
+                    />
+                    {brandOtherError && <div className="text-red-500">{brandOtherError}</div>}
                   </>
                 )}
+              </div>
+              <span className="font-bold pt-2 -mb-2">Input The Brand Model You Wear</span>
+              <CustomInput
+                id={'brandModel'}
+                name={'brandModel'}
+                placeholder={'input the brand model'}
+                value={brandModel}
+                onChange={brandModelChangeHandler}
+              />
+              {brandModelError && <div className="text-red-500">{brandModelError}</div>}
+              <span className="font-bold py-2">Choose The Brand Size You Wear</span>
+              <CustomSelect
+                value={brandSize}
+                array={brandSizeArray}
+                defaultValue={brandSizeArray[0] || ''}
+                handleFunc={changeBrandSizeHandler(setBrandSize)}
+              />
+
+              {/* <div className="my-2">
+                <span className="underline text-mint">Your shoe size is not on the list?</span>
+              </div> */}
+            </div>
+
+            <div className="w-full flex flex-col lg:basis-[1/2] lg:max-w-[48%]">
+              <div>
+                <AccordionSection
+                  title="Video Guide"
+                  isOpen={isSizeGuideAccordionOpen}
+                  toggleAccordion={toggleSizeGuideAccordion}
+                  className="bg-lightGray px-2"
+                >
+                  <VideoFrame
+                    src="https://drive.google.com/file/d/1ORbS4BvEb3GuPbkZKATVO5E2nx1damff/preview"
+                    title="Video Guide"
+                    className="xl:max-w-[50vw]"
+                  />
+                </AccordionSection>
+                <div className="w-full flex flex-col">
+                  <span className="pt-4">
+                    The information you've already provided is sufficient for us to craft a pair of shoes that will fit
+                    well. However, if you desire a customized fit for perfection, you can share measurements for both of
+                    your feet. As a manufacturer, we can accommodate this request, and it's an additional service we
+                    offer at no cost. We would be delighted to provide this service for you.
+                  </span>
+                  <Button className="max-w-full my-2" color="gray" onClick={toggleDisable}>
+                    {isFormDisabled ? 'Add Custom Measurement' : 'Clear Custom Measurement'}
+                  </Button>
+                  <span
+                    className={`font-bold mt-2 bg-gray-300 ${isFormDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
+                    Please Measure Your Feet (optional)
+                  </span>
+
+                  <MeasurementForm
+                    selectedShoeSize={selectedShoeSize}
+                    selectedBrand={selectedBrand}
+                    isFormDisabled={isFormDisabled}
+                    onIsDisabledChange={setIsDisabled}
+                    brandModel={brandModel}
+                    selectedOtherBrand={selectedOtherBrand}
+                    brandSize={brandSize}
+                  />
+                </div>
               </div>
             </div>
           </div>

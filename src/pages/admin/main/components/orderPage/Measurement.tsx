@@ -12,12 +12,15 @@ const Measurement: FC<IProps> = ({ measurement }) => {
       <div className={'flex flex-col gap-5'}>
         <p className={'font-bold'}>Measurement</p>
         <div className={'grid grid-cols-2 gap-y-2 gap-x-8'}>
-          {measurement.brandName && (
-            <>
-              <p> Brand name</p>
-              <span>{measurement.brandName}</span>
-            </>
-          )}
+          <p>Brand name</p>
+          {measurement.brandName.trim() !== '' ? <span>{measurement.brandName}</span> : <span>---</span>}
+
+          <p>Brand model</p>
+          {measurement.brandModel.trim() !== '' ? <span>{measurement.brandModel}</span> : <span>---</span>}
+
+          <p>Brand size</p>
+          {measurement.brandSize.trim() !== '' ? <span>{measurement.brandSize}</span> : <span>---</span>}
+
           <p>Size</p>
           <span>{measurement.size}</span>
           {measurement.rightFootLength && (
