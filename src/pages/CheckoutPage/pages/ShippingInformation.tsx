@@ -70,9 +70,6 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
         save: saveAddress,
         state: country === USA ? stateValue : values.city,
       });
-      if (!shippingInfo) {
-        window.location.reload();
-      }
     },
   });
 
