@@ -113,7 +113,7 @@ const MeasurementPage = () => {
                 <span
                   className={`font-bold py-2 ${isDisabled && selectedShoeSize == undefined ? 'text-custom-red' : ''}`}
                 >
-                  Please Select Your Size*
+                  Please Select Your Size<span className="text-custom-red">*</span>
                 </span>
                 {/* <Link to={paths.helpPage + '#sizeGuide'} className="underline text-mint">
                   Size Guide
@@ -142,7 +142,7 @@ const MeasurementPage = () => {
                   title="Women`s Shoe Size Chart"
                   isOpen={isWomenAccordionOpen}
                   toggleAccordion={toggleWomenAccordion}
-                  className="bg-lightGray px-2 my-4"
+                  className="bg-lightGray px-2 mt-4 lg:my-4"
                 >
                   <ShoeSizeTable data={dataWomen} title={['Women`s Shoe Size Chart', 'Foot Width, inch/mm']} />
                 </AccordionSection>
@@ -150,7 +150,7 @@ const MeasurementPage = () => {
                   title="Men`s Shoe Size Chart"
                   isOpen={isMenAccordionOpen}
                   toggleAccordion={toggleMenAccordion}
-                  className="bg-lightGray px-2 my-4"
+                  className="bg-lightGray px-2 mt-2 lg:my-4"
                 >
                   <ShoeSizeTable data={dataMen} title={['Men`s Shoe Size Chart', 'Foot Width, inch/mm']} />
                 </AccordionSection>
@@ -169,35 +169,74 @@ const MeasurementPage = () => {
                 />
                 {selectedBrand == brandArray[brandArray.length - 1] && (
                   <>
-                    <span className="font-bold pt-8 -mb-2">Input The Brand You Wear</span>
+                    <span className={'font-bold pt-6 -mb-4'}>
+                      {'Input The Brand You Wear'}
+                      {selectedBrand === brandArray[brandArray.length - 1] ? (
+                        <span className="text-red-500">*</span>
+                      ) : (
+                        ''
+                      )}
+                    </span>
                     <CustomInput
                       id={'brand'}
                       name={'brand'}
                       placeholder={'input the brand'}
                       value={selectedOtherBrand}
                       onChange={selectedBrandChangeHandler}
+                      required={selectedBrand == brandArray[brandArray.length - 1] && selectedBrand !== brandArray[0]}
                     />
                     {brandOtherError && <div className="text-red-500">{brandOtherError}</div>}
+                    {isDisabled &&
+                      selectedOtherBrand.length == 0 &&
+                      selectedBrand == brandArray[brandArray.length - 1] && (
+                        <div className="text-red-500 -mt-3">This field is required</div>
+                      )}
                   </>
                 )}
               </div>
-              <span className="font-bold pt-2 -mb-2">Input The Brand Model You Wear</span>
+              <span
+                className={`font-bold  -mb-4 bg-gray-300  ${
+                  selectedBrand == brandArray[0] ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                {' '}
+                {'Input The Brand Model You Wear'}
+                {selectedBrand !== brandArray[0] ? <span className="text-red-500">*</span> : ''}
+              </span>
               <CustomInput
                 id={'brandModel'}
                 name={'brandModel'}
                 placeholder={'input the brand model'}
-                value={brandModel}
+                value={selectedBrand == brandArray[0] ? '' : brandModel}
                 onChange={brandModelChangeHandler}
+                required={selectedBrand !== brandArray[0]}
+                disabled={selectedBrand == brandArray[0]}
               />
               {brandModelError && <div className="text-red-500">{brandModelError}</div>}
-              <span className="font-bold py-2">Choose The Brand Size You Wear</span>
-              <CustomSelect
-                value={brandSize}
-                array={brandSizeArray}
-                defaultValue={brandSizeArray[0] || ''}
-                handleFunc={changeBrandSizeHandler(setBrandSize)}
-              />
-
+              {isDisabled && brandModel.length == 0 && selectedBrand !== brandArray[0] && (
+                <div className="text-red-500 -mt-3">This field is required</div>
+              )}
+              <div
+                className={`flex flex-col bg-gray-300 ${
+                  selectedBrand == brandArray[0] ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                <span className={'font-bold py-2'}>
+                  {' '}
+                  {'Choose The Brand Size You Wear'}
+                  {selectedBrand !== brandArray[0] ? <span className="text-red-500">*</span> : ''}
+                </span>
+                <CustomSelect
+                  value={selectedBrand == brandArray[0] ? brandSizeArray[0] : brandSize}
+                  array={brandSizeArray}
+                  defaultValue={brandSizeArray[0] || ''}
+                  handleFunc={changeBrandSizeHandler(setBrandSize)}
+                  required={selectedBrand !== brandArray[0]}
+                />
+                {isDisabled && brandSize == brandSizeArray[0] && selectedBrand !== brandArray[0] && (
+                  <div className="text-red-500">This field is required</div>
+                )}
+              </div>
               {/* <div className="my-2">
                 <span className="underline text-mint">Your shoe size is not on the list?</span>
               </div> */}

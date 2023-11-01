@@ -67,7 +67,10 @@ const MeasurementForm: FC<IProps> = ({
       selectedBrand = '';
       break;
     case brandArray[brandArray.length - 1]:
-      selectedBrand = selectedOtherBrand;
+      if (selectedOtherBrand.length) {
+        selectedBrand = selectedOtherBrand;
+      }
+
       break;
     default:
       selectedBrand;
@@ -92,9 +95,16 @@ const MeasurementForm: FC<IProps> = ({
       insoleWidth: measurement.insoleWidth || '',
       comment: measurement.comment || '',
     },
-    validationSchema: validationMeasurement(),
+    validationSchema: validationMeasurement(isFormDisabled),
     onSubmit: (values) => {
-      if (selectedShoeSize !== undefined) {
+      if (
+        (selectedShoeSize !== undefined &&
+          selectedBrand !== '' &&
+          selectedBrand !== brandArray[brandArray.length - 1] &&
+          brandModel !== '' &&
+          brandSize !== '') ||
+        (selectedBrand == '' && brandModel == '' && brandSize == '')
+      ) {
         onIsDisabledChange(false);
         dispatch(setUserMeasurement({ selectedShoeSize, selectedBrand, brandModel, brandSize, ...values }));
         addToCartGTMEvent('add_to_cart', { id, title: product?.data?.title });
@@ -177,7 +187,7 @@ const MeasurementForm: FC<IProps> = ({
           border={'1px solid #D9D9D9'}
           disabled={isFormDisabled}
         >
-          Right Foot Length (in)
+          Right Foot Length (in) {!isFormDisabled && <span className="text-red-500">*</span>}
         </CustomInput>
         <CustomInput
           id={'rightFootWidth'}
@@ -195,7 +205,7 @@ const MeasurementForm: FC<IProps> = ({
           border={'1px solid #D9D9D9'}
           disabled={isFormDisabled}
         >
-          Right Foot Width (in)
+          Right Foot Width (in){!isFormDisabled && <span className="text-red-500">*</span>}
         </CustomInput>
         <CustomInput
           id={'leftFootLength'}
@@ -213,7 +223,7 @@ const MeasurementForm: FC<IProps> = ({
           border={'1px solid #D9D9D9'}
           disabled={isFormDisabled}
         >
-          Left Foot Length (in)
+          Left Foot Length (in){!isFormDisabled && <span className="text-red-500">*</span>}
         </CustomInput>
         <CustomInput
           id={'leftFootWidth'}
@@ -231,7 +241,7 @@ const MeasurementForm: FC<IProps> = ({
           border={'1px solid #D9D9D9'}
           disabled={isFormDisabled}
         >
-          Left Foot Width (in)
+          Left Foot Width (in){!isFormDisabled && <span className="text-red-500">*</span>}
         </CustomInput>
         <p className="mb-2">
           Please, find your most comfortable shoe similar to the shoe type you created and take out the insole (if it's
@@ -253,7 +263,7 @@ const MeasurementForm: FC<IProps> = ({
           border={'1px solid #D9D9D9'}
           disabled={isFormDisabled}
         >
-          Insole Length (in)
+          Insole Length (in){!isFormDisabled && <span className="text-red-500">*</span>}
         </CustomInput>
         <CustomInput
           id={'insoleWidth'}
@@ -271,7 +281,7 @@ const MeasurementForm: FC<IProps> = ({
           border={'1px solid #D9D9D9'}
           disabled={isFormDisabled}
         >
-          Insole Width (in)
+          Insole Width (in){!isFormDisabled && <span className="text-red-500">*</span>}
         </CustomInput>
       </div>
       <>

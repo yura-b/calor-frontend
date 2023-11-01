@@ -8,6 +8,7 @@ interface IProps {
   defaultValue: string | OrderStatus;
   handleFunc: (value: SelectChangeEvent) => void;
   value: string;
+  required?: boolean;
 }
 
 const theme = createTheme({
