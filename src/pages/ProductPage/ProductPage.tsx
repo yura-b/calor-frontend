@@ -422,13 +422,13 @@ const ProductPage = () => {
                             {isMobile ? (
                               <VideoFrameWithId
                                 src="1iuIWXVjvzDP75f71P56xJlOAOz8apIpX"
-                                title="Video Guide"
+                                title="Sunrise"
                                 className="xl:max-w-[50vw]"
                               />
                             ) : (
                               <VideoFrame
                                 src="https://drive.google.com/file/d/1iuIWXVjvzDP75f71P56xJlOAOz8apIpX/preview"
-                                title="Video Guide"
+                                title="Sunrise"
                                 className="xl:max-w-[50vw]"
                               />
                             )}
