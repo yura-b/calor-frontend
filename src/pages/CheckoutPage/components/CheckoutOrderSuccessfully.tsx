@@ -88,7 +88,7 @@ const CheckoutOrderSuccessfully = () => {
             <p>
               Order Delivery<span className="float-right">{order.shippingPrice} $</span>
             </p>
-            {order.discountValue && <p>
+            {!!order.discountValue && <p>
               Discount <span className="float-right">{order.discountValue} $</span>
             </p>}
             <p>
