@@ -19,7 +19,7 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
     <>
       <PayPalScriptProvider
         options={{
-          clientId: 'AXn3yDfjTGZGLATGd4h8BY6171xMrBXrB3WK9xWinT6D8F6cVqJVYKOzukTi0az5Ej3vOtEXFuKdn5ua',
+          clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
           components: 'buttons',
           currency: 'USD',
         }}
