@@ -14,8 +14,8 @@ import { countries } from '@/helpers/admin/constants/countries.ts';
 import { states } from '@/helpers/admin/constants/states.ts';
 import { useLocation } from 'react-router-dom';
 import Spinner from '@components/ui/Spinner';
-import { useDispatch } from "react-redux";
-import { setShippingInfo } from "@/store/reducers/UserReducer";
+import { useDispatch } from 'react-redux';
+import { setShippingInfo } from '@/store/reducers/UserReducer';
 
 interface IProps {
   setData: React.Dispatch<React.SetStateAction<shippingForm | null>>;
@@ -73,12 +73,14 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
         save: saveAddress,
         state: country === USA ? stateValue : values.city,
       });
-      dispatch(setShippingInfo({
-        ...values,
-        country,
-        save: saveAddress,
-        state: country === USA ? stateValue : values.city,
-      }));
+      dispatch(
+        setShippingInfo({
+          ...values,
+          country,
+          save: saveAddress,
+          state: country === USA ? stateValue : values.city,
+        })
+      );
     },
   });
 
