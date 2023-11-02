@@ -8,6 +8,7 @@ interface IProps {
   defaultValue: string | OrderStatus;
   handleFunc: (value: SelectChangeEvent) => void;
   value: string;
+  required?: boolean;
 }
 
 const theme = createTheme({
@@ -30,6 +31,13 @@ export const CustomSelect: React.FC<IProps> = ({ handleFunc, array, value }) => 
         value={value}
         onChange={(e: SelectChangeEvent) => {
           handleFunc(e);
+        }}
+        MenuProps={{
+          PaperProps: {
+            style: {
+              maxHeight: 250,
+            },
+          },
         }}
       >
         {array.map((el) => {

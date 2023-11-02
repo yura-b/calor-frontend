@@ -36,8 +36,8 @@ const CheckoutPage = () => {
         product: item?.shoes?._id || item?.accessory?._id,
         photo: item?.photo,
         details: item?.details || {},
-        measurement: { _id: item?.measurement?._id || {} },
-        size: item?.measurement.size || 0,
+        measurement: item?.measurement || {},
+        size: item?.measurement?.size || 0,
       }))
     : basketProductsForNonRegisterUser?.map((item) => ({
         count: item?.count,
@@ -45,7 +45,7 @@ const CheckoutPage = () => {
         photo: item?.photo,
         details: [item?.details || {}] || {},
         measurement: item?.measurement || {},
-        size: item?.size || 0,
+        size: item?.size || item?.measurement?.size || 0,
       }));
 
   useEffect(() => {

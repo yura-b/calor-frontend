@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import { ReactSVG } from 'react-svg';
 import IconButton from '@mui/material/IconButton/IconButton';
 import leftArrowIcon from '@/assets/images/leftArrowIcon.svg';
-import { useMediaQuery } from '@react-hook/media-query';
 interface IProps {
   isArrowBack?: boolean;
   title: string;
@@ -13,7 +12,6 @@ interface IProps {
 
 const MeasurementHeader: FC<IProps> = ({ isArrowBack = false, title, background = 'transparent' }) => {
   const navigate = useNavigate();
-  const isMobile = useMediaQuery('(max-width: 1023px)');
 
   const goBack = () => {
     navigate(-1);
@@ -29,7 +27,7 @@ const MeasurementHeader: FC<IProps> = ({ isArrowBack = false, title, background 
       items-center
       bg-${background}`}
     >
-      {isArrowBack && isMobile && (
+      {isArrowBack && (
         <IconButton
           sx={{
             padding: 0,
