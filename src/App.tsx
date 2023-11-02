@@ -14,7 +14,7 @@ const Email = lazy(() => import('@pages/autorization/forgotPassword/Email.tsx'))
 const ResetPassword = lazy(() => import('@pages/autorization/forgotPassword/ResetPassword.tsx'));
 const OrderPage = lazy(() => import('@pages/admin/main/OrderPage.tsx'));
 const UserPage = lazy(() => import('@pages/admin/users/UserPage.tsx'));
-const DeliveryPage = lazy(()=> import('@pages/admin/delivery/DeliveryPage.tsx'))
+const DeliveryPage = lazy(() => import('@pages/admin/delivery/DeliveryPage.tsx'));
 const UserProfilePage = lazy(() => import('@pages/admin/users/UserProfilePage.tsx'));
 const CheckoutSuccessPage = lazy(() => import('@/pages/CheckoutPage/CheckoutSuccessPage'));
 const CheckoutNotSuccessPage = lazy(() => import('@/pages/CheckoutPage/CheckoutNotSuccessPage'));
@@ -97,7 +97,7 @@ const App = () => {
             <Route path={'reviews/text'} element={<TextReviewPage />} />
             <Route path={'manager'} element={<PageManagerPage />} />
             <Route path={'createevent'} element={<CreateEvent />} />
-            <Route path={'delivery'} element={<DeliveryPage/>}/>
+            <Route path={'delivery'} element={<DeliveryPage />} />
             <Route path={'catalog'} element={<CatalogPage />} />
             <Route path={'catalog/variations'} element={<VariationsPage />} />
             <Route path={'createitem'} element={<CreateItem />} />

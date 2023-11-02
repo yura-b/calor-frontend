@@ -6,7 +6,7 @@ import DeliveryPriceComponent from '@pages/admin/delivery/components/DeliveryPri
 import { errorCorrupted, loading, loadingFinished, showMessage } from '@/store/reducers/StatusReducer.ts';
 
 const DeliveryTable = () => {
-  const { access_token } = useAppSelector(state => state.user);
+  const { access_token } = useAppSelector((state) => state.user);
 
   const dispatch = useAppDispatch();
 
@@ -15,7 +15,7 @@ const DeliveryTable = () => {
 
   useEffect(() => {
     if (!access_token) return;
-    getDeliveryPrices(access_token).then(res => {
+    getDeliveryPrices(access_token).then((res) => {
       setPrices(res.data);
     });
   }, [reload]);
@@ -27,13 +27,12 @@ const DeliveryTable = () => {
       .then(() => {
         dispatch(loadingFinished());
         dispatch(showMessage('price was successfully changed'));
-        forceReload(prevState => prevState + 1);
+        forceReload((prevState) => prevState + 1);
       })
-      .catch(e => {
+      .catch((e) => {
         dispatch(errorCorrupted(e.response.data.message));
       });
   };
-
 
   if (!prices) return <p>loading</p>;
   return (
@@ -44,13 +43,9 @@ const DeliveryTable = () => {
         <p className={'basis-1/5 font-bold'}>Higher price</p>
         <p className={'basis-1/5 font-bold'}>Lower price</p>
       </div>
-      {
-        prices.map((price) => {
-          return <DeliveryPriceComponent
-            deliveryPrice={price} key={price._id}
-            saveHandler={saveButtonHandler} />;
-        })
-      }
+      {prices.map((price) => {
+        return <DeliveryPriceComponent deliveryPrice={price} key={price._id} saveHandler={saveButtonHandler} />;
+      })}
     </div>
   );
 };
