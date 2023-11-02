@@ -19,6 +19,7 @@ interface IProps {
   disableUnderline?: boolean;
   height?: string;
   gap?: string;
+  required?: boolean;
 }
 
 const CustomInput: React.FC<IProps> = ({ gap = '2', ...props }) => {

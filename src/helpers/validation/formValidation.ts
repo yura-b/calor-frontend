@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { ValidationResult } from '@pages/autorization/signup/otherInfo/components/PasswordIdentifier.tsx';
+import { brandArray } from '@pages/MeasurementPage/helpers/data';
 
 const phoneNumberRegex = /^\+?\d{0,3}\s?(\(\d{1,4}\))?\s?\d{1,4}[\s.-]?\d{1,4}[\s.-]?\d{1,9}$/;
 
@@ -109,35 +110,47 @@ export const validationSchemaForUserAccount = yup.object({
   phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
 });
 
-export const validationMeasurement = yup.object({
-  rightFootLength: yup
-    .number()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required')
-    .moreThan(0, 'Size cannot be negative'),
-  rightFootWidth: yup
-    .number()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required')
-    .moreThan(0, 'Size cannot be negative'),
-  leftFootLength: yup
-    .number()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required')
-    .moreThan(0, 'Size cannot be negative'),
-  leftFootWidth: yup
-    .number()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required')
-    .moreThan(0, 'Size cannot be negative'),
-  insoleLength: yup
-    .number()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required')
-    .moreThan(0, 'Size cannot be negative'),
-  insoleWidth: yup
-    .number()
-    .min(1, 'Field must contain a minimum of 1 character')
-    .required('This field is required')
-    .moreThan(0, 'Size cannot be negative'),
-});
+export const validationMeasurement = (isFormDisabled) => {
+  const schema = {
+    rightFootLength: yup
+      .number()
+      .min(1, 'Field must contain a minimum of 1 character')
+      .moreThan(0, 'Size cannot be negative'),
+
+    rightFootWidth: yup
+      .number()
+      .min(1, 'Field must contain a minimum of 1 character')
+      .moreThan(0, 'Size cannot be negative'),
+
+    leftFootLength: yup
+      .number()
+      .min(1, 'Field must contain a minimum of 1 character')
+      .moreThan(0, 'Size cannot be negative'),
+
+    leftFootWidth: yup
+      .number()
+      .min(1, 'Field must contain a minimum of 1 character')
+      .moreThan(0, 'Size cannot be negative'),
+
+    insoleLength: yup
+      .number()
+      .min(1, 'Field must contain a minimum of 1 character')
+      .moreThan(0, 'Size cannot be negative'),
+
+    insoleWidth: yup
+      .number()
+      .min(1, 'Field must contain a minimum of 1 character')
+      .moreThan(0, 'Size cannot be negative'),
+
+    comment: yup.string(),
+  };
+  if (!isFormDisabled) {
+    Object.keys(schema)
+      .filter((item) => item !== 'comment')
+      .forEach((field) => {
+        schema[field] = schema[field].required('This field is required');
+      });
+  }
+
+  return yup.object(schema);
+};

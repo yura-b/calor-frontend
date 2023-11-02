@@ -11,6 +11,7 @@ import {
   ChartBar,
   ChatDots,
   ClipboardText,
+  Truck,
   Envelope,
   GlobeSimple,
   Package,
@@ -80,6 +81,11 @@ const Header = () => {
                 icon={<ClipboardText size={size} weight="fill" />}
                 title={'Orders'}
                 navigateTo={'/admin'}
+              />
+              <HeaderElement
+                icon={<Truck size={size} weight="fill" />}
+                title={'Delivery prices'}
+                navigateTo={'/admin/delivery'}
               />
             </div>
           )}
