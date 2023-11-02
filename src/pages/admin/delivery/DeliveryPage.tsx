@@ -7,7 +7,7 @@ const DeliveryPage = () => {
   return (
     <AdminLayout>
       <GridHeader title={'Delivery Prices'} />
-      <DeliveryTable/>
+      <DeliveryTable />
     </AdminLayout>
   );
 };
