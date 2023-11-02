@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 import Spinner from '@components/ui/Spinner';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import VideoFrame from '@components/VideoFrame';
 interface Props {
   src: string;
   title?: string;
@@ -51,7 +52,7 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
   useEffect(() => {
     checkVideoSupport();
   }, []);
-
+  console.log(isVideoSupported, 'isVideoSupported');
   return (
     <div
       className={`${className} relative mt-2 mb-8`}
@@ -61,7 +62,7 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
       {isMobile && srcMobile && !isWidthGreaterThanHeight && (
         <div className="relative">
           {isLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
-          {isVideoSupported && (
+          {isVideoSupported && !isError && (
             <video
               src={`https://drive.google.com/uc?id=${srcMobile}`}
               className="w-full h-auto"
@@ -70,24 +71,18 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
               onLoadedData={handleVideoLoad}
               onError={() => {
                 setIsError(true);
+                console.log('Mobile video error');
               }}
             />
           )}
           {!isVideoSupported ||
             (isError && (
-              <div>
-                <p>
-                  Your browser doesn't support HTML5 video. Here is a{' '}
-                  <a
-                    href={`https://drive.google.com/file/d/${srcMobile}/preview`}
-                    target="_blank"
-                    className="underline"
-                  >
-                    link to the video
-                  </a>{' '}
-                  instead.
-                </p>
-              </div>
+              <VideoFrame
+                src={`https://drive.google.com/file/d/${srcMobile}/preview`}
+                title="Video Guide"
+                className="xl:max-w-[50vw]"
+                isVerticalVideo={true}
+              />
             ))}
         </div>
       )}
@@ -100,7 +95,7 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
               <YouTubeIcon style={{ fontSize: '58px' }} color="error" />
             </div>
           )}
-          {isVideoSupported && (
+          {isVideoSupported && !isError && (
             <video
               className="w-full"
               src={`https://drive.google.com/uc?id=${src}`}
@@ -110,19 +105,20 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
               onPlay={togglePlay}
               onLoadStart={() => setIsLoading(true)}
               onLoadedData={handleVideoLoad}
+              onError={() => {
+                setIsError(true);
+                console.log('Screen video error');
+              }}
             />
           )}
-          {!isVideoSupported && (
-            <div>
-              <p>
-                Your browser doesn't support HTML5 video. Here is a{' '}
-                <a href={`https://drive.google.com/file/d/${src}/preview`} target="_blank" className="underline">
-                  link to the video
-                </a>{' '}
-                instead.
-              </p>
-            </div>
-          )}
+          {!isVideoSupported ||
+            (isError && (
+              <VideoFrame
+                src={`https://drive.google.com/file/d/${src}/preview`}
+                title="Video Guide"
+                className="xl:max-w-[50vw]"
+              />
+            ))}
         </div>
       )}
     </div>
