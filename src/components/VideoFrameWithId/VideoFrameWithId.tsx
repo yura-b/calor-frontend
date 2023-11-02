@@ -53,6 +53,7 @@ const VideoFrameWithId: React.FC<Props> = ({ src, className, srcMobile }) => {
     checkVideoSupport();
   }, []);
   console.log(isVideoSupported, 'isVideoSupported');
+
   return (
     <div
       className={`${className} relative mt-2 mb-8`}

@@ -17,7 +17,7 @@ const VideoReviews: React.FC = () => {
 
   const videoGuides = [
     {
-      src: '1stE9YsSJejhixQu0K6h3iu1QwBoUHhU3',
+      src: '1AEstEk129ttSg_3lzmQLl0MxL9YGa3ys',
       name: 'Spencer Campbell',
       date: '22',
       rating: 1,
@@ -33,8 +33,16 @@ const VideoReviews: React.FC = () => {
         'Description Description Description Description Description       Description      Description      Description',
     },
     {
-      src: '1mLclVD0NsrSHWd3mcOYfUAwwx_hRmLAl',
+      src: '1iZ09Zenri90m_5JQqOWSpcZEVHS9i0-d',
       name: 'Kylah Artz',
+      date: '22',
+      rating: 1,
+      description:
+        'Description Description Description Description Description       Description      Description      Description',
+    },
+    {
+      src: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
+      name: 'Hermans',
       date: '22',
       rating: 1,
       description:
