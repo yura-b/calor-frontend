@@ -7,6 +7,6 @@ export const getDetails = (productFilter: string) => {
   return axios.get(`${BASE_URL}/product/details/?productFilter=${productFilter}`);
 };
 
-export const changeColorAvailability = (_id: string, access_token: string) => {
-  return axios.patch(`${BASE_URL}/product/colors/${_id}`, {}, authorization(access_token));
+export const changeMaterialAvailability = (_id: string, access_token: string) => {
+  return axios.patch(`${BASE_URL}/product/material/${_id}`, {}, authorization(access_token));
 };
