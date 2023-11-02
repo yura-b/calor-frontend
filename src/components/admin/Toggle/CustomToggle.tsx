@@ -20,7 +20,7 @@ const CustomToggle: FC<IProps> = ({ _id, available, handler, access_token }) => 
     handler(_id, access_token).then((res) => {
       setSelected(!selected);
 
-      dispatch(showMessage(`availability of ${res.data.color} changed to ${res.data.available}`));
+      dispatch(showMessage(`availability of ${res.data.title} changed to ${res.data.available}`));
     });
   };
   return (

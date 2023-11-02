@@ -10,6 +10,7 @@ export interface Materials {
   title: string;
   _id: string;
   additional: boolean;
+  available: boolean;
 }
 
 export interface Color {
@@ -20,8 +21,6 @@ export interface Color {
 }
 
 export interface products {
-  title: string;
-  _id: string;
   colors: Color[];
   title: string;
   _id: string;

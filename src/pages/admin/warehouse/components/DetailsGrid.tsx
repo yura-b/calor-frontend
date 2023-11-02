@@ -10,11 +10,11 @@ import {
   TableRow,
 } from '@mui/material';
 import { DetailsAndProductName } from '@pages/admin/warehouse/WarehousePage.tsx';
-import { Color, Detail, Materials } from '@/constants/interfaces/details.ts';
+import {  Detail, Materials } from '@/constants/interfaces/details.ts';
 import DetailRow from '@pages/admin/warehouse/components/DetailRow.tsx';
 
 interface Column {
-  id: keyof Detail | keyof Materials | keyof Color;
+  id: keyof Detail | keyof Materials;
   label: string;
   minWidth?: number;
   align?: 'center';
@@ -27,23 +27,16 @@ const columns: Column[] = [
   {
     id: 'materials',
     label: 'material name',
-    minWidth: 100,
+    minWidth: 200,
     align: 'center',
     format: (value: number) => value.toLocaleString('en-US'),
   },
   {
-    id: 'color',
-    label: 'color name',
+    id: 'available',
+    label: 'material availability',
     minWidth: 170,
     align: 'center',
     format: (value: number) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'colors',
-    label: 'color availability',
-    minWidth: 170,
-    align: 'center',
-    format: (value: number) => value.toFixed(2),
   },
 ];
 interface IProps {
@@ -52,7 +45,7 @@ interface IProps {
 
 const DetailsGrid: FC<IProps> = ({ details }) => {
   const valueOfDetails = Object.values(details);
-  console.log(details);
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -77,7 +70,7 @@ const DetailsGrid: FC<IProps> = ({ details }) => {
                 align="center"
                 colSpan={2}
               >
-                Country
+                Product
               </TableCell>
               <TableCell
                 sx={{ background: '#DDE1E6', fontWeight: 'bold', borderBottom: '1px solid black' }}
