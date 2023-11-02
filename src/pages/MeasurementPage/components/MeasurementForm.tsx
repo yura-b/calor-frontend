@@ -187,7 +187,7 @@ const MeasurementForm: FC<IProps> = ({
           border={'1px solid #D9D9D9'}
           disabled={isFormDisabled}
         >
-          Right Foot Length (in) {!isFormDisabled && <span className="text-red-500">*</span>}
+          Right Foot Length (in){!isFormDisabled && <span className="text-red-500">*</span>}
         </CustomInput>
         <CustomInput
           id={'rightFootWidth'}

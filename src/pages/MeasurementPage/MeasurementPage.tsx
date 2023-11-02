@@ -269,9 +269,8 @@ const MeasurementPage = () => {
                   <span
                     className={`font-bold mt-2 bg-gray-300 ${isFormDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
-                    Please Measure Your Feet (optional)
+                    Please Measure Your Feet {isFormDisabled && <span className="font-bold mt-2">(optional)</span>}
                   </span>
-
                   <MeasurementForm
                     selectedShoeSize={selectedShoeSize}
                     selectedBrand={selectedBrand}
