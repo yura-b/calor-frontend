@@ -28,6 +28,7 @@ interface OrderInfo {
   subtotal: number;
   tax: number;
   total: number;
+  discountValue: number;
 }
 
 const CheckoutOrderSuccessfully = () => {
@@ -87,6 +88,11 @@ const CheckoutOrderSuccessfully = () => {
             <p>
               Order Delivery<span className="float-right">{order.shippingPrice} $</span>
             </p>
+            {order.discountValue && (
+              <p>
+                Discount <span className="float-right">{order.discountValue} $</span>
+              </p>
+            )}
             <p>
               Taxes<span className="float-right">{order.tax.toFixed(2)} $ </span>
             </p>

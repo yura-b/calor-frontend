@@ -11,5 +11,5 @@ export interface PromoCodesDto {
 
   isPercent: boolean;
 
-  numberOfUses: number
+  numberOfUses: number;
 }

@@ -65,6 +65,9 @@ export const UserSlice = createSlice({
       if (access_token) localStorage.setItem('access_token', access_token);
       if (access_token && roles) localStorage.setItem('roles', roles?.join(','));
     },
+    setShippingInfo: (state, action) => {
+      state.shippingInfo = action.payload;
+    },
     cleanUserData: (state: Draft<IUser>) => {
       localStorage.removeItem('access_token');
       localStorage.removeItem('roles');
@@ -82,6 +85,6 @@ export const UserSlice = createSlice({
   },
 });
 
-export const { setUserData, cleanUserData } = UserSlice.actions;
+export const { setUserData, setShippingInfo, cleanUserData } = UserSlice.actions;
 
 export default UserSlice.reducer;
