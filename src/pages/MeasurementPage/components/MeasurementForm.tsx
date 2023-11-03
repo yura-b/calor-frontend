@@ -132,7 +132,6 @@ const MeasurementForm: FC<IProps> = ({
             basketItemId: uuidv4(),
           };
         } else {
-
           requestData = {
             _id: id,
             title: product?.data?.title,

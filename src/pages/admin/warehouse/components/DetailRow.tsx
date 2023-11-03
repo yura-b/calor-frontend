@@ -46,13 +46,13 @@ const DetailRow: FC<IProps> = ({ details }) => {
         <div className={'flex flex-col gap-2 items-center'}>
           {detail.materials.map((material) => {
             return (
-                <CustomToggle
-                  key={material._id}
-                  _id={material._id}
-                  available={material.available}
-                  handler={changeMaterialAvailability}
-                  access_token={access_token}
-                />
+              <CustomToggle
+                key={material._id}
+                _id={material._id}
+                available={material.available}
+                handler={changeMaterialAvailability}
+                access_token={access_token}
+              />
             );
           })}
         </div>

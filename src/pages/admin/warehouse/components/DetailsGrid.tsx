@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '@mui/material';
 import { DetailsAndProductName } from '@pages/admin/warehouse/WarehousePage.tsx';
-import {  Detail, Materials } from '@/constants/interfaces/details.ts';
+import { Detail, Materials } from '@/constants/interfaces/details.ts';
 import DetailRow from '@pages/admin/warehouse/components/DetailRow.tsx';
 
 interface Column {

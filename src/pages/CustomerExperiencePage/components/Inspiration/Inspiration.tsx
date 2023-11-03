@@ -38,48 +38,51 @@ const Inspiration: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
 
   const homeCustomerCreations = [
-    yolo1,
-    yolo2,
-    yolo3,
+    {
+      media_url: yolo1,
+      media_type: 'IMAGE',
+    },
+    { media_url: yolo2, media_type: 'IMAGE' },
+    { media_url: yolo3, media_type: 'IMAGE' },
     // yolo4,
-    yolo5,
-    yolo6,
-    sunrise1,
-    sunrise2,
-    sunrise3,
-    sunrise4,
-    sunrise5,
-    sunrise6,
-    sunrise7,
-    sunrise8,
-    sunrise9,
-    sunrise10,
-    sunrise11,
-    sunrise12,
-    sunrise13,
-    sunrise14,
-    sunrise15,
-    dayger1,
-    dayger2,
-    dayger3,
-    dayger4,
-    dayger5,
-    dayger6,
-    dayger7,
+    { media_url: yolo5, media_type: 'IMAGE' },
+    { media_url: yolo6, media_type: 'IMAGE' },
+    { media_url: sunrise1, media_type: 'IMAGE' },
+    { media_url: sunrise2, media_type: 'IMAGE' },
+    { media_url: sunrise3, media_type: 'IMAGE' },
+    { media_url: sunrise4, media_type: 'IMAGE' },
+    { media_url: sunrise5, media_type: 'IMAGE' },
+    { media_url: sunrise6, media_type: 'IMAGE' },
+    { media_url: sunrise7, media_type: 'IMAGE' },
+    { media_url: sunrise8, media_type: 'IMAGE' },
+    { media_url: sunrise9, media_type: 'IMAGE' },
+    { media_url: sunrise10, media_type: 'IMAGE' },
+    { media_url: sunrise11, media_type: 'IMAGE' },
+    { media_url: sunrise12, media_type: 'IMAGE' },
+    { media_url: sunrise13, media_type: 'IMAGE' },
+    { media_url: sunrise14, media_type: 'IMAGE' },
+    { media_url: sunrise15, media_type: 'IMAGE' },
+    { media_url: dayger1, media_type: 'IMAGE' },
+    { media_url: dayger2, media_type: 'IMAGE' },
+    { media_url: dayger3, media_type: 'IMAGE' },
+    { media_url: dayger4, media_type: 'IMAGE' },
+    { media_url: dayger5, media_type: 'IMAGE' },
+    { media_url: dayger6, media_type: 'IMAGE' },
+    { media_url: dayger7, media_type: 'IMAGE' },
   ];
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div className="bg-custom-turquoise">
       <div className={styles.container}>
         <h1 className={styles.header1}>Inspiration</h1>
-        {!isMobile && <Slider images={homeCustomerCreations} />}
+        {!isMobile && <Slider data={homeCustomerCreations} instagramStyles={false} />}
         {isMobile && (
           <div className="flex justify-between overflow-x-auto flex-row gap-2 mx-auto lg:gap-10">
             {homeCustomerCreations.map((item, i) => (
               <div className="flex justify-center items-center lg:basis-1/5  my-4" key={i}>
                 <div className={'w-36 lg:w-full relative'}>
                   <LazyLoadImage
-                    src={item}
+                    src={item.media_url}
                     className=" object-contain object-cover  mx-auto z-10 min-h-[220px] max-h-[220px] w-[120px]"
                     effect="blur"
                     afterLoad={() => {
