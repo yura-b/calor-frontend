@@ -5,6 +5,7 @@ const constructorImageSlice = createSlice({
   initialState: {},
   reducers: {
     setConsctructorImage: (state, action) => {
+      localStorage.setItem('constructorImage', JSON.stringify(action.payload));
       return action.payload;
     },
   },

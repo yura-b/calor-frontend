@@ -25,6 +25,10 @@ interface IProps {
   brandModel: string;
   brandSize: string;
 }
+const getConstructorImageFromStorage = () => {
+  const constructorImage = localStorage.getItem('constructorImage');
+  return JSON.parse(constructorImage);
+};
 
 const MeasurementForm: FC<IProps> = ({
   selectedShoeSize,
@@ -96,7 +100,7 @@ const MeasurementForm: FC<IProps> = ({
       comment: measurement.comment || '',
     },
     validationSchema: validationMeasurement(isFormDisabled),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       if (
         (selectedShoeSize !== undefined &&
           selectedBrand !== '' &&
@@ -110,12 +114,13 @@ const MeasurementForm: FC<IProps> = ({
         addToCartGTMEvent('add_to_cart', { id, title: product?.data?.title });
 
         let requestData = {};
+        const constructorImageFromStorage = await getConstructorImageFromStorage();
 
         if (userId) {
           requestData = {
             product: id,
             count: 1,
-            photo: constructorImage,
+            photo: constructorImageFromStorage || constructorImage,
             measurement: {
               size: selectedShoeSize,
               brandName: selectedBrand,
@@ -127,13 +132,14 @@ const MeasurementForm: FC<IProps> = ({
             basketItemId: uuidv4(),
           };
         } else {
+
           requestData = {
             _id: id,
             title: product?.data?.title,
             price: product?.data?.price,
             category: product?.data?.category,
             count: 1,
-            photos: [constructorImage],
+            photos: [constructorImageFromStorage || constructorImage],
             measurement: {
               size: selectedShoeSize,
               brandName: selectedBrand,
@@ -144,6 +150,7 @@ const MeasurementForm: FC<IProps> = ({
             details: selectedDetails,
           };
         }
+
         if (userId) {
           mutation.mutate({ userId, requestData });
         } else {
