@@ -9,6 +9,9 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import Modal from '@mui/material/Modal';
+import X from '@assets/images/SignUpHeaderImg/X.png';
+import ModalContent from '@pages/CustomerExperiencePage/components/ModalContent';
 
 const CustomerCreations: React.FC = (): React.ReactElement => {
   const { data: instagramData, isLoading } = useQuery('instagramGetPosts', instagramGetPosts, {
@@ -21,6 +24,8 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [isVideoSupported, setIsVideoSupported] = useState(true);
   const isMobile = useMediaQuery('(max-width: 1023px)');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clickedIndex, setClickedIndex] = useState(0);
   const checkVideoSupport = () => {
     const videoElement = document.createElement('video');
     setIsVideoSupported(!!videoElement.canPlayType);
@@ -42,6 +47,14 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
     window.open('https://www.instagram.com/calorshoe', '_blank');
   };
 
+  const openModal = (index) => {
+    setClickedIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className={styles.container}>
       <p className={styles.subtitle}>Customer Creations</p>
@@ -59,31 +72,30 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
               <div className="flex justify-center items-start lg:basis-1/5  my-4 h-[200px] " key={i}>
                 <div className={'w-[200px] lg:w-full relative'}>
                   {item.media_type === 'IMAGE' ? (
-                    <>
+                    <div onClick={() => openModal(i)} className="cursor-pointer">
                       <LazyLoadImage
                         src={item.media_url}
-                        className=" object-contain object-cover  mx-auto z-10 w-[260px] lg:w-[220px] xl:w-[240px]"
+                        className="object-contain object-cover mx-auto z-10 w-[260px] lg:w-[220px] xl:w-[240px]"
                         effect="blur"
-                        afterLoad={() => {
-                          setImageLoaded(true);
-                        }}
-                        beforeLoad={() => {
-                          setImageLoaded(false);
-                        }}
                       />
-                      {imageLoaded ? null : <Spinner className="absolute left-1/2 top-1/2" />}
-                    </>
+                      {!imageLoaded && <Spinner className="absolute left-1/2 top-1/2" />}
+                      <img
+                        src={item.media_url}
+                        alt="Lazy-loaded image"
+                        onLoad={() => setImageLoaded(true)}
+                        className="hidden"
+                      />
+                    </div>
                   ) : (
                     <>
                       {isVideoLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
                       {isVideoSupported && (
-                        <>
+                        <div onClick={() => openModal(i)} className="cursor-pointer">
                           <div className={'h-[40px] absolute top-[0%] right-[4%]'}>
-                            <YouTubeIcon style={{ fontSize: '58px' }} color="error" />
+                            <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
                           </div>
                           <video
                             className="w-full"
-                            controls
                             onLoadStart={() => setIsVideoLoading(true)}
                             onLoadedData={() => setIsVideoLoading(false)}
                           >
@@ -93,7 +105,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
                               type="video/mp4"
                             />
                           </video>
-                        </>
+                        </div>
                       )}
                     </>
                   )}
@@ -102,6 +114,20 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
             ))}
           </div>
         )}
+
+        <Modal open={isModalOpen} onClose={closeModal} style={{ background: 'rgba(0, 0, 0, 0.8)' }}>
+          <div className="mx-auto w-full     flex flex-col items-center justify-center  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="cursor-pointer w-auto p-2" onClick={closeModal}>
+              <img src={X} alt="Close" className=" w-5 h-5 filter brightness-0 invert" />
+            </div>
+
+            <ModalContent
+              data={instagramPhotos[clickedIndex]}
+              isVideoLoading={isVideoLoading}
+              isVideoSupported={isVideoSupported}
+            />
+          </div>
+        </Modal>
       </div>
       <Button color="gray" className="w-full my-4 lg:hidden" onClick={handleClick}>
         Follow Us

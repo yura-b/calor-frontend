@@ -11,47 +11,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Modal from '@mui/material/Modal';
 import X from '@assets/images/SignUpHeaderImg/X.png';
-
-const ModalContent = ({ data, isVideoLoading, isVideoSupported }) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  return (
-    <>
-      {data.media_type == 'VIDEO' && (
-        <div className={'relative text-gray w-auto max-w-[50vh]'}>
-          {isVideoLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
-          {isVideoSupported && (
-            <>
-              <video
-                autoPlay
-                controls
-                onLoadStart={() => isVideoLoading(true)}
-                onLoadedData={() => isVideoLoading(false)}
-              >
-                <source src={data.media_url} className="w-full object-contain mx-auto" type="video/mp4" />
-              </video>
-            </>
-          )}
-        </div>
-      )}
-      {data.media_type == 'IMAGE' && (
-        <div className="relative">
-          <LazyLoadImage
-            src={data.media_url}
-            className={'object-contain object-cover  mx-auto h-full max-w-[30vw]'}
-            effect="blur"
-            afterLoad={() => {
-              setImageLoaded(true);
-            }}
-            beforeLoad={() => {
-              setImageLoaded(false);
-            }}
-          />
-          {imageLoaded ? null : <Spinner className="absolute left-1/2 top-1/2" />}
-        </div>
-      )}
-    </>
-  );
-};
+import ModalContent from '../ModalContent';
 
 const Slider = ({ data, instagramStyles }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -122,18 +82,18 @@ const Slider = ({ data, instagramStyles }) => {
               <div className="relative cursor-pointer" key={index} onClick={() => openModal(index)}>
                 <LazyLoadImage
                   src={image.media_url}
-                  className={`object-contain object-cover  mx-auto h-full  ${
+                  className={`object-contain object-cover mx-auto h-full ${
                     instagramStyles ? 'max-w-[400px] w-[380px]' : ''
                   }`}
                   effect="blur"
-                  afterLoad={() => {
-                    setImageLoaded(true);
-                  }}
-                  beforeLoad={() => {
-                    setImageLoaded(false);
-                  }}
                 />
-                {imageLoaded ? null : <Spinner className="absolute left-1/2 top-1/2" />}
+                {!imageLoaded ? <Spinner className="absolute left-1/2 top-1/2" /> : null}
+                <img
+                  src={image.media_url}
+                  alt="Lazy-loaded image"
+                  onLoad={() => setImageLoaded(true)}
+                  className="hidden"
+                />
               </div>
             ) : (
               <div className={'relative  text-gray cursor-pointer'} key={index} onClick={() => openModal(index)}>
