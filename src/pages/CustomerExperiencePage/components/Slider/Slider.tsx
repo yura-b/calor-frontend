@@ -9,6 +9,49 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import Spinner from '@components/ui/Spinner';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import Modal from '@mui/material/Modal';
+import X from '@assets/images/SignUpHeaderImg/X.png';
+
+const ModalContent = ({ data, isVideoLoading, isVideoSupported }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  return (
+    <>
+      {data.media_type == 'VIDEO' && (
+        <div className={'relative text-gray w-auto max-w-[50vh]'}>
+          {isVideoLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
+          {isVideoSupported && (
+            <>
+              <video
+                autoPlay
+                controls
+                onLoadStart={() => isVideoLoading(true)}
+                onLoadedData={() => isVideoLoading(false)}
+              >
+                <source src={data.media_url} className="w-full object-contain mx-auto" type="video/mp4" />
+              </video>
+            </>
+          )}
+        </div>
+      )}
+      {data.media_type == 'IMAGE' && (
+        <div className="relative">
+          <LazyLoadImage
+            src={data.media_url}
+            className={'object-contain object-cover  mx-auto h-full max-w-[30vw]'}
+            effect="blur"
+            afterLoad={() => {
+              setImageLoaded(true);
+            }}
+            beforeLoad={() => {
+              setImageLoaded(false);
+            }}
+          />
+          {imageLoaded ? null : <Spinner className="absolute left-1/2 top-1/2" />}
+        </div>
+      )}
+    </>
+  );
+};
 
 const Slider = ({ data, instagramStyles }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -16,6 +59,8 @@ const Slider = ({ data, instagramStyles }) => {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [isVideoSupported, setIsVideoSupported] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clickedIndex, setClickedIndex] = useState(0);
 
   const checkVideoSupport = () => {
     const videoElement = document.createElement('video');
@@ -45,10 +90,19 @@ const Slider = ({ data, instagramStyles }) => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? data.length - 1 : prevIndex - 1));
   }, 100);
 
-  const slideWidth = instagramStyles ? 320 : 200;
+  const slideWidth = instagramStyles ? 300 : 200;
   const translateX = -currentIndex * slideWidth;
 
   const duplicatedImages = [...data, ...data, ...data, ...data];
+
+  const openModal = (index) => {
+    setClickedIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className={styles.container}>
@@ -60,15 +114,17 @@ const Slider = ({ data, instagramStyles }) => {
             transform: `translateX(${translateX}px)`,
             transition: 'transform 0.5s ease',
             width: `${duplicatedImages.length * slideWidth}px`,
-            height: instagramStyles ? '320px' : '420px',
+            height: instagramStyles ? '420px' : '420px',
           }}
         >
           {duplicatedImages.map((image, index) =>
             image.media_type === 'IMAGE' ? (
-              <div className="relative" key={index}>
+              <div className="relative cursor-pointer" key={index} onClick={() => openModal(index)}>
                 <LazyLoadImage
                   src={image.media_url}
-                  className={`object-contain object-cover  mx-auto h-full  ${instagramStyles ? 'max-w-[300px]' : ''}`}
+                  className={`object-contain object-cover  mx-auto h-full  ${
+                    instagramStyles ? 'max-w-[400px] w-[380px]' : ''
+                  }`}
                   effect="blur"
                   afterLoad={() => {
                     setImageLoaded(true);
@@ -80,19 +136,14 @@ const Slider = ({ data, instagramStyles }) => {
                 {imageLoaded ? null : <Spinner className="absolute left-1/2 top-1/2" />}
               </div>
             ) : (
-              <div className={'relative  text-gray '} key={index}>
+              <div className={'relative  text-gray cursor-pointer'} key={index} onClick={() => openModal(index)}>
                 {isVideoLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
                 {isVideoSupported && (
                   <>
                     <div className={'h-[40px] absolute top-[0%] right-[4%]'}>
-                      <YouTubeIcon style={{ fontSize: '58px' }} color="error" />
+                      <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
                     </div>
-                    <video
-                      className=""
-                      controls
-                      onLoadStart={() => setIsVideoLoading(true)}
-                      onLoadedData={() => setIsVideoLoading(false)}
-                    >
+                    <video onLoadStart={() => setIsVideoLoading(true)} onLoadedData={() => setIsVideoLoading(false)}>
                       <source src={image.media_url} className="w-full object-contain   mx-auto" type="video/mp4" />
                     </video>
                   </>
@@ -101,6 +152,21 @@ const Slider = ({ data, instagramStyles }) => {
             )
           )}
         </motion.div>
+        {instagramStyles && (
+          <Modal open={isModalOpen} onClose={closeModal} style={{ background: 'rgba(0, 0, 0, 0.8)' }}>
+            <div className="mx-auto      flex flex-col items-center justify-center  w-[40vw] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="cursor-pointer w-auto p-2" onClick={closeModal}>
+                <img src={X} alt="Close" className=" w-5 h-5 filter brightness-0 invert" />
+              </div>
+
+              <ModalContent
+                data={duplicatedImages[clickedIndex]}
+                isVideoLoading={isVideoLoading}
+                isVideoSupported={isVideoSupported}
+              />
+            </div>
+          </Modal>
+        )}
       </div>
       <div className="flex gap-8 items-center justify-center mt-4">
         <button onClick={throttledHandlePrev} className="rounded-full bg-gray p-1 hover:bg-mint">
