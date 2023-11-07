@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
 import VideoFrameWithId from '@components/VideoFrameWithId';
 import { useMediaQuery } from '@react-hook/media-query';
+import Spinner from '@components/ui/Spinner';
 
 const VideoReviews: React.FC = () => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
@@ -40,9 +41,18 @@ const VideoReviews: React.FC = () => {
       description:
         'Description Description Description Description Description       Description      Description      Description',
     },
+    // {
+    //   src: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
+    //   name: 'Hermans',
+    //   date: '22',
+    //   rating: 1,
+    //   description:
+    //     'Description Description Description Description Description       Description      Description      Description',
+    // },
+
     {
-      src: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
-      name: 'Hermans',
+      src: '1n_icC3tsMqfcFIFTSiJSeqNiKYBDKLtI',
+      name: 'Annaliese Jelsema',
       date: '22',
       rating: 1,
       description:
@@ -52,11 +62,12 @@ const VideoReviews: React.FC = () => {
   const mobileBreakpoint = 640;
   const isMobile = useMediaQuery('(max-width: 767px)');
   const [showAll, setShowAll] = useState(false);
+  const [iframeLoading, setIframeLoading] = useState(true);
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
-  const displayedVideoGuides = showAll ? videoGuides : videoGuides.slice(0, 2);
+  const displayedVideoGuides = showAll ? videoGuides : videoGuides.slice(0, isMobile ? 2 : 4);
 
   const Description = ({ text }) => {
     const [expanded, setExpanded] = useState(false);
@@ -95,23 +106,42 @@ const VideoReviews: React.FC = () => {
       >
         <h1 className={`${styles.header1}  pt-4 pb-2 lg:pt-0 text-center`}>Video Reviews</h1>
         <div className="text-center w-full">
-          <div className="lg:flex lg:gap-6 flex-wrap">
+          <div className="lg:flex lg:gap-6 flex-wrap lg:justify-between">
             {displayedVideoGuides.map((video, i) => (
-              <div className="py-0 lg:py-2 lg:basis-[48%]" key={i}>
+              <div
+                className={`${
+                  isMobile ? 'mb-[20px] pb-[102vh] -mx-[80vh]' : ''
+                }  py-0 lg:py-2 lg:basis-[22%]   relative `}
+                key={i}
+                style={{}}
+              >
                 {isMobile ? (
-                  <VideoFrameWithId src={video.src} title="Video Review" className="xl:max-w-[48vw]" />
+                  <>
+                    {iframeLoading && <Spinner className="absolute top-1/2 left-1/2" />}
+                    <iframe
+                      src={`https://drive.google.com/file/d/${video.src}/preview`}
+                      title="Vertical Video"
+                      frameBorder="0"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full max-h-[94%]"
+                      onLoad={() => setIframeLoading(false)}
+                    ></iframe>{' '}
+                    <div className="flex justify-between lg:justify-evenly px-6 -mt-8 sm:mt-0 mb-4 lg:-mb-4 absolute inset-0 w-full top-[100%]">
+                      <p className={`${styles.subtitle} py-2 mx-auto`}>{video.name}</p>
+                      {/* <p className={`${styles.subtitle} py-2`}>{video.date}</p> */}
+                    </div>
+                  </>
                 ) : (
-                  <VideoFrame
-                    src={`https://drive.google.com/file/d/${video.src}/preview`}
-                    title="Video Review"
-                    className="xl:max-w-[48vw]"
-                  />
+                  <>
+                    <VideoFrameWithId src={video.src} title="Video Review" className="xl:max-w-[18vw] min-h-[520px]" />
+                    <div className="flex justify-between lg:justify-evenly px-6 -mt-8 sm:mt-0 mb-4 lg:-mb-4">
+                      <p className={`${styles.subtitle} pb-4 mx-auto`}>{video.name}</p>
+                      {/* <p className={`${styles.subtitle} py-2`}>{video.date}</p> */}
+                    </div>
+                  </>
                 )}
-                {/* <VideoFrame src={video.src} title="Video Guide" className="xl:max-w-[50vw]" /> */}
-                <div className="flex justify-between lg:justify-evenly px-6 -mt-8 sm:mt-0 mb-4 lg:-mb-4">
-                  <p className={`${styles.subtitle} py-2 mx-auto`}>{video.name}</p>
-                  {/* <p className={`${styles.subtitle} py-2`}>{video.date}</p> */}
-                </div>
+
                 {/* <StarRating rating={video.rating} />
                 <div className="px-6">
                   <Description text={video.description} />
@@ -132,7 +162,12 @@ const VideoReviews: React.FC = () => {
             </span>
           </p>
 
-          {videoGuides.length > 2 && (
+          {videoGuides.length > 2 && isMobile && (
+            <button className="text-gray font-bold mt-4" onClick={toggleShowAll}>
+              {showAll ? 'Show Less' : 'Show All'}
+            </button>
+          )}
+          {videoGuides.length > 4 && !isMobile && (
             <button className="text-gray font-bold mt-4" onClick={toggleShowAll}>
               {showAll ? 'Show Less' : 'Show All'}
             </button>

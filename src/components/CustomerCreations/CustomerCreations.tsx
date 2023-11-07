@@ -90,12 +90,12 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
                     <>
                       {isVideoLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
                       {isVideoSupported && (
-                        <div onClick={() => openModal(i)} className="cursor-pointer">
-                          <div className={'h-[40px] absolute top-[0%] right-[4%]'}>
+                        <div onClick={() => openModal(i)} className="cursor-pointer relative">
+                          <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
                             <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
                           </div>
                           <video
-                            className="w-full"
+                            className="w-full absolute z-10"
                             onLoadStart={() => setIsVideoLoading(true)}
                             onLoadedData={() => setIsVideoLoading(false)}
                           >
@@ -105,6 +105,9 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
                               type="video/mp4"
                             />
                           </video>
+                          <div className="absolute top-[50px] left-[2%] z-1 text-center">
+                            The video is not supported in your browser{' '}
+                          </div>
                         </div>
                       )}
                     </>

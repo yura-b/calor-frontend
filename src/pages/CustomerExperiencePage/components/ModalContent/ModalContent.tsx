@@ -17,9 +17,13 @@ const ModalContent = ({ data, isVideoLoading, isVideoSupported }) => {
                 controls
                 onLoadStart={() => isVideoLoading(true)}
                 onLoadedData={() => isVideoLoading(false)}
+                className="relative w-full z-10"
               >
                 <source src={data.media_url} className="w-full object-contain mx-auto" type="video/mp4" />
               </video>
+              <div className="absolute top-[28%] left-[2%] z-1 text-center text-white text-[26px] font-bold">
+                The video is not supported in your browser{' '}
+              </div>
             </>
           )}
         </div>
