@@ -17,7 +17,7 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
   };
   return (
     <>
-      <PayPalScriptProvider
+      {/* <PayPalScriptProvider
         options={{
           clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
           components: 'buttons',
@@ -52,7 +52,7 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
             // navigate('/checkout_failed');
           }}
         />
-      </PayPalScriptProvider>
+      </PayPalScriptProvider> */}
 
       <CustomButton title={'Credit Card'} handler={stripeHandler} />
     </>
