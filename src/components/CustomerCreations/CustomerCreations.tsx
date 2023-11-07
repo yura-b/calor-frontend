@@ -69,13 +69,13 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
         {isMobile && (
           <div className="flex justify-between overflow-x-auto overflow-y-hidden flex-row gap-2 mx-auto lg:gap-10">
             {instagramPhotos.map((item, i) => (
-              <div className="flex justify-center items-start lg:basis-1/5  my-4 h-[200px] " key={i}>
-                <div className={'w-[200px] lg:w-full relative'}>
+              <div className="flex justify-center items-start lg:basis-1/5  my-4 h-[220px] " key={i}>
+                <div className={`${item.media_type === 'IMAGE' ? ' min-w-[220px] ' : 'w-[160px]'} lg:w-full relative`}>
                   {item.media_type === 'IMAGE' ? (
                     <div onClick={() => openModal(i)} className="cursor-pointer">
                       <LazyLoadImage
                         src={item.media_url}
-                        className="object-contain object-cover mx-auto z-10 w-[260px] lg:w-[220px] xl:w-[240px]"
+                        className="object-contain object-cover mx-auto z-10 w-[300px] lg:w-[220px] xl:w-[240px]"
                         effect="blur"
                       />
                       {!imageLoaded && <Spinner className="absolute left-1/2 top-1/2" />}
