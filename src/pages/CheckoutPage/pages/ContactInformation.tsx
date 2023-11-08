@@ -96,7 +96,18 @@ const ContactInformation = () => {
         >
           Last Name
         </CustomInput>
-
+        <CustomInput
+          id={'phoneNumber'}
+          name={'phoneNumber'}
+          placeholder={'e.g.   +1 (555) 555-5555'}
+          value={formik.values.phoneNumber}
+          onChange={formik.handleChange}
+          error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+          errorMessage={formik.errors.phoneNumber}
+          border={'1px solid #D9D9D9'}
+        >
+          Phone number
+        </CustomInput>
         <CustomButton styles={'w-full'} title={'Continue'} type={'submit'} />
       </form>
     </div>
