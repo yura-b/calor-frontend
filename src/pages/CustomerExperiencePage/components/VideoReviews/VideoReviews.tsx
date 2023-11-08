@@ -111,7 +111,7 @@ const VideoReviews: React.FC = () => {
           <div className="flex gap-4 md:gap-6 flex-wrap md:justify-start">
             {displayedVideoGuides.map((video, i) => (
               <div
-                className={'py-0 lg:py-2 md:max-w-[44%]  lg:max-w-[30%]  xl:max-w-[23%]  relative  min-h-[300px]'}
+                className={'py-0 lg:py-2 md:max-w-[44%]  lg:max-w-[30%]  xl:max-w-[23%]  relative  lg:min-h-[300px]'}
                 key={i}
               >
                 <Video src={video.src} showDescription={true} name={video.name} />

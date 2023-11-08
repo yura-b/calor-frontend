@@ -14,7 +14,6 @@ interface Props {
 
 const VideoGuideLink: React.FC<Props> = ({ color, className, src, showVideoIcon }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const isMobile = window.innerWidth < 1024;
 
   const isHorizontalOrientation = () => {
@@ -22,36 +21,12 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, src, showVideoIcon 
   };
 
   const isFullScreen = isMobile && isHorizontalOrientation();
-  const aspectRatio = 16 / 9;
-  const initialIframeWidth = isMobile ? Math.min(window.innerWidth, 800) : Math.min(window.innerWidth * 0.8, 800);
-  const initialIframeHeight = initialIframeWidth / aspectRatio;
 
   const openModal = () => {
     setIsOpen(true);
-    setIsLoading(true);
   };
 
   const closeModal = () => setIsOpen(false);
-
-  const handleResize = useCallback(() => {
-    const availableWidth = isMobile ? window.innerWidth : window.innerWidth * 0.8;
-    const newWidth = Math.min(availableWidth, 800);
-    const newHeight = newWidth / aspectRatio;
-    setIframeWidth(newWidth);
-    setIframeHeight(newHeight);
-  }, [isMobile]);
-
-  const [iframeWidth, setIframeWidth] = useState(initialIframeWidth);
-  const [iframeHeight, setIframeHeight] = useState(initialIframeHeight);
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [handleResize]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
@@ -59,10 +34,6 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, src, showVideoIcon 
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
-
-  const handleIframeLoad = () => {
-    setIsLoading(false);
-  };
 
   return (
     <div className="cursor-pointer">

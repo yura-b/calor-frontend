@@ -27,8 +27,9 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 import { useNavigate } from 'react-router-dom';
 import constants from '@/constants/constants';
-import VideoFrame from '@components/VideoFrame';
-import VideoFrameWithId from '@components/VideoFrameWithId';
+// import VideoFrame from '@components/VideoFrame';
+// import VideoFrameWithId from '@components/VideoFrameWithId';
+import Video from '@components/Video';
 
 import { useMediaQuery } from '@react-hook/media-query';
 
@@ -36,6 +37,7 @@ const ProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 767px)');
+  const isMobileLg = useMediaQuery('(max-width: 1023px)');
 
   const [dynamicId, setDynamicId] = useState(id || '');
   const { userId, access_token } = useAppSelector((state) => state.user);
@@ -384,54 +386,82 @@ const ProductPage = () => {
                         {product?.data.title == 'Yolo' && (
                           <>
                             <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
-                            <VideoFrameWithId
+
+                            {isMobile ? (
+                              <Video src={'1mI3UbLZ6O9wnuHvI289H9kQnrJ68vrP8'} />
+                            ) : (
+                              <Video src={'1VTA6x1MzM5m9JvOysZ_gCnjPPaWRZQ21'} className="w-full" />
+                            )}
+                            {/* <VideoFrameWithId
                               srcMobile="1j5aeDPA6xffrxgqPnGRgissMMr3Yom50"
                               src={'1it2Fujpqwq_qFWY51mCYiM1nJGdQNcON'}
                               title="Yolo Woman"
                               className="xl:max-w-[50vw] mb-4"
-                            />
-                            <p className={`${styles.body2} font-bold mb-2`}>Yolo Man</p>
-                            <VideoFrameWithId
+                            /> */}
+                            <p className={`${styles.body2} font-bold mb-2 mt-4`}>Yolo Man</p>
+
+                            {isMobile ? (
+                              <Video src={'1IJpWxXWeyLjCpcMmaTGpLX0CmWWgMjyU'} />
+                            ) : (
+                              <Video src={'1-VLw6iV5MER3ZkKAeMZT5XE3hMhr3NnJ'} className="w-full" />
+                            )}
+                            {/* <VideoFrameWithId
                               srcMobile="1j6SGjygFdCBLTnE0wEE28oQLXuN76oGm"
                               src="1isJIEKMfNR-Fy8JtkHXTxZncd3WImtRQ"
                               title="Yolo Man"
                               className="xl:max-w-[50vw]"
-                            />
+                            /> */}
                           </>
                         )}
                         {product?.data.title == 'Dayger' && (
                           <>
-                            <p className={`${styles.body2} font-bold mb-2`}>Dayger Woman</p>
-                            <VideoFrameWithId
+                            <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
+                            {isMobile ? (
+                              <Video src={'13_n8NEac4FcDyTdquAk1-miKQw0bNT23'} />
+                            ) : (
+                              <Video src={'1_W8kgZat_ncSI9SmgbfABu9oEWIxwh-m'} className="w-full" />
+                            )}
+                            {/* <VideoFrameWithId
                               srcMobile="1izshypkHusjBZJOgFrxyEJupOWEXbTpp"
                               src="1ipYN-Ou9JKLH7BqblcoWwdjDfjSXXaZC"
                               title="Dayger Woman"
                               className="xl:max-w-[50vw] mb-4"
-                            />
-                            <p className={`${styles.body2} font-bold mb-2`}>Dayger Man</p>
-                            <VideoFrameWithId
+                            /> */}
+                            <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
+                            {isMobile ? (
+                              <Video src={'12mEuxPIG9y-YR6PSu74jRUkb11aLDHz_'} />
+                            ) : (
+                              <Video src={'1qqeK5OA5wMszeuQG_U3ae4OsUIW76Wh7'} className="w-full" />
+                            )}
+                            {/* <VideoFrameWithId
                               srcMobile="1j0sRbeKKtZmw5p1jGPkmKnnzNWI-fp1E"
                               src="1iqFCDDPV5SWEoL_vRhSHX4femTGEsg2n"
                               title="Dayger Man"
                               className="xl:max-w-[50vw]"
-                            />
+                            /> */}
                           </>
                         )}
                         {product?.data.title == 'Sunrise' && (
                           <>
-                            {isMobile ? (
-                              <VideoFrameWithId
-                                src="1iuIWXVjvzDP75f71P56xJlOAOz8apIpX"
-                                title="Sunrise"
-                                className="xl:max-w-[50vw]"
-                              />
+                            <Video
+                              src={'1--pbeRK18llW_uCrOBGCyK25WeMZuXru'}
+                              className={`${isMobileLg ? 'md:max-w-[400px] mx-auto' : 'max-w-[20vw] mx-auto'}`}
+                            />
+                            {/* {isMobile ? (
+                               <Video src={'1--pbeRK18llW_uCrOBGCyK25WeMZuXru'}/>
+                              // <VideoFrameWithId
+                              //   src="1iuIWXVjvzDP75f71P56xJlOAOz8apIpX"
+                              //   title="Sunrise"
+                              //   className="xl:max-w-[50vw]"
+                              // />
+                              
                             ) : (
                               <VideoFrame
-                                src="https://drive.google.com/file/d/1iuIWXVjvzDP75f71P56xJlOAOz8apIpX/preview"
+                                src="https://drive.google.com/file/d/1--pbeRK18llW_uCrOBGCyK25WeMZuXru/preview"
                                 title="Sunrise"
                                 className="xl:max-w-[50vw]"
                               />
-                            )}
+                            )} */}
                           </>
                         )}
                       </div>
