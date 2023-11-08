@@ -16,8 +16,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface Props {
   title: string;
   color?: 'gray' | 'white';
-  isOpen: boolean;
-  toggleOpen: () => void;
+  isOpen?: boolean;
+  toggleOpen?: () => void;
 }
 
 const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): React.ReactElement => {

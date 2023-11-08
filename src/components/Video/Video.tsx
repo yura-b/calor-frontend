@@ -34,7 +34,7 @@ const Video: React.FC<Props> = ({ src, className, showDescription, name }) => {
   }, []);
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`${className}`}>
       {isLoading && isVideoSupported && !isError && <Spinner className="absolute top-1/2 left-1/2" />}
       {!isHovered && !isTogglePlay && !isLoading && isVideoSupported && !isError && (
         <div className={'h-[40px] absolute top-[40%] left-[42%]'}>
@@ -43,7 +43,7 @@ const Video: React.FC<Props> = ({ src, className, showDescription, name }) => {
       )}
 
       {!isError ? (
-        <>
+        <div className="flex flex-col justify-between">
           <video
             className="w-full"
             preload="auto"
@@ -66,7 +66,7 @@ const Video: React.FC<Props> = ({ src, className, showDescription, name }) => {
               {/* <p className={`${styles.subtitle} py-2`}>{video.date}</p> */}
             </div>
           )}{' '}
-        </>
+        </div>
       ) : null}
     </div>
   );

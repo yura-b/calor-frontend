@@ -64,9 +64,7 @@ const CustomButton: React.FC<IProps> = ({
         onClick={handler}
         {...props}
       >
-        {
-          isBtnWithIcon ? <img src={StripeLogo} height={40} width={40} className="mx-4" alt="stripe logo"/> : null
-        }
+        {isBtnWithIcon ? <img src={StripeLogo} height={40} width={40} className="mx-4" alt="stripe logo" /> : null}
         <span className={'font-bold'}>{title}</span>
       </Button>
     </ThemeProvider>

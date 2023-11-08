@@ -17,12 +17,12 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
   };
   return (
     <>
-      <CustomButton 
-        title={'Stripe | Credit Card'} 
-        handler={stripeHandler} 
-        styles="h-[55px]" 
-        borderRadius="4" 
-        isBoxShadow={false} 
+      <CustomButton
+        title={'Stripe | Credit Card'}
+        handler={stripeHandler}
+        styles="h-[55px]"
+        borderRadius="4"
+        isBoxShadow={false}
         bgColor="transparent"
         textColor="#6058f7"
         border="1px solid #6058f7"

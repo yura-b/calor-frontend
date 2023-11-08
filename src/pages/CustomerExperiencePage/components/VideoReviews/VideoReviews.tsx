@@ -108,12 +108,11 @@ const VideoReviews: React.FC = () => {
       >
         <h1 className={`${styles.header1}  pt-4 pb-2 lg:pt-0 text-center`}>Video Reviews</h1>
         <div className="text-center w-full">
-          <div className="md:flex md:gap-1 flex-wrap md:justify-between">
+          <div className="flex gap-4 md:gap-6 flex-wrap md:justify-start">
             {displayedVideoGuides.map((video, i) => (
               <div
-                className={'py-0 lg:py-2 md:max-w-[44%]  lg:max-w-[30%]  xl:max-w-[22%]   relative'}
+                className={'py-0 lg:py-2 md:max-w-[44%]  lg:max-w-[30%]  xl:max-w-[23%]  relative  min-h-[300px]'}
                 key={i}
-                style={{}}
               >
                 <Video src={video.src} showDescription={true} name={video.name} />
 
