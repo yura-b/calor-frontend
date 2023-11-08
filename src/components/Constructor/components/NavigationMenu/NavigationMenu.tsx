@@ -29,7 +29,7 @@ const NavigationMenu = ({}) => {
         <div className="flex items-center">
           <VideoGuideLink
             className="text-gray underline"
-            src="https://drive.google.com/file/d/1jDjvvmOsN-KXK0cFvvX2PRN27qNNB8oR/preview?quality=hd"
+            src={'1J8RXgfzwgI1YXgNu05BcT9-G7HhaZdvq'}
             showVideoIcon={true}
           />
         </div>

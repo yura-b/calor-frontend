@@ -117,10 +117,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
               Design Your Shoe
             </Button>
             <Button color="gray" className="mb-4 max-w-[360px] m-auto block">
-              <VideoGuideLink
-                color="white"
-                src="https://drive.google.com/file/d/1jADBBF8ByG7HdFKs43yMMp8qWNmXi2BH/preview"
-              />
+              <VideoGuideLink color="white" src={'1PnMHFQx75aMfVEGPyV5K6waHIfL279o4'} />
             </Button>
             {/* <Button color="mintExtraLight" to={paths.design_bag}>
               Design Your Bag

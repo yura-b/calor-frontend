@@ -52,7 +52,12 @@ const Payment = () => {
       {!discount && (
         <div className={'flex flex-col gap-5 justify-center mb-6'}>
           <p className={'font-bold'}>Promo Code</p>
-          <CustomInput type={InputType.text} value={promoCode} onChange={(e) => setPromoCode(e.target.value)} placeholder="Add promo code"/>
+          <CustomInput
+            type={InputType.text}
+            value={promoCode}
+            onChange={(e) => setPromoCode(e.target.value)}
+            placeholder="Add promo code"
+          />
           <CustomButton title={'Activate promo code'} handler={promoCodeClickHandler} />
         </div>
       )}

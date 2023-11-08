@@ -7,6 +7,7 @@ import AccordionSection from '@components/AccordionSection';
 import SizeTable from '../SizeTable';
 import ShoeSizeTable from '../ShoeSizeTable';
 import { dataWomen, dataMen } from '../../helpers/data';
+import Video from '@components/Video';
 
 const SizeGuide: React.FC = () => {
   const mobileBreakpoint = 1024;
@@ -57,11 +58,7 @@ const SizeGuide: React.FC = () => {
 
         <AccordionSection title="Shoe" isOpen={isAccordionOpen} toggleAccordion={toggleAccordion}>
           <div className="my-4">
-            <VideoFrame
-              src="https://drive.google.com/file/d/1ORbS4BvEb3GuPbkZKATVO5E2nx1damff/preview"
-              title="Video Guide"
-              className="xl:max-w-[50vw]"
-            />
+            <Video src={'18omPddYi3zLQhPFIbUxFv0ong9czcISZ'} />
           </div>
           <div>
             <AccordionSection
