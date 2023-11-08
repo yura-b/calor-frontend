@@ -17,6 +17,20 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
   };
   return (
     <>
+      <CustomButton 
+        title={'Stripe | Credit Card'} 
+        handler={stripeHandler} 
+        styles="h-[55px]" 
+        borderRadius="4" 
+        isBoxShadow={false} 
+        bgColor="transparent"
+        textColor="#6058f7"
+        border="1px solid #6058f7"
+        hoverBgColor="#6772e4"
+        isHoveredBg={true}
+        isBtnWithIcon={true}
+      />
+
       <PayPalScriptProvider
         options={{
           clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
@@ -53,8 +67,6 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
           }}
         />
       </PayPalScriptProvider>
-
-      <CustomButton title={'Credit Card'} handler={stripeHandler} />
     </>
   );
 };

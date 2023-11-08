@@ -1,5 +1,6 @@
 import { Button, createTheme, ThemeProvider } from '@mui/material';
 import React from 'react';
+import StripeLogo from '@/assets/images/stripe-logo.webp';
 
 interface IProps {
   title: string;
@@ -9,6 +10,13 @@ interface IProps {
   bgColor?: string;
   disabled?: boolean;
   id?: string;
+  borderRadius?: string;
+  isBoxShadow?: boolean;
+  textColor?: string;
+  border?: string;
+  isHoveredBg?: boolean;
+  hoverBgColor?: string;
+  isBtnWithIcon?: boolean;
 }
 
 const CustomButton: React.FC<IProps> = ({
@@ -18,12 +26,19 @@ const CustomButton: React.FC<IProps> = ({
   title,
   type,
   disabled = false,
+  borderRadius = '0',
+  isBoxShadow = true,
+  textColor = 'white',
+  border = 'none',
+  isHoveredBg = false,
+  hoverBgColor,
+  isBtnWithIcon = false,
   ...props
 }) => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#1EC1AA', // Your desired primary color
+        main: '#1EC1AA',
       },
     },
   });
@@ -37,13 +52,22 @@ const CustomButton: React.FC<IProps> = ({
         disableRipple
         sx={{
           bgcolor: bgColor,
-          color: 'white',
-          borderRadius: '0px',
+          color: textColor,
+          borderRadius: borderRadius + 'px',
+          boxShadow: !isBoxShadow ? 'none' : null,
+          border: border,
+          '&:hover': {
+            backgroundColor: isHoveredBg ? hoverBgColor : null,
+            color: isHoveredBg ? 'white' : null,
+          },
         }}
         onClick={handler}
         {...props}
       >
-        <p className={'font-bold'}>{title}</p>
+        {
+          isBtnWithIcon ? <img src={StripeLogo} height={40} width={40} className="mx-4" alt="stripe logo"/> : null
+        }
+        <span className={'font-bold'}>{title}</span>
       </Button>
     </ThemeProvider>
   );
