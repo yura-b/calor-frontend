@@ -17,10 +17,10 @@ export interface Coupon {
 }
 
 export interface CouponResponse {
-  discount: number,
-  taxDiscount: number,
+  discount: number;
+  taxDiscount: number;
   promoCodeInfo: {
-    value: string
-    id: string
-  }
+    value: string;
+    id: string;
+  };
 }

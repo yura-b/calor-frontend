@@ -11,12 +11,14 @@ import { CouponResponse } from '@/constants/interfaces/coupon.ts';
 const Payment = () => {
   const dispatch = useAppDispatch();
 
-  const { order_ids, numberOfItems, totalPrice, subTotal, shippingPrice, tax } = useAppSelector((state) => state.checkout);
+  const { order_ids, numberOfItems, totalPrice, subTotal, shippingPrice, tax } = useAppSelector(
+    (state) => state.checkout
+  );
 
   const [promoCode, setPromoCode] = useState<string>('');
   const [discount, setDiscount] = useState<CouponResponse>();
 
-  const total = discount?.discount ? totalPrice - discount.discount - (tax - (discount.taxDiscount || 0))  : totalPrice
+  const total = discount?.discount ? totalPrice - discount.discount - (tax - (discount.taxDiscount || 0)) : totalPrice;
 
   if (!order_ids) return <div>order ID is missing</div>;
   const promoCodeClickHandler = () => {
@@ -37,29 +39,24 @@ const Payment = () => {
         <p>{numberOfItems} item</p>
         <p>$ {subTotal}</p>
 
-
         <p>Order Delivery</p>
         <p>$ {shippingPrice.toFixed(2)}</p>
 
         <p>Taxes</p>
         <p>$ {discount?.taxDiscount.toFixed(2) || tax.toFixed(2)}</p>
-
       </div>
 
-      {discount?.discount && <div className={'grid grid-cols-2 my-2'}>
-
-        <p className={'text-red-500'}>Discount  (-{discount.promoCodeInfo.value})</p>
-        <p className={'text-red-500 '}>$ {discount.discount.toFixed(2)}</p>
-
-      </div>}
-
+      {discount?.discount && (
+        <div className={'grid grid-cols-2 my-2'}>
+          <p className={'text-red-500'}>Discount (-{discount.promoCodeInfo.value})</p>
+          <p className={'text-red-500 '}>$ {discount.discount.toFixed(2)}</p>
+        </div>
+      )}
 
       <div className={'grid grid-cols-2'}>
-       <p className={'font-bold text-mint'}>Total</p>
-       <p className={'font-bold text-mint'}>$ {total?.toFixed(2)}</p>
-     </div>
-
-
+        <p className={'font-bold text-mint'}>Total</p>
+        <p className={'font-bold text-mint'}>$ {total?.toFixed(2)}</p>
+      </div>
 
       {!discount?.discount && (
         <div className={'flex flex-col gap-5 justify-center mb-6'}>

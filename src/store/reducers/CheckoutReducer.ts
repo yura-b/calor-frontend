@@ -13,7 +13,7 @@ interface IState extends IContactInfo {
   shippingPrice: number;
   tax: number;
   totalPrice: number;
-  subTotal: number
+  subTotal: number;
 }
 
 interface createdOrder {
@@ -22,7 +22,7 @@ interface createdOrder {
   numberOfItems: number;
   shippingPrice: number;
   tax: number;
-  totalPrice: number,
+  totalPrice: number;
 }
 
 export const initialState: IState = {
