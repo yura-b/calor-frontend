@@ -45,9 +45,9 @@ const Order: React.FC<Props> = ({ orderData, className, loading, error, token })
             </div>
             <div className="xl:basis-[40%]">
               <OrderSummary orderData={orderData} />
-              <Button color="gray" type="submit" className="my-4 mx-auto block">
+              {/* <Button color="gray" type="submit" className="my-4 mx-auto block">
                 Track Delivery
-              </Button>
+              </Button> */}
             </div>
           </div>
         </>
