@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Modal from '@mui/material/Modal';
 import X from '@assets/images/SignUpHeaderImg/X.png';
-import Spinner from '@components/ui/Spinner';
+
 import { motion } from 'framer-motion';
 import videoIcon from '@assets/images/videoIcon.png';
+import Video from '@components/Video';
 interface Props {
   color?: string;
   className?: string;
@@ -79,22 +80,15 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, src, showVideoIcon 
         className={isFullScreen ? 'w-screen h-screen' : isMobile ? 'w-[100vw]' : 'w-[100vw]'}
       >
         <div
-          className={`absolute left-1/2 -translate-x-1/2 ${
-            isFullScreen ? 'top-0' : 'top-[30%] lg:top-[20%]'
+          className={`absolute left-1/2 -translate-x-1/2 w-[100vw] lg:w-[50vw]  ${
+            isFullScreen ? 'top-0 max-w-[60vw] ' : 'top-[30%] lg:top-[20%] '
           } bg-lighterGray shadow-lg`}
         >
           <button onClick={closeModal} className="block ml-auto mr-2 p-2">
             <img src={X} alt="Close" className="cursor-pointer w-5 h-5" />
           </button>
-          {isLoading && <Spinner className="absolute top-1/2 left-1/2" />}
-          <iframe
-            src={src}
-            width={isFullScreen ? window.innerWidth : `${iframeWidth}px`}
-            height={isFullScreen ? window.innerHeight : `${iframeHeight}px`}
-            frameBorder="0"
-            allowFullScreen
-            onLoad={handleIframeLoad}
-          ></iframe>
+
+          <Video src={src} className="w-full py-0" />
         </div>
       </Modal>
     </div>

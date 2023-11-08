@@ -16,6 +16,7 @@ import { brandArray, brandSizeArray } from './helpers/data';
 import VideoFrame from '@components/VideoFrame';
 import Button from '@/components/ui/Button';
 import CustomInput from '@/components/input/CustomInput';
+import Video from '@components/Video';
 
 const MeasurementPage = () => {
   const measurement = useAppSelector((state) => state.userMeasurement);
@@ -250,11 +251,7 @@ const MeasurementPage = () => {
                   toggleAccordion={toggleSizeGuideAccordion}
                   className="bg-lightGray px-2"
                 >
-                  <VideoFrame
-                    src="https://drive.google.com/file/d/1ORbS4BvEb3GuPbkZKATVO5E2nx1damff/preview"
-                    title="Video Guide"
-                    className="xl:max-w-[50vw]"
-                  />
+                  <Video src={'18omPddYi3zLQhPFIbUxFv0ong9czcISZ'} />
                 </AccordionSection>
                 <div className="w-full flex flex-col">
                   <span className="pt-4">
