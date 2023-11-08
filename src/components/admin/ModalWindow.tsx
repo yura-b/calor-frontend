@@ -86,7 +86,7 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
               return (
                 <Fragment key={order._id}>
                   <span>{order.shoes?.title || order.accessory?.title}</span>
-                  <span>{order.totalPrice}$</span>
+                  <span>$ {order.totalPrice}</span>
                   <span>{order.status}</span>
                   <RefundToggle available={false} _id={order._id} handler={setIds} />
                 </Fragment>
@@ -95,7 +95,7 @@ const ModalWindow: FC<IProps> = ({ setOpen, open, orders, order_id }) => {
           </div>
           <div className={'flex flex-row gap-6'}>
             <p>Shipping Price: 20$</p>
-            <p>tax: {tax.toFixed(2)}$</p>
+            <p>tax: $ {tax.toFixed(2)}</p>
           </div>
           <div className={'flex flex-col gap-3'}>
             <p className={'font-medium'}>

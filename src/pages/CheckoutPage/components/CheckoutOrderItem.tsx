@@ -20,7 +20,7 @@ const CheckoutOrderItem: FC<IProps> = ({ order_number, date, products }) => {
             return (
               <div key={Math.random()} className={'grid grid-cols-2 gap-10'}>
                 <p>{product.productTitle}</p>
-                <p>{product.price}$</p>
+                <p>$ {product.price}</p>
               </div>
             );
           })}

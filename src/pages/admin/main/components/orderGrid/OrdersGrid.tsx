@@ -116,7 +116,7 @@ const OrdersTable: React.FC<IProps> = ({ orderList }) => {
                     </p>
                   </TableCell>
                   <TableCell align={'center'}>
-                    <p>{order.totalPrice}$</p>
+                    <p>$ {order.totalPrice}</p>
                   </TableCell>
                   <TableCell align={'center'}>
                     <p>

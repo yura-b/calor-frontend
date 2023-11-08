@@ -71,7 +71,7 @@ const Constructor: FC = () => {
           <div className="flex w-wrapper flex-col mx-auto">
             <div className="flex justify-center align-center items-center gap-4">
               <div className={`${styles.subtitle}`}>
-                {product?.data?.title} {product?.data?.price} $
+                <span>{product?.data?.title}</span> <span>$ {product?.data?.price}</span>
               </div>
               <Button color="gray" className="w-full my-4 lg:block max-w-sm" onClick={toggleVisibility}>
                 Preview

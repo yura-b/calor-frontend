@@ -41,7 +41,7 @@ const OrderInformation: React.FC<IProps> = ({ order }) => {
 
               <TableCell>{shoes?.title || accessory?.title}</TableCell>
 
-              <TableCell align={'right'}>{totalPrice}$</TableCell>
+              <TableCell align={'right'}>$ {totalPrice}</TableCell>
 
               <TableCell align={'right'}>{payment}</TableCell>
             </TableBody>

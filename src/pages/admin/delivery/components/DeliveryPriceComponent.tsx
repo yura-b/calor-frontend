@@ -45,7 +45,7 @@ const DeliveryPriceComponent: FC<{ deliveryPrice: DeliveryPrice; saveHandler: (d
 
       <div className={'basis-1/5'}>
         {viewMode ? (
-          <p>{deliveryPrice.higherPrice}$</p>
+          <p>$ {deliveryPrice.higherPrice}</p>
         ) : (
           <CustomInput value={higherPriceState} type={InputType.number} onChange={changeHandler(setHigherPriceState)} />
         )}

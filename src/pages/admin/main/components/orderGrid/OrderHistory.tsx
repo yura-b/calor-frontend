@@ -83,7 +83,7 @@ export const OrderHistory: React.FC<{
                         <p>{order.shippingInfo?.receiverPhoneNumber}</p>
                       </div>
                     </TableCell>
-                    <TableCell align={align}>{order.totalPrice}$</TableCell>
+                    <TableCell align={align}>$ {order.totalPrice}</TableCell>
                     <TableCell align={align}>
                       <div className={'flex flex-col gap-12 items-end'}>
                         <p>{order.payment}</p>

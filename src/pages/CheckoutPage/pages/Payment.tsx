@@ -33,18 +33,18 @@ const Payment = () => {
       <p className={'font-bold'}>Order Summary</p>
       <div className={'grid grid-cols-2'}>
         <p>{numberOfItems} item</p>
-        <p>{totalPrice}$</p>
+        <p>$ {totalPrice}</p>
 
         <p>Order Delivery</p>
-        <p>{shippingPrice.toFixed(2)}$</p>
+        <p>$ {shippingPrice.toFixed(2)}</p>
 
         <p>Taxes</p>
-        <p>{tax.toFixed(2)}$</p>
+        <p>$ {tax.toFixed(2)}</p>
 
         {discount && (
           <>
             <p>Discount</p>
-            <p>{discount.toFixed(2)}$</p>
+            <p>$ {discount.toFixed(2)}</p>
           </>
         )}
       </div>

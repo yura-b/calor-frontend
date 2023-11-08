@@ -73,7 +73,7 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
         {editPrice ? (
           <CustomInput value={newPrice} onChange={onChangeHandler(setNewPrice)} />
         ) : (
-          <p className={'font-medium'}>{currentPrice}$</p>
+          <p className={'font-medium'}>$ {currentPrice}</p>
         )}
         <PencilSimple size={32} weight="fill" onClick={() => setEditPrice(!editPrice)} />
       </div>

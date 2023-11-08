@@ -123,18 +123,18 @@ const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => 
       {product._id !== constants.DAYGER_ID && (
         <div className={`${styles.body2} flex flex-row `}>
           <span>From</span>
-          <span className="font-bold ml-2">{product.price} $</span>
+          <span className="font-bold ml-2">$ {product.price}</span>
         </div>
       )}
       {product._id == constants.DAYGER_ID && (
         <div className={`${styles.body2} flex flex-row `}>
           <div>
             <span className="mr-2">From</span>
-            <span className="font-bold">{product.price} $</span>
+            <span className="font-bold">$ {product.price}</span>
           </div>
           <div>
             <span className="mx-2">to</span>
-            <span className="font-bold">{winterShoePrice} $</span>
+            <span className="font-bold">$ {winterShoePrice}</span>
           </div>
         </div>
       )}

@@ -24,7 +24,7 @@ const OrderHeader: React.FC<Props> = ({ orderData }): React.ReactElement => {
       <div className="border-b-2 border-gray py-2 lg:border-none">
         <div className="flex justify-between">
           <p className="font-bold">{title}</p>
-          <p className="">${totalPrice}</p>
+          <p className="">$ {totalPrice}</p>
         </div>
         <img src={photos[0]} className="object-contain object-cover w-[240px] block h-auto m-auto py-2" />
       </div>
