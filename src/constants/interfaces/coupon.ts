@@ -15,3 +15,12 @@ export interface Coupon {
 
   _id: string;
 }
+
+export interface CouponResponse {
+  discount: number,
+  taxDiscount: number,
+  promoCodeInfo: {
+    value: string
+    id: string
+  }
+}
