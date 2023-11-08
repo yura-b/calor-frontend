@@ -13,14 +13,16 @@ interface IState extends IContactInfo {
   shippingPrice: number;
   tax: number;
   totalPrice: number;
+  subTotal: number
 }
 
 interface createdOrder {
   order_ids: string[];
-  totalPrice: number;
+  subTotal: number;
   numberOfItems: number;
   shippingPrice: number;
   tax: number;
+  totalPrice: number,
 }
 
 export const initialState: IState = {
@@ -31,6 +33,7 @@ export const initialState: IState = {
   email: '',
   order_ids: null,
   totalPrice: 0,
+  subTotal: 0,
   numberOfItems: 0,
   shippingPrice: 0,
   tax: 0,
@@ -59,9 +62,11 @@ export const CheckoutSlice = createSlice({
     },
     saveOrderIds(state: Draft<IState>, action: PayloadAction<createdOrder>) {
       state.order_ids = action.payload.order_ids;
+      state.subTotal = action.payload.subTotal;
       state.totalPrice = action.payload.totalPrice;
       state.numberOfItems = action.payload.numberOfItems;
-      (state.shippingPrice = action.payload.shippingPrice), (state.tax = action.payload.tax);
+      state.shippingPrice = action.payload.shippingPrice;
+      state.tax = action.payload.tax;
     },
     // saveShippingInfo(State: Draft<IState>, action: PayloadAction<ShippingInfoDto>) {
     //     const {
