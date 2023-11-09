@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import UserProfileReviews from '@pages/admin/users/components/userProfile/components/UserProfileReviews.tsx';
 import { Review } from '@/constants/interfaces/review.ts';
 import { IOrder } from '@/constants/interfaces/order.ts';
-import OrdersTable from '@pages/admin/main/components/orderGrid/OrdersGrid.tsx';
+import OrdersTable from '@pages/admin/main/components/orderGrid/current/OrdersGrid.tsx';
 import Navigation from '@components/admin/Navigation.tsx';
 import { Coupon } from '@/constants/interfaces/coupon.ts';
 import PromoCodesGrid from '@/pages/admin/promocodes/components/PromoCodesGrid';

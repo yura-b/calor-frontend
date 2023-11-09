@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
-import { OrderHistory } from '@pages/admin/main/components/orderGrid/OrderHistory.tsx';
+import { OrderHistory } from '@pages/admin/main/components/orderGrid/history/OrderHistory.tsx';
 import ModalWindow from '@components/admin/ModalWindow.tsx';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { getRelativeOrders } from '@/api/orders.ts';
@@ -23,7 +23,6 @@ const OrderHistoryGrid: FC<{ orders: IOrder[] }> = ({ orders }) => {
 
     getRelativeOrders(access_token, currentOrder).then((res) => {
       setRelativeOrder(res.data);
-      console.log(res.data);
       setOpenModal(true);
     });
   }, [currentOrder]);

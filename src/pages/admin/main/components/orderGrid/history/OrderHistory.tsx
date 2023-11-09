@@ -4,7 +4,7 @@ import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, Tabl
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-import styles from './OrderGrid.module.scss';
+import styles from '../OrderGrid.module.scss';
 import { DateFormatter } from '@/helpers/functions/dateFormatter.ts';
 import CustomButton from '@components/button/CustomButton.tsx';
 
@@ -75,7 +75,6 @@ export const OrderHistory: React.FC<{
                     <TableCell>details here</TableCell>
                     <TableCell align={align}>
                       <div className={'flex flex-col gap-5'}>
-                        <p>{order.shippingInfo?.receiverFirstName + ' ' + order.shippingInfo?.receiverSecondName}</p>
                         <p>{order.shippingInfo?.ASB}</p>
                         <p>{order.shippingInfo?.streetAddress}</p>
                         <p>{`${order.shippingInfo?.city},  ${order.shippingInfo?.state},  ${order.shippingInfo?.ZIP}`}</p>
