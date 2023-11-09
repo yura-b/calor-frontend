@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/store/hooks/hooks.ts';
 import { errorCorrupted } from '@/store/reducers/StatusReducer.ts';
 
 interface IProps {
-  id: string;
+  id: number;
   invoiceUrl: string;
   checkListUrl: string;
 }

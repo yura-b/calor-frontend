@@ -4,9 +4,9 @@ import { changeOrderStatusInterface, CreateOrderDto, deliveryInfo, refundDto } f
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const getOrders = (credential: string | null, emailFilter: string) => {
+export const getOrders = (credential: string | null, order_id: string) => {
   if (!credential) return;
-  return axios.get(`${BASE_URL}/order/all/?email=${emailFilter}`, authorization(credential));
+  return axios.get(`${BASE_URL}/order/all/?order_id=${order_id}`, authorization(credential));
 };
 
 export const getOrder = (credential: string, id: string) => {
