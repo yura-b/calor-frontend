@@ -39,7 +39,7 @@ const Footer: React.FC = (): React.ReactElement => {
           <div className={`flex justify-between ${styles.body2} font-bold text-white  pt-4 pb-2 lg:p-0 bg`}>
             <div>
               <div className="lg:flex lg:flex-col hidden lg:block">
-                {isRegisteredUser && (
+                {/* {isRegisteredUser && (
                   <Link
                     to={paths.myOrders}
                     className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
@@ -47,8 +47,8 @@ const Footer: React.FC = (): React.ReactElement => {
                   >
                     Check Order Status
                   </Link>
-                )}
-                {!isRegisteredUser && (
+                )} */}
+                {/* {!isRegisteredUser && (
                   <Link
                     to={paths.myOrder}
                     className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold`}
@@ -56,7 +56,7 @@ const Footer: React.FC = (): React.ReactElement => {
                   >
                     Check Order Status
                   </Link>
-                )}
+                )} */}
                 <Link
                   to="https://calorfranchise.com/"
                   className={`${styles.subtitle} text-mint lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3`}
