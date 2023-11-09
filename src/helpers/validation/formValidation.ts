@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { ValidationResult } from '@pages/autorization/signup/otherInfo/components/PasswordIdentifier.tsx';
-import { brandArray } from '@pages/MeasurementPage/helpers/data';
 
 const phoneNumberRegex = /^\+?\d{0,3}\s?(\(\d{1,4}\))?\s?\d{1,4}[\s.-]?\d{1,4}[\s.-]?\d{1,9}$/;
 
@@ -20,7 +19,6 @@ export const validationSchemaForContactInfo = yup.object({
     .string()
     .min(3, 'Last Name should be of minimum 3 characters length')
     .required('Last Name is required'),
-  phoneNumber: yup.string().matches(phoneNumberRegex, 'Phone number is not valid').required('Phone number is required'),
   email: yup.string().email('email is not valid'),
 });
 
