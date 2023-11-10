@@ -22,7 +22,6 @@ const ContactInformation = () => {
     initialValues: {
       firstName: firstName,
       secondName: secondName,
-      phoneNumber: phoneNumber,
       email: email,
     },
     validationSchema: validationSchemaForContactInfo,
@@ -37,7 +36,6 @@ const ContactInformation = () => {
       email: email,
       firstName: firstName,
       secondName: secondName,
-      phoneNumber: phoneNumber,
     });
   }, [email, firstName, secondName, phoneNumber]);
 
@@ -95,18 +93,6 @@ const ContactInformation = () => {
           border={'1px solid #D9D9D9'}
         >
           Last Name
-        </CustomInput>
-        <CustomInput
-          id={'phoneNumber'}
-          name={'phoneNumber'}
-          placeholder={'e.g.   +1 (555) 555-5555'}
-          value={formik.values.phoneNumber}
-          onChange={formik.handleChange}
-          error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-          errorMessage={formik.errors.phoneNumber}
-          border={'1px solid #D9D9D9'}
-        >
-          Phone number
         </CustomInput>
         <CustomButton styles={'w-full'} title={'Continue'} type={'submit'} />
       </form>

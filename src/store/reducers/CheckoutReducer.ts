@@ -29,7 +29,6 @@ export const initialState: IState = {
   step: CheckoutSteps.FIRST,
   firstName: '',
   secondName: '',
-  phoneNumber: '',
   email: '',
   order_ids: null,
   totalPrice: 0,
@@ -43,7 +42,6 @@ interface IContactInfo {
   email: string;
   firstName: string;
   secondName: string;
-  phoneNumber: string;
 }
 
 export const CheckoutSlice = createSlice({
@@ -54,11 +52,10 @@ export const CheckoutSlice = createSlice({
       state.step = action.payload;
     },
     setContactInfo(state: Draft<IState>, action: PayloadAction<IContactInfo>) {
-      const { firstName, secondName, phoneNumber, email } = action.payload;
+      const { firstName, secondName, email } = action.payload;
       state.firstName = firstName;
       state.secondName = secondName;
       state.email = email;
-      state.phoneNumber = phoneNumber;
     },
     saveOrderIds(state: Draft<IState>, action: PayloadAction<createdOrder>) {
       state.order_ids = action.payload.order_ids;
@@ -68,29 +65,6 @@ export const CheckoutSlice = createSlice({
       state.shippingPrice = action.payload.shippingPrice;
       state.tax = action.payload.tax;
     },
-    // saveShippingInfo(State: Draft<IState>, action: PayloadAction<ShippingInfoDto>) {
-    //     const {
-    //         save,
-    //         ZIP,
-    //         user_id,
-    //         ASB, receiverSecondName,
-    //         receiverFirstName,
-    //         state,
-    //         city,
-    //         streetAddress
-    //     } = action.payload
-    //
-    //
-    //     State.ASB= ASB
-    //     State.save = save
-    //     State.ZIP = ZIP
-    //     State.user_id = user_id
-    //     State.receiverFirstName = receiverFirstName
-    //     State.receiverSecondName = receiverSecondName
-    //     State.state = state
-    //     State.city = city
-    //     State.streetAddress = streetAddress
-    // }
   },
 });
 
