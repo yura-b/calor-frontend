@@ -61,6 +61,10 @@ export interface IOrder {
   approxDeliveryDate?: string;
 
   photo: string;
+
+  products: (shoes | accessory)[];
+
+  fullName: string;
 }
 
 export enum OrderStatus {
@@ -103,7 +107,7 @@ export interface product {
   description: string;
 }
 
-interface shoes {
+export interface shoes {
   description: string;
   details: string;
   insole: string;
@@ -116,9 +120,10 @@ interface shoes {
   title: string;
   upperMaterial: string;
   _id: string;
+  photos: string[];
 }
 
-interface accessory {
+export interface accessory {
   category: string;
   description: string;
   title: string;
@@ -129,6 +134,7 @@ interface accessory {
   stripeID: string;
   subcategory: string;
   _id: string;
+  photos: string[];
 }
 
 export interface shippingDetails {
