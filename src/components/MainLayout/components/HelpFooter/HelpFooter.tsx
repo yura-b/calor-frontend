@@ -163,7 +163,7 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
       )}
       {color == 'white' && (
         <div className="lg:hidden flex flex-col">
-          {/* {isRegisteredUser && (
+          {isRegisteredUser && (
             <Link
               to={paths.myOrders}
               className={`${styles.subtitle}  text-white lg:text-custom-turquoise lg:text-sm lg:font-extrabold py-3 border-b border-white`}
@@ -171,8 +171,8 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
             >
               Check Order Status
             </Link>
-          )} */}
-          {/* {!isRegisteredUser && (
+          )}
+          {!isRegisteredUser && (
             <Link
               to={paths.myOrder}
               className={`${styles.subtitle} text-white lg:text-custom-turquoise lg:text-sm lg:font-extrabold py-3 border-b border-white`}
@@ -180,7 +180,7 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
             >
               Check Order Status
             </Link>
-          )} */}
+          )}
           <Link
             to="https://calorfranchise.com/"
             className={`${styles.subtitle} text-${color} lg:text-custom-turquoise lg:text-sm lg:font-extrabold  py-3 border-b border-white`}
