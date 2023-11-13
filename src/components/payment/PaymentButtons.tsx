@@ -40,7 +40,7 @@ const PaymentButtons: FC<IProps> = ({ order_ids }) => {
       >
         {' '}
         <PayPalButtons
-          style={{ layout: 'vertical' }}
+          style={{ layout: 'vertical', disableMaxWidth: true }}
           disabled={false}
           forceReRender={['USD']}
           fundingSource={undefined}
