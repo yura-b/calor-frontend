@@ -7,7 +7,7 @@ export interface Product {
   subcategory: string;
   productDetails: string;
   description: string;
-  size: number[];
+  size: string[];
   variations: string[];
 }
 export interface category {

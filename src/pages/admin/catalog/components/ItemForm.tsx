@@ -69,11 +69,10 @@ const ItemForm: FC<IProps> = ({
   const initialsSizes = initialValues?.size.map((size, index) => {
     return { index, size };
   });
-
   const dispatch = useAppDispatch();
   const [categories, setCategories] = useState<ProductCategories[]>();
 
-  const [sizes, setSizes] = useState<{ index: number; size: number }[]>(initialsSizes || []);
+  const [sizes, setSizes] = useState<{ index: number; size: string }[]>(initialsSizes || []);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>(initialValues?.subcategory || '');
   const [price, setPrice] = useState<string>(initialValues?.price.toString() || '');
@@ -135,7 +134,6 @@ const ItemForm: FC<IProps> = ({
       productDetails: productDetailsHtmlContent,
     });
   };
-
   const changeHandler = (setState: React.Dispatch<React.SetStateAction<string>>) => {
     return (e: SelectChangeEvent) => {
       setState(e.target.value);
@@ -146,7 +144,7 @@ const ItemForm: FC<IProps> = ({
       React.SetStateAction<
         {
           index: number;
-          size: number;
+          size: string;
         }[]
       >
     >,
@@ -155,16 +153,20 @@ const ItemForm: FC<IProps> = ({
     return (e: SelectChangeEvent) => {
       setState((prevState) => {
         const record = prevState.find((el) => el.index === index);
+
         if (!record) return prevState;
+
         return prevState.map((el) => {
-          if (el.index === record.index) return { index: record.index, size: Number(e.target.value) };
+
+          if (el.index === record.index) return { index: record.index, size: e.target.value };
+
           return el;
         });
       });
     };
   };
   const addNewSize = () => {
-    setSizes((prevState) => [...prevState, { index: prevState.length + 1, size: 0 }]);
+    setSizes((prevState) => [...prevState, { index: prevState.length, size: '' }]);
   };
 
   if (!categories) return;
@@ -264,13 +266,13 @@ const ItemForm: FC<IProps> = ({
       {unavailableInputs.size && (
         <div className={'flex flex-row flex-wrap gap-6'}>
           {Array.from({ length: sizes.length }).map((_, index) => {
-            const value = sizes.find((size) => size.index === index + 1)?.size.toString();
+            const value = sizes.find((size) => size.index === index)?.size.toString();
             return (
               <div key={Math.random()} className={'w-1/5'}>
                 <CustomInput
-                  type={InputType.number}
+                  type={InputType.text}
                   value={value}
-                  onChange={sizeHandler(setSizes, index + 1)}
+                  onChange={sizeHandler(setSizes, index)}
                   border={border}
                 />
               </div>

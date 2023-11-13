@@ -80,6 +80,11 @@ const EditItem = () => {
             propertyName: 'title',
             shouldChange: !isShoes,
           },
+          size: {
+            shouldChange: true,
+            propertyName: 'size',
+            propertyValue: values.size
+          }
           // title: {
           //   propertyValue: values.ca,
           //   propertyName: 'title',
@@ -114,7 +119,7 @@ const EditItem = () => {
         subcategory: false,
         description: true,
         productName: true,
-        size: false,
+        size: true,
       };
 
   return (
