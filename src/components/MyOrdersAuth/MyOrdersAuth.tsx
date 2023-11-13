@@ -11,6 +11,7 @@ import { useQuery } from 'react-query';
 import { getOrdersForUser } from '@/api/orders';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { OrderStatus } from '@/constants/interfaces/order';
+import Spinner from '@components/ui/Spinner';
 
 const MyOrder = (): React.ReactElement => {
   const [activeTab, setActiveTab] = useState(1);
@@ -50,37 +51,42 @@ const MyOrder = (): React.ReactElement => {
                 History
               </button>
             </div>
-
-            <div>
-              {activeTab === 1 && (
-                <motion.div {...layoutFadeAnimation}>
-                  {filteredStatusesForCurrentOrders?.length ? (
-                    <div>
-                      {filteredStatusesForCurrentOrders?.map((item) => (
-                        <Order orderData={item} loading={isLoading} error={error} token={access_token} />
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="m-auto">
-                      <p className={`${styles.body1} text-center`}>You have nothing ordered</p>
-                      <img src={emptyCurrent} alt="empty" className="mx-auto my-5" />
-                    </div>
-                  )}
-                </motion.div>
-              )}
-              {activeTab === 2 && filteredStatusesForHistoryOrders?.length ? (
-                <motion.div {...layoutFadeAnimation}>
-                  {filteredStatusesForHistoryOrders?.map((item) => (
-                    <HistoryOrder orderData={item} loading={isLoading} error={error} />
-                  ))}
-                </motion.div>
+            <div className={`relative flex items-center justify-center ${isLoading ? 'mt-[100px]' : ''}`}>
+              {isLoading ? (
+                <Spinner />
               ) : (
-                activeTab === 2 && (
-                  <motion.div className="m-auto" {...layoutFadeAnimation}>
-                    <p className={`${styles.body1} text-center`}>Your order history is empty</p>
-                    <img src={emptyHistory} alt="empty" className="mx-auto my-5" />
-                  </motion.div>
-                )
+                <div className="basis-[100%]">
+                  {activeTab === 1 && (
+                    <motion.div {...layoutFadeAnimation} className="">
+                      {filteredStatusesForCurrentOrders?.length ? (
+                        <div>
+                          {filteredStatusesForCurrentOrders?.map((item) => (
+                            <Order orderData={item} loading={isLoading} error={error} token={access_token} />
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="m-auto">
+                          <p className={`${styles.body1} text-center`}>You have nothing ordered</p>
+                          <img src={emptyCurrent} alt="empty" className="mx-auto my-5" />
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+                  {activeTab === 2 && filteredStatusesForHistoryOrders?.length ? (
+                    <motion.div {...layoutFadeAnimation}>
+                      {filteredStatusesForHistoryOrders?.map((item) => (
+                        <HistoryOrder orderData={item} loading={isLoading} error={error} />
+                      ))}
+                    </motion.div>
+                  ) : (
+                    activeTab === 2 && (
+                      <motion.div className="m-auto" {...layoutFadeAnimation}>
+                        <p className={`${styles.body1} text-center`}>Your order history is empty</p>
+                        <img src={emptyHistory} alt="empty" className="mx-auto my-5" />
+                      </motion.div>
+                    )
+                  )}
+                </div>
               )}
             </div>
           </div>

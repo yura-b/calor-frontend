@@ -20,6 +20,7 @@ interface IProps {
   height?: string;
   gap?: string;
   required?: boolean;
+  disabled?: boolean;
 }
 
 const CustomInput: React.FC<IProps> = ({ gap = '2', ...props }) => {

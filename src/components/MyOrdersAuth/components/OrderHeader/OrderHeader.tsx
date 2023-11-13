@@ -9,6 +9,7 @@ interface Props {
 const OrderHeader: React.FC<Props> = ({ orderData }): React.ReactElement => {
   const { date, order_id, totalPrice } = orderData;
   const product = orderData?.shoes || orderData?.accessory;
+
   if (!product) return <></>;
   const { title, photos } = product;
   const originalDate = new Date(date);

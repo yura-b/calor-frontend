@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CustomSearch from '@components/admin/CustomSearch.tsx';
-import {  useAppSelector } from '@/store/hooks/hooks.ts';
+import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { useQuery } from 'react-query';
 import { getOrders } from '@/api/orders.ts';
 import { useCleanUserDataAndNavigateToLogin } from '@/hooks/CleanUserData.ts';
@@ -12,35 +12,34 @@ import Loader from '@components/ui/Loader';
 enum chosenOrders {
   current = 'Current Orders',
   history = 'Orders History',
-  unpaid = 'Unpaid Orders'
+  unpaid = 'Unpaid Orders',
 }
 
 const sections: chosenOrders[] = [chosenOrders.current, chosenOrders.history, chosenOrders.unpaid];
 
 const OrderGridPage = () => {
-
   const [chosenSection, setChosenSection] = useState<chosenOrders>(chosenOrders.current);
   const [filter, setFilter] = useState('');
   const { access_token } = useAppSelector((state) => state.user);
 
   const { data, isLoading, error } = useQuery('getOrders', () => getOrders(access_token, filter));
 
-
   const cleanAndRedirect = useCleanUserDataAndNavigateToLogin();
   const defaultStyles = ' font-bold px-6 cursor-pointer font-bold border-b-2 border-black';
   const chosen = ' text-white bg-black';
 
-
   if (isLoading) {
-    return <div className={'flex items-center'}>
-      <Loader/>
-    </div>;
+    return (
+      <div className={'flex items-center'}>
+        <Loader />
+      </div>
+    );
   }
   if (error) {
     cleanAndRedirect(error);
     return <></>;
   }
-  
+
   let filteredOrder = data?.data as IOrder[];
 
   filteredOrder = filteredOrder?.filter((order) => {
@@ -49,13 +48,15 @@ const OrderGridPage = () => {
     }
 
     if (chosenSection === chosenOrders.history) {
-      return order.status === OrderStatus.Shipped || order.status === OrderStatus.Refunded
+      return order.status === OrderStatus.Shipped || order.status === OrderStatus.Refunded;
     }
 
-    return order.status !== OrderStatus.Shipped && order.status !== OrderStatus.Refunded && order.status !== OrderStatus.NotPaid;
+    return (
+      order.status !== OrderStatus.Shipped &&
+      order.status !== OrderStatus.Refunded &&
+      order.status !== OrderStatus.NotPaid
+    );
   });
-
-
 
   return (
     <div className={'pl-5'}>
