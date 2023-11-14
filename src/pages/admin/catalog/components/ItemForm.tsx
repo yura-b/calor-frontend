@@ -157,7 +157,6 @@ const ItemForm: FC<IProps> = ({
         if (!record) return prevState;
 
         return prevState.map((el) => {
-
           if (el.index === record.index) return { index: record.index, size: e.target.value };
 
           return el;

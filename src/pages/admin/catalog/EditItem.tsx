@@ -83,8 +83,8 @@ const EditItem = () => {
           size: {
             shouldChange: true,
             propertyName: 'size',
-            propertyValue: values.size
-          }
+            propertyValue: values.size,
+          },
           // title: {
           //   propertyValue: values.ca,
           //   propertyName: 'title',

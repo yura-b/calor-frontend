@@ -58,7 +58,7 @@ const SizeGuide: React.FC = () => {
 
         <AccordionSection title="Shoe" isOpen={isAccordionOpen} toggleAccordion={toggleAccordion}>
           <div className="my-4">
-            <Video src={'18omPddYi3zLQhPFIbUxFv0ong9czcISZ'} />
+            <Video srcWebm={'18omPddYi3zLQhPFIbUxFv0ong9czcISZ'} srcMov={'1jXSBWSLsBdKRVDV1bqvWc9VFXFc-qcm0'} />
           </div>
           <div>
             <AccordionSection

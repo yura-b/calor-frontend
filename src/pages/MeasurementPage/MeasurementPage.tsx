@@ -251,7 +251,7 @@ const MeasurementPage = () => {
                   toggleAccordion={toggleSizeGuideAccordion}
                   className="bg-lightGray px-2"
                 >
-                  <Video src={'18omPddYi3zLQhPFIbUxFv0ong9czcISZ'} />
+                  <Video srcWebm={'18omPddYi3zLQhPFIbUxFv0ong9czcISZ'} srcMov={'1jXSBWSLsBdKRVDV1bqvWc9VFXFc-qcm0'} />
                 </AccordionSection>
                 <div className="w-full flex flex-col">
                   <span className="pt-4">

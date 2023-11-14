@@ -18,7 +18,9 @@ const VideoReviews: React.FC = () => {
 
   const videoGuides = [
     {
-      src: '1pISvABcVlTMWN7-dwDfQ2KuQibu3qyue',
+      srcWebm: '1pISvABcVlTMWN7-dwDfQ2KuQibu3qyue',
+      srcMov: '1AEstEk129ttSg_3lzmQLl0MxL9YGa3ys',
+      srcMp4: '1stE9YsSJejhixQu0K6h3iu1QwBoUHhU3',
       name: 'Spencer Campbell',
       date: '22',
       rating: 1,
@@ -27,7 +29,9 @@ const VideoReviews: React.FC = () => {
     },
 
     {
-      src: '1KKuAMcwRG-VNTBluBv5myrejNOnqDDjr',
+      srcWebm: '1KKuAMcwRG-VNTBluBv5myrejNOnqDDjr',
+      srcMov: '1yealOepucRRhXAL6MQ5Nh6Ly6deS2z2T',
+      srcMp4: '',
       name: 'Mary Naccarato',
       date: '22',
       rating: 1,
@@ -36,7 +40,9 @@ const VideoReviews: React.FC = () => {
     },
 
     {
-      src: '1zuXc_z6dsfXFr7LQNPiw5Kmh8P-WFGpt',
+      srcWebm: '1zuXc_z6dsfXFr7LQNPiw5Kmh8P-WFGpt',
+      srcMov: '1iZ09Zenri90m_5JQqOWSpcZEVHS9i0-d',
+      srcMp4: '1mLclVD0NsrSHWd3mcOYfUAwwx_hRmLAl',
       name: 'Kylah Artz',
       date: '22',
       rating: 1,
@@ -45,7 +51,7 @@ const VideoReviews: React.FC = () => {
     },
 
     // {
-    //   src: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
+    //   srcWebm: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
     //   name: 'Hermans',
     //   date: '22',
     //   rating: 1,
@@ -54,7 +60,9 @@ const VideoReviews: React.FC = () => {
     // },
 
     {
-      src: '1Kaq5Ri5QIllwv7d0FJhUVoUPMdqjtVO8',
+      srcWebm: '1Kaq5Ri5QIllwv7d0FJhUVoUPMdqjtVO8',
+      srcMov: '1n_icC3tsMqfcFIFTSiJSeqNiKYBDKLtI',
+      srcMp4: '',
       name: 'Annaliese Jelsema',
       date: '22',
       rating: 1,
@@ -114,7 +122,13 @@ const VideoReviews: React.FC = () => {
                 className={'py-0 lg:py-2 md:max-w-[44%]  lg:max-w-[30%]  xl:max-w-[23%]  relative  lg:min-h-[300px]'}
                 key={i}
               >
-                <Video src={video.src} showDescription={true} name={video.name} />
+                <Video
+                  srcWebm={video.srcWebm}
+                  srcMov={video.srcMov}
+                  srcMp4={video.srcMp4}
+                  showDescription={true}
+                  name={video.name}
+                />
 
                 {/* <StarRating rating={video.rating} />
                 <div className="px-6">

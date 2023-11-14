@@ -388,9 +388,16 @@ const ProductPage = () => {
                             <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
 
                             {isMobile ? (
-                              <Video src={'1mI3UbLZ6O9wnuHvI289H9kQnrJ68vrP8'} />
+                              <Video
+                                srcWebm={'1mI3UbLZ6O9wnuHvI289H9kQnrJ68vrP8'}
+                                srcMov={'1j5aeDPA6xffrxgqPnGRgissMMr3Yom50'}
+                              />
                             ) : (
-                              <Video src={'1VTA6x1MzM5m9JvOysZ_gCnjPPaWRZQ21'} className="w-full" />
+                              <Video
+                                srcWebm={'1VTA6x1MzM5m9JvOysZ_gCnjPPaWRZQ21'}
+                                srcMov={'1it2Fujpqwq_qFWY51mCYiM1nJGdQNcON'}
+                                className="w-full"
+                              />
                             )}
                             {/* <VideoFrameWithId
                               srcMobile="1j5aeDPA6xffrxgqPnGRgissMMr3Yom50"
@@ -401,9 +408,16 @@ const ProductPage = () => {
                             <p className={`${styles.body2} font-bold mb-2 mt-4`}>Yolo Man</p>
 
                             {isMobile ? (
-                              <Video src={'1IJpWxXWeyLjCpcMmaTGpLX0CmWWgMjyU'} />
+                              <Video
+                                srcWebm={'1IJpWxXWeyLjCpcMmaTGpLX0CmWWgMjyU'}
+                                srcMov={'1j6SGjygFdCBLTnE0wEE28oQLXuN76oGm'}
+                              />
                             ) : (
-                              <Video src={'1-VLw6iV5MER3ZkKAeMZT5XE3hMhr3NnJ'} className="w-full" />
+                              <Video
+                                srcWebm={'1-VLw6iV5MER3ZkKAeMZT5XE3hMhr3NnJ'}
+                                srcMov={'1isJIEKMfNR-Fy8JtkHXTxZncd3WImtRQ'}
+                                className="w-full"
+                              />
                             )}
                             {/* <VideoFrameWithId
                               srcMobile="1j6SGjygFdCBLTnE0wEE28oQLXuN76oGm"
@@ -417,9 +431,16 @@ const ProductPage = () => {
                           <>
                             <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
                             {isMobile ? (
-                              <Video src={'13_n8NEac4FcDyTdquAk1-miKQw0bNT23'} />
+                              <Video
+                                srcWebm={'13_n8NEac4FcDyTdquAk1-miKQw0bNT23'}
+                                srcMov={'1izshypkHusjBZJOgFrxyEJupOWEXbTpp'}
+                              />
                             ) : (
-                              <Video src={'1_W8kgZat_ncSI9SmgbfABu9oEWIxwh-m'} className="w-full" />
+                              <Video
+                                srcWebm={'1_W8kgZat_ncSI9SmgbfABu9oEWIxwh-m'}
+                                srcMov={'1ipYN-Ou9JKLH7BqblcoWwdjDfjSXXaZC'}
+                                className="w-full"
+                              />
                             )}
                             {/* <VideoFrameWithId
                               srcMobile="1izshypkHusjBZJOgFrxyEJupOWEXbTpp"
@@ -429,9 +450,16 @@ const ProductPage = () => {
                             /> */}
                             <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
                             {isMobile ? (
-                              <Video src={'12mEuxPIG9y-YR6PSu74jRUkb11aLDHz_'} />
+                              <Video
+                                srcWebm={'12mEuxPIG9y-YR6PSu74jRUkb11aLDHz_'}
+                                srcMov={'1j0sRbeKKtZmw5p1jGPkmKnnzNWI-fp1E'}
+                              />
                             ) : (
-                              <Video src={'1qqeK5OA5wMszeuQG_U3ae4OsUIW76Wh7'} className="w-full" />
+                              <Video
+                                srcWebm={'1qqeK5OA5wMszeuQG_U3ae4OsUIW76Wh7'}
+                                srcMov={'1iqFCDDPV5SWEoL_vRhSHX4femTGEsg2n'}
+                                className="w-full"
+                              />
                             )}
                             {/* <VideoFrameWithId
                               srcMobile="1j0sRbeKKtZmw5p1jGPkmKnnzNWI-fp1E"
@@ -444,7 +472,8 @@ const ProductPage = () => {
                         {product?.data.title == 'Sunrise' && (
                           <>
                             <Video
-                              src={'1--pbeRK18llW_uCrOBGCyK25WeMZuXru'}
+                              srcWebm={'1--pbeRK18llW_uCrOBGCyK25WeMZuXru'}
+                              srcMov={'1iuIWXVjvzDP75f71P56xJlOAOz8apIpX'}
                               className={`${isMobileLg ? 'md:max-w-[400px] mx-auto' : 'max-w-[20vw] mx-auto'}`}
                             />
                             {/* {isMobile ? (

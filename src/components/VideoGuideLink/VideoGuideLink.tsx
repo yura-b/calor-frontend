@@ -8,11 +8,13 @@ import Video from '@components/Video';
 interface Props {
   color?: string;
   className?: string;
-  src: string;
+  srcWebm?: string;
+  srcMov?: string;
+  srcMp4?: string;
   showVideoIcon?: boolean;
 }
 
-const VideoGuideLink: React.FC<Props> = ({ color, className, src, showVideoIcon }) => {
+const VideoGuideLink: React.FC<Props> = ({ color, className, srcWebm, srcMov, srcMp4, showVideoIcon }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = window.innerWidth < 1024;
 
@@ -59,7 +61,7 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, src, showVideoIcon 
             <img src={X} alt="Close" className="cursor-pointer w-5 h-5" />
           </button>
 
-          <Video src={src} className="w-full py-0" />
+          <Video srcWebm={srcWebm} srcMov={srcMov} srcMp4={srcMp4} className="w-full py-0" />
         </div>
       </Modal>
     </div>

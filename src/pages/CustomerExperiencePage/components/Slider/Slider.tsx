@@ -83,7 +83,7 @@ const Slider = ({ data, instagramStyles }) => {
                 <LazyLoadImage
                   src={image.media_url}
                   className={`object-contain object-cover mx-auto h-full ${
-                    instagramStyles ? 'max-w-[400px] w-[380px]' : ''
+                    instagramStyles ? 'max-h-[420px] max-w-[360px] w-[320px] h-[420px]' : ''
                   }`}
                   effect="blur"
                 />

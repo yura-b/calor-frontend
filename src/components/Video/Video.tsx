@@ -4,14 +4,16 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import styles from '@styles/Styles.module.scss';
 
 interface Props {
-  src: string;
+  srcWebm?: string;
+  srcMp4?: string;
+  srcMov?: string;
   title?: string;
   className?: string;
   showDescription?: boolean;
   name?: string;
 }
 
-const Video: React.FC<Props> = ({ src, className, showDescription, name }) => {
+const Video: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, showDescription, name }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isTogglePlay, setIsTogglePlay] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,7 +51,7 @@ const Video: React.FC<Props> = ({ src, className, showDescription, name }) => {
             preload="auto"
             playsInline
             webkit-playsinline
-            src={`https://drive.google.com/uc?id=${src}`}
+            // src={`https://drive.google.com/uc?id=${src}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             controls={isHovered}
@@ -59,7 +61,11 @@ const Video: React.FC<Props> = ({ src, className, showDescription, name }) => {
             onError={() => {
               setIsError(true);
             }}
-          />
+          >
+            <source src={`https://drive.google.com/uc?id=${srcWebm}`} type="video/webm" />
+            <source src={`https://drive.google.com/uc?id=${srcMp4}`} type="video/mp4" />
+            <source src={`https://drive.google.com/uc?id=${srcMov}`} type="video/mov" />
+          </video>
           {showDescription && (
             <div className="">
               <p className={`${styles.subtitle} py-2 mx-auto`}>{name}</p>
