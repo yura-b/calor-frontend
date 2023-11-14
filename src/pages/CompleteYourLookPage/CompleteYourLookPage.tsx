@@ -53,7 +53,7 @@ const CompleteYourLookPage: FC<IProps> = () => {
         emptyProduct: 'Accessories coming soon',
         product: products?.data.accessories.filter(
           (item) => item.category.categoryTitle === 'Accessories' && item.subcategory !== 'Belts'
-        )[2],
+        )[0],
       },
       1: {
         title: `In order to keep your ${

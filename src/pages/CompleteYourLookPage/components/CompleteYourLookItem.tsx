@@ -25,14 +25,17 @@ interface IProps {
 const CompleteYourLookItem: FC<IProps> = ({ item, setSizeButtonStyles, sizeButtonStyles, handleSizeClick }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
-    <div className="flex flex-col py-5 w-full items-center max-w-2xl">
+    <div className="flex flex-col py-2 sm:py-5 w-full items-center max-w-2xl">
       <span className="text-mint text-center">{item.title}</span>
       {item.product ? (
-        <div className="flex flex-row gap-2 mt-9 justify-between lg:justify-center lg:gap-14">
-          <div className="basis-[40%] lg:basis-[30%] relative min-h-10 min-w-[100px]">
+        <div
+          className="flex flex-col w-full sm:w-auto
+         sm:flex-row gap-6 mt-9 justify-between lg:justify-center items-center sm:items-start"
+        >
+          <div className=" relative min-h-10 sm:min-w-[180px] sm:w-[180px] flex justify-end">
             <LazyLoadImage
               src={item?.product?.photos[0]}
-              className="md:max-w-[140px] md:max-h-[140px]"
+              className="max-w-[140px] w-[140px] max-h-[180px] md:max-w-[160px] md:w-[160px] md:max-h-[200px] lg:max-w-[180px] lg:w-[180px] lg:max-h-[220px]"
               alt=""
               effect="blur"
               afterLoad={() => {
@@ -44,8 +47,8 @@ const CompleteYourLookItem: FC<IProps> = ({ item, setSizeButtonStyles, sizeButto
             />
             {imageLoaded ? null : <Spinner className="absolute top-1/2 left-1/2" />}
           </div>
-          <div className="basis-[55%] lg:basis-[60%] flex flex-col">
-            <span className="font-bold">{item?.product?.title}</span>
+          <div className=" flex flex-col text-gray w-full max-w-[400px] sm:max-w-[260px]">
+            <span className="font-bold text-center sm:text-start">{item?.product?.title}</span>
             <span className="mt-1">Details</span>
             <div className="flex flex-row">
               <span className="font-bold pr-2">Shiping:</span>
