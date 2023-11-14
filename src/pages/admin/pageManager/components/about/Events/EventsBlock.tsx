@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { useNavigate } from 'react-router';
-import EventsGrid from '@pages/admin/pageManager/components/about/EventsGrid.tsx';
+import EventsGrid from '@/pages/admin/pageManager/components/about/Events/EventsGrid';
 import { Events } from '@/constants/interfaces/events.ts';
 import { getEvents } from '@/api/manager/event.ts';
 
@@ -14,7 +14,7 @@ const EventsBlock = () => {
       setEvents(res.data);
     });
   }, []);
-  console.log(events);
+
   if (!events) return;
   const buttonHandler = () => {
     navigate('/admin/createevent');

@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { removeDuplicateTitle } from '@/helpers/functions/removeDuplicateTitle.ts';
 import SectionBlock from '@pages/admin/pageManager/components/SectionBlock.tsx';
-import EventsBlock from '@pages/admin/pageManager/components/about/EventsBlock.tsx';
+import EventsBlock from '@/pages/admin/pageManager/components/about/Events/EventsBlock';
 
 const ManagerAboutPage = () => {
   const { pageSections } = useAppSelector((state) => state.pageManager);
