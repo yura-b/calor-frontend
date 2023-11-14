@@ -5,3 +5,11 @@ export interface NewsArticleDto {
     
     photo: string;
 }
+
+export interface EditNewsArticleDto {
+    id: string;
+
+    title: string;
+
+    newsArticle: string;
+}

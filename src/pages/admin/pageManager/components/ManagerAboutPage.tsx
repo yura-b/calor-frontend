@@ -3,6 +3,7 @@ import { useAppSelector } from '@/store/hooks/hooks.ts';
 import { removeDuplicateTitle } from '@/helpers/functions/removeDuplicateTitle.ts';
 import SectionBlock from '@pages/admin/pageManager/components/SectionBlock.tsx';
 import EventsBlock from '@/pages/admin/pageManager/components/about/Events/EventsBlock';
+import NewsArticlesBlock from '@/pages/admin/pageManager/components/about/InThePress/NewsArticlesBlock';
 
 const ManagerAboutPage = () => {
   const { pageSections } = useAppSelector((state) => state.pageManager);
@@ -17,6 +18,7 @@ const ManagerAboutPage = () => {
       <SectionBlock arr={ourStory} title={'Our Story'} />
       <SectionBlock arr={manufacture} title={'Our Manufacture'} />
       <EventsBlock />
+      <NewsArticlesBlock />
     </div>
   );
 };

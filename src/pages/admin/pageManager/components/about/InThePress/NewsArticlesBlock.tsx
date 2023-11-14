@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { useNavigate } from 'react-router';
 import NewsArticlesGrid from '@/pages/admin/pageManager/components/about/InThePress/NewsArticlesGrid';
-import { Events } from '@/constants/interfaces/events.ts';
-import { getEvents } from '@/api/manager/event.ts';
+import { NewsArticles } from '@/constants/interfaces/newsArticles';
+import { getNewsArticles } from '@/api/manager/newsArticle';
 
-const EventsBlock = () => {
+const NewsArticlesBlock = () => {
   const navigate = useNavigate();
-  const [newsArticles, setNewsArticles] = useState<Events[]>();
+  const [newsArticles, setNewsArticles] = useState<NewsArticles[]>();
 
   useEffect(() => {
-    getEvents().then((res) => {
-        setNewsArticles(res.data);
+    getNewsArticles().then((res) => {
+      setNewsArticles(res.data);
     });
   }, []);
 
   if (!newsArticles) return;
   const buttonHandler = () => {
-    navigate('/admin/createevent');
+    navigate('/admin/createnewsarticle');
   };
   return (
     <div className={'flex flex-col gap-12'}>
@@ -30,4 +30,4 @@ const EventsBlock = () => {
   );
 };
 
-export default EventsBlock;
+export default NewsArticlesBlock;

@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { NewsArticles } from '@/constants/interfaces/newsArticles';
 import CustomButton from '@components/button/CustomButton.tsx';
 import CustomInput from '@components/input/CustomInput.tsx';
-import { deleteEvent, patchEvent } from '@/api/manager/event.ts';
+import { deleteNewsArticle, editNewsArticle } from '@/api/manager/newsArticle';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { showMessage } from '@/store/reducers/StatusReducer.ts';
 
@@ -27,7 +27,7 @@ const NewsArticleComponent: FC<NewsArticles> = ({ photo, title, newsArticle, _id
 
   const saveHandler = () => {
     if (!access_token) return;
-    patchEvent(access_token, {
+    editNewsArticle(access_token, {
       id: _id,
       newsArticle: newNewsArticle,
       title: newTitle,
@@ -41,7 +41,7 @@ const NewsArticleComponent: FC<NewsArticles> = ({ photo, title, newsArticle, _id
   const deleteHandler = () => {
     if (!access_token) return;
 
-    deleteEvent(access_token, _id).then(() => {
+    deleteNewsArticle(access_token, _id).then(() => {
       dispatch(showMessage('News article was successfully deleted'));
 
       setIsDeleted(true);
