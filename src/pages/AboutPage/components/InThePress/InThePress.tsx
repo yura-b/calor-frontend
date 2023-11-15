@@ -26,14 +26,14 @@ const InThePress = () => {
         <Loader />
       ) : (
         <AnimatePresence initial={false}>
-          <motion.div className="flex flex-wrap gap-2 justify-between">
+          <motion.div className="flex flex-wrap gap-4 justify-start text-center items-center">
             {inThePressArticles.map((item, i) => (
-              <Link to="#" key={i} className="basis-[30%] lg:basis-[15%]">
-                <motion.div
+              <Link to={item.newsArticle} key={i} target="_blank" className="basis-[30%] lg:basis-[15%] bg-lightGray px-3 py-3 ">
+                <motion.img
                   {...hoverOnButtonAnimation}
                   key={i}
-                  className="text-center bg-lightGray px-6 py-3 w-full min-h-[50px] lg:min-h-[120px] bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${item.photo})` }}
+                  className="w-full object-contain"
+                  src={item.photo}
                 />
               </Link>
             ))}
