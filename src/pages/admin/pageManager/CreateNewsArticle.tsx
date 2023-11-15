@@ -6,7 +6,7 @@ import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHe
 import CustomInput from '@components/input/CustomInput.tsx';
 import CustomButton from '@components/button/CustomButton.tsx';
 import { uploadPhoto } from '@/api/do';
-import { createEvent } from '@/api/manager/event.ts';
+import { createNewsArticle } from '@/api/manager/newsArticle';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { showMessage } from '@/store/reducers/StatusReducer.ts';
 
@@ -25,10 +25,10 @@ const CreateNewsArticle = () => {
     setArticle(e.target.value);
   };
 
-  const handleAddNewEvent = () => {
+  const handleAddNewNewsArticle = () => {
     if (!(title && article && access_token)) return;
     uploadPhoto(photo, 'events').then((res) => {
-      createEvent(
+      createNewsArticle(
         {
           photo: res.data.url,
           title,
@@ -52,7 +52,7 @@ const CreateNewsArticle = () => {
       <div className={'m-24'}>
         <div className={'flex flex-row mb-8 items-center gap-3'}>
           <PlusCircle size={32} fill={'weight'} />
-          <p>New Event</p>
+          <p>New Article</p>
         </div>
         <div className={'flex flex-row gap-12'}>
           <div className={'flex flex-col gap-5 w-1/2'}>
@@ -65,7 +65,7 @@ const CreateNewsArticle = () => {
             <p className={'font-bold'}>2. Article's Detail</p>
             <CustomInput description={'Title'} value={title} onChange={titleHandler} />
             <CustomInput description={'New Article description'} value={article} onChange={announcementHandler} />
-            <CustomButton title={'Add New Article'} handler={handleAddNewEvent} />
+            <CustomButton title={'Add New Article'} handler={handleAddNewNewsArticle} />
           </div>
         </div>
       </div>
