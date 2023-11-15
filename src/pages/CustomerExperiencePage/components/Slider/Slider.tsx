@@ -74,7 +74,7 @@ const Slider = ({ data, instagramStyles }) => {
             transform: `translateX(${translateX}px)`,
             transition: 'transform 0.5s ease',
             width: `${duplicatedImages.length * slideWidth}px`,
-            height: instagramStyles ? '420px' : '420px',
+            height: instagramStyles ? '360px' : '420px',
           }}
         >
           {duplicatedImages.map((image, index) =>
@@ -83,7 +83,7 @@ const Slider = ({ data, instagramStyles }) => {
                 <LazyLoadImage
                   src={image.media_url}
                   className={`object-contain object-cover mx-auto h-full ${
-                    instagramStyles ? 'max-h-[420px] max-w-[360px] w-[320px] h-[420px]' : ''
+                    instagramStyles ? 'max-h-[420px] max-w-[360px] w-[320px] h-[400px]' : ''
                   }`}
                   effect="blur"
                 />
@@ -104,7 +104,7 @@ const Slider = ({ data, instagramStyles }) => {
                       <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
                     </div>
                     <video onLoadStart={() => setIsVideoLoading(true)} onLoadedData={() => setIsVideoLoading(false)}>
-                      <source src={image.media_url} className="w-full object-contain   mx-auto" type="video/mp4" />
+                      <source src={image.media_url} className="w-full object-contain  mx-auto " type="video/mp4" />
                     </video>
                   </>
                 )}
