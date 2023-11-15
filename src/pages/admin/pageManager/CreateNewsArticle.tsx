@@ -21,7 +21,7 @@ const CreateNewsArticle = () => {
   const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
-  const announcementHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const articleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setArticle(e.target.value);
   };
 
@@ -64,7 +64,7 @@ const CreateNewsArticle = () => {
           <div className={'flex flex-col gap-5 w-1/2'}>
             <p className={'font-bold'}>2. Article's Detail</p>
             <CustomInput description={'Title'} value={title} onChange={titleHandler} />
-            <CustomInput description={'New Article description'} value={article} onChange={announcementHandler} />
+            <CustomInput description={'Article URL'} value={article} onChange={articleHandler} />
             <CustomButton title={'Add New Article'} handler={handleAddNewNewsArticle} />
           </div>
         </div>

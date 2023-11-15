@@ -61,13 +61,13 @@ const NewsArticleComponent: FC<NewsArticles> = ({ photo, title, newsArticle, _id
               Title
             </CustomInput>
             <CustomInput value={newNewsArticle} onChange={changeHandler(setNewNewsArticle)}>
-              News Article
+              Article URL
             </CustomInput>
           </>
         ) : (
           <>
             <p className="font-bold">{currentTitle}</p>
-            <p>{currentNewsArticle}</p>
+            <p className="break-all">{currentNewsArticle}</p>
           </>
         )}
       </div>
