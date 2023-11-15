@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import downIcon from '@assets/images/downIcon.svg';
 import mintDownIcon from '@assets/images/mintDownIcon.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HashLink as Link } from 'react-router-hash-link';
@@ -7,6 +6,7 @@ import { menuItems } from '../../../../helpers/data';
 import { collapseAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
 import { useNavigate } from 'react-router';
+import { ReactSVG } from 'react-svg';
 
 interface Props {
   isMobileMenuOpen: boolean;
@@ -71,7 +71,7 @@ const MainMenu: React.FC<Props> = ({ isMobileMenuOpen, toggleOpen }): React.Reac
                 isOpen === index ? 'text-custom-turquoise' : 'text-white'
               } hover:text-custom-turquoise flex justify-between`}
             >
-              <div className="flex cursor-pointer">
+              <div className="flex cursor-pointer items-center xl:items-baseline">
                 <Link
                   to={!menuItem.subItems?.length && menuItem.path}
                   className={'flex focus:outline-none xl:py-2 leading-6'}
@@ -80,12 +80,22 @@ const MainMenu: React.FC<Props> = ({ isMobileMenuOpen, toggleOpen }): React.Reac
                   {menuItem.title}{' '}
                 </Link>
                 {menuItem.subItems?.length ? (
-                  <motion.img
-                    src={isHovered === index || isOpen === index ? mintDownIcon : downIcon}
-                    alt={''}
-                    className={` ${isHovered === index || isOpen === index ? '' : 'brightness-0 invert'} ml-4 xl:ml-1`}
-                    animate={{ rotate: isOpen === index ? 180 : 0 }}
-                    transition={{ duration: 0.4 }}
+                  <ReactSVG
+                    src={mintDownIcon}
+                    beforeInjection={(svg) => {
+                      svg.classList.add('icon');
+                      svg.setAttribute('stroke-width', '1');
+                      if (isHovered === index || isOpen === index) {
+                        svg.setAttribute('stroke', '#B8E4D8');
+                      } else {
+                        svg.setAttribute('stroke', '#FFFFFF');
+                      }
+                    }}
+                    style={{
+                      transform: isOpen === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transition: 'transform 0.4s linear',
+                    }}
+                    className="ml-2 xl:ml-1 "
                   />
                 ) : null}
               </div>
