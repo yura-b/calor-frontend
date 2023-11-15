@@ -91,8 +91,8 @@ const AboutPage: React.FC = (): React.ReactElement => {
             <OurManufacture ourManufacture={ourManufacture} />
           </div>
         </div>
-        {/* <Events />
-        <InThePress /> */}
+        <Events />
+        <InThePress />
       </MainLayout>
     </div>
   );

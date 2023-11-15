@@ -64,8 +64,8 @@ const CreateEvent = () => {
           <div className={'flex flex-col gap-5 w-1/2'}>
             <p className={'font-bold'}>2. Event`s Detail</p>
             <CustomInput description={'Title'} value={title} onChange={titleHandler} />
-            <CustomInput description={'News Announcement'} value={announcement} onChange={announcementHandler} />
-            <CustomButton title={'Add New EventComponent'} handler={handleAddNewEvent} />
+            <CustomInput description={'New Announcement'} value={announcement} onChange={announcementHandler} />
+            <CustomButton title={'Add New Event'} handler={handleAddNewEvent} />
           </div>
         </div>
       </div>

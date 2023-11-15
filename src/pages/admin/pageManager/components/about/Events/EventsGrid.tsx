@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Events } from '@/constants/interfaces/events.ts';
-import EventComponent from '@pages/admin/pageManager/components/about/EventComponent.tsx';
+import EventComponent from '@/pages/admin/pageManager/components/about/Events/EventComponent';
 
 const EventsGrid: FC<{ events: Events[] }> = ({ events }) => {
   return (

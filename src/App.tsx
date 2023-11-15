@@ -43,6 +43,7 @@ const ChangePassword = lazy(() => import('@pages/AccountPage/components/ChangePa
 const AboutPage = lazy(() => import('@pages/AboutPage'));
 const HelpPage = lazy(() => import('@pages/HelpPage'));
 const CreateEvent = lazy(() => import('@pages/admin/pageManager/CreateEvent.tsx'));
+const CreateNewsArticle = lazy(() => import('@pages/admin/pageManager/CreateNewsArticle.tsx'));
 const WarehousePage = lazy(() => import('@pages/admin/warehouse/WarehousePage.tsx'));
 const CatalogPage = lazy(() => import('@pages/admin/catalog/CatalogPage.tsx'));
 const CreateItem = lazy(() => import('@pages/admin/catalog/CreateItem.tsx'));
@@ -97,6 +98,7 @@ const App = () => {
             <Route path={'reviews/text'} element={<TextReviewPage />} />
             <Route path={'manager'} element={<PageManagerPage />} />
             <Route path={'createevent'} element={<CreateEvent />} />
+            <Route path={'createnewsarticle'} element={<CreateNewsArticle />} />
             <Route path={'delivery'} element={<DeliveryPage />} />
             <Route path={'catalog'} element={<CatalogPage />} />
             <Route path={'catalog/variations'} element={<VariationsPage />} />
