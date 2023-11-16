@@ -12,6 +12,10 @@ export const getEvents = () => {
   return axios.get(`${BASE_URL}/manager/event`);
 };
 
+export const getEventById = (id: string) => {
+  return axios.get(`${BASE_URL}/manager/event/${id}`);
+};
+
 export const patchEvent = (access_token: string, eventData: PatchEventDto) => {
   return axios.patch(`${BASE_URL}/manager/event`, eventData, authorization(access_token));
 };
