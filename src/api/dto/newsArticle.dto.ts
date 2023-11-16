@@ -1,15 +1,15 @@
 export interface NewsArticleDto {
-    title: string;
+  title: string;
 
-    newsArticle: string;
-    
-    photo: string;
+  newsArticle: string;
+
+  photo: string;
 }
 
 export interface EditNewsArticleDto {
-    id: string;
+  id: string;
 
-    title: string;
+  title: string;
 
-    newsArticle: string;
+  newsArticle: string;
 }

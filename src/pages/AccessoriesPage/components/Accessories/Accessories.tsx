@@ -38,14 +38,14 @@ const Accessories: React.FC = (): React.ReactElement => {
         {isLoading && <Loader />}
         <div className={styles.container}>
           <h1 className={styles.header1}>{subPath?.toLocaleUpperCase()}</h1>
-          <div className="flex gap-6 justify-start flex-wrap">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
             {!filteredSubAccessories.length && (
               <p className={`${styles.header2} py-6 text-gray uppercase`}> {subPath} coming soon</p>
             )}
             {filteredSubAccessories &&
               filteredSubAccessories.map((subAccessories, i) => (
-                <div key={i} className=" lg:basis-[32%] sm:basis-[45%] basis-[100%] ">
-                  <ProductCart product={subAccessories} type="accessories" />
+                <div key={i}>
+                  <ProductCart product={subAccessories} type="accessories" winterShoePrice="" />
                 </div>
               ))}
           </div>

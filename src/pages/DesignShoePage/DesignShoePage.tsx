@@ -31,7 +31,7 @@ const DesignShoePage: FC = (): React.ReactElement => {
           <NavigationLinks color="gray" className=" w-auto" />
         </div>
         {isLoading && <Loader />}
-        <div className={`${styles.container}`}>
+        <div className={`${styles.container} lg:py-0`}>
           <ShoesList shoes={shoes} winterShoePrice={winterShoePrice} />
         </div>
       </MainLayout>

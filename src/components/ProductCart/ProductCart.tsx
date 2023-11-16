@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import BasicRating from '@/components/ui/Rating/Rating';
 import Button from '@/components/ui/Button';
 import styles from '@styles/Styles.module.scss';
@@ -16,8 +16,12 @@ import Spinner from '@components/ui/Spinner';
 import { v4 as uuidv4 } from 'uuid';
 import { addToCartGTMEvent } from '@/helpers/functions/gtm';
 import constants from '@/constants/constants';
+import { paths } from '@/routes/paths';
 
 const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => {
+  const location = useLocation();
+  const isHome = location.pathname === paths.home;
+  const isDesignShoe = location.pathname === paths.design_shoe;
   const { userId } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [selectedSize, setSelectedSize] = useState(null);
@@ -94,12 +98,24 @@ const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => 
 
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
-    <div className="w-full flex-col my-5 flex justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px]">
+    <div
+      className={`w-full flex-col my-1 lg:my-5 flex justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px] ${
+        isHome ? '' : 'min-w-[340px] sm:min-w-0'
+      }`}
+    >
       <div className="min-h-[10vh] flex justify-center items-center">
         <Link to={`/product/${product._id}`}>
-          <div className="flex justify-center items-center min-h-[340px] relative">
+          <div
+            className={`flex justify-center items-center ${
+              isHome
+                ? 'min-h-[210px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[290px] xl:min-h-[300px] 2xl:min-h-[340px]'
+                : isDesignShoe
+                ? 'min-h-[380px] sm:min-h-[310px] md:min-h-[260px] lg:min-h-[320px] xl:min-h-[320px] 2xl:min-h-[400px]'
+                : 'min-h-[380px] sm:min-h-[310px] md:min-h-[260px] lg:min-h-[310px] xl:min-h-[350px] 2xl:min-h-[400px]'
+            }    relative`}
+          >
             <LazyLoadImage
-              className="flex justify-center items-center object-cover w-full h-full mx-auto max-h-[400px]"
+              className="flex justify-center items-center object-cover w-full h-full mx-auto max-h-[380px] lg:max-h-[400px]"
               src={product.photos?.[0] || product.photo}
               effect="blur"
               afterLoad={() => {
@@ -114,7 +130,7 @@ const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => 
         </Link>
       </div>
       {/* Product content */}
-      <div className={`${styles.subtitle} flex justify-start items-center my-1 `}>{product.title}</div>
+      <div className={`${styles.subtitle} my-2 truncate`}>{product.title}</div>
       <div className="flex flex-row justify-between">
         <BasicRating includeTitle={false} readOnly={true} size="small" rating={product.rating} />
         <span>{product?.rating ? product?.rating : '0'}</span>

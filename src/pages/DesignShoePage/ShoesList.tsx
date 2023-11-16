@@ -16,8 +16,8 @@ const ShoesList: React.FC<Props> = ({ shoes, winterShoePrice }): React.ReactElem
       className={`${
         isHome
           ? 'flex justify-between items-center m-auto overflow-x-auto gap-2 flex-row lg:py-6 lg:gap-10 2xl:max-w-screen-2xl'
-          : 'flex-wrap '
-      } flex gap-6 sm:justify-start justify-center`}
+          : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4'
+      } `}
     >
       {shoes.map((product, i) => (
         <div
