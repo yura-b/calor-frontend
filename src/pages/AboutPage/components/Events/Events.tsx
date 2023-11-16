@@ -6,7 +6,8 @@ import { EventDto } from '@/api/dto/event.dto';
 import Loader from '@components/ui/Loader';
 import { fadeAnimation, hoverOnButtonAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
-import arrow from '@assets/images/SignUpHeaderImg/arrow.png';
+import { ReactSVG } from 'react-svg';
+import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
 interface Props {
   event: EventDto;
   i: number;
@@ -76,9 +77,20 @@ const EventsComponent: React.FC = () => {
             {showAll ? (
               'Show Less'
             ) : (
-              <>
-                See All Events <img src={arrow} className="rotate-180 ml-2 inline-block" />
-              </>
+              <div className="flex items-center">
+                <p>See All Events</p>
+                <ReactSVG
+                  src={leftArrowIcon}
+                  beforeInjection={(svg) => {
+                    svg.classList.add('icon');
+                    svg.setAttribute('stroke', '#404040');
+                  }}
+                  style={{
+                    transform: 'rotate(180deg)',
+                  }}
+                  className="ml-2"
+                />
+              </div>
             )}
           </motion.button>
         )}

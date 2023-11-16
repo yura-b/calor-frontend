@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import styles from '@styles/Styles.module.scss';
 import { motion } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@styles/Animations';
-import arrow from '@assets/images/SignUpHeaderImg/arrow.png';
+import { ReactSVG } from 'react-svg';
+import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
 
 const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement => {
   const subcategories = [...new Set(products.map((item) => item.subcategory))];
@@ -21,8 +22,22 @@ const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement =
               <div className="flex items-center justify-between">
                 <h1 className={styles.header1}>{subcategory}</h1>
                 <motion.div {...hoverOnButtonAnimation}>
-                  <Link to={path + '/' + subcategory.toLowerCase()} className={`${styles.subtitle} underline`}>
-                    Show more <img src={arrow} className="rotate-180 ml-2 inline-block" />
+                  <Link
+                    to={path + '/' + subcategory.toLowerCase()}
+                    className={`${styles.subtitle} underline flex items-center`}
+                  >
+                    <p>Show more</p>
+                    <ReactSVG
+                      src={leftArrowIcon}
+                      beforeInjection={(svg) => {
+                        svg.classList.add('icon');
+                        svg.setAttribute('stroke', '#404040');
+                      }}
+                      style={{
+                        transform: 'rotate(180deg)',
+                      }}
+                      className="ml-2"
+                    />
                   </Link>
                 </motion.div>
               </div>

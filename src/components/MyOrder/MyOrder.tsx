@@ -15,8 +15,9 @@ import MainLayout from '@/components/MainLayout';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 import { useMediaQuery } from '@react-hook/media-query';
 import { sendOrderForNotAuthUser } from '@/api/orders';
-import arrow from '@/assets/images/SignUpHeaderImg/arrow.png';
 import Spinner from '@components/ui/Spinner';
+import { ReactSVG } from 'react-svg';
+import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
 
 const MyOrder = (): React.ReactElement => {
   const { roles, access_token } = useAppSelector((state) => state.user);
@@ -108,8 +109,14 @@ const MyOrder = (): React.ReactElement => {
               {orderResponse && (
                 <MainFrame title={'My Order'}>
                   <div className="hidden lg:flex">
-                    <div>
-                      <img src={arrow} alt="Arrow" className="cursor-pointer w-5 h-5" onClick={reloadOrderPage} />
+                    <div className="p-2 cursor-pointer" onClick={reloadOrderPage}>
+                      <ReactSVG
+                        src={leftArrowIcon}
+                        beforeInjection={(svg) => {
+                          svg.classList.add('icon');
+                          svg.setAttribute('stroke', '#404040');
+                        }}
+                      />
                     </div>
                     <h1 className={`${styles.header2} m-auto text-gray uppercase`}>My Order</h1>
                   </div>
@@ -123,7 +130,15 @@ const MyOrder = (): React.ReactElement => {
                   <div className={`${styles.container} lg:py-0 max-h-[70vh] lg:max-h-[60vh] h-screen`}>
                     <div className="hidden lg:block">
                       <header className={'flex items-center px-6 h-[60px]'}>
-                        <img src={arrow} alt="Arrow" className="cursor-pointer w-5 h-5" onClick={reloadOrderPage} />
+                        <div className="cursor-pointer p-2" onClick={reloadOrderPage}>
+                          <ReactSVG
+                            src={leftArrowIcon}
+                            beforeInjection={(svg) => {
+                              svg.classList.add('icon');
+                              svg.setAttribute('stroke', '#404040');
+                            }}
+                          />
+                        </div>
                         <h1 className={`${styles.header2} m-auto text-gray uppercase`}>My Order</h1>
                       </header>
                     </div>

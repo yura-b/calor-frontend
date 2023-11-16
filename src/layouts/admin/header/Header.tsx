@@ -32,7 +32,7 @@ const Header = () => {
   const [shopDropDown, setShopDropDown] = useState(false);
   const [reviewDropDown, setReviewDropDown] = useState(false);
 
-  const size = window.innerWidth <= 1600 ?  18 : 25;
+  const size = window.innerWidth <= 1600 ? 18 : 25;
   const reviewHandler = (e: React.MouseEvent<any>) => {
     e.preventDefault();
     setReviewDropDown((prev) => !prev);
@@ -49,7 +49,9 @@ const Header = () => {
           <img src={logo} className={'w-full h-full p-3 mt-6 ' + styles.image} alt="" />
         </div>
 
-        <div className={'flex flex-col gap-6 w-full justify-center ml-6  mt-8 2xl:gap-8 2xl:mt-16 ' + styles.navContainer}>
+        <div
+          className={'flex flex-col gap-6 w-full justify-center ml-6  mt-8 2xl:gap-8 2xl:mt-16 ' + styles.navContainer}
+        >
           <HeaderElement icon={<ChartBar size={size} weight="fill" />} title={'Analytics'} />
           <div>
             <Storefront size={size} weight="fill" />
