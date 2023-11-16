@@ -32,8 +32,7 @@ const Header = () => {
   const [shopDropDown, setShopDropDown] = useState(false);
   const [reviewDropDown, setReviewDropDown] = useState(false);
 
-  const size = 22;
-
+  const size = window.innerWidth <= 1600 ?  18 : 25;
   const reviewHandler = (e: React.MouseEvent<any>) => {
     e.preventDefault();
     setReviewDropDown((prev) => !prev);
@@ -50,14 +49,14 @@ const Header = () => {
           <img src={logo} className={'w-full h-full p-3 mt-6 ' + styles.image} alt="" />
         </div>
 
-        <div className={'flex flex-col gap-8 w-full justify-center ml-6  mt-16 ' + styles.navContainer}>
+        <div className={'flex flex-col gap-6 w-full justify-center ml-6  mt-8 2xl:gap-8 2xl:mt-16 ' + styles.navContainer}>
           <HeaderElement icon={<ChartBar size={size} weight="fill" />} title={'Analytics'} />
           <div>
             <Storefront size={size} weight="fill" />
 
             <span>My Shop</span>
 
-            <div className={'ml-16 cursor-pointer'}>
+            <div className={'ml-8 cursor-pointer'}>
               {shopDropDown ? (
                 <CaretUp size={size} weight={'fill'} onClick={shopHandler} />
               ) : (
@@ -95,7 +94,7 @@ const Header = () => {
 
             <span>Reviews</span>
 
-            <div className={'ml-16 cursor-pointer'}>
+            <div className={'ml-8 cursor-pointer'}>
               {reviewDropDown ? (
                 <CaretUp weight={'fill'} size={size} onClick={reviewHandler} />
               ) : (
@@ -128,14 +127,14 @@ const Header = () => {
           />
         </div>
 
-        <div className={'flex flex-col justify-center gap-9 ml-6 absolute bottom-5 ' + styles.navContainer}>
-          <HeaderElement icon={<GlobeSimple size={26} />} title={'Go To Calor'} navigateTo={'/'} />
+        <div className={'flex flex-col justify-center gap-6 2xl:gap-9 ml-6 absolute bottom-5 ' + styles.navContainer}>
+          <HeaderElement icon={<GlobeSimple size={size} />} title={'Go To Calor'} navigateTo={'/'} />
           <div>
-            <UserCircle size={26} weight="fill" />
+            <UserCircle size={size} weight="fill" />
             <span>{fullName}</span>
           </div>
 
-          <CustomSignOut size={26} />
+          <CustomSignOut size={size} />
         </div>
       </div>
     </div>
