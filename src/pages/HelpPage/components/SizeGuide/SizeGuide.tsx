@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
-import VideoFrame from '@components/VideoFrame';
 import AccordionSection from '@components/AccordionSection';
 import SizeTable from '../SizeTable';
 import ShoeSizeTable from '../ShoeSizeTable';
@@ -58,7 +57,11 @@ const SizeGuide: React.FC = () => {
 
         <AccordionSection title="Shoe" isOpen={isAccordionOpen} toggleAccordion={toggleAccordion}>
           <div className="my-4">
-            <Video srcWebm={'18omPddYi3zLQhPFIbUxFv0ong9czcISZ'} srcMov={'1jXSBWSLsBdKRVDV1bqvWc9VFXFc-qcm0'} />
+            <Video
+              srcWebm={'1P9iz5LyDFvGxa3nl_BzJOytfKQq6OJyV'}
+              srcMp4={'1Dd2rbLAMJBLwDAgeXMfnDDHHien8wBIk'}
+              srcMov={'1j3tyHXSoPoFTvTMeMG-SiA0NBk2lMvMF'}
+            />
           </div>
           <div>
             <AccordionSection

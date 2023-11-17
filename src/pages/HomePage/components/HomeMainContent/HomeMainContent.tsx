@@ -119,8 +119,9 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
             <Button color="gray" className="mb-4 max-w-[360px] m-auto block">
               <VideoGuideLink
                 color="white"
-                srcWebm={'1PnMHFQx75aMfVEGPyV5K6waHIfL279o4'}
-                srcMov={'1jADBBF8ByG7HdFKs43yMMp8qWNmXi2BH'}
+                srcWebm={'1P02ClFpZyAz0lmIl4_eQcYyBprGobC70'}
+                srcMov={'1VDnW8pSbVadGusbbxfVo4bHr2uwsGuc8'}
+                srcMp4={'1OYKazc_mIxEcsXGQ7BmsxBDy3b1q3WGt'}
               />
             </Button>
             {/* <Button color="mintExtraLight" to={paths.design_bag}>
