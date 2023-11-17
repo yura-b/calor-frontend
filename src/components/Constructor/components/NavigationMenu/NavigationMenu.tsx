@@ -29,8 +29,9 @@ const NavigationMenu = ({}) => {
         <div className="flex items-center">
           <VideoGuideLink
             className="text-gray underline"
-            srcWebm={'1J8RXgfzwgI1YXgNu05BcT9-G7HhaZdvq'}
-            srcMov={'1jDjvvmOsN-KXK0cFvvX2PRN27qNNB8oR'}
+            srcWebm={'1SQKSw80FbYOuB3DVwChePYTz6gxkWVC9'}
+            srcMp4={'10D7QoQ_F0DzHEzwDZ-OtaZjJArOmnrJn'}
+            srcMov={'1zGoyjI4UI8-t-AnUyVJFyoiM7ckNtL9y'}
             showVideoIcon={true}
           />
         </div>

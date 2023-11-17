@@ -27,8 +27,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 import { useNavigate } from 'react-router-dom';
 import constants from '@/constants/constants';
-// import VideoFrame from '@components/VideoFrame';
-// import VideoFrameWithId from '@components/VideoFrameWithId';
 import Video from '@components/Video';
 
 import { useMediaQuery } from '@react-hook/media-query';
@@ -193,6 +191,26 @@ const ProductPage = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const [isWidthGreaterThanHeight, setIsWidthGreaterThanHeight] = useState(false);
+
+  useEffect(() => {
+    const checkWindowDimensions = () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      if (screenWidth > screenHeight) {
+        setIsWidthGreaterThanHeight(true);
+      } else {
+        setIsWidthGreaterThanHeight(false);
+      }
+    };
+
+    checkWindowDimensions();
+    window.addEventListener('resize', checkWindowDimensions);
+    return () => {
+      window.removeEventListener('resize', checkWindowDimensions);
+    };
+  }, []);
   return (
     <div className="font-poppins h-screen">
       <Head title="Product" />
@@ -387,110 +405,124 @@ const ProductPage = () => {
                           <>
                             <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
 
-                            {isMobile ? (
+                            {isMobile && !isWidthGreaterThanHeight && (
                               <Video
-                                srcWebm={'1mI3UbLZ6O9wnuHvI289H9kQnrJ68vrP8'}
-                                srcMov={'1j5aeDPA6xffrxgqPnGRgissMMr3Yom50'}
-                              />
-                            ) : (
-                              <Video
-                                srcWebm={'1VTA6x1MzM5m9JvOysZ_gCnjPPaWRZQ21'}
-                                srcMov={'1it2Fujpqwq_qFWY51mCYiM1nJGdQNcON'}
-                                className="w-full"
+                                srcWebm={'1Prft-gapACdpjTZRNbpGpHPF7ZoeavGi'}
+                                srcMp4={'1TvWAALsnAXxXyMwnl9EGfLSJthTJ71eJ'}
+                                srcMov={'1laCEgk3-7twImft5NIDHI2KjC_mLIkP0'}
                               />
                             )}
-                            {/* <VideoFrameWithId
-                              srcMobile="1j5aeDPA6xffrxgqPnGRgissMMr3Yom50"
-                              src={'1it2Fujpqwq_qFWY51mCYiM1nJGdQNcON'}
-                              title="Yolo Woman"
-                              className="xl:max-w-[50vw] mb-4"
-                            /> */}
+                            {(isMobile && isWidthGreaterThanHeight) ||
+                              (!isMobile && (
+                                <Video
+                                  srcWebm={'18OqXrJ1YVpzqWoD4YfmcGQtC0zdHlwzB'}
+                                  srcMp4={'1gk_m2iR5sislnHVq3MxxjYjkCCjG2k-D'}
+                                  srcMov={'19gleXiBUABmR8ay6Su_JcqYNo9neyTwL'}
+                                  className="w-full"
+                                />
+                              ))}
+
                             <p className={`${styles.body2} font-bold mb-2 mt-4`}>Yolo Man</p>
 
-                            {isMobile ? (
+                            {isMobile && !isWidthGreaterThanHeight && (
                               <Video
-                                srcWebm={'1IJpWxXWeyLjCpcMmaTGpLX0CmWWgMjyU'}
-                                srcMov={'1j6SGjygFdCBLTnE0wEE28oQLXuN76oGm'}
-                              />
-                            ) : (
-                              <Video
-                                srcWebm={'1-VLw6iV5MER3ZkKAeMZT5XE3hMhr3NnJ'}
-                                srcMov={'1isJIEKMfNR-Fy8JtkHXTxZncd3WImtRQ'}
-                                className="w-full"
+                                srcWebm={'1lMvlRgVtZ6tZgzTngYM1TDx66ktprmQc'}
+                                srcMp4={'1ZiLsXQspQ67x1DrVLFgtGdgaJj2dXkwW'}
+                                srcMov={'1LNpcuHSlwrmV_99BiR-i32OIhDAQuj8B'}
                               />
                             )}
-                            {/* <VideoFrameWithId
-                              srcMobile="1j6SGjygFdCBLTnE0wEE28oQLXuN76oGm"
-                              src="1isJIEKMfNR-Fy8JtkHXTxZncd3WImtRQ"
-                              title="Yolo Man"
-                              className="xl:max-w-[50vw]"
-                            /> */}
+                            {(isMobile && isWidthGreaterThanHeight) ||
+                              (!isMobile && (
+                                <Video
+                                  srcWebm={'1lgm98Ml3YC3ukmiJq1JOjgJ2P4flvRAO'}
+                                  srcMp4={'1Ph36XTt190l6JdfrOnXdUvMpKRfdJhlI'}
+                                  srcMov={'1GwkNIHKP1d7YkO09g5H2gQtZuamMfn7b'}
+                                  className="w-full"
+                                />
+                              ))}
                           </>
                         )}
                         {product?.data.title == 'Dayger' && (
                           <>
                             <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
-                            {isMobile ? (
-                              <Video
-                                srcWebm={'13_n8NEac4FcDyTdquAk1-miKQw0bNT23'}
-                                srcMov={'1izshypkHusjBZJOgFrxyEJupOWEXbTpp'}
-                              />
-                            ) : (
-                              <Video
-                                srcWebm={'1_W8kgZat_ncSI9SmgbfABu9oEWIxwh-m'}
-                                srcMov={'1ipYN-Ou9JKLH7BqblcoWwdjDfjSXXaZC'}
-                                className="w-full"
-                              />
+                            {isMobile && !isWidthGreaterThanHeight && (
+                              <>
+                                <Video
+                                  srcWebm={'15LQfAggvSlUKXbWbjukkel3vYkI4_1cJ'}
+                                  srcMp4={'1ZZ7n-1DHCJ13ElTHcMcMo0luCjriYyLd'}
+                                  srcMov={'18aSl5jCH6KoDgZYkmJVi3JosHLluzfj5'}
+                                />
+                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
+                                <Video
+                                  srcWebm={'1NAXZDsbUAAUZirDsh89xxYBDOZCsLN-I'}
+                                  srcMp4={'1cAb_T29HeJ4S9bIiQB-AQN1TIw-UmeUQ'}
+                                  srcMov={'160wXY1o8f8k8Mvli1RfQF13seni6vbmP'}
+                                />
+                              </>
                             )}
-                            {/* <VideoFrameWithId
-                              srcMobile="1izshypkHusjBZJOgFrxyEJupOWEXbTpp"
-                              src="1ipYN-Ou9JKLH7BqblcoWwdjDfjSXXaZC"
-                              title="Dayger Woman"
-                              className="xl:max-w-[50vw] mb-4"
-                            /> */}
+                            {(isMobile && isWidthGreaterThanHeight) ||
+                              (!isMobile && (
+                                <>
+                                  <Video
+                                    srcWebm={'1Gh8GsK1iIn0F5hivSHjQU6HfZdMzmnEQ'}
+                                    srcMp4={'1FDG660sfu5dYsicn1teT43Vn5DEUdILz'}
+                                    srcMov={'1SAvDEKOp980RsR5Xu2tmd7pCaefeMNp2'}
+                                    className="w-full"
+                                  />
+                                  <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
+                                  <Video
+                                    srcWebm={'1voAl8JJqpzw48uzasLbgbynB7O_Qm_rs'}
+                                    srcMp4={'1uuZnCWkTJoGZ1lKiVbUj3PKdZGdE2sgS'}
+                                    srcMov={'1PPFi1z5Ebmk5s46hsGbart7NN-NoYhgO'}
+                                    className="w-full"
+                                  />
+                                </>
+                              ))}
+
                             <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
-                            {isMobile ? (
-                              <Video
-                                srcWebm={'12mEuxPIG9y-YR6PSu74jRUkb11aLDHz_'}
-                                srcMov={'1j0sRbeKKtZmw5p1jGPkmKnnzNWI-fp1E'}
-                              />
-                            ) : (
-                              <Video
-                                srcWebm={'1qqeK5OA5wMszeuQG_U3ae4OsUIW76Wh7'}
-                                srcMov={'1iqFCDDPV5SWEoL_vRhSHX4femTGEsg2n'}
-                                className="w-full"
-                              />
+                            {isMobile && !isWidthGreaterThanHeight && (
+                              <>
+                                <Video
+                                  srcWebm={'14Us-vetig7gAdAOd4f7rROjtlUBIyurm'}
+                                  srcMp4={'1VUuhlA7ZmsB9SWdkfvfkpT4RSKJsXSfU'}
+                                  srcMov={'1CYnFKCdCAZ74FNqUrVewZ1evdXQ0Zfyv'}
+                                />
+                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
+                                <Video
+                                  srcWebm={'1smpwSErBiWTz9uCXIF6nQFqiijNApc-X'}
+                                  srcMp4={'1L21tRD1C4DHhGwyL7eTSQL7WBLsj2T92'}
+                                  srcMov={'1e27VpiWv5yIZhsl4HU7gFfuddM_5Ak8b'}
+                                />
+                              </>
                             )}
-                            {/* <VideoFrameWithId
-                              srcMobile="1j0sRbeKKtZmw5p1jGPkmKnnzNWI-fp1E"
-                              src="1iqFCDDPV5SWEoL_vRhSHX4femTGEsg2n"
-                              title="Dayger Man"
-                              className="xl:max-w-[50vw]"
-                            /> */}
+                            {(isMobile && isWidthGreaterThanHeight) ||
+                              (!isMobile && (
+                                <>
+                                  <Video
+                                    srcWebm={'1KCbO4aJEOq_zkao_RkwsUDhADfR01uDc'}
+                                    srcMp4={'1T2RGkMmfGAYqxcdgBEors1M4ySRY8Rj_'}
+                                    srcMov={'1limhKScDiqaOa4azqWfq6EorVbxbocAP'}
+                                    className="w-full"
+                                  />
+                                  <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
+                                  <Video
+                                    srcWebm={'1gFWNyzchoLw3tUOjkxuMB_zDaeWoGxGn'}
+                                    srcMp4={'13FeIuE16Hz5hcRIDOtWR1wtXPvuKCF3m'}
+                                    srcMov={'1CYfsDPwr5cz_gB2-2pXwKbf0sPCkH0JM'}
+                                    className="w-full"
+                                  />
+                                </>
+                              ))}
                           </>
                         )}
                         {product?.data.title == 'Sunrise' && (
                           <>
                             <Video
-                              srcWebm={'1--pbeRK18llW_uCrOBGCyK25WeMZuXru'}
-                              srcMov={'1iuIWXVjvzDP75f71P56xJlOAOz8apIpX'}
+                              srcWebm={'1AeW0PIzsVK-ZjvZmV9fsZkKfCNtIhu1x'}
+                              srcMp4={'1t16ru1MoF3gJiuscXYmIxiYCxhSYdJ5Z'}
+                              srcMov={'1kBtnKT7xaTspm4jhYiofuTgJ7nV9qyYZ'}
                               className={`${isMobileLg ? 'md:max-w-[400px] mx-auto' : 'max-w-[20vw] mx-auto'}`}
                             />
-                            {/* {isMobile ? (
-                               <Video src={'1--pbeRK18llW_uCrOBGCyK25WeMZuXru'}/>
-                              // <VideoFrameWithId
-                              //   src="1iuIWXVjvzDP75f71P56xJlOAOz8apIpX"
-                              //   title="Sunrise"
-                              //   className="xl:max-w-[50vw]"
-                              // />
-                              
-                            ) : (
-                              <VideoFrame
-                                src="https://drive.google.com/file/d/1--pbeRK18llW_uCrOBGCyK25WeMZuXru/preview"
-                                title="Sunrise"
-                                className="xl:max-w-[50vw]"
-                              />
-                            )} */}
                           </>
                         )}
                       </div>
