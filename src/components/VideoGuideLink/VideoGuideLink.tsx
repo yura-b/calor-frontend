@@ -5,6 +5,7 @@ import X from '@assets/images/SignUpHeaderImg/X.png';
 import { motion } from 'framer-motion';
 import videoIcon from '@assets/images/videoIcon.png';
 import Video from '@components/Video';
+import { useMediaQuery } from '@react-hook/media-query';
 interface Props {
   color?: string;
   className?: string;
@@ -16,26 +17,34 @@ interface Props {
 
 const VideoGuideLink: React.FC<Props> = ({ color, className, srcWebm, srcMov, srcMp4, showVideoIcon }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = window.innerWidth < 1024;
+  const isMobile = useMediaQuery('(max-width: 1023px)');
 
-  const isHorizontalOrientation = () => {
-    return window.innerWidth > window.innerHeight;
-  };
+  const [isWidthGreaterThanHeight, setIsWidthGreaterThanHeight] = useState(false);
 
-  const isFullScreen = isMobile && isHorizontalOrientation();
+  useEffect(() => {
+    const checkWindowDimensions = () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      if (screenWidth > screenHeight) {
+        setIsWidthGreaterThanHeight(true);
+      } else {
+        setIsWidthGreaterThanHeight(false);
+      }
+    };
+
+    checkWindowDimensions();
+    window.addEventListener('resize', checkWindowDimensions);
+    return () => {
+      window.removeEventListener('resize', checkWindowDimensions);
+    };
+  }, []);
 
   const openModal = () => {
     setIsOpen(true);
   };
 
   const closeModal = () => setIsOpen(false);
-
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
 
   return (
     <div className="cursor-pointer">
@@ -50,12 +59,17 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, srcWebm, srcMov, sr
         onClose={closeModal}
         aria-labelledby="video-modal"
         aria-describedby="video-description"
-        className={isFullScreen ? 'w-screen h-screen' : isMobile ? 'w-[100vw]' : 'w-[100vw]'}
+        className={'w-screen h-screen relative'}
       >
         <div
-          className={`absolute left-1/2 -translate-x-1/2 w-[100vw] lg:w-[50vw]  ${
-            isFullScreen ? 'top-0 max-w-[60vw] ' : 'top-[30%] lg:top-[20%] '
-          } bg-lighterGray shadow-lg`}
+          className={`absolute left-1/2 -translate-x-1/2  w-[100vw] xl:w-[50vw]
+          ${
+            isMobile
+              ? `${isWidthGreaterThanHeight ? 'max-w-[90vw] md:max-w-[55vw] top-0' : 'top-[25%] max-w-[100vw]'}`
+              : 'top-[10%] lg:top-[20%] md:max-w-[80vw] xl:max-w-[60vw]'
+          }
+           bg-lighterGray shadow-lg`}
+          style={{ overflow: isOpen ? 'hidden' : 'auto' }}
         >
           <button onClick={closeModal} className="block ml-auto mr-2 p-2">
             <img src={X} alt="Close" className="cursor-pointer w-5 h-5" />

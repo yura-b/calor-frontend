@@ -37,7 +37,7 @@ const Video: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, showDescri
 
   return (
     <div className={`relative ${className}`}>
-      {isLoading && isVideoSupported && !isError && <Spinner className="absolute top-1/2 left-1/2" />}
+      {isLoading && isVideoSupported && !isError && <Spinner className="absolute top-[40%] left-[46%]" />}
       {!isHovered && !isTogglePlay && !isLoading && isVideoSupported && !isError && (
         <div className={'h-[40px] absolute top-[40%] left-[42%]'}>
           <YouTubeIcon style={{ fontSize: '58px' }} color="error" />

@@ -86,7 +86,7 @@ const Constructor: FC = () => {
                     Redesign
                   </Button>
                   <Button color="gray" className="w-full my-4 lg:block max-w-sm" onClick={goToNextPage}>
-                    Go to measurement
+                    Go To Measurement
                   </Button>
                 </div>
               </>

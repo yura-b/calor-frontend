@@ -122,6 +122,7 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
                 srcWebm={'1P02ClFpZyAz0lmIl4_eQcYyBprGobC70'}
                 srcMov={'1VDnW8pSbVadGusbbxfVo4bHr2uwsGuc8'}
                 srcMp4={'1OYKazc_mIxEcsXGQ7BmsxBDy3b1q3WGt'}
+                className="w-full"
               />
             </Button>
             {/* <Button color="mintExtraLight" to={paths.design_bag}>
