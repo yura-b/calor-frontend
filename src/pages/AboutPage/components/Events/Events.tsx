@@ -6,8 +6,8 @@ import { EventDto } from '@/api/dto/event.dto';
 import Loader from '@components/ui/Loader';
 import { fadeAnimation, hoverOnButtonAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
-import { ReactSVG } from 'react-svg';
-import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
+import arrow from '@assets/images/SignUpHeaderImg/arrow.png';
+import { Link } from "react-router-dom";
 interface Props {
   event: EventDto;
   i: number;
@@ -27,13 +27,14 @@ const EventCard = ({ event, i }: Props) => (
     className="basis-[48%] lg:basis-[24%] flex flex-col justify-center items-center  lg:mb-8 h-max p-2"
   >
     <motion.div {...hoverOnButtonAnimation}>
-      <img
-        src={event.photo}
-        alt={event.title}
-        className="rounded-full border border-mintExtraLight border-8 object-contain object-cover w-[140px] h-[140px] mx-auto lg:w-[180px] lg:h-[180px]"
-      />
-      <p className={`${styles.subtitle} font-semibold text-center mt-4 `}>{event.title}</p>
-      <p className={`${styles.body2} text-justify text-center `}>{event.announcement}</p>
+      <Link to={`/manager/event/${event._id}`} >
+        <img
+          src={event.photo}
+          alt={event.title}
+          className="rounded-full border-mintExtraLight border-8 object-cover w-[140px] h-[140px] mx-auto lg:w-[180px] lg:h-[180px]"
+        />
+      </Link>
+      <p className={`${styles.subtitle} font-semibold text-center mt-4`}>{event.title}</p>
     </motion.div>
   </motion.div>
 );

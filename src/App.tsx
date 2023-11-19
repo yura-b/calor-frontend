@@ -53,6 +53,7 @@ const ProductPage = lazy(() => import('@/pages/ProductPage/ProductPage'));
 const Reviews = lazy(() => import('@/pages/AccountPage/components/Reviews'));
 const MeasurementPage = lazy(() => import('@/pages/MeasurementPage/MeasurementPage'));
 const CompleteYourLookPage = lazy(() => import('@/pages/CompleteYourLookPage/CompleteYourLookPage'));
+const EventPage = lazy(() => import('@/pages/EventPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 import TokenGuard from '@routes/TokenGuard.tsx';
@@ -126,6 +127,7 @@ const App = () => {
           <Route path={paths.ready_made_products} element={<ReadyMadeProductsPage />} />
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
           <Route path={paths.about} element={<AboutPage />} />
+          <Route path={'manager/event/:id'} element={<EventPage />} />
           <Route
             path={paths.account}
             element={

@@ -55,7 +55,7 @@ const AboutPage: React.FC = (): React.ReactElement => {
       },
     ];
   }
-  console.log(sliderItems);
+
   return (
     <div className="font-poppins h-screen">
       <Head title={titles.about} />
