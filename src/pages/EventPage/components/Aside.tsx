@@ -15,10 +15,10 @@ const Aside = ({ events }) => {
               <div className="flex flex-col items-start">
                 <span>{event.title}</span>
                 <div className="flex flex-row justify-between w-full">
+                  <span className="text-thinGray flex items-center italic">{moment(event.date).format('MMMM Do YYYY')}</span>
                   <Link to={`/manager/event/${event._id}`} className="flex flex-col items-start justify-start">
                     <span className="text-gray font-semibold text-base underline cursor-pointer text-center py-1 font-boldmd:text-lg">Read More</span>
                   </Link>
-                  <span className="text-thinGray flex items-center italic">{moment(event.date).format('MMMM Do YYYY')}</span>
                 </div>
                 </div>
               <Divider variant="fullWidth" />
