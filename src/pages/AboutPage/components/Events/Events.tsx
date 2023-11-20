@@ -7,7 +7,7 @@ import Loader from '@components/ui/Loader';
 import { fadeAnimation, hoverOnButtonAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
 import arrow from '@assets/images/SignUpHeaderImg/arrow.png';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 interface Props {
   event: EventDto;
   i: number;
@@ -27,7 +27,7 @@ const EventCard = ({ event, i }: Props) => (
     className="basis-[48%] lg:basis-[24%] flex flex-col justify-center items-center  lg:mb-8 h-max p-2"
   >
     <motion.div {...hoverOnButtonAnimation}>
-      <Link to={`/manager/event/${event._id}`} >
+      <Link to={`/manager/event/${event._id}`}>
         <img
           src={event.photo}
           alt={event.title}

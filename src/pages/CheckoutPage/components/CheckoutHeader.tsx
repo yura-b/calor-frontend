@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import styles from '@styles/Styles.module.scss';
 import { ReactSVG } from 'react-svg';
 import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
+import { CheckoutSteps, setCheckoutStep } from '@/store/reducers/CheckoutReducer.ts';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 
 const CheckoutHeader = () => {
+  const { step } = useAppSelector((state) => state.checkout);
   const navigate = useNavigate();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
   const arrowHandler = () => {
-    navigate(-1);
+    if (step === CheckoutSteps.FIRST || step === undefined) {
+      navigate(-1);
+    }
+    if (step === CheckoutSteps.SECOND) {
+      dispatch(setCheckoutStep(CheckoutSteps.FIRST));
+    }
+    if (step === CheckoutSteps.THIRD) {
+      dispatch(setCheckoutStep(CheckoutSteps.SECOND));
+    }
     setIsCartOpen(true);
   };
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from '@styles/Styles.module.scss';
-import Head from "@/layouts/Head";
+import Head from '@/layouts/Head';
 import moment from 'moment';
-import Divider from "@mui/material/Divider";
+import Divider from '@mui/material/Divider';
 
 const EventArticle = ({ article }) => {
   return (
@@ -17,12 +17,14 @@ const EventArticle = ({ article }) => {
           <p>{article.announcement}</p>
           <Divider className="py-4" variant="fullWidth" />
           <div className="flex justify-end">
-            <span className="text-thinGray flex items-center italic">{moment(article.date).format('MMMM Do YYYY')}</span>
+            <span className="text-thinGray flex items-center italic">
+              {moment(article.date).format('MMMM Do YYYY')}
+            </span>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default EventArticle;
