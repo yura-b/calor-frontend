@@ -27,7 +27,7 @@ const AccountDetails: React.FC = (): React.ReactElement => {
             {!editing && !deleting ? <Details /> : null}
 
             {!deleting && !editing && (
-              <div className="flex mt-10">
+              <div className="flex items-center mt-10">
                 <div
                   className="bg-custom-red w-[28px] h-[28px] rounded-full flex justify-center items-center mr-2 ml-[5%]  md:ml-[9%] lg:ml-0"
                   onClick={() => setDeleting(!deleting)}
