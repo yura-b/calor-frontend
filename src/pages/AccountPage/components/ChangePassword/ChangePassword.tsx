@@ -16,7 +16,7 @@ const ChangePassword: React.FC = (): React.ReactElement => {
     sendEmailForReset(email).then((res) => {
       if (res) {
         setIsSent(true);
-        dispatch(showMessage(`A password reset email has been sent to your email address!`));
+        dispatch(showMessage('A password reset email has been sent to your email address!'));
       }
     });
   };
@@ -25,31 +25,25 @@ const ChangePassword: React.FC = (): React.ReactElement => {
     <AccountLayout>
       <MainFrame title={'Change Password'} className="overflow-hidden">
         {!isSent && (
-          <div className={'flex flex-col items-center justify-center w-full'}>
-            <h2 className={`${style.header2} text-gray mb-10`}>NEW PASSWORD</h2>
+          <div className={'flex flex-col items-center justify-center  mx-6 mt-4'}>
+            <h2 className={`${style.header2} text-gray mb-6 lg:mb-10`}>NEW PASSWORD</h2>
             <div className={style.body2}>
               Are you sure you want to change your <br /> password?
             </div>
-            <div className="w-full flex flex-col items-center justify-center mt-5">
-              <Button color="gray" onClick={handleClick}>
-                Change Password
-              </Button>
-            </div>
+            <Button color="gray" onClick={handleClick} className="mt-6">
+              Change Password
+            </Button>
           </div>
         )}
         {isSent && (
-          <div className="flex items-center justify-center w-full m-auto ">
-            <div className={' flex flex-col items-center justify-center w-full'}>
-              <h2 className={`${style.header2} text-gray mb-10`}>NEW PASSWORD</h2>
-              <div className={style.body1}>
-                A password reset email has been sent <br /> to your email address. No letter?
-              </div>
-              <div className="w-full flex flex-col items-center justify-center mt-5">
-                <Button color="gray" onClick={handleClick}>
-                  Send Again
-                </Button>
-              </div>
+          <div className={' flex flex-col items-center justify-center mx-6 mt-4'}>
+            <h2 className={`${style.header2} text-gray mb-6 lg:mb-10`}>NEW PASSWORD</h2>
+            <div className={style.body1}>
+              A password reset email has been sent <br /> to your email address. No letter?
             </div>
+            <Button color="gray" onClick={handleClick} className="mt-6">
+              Send Again
+            </Button>
           </div>
         )}
       </MainFrame>

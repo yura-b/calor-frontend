@@ -7,7 +7,7 @@ const Details: React.FC = (): React.ReactElement => {
   const { secondName, firstName, email, phoneNumber } = useAppSelector((state) => state.user);
 
   return (
-    <MainFrame title={'Account Details'} showCloseBtn={true}>
+    <MainFrame title={'Account Details'} showCloseBtn={false}>
       <div className={`${styles.body2} mt-8 lg:mt-0 ${styles.container}`}>
         <div className="lg:flex justify-start gap-20">
           <div className="basis-[30%]">

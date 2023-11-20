@@ -58,7 +58,7 @@ const EditAccountDetails: React.FC = (): React.ReactElement => {
   }, [formik.isValid]);
 
   return (
-    <MainFrame title={'Edit Account Details'} showCloseBtn={true}>
+    <MainFrame title={'Edit Account Details'} showCloseBtn={false}>
       <form onSubmit={formik.handleSubmit} className={`${styles.container} w-full`}>
         <div className="lg:flex gap-4 2xl:gap-20">
           <div className="basis-[48%] 2xl:basis-[40%]">
