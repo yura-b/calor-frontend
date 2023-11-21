@@ -9,7 +9,7 @@ interface Props {
 
 const Busket: React.FC<Props> = ({ count, onClick }) => {
   return (
-    <div className="" onClick={onClick}>
+    <div className="cursor-pointer" onClick={onClick}>
       <div className="relative">
         {count > 0 && (
           <div className="-top-1.5 absolute left-5">

@@ -13,6 +13,9 @@ import {
 } from '@/store/reducers/BasketForNonRegisterUser';
 import { debounce } from 'lodash';
 import { removeFromCartGTMEvent } from '@/helpers/functions/gtm';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import Spinner from '@components/ui/Spinner';
 
 const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement => {
   const dispatch = useDispatch();
@@ -66,14 +69,23 @@ const PurchasedGoods = ({ item }: { item: BasketProduct }): React.ReactElement =
     }
   };
 
+  const [imageLoaded, setImageLoaded] = useState(false);
   return (
-    <div className="mb-10">
+    <div className="mb-5">
       <div className="flex text-gray gap-5">
         <div className="basis-[30%] lg:basis-[50%] lg:relative flex justify-center items-center">
-          <img
+          <LazyLoadImage
+            className="flex justify-center items-center object-contain object-cover  mx-auto w-[140px] md:w-[160px] lg:w-[140px] max-h-[160px]"
             src={item.photo}
-            className="object-contain object-cover w-[120px] h-auto sm:w-[140px] md:w-[160px] lg:w-[140px] lg:z-20"
+            effect="blur"
+            afterLoad={() => {
+              setImageLoaded(true);
+            }}
+            beforeLoad={() => {
+              setImageLoaded(false);
+            }}
           />
+          {imageLoaded ? null : <Spinner className="absolute" />}
         </div>
         <div className="w-full basis-[70%]">
           <div className="flex justify-between items-center">

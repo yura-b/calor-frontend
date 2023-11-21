@@ -60,7 +60,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
     setIsCartOpen(false);
   };
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen || isCartOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
@@ -68,7 +68,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isOpen]);
+  }, [isOpen, isCartOpen]);
 
   useEffect(() => {
     updateHeaderHeight();
