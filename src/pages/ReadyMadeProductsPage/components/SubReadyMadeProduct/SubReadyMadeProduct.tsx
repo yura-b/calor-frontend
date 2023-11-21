@@ -7,7 +7,7 @@ import { getAccessories } from '@/api/products';
 import styles from '@styles/Styles.module.scss';
 import Loader from '@/components/ui/Loader';
 import { useLocation } from 'react-router-dom';
-import { CareProduct } from '@/constants/enums/products.enum';
+import { ReadyMadeProduct } from '@/constants/enums/products.enum';
 import ProductCart from '@/components/ProductCart/ProductCart';
 
 const SubReadyMadeProduct: React.FC = (): React.ReactElement => {
@@ -24,7 +24,7 @@ const SubReadyMadeProduct: React.FC = (): React.ReactElement => {
   const match = location.pathname.match(/\/([^/]+)$/);
   const subPath = match ? match[1] : null;
   const filteredCareProduct = accessories.filter(
-    (category) => category.category.categoryTitle === CareProduct.CAREPRODUCT
+    (category) => category.category.categoryTitle === ReadyMadeProduct.READYMADEPRODUCT
   );
   const filteredSubCareProduct = filteredCareProduct.filter(
     (category) => category.subcategory.toUpperCase() === subPath?.toUpperCase()
@@ -35,11 +35,12 @@ const SubReadyMadeProduct: React.FC = (): React.ReactElement => {
       <Head title={titles.shoeCareProductPage} />
       <MainLayout>
         {isLoading && <Loader />}
+        {isError && <p>Error loading data...</p>}
         <div className={styles.container}>
-          <h1 className={styles.header1}>{subPath?.replace(/_/g, ' ').toLocaleUpperCase()}</h1>
+          <h1 className={styles.header1}>{subPath?.toLocaleUpperCase()} </h1>
           <div className="flex gap-6 justify-start flex-wrap">
             {!filteredSubCareProduct.length && (
-              <p className={`${styles.header2} py-6 text-gray uppercase`}> {subPath?.replace(/_/g, ' ')} coming soon</p>
+              <p className={`${styles.header2} py-6 text-gray uppercase`}> Ready made {subPath} coming soon</p>
             )}
             {filteredSubCareProduct &&
               filteredSubCareProduct.map((subCareProduct, i) => (

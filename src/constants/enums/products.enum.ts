@@ -24,6 +24,7 @@ export enum AccessoriesProduct {
 }
 
 export enum ReadyMadeProduct {
-  READYMADESHOES = 'Ready Made Shoes',
-  READYMADEBAGS = 'Ready Made Bags',
+  READYMADEPRODUCT = 'Ready Made Products',
+  READYMADESHOES = 'Shoes',
+  READYMADEBAGS = 'Bags',
 }

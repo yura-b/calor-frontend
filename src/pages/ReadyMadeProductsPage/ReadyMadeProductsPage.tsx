@@ -8,7 +8,7 @@ import SubCategoriesProductsList from '@/components/SubCategoriesProductsList/Su
 import styles from '@styles/Styles.module.scss';
 import Loader from '@/components/ui/Loader';
 import { useLocation } from 'react-router-dom';
-import { CareProduct } from '@/constants/enums/products.enum';
+import { ReadyMadeProduct } from '@/constants/enums/products.enum';
 import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 
 const ReadyMadeProductsPage: React.FC = (): React.ReactElement => {
@@ -20,10 +20,11 @@ const ReadyMadeProductsPage: React.FC = (): React.ReactElement => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
-  const accessories = products?.data || [];
+
+  const readyProducts = products?.data || [];
   const location = useLocation();
-  const filteredCareProduct = accessories.filter(
-    (category) => category.category.categoryTitle === CareProduct.CAREPRODUCT
+  const filteredCareProduct = readyProducts.filter(
+    (readyProduct) => readyProduct.category.categoryTitle === ReadyMadeProduct.READYMADEPRODUCT
   );
   return (
     <div className="font-poppins h-screen">
@@ -33,10 +34,11 @@ const ReadyMadeProductsPage: React.FC = (): React.ReactElement => {
           <NavigationLinks color="gray" className=" w-auto" />
         </div>
         {isLoading && <Loader />}
+        {isError && <p>Error loading data...</p>}
         {!filteredCareProduct.length && (
           <p className={`${styles.header1} ${styles.container} py-6 text-gray`}>
             {' '}
-            {CareProduct.CAREPRODUCT} coming soon
+            {ReadyMadeProduct.READYMADEPRODUCT} coming soon
           </p>
         )}
         <div className={`${styles.container}`}>
