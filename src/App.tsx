@@ -28,6 +28,7 @@ const AccessoriesPage = lazy(() => import('@pages/AccessoriesPage'));
 const Accessories = lazy(() => import('@pages/AccessoriesPage/components/Accessories'));
 const ShoeCareProductPage = lazy(() => import('@pages/ShoeCareProductPage'));
 const SubCareProduct = lazy(() => import('@pages/ShoeCareProductPage/components/SubCareProduct'));
+const SubReadyMadeProduct = lazy(() => import('@/pages/ReadyMadeProductsPage/components/SubReadyMadeProduct'));
 const AccountPage = lazy(() => import('@pages/AccountPage'));
 const DeleteMyAccountComponent = lazy(
   () => import('@pages/AccountPage/components/AccountDetails/components/DeleteMyAccountComponent')
@@ -125,6 +126,7 @@ const App = () => {
           <Route path={paths.shoe_care_product} element={<ShoeCareProductPage />} />
           <Route path={`${paths.shoe_care_product}/:subCareProduct`} element={<SubCareProduct />} />
           <Route path={paths.ready_made_products} element={<ReadyMadeProductsPage />} />
+          <Route path={`${paths.ready_made_products}/:subReadyMadeProduct`} element={<SubReadyMadeProduct />} />
           <Route path={paths.customer_experience} element={<CustomerExperiencePage />} />
           <Route path={paths.about} element={<AboutPage />} />
           <Route path={'manager/event/:id'} element={<EventPage />} />

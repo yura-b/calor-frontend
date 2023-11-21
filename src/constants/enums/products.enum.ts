@@ -22,3 +22,8 @@ export enum AccessoriesProduct {
   SOUVENIRS = 'Souvenirs',
   TSHIRTS = 'T-Shirts',
 }
+
+export enum ReadyMadeProduct {
+  READYMADESHOES = 'Ready Made Shoes',
+  READYMADEBAGS = 'Ready Made Bags',
+}
