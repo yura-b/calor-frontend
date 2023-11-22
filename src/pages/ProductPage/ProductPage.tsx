@@ -28,6 +28,7 @@ import Spinner from '@components/ui/Spinner';
 import { useNavigate } from 'react-router-dom';
 import constants from '@/constants/constants';
 import Video from '@components/Video';
+import VideoDigital from '@components/VideoDigital';
 
 import { useMediaQuery } from '@react-hook/media-query';
 
@@ -406,19 +407,25 @@ const ProductPage = () => {
                             <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
 
                             {isMobile && !isWidthGreaterThanHeight && (
-                              <Video
-                                srcWebm={'1Prft-gapACdpjTZRNbpGpHPF7ZoeavGi'}
-                                srcMp4={'1TvWAALsnAXxXyMwnl9EGfLSJthTJ71eJ'}
-                                srcMov={'1laCEgk3-7twImft5NIDHI2KjC_mLIkP0'}
+                              // <Video
+                              //   srcWebm={'1Prft-gapACdpjTZRNbpGpHPF7ZoeavGi'}
+                              //   srcMp4={'1TvWAALsnAXxXyMwnl9EGfLSJthTJ71eJ'}
+                              //   srcMov={'1laCEgk3-7twImft5NIDHI2KjC_mLIkP0'}
+                              // />
+                              <VideoDigital
+                                srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.webm'}
                               />
                             )}
                             {(isMobile && isWidthGreaterThanHeight) ||
                               (!isMobile && (
-                                <Video
-                                  srcWebm={'18OqXrJ1YVpzqWoD4YfmcGQtC0zdHlwzB'}
-                                  srcMp4={'1gk_m2iR5sislnHVq3MxxjYjkCCjG2k-D'}
-                                  srcMov={'19gleXiBUABmR8ay6Su_JcqYNo9neyTwL'}
-                                  className="w-full"
+                                // <Video
+                                //   srcWebm={'18OqXrJ1YVpzqWoD4YfmcGQtC0zdHlwzB'}
+                                //   srcMp4={'1gk_m2iR5sislnHVq3MxxjYjkCCjG2k-D'}
+                                //   srcMov={'19gleXiBUABmR8ay6Su_JcqYNo9neyTwL'}
+                                //   className="w-full"
+                                // />
+                                <VideoDigital
+                                  srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo%20WOMAN_H.webm'}
                                 />
                               ))}
 
