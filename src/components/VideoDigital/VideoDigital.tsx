@@ -49,6 +49,8 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
           <video
             className="w-full"
             preload="auto"
+            autoPlay
+            muted
             playsInline
             webkit-playsinline
             // src={srcWebm || srcMp4}
