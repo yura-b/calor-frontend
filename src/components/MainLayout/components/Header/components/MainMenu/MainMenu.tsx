@@ -60,7 +60,7 @@ const MainMenu: React.FC<Props> = ({ isMobileMenuOpen, toggleOpen }): React.Reac
   };
   return (
     <nav className={'flex text-2xl lg:text-base font-semibold m-auto'}>
-      <ul className="w-full flex flex-col gap-2 xl:gap-6 xl:flex-row relative xl:justify-between xl:max-w-[54vw] m-auto">
+      <ul className="w-full flex flex-col gap-2 xl:gap-6 xl:flex-row relative xl:justify-between xl:max-w-[64vw] m-auto">
         {menuItems.map((menuItem, index) => (
           <li key={index} className="relative py-2 xl:py-0">
             <div
