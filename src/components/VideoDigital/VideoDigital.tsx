@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Spinner from '@components/ui/Spinner';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import styles from '@styles/Styles.module.scss';
@@ -21,6 +21,32 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
   const [isVideoSupported, setIsVideoSupported] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [posterUrl, setPosterUrl] = useState('');
+
+  const setDynamicPoster = () => {
+    const video = videoRef.current;
+
+    if (video) {
+      const middleTime = 2;
+      video.currentTime = middleTime;
+
+      video.addEventListener('seeked', () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+
+        if (ctx) {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          const dataUrl = canvas.toDataURL('image/jpeg');
+          setPosterUrl(dataUrl);
+        }
+      });
+    }
+  };
+
   const togglePlay = () => {
     setIsTogglePlay(true);
   };
@@ -36,9 +62,13 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
     checkVideoSupport();
   }, []);
 
+  useEffect(() => {
+    setDynamicPoster();
+  }, [srcMp4]);
+
   return (
     <div className={`relative ${className}`}>
-      {isLoading && isVideoSupported && !isError && <Spinner className="absolute top-[40%] left-[46%]" />}
+      {isLoading && isVideoSupported && !isError && !posterUrl && <Spinner className="absolute top-[40%] left-[46%]" />}
       {!isHovered && !isTogglePlay && !isLoading && isVideoSupported && !isError && (
         <div className={'h-[40px] absolute top-[40%] left-[42%]'}>
           <YouTubeIcon style={{ fontSize: '58px' }} color="error" />
@@ -48,6 +78,7 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
       {!isError ? (
         <div className="flex flex-col justify-between">
           <video
+            ref={videoRef}
             className="w-full"
             preload="auto"
             // autoPlay
@@ -64,7 +95,7 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
             onError={() => {
               setIsError(true);
             }}
-            poster={poster}
+            poster={posterUrl}
           >
             <source src={srcMp4} type="video/mp4" />
             {/* <source src={srcWebm} type="video/webm" />
