@@ -51,7 +51,7 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
             preload="auto"
             playsInline
             webkit-playsinline
-            // src={`https://drive.google.com/uc?id=${src}`}
+            // src={srcWebm || srcMp4}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             controls={isHovered}
@@ -62,8 +62,8 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
               setIsError(true);
             }}
           >
-            <source src={srcWebm} type="video/webm" />
             <source src={srcMp4} type="video/mp4" />
+            <source src={srcWebm} type="video/webm" />
             <source src={srcMov} type="video/mov" />
           </video>
           {showDescription && (

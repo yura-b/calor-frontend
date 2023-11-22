@@ -413,7 +413,8 @@ const ProductPage = () => {
                               //   srcMov={'1laCEgk3-7twImft5NIDHI2KjC_mLIkP0'}
                               // />
                               <VideoDigital
-                                srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.webm'}
+                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.mp4'}
+                                // srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.webm'}
                               />
                             )}
                             {(isMobile && isWidthGreaterThanHeight) ||
@@ -425,7 +426,8 @@ const ProductPage = () => {
                                 //   className="w-full"
                                 // />
                                 <VideoDigital
-                                  srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo%20WOMAN_H.webm'}
+                                  // srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo%20WOMAN_H.webm'}
+                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo%20WOMAN_H.mp4'}
                                 />
                               ))}
 
