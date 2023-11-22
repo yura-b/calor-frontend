@@ -11,9 +11,10 @@ interface Props {
   className?: string;
   showDescription?: boolean;
   name?: string;
+  poster?: string;
 }
 
-const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, showDescription, name }) => {
+const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, showDescription, name, poster }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isTogglePlay, setIsTogglePlay] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,8 +50,8 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
           <video
             className="w-full"
             preload="auto"
-            autoPlay
-            muted
+            // autoPlay
+            // muted
             playsInline
             webkit-playsinline
             // src={srcWebm || srcMp4}
@@ -63,10 +64,11 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
             onError={() => {
               setIsError(true);
             }}
+            poster={poster}
           >
             <source src={srcMp4} type="video/mp4" />
-            <source src={srcWebm} type="video/webm" />
-            <source src={srcMov} type="video/mov" />
+            {/* <source src={srcWebm} type="video/webm" />
+            <source src={srcMov} type="video/mov" /> */}
           </video>
           {showDescription && (
             <div className="">

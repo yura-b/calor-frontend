@@ -414,6 +414,7 @@ const ProductPage = () => {
                               // />
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.mp4'}
+                                poster={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/yolo_woman_V.png'}
                                 // srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.webm'}
                               />
                             )}
@@ -428,6 +429,7 @@ const ProductPage = () => {
                                 <VideoDigital
                                   // srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo%20WOMAN_H.webm'}
                                   srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo%20WOMAN_H.mp4'}
+                                  poster={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/yolo_woman_H.png'}
                                 />
                               ))}
 
