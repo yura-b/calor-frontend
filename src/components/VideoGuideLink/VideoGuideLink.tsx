@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 import videoIcon from '@assets/images/videoIcon.png';
 import Video from '@components/Video';
 import { useMediaQuery } from '@react-hook/media-query';
+import VideoDigital from '@components/VideoDigital';
+
 interface Props {
   color?: string;
   className?: string;
@@ -74,8 +76,8 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, srcWebm, srcMov, sr
           <button onClick={closeModal} className="block ml-auto mr-2 p-2">
             <img src={X} alt="Close" className="cursor-pointer w-5 h-5" />
           </button>
-
-          <Video srcWebm={srcWebm} srcMov={srcMov} srcMp4={srcMp4} className="w-full py-0" />
+          <VideoDigital srcMp4={srcMp4} className="w-full py-0" />
+          {/* <Video srcWebm={srcWebm} srcMov={srcMov} srcMp4={srcMp4} className="w-full py-0" /> */}
         </div>
       </Modal>
     </div>

@@ -97,16 +97,12 @@ const Slider = ({ data, instagramStyles }) => {
               </div>
             ) : (
               <div className={'relative  text-gray cursor-pointer'} key={index} onClick={() => openModal(index)}>
-                  <div className='w-full object-contain  mx-auto'>
-                    <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
-                      <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
-                    </div>
-                    <VideoDigital
-                        hideIcon={true}
-                        hideControls={true}
-                        srcMp4={image.media_url}
-                    />
+                <div className="w-full object-contain  mx-auto">
+                  <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
+                    <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
                   </div>
+                  <VideoDigital hideIcon={true} hideControls={true} srcMp4={image.media_url} />
+                </div>
               </div>
             )
           )}
@@ -118,10 +114,7 @@ const Slider = ({ data, instagramStyles }) => {
                 <img src={X} alt="Close" className=" w-5 h-5 filter brightness-0 invert" />
               </div>
 
-              <ModalContent
-                data={duplicatedImages[clickedIndex]}
-                isVideoSupported={isVideoSupported}
-              />
+              <ModalContent data={duplicatedImages[clickedIndex]} isVideoSupported={isVideoSupported} />
             </div>
           </Modal>
         )}

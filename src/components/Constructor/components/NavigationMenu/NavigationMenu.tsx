@@ -27,11 +27,16 @@ const NavigationMenu = ({}) => {
           />
         </IconButton>
         <div className="flex items-center">
-          <VideoGuideLink
+          {/* <VideoGuideLink
             className="text-gray underline"
             srcWebm={'1SQKSw80FbYOuB3DVwChePYTz6gxkWVC9'}
             srcMp4={'10D7QoQ_F0DzHEzwDZ-OtaZjJArOmnrJn'}
             srcMov={'1zGoyjI4UI8-t-AnUyVJFyoiM7ckNtL9y'}
+            showVideoIcon={true}
+          /> */}
+          <VideoGuideLink
+            className="text-gray underline"
+            srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/gid_2.mp4'}
             showVideoIcon={true}
           />
         </div>

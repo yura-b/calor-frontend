@@ -117,11 +117,16 @@ const HomeMainContent: React.FC<Props> = ({ visions }): React.ReactElement => {
               Design Your Shoe
             </Button>
             <Button color="gray" className="mb-4 max-w-[360px] m-auto block">
-              <VideoGuideLink
+              {/* <VideoGuideLink
                 color="white"
                 srcWebm={'1P02ClFpZyAz0lmIl4_eQcYyBprGobC70'}
                 srcMov={'1VDnW8pSbVadGusbbxfVo4bHr2uwsGuc8'}
                 srcMp4={'1OYKazc_mIxEcsXGQ7BmsxBDy3b1q3WGt'}
+                className="w-full"
+              /> */}
+              <VideoGuideLink
+                color="white"
+                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/gid_1.mp4'}
                 className="w-full"
               />
             </Button>

@@ -15,7 +15,8 @@ import { dataMen, dataWomen } from '@pages/HelpPage/helpers/data';
 import { brandArray, brandSizeArray } from './helpers/data';
 import Button from '@/components/ui/Button';
 import CustomInput from '@/components/input/CustomInput';
-import Video from '@components/Video';
+// import Video from '@components/Video';
+import VideoDigital from '@components/VideoDigital';
 
 const MeasurementPage = () => {
   const measurement = useAppSelector((state) => state.userMeasurement);
@@ -250,11 +251,12 @@ const MeasurementPage = () => {
                   toggleAccordion={toggleSizeGuideAccordion}
                   className="bg-lightGray px-2"
                 >
-                  <Video
+                  {/* <Video
                     srcWebm={'1P9iz5LyDFvGxa3nl_BzJOytfKQq6OJyV'}
                     srcMp4={'1Dd2rbLAMJBLwDAgeXMfnDDHHien8wBIk'}
                     srcMov={'1j3tyHXSoPoFTvTMeMG-SiA0NBk2lMvMF'}
-                  />
+                  /> */}
+                  <VideoDigital srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/gid_3.mp4'} />
                 </AccordionSection>
                 <div className="w-full flex flex-col">
                   <span className="pt-4">

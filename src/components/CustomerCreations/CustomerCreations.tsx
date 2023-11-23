@@ -88,17 +88,12 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
                     </div>
                   ) : (
                     <>
-
-<div className='w-full object-contain  mx-auto' onClick={() => openModal(i)}>
-                    <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
-                      <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
-                    </div>
-                    <VideoDigital
-                        hideIcon={true}
-                        hideControls={true}
-                        srcMp4={item.media_url}
-                    />
-                  </div>
+                      <div className="w-full object-contain  mx-auto" onClick={() => openModal(i)}>
+                        <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
+                          <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
+                        </div>
+                        <VideoDigital hideIcon={true} hideControls={true} srcMp4={item.media_url} />
+                      </div>
                     </>
                   )}
                 </div>
@@ -113,10 +108,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
               <img src={X} alt="Close" className=" w-5 h-5 filter brightness-0 invert" />
             </div>
 
-            <ModalContent
-              data={instagramPhotos[clickedIndex]}
-              isVideoSupported={isVideoSupported}
-            />
+            <ModalContent data={instagramPhotos[clickedIndex]} isVideoSupported={isVideoSupported} />
           </div>
         </Modal>
       </div>
