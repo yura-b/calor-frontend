@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from '@styles/Styles.module.scss';
 import { motion } from 'framer-motion';
 import IconButton from '@mui/material/IconButton';
@@ -12,11 +12,11 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Modal from '@mui/material/Modal';
 import X from '@assets/images/SignUpHeaderImg/X.png';
 import ModalContent from '../ModalContent';
+import VideoDigital from '@components/VideoDigital';
 
 const Slider = ({ data, instagramStyles }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [isVideoSupported, setIsVideoSupported] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -97,17 +97,16 @@ const Slider = ({ data, instagramStyles }) => {
               </div>
             ) : (
               <div className={'relative  text-gray cursor-pointer'} key={index} onClick={() => openModal(index)}>
-                {isVideoLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
-                {isVideoSupported && (
-                  <>
-                    <div className={'h-[40px] absolute top-[0%] right-[4%]'}>
+                  <div className='w-full object-contain  mx-auto'>
+                    <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
                       <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
                     </div>
-                    <video onLoadStart={() => setIsVideoLoading(true)} onLoadedData={() => setIsVideoLoading(false)}>
-                      <source src={image.media_url} className="w-full object-contain  mx-auto " type="video/mp4" />
-                    </video>
-                  </>
-                )}
+                    <VideoDigital
+                        hideIcon={true}
+                        hideControls={true}
+                        srcMp4={image.media_url}
+                    />
+                  </div>
               </div>
             )
           )}
@@ -121,7 +120,6 @@ const Slider = ({ data, instagramStyles }) => {
 
               <ModalContent
                 data={duplicatedImages[clickedIndex]}
-                isVideoLoading={isVideoLoading}
                 isVideoSupported={isVideoSupported}
               />
             </div>

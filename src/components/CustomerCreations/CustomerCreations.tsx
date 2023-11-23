@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styles from '@styles/Styles.module.scss';
 import Button from '@/components/ui/Button';
 import { useQuery } from 'react-query';
@@ -12,6 +12,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import Modal from '@mui/material/Modal';
 import X from '@assets/images/SignUpHeaderImg/X.png';
 import ModalContent from '@pages/CustomerExperiencePage/components/ModalContent';
+import VideoDigital from '@components/VideoDigital';
 
 const CustomerCreations: React.FC = (): React.ReactElement => {
   const { data: instagramData, isLoading } = useQuery('instagramGetPosts', instagramGetPosts, {
@@ -21,7 +22,6 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
   });
   const [instagramPhotos, setInstagramPhotos] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [isVideoSupported, setIsVideoSupported] = useState(true);
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -88,28 +88,17 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
                     </div>
                   ) : (
                     <>
-                      {isVideoLoading && isVideoSupported && <Spinner className="absolute top-1/2 left-1/2" />}
-                      {isVideoSupported && (
-                        <div onClick={() => openModal(i)} className="cursor-pointer relative">
-                          <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
-                            <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
-                          </div>
-                          <video
-                            className="w-full absolute z-10"
-                            onLoadStart={() => setIsVideoLoading(true)}
-                            onLoadedData={() => setIsVideoLoading(false)}
-                          >
-                            <source
-                              src={item.media_url}
-                              className="w-full object-contain max-h-[260px] min-h-[220px] mx-auto"
-                              type="video/mp4"
-                            />
-                          </video>
-                          <div className="absolute top-[50px] left-[2%] z-1 text-center">
-                            The video is not supported in your browser{' '}
-                          </div>
-                        </div>
-                      )}
+
+<div className='w-full object-contain  mx-auto' onClick={() => openModal(i)}>
+                    <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
+                      <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
+                    </div>
+                    <VideoDigital
+                        hideIcon={true}
+                        hideControls={true}
+                        srcMp4={item.media_url}
+                    />
+                  </div>
                     </>
                   )}
                 </div>
@@ -126,7 +115,6 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
 
             <ModalContent
               data={instagramPhotos[clickedIndex]}
-              isVideoLoading={isVideoLoading}
               isVideoSupported={isVideoSupported}
             />
           </div>

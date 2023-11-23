@@ -3,8 +3,9 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 
-const ModalContent = ({ data, isVideoLoading, isVideoSupported }) => {
+const ModalContent = ({ data, isVideoSupported }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
   return (
     <>
       {data.media_type == 'VIDEO' && (
@@ -15,8 +16,8 @@ const ModalContent = ({ data, isVideoLoading, isVideoSupported }) => {
               <video
                 autoPlay
                 controls
-                onLoadStart={() => isVideoLoading(true)}
-                onLoadedData={() => isVideoLoading(false)}
+                onLoadStart={() => setIsVideoLoading(true)}
+                onLoadedData={() => setIsVideoLoading(false)}
                 className="relative w-full z-10"
               >
                 <source src={data.media_url} className="w-full object-contain mx-auto" type="video/mp4" />

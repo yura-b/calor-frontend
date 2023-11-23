@@ -12,9 +12,11 @@ interface Props {
   showDescription?: boolean;
   name?: string;
   poster?: string;
+  hideIcon?: boolean;
+  hideControls?: boolean;
 }
 
-const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, showDescription, name, poster }) => {
+const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, showDescription, name, poster, hideIcon, hideControls }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isTogglePlay, setIsTogglePlay] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +30,7 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
     const video = videoRef.current;
     video?.load();
     if (video) {
-      const middleTime = 2;
+      const middleTime = 0.01;
       video.currentTime = middleTime;
 
       video.addEventListener('seeked', () => {
@@ -68,15 +70,15 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
 
   return (
     <div className={`relative ${className}`}>
-      {isLoading && isVideoSupported && !isError && !posterUrl && <Spinner className="absolute top-[40%] left-[46%]" />}
-      {!isHovered && !isTogglePlay && !isLoading && isVideoSupported && !isError && (
-        <div className={'h-[40px] absolute top-[40%] left-[42%]'}>
+      {isLoading && isVideoSupported && !isError && !posterUrl && <Spinner className="absolute top-[40%] left-[46%] z-10" />}
+      {!isHovered && !isTogglePlay && !isLoading && isVideoSupported && !isError && !hideIcon && (
+        <div className={'h-[40px] absolute top-[40%] left-[42%] z-30'}>
           <YouTubeIcon style={{ fontSize: '58px' }} color="error" />
         </div>
       )}
 
       {!isError ? (
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between z-20">
           <video
             ref={videoRef}
             className="w-full"
@@ -86,7 +88,7 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
             playsInline
             webkit-playsinline
             // src={srcWebm || srcMp4}
-            onMouseEnter={() => setIsHovered(true)}
+            onMouseEnter={() => !hideControls ? setIsHovered(true) : setIsHovered(false)}
             onMouseLeave={() => setIsHovered(false)}
             controls={isHovered}
             onPlay={togglePlay}
@@ -101,6 +103,9 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
             {/* <source src={srcWebm} type="video/webm" />
             <source src={srcMov} type="video/mov" /> */}
           </video>
+          {!isLoading && isError || !isLoading && !isVideoSupported &&  <div className="absolute top-[50px] left-[2%] z-2 text-center">
+                            The video is not supported in your browser{' '}
+                          </div>}
           {showDescription && (
             <div className="">
               <p className={`${styles.subtitle} py-2 mx-auto`}>{name}</p>
