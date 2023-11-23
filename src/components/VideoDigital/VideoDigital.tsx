@@ -26,7 +26,7 @@ const VideoDigital: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, sho
 
   const setDynamicPoster = () => {
     const video = videoRef.current;
-
+    video?.load();
     if (video) {
       const middleTime = 2;
       video.currentTime = middleTime;
