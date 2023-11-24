@@ -97,11 +97,16 @@ const Slider = ({ data, instagramStyles }) => {
               </div>
             ) : (
               <div className={'relative  text-gray cursor-pointer'} key={index} onClick={() => openModal(index)}>
-                <div className="w-full object-contain  mx-auto">
+                <div className="w-full object-contain  mx-auto relative">
                   <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
                     <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
                   </div>
-                  <VideoDigital hideIcon={true} hideControls={true} srcMp4={image.media_url} />
+                  <VideoDigital
+                    hideIcon={true}
+                    hideControls={true}
+                    srcMp4={image.media_url}
+                    className="max-w-[220px] min-h-[360px]"
+                  />
                 </div>
               </div>
             )
@@ -109,7 +114,10 @@ const Slider = ({ data, instagramStyles }) => {
         </motion.div>
         {instagramStyles && (
           <Modal open={isModalOpen} onClose={closeModal} style={{ background: 'rgba(0, 0, 0, 0.8)' }}>
-            <div className="mx-auto      flex flex-col items-center justify-center  w-[40vw] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div
+              className="w-full flex flex-col items-center justify-center  w-[40vw] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              style={{ outline: 'none' }}
+            >
               <div className="cursor-pointer w-auto p-2" onClick={closeModal}>
                 <img src={X} alt="Close" className=" w-5 h-5 filter brightness-0 invert" />
               </div>

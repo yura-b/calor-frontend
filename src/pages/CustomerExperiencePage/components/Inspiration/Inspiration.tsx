@@ -80,7 +80,7 @@ const Inspiration: React.FC = () => {
           <div className="flex justify-between overflow-x-auto flex-row gap-2 mx-auto lg:gap-10">
             {homeCustomerCreations.map((item, i) => (
               <div className="flex justify-center items-center lg:basis-1/5  my-4" key={i}>
-                <div className={'w-36 lg:w-full relative'}>
+                <div className={'w-[120px] lg:w-full relative'}>
                   <LazyLoadImage
                     src={item.media_url}
                     className=" object-contain object-cover  mx-auto z-10 min-h-[220px] max-h-[220px] w-[120px]"

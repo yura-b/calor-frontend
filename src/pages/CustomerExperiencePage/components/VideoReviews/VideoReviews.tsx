@@ -27,7 +27,6 @@ const VideoReviews: React.FC = () => {
       rating: 1,
       description: '',
     },
-
     {
       srcWebm: '1KKuAMcwRG-VNTBluBv5myrejNOnqDDjr',
       srcMov: '1yealOepucRRhXAL6MQ5Nh6Ly6deS2z2T',
@@ -49,7 +48,8 @@ const VideoReviews: React.FC = () => {
     },
 
     // {
-    //   srcWebm: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
+    //   srcMp4: '1OKB7_hwsTSunDqRtLHSZGF6tMHBV1a4D',
+    //   // srcWebm: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
     //   name: 'Hermans',
     //   date: '22',
     //   rating: 1,
@@ -72,13 +72,14 @@ const VideoReviews: React.FC = () => {
       rating: 1,
       description: '',
     },
-    // {
-    //   srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Roshi.mp4',
-    //   name: 'Roshi',
-    //   date: '22',
-    //   rating: 1,
-    //   description:'',
-    // },
+
+    {
+      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/roshi1.mp4',
+      name: 'Roshi',
+      date: '22',
+      rating: 1,
+      description: '',
+    },
   ];
   const mobileBreakpoint = 640;
   const isMobile = useMediaQuery('(max-width: 767px)');
@@ -126,12 +127,9 @@ const VideoReviews: React.FC = () => {
       >
         <h1 className={`${styles.header1}  pt-4 pb-2 lg:pt-0 text-center`}>Video Reviews</h1>
         <div className="text-center w-full">
-          <div className="flex gap-4 md:gap-6 flex-wrap md:justify-start">
+          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {displayedVideoGuides.map((video, i) => (
-              <div
-                className={'py-0 lg:py-2 md:max-w-[44%]  lg:max-w-[30%]  xl:max-w-[23%]  relative  lg:min-h-[300px]'}
-                key={i}
-              >
+              <div className={'  relative  lg:min-h-[200px]'} key={i}>
                 <VideoDigital srcMp4={video.srcMp4} name={video.name} showDescription={true} />
                 {/* <Video
                   srcWebm={video.srcWebm}
@@ -140,7 +138,6 @@ const VideoReviews: React.FC = () => {
                   showDescription={true}
                   name={video.name}
                 /> */}
-
                 {/* <StarRating rating={video.rating} />
                 <div className="px-6">
                   <Description text={video.description} />
