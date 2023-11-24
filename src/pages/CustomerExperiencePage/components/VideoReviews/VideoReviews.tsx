@@ -47,14 +47,14 @@ const VideoReviews: React.FC = () => {
       description: '',
     },
 
-    // {
-    //   srcMp4: '1OKB7_hwsTSunDqRtLHSZGF6tMHBV1a4D',
-    //   // srcWebm: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
-    //   name: 'Hermans',
-    //   date: '22',
-    //   rating: 1,
-    //   description:''
-    // },
+    {
+      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/hermans.mp4',
+      // srcWebm: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
+      name: 'Hermans',
+      date: '22',
+      rating: 1,
+      description:''
+    },
 
     {
       srcWebm: '1Kaq5Ri5QIllwv7d0FJhUVoUPMdqjtVO8',
