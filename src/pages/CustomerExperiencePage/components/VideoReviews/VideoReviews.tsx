@@ -46,10 +46,8 @@ const VideoReviews: React.FC = () => {
       rating: 1,
       description: '',
     },
-
     {
       srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/hermans.mp4',
-      // srcWebm: '1VxU8n8n9_M2Jnksng4hBnI8bphmls3Wj',
       name: 'Hermans',
       date: '22',
       rating: 1,
