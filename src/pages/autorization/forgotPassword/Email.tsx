@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import { validationSchemaForSignUp } from '@/helpers/validation/formValidation.ts';
 import { sendEmailForReset } from '@/api/authorization.ts';
 import { useAppDispatch } from '@/store/hooks/hooks.ts';
-import { showMessage } from '@/store/reducers/StatusReducer.ts';
+import { errorCorrupted, showMessage } from '@/store/reducers/StatusReducer.ts';
 import CustomizedSnackbars from '@components/admin/CustomizedSnackbars.tsx';
 
 const Email = () => {
@@ -19,9 +19,13 @@ const Email = () => {
     },
     validationSchema: validationSchemaForSignUp,
     onSubmit: ({ email }) => {
-      sendEmailForReset(email).then(() => {
+      sendEmailForReset(email).
+      then(() => {
         dispatch(showMessage('Letter was sent to your email'));
-      });
+      })
+        .catch((e) => {
+          dispatch(errorCorrupted(e.response.data.message));
+        });
     },
   });
   return (
