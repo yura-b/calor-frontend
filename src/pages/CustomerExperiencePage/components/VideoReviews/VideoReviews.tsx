@@ -51,7 +51,7 @@ const VideoReviews: React.FC = () => {
       name: 'Hermans',
       date: '22',
       rating: 1,
-      description:''
+      description: '',
     },
 
     {
@@ -80,13 +80,14 @@ const VideoReviews: React.FC = () => {
     },
   ];
   const mobileBreakpoint = 640;
-  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isMobile = useMediaQuery('(max-width: 1023px)');
+  const isLargeScreen = useMediaQuery('(min-width: 1024px) and (max-width: 1279px)');
   const [showAll, setShowAll] = useState(false);
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
-  const displayedVideoGuides = showAll ? videoGuides : videoGuides.slice(0, isMobile ? 2 : 4);
+  const displayedVideoGuides = showAll ? videoGuides : videoGuides.slice(0, isMobile ? 2 : isLargeScreen ? 3 : 4);
 
   const Description = ({ text }) => {
     const [expanded, setExpanded] = useState(false);
@@ -161,7 +162,12 @@ const VideoReviews: React.FC = () => {
               {showAll ? 'Show Less' : 'Show All'}
             </button>
           )}
-          {videoGuides.length > 4 && !isMobile && (
+          {videoGuides.length > 3 && isLargeScreen && (
+            <button className="text-gray font-bold mt-4" onClick={toggleShowAll}>
+              {showAll ? 'Show Less' : 'Show All'}
+            </button>
+          )}
+          {videoGuides.length > 4 && !isMobile && !isLargeScreen && (
             <button className="text-gray font-bold mt-4" onClick={toggleShowAll}>
               {showAll ? 'Show Less' : 'Show All'}
             </button>

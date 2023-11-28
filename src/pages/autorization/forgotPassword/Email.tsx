@@ -19,10 +19,10 @@ const Email = () => {
     },
     validationSchema: validationSchemaForSignUp,
     onSubmit: ({ email }) => {
-      sendEmailForReset(email).
-      then(() => {
-        dispatch(showMessage('Letter was sent to your email'));
-      })
+      sendEmailForReset(email)
+        .then(() => {
+          dispatch(showMessage('Letter was sent to your email'));
+        })
         .catch((e) => {
           dispatch(errorCorrupted(e.response.data.message));
         });
