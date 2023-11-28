@@ -8,8 +8,6 @@ import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
 
 import { useMediaQuery } from '@react-hook/media-query';
-
-import Video from '@components/Video';
 import VideoDigital from '@components/VideoDigital';
 
 const VideoReviews: React.FC = () => {
@@ -130,13 +128,6 @@ const VideoReviews: React.FC = () => {
             {displayedVideoGuides.map((video, i) => (
               <div className={'  relative  lg:min-h-[200px]'} key={i}>
                 <VideoDigital srcMp4={video.srcMp4} name={video.name} showDescription={true} />
-                {/* <Video
-                  srcWebm={video.srcWebm}
-                  srcMov={video.srcMov}
-                  srcMp4={video.srcMp4}
-                  showDescription={true}
-                  name={video.name}
-                /> */}
                 {/* <StarRating rating={video.rating} />
                 <div className="px-6">
                   <Description text={video.description} />

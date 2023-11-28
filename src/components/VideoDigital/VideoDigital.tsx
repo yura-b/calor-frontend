@@ -4,29 +4,15 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import styles from '@styles/Styles.module.scss';
 
 interface Props {
-  srcWebm?: string;
   srcMp4?: string;
-  srcMov?: string;
-  title?: string;
   className?: string;
   showDescription?: boolean;
   name?: string;
-  poster?: string;
   hideIcon?: boolean;
   hideControls?: boolean;
 }
 
-const VideoDigital: React.FC<Props> = ({
-  srcWebm,
-  srcMp4,
-  srcMov,
-  className,
-  showDescription,
-  name,
-  poster,
-  hideIcon,
-  hideControls,
-}) => {
+const VideoDigital: React.FC<Props> = ({ srcMp4, className, showDescription, name, hideIcon, hideControls }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isTogglePlay, setIsTogglePlay] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -95,11 +81,8 @@ const VideoDigital: React.FC<Props> = ({
             ref={videoRef}
             className="w-full"
             preload="auto"
-            // autoPlay
-            // muted
             playsInline
             webkit-playsinline
-            // src={srcWebm || srcMp4}
             onMouseEnter={() => (!hideControls ? setIsHovered(true) : setIsHovered(false))}
             onMouseLeave={() => setIsHovered(false)}
             controls={isHovered}
@@ -112,8 +95,6 @@ const VideoDigital: React.FC<Props> = ({
             poster={posterUrl}
           >
             <source src={srcMp4} type="video/mp4" />
-            {/* <source src={srcWebm} type="video/webm" />
-            <source src={srcMov} type="video/mov" /> */}
           </video>
           {(!isLoading && isError) ||
             (!isLoading && !isVideoSupported && (

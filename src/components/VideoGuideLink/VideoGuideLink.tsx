@@ -4,20 +4,17 @@ import X from '@assets/images/SignUpHeaderImg/X.png';
 
 import { motion } from 'framer-motion';
 import videoIcon from '@assets/images/videoIcon.png';
-import Video from '@components/Video';
 import { useMediaQuery } from '@react-hook/media-query';
 import VideoDigital from '@components/VideoDigital';
 
 interface Props {
   color?: string;
   className?: string;
-  srcWebm?: string;
-  srcMov?: string;
   srcMp4?: string;
   showVideoIcon?: boolean;
 }
 
-const VideoGuideLink: React.FC<Props> = ({ color, className, srcWebm, srcMov, srcMp4, showVideoIcon }) => {
+const VideoGuideLink: React.FC<Props> = ({ color, className, srcMp4, showVideoIcon }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 1023px)');
 
@@ -77,7 +74,6 @@ const VideoGuideLink: React.FC<Props> = ({ color, className, srcWebm, srcMov, sr
             <img src={X} alt="Close" className="cursor-pointer w-5 h-5" />
           </button>
           <VideoDigital srcMp4={srcMp4} className="w-full py-0" />
-          {/* <Video srcWebm={srcWebm} srcMov={srcMov} srcMp4={srcMp4} className="w-full py-0" /> */}
         </div>
       </Modal>
     </div>

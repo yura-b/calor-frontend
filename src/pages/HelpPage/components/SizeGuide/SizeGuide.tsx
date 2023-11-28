@@ -6,7 +6,6 @@ import AccordionSection from '@components/AccordionSection';
 import SizeTable from '../SizeTable';
 import ShoeSizeTable from '../ShoeSizeTable';
 import { dataWomen, dataMen } from '../../helpers/data';
-// import Video from '@components/Video';
 import VideoDigital from '@components/VideoDigital';
 
 const SizeGuide: React.FC = () => {
@@ -58,11 +57,6 @@ const SizeGuide: React.FC = () => {
 
         <AccordionSection title="Shoe" isOpen={isAccordionOpen} toggleAccordion={toggleAccordion}>
           <div className="my-4">
-            {/* <Video
-              srcWebm={'1P9iz5LyDFvGxa3nl_BzJOytfKQq6OJyV'}
-              srcMp4={'1Dd2rbLAMJBLwDAgeXMfnDDHHien8wBIk'}
-              srcMov={'1j3tyHXSoPoFTvTMeMG-SiA0NBk2lMvMF'}
-            /> */}
             <VideoDigital srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/gid_3.mp4'} />
           </div>
           <div>

@@ -27,7 +27,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Spinner from '@components/ui/Spinner';
 import { useNavigate } from 'react-router-dom';
 import constants from '@/constants/constants';
-import Video from '@components/Video';
 import VideoDigital from '@components/VideoDigital';
 
 import { useMediaQuery } from '@react-hook/media-query';
@@ -36,7 +35,6 @@ const ProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 767px)');
-  const isMobileLg = useMediaQuery('(max-width: 1023px)');
 
   const [dynamicId, setDynamicId] = useState(id || '');
   const { userId, access_token } = useAppSelector((state) => state.user);
@@ -407,51 +405,26 @@ const ProductPage = () => {
                             <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
 
                             {isMobile && !isWidthGreaterThanHeight && (
-                              // <Video
-                              //   srcWebm={'1Prft-gapACdpjTZRNbpGpHPF7ZoeavGi'}
-                              //   srcMp4={'1TvWAALsnAXxXyMwnl9EGfLSJthTJ71eJ'}
-                              //   srcMov={'1laCEgk3-7twImft5NIDHI2KjC_mLIkP0'}
-                              // />
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.mp4'}
-                                // poster={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/yolo_woman_V.png'}
                               />
                             )}
                             {(isMobile && isWidthGreaterThanHeight) ||
                               (!isMobile && (
-                                // <Video
-                                //   srcWebm={'18OqXrJ1YVpzqWoD4YfmcGQtC0zdHlwzB'}
-                                //   srcMp4={'1gk_m2iR5sislnHVq3MxxjYjkCCjG2k-D'}
-                                //   srcMov={'19gleXiBUABmR8ay6Su_JcqYNo9neyTwL'}
-                                //   className="w-full"
-                                // />
                                 <VideoDigital
-                                  // srcWebm={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo%20WOMAN_H.webm'}
                                   srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_H.mp4'}
-                                  // poster={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/yolo_woman_H.png'}
                                 />
                               ))}
 
                             <p className={`${styles.body2} font-bold mb-2 mt-4`}>Yolo Man</p>
 
                             {isMobile && !isWidthGreaterThanHeight && (
-                              // <Video
-                              //   srcWebm={'1lMvlRgVtZ6tZgzTngYM1TDx66ktprmQc'}
-                              //   srcMp4={'1ZiLsXQspQ67x1DrVLFgtGdgaJj2dXkwW'}
-                              //   srcMov={'1LNpcuHSlwrmV_99BiR-i32OIhDAQuj8B'}
-                              // />
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_V.mp4'}
                               />
                             )}
                             {(isMobile && isWidthGreaterThanHeight) ||
                               (!isMobile && (
-                                // <Video
-                                //   srcWebm={'1lgm98Ml3YC3ukmiJq1JOjgJ2P4flvRAO'}
-                                //   srcMp4={'1Ph36XTt190l6JdfrOnXdUvMpKRfdJhlI'}
-                                //   srcMov={'1GwkNIHKP1d7YkO09g5H2gQtZuamMfn7b'}
-                                //   className="w-full"
-                                // />
                                 <VideoDigital
                                   srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_H.mp4'}
                                 />
@@ -463,20 +436,10 @@ const ProductPage = () => {
                             <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
                             {isMobile && !isWidthGreaterThanHeight && (
                               <>
-                                {/* <Video
-                                  srcWebm={'15LQfAggvSlUKXbWbjukkel3vYkI4_1cJ'}
-                                  srcMp4={'1ZZ7n-1DHCJ13ElTHcMcMo0luCjriYyLd'}
-                                  srcMov={'18aSl5jCH6KoDgZYkmJVi3JosHLluzfj5'}
-                                /> */}
                                 <VideoDigital
                                   srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WOMAN_V.mp4'}
                                 />
                                 <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
-                                {/* <Video
-                                  srcWebm={'1NAXZDsbUAAUZirDsh89xxYBDOZCsLN-I'}
-                                  srcMp4={'1cAb_T29HeJ4S9bIiQB-AQN1TIw-UmeUQ'}
-                                  srcMov={'160wXY1o8f8k8Mvli1RfQF13seni6vbmP'}
-                                /> */}
                                 <VideoDigital
                                   srcMp4={
                                     'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WooMAN_business_V.mp4'
@@ -487,22 +450,10 @@ const ProductPage = () => {
                             {(isMobile && isWidthGreaterThanHeight) ||
                               (!isMobile && (
                                 <>
-                                  {/* <Video
-                                    srcWebm={'1Gh8GsK1iIn0F5hivSHjQU6HfZdMzmnEQ'}
-                                    srcMp4={'1FDG660sfu5dYsicn1teT43Vn5DEUdILz'}
-                                    srcMov={'1SAvDEKOp980RsR5Xu2tmd7pCaefeMNp2'}
-                                    className="w-full"
-                                  /> */}
                                   <VideoDigital
                                     srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WOMAN_H.mp4'}
                                   />
                                   <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
-                                  {/* <Video
-                                    srcWebm={'1voAl8JJqpzw48uzasLbgbynB7O_Qm_rs'}
-                                    srcMp4={'1uuZnCWkTJoGZ1lKiVbUj3PKdZGdE2sgS'}
-                                    srcMov={'1PPFi1z5Ebmk5s46hsGbart7NN-NoYhgO'}
-                                    className="w-full"
-                                  /> */}
                                   <VideoDigital
                                     srcMp4={
                                       'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WooMAN_business_H.mp4'
@@ -514,20 +465,10 @@ const ProductPage = () => {
                             <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
                             {isMobile && !isWidthGreaterThanHeight && (
                               <>
-                                {/* <Video
-                                  srcWebm={'14Us-vetig7gAdAOd4f7rROjtlUBIyurm'}
-                                  srcMp4={'1VUuhlA7ZmsB9SWdkfvfkpT4RSKJsXSfU'}
-                                  srcMov={'1CYnFKCdCAZ74FNqUrVewZ1evdXQ0Zfyv'}
-                                /> */}
                                 <VideoDigital
                                   srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_V.mp4'}
                                 />
                                 <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
-                                {/* <Video
-                                  srcWebm={'1smpwSErBiWTz9uCXIF6nQFqiijNApc-X'}
-                                  srcMp4={'1L21tRD1C4DHhGwyL7eTSQL7WBLsj2T92'}
-                                  srcMov={'1e27VpiWv5yIZhsl4HU7gFfuddM_5Ak8b'}
-                                /> */}
                                 <VideoDigital
                                   srcMp4={
                                     'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_business_V.mp4'
@@ -538,22 +479,10 @@ const ProductPage = () => {
                             {(isMobile && isWidthGreaterThanHeight) ||
                               (!isMobile && (
                                 <>
-                                  {/* <Video
-                                    srcWebm={'1KCbO4aJEOq_zkao_RkwsUDhADfR01uDc'}
-                                    srcMp4={'1T2RGkMmfGAYqxcdgBEors1M4ySRY8Rj_'}
-                                    srcMov={'1limhKScDiqaOa4azqWfq6EorVbxbocAP'}
-                                    className="w-full"
-                                  /> */}
                                   <VideoDigital
                                     srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_H.mp4'}
                                   />
                                   <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
-                                  {/* <Video
-                                    srcWebm={'1gFWNyzchoLw3tUOjkxuMB_zDaeWoGxGn'}
-                                    srcMp4={'13FeIuE16Hz5hcRIDOtWR1wtXPvuKCF3m'}
-                                    srcMov={'1CYfsDPwr5cz_gB2-2pXwKbf0sPCkH0JM'}
-                                    className="w-full"
-                                  /> */}
                                   <VideoDigital
                                     srcMp4={
                                       'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_business_H.mp4'
@@ -565,12 +494,6 @@ const ProductPage = () => {
                         )}
                         {product?.data.title == 'Sunrise' && (
                           <>
-                            {/* <Video
-                              srcWebm={'1AeW0PIzsVK-ZjvZmV9fsZkKfCNtIhu1x'}
-                              srcMp4={'1t16ru1MoF3gJiuscXYmIxiYCxhSYdJ5Z'}
-                              srcMov={'1kBtnKT7xaTspm4jhYiofuTgJ7nV9qyYZ'}
-                              className={`${isMobileLg ? 'md:max-w-[400px] mx-auto' : 'max-w-[20vw] mx-auto'}`}
-                            /> */}
                             <VideoDigital
                               srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Sunrise_V.mp4'}
                             />
