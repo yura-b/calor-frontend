@@ -9,6 +9,7 @@ import { getPageSection } from '@/api/manager/pages';
 
 import { useMediaQuery } from '@react-hook/media-query';
 import VideoDigital from '@components/VideoDigital';
+import { hoverOnButtonAnimation } from '@/styles/Animations';
 
 const VideoReviews: React.FC = () => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
@@ -115,6 +116,11 @@ const VideoReviews: React.FC = () => {
     );
   };
 
+  const shouldShowButton =
+    videoGuides.length > 2 &&
+    (((isMobile || isLargeScreen) && videoGuides.length > 3) ||
+      (!isMobile && !isLargeScreen && videoGuides.length > 4));
+
   return (
     <motion.div {...fadeAnimation} id="helpVideoGuides">
       <div
@@ -143,25 +149,18 @@ const VideoReviews: React.FC = () => {
               ) : error ? (
                 <p>Error loading data</p>
               ) : (
-                <a href={`mailto:${email}`} dangerouslySetInnerHTML={{ __html: email || '' }} />
+                <a href={`mailto:${email}`} dangerouslySetInnerHTML={{ __html: email || '' }} className="text-gray" />
               )}
             </span>
           </p>
 
-          {videoGuides.length > 2 && isMobile && (
-            <button className="text-gray font-bold mt-4" onClick={toggleShowAll}>
+          {shouldShowButton && (
+            <motion.button
+              className="bg-gray font-bold mt-4 text-white  px-12 py-2 hover:drop-shadow-2md"
+              onClick={toggleShowAll}
+            >
               {showAll ? 'Show Less' : 'Show All'}
-            </button>
-          )}
-          {videoGuides.length > 3 && isLargeScreen && (
-            <button className="text-gray font-bold mt-4" onClick={toggleShowAll}>
-              {showAll ? 'Show Less' : 'Show All'}
-            </button>
-          )}
-          {videoGuides.length > 4 && !isMobile && !isLargeScreen && (
-            <button className="text-gray font-bold mt-4" onClick={toggleShowAll}>
-              {showAll ? 'Show Less' : 'Show All'}
-            </button>
+            </motion.button>
           )}
         </div>
       </div>

@@ -8,12 +8,12 @@ const ReturnsExchange: React.FC = () => {
     <motion.div {...fadeAnimation} className={`${styles.container}`}>
       <div className="flex flex-col  justify-between mb-2 lg:mb-6">
         <h1 className={`${styles.header1} text-center `}>Returns & Exchange</h1>
-        <p className="py-2 font-bold">What is your return and exchange policy?</p>
+        <p className="py-2 font-bold text-gray">What is your return and exchange policy?</p>
         <p>
           We want you to be completely satisfied with your CALOR purchase. If, for any reason, you're not happy with
           your order, please refer to our Returns & Exchanges policy on our website for detailed instructions.{' '}
         </p>
-        <p className="py-2 font-bold">What if the shoes I ordered don't fit perfectly?</p>
+        <p className="py-2 font-bold text-gray">What if the shoes I ordered don't fit perfectly?</p>
         <p>
           We understand that getting the perfect fit is crucial. If the shoes you ordered from CALOR do not fit
           perfectly, please refer to our Returns & Exchanges policy on our website. We offer hassle-free returns and

@@ -126,14 +126,14 @@ export const aboutLinks = [
     subTitle: 'Our Manufacture',
     path: paths.about + '#our_manufacture',
   },
-  // {
-  //   subTitle: 'Events',
-  //   path: paths.about + '#events',
-  // },
-  // {
-  //   subTitle: 'In The Press',
-  //   path: paths.about + '#in_the_press',
-  // },
+  {
+    subTitle: 'Events',
+    path: paths.about + '#events',
+  },
+  {
+    subTitle: 'In The Press',
+    path: paths.about + '#in_the_press',
+  },
 ];
 export const privacyLinks = [
   {

@@ -4,6 +4,8 @@ export interface EventDto {
   announcement: string;
 
   photo: string;
+
+  _id: string;
 }
 
 export interface PatchEventDto {

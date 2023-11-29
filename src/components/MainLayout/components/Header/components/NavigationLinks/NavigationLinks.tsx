@@ -19,9 +19,6 @@ const formatSegment = (text) => {
 };
 
 const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElement => {
-  const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
-  const [productNames, setProductNames] = useState({});
   const {
     data: products,
     isLoading,
@@ -35,6 +32,15 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
     staleTime: Infinity,
     enabled: !!id,
   });
+  const location = useLocation();
+  const pathnames =
+    product || !id
+      ? location.pathname.split('/').filter((x) => x)
+      : location.pathname
+          .split('/')
+          .filter((x) => x)
+          .slice(0, -1);
+  const [productNames, setProductNames] = useState({});
 
   useEffect(() => {
     if (!isLoading && !isError) {

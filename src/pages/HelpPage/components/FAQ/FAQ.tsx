@@ -145,7 +145,7 @@ const FAQ: React.FC = () => {
             <div>
               {section?.description?.map((item, i) => (
                 <>
-                  <p className={'font-bold'}>
+                  <p className={'font-bold text-gray'}>
                     {i + 1}. {item.question}
                   </p>
                   <p className={' pb-2 '}>{item.answer}</p>

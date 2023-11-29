@@ -8,6 +8,8 @@ import { fadeAnimation, hoverOnButtonAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
 import arrow from '@assets/images/SignUpHeaderImg/arrow.png';
 import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
+import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
 interface Props {
   event: EventDto;
   i: number;
@@ -24,7 +26,7 @@ const EventCard = ({ event, i }: Props) => (
       expanded: { scale: 1, opacity: 1 },
     }}
     transition={{ duration: 0.3, ease: 'easeInOut', delay: i * 0.1 }}
-    className="basis-[48%] lg:basis-[24%] flex flex-col justify-center items-center  lg:mb-8 h-max p-2"
+    className="lg:mb-8 h-max"
   >
     <motion.div {...hoverOnButtonAnimation}>
       <Link to={`/manager/event/${event._id}`}>
@@ -34,13 +36,15 @@ const EventCard = ({ event, i }: Props) => (
           className="rounded-full border-mintExtraLight border-8 object-cover w-[140px] h-[140px] mx-auto lg:w-[180px] lg:h-[180px]"
         />
       </Link>
-      <p className={`${styles.subtitle} font-semibold text-center mt-4`}>{event.title}</p>
+      <div className="line-clamp-2">
+        <p className={`${styles.body1} font-semibold text-center mt-4`}>{event.title}</p>
+      </div>
     </motion.div>
   </motion.div>
 );
 
 const EventsComponent: React.FC = () => {
-  const isLargeScreen = useMediaQuery('(min-width: 1024px)');
+  const isLargeScreen = useMediaQuery('(min-width: 768px)');
   const [events, setEvents] = useState<EventDto[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -103,7 +107,7 @@ const EventsComponent: React.FC = () => {
           {!events.length ? (
             <p className={`${styles.subtitle} text-center mt-4`}>No events</p>
           ) : (
-            <motion.div className={`flex ${showAll ? 'flex-wrap' : ''} gap-2 justify-start`}>
+            <motion.div className={'grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-1 lg:gap-2'}>
               {events.slice(0, showAll ? events.length : maxItemsToShow).map((event, i) => (
                 <EventCard event={event} i={i} />
               ))}

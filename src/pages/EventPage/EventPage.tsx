@@ -41,11 +41,11 @@ const EventPage = () => {
               <Loader />
             ) : (
               <>
-                <div className="flex gap-10">
-                  <div className="w-8/12">
+                <div className="flex flex-col  gap-4 xl:gap-10 xl:flex-row">
+                  <div className="w-full  xl:w-[60%]">
                     <EventArticle article={event} />
                   </div>
-                  <div className="w-4/12 p-10 bg-mintExtraLight">
+                  <div className="w-full  xl:w-[40%] p-6 sm:p-10 bg-mintExtraLight ">
                     <Aside events={events} />
                   </div>
                 </div>

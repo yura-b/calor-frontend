@@ -8,7 +8,7 @@ const Shipping: React.FC = () => {
     <motion.div {...fadeAnimation} className={`${styles.container} border-b border-gray w-full min-h-[100px]`}>
       <div className="flex flex-col  justify-between mb-2 lg:mb-6">
         <h1 className={`${styles.header1} text-center `}>Shipping</h1>
-        <p className="py-2 font-bold">Do you offer international shipping?</p>
+        <p className="py-2 font-bold text-gray">Do you offer international shipping?</p>
         <p>
           Yes, we offer international shipping to many countries worldwide. However, specific delivery destinations may
           be subject to logistical constraints or import regulations. Please refer to our Shipping Information page for
