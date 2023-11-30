@@ -9,6 +9,7 @@ import Loader from '@/components/ui/Loader';
 import { useLocation } from 'react-router-dom';
 import { AccessoriesProduct } from '@/constants/enums/products.enum';
 import ProductCart from '@/components/ProductCart/ProductCart';
+import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 // import {Product} from '@/constants/interfaces/product'
 
 const Accessories: React.FC = (): React.ReactElement => {
@@ -35,6 +36,9 @@ const Accessories: React.FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.shoeCareProductPage} />
       <MainLayout>
+        <div className="hidden lg:block lg:my-4">
+          <NavigationLinks color="gray" className="w-auto" />
+        </div>
         {isLoading && <Loader />}
         <div className={styles.container}>
           <h1 className={styles.header1}>{subPath?.toLocaleUpperCase()}</h1>

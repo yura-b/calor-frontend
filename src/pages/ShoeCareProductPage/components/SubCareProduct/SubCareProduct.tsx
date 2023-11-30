@@ -9,6 +9,7 @@ import Loader from '@/components/ui/Loader';
 import { useLocation } from 'react-router-dom';
 import { CareProduct } from '@/constants/enums/products.enum';
 import ProductCart from '@/components/ProductCart/ProductCart';
+import NavigationLinks from '@components/MainLayout/components/Header/components/NavigationLinks';
 
 const SubCareProduct: React.FC = (): React.ReactElement => {
   const {
@@ -34,6 +35,9 @@ const SubCareProduct: React.FC = (): React.ReactElement => {
     <div className="font-poppins h-screen">
       <Head title={titles.shoeCareProductPage} />
       <MainLayout>
+        <div className="hidden lg:block lg:my-4">
+          <NavigationLinks color="gray" className="w-auto" />
+        </div>
         {isLoading && <Loader />}
         <div className={styles.container}>
           <h1 className={styles.header1}>{subPath?.toLocaleUpperCase()}</h1>
@@ -44,7 +48,7 @@ const SubCareProduct: React.FC = (): React.ReactElement => {
             {filteredSubCareProduct &&
               filteredSubCareProduct.map((subCareProduct, i) => (
                 <div key={i} className=" lg:basis-[32%] sm:basis-[45%] basis-[100%] ">
-                  <ProductCart product={subCareProduct} type="accessories" />
+                  <ProductCart product={subCareProduct} type="accessories" winterShoePrice="" />
                 </div>
               ))}
           </div>
