@@ -6,14 +6,20 @@ import { Link } from 'react-router-dom';
 import { fetchNewsArticles } from '@/api/apiFunctions/newsArticles';
 import Loader from '@/components/ui/Loader';
 
+interface PressDto {
+  newsArticle: string;
+  photo: string;
+  title: string;
+}
+
 const InThePress = () => {
-  const [inThePressArticles, setInThePressArticles] = useState([]);
+  const [inThePressArticles, setInThePressArticles] = useState<PressDto[]>([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchNewsArticlesData = async () => {
-      const newsArticlesData = await fetchNewsArticles();
-      setInThePressArticles(newsArticlesData);
+      const newsArticlesData: PressDto[] = await fetchNewsArticles();
+      setInThePressArticles(newsArticlesData.reverse());
       setLoading(false);
     };
     fetchNewsArticlesData();
