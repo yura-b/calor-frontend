@@ -37,7 +37,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
   useEffect(() => {
     if (!isLoading) {
       const mappedInstagramData = instagramData?.data.data.filter(
-        (item) => item.media_type === 'IMAGE' || item.media_type === 'VIDEO'
+        (item) => item.media_type === 'IMAGE' || item.media_type === 'VIDEO' || item.media_type === 'CAROUSEL_ALBUM'
       );
       setInstagramPhotos(mappedInstagramData.slice(0, 10));
     }
@@ -70,8 +70,14 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
           <div className="flex justify-between overflow-x-auto overflow-y-hidden flex-row gap-2 mx-auto lg:gap-10">
             {instagramPhotos.map((item, i) => (
               <div className="flex justify-center items-start lg:basis-1/5  my-4 h-[220px] " key={i}>
-                <div className={`${item.media_type === 'IMAGE' ? ' min-w-[220px] ' : 'w-[160px]'} lg:w-full relative`}>
-                  {item.media_type === 'IMAGE' ? (
+                <div
+                  className={`${
+                    item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM'
+                      ? ' min-w-[220px] '
+                      : 'w-[160px]'
+                  } lg:w-full relative`}
+                >
+                  {item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM' ? (
                     <div onClick={() => openModal(i)} className="cursor-pointer">
                       <LazyLoadImage
                         src={item.media_url}

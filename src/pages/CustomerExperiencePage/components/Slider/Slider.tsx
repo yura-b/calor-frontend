@@ -78,7 +78,7 @@ const Slider = ({ data, instagramStyles }) => {
           }}
         >
           {duplicatedImages.map((image, index) =>
-            image.media_type === 'IMAGE' ? (
+            image.media_type === 'IMAGE' || image.media_type === 'CAROUSEL_ALBUM' ? (
               <div className="relative cursor-pointer" key={index} onClick={() => openModal(index)}>
                 <LazyLoadImage
                   src={image.media_url}

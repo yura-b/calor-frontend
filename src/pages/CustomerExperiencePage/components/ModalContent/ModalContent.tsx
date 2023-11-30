@@ -42,6 +42,19 @@ const ModalContent = ({ data, isVideoSupported }) => {
           <img src={data.media_url} alt="Lazy-loaded image" onLoad={() => setImageLoaded(true)} className="hidden" />
         </div>
       )}
+      {data.media_type == 'CAROUSEL_ALBUM' && (
+        <div className="relative">
+          <LazyLoadImage
+            src={data.media_url}
+            className={
+              'object-contain object-cover mx-auto h-full max-w-[100vw] sm:max-w-[80vw] max-h-[80vh] lg:max-w-[30vw]'
+            }
+            effect="blur"
+          />
+          {!imageLoaded && <Spinner className="absolute left-1/2 top-1/2" />}
+          <img src={data.media_url} alt="Lazy-loaded image" onLoad={() => setImageLoaded(true)} className="hidden" />
+        </div>
+      )}
     </>
   );
 };
