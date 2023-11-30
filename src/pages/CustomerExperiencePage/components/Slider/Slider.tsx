@@ -82,7 +82,7 @@ const Slider = ({ data, instagramStyles }) => {
               <div className="relative cursor-pointer" key={index} onClick={() => openModal(index)}>
                 <LazyLoadImage
                   src={image.media_url}
-                  className={`object-contain object-cover mx-auto h-full ${
+                  className={`object-cover mx-auto ${
                     instagramStyles ? 'max-h-[420px] max-w-[360px] w-[320px] h-[400px]' : ''
                   }`}
                   effect="blur"

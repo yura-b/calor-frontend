@@ -75,7 +75,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
                     <div onClick={() => openModal(i)} className="cursor-pointer">
                       <LazyLoadImage
                         src={item.media_url}
-                        className="object-contain object-cover mx-auto z-10 w-[300px] lg:w-[220px] xl:w-[240px]"
+                        className="object-cover mx-auto z-10 w-[300px] lg:w-[220px] xl:w-[240px] h-[240px]"
                         effect="blur"
                       />
                       {!imageLoaded && <Spinner className="absolute left-1/2 top-1/2" />}
