@@ -32,15 +32,15 @@ const InThePress = () => {
         <Loader />
       ) : (
         <AnimatePresence initial={false}>
-          <motion.div className="flex flex-wrap gap-4 justify-start text-center items-center">
+          <motion.div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {inThePressArticles.map((item, i) => (
-              <Link
-                to={item.newsArticle}
-                key={i}
-                target="_blank"
-                className="basis-[30%] lg:basis-[15%] bg-lightGray px-3 py-3 "
-              >
-                <motion.img {...hoverOnButtonAnimation} key={i} className="w-full object-contain" src={item.photo} />
+              <Link to={item.newsArticle} key={i} target="_blank" className="flex items-center justify-center">
+                <motion.img
+                  {...hoverOnButtonAnimation}
+                  key={i}
+                  className="w-full object-fit max-h-[160px] max-w-[160px] xl:max-h-[200px]  xl:max-w-[200px] border border-[10px]  border-lightGray"
+                  src={item.photo}
+                />
               </Link>
             ))}
           </motion.div>
