@@ -111,11 +111,11 @@ const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => 
                 ? 'min-h-[210px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[290px] xl:min-h-[300px] 2xl:min-h-[340px]'
                 : isDesignShoe
                 ? 'min-h-[380px] sm:min-h-[310px] md:min-h-[260px] lg:min-h-[320px] xl:min-h-[320px] 2xl:min-h-[400px]'
-                : 'min-h-[380px] sm:min-h-[310px] md:min-h-[260px] lg:min-h-[310px] xl:min-h-[350px] 2xl:min-h-[400px]'
+                : 'min-h-[380px] sm:min-h-[290px] md:min-h-[200px] lg:min-h-[260px] xl:min-h-[300px] 2xl:min-h-[340px]'
             }    relative`}
           >
             <LazyLoadImage
-              className="flex justify-center items-center object-cover w-full h-full mx-auto max-h-[380px] lg:max-h-[400px]"
+              className="flex justify-center items-center object-cover w-[400px] sm:w-[300px] md:w-[200px] lg:w-[280px] xl:w-[300px] 2xl:w-[340px] min-w-[100%]  mx-auto max-h-[380px] sm:max-h-[290px] md:max-h-[200px] lg:max-h-[260px] xl:max-h-[300px] 2xl:max-h-[340px]"
               src={product.photos?.[0] || product.photo}
               effect="blur"
               afterLoad={() => {

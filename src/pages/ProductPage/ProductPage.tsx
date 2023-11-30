@@ -217,7 +217,7 @@ const ProductPage = () => {
         <div className="hidden lg:flex w-full h-[50px] justify-center items-center pt-10 box-border">
           <NavigationLinks color="gray" className="z-10 w-auto" />
         </div>
-        <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-10 ${styles.container}`}>
+        <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-4 ${styles.container}`}>
           {/* Product Slider */}
           <div>
             <Slider

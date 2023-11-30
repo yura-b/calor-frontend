@@ -74,15 +74,15 @@ const Slider: FC<IProps> = ({
               className={`relative  w-full flex justify-center ${
                 dataShoes
                   ? 'z-[-1] min-h-[300px] lg:min-h-[400px] items-center'
-                  : 'min-h-[380px] xs:min-h-[500px] sm:min-h-[500px] lg:min-h-[450px] xl:min-h-[480px] 2xl:min-h-[500px]'
+                  : 'min-h-[380px] xs:min-h-[500px] sm:min-h-[500px] lg:min-h-[400px] xl:min-h-[480px] 2xl:min-h-[500px]'
               }`}
             >
               <LazyLoadImage
                 key={currentIndex}
                 src={images[currentIndex]}
-                className={`object-cover ${isEnlarged ? 'cursor-pointer' : ''} ${
-                  dataShoes ? '-mt-[60px] lg:-mt-[100px]' : ''
-                }`}
+                className={`object-cover w-[380px] xs:w-[500px]  lg:w-[400px] xl:w-[480px] 2xl:w-[500px] min-h-[380px] h-[380px] xs:min-h-[500px] xs:h-[500px] lg:min-h-[400px] lg:h-[400px] xl:min-h-[480px] xl:h-[480px] 2xl:min-h-[500px] 2xl:h-[500px] ${
+                  isEnlarged ? 'cursor-pointer' : ''
+                } ${dataShoes ? '-mt-[60px] lg:-mt-[100px]' : ''}`}
                 style={{ maxHeight: !dataShoes ? '500px' : '' }}
                 alt={`Slider ${currentIndex}`}
                 initial="hidden"
