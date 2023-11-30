@@ -6,6 +6,8 @@ export interface EventDto {
   photo: string;
 
   _id: string;
+
+  date: string;
 }
 
 export interface PatchEventDto {

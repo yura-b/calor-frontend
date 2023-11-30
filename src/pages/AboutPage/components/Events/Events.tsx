@@ -6,7 +6,6 @@ import { EventDto } from '@/api/dto/event.dto';
 import Loader from '@components/ui/Loader';
 import { fadeAnimation, hoverOnButtonAnimation } from '@styles/Animations';
 import styles from '@styles/Styles.module.scss';
-import arrow from '@assets/images/SignUpHeaderImg/arrow.png';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
@@ -69,11 +68,17 @@ const EventsComponent: React.FC = () => {
     setShowAll((prevShowAll) => !prevShowAll);
   };
 
+  const sortedEventsByDate = events.sort((a, b) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    return dateB - dateA;
+  });
+
   return (
     <motion.div {...fadeAnimation} className={`${styles.container}`} id="events">
       <div className="lg:flex items-center justify-between mb-2 lg:mb-6">
         <h1 className={`${styles.header1} text-center `}>Events</h1>
-        {events.length > maxItemsToShow && (
+        {sortedEventsByDate.length > maxItemsToShow && (
           <motion.button
             onClick={handleSeeAllClick}
             className={`${styles.subtitle} cursor-pointer underline hidden lg:block`}
