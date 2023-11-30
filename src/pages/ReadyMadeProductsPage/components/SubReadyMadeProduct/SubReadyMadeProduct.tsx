@@ -38,15 +38,13 @@ const SubReadyMadeProduct: React.FC = (): React.ReactElement => {
         {isError && <p>Error loading data...</p>}
         <div className={styles.container}>
           <h1 className={styles.header1}>{subPath?.toLocaleUpperCase()} </h1>
-          <div className="flex gap-6 justify-start flex-wrap">
-            {!filteredSubCareProduct.length && (
-              <p className={`${styles.header2} py-6 text-gray uppercase`}> Ready made {subPath} coming soon</p>
-            )}
+          {!filteredSubCareProduct.length && (
+            <p className={`${styles.header2} py-6 text-gray uppercase`}> Ready made {subPath} coming soon</p>
+          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4">
             {filteredSubCareProduct &&
               filteredSubCareProduct.map((subCareProduct, i) => (
-                <div key={i} className=" lg:basis-[32%] sm:basis-[45%] basis-[100%] ">
-                  <ProductCart product={subCareProduct} type="accessories" winterShoePrice="" />
-                </div>
+                <ProductCart product={subCareProduct} type="accessories" winterShoePrice="" key={i} />
               ))}
           </div>
         </div>

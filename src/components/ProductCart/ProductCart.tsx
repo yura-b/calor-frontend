@@ -99,8 +99,8 @@ const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => 
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div
-      className={`w-full flex-col my-1 lg:my-5 flex justify-end min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px] ${
-        isHome ? '' : 'min-w-[340px] sm:min-w-0'
+      className={`w-full flex-col my-1 lg:my-5 flex justify-between min-h-[260px] sm:min-h-[300px] lg:min-h-[320px] xl:min-h-[300px] 2xl:min-h-[360px] ${
+        isHome ? '' : 'min-w-[300px] sm:min-w-0'
       }`}
     >
       <div className="min-h-[10vh] flex justify-center items-center">
@@ -130,59 +130,61 @@ const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => 
         </Link>
       </div>
       {/* Product content */}
-      <div className={`${styles.subtitle} my-2 truncate`}>{product.title}</div>
-      <div className="flex flex-row justify-between">
-        <BasicRating includeTitle={false} readOnly={true} size="small" rating={product.rating} />
-        <span>{product?.rating ? product?.rating : '0'}</span>
+      <div>
+        <div className={`${styles.subtitle} my-2 truncate`}>{product.title}d</div>
+        <div className="flex flex-row justify-between">
+          <BasicRating includeTitle={false} readOnly={true} size="small" rating={product.rating} />
+          <span>{product?.rating ? product?.rating : '0'}</span>
+        </div>
+        <div>{product.categoryTitle}</div>
+        {product._id !== constants.DAYGER_ID && (
+          <div className={`${styles.body2} flex flex-row `}>
+            <span>From</span>
+            <span className="font-bold ml-2">$ {product.price}</span>
+          </div>
+        )}
+        {product._id == constants.DAYGER_ID && (
+          <div className={`${styles.body2} flex flex-row `}>
+            <div>
+              <span className="mr-2">From</span>
+              <span className="font-bold">$ {product.price}</span>
+            </div>
+            <div>
+              <span className="mx-2">to</span>
+              <span className="font-bold">$ {winterShoePrice}</span>
+            </div>
+          </div>
+        )}
+        {(userId && type !== 'shoes' && isProductExistInBasket && product?.size?.length == 0) ||
+        (!userId && type !== 'shoes' && isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ? (
+          <div className="flex justify-center items-center text-mint mt-2">
+            <SealCheck className="mr-2" size={32} weight="fill" />
+            Already in your cart
+          </div>
+        ) : null}
+        {(!userId && !isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ||
+        (userId && !isProductExistInBasket && product?.size?.length == 0) ||
+        type === 'shoes' ? (
+          <Button
+            id="gtm-add-to-cart-product"
+            className="max-w-full mt-2"
+            color="transparentMint"
+            to={type === 'shoes' ? `model/${product.title.toLowerCase()}/${product._id}` : null}
+            onClick={handleAddToCart}
+          >
+            {type === 'shoes' ? 'Design' : 'Add to cart'}
+          </Button>
+        ) : (
+          (!isProductExistInBasketNonRegisterUser || !isProductExistInBasket) &&
+          product?.size?.length !== 0 && (
+            <p>
+              <Button className="max-w-full mt-2" color="transparentMint" to={`/product/${product._id}`}>
+                Choose a size
+              </Button>
+            </p>
+          )
+        )}
       </div>
-      <div>{product.categoryTitle}</div>
-      {product._id !== constants.DAYGER_ID && (
-        <div className={`${styles.body2} flex flex-row `}>
-          <span>From</span>
-          <span className="font-bold ml-2">$ {product.price}</span>
-        </div>
-      )}
-      {product._id == constants.DAYGER_ID && (
-        <div className={`${styles.body2} flex flex-row `}>
-          <div>
-            <span className="mr-2">From</span>
-            <span className="font-bold">$ {product.price}</span>
-          </div>
-          <div>
-            <span className="mx-2">to</span>
-            <span className="font-bold">$ {winterShoePrice}</span>
-          </div>
-        </div>
-      )}
-      {(userId && type !== 'shoes' && isProductExistInBasket && product?.size?.length == 0) ||
-      (!userId && type !== 'shoes' && isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ? (
-        <div className="flex justify-center items-center text-mint mt-2">
-          <SealCheck className="mr-2" size={32} weight="fill" />
-          Already in your cart
-        </div>
-      ) : null}
-      {(!userId && !isProductExistInBasketNonRegisterUser && product?.size?.length == 0) ||
-      (userId && !isProductExistInBasket && product?.size?.length == 0) ||
-      type === 'shoes' ? (
-        <Button
-          id="gtm-add-to-cart-product"
-          className="max-w-full mt-2"
-          color="transparentMint"
-          to={type === 'shoes' ? `model/${product.title.toLowerCase()}/${product._id}` : null}
-          onClick={handleAddToCart}
-        >
-          {type === 'shoes' ? 'Design' : 'Add to cart'}
-        </Button>
-      ) : (
-        (!isProductExistInBasketNonRegisterUser || !isProductExistInBasket) &&
-        product?.size?.length !== 0 && (
-          <p>
-            <Button className="max-w-full mt-2" color="transparentMint" to={`/product/${product._id}`}>
-              Choose a size
-            </Button>
-          </p>
-        )
-      )}
     </div>
   );
 };
