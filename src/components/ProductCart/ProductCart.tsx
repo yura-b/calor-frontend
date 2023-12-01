@@ -131,7 +131,7 @@ const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => 
       </div>
       {/* Product content */}
       <div>
-        <div className={`${styles.subtitle} my-2 truncate`}>{product.title}d</div>
+        <div className={`${styles.subtitle} my-2 truncate`}>{product.title}</div>
         <div className="flex flex-row justify-between">
           <BasicRating includeTitle={false} readOnly={true} size="small" rating={product.rating} />
           <span>{product?.rating ? product?.rating : '0'}</span>
