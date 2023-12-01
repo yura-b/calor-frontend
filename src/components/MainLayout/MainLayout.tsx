@@ -4,7 +4,6 @@ import Footer from './components/Footer';
 import { motion } from 'framer-motion';
 import { layoutFadeAnimation } from '@styles/Animations';
 import { useMediaQuery } from '@react-hook/media-query';
-import FacebookMessenger from '../FacebookMessenger/FacebookMessenger';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isLargeScreen = useMediaQuery('(min-width: 1280px)');
@@ -24,24 +23,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       window.removeEventListener('resize', updateHeaderHeight);
     };
   }, []);
-
-  // useEffect(() => {
-  //   if (!sessionStorage.getItem('fb-messanger') || sessionStorage.getItem('fb-messanger') === 'false') {
-  //     if (document.querySelectorAll('.fb-customerchat').length === 1) {
-  //       sessionStorage.setItem('fb-messanger', 'true');
-  //     }
-  //   }
-
-  //   const addFacebookMessangerToSession = () => {
-  //     sessionStorage.setItem('fb-messanger', 'false');
-  //   };
-
-  //   window.addEventListener('beforeunload', addFacebookMessangerToSession);
-
-  //   return () => {
-  //     window.removeEventListener('beforeunload', addFacebookMessangerToSession);
-  //   };
-  // }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -66,12 +47,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       >
         {children}
       </motion.div>
-
-      {/* {sessionStorage.getItem('fb-messanger') !== 'true' ? (
-        <div className="fixed bottom-0 right-0 p-4">
-          <FacebookMessenger />
-        </div>
-      ) : null} */}
       <Footer />
     </div>
   );
