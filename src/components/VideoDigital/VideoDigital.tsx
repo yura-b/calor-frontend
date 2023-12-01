@@ -63,14 +63,29 @@ const VideoDigital: React.FC<Props> = ({ srcMp4, className, showDescription, nam
     setDynamicPoster();
   }, [srcMp4]);
 
+  const toggleVideoPlay = () => {
+    const video = videoRef.current;
+
+    if (video) {
+      if (video.paused) {
+        video.play();
+        setIsTogglePlay(true);
+        setIsHovered(true);
+      } else {
+        video.pause();
+        setIsTogglePlay(false);
+      }
+    }
+  };
+
   return (
     <div className={`relative ${className}`}>
       {isLoading && isVideoSupported && !isError && !posterUrl && (
         <Spinner className="absolute top-[40%] left-[46%] z-10" />
       )}
       {!isHovered && !isTogglePlay && !isLoading && isVideoSupported && !isError && !hideIcon && (
-        <div className={'h-[40px] absolute top-[40%] left-[42%] z-30'}>
-          <YouTubeIcon style={{ fontSize: '58px' }} color="error" />
+        <div className={'h-[50px] absolute top-[40%] left-[42%] z-30'} onClick={toggleVideoPlay}>
+          <YouTubeIcon style={{ fontSize: '68px' }} color="error" />
         </div>
       )}
 
