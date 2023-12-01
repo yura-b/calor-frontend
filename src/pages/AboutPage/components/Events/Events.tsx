@@ -28,15 +28,18 @@ const EventCard = ({ event, i }: Props) => (
     className="lg:mb-8 h-max"
   >
     <motion.div {...hoverOnButtonAnimation}>
-      <Link to={`/manager/event/${event._id}`}>
+      {/* <Link to={`/manager/event/${event._id}`}> */}
         <img
           src={event.photo}
           alt={event.title}
           className="rounded-full border-mintExtraLight border-8 object-cover w-[140px] h-[140px] mx-auto lg:w-[180px] lg:h-[180px]"
         />
-      </Link>
-      <div className="line-clamp-2">
-        <p className={`${styles.body1} font-semibold text-center mt-4`}>{event.title}</p>
+      {/* </Link> */}
+      <div className="line-clamp-2 mt-2 text-center">
+        <span className={`${styles.body1} font-semibold text-center mt-4`}>{event.title}</span>
+      </div>
+      <div className="mt-2">
+        <span className={`${styles.body1} text-center mt-4`}>{event.announcement}</span>
       </div>
     </motion.div>
   </motion.div>
