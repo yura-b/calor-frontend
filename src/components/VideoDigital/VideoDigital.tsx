@@ -34,7 +34,7 @@ const VideoDigital: React.FC<Props> = ({ srcMp4, className, showDescription, nam
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         const ctx = canvas.getContext('2d');
-        
+
         if (ctx) {
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           const dataUrl = canvas.toDataURL('image/jpeg');

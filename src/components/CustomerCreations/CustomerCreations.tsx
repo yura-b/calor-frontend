@@ -69,12 +69,12 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
         {isMobile && (
           <div className="flex justify-between overflow-x-auto overflow-y-hidden flex-row gap-2 mx-auto lg:gap-10">
             {instagramPhotos.map((item, i) => (
-              <div className="flex justify-center items-start lg:basis-1/5  my-4 h-[220px] " key={i}>
+              <div className="flex justify-center items-start lg:basis-1/5   h-[220px] " key={i}>
                 <div
                   className={`${
                     item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM'
                       ? ' min-w-[220px] '
-                      : 'w-[160px]'
+                      : 'w-[200px]'
                   } lg:w-full relative`}
                 >
                   {item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM' ? (
@@ -102,7 +102,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
                           hideIcon={true}
                           hideControls={true}
                           srcMp4={item.media_url}
-                          className="min-h-[200px]"
+                          className="min-h-[200px] w-[200px] h-[420px] -mt-[50px]"
                         />
                       </div>
                     </>

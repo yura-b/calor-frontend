@@ -74,7 +74,7 @@ const Slider: FC<IProps> = ({
               className={`relative  w-full flex justify-center ${
                 dataShoes
                   ? 'z-[-1] min-h-[300px] lg:min-h-[400px] items-center'
-                  : 'min-h-[380px] xs:min-h-[500px] sm:min-h-[500px] lg:min-h-[400px] xl:min-h-[480px] 2xl:min-h-[500px]'
+                  : 'min-h-[390px] xs:min-h-[510px]  lg:min-h-[410px] xl:min-h-[490px] 2xl:min-h-[510px]'
               }`}
             >
               <LazyLoadImage

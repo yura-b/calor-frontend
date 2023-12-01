@@ -98,14 +98,14 @@ const Slider = ({ data, instagramStyles }) => {
             ) : (
               <div className={'relative  text-gray cursor-pointer'} key={index} onClick={() => openModal(index)}>
                 <div className="w-full object-contain  mx-auto relative">
-                  <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
-                    <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
+                  <div className={'h-[50px] absolute top-[64px] right-[4%] z-20'}>
+                    <YouTubeIcon style={{ fontSize: '48px', color: 'white' }} />
                   </div>
                   <VideoDigital
                     hideIcon={true}
                     hideControls={true}
                     srcMp4={image.media_url}
-                    className="max-w-[220px] min-h-[360px]"
+                    className="w-[300px] h-[300px] -mt-[60px]"
                   />
                 </div>
               </div>
