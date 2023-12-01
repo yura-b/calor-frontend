@@ -25,23 +25,23 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!sessionStorage.getItem('fb-messanger') || sessionStorage.getItem('fb-messanger') === 'false') {
-      if (document.querySelectorAll('.fb-customerchat').length === 1) {
-        sessionStorage.setItem('fb-messanger', 'true');
-      }
-    }
+  // useEffect(() => {
+  //   if (!sessionStorage.getItem('fb-messanger') || sessionStorage.getItem('fb-messanger') === 'false') {
+  //     if (document.querySelectorAll('.fb-customerchat').length === 1) {
+  //       sessionStorage.setItem('fb-messanger', 'true');
+  //     }
+  //   }
 
-    const addFacebookMessangerToSession = () => {
-      sessionStorage.setItem('fb-messanger', 'false');
-    };
+  //   const addFacebookMessangerToSession = () => {
+  //     sessionStorage.setItem('fb-messanger', 'false');
+  //   };
 
-    window.addEventListener('beforeunload', addFacebookMessangerToSession);
+  //   window.addEventListener('beforeunload', addFacebookMessangerToSession);
 
-    return () => {
-      window.removeEventListener('beforeunload', addFacebookMessangerToSession);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('beforeunload', addFacebookMessangerToSession);
+  //   };
+  // }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -67,11 +67,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </motion.div>
 
-      {sessionStorage.getItem('fb-messanger') !== 'true' ? (
+      {/* {sessionStorage.getItem('fb-messanger') !== 'true' ? (
         <div className="fixed bottom-0 right-0 p-4">
           <FacebookMessenger />
         </div>
-      ) : null}
+      ) : null} */}
       <Footer />
     </div>
   );
