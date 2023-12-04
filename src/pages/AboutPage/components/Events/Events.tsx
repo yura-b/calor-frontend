@@ -9,41 +9,53 @@ import styles from '@styles/Styles.module.scss';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
+import ReadMore from '@/components/ReadMore';
+import Divider from '@mui/material/Divider';
 interface Props {
   event: EventDto;
   i: number;
 }
 
-const EventCard = ({ event, i }: Props) => (
-  <motion.div
-    key={i}
-    initial="collapsed"
-    animate="expanded"
-    exit="collapsed"
-    variants={{
-      collapsed: { scale: 0, opacity: 0 },
-      expanded: { scale: 1, opacity: 1 },
-    }}
-    transition={{ duration: 0.3, ease: 'easeInOut', delay: i * 0.1 }}
-    className="lg:mb-8 h-max"
-  >
-    <motion.div {...hoverOnButtonAnimation}>
-      {/* <Link to={`/manager/event/${event._id}`}> */}
-      <img
-        src={event.photo}
-        alt={event.title}
-        className="rounded-full border-mintExtraLight border-8 object-cover w-[140px] h-[140px] mx-auto lg:w-[180px] lg:h-[180px]"
-      />
-      {/* </Link> */}
-      <div className="line-clamp-2 mt-2 text-center">
-        <span className={`${styles.body1} font-semibold text-center mt-4`}>{event.title}</span>
-      </div>
-      <div className="mt-2">
-        <span className={`${styles.body1} text-center mt-4`}>{event.announcement}</span>
-      </div>
+const EventCard = ({ event, i }: Props) => {
+  const initialText = (event.announcement || '').split(' ').slice(0, 10).join(' ');
+  const expandedText = event.announcement || '';
+  return (
+    <motion.div
+      key={i}
+      initial="collapsed"
+      animate="expanded"
+      exit="collapsed"
+      variants={{
+        collapsed: { scale: 0, opacity: 0 },
+        expanded: { scale: 1, opacity: 1 },
+      }}
+      transition={{ duration: 0.3, ease: 'easeInOut', delay: i * 0.1 }}
+      className="lg:mb-8 h-max"
+    >
+      <motion.div className="mt-4 sm:mt-0">
+        {/* <Link to={`/manager/event/${event._id}`}> */}
+        <motion.img
+          {...hoverOnButtonAnimation}
+          src={event.photo}
+          alt={event.title}
+          className="rounded-full border-mintExtraLight border-8 object-cover w-[140px] h-[140px] mx-auto lg:w-[180px] lg:h-[180px]"
+        />
+        {/* </Link> */}
+        <div className="line-clamp-2 mt-2 text-center">
+          <span className={`${styles.body1} font-semibold text-center mt-4`}>{event.title}</span>
+        </div>
+        <div className="mt-2">
+          {(event.announcement || '').split(' ').slice(0, 20).length < 10 ? (
+            <span className={`${styles.body1} text-center mt-4`}>{initialText}</span>
+          ) : (
+            <ReadMore initialText={initialText} expandedText={expandedText} className={`${styles.body1}`} />
+          )}
+        </div>
+      </motion.div>
+      <Divider className="pb-4 sm:hidden" variant="fullWidth" />
     </motion.div>
-  </motion.div>
-);
+  );
+};
 
 const EventsComponent: React.FC = () => {
   const isLargeScreen = useMediaQuery('(min-width: 768px)');
@@ -115,7 +127,7 @@ const EventsComponent: React.FC = () => {
           {!events.length ? (
             <p className={`${styles.subtitle} text-center mt-4`}>No events</p>
           ) : (
-            <motion.div className={'grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-1 lg:gap-2'}>
+            <motion.div className={'grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-4 gap-2 md:gap-1 lg:gap-2'}>
               {events.slice(0, showAll ? events.length : maxItemsToShow).map((event, i) => (
                 <EventCard event={event} i={i} />
               ))}
