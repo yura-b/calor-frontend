@@ -17,6 +17,7 @@ import { validationSchemaForCreateReview } from '@/helpers/validation/formValida
 import { getProductById } from '@/api/products';
 import { ProductsDto } from '@/api/dto/products.dto';
 import conditions from '../../../public/Terms and Conditions_CALOR.pdf';
+import CustomTextArea from '@/components/ui/TextArea/CustomTextArea';
 
 interface Props {
   title: string;
@@ -85,7 +86,7 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
 
   return (
     <>
-      <div className="font-poppins  h-full flex flex-col">
+      <div className="font-poppins  h-full flex flex-col text-gray">
         <div className="flex-1 overflow-y-auto md:my-0">
           <ReviewHeader title={title} onClose={onClose} />
           <form onSubmit={formik.handleSubmit} className={'w-full '}>
@@ -119,13 +120,23 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
                   <span className={`${styles.body2} block mb-1 text-xs`}>
                     Share more information with others about the product, including its quality and comfort of use.
                   </span>
-                  <TextareaAutosize
+                  {/* <TextareaAutosize
                     className="w-full h-[60px] pb-8 pt-2 px-2 border-2 border-[#CBD2E0] resize-none "
                     minRows={3}
                     id={'experience'}
                     name={'experience'}
                     placeholder={'Your Review'}
                     value={formik.values.experience}
+                    onChange={formik.handleChange}
+                  /> */}
+                  <CustomTextArea
+                    className="my-2"
+                    placeholder={'Your Review'}
+                    variant="soft"
+                    height={4}
+                    id={'experience'}
+                    name={'experience'}
+                    defaultValue={formik.values.experience || ''}
                     onChange={formik.handleChange}
                   />
                   {Boolean(formik.errors.experience) && <p className={'text-custom-red'}>{formik.errors.experience}</p>}
@@ -140,7 +151,6 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
                     onChange={formik.handleChange}
                     error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                     errorMessage={formik.errors.firstName}
-                    border={'1px solid #D9D9D9'}
                   >
                     First Name
                   </CustomInput>
@@ -152,7 +162,6 @@ const Review: React.FC<Props> = ({ onClose, onSuccess, title, review, productId 
                     onChange={formik.handleChange}
                     error={formik.touched.secondName && Boolean(formik.errors.secondName)}
                     errorMessage={formik.errors.secondName}
-                    border={'1px solid #D9D9D9'}
                   >
                     Last Name
                   </CustomInput>

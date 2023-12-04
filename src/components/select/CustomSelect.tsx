@@ -26,7 +26,7 @@ export const CustomSelect: React.FC<IProps> = ({ handleFunc, array, value }) => 
         sx={{
           minWidth: '150px',
           textAlign: 'center',
-          color: 'black',
+          color: '#404040',
         }}
         value={value}
         onChange={(e: SelectChangeEvent) => {

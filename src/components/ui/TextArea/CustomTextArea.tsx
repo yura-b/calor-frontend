@@ -19,7 +19,7 @@ const CustomTextArea: FC<IProps> = ({ placeholder, variant, height, className, d
         border: '1px solid',
         borderColor: '#D9D9D9',
         borderBottom: '2px solid',
-        borderBottomColor: '#000000',
+        borderBottomColor: '#D9D9D9',
         borderRadius: 0,
         background: 'none',
         fontWeight: '300',

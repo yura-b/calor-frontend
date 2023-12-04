@@ -172,7 +172,7 @@ const MeasurementPage = () => {
                     <span className={'font-bold pt-6 -mb-4'}>
                       {'Input The Brand You Wear'}
                       {selectedBrand === brandArray[brandArray.length - 1] ? (
-                        <span className="text-red-500">*</span>
+                        <span className="text-red-500 text-[14px]">*</span>
                       ) : (
                         ''
                       )}
@@ -184,13 +184,28 @@ const MeasurementPage = () => {
                       value={selectedOtherBrand}
                       onChange={selectedBrandChangeHandler}
                       required={selectedBrand == brandArray[brandArray.length - 1] && selectedBrand !== brandArray[0]}
+                      error={
+                        (isDisabled &&
+                          selectedOtherBrand.length == 0 &&
+                          selectedBrand == brandArray[brandArray.length - 1]) ||
+                        !!brandOtherError
+                      }
+                      errorMessage={
+                        isDisabled &&
+                        selectedOtherBrand.length == 0 &&
+                        selectedBrand == brandArray[brandArray.length - 1]
+                          ? 'This field is required'
+                          : brandModelError !== ''
+                          ? brandModelError
+                          : ''
+                      }
                     />
-                    {brandOtherError && <div className="text-red-500">{brandOtherError}</div>}
+                    {/* {brandOtherError && <div className="text-red-500 text-[14px]">{brandOtherError}</div>}
                     {isDisabled &&
                       selectedOtherBrand.length == 0 &&
                       selectedBrand == brandArray[brandArray.length - 1] && (
-                        <div className="text-red-500 -mt-3">This field is required</div>
-                      )}
+                        <div className="text-red-500 -mt-3 text-[14px]">This field is required</div>
+                      )} */}
                   </>
                 )}
               </div>
@@ -211,11 +226,19 @@ const MeasurementPage = () => {
                 onChange={brandModelChangeHandler}
                 required={selectedBrand !== brandArray[0]}
                 disabled={selectedBrand == brandArray[0]}
+                error={(isDisabled && brandModel.length == 0 && selectedBrand !== brandArray[0]) || !!brandModelError}
+                errorMessage={
+                  isDisabled && brandModel.length == 0 && selectedBrand !== brandArray[0]
+                    ? 'This field is required'
+                    : brandModelError !== ''
+                    ? brandModelError
+                    : ''
+                }
               />
-              {brandModelError && <div className="text-red-500">{brandModelError}</div>}
-              {isDisabled && brandModel.length == 0 && selectedBrand !== brandArray[0] && (
-                <div className="text-red-500 -mt-3">This field is required</div>
-              )}
+              {/* {brandModelError && <div className="text-red-500 text-[14px]">{brandModelError}</div>} */}
+              {/* {isDisabled && brandModel.length == 0 && selectedBrand !== brandArray[0] && (
+                <div className="text-red-500 -mt-3 text-[14px]">This field is required</div>
+              )} */}
               <div
                 className={`flex flex-col bg-gray-300 ${
                   selectedBrand == brandArray[0] ? 'opacity-50 cursor-not-allowed' : ''
@@ -234,7 +257,7 @@ const MeasurementPage = () => {
                   required={selectedBrand !== brandArray[0]}
                 />
                 {isDisabled && brandSize == brandSizeArray[0] && selectedBrand !== brandArray[0] && (
-                  <div className="text-red-500">This field is required</div>
+                  <div className="text-red-500 text-[14px]">This field is required</div>
                 )}
               </div>
               {/* <div className="my-2">

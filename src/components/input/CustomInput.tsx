@@ -47,10 +47,16 @@ const CustomInput: React.FC<IProps> = ({ gap = '2', ...props }) => {
               height: props.height,
               border: props.border,
             }}
+            style={{
+              borderBottom: props.error ? '0 solid #E22D21' : '0 solid #D9D9D9',
+              borderTop: props.error ? '1px solid #E22D21' : '1px solid #D9D9D9',
+              borderLeft: props.error ? '1px solid #E22D21' : '1px solid #D9D9D9',
+              borderRight: props.error ? '1px solid #E22D21' : '1px solid #D9D9D9',
+            }}
             {...props}
           />
         </ThemeProvider>
-        {props.error && <p className={'text-custom-red'}>{props.errorMessage}</p>}
+        {props.error && <p className={'text-custom-red text-[14px]'}>{props.errorMessage}</p>}
       </div>
     </>
   );
