@@ -14,6 +14,8 @@ import rawEditorTextToHTML from '@/helpers/functions/rawEditorTextToHTML.ts';
 import { ProductsDto } from '@/api/dto/products.dto.ts';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './editor.scss';
+import {Trash} from '@phosphor-icons/react'
+
 
 const border = '1px #CBD2E0 solid';
 export type productForm = Omit<ProductsDto, 'photos' | '_id'>;
@@ -165,8 +167,12 @@ const ItemForm: FC<IProps> = ({
     };
   };
   const addNewSize = () => {
-    setSizes((prevState) => [...prevState, { index: prevState.length, size: '' }]);
+    const uniqueIndex = [...new Set(sizes.map(el => el.index))].pop()
+    setSizes((prevState) => [...prevState, { index: (uniqueIndex || 0) + 1, size: '' }]);
   };
+  const removeSize = (index: number) =>{
+    setSizes(prevState => prevState.filter(el=> el.index !== index))
+  }
 
   if (!categories) return;
 
@@ -263,22 +269,22 @@ const ItemForm: FC<IProps> = ({
       )}
 
       {unavailableInputs.size && (
-        <div className={'flex flex-row flex-wrap gap-6'}>
-          {Array.from({ length: sizes.length }).map((_, index) => {
-            const value = sizes.find((size) => size.index === index)?.size.toString();
+        <div className={'flex flex-row items-center flex-wrap gap-6 content-end'}>
+          {sizes.map((el) => {
             return (
-              <div key={Math.random()} className={'w-1/5'}>
+              <div key={el.index} className={'flex flex-col w-1/5 items-center'}>
+                <Trash size={26} color={'red'} className={'cursor-pointer'} onClick={()=>removeSize(el.index)}/>
                 <CustomInput
                   type={InputType.text}
-                  value={value}
-                  onChange={sizeHandler(setSizes, index)}
+                  value={el.size}
+                  onChange={sizeHandler(setSizes, el.index)}
                   border={border}
                 />
               </div>
             );
           })}
 
-          <CustomButton title={'Add size'} handler={addNewSize} styles={'w-1/6 !mx-[18px] !my-[15px]'} />
+          <CustomButton title={'Add size'} handler={addNewSize} styles={'w-1/6 !mx-[18px] !py-5 !my-0'} />
         </div>
       )}
       <CustomButton title={buttonTitle} handler={clickHandler} />

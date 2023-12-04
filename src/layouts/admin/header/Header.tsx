@@ -70,7 +70,7 @@ const Header = () => {
             <div className={'flex flex-col pl-10 gap-5'}>
               <HeaderElement
                 icon={<Package size={size} weight="fill" />}
-                title={'Warehouse'}
+                title={'Available colors'}
                 navigateTo={'/admin/warehouse'}
               />
               <HeaderElement
