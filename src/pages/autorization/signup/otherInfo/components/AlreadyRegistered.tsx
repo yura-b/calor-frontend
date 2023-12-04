@@ -10,7 +10,7 @@ const AlreadyRegistered = () => {
     <div className={'mt-4 flex justify-center mt-10'}>
       <p>
         Already registered?{' '}
-        <span className={'ml-2 underline font-bold'} onClick={signIn}>
+        <span className={'ml-2 underline font-bold cursor-pointer'} onClick={signIn}>
           Sign In
         </span>
       </p>

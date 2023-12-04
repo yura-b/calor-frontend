@@ -11,10 +11,10 @@ const NavigationButtons = ({ isLogin = false }) => {
   };
   return (
     <div className={'flex flex-row justify-end mb-12 w-full'}>
-      <p className={`underline ${isLogin && 'font-bold'}`} onClick={signInHandler}>
+      <p className={`underline ${isLogin && 'font-bold'} cursor-pointer`} onClick={signInHandler}>
         Sign In
       </p>
-      <p className={`ml-6 underline ${!isLogin && 'font-bold'}`} onClick={signUpHandler}>
+      <p className={`ml-6 underline ${!isLogin && 'font-bold'} cursor-pointer`} onClick={signUpHandler}>
         Sign Up
       </p>
     </div>

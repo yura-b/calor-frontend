@@ -12,7 +12,7 @@ const ForgotPassword: React.FC<IProps> = () => {
   };
   return (
     <div className={'flex justify-end items-center mb-6'}>
-      <p onClick={forgotPasswordHandler} className={'underline'}>
+      <p onClick={forgotPasswordHandler} className={'underline cursor-pointer hover:text-mint'}>
         Forgot password?
       </p>
     </div>

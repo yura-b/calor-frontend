@@ -10,7 +10,7 @@ const GoogleSignIn = () => {
   };
 
   return (
-    <div className={'flex flex-col w-full items-center gap-2 max-w-2xl m-5'}>
+    <div className={'flex flex-col w-full items-center gap-2 max-w-2xl p-5 p-5 md:p-0'}>
       <div>or</div>
       <GoogleButton>
         <p>
@@ -20,7 +20,7 @@ const GoogleSignIn = () => {
       <div className={'mt-4 flex-1 align-text-bottom'}>
         <p>
           Not a member?{' '}
-          <span onClick={signupHandler} className={'ml-2 underline font-bold'}>
+          <span onClick={signupHandler} className={'ml-2 underline font-bold cursor-pointer'}>
             Sign Up
           </span>
         </p>

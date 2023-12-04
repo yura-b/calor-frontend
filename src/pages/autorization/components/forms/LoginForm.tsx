@@ -40,7 +40,7 @@ const LoginForm = () => {
   });
 
   return (
-    <div className={'p-5 bg-custom-turquoise w-full'}>
+    <div className={'p-5 md:p-0 bg-custom-turquoise w-full'}>
       <div className={'flex flex-col max-w-2xl relative mx-auto'}>
         <NavigationButtons isLogin={true} />
 

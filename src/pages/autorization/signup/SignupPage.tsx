@@ -15,7 +15,7 @@ const SignupPage = () => {
       {step !== Steps.FIRST ? (
         <OtherInfo step={step} />
       ) : (
-        <div className={'flex flex-col h-full min-h-screen items-center'}>
+        <div className={'flex flex-col h-full min-h-screen items-center text-gray'}>
           <AuthorizationHeader />
           <SignUpButtons />
           <SignupForm />
