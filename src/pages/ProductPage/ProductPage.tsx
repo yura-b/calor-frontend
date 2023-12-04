@@ -404,16 +404,17 @@ const ProductPage = () => {
                           <>
                             <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
 
-                            {isMobile && !isWidthGreaterThanHeight && (
+                            {/* {isMobile && !isWidthGreaterThanHeight && ( */}
+                            {isMobile && (
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.mp4'}
                               />
                             )}
-                            {isMobile && isWidthGreaterThanHeight && (
+                            {/* {isMobile && isWidthGreaterThanHeight && (
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_H.mp4'}
                               />
-                            )}
+                            )} */}
                             {!isMobile && (
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_H.mp4'}
@@ -422,16 +423,17 @@ const ProductPage = () => {
 
                             <p className={`${styles.body2} font-bold mb-2 mt-4`}>Yolo Man</p>
 
-                            {isMobile && !isWidthGreaterThanHeight && (
+                            {/* {isMobile && !isWidthGreaterThanHeight && ( */}
+                            {isMobile && (
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_V.mp4'}
                               />
                             )}
-                            {isMobile && isWidthGreaterThanHeight && (
+                            {/* {isMobile && isWidthGreaterThanHeight && (
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_H.mp4'}
                               />
-                            )}
+                            )} */}
                             {!isMobile && (
                               <VideoDigital
                                 srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_H.mp4'}
@@ -441,7 +443,8 @@ const ProductPage = () => {
                         )}
                         {product?.data.title == 'Dayger' && (
                           <>
-                            {isMobile && !isWidthGreaterThanHeight && (
+                            {/* {isMobile && !isWidthGreaterThanHeight && ( */}
+                            {isMobile && (
                               <>
                                 <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
                                 <VideoDigital
@@ -455,7 +458,7 @@ const ProductPage = () => {
                                 />
                               </>
                             )}
-                            {isMobile && isWidthGreaterThanHeight && (
+                            {/* {isMobile && isWidthGreaterThanHeight && (
                               <>
                                 <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
                                 <VideoDigital
@@ -468,7 +471,7 @@ const ProductPage = () => {
                                   }
                                 />
                               </>
-                            )}
+                            )} */}
                             {!isMobile && (
                               <>
                                 <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
@@ -484,7 +487,8 @@ const ProductPage = () => {
                               </>
                             )}
 
-                            {isMobile && !isWidthGreaterThanHeight && (
+                            {/* {isMobile && !isWidthGreaterThanHeight && ( */}
+                            {isMobile && (
                               <>
                                 <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
                                 <VideoDigital
@@ -498,7 +502,7 @@ const ProductPage = () => {
                                 />
                               </>
                             )}
-                            {isMobile && isWidthGreaterThanHeight && (
+                            {/* {isMobile && isWidthGreaterThanHeight && (
                               <>
                                 <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
                                 <VideoDigital
@@ -511,7 +515,7 @@ const ProductPage = () => {
                                   }
                                 />
                               </>
-                            )}
+                            )} */}
                             {!isMobile && (
                               <>
                                 <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
