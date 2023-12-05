@@ -25,9 +25,9 @@ const Accessories: React.FC = (): React.ReactElement => {
   const location = useLocation();
   const match = location.pathname.match(/\/([^/]+)$/);
   const subPath = match ? match[1] : null;
-  const filteredAccessories = accessories.filter(
-    (category) => category.category.categoryTitle === AccessoriesProduct.ACCESSORIES
-  );
+  const filteredAccessories = accessories
+    .filter((category) => category.category.categoryTitle === AccessoriesProduct.ACCESSORIES)
+    .reverse();
   const filteredSubAccessories = filteredAccessories.filter(
     (category) => category.subcategory.toUpperCase() === subPath?.toUpperCase()
   );

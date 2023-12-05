@@ -58,10 +58,10 @@ const CheckoutOrderSuccessfully = () => {
   return (
     <div>
       <div className="flex flex-col justify-center items-center mt-20 w-full">
-        <h2 className={`${styles.body2} text-mint font-bold`}>Order Successfully</h2>
+        <h2 className={`${styles.header2} text-mint font-bold`}>Order Successfully</h2>
         <h2 className={`${styles.body2} text-mint`}>Check your email for your order confirmation</h2>
       </div>
-      <div className="lg:flex mb-10 w-full justify-center">
+      <div className="lg:flex mb-10 w-full justify-center text-gray">
         <CheckoutOrderItem order_number={Number(order_number)} date={order.date} products={order.purchases} />
         <div className="lg:ml-20 lg:w-[50%]">
           <div>

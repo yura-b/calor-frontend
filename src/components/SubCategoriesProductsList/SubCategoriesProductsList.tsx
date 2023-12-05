@@ -6,16 +6,22 @@ import { motion } from 'framer-motion';
 import { hoverOnButtonAnimation } from '@styles/Animations';
 import { ReactSVG } from 'react-svg';
 import leftArrowIcon from '@assets/images/leftArrowIcon.svg';
+import { Product } from '@/constants/interfaces/product.ts';
 
-const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement => {
-  const subcategories = [...new Set(products.map((item) => item.subcategory))];
+interface SubCategoriesProductsListProps {
+  products: Product[];
+  path: string;
+}
+
+const SubCategoriesProductsList: FC<SubCategoriesProductsListProps> = ({ products, path }): React.ReactElement => {
+  const subcategories = [...new Set(products.map((item) => item.subcategory as string))];
   return (
     <div className="flex flex-wrap">
       <div className="flex flex-col w-full">
         {subcategories.map((subcategory) => {
-          const productsInSubcategory = products.filter((product) => product.subcategory === subcategory);
-          const shuffledProducts = productsInSubcategory.sort(() => Math.random() - 0.5);
-          const randomProducts = shuffledProducts.slice(0, 3);
+          const productsInSubcategory = products.filter((product) => product.subcategory === subcategory).reverse();
+          // const shuffledProducts = productsInSubcategory.sort(() => Math.random() - 0.5);
+          const randomProducts = productsInSubcategory.slice(0, 3);
 
           return (
             <>
@@ -43,7 +49,7 @@ const SubCategoriesProductsList: FC = ({ products, path }): React.ReactElement =
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4  mb-4">
                 {randomProducts.map((product) => (
-                  <ProductCart product={product} type="accessories" winterShoePrice="" />
+                  <ProductCart key={product._id} product={product} type="accessories" winterShoePrice="" />
                 ))}
               </div>
             </>
