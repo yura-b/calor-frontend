@@ -23,12 +23,12 @@ const ProductDescription = ({ title, price, rating, sizes, category, description
         </div>
         {id !== constants.DAYGER_ID && (
           <div className="flex justify-end">
-            From <span className="font-bold ml-4">$ {price}</span>
+            From <span className="font-bold ml-2">$ {price}</span>
           </div>
         )}
         {winterShoePrice && id === constants.DAYGER_ID && (
           <div className="flex justify-end">
-            From <span className="font-bold ml-2 mr-4">$ {price}</span> to{' '}
+            From <span className="font-bold mx-2">$ {price}</span>to
             <span className="font-bold ml-2">$ {winterShoePrice}</span>
           </div>
         )}

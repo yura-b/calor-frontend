@@ -14,8 +14,7 @@ import rawEditorTextToHTML from '@/helpers/functions/rawEditorTextToHTML.ts';
 import { ProductsDto } from '@/api/dto/products.dto.ts';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './editor.scss';
-import {Trash} from '@phosphor-icons/react'
-
+import { Trash } from '@phosphor-icons/react';
 
 const border = '1px #CBD2E0 solid';
 export type productForm = Omit<ProductsDto, 'photos' | '_id'>;
@@ -167,12 +166,12 @@ const ItemForm: FC<IProps> = ({
     };
   };
   const addNewSize = () => {
-    const uniqueIndex = [...new Set(sizes.map(el => el.index))].pop()
+    const uniqueIndex = [...new Set(sizes.map((el) => el.index))].pop();
     setSizes((prevState) => [...prevState, { index: (uniqueIndex || 0) + 1, size: '' }]);
   };
-  const removeSize = (index: number) =>{
-    setSizes(prevState => prevState.filter(el=> el.index !== index))
-  }
+  const removeSize = (index: number) => {
+    setSizes((prevState) => prevState.filter((el) => el.index !== index));
+  };
 
   if (!categories) return;
 
@@ -273,7 +272,7 @@ const ItemForm: FC<IProps> = ({
           {sizes.map((el) => {
             return (
               <div key={el.index} className={'flex flex-col w-1/5 items-center'}>
-                <Trash size={26} color={'red'} className={'cursor-pointer'} onClick={()=>removeSize(el.index)}/>
+                <Trash size={26} color={'red'} className={'cursor-pointer'} onClick={() => removeSize(el.index)} />
                 <CustomInput
                   type={InputType.text}
                   value={el.size}

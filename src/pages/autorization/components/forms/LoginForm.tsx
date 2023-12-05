@@ -40,8 +40,8 @@ const LoginForm = () => {
   });
 
   return (
-    <div className={'p-5 md:p-0 bg-custom-turquoise w-full'}>
-      <div className={'flex flex-col max-w-2xl relative mx-auto'}>
+    <div className={'py-4 bg-custom-turquoise w-full'}>
+      <div className={'flex flex-col max-w-xl md:max-w-2xl px-5 relative mx-auto'}>
         <NavigationButtons isLogin={true} />
 
         <form onSubmit={formik.handleSubmit} className={'mb-4 w-full'}>
