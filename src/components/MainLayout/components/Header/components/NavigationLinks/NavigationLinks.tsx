@@ -61,33 +61,39 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
     return productName.charAt(0).toUpperCase() + productName.slice(1);
   };
 
+  const shouldRender = location.pathname !== '*';
+
   return (
-    <div
-      className={`${styles.body1} ${styles.container} ${className} pb-2 pt-0 flex text-${color} justify-center  sm:text-sm`}
-    >
-      <Link to={paths.home}>Home/</Link>
-      {pathnames.map((path, index) => {
-        const isLast = index === pathnames.length - 1;
-        const displayName = formatBreadcrumb(path);
-        const formattedSegment = formatSegment(path);
-        return (
-          <div className="truncate">
-            {formattedSegment && !displayName && (
-              <Link to="" className={isLast ? 'font-bold' : ''}>
-                {formattedSegment}/
-              </Link>
-            )}
-            {displayName && (
-              <Link to="" className={isLast ? 'font-bold' : ''}>
-                {' '}
-                {formatSegment(displayName)}
-                {!isLast && '/'}
-              </Link>
-            )}
-          </div>
-        );
-      })}
-    </div>
+    <>
+      {!shouldRender && (
+        <div
+          className={`${styles.body1} ${styles.container} ${className} pb-2 pt-0 flex text-${color} justify-center  sm:text-sm`}
+        >
+          <Link to={paths.home}>Home/</Link>
+          {pathnames.map((path, index) => {
+            const isLast = index === pathnames.length - 1;
+            const displayName = formatBreadcrumb(path);
+            const formattedSegment = formatSegment(path);
+            return (
+              <div className="truncate">
+                {formattedSegment && !displayName && (
+                  <Link to="" className={isLast ? 'font-bold' : ''}>
+                    {formattedSegment}/
+                  </Link>
+                )}
+                {displayName && (
+                  <Link to="" className={isLast ? 'font-bold' : ''}>
+                    {' '}
+                    {formatSegment(displayName)}
+                    {!isLast && '/'}
+                  </Link>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 };
 
