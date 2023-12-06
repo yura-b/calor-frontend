@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from '@styles/Styles.module.scss';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery, useMutation, QueryObserverResult } from 'react-query';
 import { useParams } from 'react-router';
 import { getProductById } from '@/api/products';
 import Head from '@/layouts/Head';
@@ -28,8 +28,9 @@ import Spinner from '@components/ui/Spinner';
 import { useNavigate } from 'react-router-dom';
 import constants from '@/constants/constants';
 import VideoDigital from '@components/VideoDigital';
-
+import NotFoundPage from '@/pages/NotFoundPage';
 import { useMediaQuery } from '@react-hook/media-query';
+import Loader from '@/components/ui/Loader';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -41,6 +42,7 @@ const ProductPage = () => {
   const dispatch = useAppDispatch();
 
   const [sizeButtonStyles, setSizeButtonStyles] = useState({});
+  const [isURLError, setIsURLError] = useState(false);
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
   const { items: basketProductsNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
@@ -53,9 +55,16 @@ const ProductPage = () => {
       item?._id === dynamicId || item?.accessory?._id === dynamicId || item?.shoes?._id === dynamicId
   );
 
-  const { data: product } = useQuery(['productById', dynamicId], () => getProductById(dynamicId), {
+  const { data: product, isLoading } = useQuery(['productById', dynamicId], () => getProductById(dynamicId), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
+    onError: (error: QueryObserverResult['error']) => {
+      if (error && (error as any).response && (error as any).response.status === 404) {
+        setIsURLError(true);
+      } else {
+        setIsURLError(false);
+      }
+    },
   });
 
   const { data: winterShoeProduct } = useQuery(
@@ -210,355 +219,369 @@ const ProductPage = () => {
       window.removeEventListener('resize', checkWindowDimensions);
     };
   }, []);
+
   return (
-    <div className="font-poppins h-screen">
-      <Head title="Product" />
-      <MainLayout>
-        <div className="hidden lg:flex w-full h-[50px] justify-center items-center pt-10 box-border">
-          <NavigationLinks color="gray" className="z-10 w-auto" />
-        </div>
-        <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-4 ${styles.container}`}>
-          {/* Product Slider */}
-          <div>
-            <Slider
-              images={product?.data.photos}
-              color="gray"
-              dataShoes={product?.data.category === 'shoes' ? true : false}
-              currentIndex={currentIndex}
-              setCurrentIndex={setCurrentIndex}
-            />
-            <div className="hidden lg:block">
-              <ProductReviews rating={product?.data.rating} />
+    <>
+      {isURLError && <NotFoundPage />}
+      {isLoading && !isURLError && <Loader />}
+
+      {!isLoading && (
+        <div className="font-poppins h-screen">
+          <Head title="Product" />
+          <MainLayout>
+            <div className="hidden lg:flex w-full h-[50px] justify-center items-center pt-10 box-border">
+              <NavigationLinks color="gray" className="z-10 w-auto" />
             </div>
-          </div>
-          {/* Product Desription */}
-          <div
-            className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident} w-full`}
-          >
-            <div className="w-full">
-              <ProductDescription
-                description={product?.data.description}
-                title={product?.data.title}
-                price={product?.data.price}
-                rating={product?.data.rating}
-                sizes={product?.data.sizes}
-                category={product?.data.category}
-                winterShoePrice={winterShoeProduct?.data?.price}
-              />
-              <div className="py-2 w-full">
-                {product?.data.category == 'shoes' && <span>Your shoes will be manufactured in 7-10 days.</span>}
-                {product?.data.category !== 'shoes' && (
-                  <>
-                    {!!product?.data.size.length && (
-                      <SizeSelection
-                        sizes={product?.data.size || []}
-                        setSizeButtonStyles={setSizeButtonStyles}
-                        sizeButtonStyles={sizeButtonStyles}
-                        handleSizeClick={handleSizeClick}
-                      />
-                    )}
-                  </>
-                )}
+            <div className={`md:grid lg:grid-cols-2 flex flex-col md:py-8 lg:gap-16 gap-4 ${styles.container}`}>
+              {/* Product Slider */}
+              <div>
+                <Slider
+                  images={product?.data.photos}
+                  color="gray"
+                  dataShoes={product?.data.category === 'shoes' ? true : false}
+                  currentIndex={currentIndex}
+                  setCurrentIndex={setCurrentIndex}
+                />
+                <div className="hidden lg:block">
+                  <ProductReviews rating={product?.data.rating} />
+                </div>
               </div>
-              <div className="flex flex-col justify-center items-center gap-6 py-2">
-                <motion.div className={'flex  flex-wrap justify-start items-start text-center w-full gap-4'}>
-                  {variations?.map((variation) => {
-                    return (
-                      <motion.div
-                        onClick={() => {
-                          setDynamicId(variation._id);
-                          setCurrentIndex(0);
-                          navigate(`/product/${variation._id}`);
-                        }}
-                        className="relative basis-[46%] md:basis-[30%] min-w-[120px] cursor-pointer hover:text-mint"
-                        {...hoverOnButtonAnimation}
-                      >
-                        <LazyLoadImage
-                          src={variation.photo}
-                          className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] rounded-full object-contain object-cover mx-auto "
-                          alt=""
-                          effect="blur"
-                          afterLoad={() => {
-                            setImageLoaded(true);
-                          }}
-                          beforeLoad={() => {
-                            setImageLoaded(false);
-                          }}
-                        />
-                        {imageLoaded ? null : <Spinner className="absolute top-1/2 left-1/2" />}
-                        <p className="truncate">{variation.title}</p>
-                      </motion.div>
-                    );
-                  })}
-                </motion.div>
-                {product?.data.category == 'shoes' && (
-                  <>
-                    <Button
-                      color="gray"
-                      to={`/design_your_shoe/model/${product.data.title.toLowerCase()}/${product.data._id}`}
-                    >
-                      Design Your Shoe
-                    </Button>
-                    {/* <Button color="transparentGray" to={paths.ready_made_products}>
+              {/* Product Desription */}
+              <div
+                className={`flex flex-col bg-mintExtraLight row-span-2 justify-start items-start ${styles.pageident} w-full`}
+              >
+                <div className="w-full">
+                  <ProductDescription
+                    description={product?.data.description}
+                    title={product?.data.title}
+                    price={product?.data.price}
+                    rating={product?.data.rating}
+                    sizes={product?.data.sizes}
+                    category={product?.data.category}
+                    winterShoePrice={winterShoeProduct?.data?.price}
+                  />
+                  <div className="py-2 w-full">
+                    {product?.data.category == 'shoes' && <span>Your shoes will be manufactured in 7-10 days.</span>}
+                    {product?.data.category !== 'shoes' && (
+                      <>
+                        {!!product?.data.size.length && (
+                          <SizeSelection
+                            sizes={product?.data.size || []}
+                            setSizeButtonStyles={setSizeButtonStyles}
+                            sizeButtonStyles={sizeButtonStyles}
+                            handleSizeClick={handleSizeClick}
+                          />
+                        )}
+                      </>
+                    )}
+                  </div>
+                  <div className="flex flex-col justify-center items-center gap-6 py-2">
+                    <motion.div className={'flex  flex-wrap justify-start items-start text-center w-full gap-4'}>
+                      {variations?.map((variation) => {
+                        return (
+                          <motion.div
+                            onClick={() => {
+                              setDynamicId(variation._id);
+                              setCurrentIndex(0);
+                              navigate(`/product/${variation._id}`);
+                            }}
+                            className="relative basis-[46%] md:basis-[30%] min-w-[120px] cursor-pointer hover:text-mint"
+                            {...hoverOnButtonAnimation}
+                          >
+                            <LazyLoadImage
+                              src={variation.photo}
+                              className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] rounded-full object-contain object-cover mx-auto "
+                              alt=""
+                              effect="blur"
+                              afterLoad={() => {
+                                setImageLoaded(true);
+                              }}
+                              beforeLoad={() => {
+                                setImageLoaded(false);
+                              }}
+                            />
+                            {imageLoaded ? null : <Spinner className="absolute top-1/2 left-1/2" />}
+                            <p className="truncate">{variation.title}</p>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+                    {product?.data.category == 'shoes' && (
+                      <>
+                        <Button
+                          color="gray"
+                          to={`/design_your_shoe/model/${product.data.title.toLowerCase()}/${product.data._id}`}
+                        >
+                          Design Your Shoe
+                        </Button>
+                        {/* <Button color="transparentGray" to={paths.ready_made_products}>
                       Choose From Existing
                     </Button> */}
-                  </>
-                )}
-                {userId ? (
-                  <>
-                    {!product?.data.size || !product?.data.size.length ? (
+                      </>
+                    )}
+                    {userId ? (
                       <>
-                        {product?.data.category !== 'shoes' && !isProductExistInBasket && (
-                          <Button
-                            id="gtm-add-to-cart-product"
-                            color="gray"
-                            onClick={() => {
-                              addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
-                              mutation.mutate({ userId, requestData });
-                            }}
-                          >
-                            Add To Cart
-                          </Button>
-                        )}
-                        {product?.data.category !== 'shoes' && isProductExistInBasket && (
-                          <div className="flex justify-center items-center text-mint">
-                            <SealCheck className="mr-2" size={32} weight="fill" />
-                            Already in your cart
-                          </div>
+                        {!product?.data.size || !product?.data.size.length ? (
+                          <>
+                            {product?.data.category !== 'shoes' && !isProductExistInBasket && (
+                              <Button
+                                id="gtm-add-to-cart-product"
+                                color="gray"
+                                onClick={() => {
+                                  addToCartGTMEvent('add_to_cart', {
+                                    id: product?.data._id,
+                                    title: product?.data.title,
+                                  });
+                                  mutation.mutate({ userId, requestData });
+                                }}
+                              >
+                                Add To Cart
+                              </Button>
+                            )}
+                            {product?.data.category !== 'shoes' && isProductExistInBasket && (
+                              <div className="flex justify-center items-center text-mint">
+                                <SealCheck className="mr-2" size={32} weight="fill" />
+                                Already in your cart
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            {product?.data.category !== 'shoes' && !isProductExistAndSizeInBasket && (
+                              <Button
+                                color="gray"
+                                onClick={() => {
+                                  addToCartGTMEvent('add_to_cart', {
+                                    id: product?.data._id,
+                                    title: product?.data.title,
+                                  });
+                                  mutation.mutate({ userId, requestData });
+                                }}
+                              >
+                                Add To Cart
+                              </Button>
+                            )}
+                            {product?.data.category !== 'shoes' && isProductExistAndSizeInBasket && (
+                              <div className="flex justify-center items-center text-mint">
+                                <SealCheck className="mr-2" size={32} weight="fill" />
+                                {`Product with size ${selectedSize} is already in your cart`}
+                              </div>
+                            )}
+                          </>
                         )}
                       </>
                     ) : (
                       <>
-                        {product?.data.category !== 'shoes' && !isProductExistAndSizeInBasket && (
-                          <Button
-                            color="gray"
-                            onClick={() => {
-                              addToCartGTMEvent('add_to_cart', { id: product?.data._id, title: product?.data.title });
-                              mutation.mutate({ userId, requestData });
-                            }}
-                          >
-                            Add To Cart
-                          </Button>
-                        )}
-                        {product?.data.category !== 'shoes' && isProductExistAndSizeInBasket && (
-                          <div className="flex justify-center items-center text-mint">
-                            <SealCheck className="mr-2" size={32} weight="fill" />
-                            {`Product with size ${selectedSize} is already in your cart`}
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {!product?.data.size || !product?.data.size.length ? (
-                      <>
-                        {product?.data.category !== 'shoes' && !isProductExistInBasketNonRegisterUser && (
-                          <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
-                            Add To Cart
-                          </Button>
-                        )}
-                        {product?.data.category !== 'shoes' && isProductExistInBasketNonRegisterUser && (
-                          <div className="flex justify-center items-center text-mint">
-                            <SealCheck className="mr-2" size={32} weight="fill" />
-                            Already in your cart
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {product?.data.category !== 'shoes' && !isProductExistAndSizeInBasketNonRegisterUser && (
-                          <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
-                            Add To Cart
-                          </Button>
-                        )}
-                        {product?.data.category !== 'shoes' && isProductExistAndSizeInBasketNonRegisterUser && (
-                          <div className="flex justify-center items-center text-mint">
-                            <SealCheck className="mr-2" size={32} weight="fill" />
-                            {`Product with size ${selectedSize} is already in your cart`}
-                          </div>
+                        {!product?.data.size || !product?.data.size.length ? (
+                          <>
+                            {product?.data.category !== 'shoes' && !isProductExistInBasketNonRegisterUser && (
+                              <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
+                                Add To Cart
+                              </Button>
+                            )}
+                            {product?.data.category !== 'shoes' && isProductExistInBasketNonRegisterUser && (
+                              <div className="flex justify-center items-center text-mint">
+                                <SealCheck className="mr-2" size={32} weight="fill" />
+                                Already in your cart
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            {product?.data.category !== 'shoes' && !isProductExistAndSizeInBasketNonRegisterUser && (
+                              <Button color="gray" onClick={handleAddToCartNonRegisterUser}>
+                                Add To Cart
+                              </Button>
+                            )}
+                            {product?.data.category !== 'shoes' && isProductExistAndSizeInBasketNonRegisterUser && (
+                              <div className="flex justify-center items-center text-mint">
+                                <SealCheck className="mr-2" size={32} weight="fill" />
+                                {`Product with size ${selectedSize} is already in your cart`}
+                              </div>
+                            )}
+                          </>
                         )}
                       </>
                     )}
-                  </>
-                )}
+                  </div>
+                  <div className="py-2">
+                    {sections.map((section, index) => (
+                      <AccordionSection
+                        key={section.title}
+                        title={section.title}
+                        isOpen={section.isOpen}
+                        toggleAccordion={() => toggleSection(index)}
+                        className={`${product?.data.category !== 'shoes' && index > 0 ? 'hidden' : 'block'}`}
+                      >
+                        {index == 0 && (
+                          <div>
+                            <h1 className={`${styles.body1} font-bold`}>{product?.data.title}</h1>
+                            <div dangerouslySetInnerHTML={{ __html: product?.data.productDetails }} />
+                          </div>
+                        )}
+                        {product?.data.category === 'shoes' && index == 1 && (
+                          <div className="my-4">
+                            {product?.data.title == 'Yolo' && (
+                              <>
+                                <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
+
+                                {/* {isMobile && !isWidthGreaterThanHeight && ( */}
+                                {isMobile && (
+                                  <VideoDigital
+                                    srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.mp4'}
+                                  />
+                                )}
+                                {/* {isMobile && isWidthGreaterThanHeight && (
+                              <VideoDigital
+                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_H.mp4'}
+                              />
+                            )} */}
+                                {!isMobile && (
+                                  <VideoDigital
+                                    srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_H.mp4'}
+                                  />
+                                )}
+
+                                <p className={`${styles.body2} font-bold mb-2 mt-4`}>Yolo Man</p>
+
+                                {/* {isMobile && !isWidthGreaterThanHeight && ( */}
+                                {isMobile && (
+                                  <VideoDigital
+                                    srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_V.mp4'}
+                                  />
+                                )}
+                                {/* {isMobile && isWidthGreaterThanHeight && (
+                              <VideoDigital
+                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_H.mp4'}
+                              />
+                            )} */}
+                                {!isMobile && (
+                                  <VideoDigital
+                                    srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_H.mp4'}
+                                  />
+                                )}
+                              </>
+                            )}
+                            {product?.data.title == 'Dayger' && (
+                              <>
+                                {/* {isMobile && !isWidthGreaterThanHeight && ( */}
+                                {isMobile && (
+                                  <>
+                                    <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
+                                    <VideoDigital
+                                      srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WOMAN_V.mp4'}
+                                    />
+                                    <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
+                                    <VideoDigital
+                                      srcMp4={
+                                        'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WooMAN_business_V.mp4'
+                                      }
+                                    />
+                                  </>
+                                )}
+                                {/* {isMobile && isWidthGreaterThanHeight && (
+                              <>
+                                <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
+                                <VideoDigital
+                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WOMAN_H.mp4'}
+                                />
+                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
+                                <VideoDigital
+                                  srcMp4={
+                                    'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WooMAN_business_H.mp4'
+                                  }
+                                />
+                              </>
+                            )} */}
+                                {!isMobile && (
+                                  <>
+                                    <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
+                                    <VideoDigital
+                                      srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WOMAN_H.mp4'}
+                                    />
+                                    <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
+                                    <VideoDigital
+                                      srcMp4={
+                                        'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WooMAN_business_H.mp4'
+                                      }
+                                    />
+                                  </>
+                                )}
+
+                                {/* {isMobile && !isWidthGreaterThanHeight && ( */}
+                                {isMobile && (
+                                  <>
+                                    <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
+                                    <VideoDigital
+                                      srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_V.mp4'}
+                                    />
+                                    <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
+                                    <VideoDigital
+                                      srcMp4={
+                                        'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_business_V.mp4'
+                                      }
+                                    />
+                                  </>
+                                )}
+                                {/* {isMobile && isWidthGreaterThanHeight && (
+                              <>
+                                <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
+                                <VideoDigital
+                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_H.mp4'}
+                                />
+                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
+                                <VideoDigital
+                                  srcMp4={
+                                    'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_business_H.mp4'
+                                  }
+                                />
+                              </>
+                            )} */}
+                                {!isMobile && (
+                                  <>
+                                    <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
+                                    <VideoDigital
+                                      srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_H.mp4'}
+                                    />
+                                    <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
+                                    <VideoDigital
+                                      srcMp4={
+                                        'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_business_H.mp4'
+                                      }
+                                    />
+                                  </>
+                                )}
+                              </>
+                            )}
+                            {product?.data.title == 'Sunrise' && (
+                              <>
+                                <VideoDigital
+                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Sunrise_V.mp4'}
+                                />
+                              </>
+                            )}
+                          </div>
+                        )}
+                        {product?.data.category === 'shoes' && index == 2 && (
+                          <div>
+                            <h1>Inspiration</h1>
+                          </div>
+                        )}
+                      </AccordionSection>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className="py-2">
-                {sections.map((section, index) => (
-                  <AccordionSection
-                    key={section.title}
-                    title={section.title}
-                    isOpen={section.isOpen}
-                    toggleAccordion={() => toggleSection(index)}
-                    className={`${product?.data.category !== 'shoes' && index > 0 ? 'hidden' : 'block'}`}
-                  >
-                    {index == 0 && (
-                      <div>
-                        <h1 className={`${styles.body1} font-bold`}>{product?.data.title}</h1>
-                        <div dangerouslySetInnerHTML={{ __html: product?.data.productDetails }} />
-                      </div>
-                    )}
-                    {product?.data.category === 'shoes' && index == 1 && (
-                      <div className="my-4">
-                        {product?.data.title == 'Yolo' && (
-                          <>
-                            <p className={`${styles.body2} font-bold mb-2`}>Yolo Woman</p>
+              <div className="lg:hidden">
+                {/* Product Reviews */}
 
-                            {/* {isMobile && !isWidthGreaterThanHeight && ( */}
-                            {isMobile && (
-                              <VideoDigital
-                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_V.mp4'}
-                              />
-                            )}
-                            {/* {isMobile && isWidthGreaterThanHeight && (
-                              <VideoDigital
-                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_H.mp4'}
-                              />
-                            )} */}
-                            {!isMobile && (
-                              <VideoDigital
-                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_WOMAN_H.mp4'}
-                              />
-                            )}
-
-                            <p className={`${styles.body2} font-bold mb-2 mt-4`}>Yolo Man</p>
-
-                            {/* {isMobile && !isWidthGreaterThanHeight && ( */}
-                            {isMobile && (
-                              <VideoDigital
-                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_V.mp4'}
-                              />
-                            )}
-                            {/* {isMobile && isWidthGreaterThanHeight && (
-                              <VideoDigital
-                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_H.mp4'}
-                              />
-                            )} */}
-                            {!isMobile && (
-                              <VideoDigital
-                                srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Yolo_MAN_H.mp4'}
-                              />
-                            )}
-                          </>
-                        )}
-                        {product?.data.title == 'Dayger' && (
-                          <>
-                            {/* {isMobile && !isWidthGreaterThanHeight && ( */}
-                            {isMobile && (
-                              <>
-                                <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
-                                <VideoDigital
-                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WOMAN_V.mp4'}
-                                />
-                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
-                                <VideoDigital
-                                  srcMp4={
-                                    'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WooMAN_business_V.mp4'
-                                  }
-                                />
-                              </>
-                            )}
-                            {/* {isMobile && isWidthGreaterThanHeight && (
-                              <>
-                                <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
-                                <VideoDigital
-                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WOMAN_H.mp4'}
-                                />
-                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
-                                <VideoDigital
-                                  srcMp4={
-                                    'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WooMAN_business_H.mp4'
-                                  }
-                                />
-                              </>
-                            )} */}
-                            {!isMobile && (
-                              <>
-                                <p className={`${styles.body2} font-bold mb-2 `}>Dayger Woman</p>
-                                <VideoDigital
-                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WOMAN_H.mp4'}
-                                />
-                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Woman Business</p>
-                                <VideoDigital
-                                  srcMp4={
-                                    'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_WooMAN_business_H.mp4'
-                                  }
-                                />
-                              </>
-                            )}
-
-                            {/* {isMobile && !isWidthGreaterThanHeight && ( */}
-                            {isMobile && (
-                              <>
-                                <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
-                                <VideoDigital
-                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_V.mp4'}
-                                />
-                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
-                                <VideoDigital
-                                  srcMp4={
-                                    'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_business_V.mp4'
-                                  }
-                                />
-                              </>
-                            )}
-                            {/* {isMobile && isWidthGreaterThanHeight && (
-                              <>
-                                <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
-                                <VideoDigital
-                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_H.mp4'}
-                                />
-                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
-                                <VideoDigital
-                                  srcMp4={
-                                    'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_business_H.mp4'
-                                  }
-                                />
-                              </>
-                            )} */}
-                            {!isMobile && (
-                              <>
-                                <p className={`${styles.body2} font-bold mb-2 mt-4`}>Dayger Man</p>
-                                <VideoDigital
-                                  srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_H.mp4'}
-                                />
-                                <p className={`${styles.body2} font-bold mb-2 mt-6 `}>Dayger Man Business</p>
-                                <VideoDigital
-                                  srcMp4={
-                                    'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Dayger_MAN_business_H.mp4'
-                                  }
-                                />
-                              </>
-                            )}
-                          </>
-                        )}
-                        {product?.data.title == 'Sunrise' && (
-                          <>
-                            <VideoDigital
-                              srcMp4={'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Sunrise_V.mp4'}
-                            />
-                          </>
-                        )}
-                      </div>
-                    )}
-                    {product?.data.category === 'shoes' && index == 2 && (
-                      <div>
-                        <h1>Inspiration</h1>
-                      </div>
-                    )}
-                  </AccordionSection>
-                ))}
+                <ProductReviews rating={product?.data.rating} />
               </div>
             </div>
-          </div>
-          <div className="lg:hidden">
-            {/* Product Reviews */}
-
-            <ProductReviews rating={product?.data.rating} />
-          </div>
+          </MainLayout>
         </div>
-      </MainLayout>
-    </div>
+      )}
+    </>
   );
 };
 
