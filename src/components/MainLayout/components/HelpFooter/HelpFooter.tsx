@@ -87,7 +87,12 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
     }
   };
 
-  const clearEmail = email?.replace(/<\/?p>/g, '');
+  const removeTags = (htmlString) => {
+    const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+    return doc.body.textContent || '';
+  };
+
+  const clearEmail = removeTags(email);
 
   return (
     <>
@@ -248,7 +253,7 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
                 </div>
                 {email !== '' && (
                   <p className="font-semibold leading-6">
-                    <a href={`mailto:${clearEmail}`}>{clearEmail} </a>
+                    <a href={`mailto:${clearEmail}`}>{clearEmail}</a>
                   </p>
                 )}
               </div>

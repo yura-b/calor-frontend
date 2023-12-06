@@ -15,7 +15,14 @@ const VideoReviews: React.FC = () => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
   const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
   const email = filteredPagesFooter?.find((section) => section?.section === 'Email').value;
-  const clearEmail = email?.replace(/<\/?p>/g, '');
+
+  const removeTags = (htmlString) => {
+    const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+    return doc.body.textContent || '';
+  };
+
+  const clearEmail = removeTags(email);
+
   const videoGuides = [
     {
       srcWebm: '1pISvABcVlTMWN7-dwDfQ2KuQibu3qyue',
@@ -150,11 +157,9 @@ const VideoReviews: React.FC = () => {
                 <p>Error loading data</p>
               ) : (
                 <p>
-                  <a
-                    href={`mailto:${clearEmail}`}
-                    dangerouslySetInnerHTML={{ __html: clearEmail || '' }}
-                    className="text-gray"
-                  />
+                  <a href={`mailto:${clearEmail}`} className="text-gray">
+                    {clearEmail}
+                  </a>
                 </p>
               )}
             </span>
