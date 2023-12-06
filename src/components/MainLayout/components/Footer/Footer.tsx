@@ -74,7 +74,7 @@ const Footer: React.FC = (): React.ReactElement => {
                 </Link>
                 <Link to="https://www.tiktok.com/@calorshoe?_t=8hATfDRfwFS&_r=1" target="_blank">
                   <div className="bg-white p-[6px] rounded-md c">
-                    <TikTokIcon color="white" />
+                    <TikTokIcon />
                   </div>
                 </Link>
               </div>

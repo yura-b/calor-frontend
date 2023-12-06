@@ -15,7 +15,7 @@ const VideoReviews: React.FC = () => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
   const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
   const email = filteredPagesFooter?.find((section) => section?.section === 'Email').value;
-
+  const clearEmail = email?.replace(/<\/?p>/g, '');
   const videoGuides = [
     {
       srcWebm: '1pISvABcVlTMWN7-dwDfQ2KuQibu3qyue',
@@ -141,7 +141,7 @@ const VideoReviews: React.FC = () => {
               </div>
             ))}
           </div>
-          <p>
+          <p className="w-full sm:max-w-[80%] md:max-w-[90%] lg:max-w-[100%] mx-auto">
             If you want your video review to be published on our website, please send it to our email{' '}
             <span className="font-bold">
               {isLoading ? (
@@ -149,7 +149,13 @@ const VideoReviews: React.FC = () => {
               ) : error ? (
                 <p>Error loading data</p>
               ) : (
-                <a href={`mailto:${email}`} dangerouslySetInnerHTML={{ __html: email || '' }} className="text-gray" />
+                <p>
+                  <a
+                    href={`mailto:${clearEmail}`}
+                    dangerouslySetInnerHTML={{ __html: clearEmail || '' }}
+                    className="text-gray"
+                  />
+                </p>
               )}
             </span>
           </p>

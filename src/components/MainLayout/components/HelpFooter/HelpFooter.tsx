@@ -87,6 +87,8 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
     }
   };
 
+  const clearEmail = email?.replace(/<\/?p>/g, '');
+
   return (
     <>
       {color !== 'white' ? (
@@ -244,9 +246,11 @@ const HelpFooter: React.FC<Props> = ({ title, color, isOpen, toggleOpen }): Reac
                   <p dangerouslySetInnerHTML={{ __html: address1 || '' }} />
                   <p dangerouslySetInnerHTML={{ __html: address2 || '' }} />
                 </div>
-                <p className="font-semibold leading-6">
-                  <a href={`mailto:${email}`} dangerouslySetInnerHTML={{ __html: email || '' }} />
-                </p>
+                {email !== '' && (
+                  <p className="font-semibold leading-6">
+                    <a href={`mailto:${clearEmail}`}>{clearEmail} </a>
+                  </p>
+                )}
               </div>
             </div>
           )}
