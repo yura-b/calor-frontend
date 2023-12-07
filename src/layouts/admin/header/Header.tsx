@@ -44,8 +44,11 @@ const Header = () => {
   };
 
   return (
-    <div className={'fixed w-1/6 max-w-1/6 h-full bg-custom-turquoise'}>
-      <div className={'flex flex-col justify-center ' + styles.header}>
+    <div
+      className={'fixed w-1/6 max-w-1/6 h-full bg-custom-turquoise'}
+      style={{ overflowY: 'auto', overflowX: 'hidden' }}
+    >
+      <div className={'flex flex-col justify-between min-h-[98vh] h-[98vh] gap-10 py-2' + styles.header}>
         <Link to={'/admin'}>
           <div className={'w-full flex justify-center cursor-pointer mt-6'}>
             <img
@@ -55,17 +58,14 @@ const Header = () => {
             />
           </div>
         </Link>
-
-        <div
-          className={'flex flex-col gap-6 w-full justify-center ml-6  mt-8 2xl:gap-8 2xl:mt-16 ' + styles.navContainer}
-        >
+        <div className={'flex flex-col gap-6 w-full justify-center ml-6   ' + styles.navContainer}>
           <HeaderElement icon={<ChartBar size={size} weight="fill" />} title={'Analytics'} />
-          <div>
+          <div className="flex gap-2 items-center">
             <Storefront size={size} weight="fill" />
 
             <span>My Shop</span>
 
-            <div className={'ml-8 cursor-pointer'}>
+            <div className={'ml-4 cursor-pointer'}>
               {shopDropDown ? (
                 <CaretUp size={size} weight={'fill'} onClick={shopHandler} />
               ) : (
@@ -74,7 +74,7 @@ const Header = () => {
             </div>
           </div>
           {shopDropDown && (
-            <div className={'flex flex-col pl-10 gap-5'}>
+            <div className={'flex flex-col pl-10 gap-4'}>
               <HeaderElement
                 icon={<Package size={size} weight="fill" />}
                 title={'Available colors'}
@@ -98,12 +98,12 @@ const Header = () => {
             </div>
           )}
           <HeaderElement icon={<Users size={size} weight="fill" />} title={'Customers'} navigateTo={'/admin/users'} />
-          <div>
+          <div className="flex gap-2 items-center">
             <ChatDots size={size} weight="fill" />
 
             <span>Reviews</span>
 
-            <div className={'ml-8 cursor-pointer'}>
+            <div className={'ml-4 cursor-pointer'}>
               {reviewDropDown ? (
                 <CaretUp weight={'fill'} size={size} onClick={reviewHandler} />
               ) : (
@@ -135,15 +135,15 @@ const Header = () => {
             navigateTo={'/admin/manager'}
           />
         </div>
-
-        <div className={'flex flex-col justify-center gap-6 2xl:gap-9 ml-6 absolute bottom-5 ' + styles.navContainer}>
+        <div className={'flex flex-col justify-center gap-6  ml-6 mt-6' + styles.navContainer}>
           <HeaderElement icon={<GlobeSimple size={size} />} title={'Go To Calor'} navigateTo={'/'} />
-          <div>
+          <div className="flex gap-2 items-center">
             <UserCircle size={size} weight="fill" />
             <span>{fullName}</span>
           </div>
-
-          <CustomSignOut size={size} />
+          <div className="pb-10">
+            <CustomSignOut size={size} />
+          </div>
         </div>
       </div>
     </div>

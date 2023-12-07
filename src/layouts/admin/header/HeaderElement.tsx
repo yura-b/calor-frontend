@@ -9,7 +9,7 @@ interface IProps {
 const HeaderElement: React.FC<IProps> = ({ title, icon, navigateTo }) => {
   const navigate = useNavigate();
   return (
-    <div onClick={() => navigateTo && navigate(navigateTo)}>
+    <div onClick={() => navigateTo && navigate(navigateTo)} className="flex gap-2 items-center cursor-pointer">
       {icon}
       <span>{title}</span>
     </div>
