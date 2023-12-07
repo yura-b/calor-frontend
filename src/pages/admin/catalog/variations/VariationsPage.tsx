@@ -1,17 +1,17 @@
-
 import React, {useEffect, useState} from 'react';
 import AdminLayout from '@layouts/admin/AdminLayout.tsx';
 import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHeader.tsx';
 import {IBaseProduct, Product} from '@/constants/interfaces/product.ts';
 import {useAppDispatch, useAppSelector} from '@/store/hooks/hooks.ts';
 import {loading, loadingFinished} from '@/store/reducers/StatusReducer.ts';
-import {addVariant, assignVariation, getAccessories, getVariants} from '@/api/products.ts';
+import {addVariant, assignVariation, deleteVariant, getAccessories, getVariants} from '@/api/products.ts';
 import {EditVariationElementDto} from '@/api/dto/products.dto.ts';
 import ModalWindow from '@pages/admin/catalog/variations/components/ModalWindow.tsx';
 import ProductRow from '@pages/admin/catalog/variations/components/ProductWithoutVariations.tsx';
 import Navigation from '@components/admin/Navigation.tsx';
 import ExistingVariation from '@pages/admin/catalog/variations/components/ExistingVariation.tsx';
 import ChosenVariation from '@pages/admin/catalog/variations/components/ChosenVariation.tsx';
+import ConfirmModalWindow from '@pages/admin/catalog/variations/components/ConfirmModalWindow.tsx';
 
 enum navigation {
     existed = 'Existing variations',
@@ -26,8 +26,12 @@ const VariationsPage = () => {
 
     const [navigationState, setNavigationState] = useState<string>(navigation.existed)
     const [rerender, forceRerender] = useState(0);
+
     const [currentVariantId, setCurrentVariantId] = useState<string | null>(null);
+    const [itemDataToDelete, setItemDataToDelete] = useState<EditVariationElementDto | null>(null);
+
     const [open, setOpenModal] = useState(false);
+    const [confirmation, setConfirmation] = useState(false);
 
     const [products, setProducts] = useState<Product[]>([]);
     const [variants, setVariants] = useState<{ variations: IBaseProduct[]; _id: string }[]>();
@@ -68,6 +72,12 @@ const VariationsPage = () => {
             forceRerender((prevState) => prevState + 1);
         });
     };
+    const deleteVariationFromDB = (data: EditVariationElementDto) => {
+        if (!access_token) return;
+        deleteVariant(access_token, data).then(() => {
+            forceRerender((prevState) => prevState + 1);
+        });
+    };
     const addToVariationList = (_id: string) => {
         setPossibleVariationIds((prevState) => [...new Set([...prevState, _id])]);
     };
@@ -96,6 +106,8 @@ const VariationsPage = () => {
                     forceRerender={forceRerender}
                     setCurrentVariantId={setCurrentVariantId}
                     setOpenModal={setOpenModal}
+                    setConfirmation={setConfirmation}
+                    setDataToDeleteItem={setItemDataToDelete}
                 />}
 
                 {navigationState === navigation.withoutVariation && <div className={'flex flex-col gap-12 mb-24'}>
@@ -113,6 +125,8 @@ const VariationsPage = () => {
                 </div>}
 
             </div>
+            <ConfirmModalWindow open={confirmation} closeModal={setConfirmation} data={itemDataToDelete}
+                                handler={deleteVariationFromDB}/>
             <ModalWindow
                 closeModal={setOpenModal}
                 open={open}

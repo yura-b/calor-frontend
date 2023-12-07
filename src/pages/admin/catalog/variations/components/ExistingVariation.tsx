@@ -3,24 +3,21 @@ import ProductVariation from '@pages/admin/catalog/variations/components/Product
 import CustomButton from '@components/button/CustomButton.tsx';
 import {IBaseProduct} from '@/constants/interfaces/product.ts';
 import {EditVariationElementDto} from '@/api/dto/products.dto.ts';
-import {deleteVariant} from '@/api/products.ts';
-import {useAppSelector} from '@/store/hooks/hooks.ts';
 
 interface IProps {
     variants: { variations: IBaseProduct[]; _id: string }[] | undefined,
     forceRerender: React.Dispatch<React.SetStateAction<number>>,
-    setCurrentVariantId:  React.Dispatch<React.SetStateAction<string | null>>
+    setCurrentVariantId: React.Dispatch<React.SetStateAction<string | null>>
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+    setConfirmation: React.Dispatch<React.SetStateAction<boolean>>
+    setDataToDeleteItem: React.Dispatch<React.SetStateAction<EditVariationElementDto | null>>
 }
 
-const ExistingVariation: FC<IProps> = ({variants, forceRerender,setCurrentVariantId, setOpenModal}) => {
-    const {access_token} = useAppSelector(state => state.user)
+const ExistingVariation: FC<IProps> = ({variants, setConfirmation, setCurrentVariantId, setOpenModal, setDataToDeleteItem}) => {
 
     const deleteFromDBVariation = (data: EditVariationElementDto) => {
-        if (!access_token) return;
-        deleteVariant(access_token, data).then(() => {
-            forceRerender((prevState) => prevState + 1);
-        });
+        setDataToDeleteItem(data)
+        setConfirmation(true)
     };
 
     if (!variants) return <></>
