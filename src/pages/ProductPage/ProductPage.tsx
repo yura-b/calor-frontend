@@ -122,7 +122,8 @@ const ProductPage = () => {
     }
   }, [selectedSize, basketProducts, dynamicId]);
 
-  const variations = product?.data?.variations?.variations?.filter((variant) => variant._id !== product.data._id);
+  const variations = product?.data?.variations?.variations;
+
   let requestData = {};
 
   if (userId) {
@@ -276,7 +277,11 @@ const ProductPage = () => {
                     )}
                   </div>
                   <div className="flex flex-col justify-center items-center gap-6 py-2">
-                    <motion.div className={'flex  flex-wrap justify-start items-start text-center w-full gap-4'}>
+                    <motion.div
+                      className={
+                        'grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-2 2xl:grid-cols-3 gap-10 mx-4   text-center w-full'
+                      }
+                    >
                       {variations?.map((variation) => {
                         return (
                           <motion.div
@@ -285,12 +290,16 @@ const ProductPage = () => {
                               setCurrentIndex(0);
                               navigate(`/product/${variation._id}`);
                             }}
-                            className="relative basis-[46%] md:basis-[30%] min-w-[120px] cursor-pointer hover:text-mint"
+                            className={`relative  ${
+                              variation._id === product?.data._id ? '' : 'cursor-pointer'
+                            } hover:text-mint`}
                             {...hoverOnButtonAnimation}
                           >
                             <LazyLoadImage
                               src={variation.photo}
-                              className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] rounded-full object-contain object-cover mx-auto "
+                              className={`max-w-[120px] min-w-[120px] max-h-[120px] min-h-[120px] rounded-full  object-cover mx-auto   ${
+                                variation._id === product?.data._id ? 'border border-[5px] border-mint' : ''
+                              }`}
                               alt=""
                               effect="blur"
                               afterLoad={() => {
@@ -301,7 +310,9 @@ const ProductPage = () => {
                               }}
                             />
                             {imageLoaded ? null : <Spinner className="absolute top-1/2 left-1/2" />}
-                            <p className="truncate">{variation.title}</p>
+                            <p className={`truncate  ${variation._id === product?.data._id ? 'text-mint' : ''}`}>
+                              {variation.title}
+                            </p>
                           </motion.div>
                         );
                       })}
