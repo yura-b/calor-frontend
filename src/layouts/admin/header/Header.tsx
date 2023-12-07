@@ -24,6 +24,7 @@ import {
 } from '@phosphor-icons/react';
 import CustomSignOut from '@components/logout/SignOut.tsx';
 import HeaderElement from '@layouts/admin/header/HeaderElement.tsx';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { firstName, secondName } = useAppSelector((state) => state.user);
@@ -43,11 +44,17 @@ const Header = () => {
   };
 
   return (
-    <div className={'fixed w-1/6 h-full bg-custom-grey'}>
+    <div className={'fixed w-1/6 max-w-1/6 h-full bg-custom-turquoise'}>
       <div className={'flex flex-col justify-center ' + styles.header}>
-        <div className={'w-full flex justify-center'}>
-          <img src={logo} className={'w-full h-full p-3 mt-6 ' + styles.image} alt="" />
-        </div>
+        <Link to={'/admin'}>
+          <div className={'w-full flex justify-center cursor-pointer mt-6'}>
+            <img
+              src={logo}
+              className={'h-full px-5  object-contain  max-w-[300px] w-[260px] lg:transform' + styles.image}
+              alt=""
+            />
+          </div>
+        </Link>
 
         <div
           className={'flex flex-col gap-6 w-full justify-center ml-6  mt-8 2xl:gap-8 2xl:mt-16 ' + styles.navContainer}
