@@ -1,149 +1,144 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import AdminLayout from '@layouts/admin/AdminLayout.tsx';
 import UserPageHeader from '@pages/admin/users/components/userProfile/UserPageHeader.tsx';
-import { IBaseProduct, Product } from '@/constants/interfaces/product.ts';
-import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
-import { loading, loadingFinished } from '@/store/reducers/StatusReducer.ts';
-import { addVariant, assignVariation, deleteVariant, getAccessories, getVariants } from '@/api/products.ts';
-import ProductVariation from '@pages/admin/catalog/variations/components/ProductVariation.tsx';
-import CustomButton from '@components/button/CustomButton.tsx';
-import { EditVariationElementDto } from '@/api/dto/products.dto.ts';
+import {IBaseProduct, Product} from '@/constants/interfaces/product.ts';
+import {useAppDispatch, useAppSelector} from '@/store/hooks/hooks.ts';
+import {loading, loadingFinished} from '@/store/reducers/StatusReducer.ts';
+import {addVariant, assignVariation, deleteVariant, getAccessories, getVariants} from '@/api/products.ts';
+import {EditVariationElementDto} from '@/api/dto/products.dto.ts';
 import ModalWindow from '@pages/admin/catalog/variations/components/ModalWindow.tsx';
 import ProductRow from '@pages/admin/catalog/variations/components/ProductWithoutVariations.tsx';
+import Navigation from '@components/admin/Navigation.tsx';
+import ExistingVariation from '@pages/admin/catalog/variations/components/ExistingVariation.tsx';
+import ChosenVariation from '@pages/admin/catalog/variations/components/ChosenVariation.tsx';
+import ConfirmModalWindow from '@pages/admin/catalog/variations/components/ConfirmModalWindow.tsx';
+
+enum navigation {
+    existed = 'Existing variations',
+    withoutVariation = 'Products without variations'
+}
+
+const navigationArr = [navigation.existed, navigation.withoutVariation]
 
 const VariationsPage = () => {
-  const { access_token } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+    const {access_token} = useAppSelector((state) => state.user);
+    const dispatch = useAppDispatch();
 
-  const [rerender, forceRerender] = useState(0);
-  const [currentVariantId, setCurrentVariantId] = useState<string | null>(null);
-  const [open, setOpenModal] = useState(false);
+    const [navigationState, setNavigationState] = useState<string>(navigation.existed)
+    const [rerender, forceRerender] = useState(0);
 
-  const [products, setProducts] = useState<Product[]>([]);
-  const [variants, setVariants] = useState<{ variations: IBaseProduct[]; _id: string }[]>();
+    const [currentVariantId, setCurrentVariantId] = useState<string | null>(null);
+    const [itemDataToDelete, setItemDataToDelete] = useState<EditVariationElementDto | null>(null);
 
-  const [possibleVariationIds, setPossibleVariationIds] = useState<string[]>([]);
+    const [open, setOpenModal] = useState(false);
+    const [confirmation, setConfirmation] = useState(false);
 
-  const productsWithoutVariations = products.filter(
-    (product) => !product.variations && !possibleVariationIds.includes(product._id)
-  );
+    const [products, setProducts] = useState<Product[]>([]);
+    const [variants, setVariants] = useState<{ variations: IBaseProduct[]; _id: string }[]>();
 
-  const possibleVariation = products.filter(
-    (product) => !product.variations && possibleVariationIds.includes(product._id)
-  );
+    const [possibleVariationIds, setPossibleVariationIds] = useState<string[]>([]);
 
-  useEffect(() => {
-    dispatch(loading());
-    getAccessories().then((res) => {
-      setProducts(res.data);
-    });
-    getVariants().then((res) => {
-      setVariants(res.data);
-    });
+    const productsWithoutVariations = products.filter(
+        (product) => !product.variations && !possibleVariationIds.includes(product._id)
+    );
 
-    dispatch(loadingFinished());
-  }, [rerender]);
+    const possibleVariation = products.filter(
+        (product) => !product.variations && possibleVariationIds.includes(product._id)
+    );
 
-  const createVariation = () => {
-    if (!access_token) return;
-    assignVariation(access_token, possibleVariationIds).then(() => {
-      setPossibleVariationIds([]);
-      forceRerender((prevState) => prevState + 1);
-    });
-  };
+    useEffect(() => {
+        dispatch(loading());
+        getAccessories().then((res) => {
+            setProducts(res.data);
+        });
+        getVariants().then((res) => {
+            setVariants(res.data);
+        });
 
-  const deleteFromDBVariation = (data: EditVariationElementDto) => {
-    if (!access_token) return;
-    deleteVariant(access_token, data).then(() => {
-      forceRerender((prevState) => prevState + 1);
-    });
-  };
+        dispatch(loadingFinished());
+    }, [rerender]);
 
-  const pushToVariantList = (data: EditVariationElementDto) => {
-    if (!access_token) return;
-    addVariant(access_token, data).then(() => {
-      forceRerender((prevState) => prevState + 1);
-    });
-  };
-  const addToVariationList = (_id: string) => {
-    setPossibleVariationIds((prevState) => [...new Set([...prevState, _id])]);
-  };
+    const createVariation = () => {
+        if (!access_token) return;
+        assignVariation(access_token, possibleVariationIds).then(() => {
+            setPossibleVariationIds([]);
+            forceRerender((prevState) => prevState + 1);
+        });
+    };
 
-  const removeFromVariationList = (_id: string) => {
-    setPossibleVariationIds((prevState) => prevState.filter((el) => el !== _id));
-  };
+    const pushToVariantList = (data: EditVariationElementDto) => {
+        if (!access_token) return;
+        addVariant(access_token, data).then(() => {
+            forceRerender((prevState) => prevState + 1);
+        });
+    };
+    const deleteVariationFromDB = (data: EditVariationElementDto) => {
+        if (!access_token) return;
+        deleteVariant(access_token, data).then(() => {
+            forceRerender((prevState) => prevState + 1);
+        });
+    };
+    const addToVariationList = (_id: string) => {
+        setPossibleVariationIds((prevState) => [...new Set([...prevState, _id])]);
+    };
 
-  if (!products) return;
+    const removeFromVariationList = (_id: string) => {
+        setPossibleVariationIds((prevState) => prevState.filter((el) => el !== _id));
+    };
 
-  return (
-    <AdminLayout>
-      <UserPageHeader
-        buttonAvailable={false}
-        url={'/admin/catalog'}
-        upperText={'Back to catalog'}
-        bottomText={'Variations'}
-      />
+    if (!products) return;
 
-      <div className={'p-5'}>
-        <div className={'flex flex-col gap-12 mb-24'}>
-          <ProductRow
-            products={productsWithoutVariations}
-            title={'Product without variations:'}
-            handler={addToVariationList}
-          />
+    return (
+        <AdminLayout>
+            <UserPageHeader
+                buttonAvailable={false}
+                url={'/admin/catalog'}
+                upperText={'Back to catalog'}
+                bottomText={'Variations'}
+            />
 
-          <ProductRow products={possibleVariation} handler={removeFromVariationList} title={'Chosen Variation:'} />
+            <div className={'p-5'}>
+                <Navigation setState={setNavigationState} state={navigationState} array={navigationArr}/>
 
-          <CustomButton title={'Create variation'} handler={createVariation} styles={'w-[300px]'} />
-        </div>
 
-        <div>
-          {variants?.length !== 0 && <h1 className={'font-bold text-lg mb-12'}>Existed variations:</h1>}
+                {navigationState === navigation.existed && <ExistingVariation
+                    variants={variants}
+                    forceRerender={forceRerender}
+                    setCurrentVariantId={setCurrentVariantId}
+                    setOpenModal={setOpenModal}
+                    setConfirmation={setConfirmation}
+                    setDataToDeleteItem={setItemDataToDelete}
+                />}
 
-          {variants?.map((variant) => {
-            const customHandler = (_id: string) => {
-              deleteFromDBVariation({ variantId: variant._id, elementId: _id });
-            };
+                {navigationState === navigation.withoutVariation && <div className={'flex flex-col gap-12 mb-24'}>
+                    <ProductRow
+                        products={productsWithoutVariations}
+                        title={'Product without variations:'}
+                        handler={addToVariationList}
+                    />
 
-            return (
-              <div key={variant._id} className={'flex flex-col gap-8 py-8'}>
-                <ProductVariation
-                  key={variant._id}
-                  productList={variant.variations.map((variant) => ({
-                    ...variant,
-                    photos: [variant.photo],
-                  }))}
-                  handler={customHandler}
-                />
+                    {possibleVariation.length !== 0 &&
+                        <ChosenVariation products={possibleVariation} saveHandler={createVariation}
+                                         handler={removeFromVariationList}/>}
+                    {/* <ProductRow products={possibleVariation} handler={removeFromVariationList} title={'Chosen Variation:'}/> */}
+                    {/* <CustomButton title={'Create variation'} handler={createVariation} styles={'w-[300px]'}/> */}
+                </div>}
 
-                <div className={'flex flex-row justify-start gap-8'}>
-                  <CustomButton
-                    title={'Add Item'}
-                    handler={() => {
-                      setCurrentVariantId(variant._id);
-                      setOpenModal(true);
-                    }}
-                  />
-                </div>
-
-                <hr />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <ModalWindow
-        closeModal={setOpenModal}
-        open={open}
-        currentId={currentVariantId}
-        handler={pushToVariantList}
-        items={productsWithoutVariations.map((item) => ({
-          ...item,
-          photo: item.photos[0],
-        }))}
-      />
-    </AdminLayout>
-  );
+            </div>
+            <ConfirmModalWindow open={confirmation} closeModal={setConfirmation} data={itemDataToDelete}
+                                handler={deleteVariationFromDB}/>
+            <ModalWindow
+                closeModal={setOpenModal}
+                open={open}
+                currentId={currentVariantId}
+                handler={pushToVariantList}
+                items={productsWithoutVariations.map((item) => ({
+                    ...item,
+                    photo: item.photos[0],
+                }))}
+            />
+        </AdminLayout>
+    );
 };
 
 export default VariationsPage;

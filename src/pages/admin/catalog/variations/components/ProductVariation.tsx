@@ -18,7 +18,7 @@ const ProductVariation: FC<{ productList: IProduct[]; handler: (_id: string) => 
       {productList.map(({ photos, title, _id }) => {
         return (
           <div key={_id} className={'flex flex-col gap-5 w-1/5 items-center'} onClick={() => handler(_id)}>
-            <img src={photos[0]} alt={'photo'} className={'aspect-[2/1] h-[200px] object-contain'} />
+            <img src={photos[0]} alt={'photo'} className={'aspect-[2/1] h-[200px] object-contain cursor-pointer'} />
             <p className={'font-bold'}>{title}</p>
           </div>
         );
