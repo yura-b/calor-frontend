@@ -5,6 +5,7 @@ import CustomInput from '@components/input/CustomInput.tsx';
 import { deleteEvent, patchEvent } from '@/api/manager/event.ts';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { showMessage } from '@/store/reducers/StatusReducer.ts';
+import CustomTextArea from '@/components/ui/TextArea/CustomTextArea';
 
 const EventComponent: FC<Events> = ({ photo, title, announcement, _id }) => {
   const { access_token } = useAppSelector((state) => state.user);
@@ -52,17 +53,29 @@ const EventComponent: FC<Events> = ({ photo, title, announcement, _id }) => {
   const styles = 'w-full mt-5';
 
   return (
-    <div className={'flex flex-col w-1/6'}>
+    <div className={'flex flex-col w-1/5'}>
       <div className={'flex flex-col items-center min-h-[350px]'}>
         <img className={'min-h-fit'} src={photo} alt="" />
         {edit ? (
           <>
-            <CustomInput value={newTitle} onChange={changeHandler(setNewTitle)}>
-              Title
-            </CustomInput>
-            <CustomInput value={newAnnouncement} onChange={changeHandler(setNewAnnouncement)}>
-              Announcement
-            </CustomInput>
+            <div className="w-full">
+              <CustomInput value={newTitle} onChange={changeHandler(setNewTitle)}>
+                Title
+              </CustomInput>
+            </div>
+            <div className="w-full">
+              <p className="font-bold">Announcement</p>
+              <CustomTextArea
+                className="my-2"
+                placeholder=""
+                variant="soft"
+                height={4}
+                id={'editEventAnnouncement'}
+                name={'editEventAnnouncement'}
+                onChange={changeHandler(setNewAnnouncement)}
+                defaultValue={newAnnouncement}
+              />
+            </div>
           </>
         ) : (
           <>
@@ -73,7 +86,7 @@ const EventComponent: FC<Events> = ({ photo, title, announcement, _id }) => {
       </div>
 
       <div className={'flex flex-col gap-5 mt-6 w-full'}>
-        <CustomButton title={'edit'} styles={styles} handler={() => setEdit(!edit)} />
+        <CustomButton title={!edit ? 'edit' : 'cancel editing'} styles={styles} handler={() => setEdit(!edit)} />
         {edit && <CustomButton title={'save'} styles={styles} handler={saveHandler} />}
         {edit && <CustomButton title={'delete'} styles={styles} handler={deleteHandler} bgColor={'red'} />}
       </div>

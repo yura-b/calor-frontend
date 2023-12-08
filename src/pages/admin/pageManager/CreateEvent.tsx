@@ -9,6 +9,7 @@ import { uploadPhoto } from '@/api/do';
 import { createEvent } from '@/api/manager/event.ts';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { showMessage } from '@/store/reducers/StatusReducer.ts';
+import CustomTextArea from '@/components/ui/TextArea/CustomTextArea';
 
 const CreateEvent = () => {
   const { access_token } = useAppSelector((state) => state.user);
@@ -64,7 +65,19 @@ const CreateEvent = () => {
           <div className={'flex flex-col gap-5 w-1/2'}>
             <p className={'font-bold'}>2. Event`s Detail</p>
             <CustomInput description={'Title'} value={title} onChange={titleHandler} />
-            <CustomInput description={'New Announcement'} value={announcement} onChange={announcementHandler} />
+            <div>
+              <p>New Announcement</p>
+              <CustomTextArea
+                className="my-2"
+                placeholder=""
+                variant="soft"
+                height={4}
+                id={'eventAnnouncement'}
+                name={'eventAnnouncement'}
+                onChange={announcementHandler}
+                defaultValue={announcement}
+              />
+            </div>
             <CustomButton title={'Add New Event'} handler={handleAddNewEvent} />
           </div>
         </div>
