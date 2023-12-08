@@ -129,7 +129,7 @@ const ItemForm: FC<IProps> = ({
       price: Number(price),
       category: category,
       subcategory: selectedSubCategory,
-      size: sizes.map((size) => size.size),
+      size: sizes.map((size) => size.size.toUpperCase()),
       name: productName,
       description: descriptionHtmlContent,
       productDetails: productDetailsHtmlContent,
@@ -275,7 +275,7 @@ const ItemForm: FC<IProps> = ({
                 <Trash size={26} color={'red'} className={'cursor-pointer'} onClick={() => removeSize(el.index)} />
                 <CustomInput
                   type={InputType.text}
-                  value={el.size}
+                  value={el.size.toUpperCase()}
                   onChange={sizeHandler(setSizes, el.index)}
                   border={border}
                 />
