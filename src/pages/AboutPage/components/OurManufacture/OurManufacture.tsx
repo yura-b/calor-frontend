@@ -20,7 +20,7 @@ const OurManufacture: React.FC<Props> = ({ ourManufacture }): React.ReactElement
   return (
     <motion.div {...fadeAnimation} id="our_manufacture" className="lg:bg-custom-turquoise">
       <div className="relative z-10">
-        <h1 className={`${styles.header1} ${styles.container} text-center pt-4 lg:pt-0 lg:pt-8 pb-2 lg:text-left z-10`}>
+        <h1 className={`${styles.header1} ${styles.container} text-center pt-4 lg:pt-8 pb-2 lg:text-left z-10`}>
           About Our Manufacturing
         </h1>
         <div className="bg-custom-turquoise pb-6 lg:py-6 lg:bg-opacity-0">
