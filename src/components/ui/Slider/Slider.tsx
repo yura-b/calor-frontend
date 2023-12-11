@@ -67,7 +67,7 @@ const Slider: FC<IProps> = ({
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <>
-      <motion.div className="flex justify-center items-center m-auto flex-col w-full" {...fadeAnimation}>
+      <motion.div className="flex justify-center items-center m-auto flex-col w-full">
         <div className="flex justify-center items-center m-auto flex-col w-full">
           <div className={'relative w-[100%]'}>
             <div
