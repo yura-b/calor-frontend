@@ -11,7 +11,15 @@ import { useMediaQuery } from '@react-hook/media-query';
 import VideoDigital from '@components/VideoDigital';
 import { hoverOnButtonAnimation } from '@/styles/Animations';
 
-const VideoReviews: React.FC = () => {
+interface IProps {
+  xlColumn: number;
+  lgColumn: number;
+  xsColumn: number;
+  mdColumn?: number;
+  column: number;
+}
+
+const VideoReviews: React.FC<IProps> = ({ column, xsColumn, mdColumn, lgColumn, xlColumn }) => {
   const { data, isLoading, error } = useQuery('getPageSection', () => getPageSection());
   const filteredPagesFooter = data?.data.filter((page) => page.page === 'Footer');
   const email = filteredPagesFooter?.find((section) => section?.section === 'Email').value;
@@ -86,14 +94,32 @@ const VideoReviews: React.FC = () => {
     },
   ];
   const mobileBreakpoint = 640;
-  const isMobile = useMediaQuery('(max-width: 1023px)');
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isMiddleScreen = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
   const isLargeScreen = useMediaQuery('(min-width: 1024px) and (max-width: 1279px)');
   const [showAll, setShowAll] = useState(false);
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
-  const displayedVideoGuides = showAll ? videoGuides : videoGuides.slice(0, isMobile ? 2 : isLargeScreen ? 3 : 4);
+  const calculateDisplayCount = () => {
+    switch (true) {
+      case showAll:
+        return videoGuides.length;
+      case isMobile && videoGuides.length > 5:
+        return xsColumn;
+      case isMobile:
+        return videoGuides.length;
+      case isMiddleScreen:
+        return mdColumn;
+      case isLargeScreen:
+        return lgColumn;
+      default:
+        return xlColumn;
+    }
+  };
+
+  const displayedVideoGuides = videoGuides.slice(0, calculateDisplayCount());
 
   const Description = ({ text }) => {
     const [expanded, setExpanded] = useState(false);
@@ -135,9 +161,11 @@ const VideoReviews: React.FC = () => {
           window.innerWidth >= mobileBreakpoint ? styles.container : 'px-[20px]'
         } lg:flex flex-col items-center  mb-2 lg:mb-6 lg:py-0`}
       >
-        <h1 className={`${styles.header1}  pt-4 pb-2 lg:pt-0 text-center`}>Video Reviews</h1>
+        <h1 className={`${styles.header1}  py-4 lg:pt-0 text-center`}>Video Reviews</h1>
         <div className="text-center w-full">
-          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div
+            className={`grid grid-cols-${column} xs:grid-cols-${xsColumn} md:grid-cols-${mdColumn} lg:grid-cols-${lgColumn} xl:grid-cols-${xlColumn} gap-4`}
+          >
             {displayedVideoGuides.map((video, i) => (
               <div className={'  relative  lg:min-h-[200px]'} key={i}>
                 <VideoDigital srcMp4={video.srcMp4} name={video.name} showDescription={true} />

@@ -474,7 +474,7 @@ export const shoes = [
         image: '/assets/images/constructor/details/dayger/13.png',
         materials: [
           {
-            name: 'polyester',
+            name: 'cotton',
             colors: [
               {
                 img: 'part03_laces_polyester_01.png',
@@ -3470,7 +3470,7 @@ export const shoes = [
         image: '/assets/images/constructor/details/sunrise/6.png',
         materials: [
           {
-            name: 'polyester',
+            name: 'cotton',
             colors: [
               {
                 img: 'part06_laces_polyester_01.png',
@@ -4280,7 +4280,7 @@ export const shoes = [
         image: '/assets/images/constructor/details/yolo/4.png',
         materials: [
           {
-            name: 'polyester',
+            name: 'cotton',
             colors: [
               {
                 img: 'part04_laces_polyester_01.png',

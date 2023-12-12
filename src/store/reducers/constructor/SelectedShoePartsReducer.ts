@@ -22,7 +22,7 @@ const initialState = {
       },
       part03: {
         name: 'Laces',
-        material: 'polyester',
+        material: 'cotton',
         color: 'Daisy White',
       },
       part04: {
@@ -109,7 +109,7 @@ const initialState = {
       },
       part06: {
         name: 'Laces',
-        material: 'polyester',
+        material: 'cotton',
         color: 'Daisy White',
       },
       part07: {
@@ -146,7 +146,7 @@ const initialState = {
       },
       part04: {
         name: 'Laces',
-        material: 'polyester',
+        material: 'cotton',
         color: 'Daisy White',
       },
       part05: {

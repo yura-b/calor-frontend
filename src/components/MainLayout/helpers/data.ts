@@ -39,22 +39,22 @@ export const menuItems = [
         subTitle: 'All',
         path: paths.accessories,
       },
-      {
-        subTitle: AccessoriesProduct.BELTS,
-        path: paths.accessories + '/' + AccessoriesProduct.BELTS.toLowerCase(),
-      },
-      {
-        subTitle: AccessoriesProduct.BRACELETS,
-        path: paths.accessories + '/' + AccessoriesProduct.BRACELETS.toLowerCase(),
-      },
+      // {
+      //   subTitle: AccessoriesProduct.BELTS,
+      //   path: paths.accessories + '/' + AccessoriesProduct.BELTS.toLowerCase(),
+      // },
+      // {
+      //   subTitle: AccessoriesProduct.BRACELETS,
+      //   path: paths.accessories + '/' + AccessoriesProduct.BRACELETS.toLowerCase(),
+      // },
       {
         subTitle: AccessoriesProduct.LACES,
         path: paths.accessories + '/' + AccessoriesProduct.LACES.toLowerCase(),
       },
-      {
-        subTitle: AccessoriesProduct.SOUVENIRS,
-        path: paths.accessories + '/' + AccessoriesProduct.SOUVENIRS.toLowerCase(),
-      },
+      // {
+      //   subTitle: AccessoriesProduct.SOUVENIRS,
+      //   path: paths.accessories + '/' + AccessoriesProduct.SOUVENIRS.toLowerCase(),
+      // },
       {
         subTitle: AccessoriesProduct.TSHIRTS,
         path: paths.accessories + '/' + AccessoriesProduct.TSHIRTS.toLowerCase(),

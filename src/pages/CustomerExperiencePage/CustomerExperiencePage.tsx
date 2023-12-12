@@ -17,7 +17,7 @@ const CustomerExperiencePage: React.FC = (): React.ReactElement => {
         <div className=" hidden lg:block lg:mt-4 lg:mb-2">
           <NavigationLinks color="gray" className=" w-auto" />
         </div>
-        <VideoReviews />
+        <VideoReviews column={1} xsColumn={2} mdColumn={3} lgColumn={3} xlColumn={4} />
         <div className="bg-mintExtraLight">
           <CustomerCreations />
         </div>
