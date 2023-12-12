@@ -39,7 +39,7 @@ const HomePage: React.FC = (): React.ReactElement => {
         </div>
         <CompleteLook />
         <HomeCalorByYou benefits={benefits} perfectFit={perfectFit} />
-        {/* <Purchase /> */}
+        <Purchase />
       </MainLayout>
     </div>
   );
