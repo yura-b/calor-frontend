@@ -5493,7 +5493,7 @@ export const shoesImages = {
       part14: '/assets/images/constructor/parts/yolo/view1/view1_shade.png',
     },
     view2: {
-      //part13 should be on first place beacouse merge-images npm package can only merge by order
+      // part13 should be on first place beacouse merge-images npm package can only merge by order
       part13: '/assets/images/constructor/parts/yolo/view2/view2_podlozhka.png',
       part01: '/assets/images/constructor/parts/yolo/view2/view2_part01_tongue_toe_cotton_01.png',
       part02: '/assets/images/constructor/parts/yolo/view2/view2_part02_detail_1_cotton_01.png',
@@ -5521,7 +5521,7 @@ export const shoesImages = {
       part09: '/assets/images/constructor/parts/yolo/view3/view3_part09_detail_4_cotton_01.png',
       part10: '/assets/images/constructor/parts/yolo/view3/view3_part10_detail_5_cotton_01.png',
       part11: '/assets/images/constructor/parts/yolo/view3/view3_part11_sole_01.png',
-      //no part12 beacouse for view3 there is no stitches
+      // no part12 beacouse for view3 there is no stitches
       part13: '/assets/images/constructor/parts/yolo/view3/view3_podlozhka.png',
     },
     view4: {

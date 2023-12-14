@@ -275,7 +275,7 @@ const ItemForm: FC<IProps> = ({
                 <Trash size={26} color={'red'} className={'cursor-pointer'} onClick={() => removeSize(el.index)} />
                 <CustomInput
                   type={InputType.text}
-                  value={typeof el?.size === 'string'  ? el?.size?.toUpperCase() : el?.size}
+                  value={typeof el?.size === 'string' ? el?.size?.toUpperCase() : el?.size}
                   onChange={sizeHandler(setSizes, el.index)}
                   border={border}
                 />

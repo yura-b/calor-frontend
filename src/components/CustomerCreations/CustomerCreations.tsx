@@ -59,7 +59,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
     <div className={`${styles.container} py-0`}>
       <p className={`${styles.subtitle} pt-4`}>Customer Creations</p>
       <div className="flex justify-between items-center gap-4">
-        <h1 className={'text-2xl font-black text-gray lg:text-3xl xl:text-4xl'}>@calorshoe</h1>
+        <h1 className={'text-2xl font-black text-gray lg:text-3xl xl:text-4xl pb-2 lg:pb-0'}>@calorshoe</h1>
         <Button color="gray" className="w-full my-4 hidden lg:block" onClick={handleClick}>
           Follow Us
         </Button>
