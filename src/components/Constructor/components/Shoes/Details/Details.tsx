@@ -55,11 +55,14 @@ const Details: FC<IProps> = ({ details }) => {
     <>
       <div
         ref={containerRef}
-        className={`flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 xl:w-wrapper no-scrollbar`}
+        className={
+          'flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 xl:w-wrapper no-scrollbar'
+        }
       >
-        {details.map((detail) => {
+        {details.map((detail, i) => {
           return (
             <div
+              key={i}
               className="min-h-[70px] justify-center items-center flex flex-col cursor-pointer"
               onClick={() => handleDetailClick({ part: detail.part, name: detail.name })}
             >

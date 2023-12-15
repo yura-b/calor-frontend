@@ -28,10 +28,21 @@ interface Detail {
   materials: Material[];
 }
 
+interface MaterialData {
+  available: boolean;
+  title: string;
+}
+
+interface ShoeDetail {
+  title: string;
+  materials: MaterialData[];
+}
 interface IProps {
   details: Detail[];
+  shoesDetailsFromApi: ShoeDetail[];
 }
-const Colors: FC<IProps> = ({ details }) => {
+
+const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { selectedMaterial, selectedDetail, selectedColor, selectedModel } = useSelector(
@@ -47,6 +58,11 @@ const Colors: FC<IProps> = ({ details }) => {
   const handleColorClick = (colorImg) => {
     dispatch(setSelectedColor(colorImg));
   };
+
+  const isDetailAvailable =
+    shoesDetailsFromApi &&
+    (shoesDetailsFromApi?.find((item) => item?.title === selectedDetail.name) || shoesDetailsFromApi[0]);
+  const isMaterialAvailable = isDetailAvailable?.materials.find((item) => item?.title === selectedMaterial)?.available;
 
   useEffect(() => {
     const model = selectedModel.toLowerCase();
@@ -87,19 +103,24 @@ const Colors: FC<IProps> = ({ details }) => {
       ref={containerRef}
       className={`flex ${
         colors.length < 5 ? 'justify-center' : 'justify-between'
-      } items-center m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 md:w-wrapper no-scrollbar`}
+      } items-center m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 md:w-wrapper no-scrollbar  `}
     >
       {colors.map((color, index) =>
         color.name !== null ? (
           <Tooltip key={color.name} title={color.name} placement="top" arrow>
-            <button
-              style={{ background: !color.texture ? color.hex : 'none' }}
-              ref={(element) => (colorRefs.current[color.name] = element)}
-              className="min-h-[55px] min-w-[55px] rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-3 ring-grayLight"
-              onClick={() => handleColorClick({ img: color.img, name: color.name })}
-            >
-              {color.texture ? <img src={color.texture} alt={color.name} height={55} width={55} key={index} /> : null}
-            </button>
+            <span>
+              <button
+                style={{ background: !color.texture ? color.hex : 'none' }}
+                ref={(element) => (colorRefs.current[color.name] = element)}
+                className={`min-h-[55px] min-w-[55px] rounded-full shadow focus:drop-shadow-2md focus:outline-none ring-2 focus:ring-3 ring-grayLight ${
+                  !isMaterialAvailable ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                onClick={() => handleColorClick({ img: color.img, name: color.name })}
+                disabled={!isMaterialAvailable}
+              >
+                {color.texture ? <img src={color.texture} alt={color.name} height={55} width={55} key={index} /> : null}
+              </button>
+            </span>
           </Tooltip>
         ) : null
       )}
