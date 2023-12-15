@@ -48,6 +48,7 @@ const Video: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, showDescri
         <div className="flex flex-col justify-between">
           <video
             className="w-full"
+            loading="lazy"
             preload="auto"
             playsInline
             webkit-playsinline
@@ -62,9 +63,7 @@ const Video: React.FC<Props> = ({ srcWebm, srcMp4, srcMov, className, showDescri
               setIsError(true);
             }}
           >
-            <source src={`https://drive.google.com/uc?id=${srcWebm}`} type="video/webm" />
             <source src={`https://drive.google.com/uc?id=${srcMp4}`} type="video/mp4" />
-            <source src={`https://drive.google.com/uc?id=${srcMov}`} type="video/mov" />
           </video>
           {showDescription && (
             <div className="">

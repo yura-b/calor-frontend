@@ -95,6 +95,7 @@ const VideoDigital: React.FC<Props> = ({ srcMp4, className, showDescription, nam
         <div className="flex flex-col justify-between z-20">
           <video
             ref={videoRef}
+            loading="lazy"
             className="w-full"
             preload="auto"
             playsInline
