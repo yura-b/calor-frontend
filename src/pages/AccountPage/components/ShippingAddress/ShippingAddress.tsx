@@ -44,7 +44,7 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div className="w-100">
+    <div className="w-full">
       {!isVisible && shippingInfo === null && <ShippingAddressDefault handleClick={handleClick} />}
       <AccountLayout>
         <MainFrame title={'Shipping Address'} className="overflow-hidden">
@@ -91,7 +91,11 @@ const ShippingAddress: React.FC = (): React.ReactElement => {
               </div>
             </div>
           )}
-          {isVisible && <ShippingInformation setData={setData} buttonTitle={buttonName} shippingData={shippingData} />}
+          {isVisible && (
+            <div className="2xl:max-w-[60%] lg:-mt-8">
+              <ShippingInformation setData={setData} buttonTitle={buttonName} shippingData={shippingData} />
+            </div>
+          )}
         </MainFrame>
       </AccountLayout>
     </div>

@@ -15,6 +15,7 @@ const ModalContent = ({ data, isVideoSupported }) => {
             <>
               <video
                 autoPlay
+                loading="lazy"
                 controls
                 onLoadStart={() => setIsVideoLoading(true)}
                 onLoadedData={() => setIsVideoLoading(false)}

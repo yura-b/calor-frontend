@@ -85,7 +85,7 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
   });
 
   return (
-    <div className={'flex flex-col p-5 w-full items-center'}>
+    <div className={'flex flex-col p-5 w-full items-center text-gray'}>
       <div className={'flex flex-col flex-start w-full'}>
         <h2 className={'text-xl my-4 font-bold'}>Shipping Information</h2>
         {userId && basketProducts.some((product) => product.shoes !== null) && (
@@ -100,8 +100,8 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
         )}
       </div>
       <form onSubmit={formik.handleSubmit} className={'w-full'}>
-        <div className={'mb-4'}>
-          <p className={'font-bold'}>Country/Region</p>
+        <div className={'flex flex-col gap-1 mb-4'}>
+          <p className={'font-bold mb-[2px]'}>Country/Region</p>
           <CountryAutoComplete id="country" handler={setCountry} value={country} arr={countries} />
         </div>
 

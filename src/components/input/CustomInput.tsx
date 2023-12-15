@@ -23,7 +23,7 @@ interface IProps {
   disabled?: boolean;
 }
 
-const CustomInput: React.FC<IProps> = ({ gap = '2', ...props }) => {
+const CustomInput: React.FC<IProps> = ({ gap = '1', ...props }) => {
   const theme = createTheme({
     palette: {
       primary: {

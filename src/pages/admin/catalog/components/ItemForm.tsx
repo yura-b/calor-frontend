@@ -268,14 +268,18 @@ const ItemForm: FC<IProps> = ({
       )}
 
       {unavailableInputs.size && (
-        <div className={'flex flex-row items-center flex-wrap gap-6 content-end'}>
+        <div
+          className={
+            'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 align-center items-end'
+          }
+        >
           {sizes.map((el) => {
             return (
-              <div key={el.index} className={'flex flex-col w-1/5 items-center'}>
+              <div key={el.index} className={'flex flex-col  items-center '}>
                 <Trash size={26} color={'red'} className={'cursor-pointer'} onClick={() => removeSize(el.index)} />
                 <CustomInput
                   type={InputType.text}
-                  value={el.size.toUpperCase()}
+                  value={typeof el?.size === 'string' ? el?.size?.toUpperCase() : el?.size}
                   onChange={sizeHandler(setSizes, el.index)}
                   border={border}
                 />
@@ -283,7 +287,11 @@ const ItemForm: FC<IProps> = ({
             );
           })}
 
-          <CustomButton title={'Add size'} handler={addNewSize} styles={'w-1/6 !mx-[18px] !py-5 !my-0'} />
+          <CustomButton
+            title={'Add size'}
+            handler={addNewSize}
+            styles={'w-[110px] !mx-[5px] !py-2 !mt-0 !mb-[1.1rem]'}
+          />
         </div>
       )}
       <CustomButton title={buttonTitle} handler={clickHandler} />
