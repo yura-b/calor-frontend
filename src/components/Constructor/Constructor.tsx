@@ -17,7 +17,7 @@ import { shoes } from './shoesData';
 import combineImages from '@/helpers/functions/combineImages';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, QueryObserverResult } from 'react-query';
-import { getProductById } from '@/api/products';
+import { getProductById, getProducts } from '@/api/products';
 import styles from '@styles/Styles.module.scss';
 import Loader from '@/components/ui/Loader';
 import NotFoundPage from '@/pages/NotFoundPage';
@@ -36,6 +36,13 @@ const Constructor: FC = () => {
       }
     },
   });
+
+  const { data: products } = useQuery('products', getProducts, {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+
+  const shoesDetailsFromApi = products?.data?.shoes.find((item) => item._id === product?.data?._id).details;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -79,8 +86,8 @@ const Constructor: FC = () => {
               <NavigationMenu />
               <MainView model={model} />
               <Details details={modelDetails?.details} />
-              <Materials details={modelDetails?.details} />
-              <Colors details={modelDetails?.details} />
+              <Materials details={modelDetails?.details} shoesDetailsFromApi={shoesDetailsFromApi} />
+              <Colors details={modelDetails?.details} shoesDetailsFromApi={shoesDetailsFromApi} />
 
               <div className="flex w-wrapper flex-col mx-auto">
                 <div className="flex justify-center align-center items-center gap-4">

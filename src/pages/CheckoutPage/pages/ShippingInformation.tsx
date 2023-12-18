@@ -195,7 +195,7 @@ const ShippingInformation: FC<IProps> = ({ setData, buttonTitle }) => {
               width: '25px',
             }}
           >
-            <CheckIcon />
+            {saveAddress ? <CheckIcon /> : null}
           </ToggleButton>
           <p className={'text-sm'}>Save the shipping address for future orders</p>
         </div>

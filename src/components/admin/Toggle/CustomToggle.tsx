@@ -34,7 +34,7 @@ const CustomToggle: FC<IProps> = ({ _id, available, handler, access_token }) => 
         width: '25px',
       }}
     >
-      <CheckIcon />
+      {selected ? <CheckIcon /> : null}
     </ToggleButton>
   );
 };
