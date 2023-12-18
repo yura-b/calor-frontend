@@ -5,7 +5,7 @@ import Spinner from '@components/ui/Spinner';
 interface Props {
   src: string;
   title?: string;
-  className?: string;
+  className: string;
   isVerticalVideo?: boolean;
 }
 
@@ -16,7 +16,7 @@ const VideoFrame: React.FC<Props> = ({ src, title, className, isVerticalVideo })
 
   useEffect(() => {
     const calculateSize = () => {
-      const aspectRatio = !isLargeScreen && isVerticalVideo ? 16 / 9 : 9 / 16;
+      const aspectRatio = isVerticalVideo ? 16 / 9 : 9 / 16;
       const maxWidth = isLargeScreen ? '1024px' : '1024px';
 
       const parentWidth = document.getElementById('frame-id')?.clientWidth || window.innerWidth;
