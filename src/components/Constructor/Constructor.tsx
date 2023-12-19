@@ -42,7 +42,7 @@ const Constructor: FC = () => {
     refetchOnWindowFocus: false,
   });
 
-  const shoesDetailsFromApi = products?.data?.shoes.find((item) => item._id === product?.data?._id).details;
+  const shoesDetailsFromApi = products?.data?.shoes.find((item) => item._id === product?.data?._id)?.details;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
