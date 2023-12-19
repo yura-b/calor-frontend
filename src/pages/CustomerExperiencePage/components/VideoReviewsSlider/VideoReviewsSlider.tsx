@@ -102,13 +102,13 @@ const VideoReviewsSlider: React.FC = () => {
                 {videoGuides.map((video, i) => (
                   <div className="flex justify-center items-center lg:basis-1/5  my-2" key={i}>
                     <div className={'w-[200px] lg:w-full  relative'}>
-                      {/* <VideoDigital srcMp4={video.srcMp4} name={video.name} showDescription={true} /> */}
-                      <VideoFrame
+                      <VideoDigital srcMp4={video.srcMp4} name={video.name} showDescription={true} />
+                      {/* <VideoFrame
                         src={video.srcMp4}
                         title={video.name}
                         className="xl:max-w-[50vw]"
                         isVerticalVideo={true}
-                      />
+                      /> */}
                     </div>
                   </div>
                 ))}

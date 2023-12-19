@@ -52,16 +52,16 @@ const VideoSlider = ({ videoData, isHome }) => {
         >
           {duplicatedImages.map((video, index) => (
             <div className={''} key={index}>
-              {/* <VideoDigital
+              <VideoDigital
                 srcMp4={video.srcMp4}
                 name={video.name}
                 showDescription={true}
                 hideIcon={false}
                 hideControls={false}
                 className="w-[240px] "
-              /> */}
+              />
               {/* <VideoFrame src={'https://www.youtube.com/embed/BfnVQH6n4OA?rel=0'} title="Video Guide" className="xl:max-w-[50vw]" isVerticalVideo={true}/> */}
-              <VideoFrame src={video.srcMp4} title={video.name} className="xl:max-w-[50vw]" isVerticalVideo={true} />
+              {/* <VideoFrame src={video.srcMp4} title={video.name} className="xl:max-w-[50vw]" isVerticalVideo={true} /> */}
               {/* <div className="max-w-screen-md mx-auto mb-8">
       <div className="relative" style={{ paddingTop: '177%' }}>
         <iframe
