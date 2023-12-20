@@ -54,8 +54,9 @@ const Materials: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
   const isDetailAvailable =
     shoesDetailsFromApi &&
     (shoesDetailsFromApi?.find((item) => item?.title === selectedDetail.name) || shoesDetailsFromApi[0]);
+
   useEffect(() => {
-    dispatch(setSelectedMaterial(materials[0].name));
+    dispatch(setSelectedMaterial(materials[0]?.name));
   }, [selectedDetail, selectedModel]);
 
   return (

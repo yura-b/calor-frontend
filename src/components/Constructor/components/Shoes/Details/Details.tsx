@@ -2,6 +2,7 @@ import { FC, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedDetail } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import styles from '@styles/Styles.module.scss';
+import { useParams } from 'react-router-dom';
 
 interface Color {
   name: string;
@@ -24,7 +25,9 @@ interface IProps {
 }
 
 const Details: FC<IProps> = ({ details }) => {
+  const { id } = useParams();
   const { selectedDetail } = useSelector((state) => state.selectedShoeParts);
+
   const dispatch = useDispatch();
   const containerRef = useRef(null);
   const materialRefs = useRef({});
@@ -50,6 +53,10 @@ const Details: FC<IProps> = ({ details }) => {
       });
     }
   }, [selectedDetail]);
+
+  useEffect(() => {
+    dispatch(setSelectedDetail({ part: details[0].part, name: details[0].name }));
+  }, [id]);
 
   return (
     <>

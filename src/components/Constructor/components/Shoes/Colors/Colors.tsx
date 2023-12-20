@@ -62,12 +62,12 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
   const isDetailAvailable =
     shoesDetailsFromApi &&
     (shoesDetailsFromApi?.find((item) => item?.title === selectedDetail.name) || shoesDetailsFromApi[0]);
-  const isMaterialAvailable = isDetailAvailable?.materials.find((item) => item?.title === selectedMaterial)?.available;
+  const isMaterialAvailable = isDetailAvailable?.materials?.find((item) => item?.title === selectedMaterial)?.available;
 
   useEffect(() => {
     const model = selectedModel.toLowerCase();
-    const detailName = selectedDetail.name.toLowerCase();
-    const material = selectedMaterial.toLowerCase();
+    const detailName = selectedDetail?.name.toLowerCase();
+    const material = selectedMaterial?.toLowerCase();
     if (model === 'dayger' && detailName === 'lining') {
       const id = material === 'fur' ? constants.DAYGER_WINTER_ID : constants.DAYGER_ID;
       navigate(`/design_your_shoe/model/dayger/${id}`);

@@ -21,6 +21,7 @@ import { getProductById, getProducts } from '@/api/products';
 import styles from '@styles/Styles.module.scss';
 import Loader from '@/components/ui/Loader';
 import NotFoundPage from '@/pages/NotFoundPage';
+import Spinner from '@components/ui/Spinner';
 
 const Constructor: FC = () => {
   const { id } = useParams();
@@ -37,8 +38,8 @@ const Constructor: FC = () => {
     },
   });
 
-  const { data: products } = useQuery('products', getProducts, {
-    keepPreviousData: true,
+  const { data: products, status } = useQuery('products', getProducts, {
+    keepPreviousData: false,
     refetchOnWindowFocus: false,
   });
 
@@ -86,9 +87,15 @@ const Constructor: FC = () => {
               <NavigationMenu />
               <MainView model={model} />
               <Details details={modelDetails?.details} />
-              <Materials details={modelDetails?.details} shoesDetailsFromApi={shoesDetailsFromApi} />
-              <Colors details={modelDetails?.details} shoesDetailsFromApi={shoesDetailsFromApi} />
-
+              <div className="relative min-h-[100px]">
+                {status === 'loading' && <Spinner className="absolute left-1/2 top-1/4" />}
+                {status === 'success' && (
+                  <>
+                    <Materials details={modelDetails?.details} shoesDetailsFromApi={shoesDetailsFromApi} />
+                    <Colors details={modelDetails?.details} shoesDetailsFromApi={shoesDetailsFromApi} />
+                  </>
+                )}
+              </div>
               <div className="flex w-wrapper flex-col mx-auto">
                 <div className="flex justify-center align-center items-center gap-4">
                   <div className={`${styles.subtitle}`}>
