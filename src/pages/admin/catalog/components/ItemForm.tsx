@@ -225,6 +225,7 @@ const ItemForm: FC<IProps> = ({
                 options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
               }}
               handlePastedText={() => false}
+              editorStyle={{ paddingLeft: '15px', paddingRight: '15px' }}
             />
           </div>
         </>
@@ -242,6 +243,7 @@ const ItemForm: FC<IProps> = ({
                 options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
               }}
               handlePastedText={() => false}
+              editorStyle={{ paddingLeft: '15px', paddingRight: '15px' }}
             />
           </div>
         </>

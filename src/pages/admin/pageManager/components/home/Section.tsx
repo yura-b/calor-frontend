@@ -44,6 +44,7 @@ const Section: React.FC<{ value: string; title: string | null; id: string }> = (
           toolbar={{
             options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
           }}
+          editorStyle={{ paddingLeft: '15px', paddingRight: '15px' }}
         />
       )}
     </div>
