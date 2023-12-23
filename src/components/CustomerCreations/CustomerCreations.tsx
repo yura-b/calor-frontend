@@ -39,7 +39,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
       const mappedInstagramData = instagramData?.data.data.filter(
         (item) => item.media_type === 'IMAGE' || item.media_type === 'VIDEO' || item.media_type === 'CAROUSEL_ALBUM'
       );
-      setInstagramPhotos(mappedInstagramData.slice(0, 10));
+      setInstagramPhotos(mappedInstagramData && mappedInstagramData.slice(0, 10));
     }
   }, [isLoading]);
 
@@ -68,7 +68,8 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
         {!isMobile && <Slider data={instagramPhotos} instagramStyles={true} />}
         {isMobile && (
           <div className="flex justify-between overflow-x-auto overflow-y-hidden flex-row gap-2 mx-auto lg:gap-10">
-            {instagramPhotos.map((item, i) => (
+
+            {instagramPhotos && instagramPhotos.map((item, i) => (
               <div className="flex justify-center items-start lg:basis-1/5   h-[220px] " key={i}>
                 <div
                   className={`${
@@ -122,7 +123,7 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
               <img src={X} alt="Close" className=" w-5 h-5 filter brightness-0 invert" />
             </div>
 
-            <ModalContent data={instagramPhotos[clickedIndex]} isVideoSupported={isVideoSupported} />
+            <ModalContent data={instagramPhotos && instagramPhotos[clickedIndex]} isVideoSupported={isVideoSupported} />
           </div>
         </Modal>
       </div>

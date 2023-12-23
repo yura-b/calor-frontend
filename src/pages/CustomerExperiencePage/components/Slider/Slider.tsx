@@ -53,7 +53,7 @@ const Slider = ({ data, instagramStyles }) => {
   const slideWidth = instagramStyles ? 300 : 200;
   const translateX = -currentIndex * slideWidth;
 
-  const duplicatedImages = [...data, ...data, ...data, ...data];
+  const duplicatedImages = [...data || [], ...data || [], ...data || [], ...data || []];
 
   const openModal = (index) => {
     setClickedIndex(index);
@@ -73,11 +73,11 @@ const Slider = ({ data, instagramStyles }) => {
             display: 'flex',
             transform: `translateX(${translateX}px)`,
             transition: 'transform 0.5s ease',
-            width: `${duplicatedImages.length * slideWidth}px`,
+            width: `${duplicatedImages?.length * slideWidth}px`,
             height: instagramStyles ? '360px' : '420px',
           }}
         >
-          {duplicatedImages.map((image, index) =>
+          {duplicatedImages?.map((image, index) =>
             image.media_type === 'IMAGE' || image.media_type === 'CAROUSEL_ALBUM' ? (
               <div className="relative cursor-pointer" key={index} onClick={() => openModal(index)}>
                 <LazyLoadImage
@@ -122,7 +122,7 @@ const Slider = ({ data, instagramStyles }) => {
                 <img src={X} alt="Close" className=" w-5 h-5 filter brightness-0 invert" />
               </div>
 
-              <ModalContent data={duplicatedImages[clickedIndex]} isVideoSupported={isVideoSupported} />
+              <ModalContent data={duplicatedImages && duplicatedImages[clickedIndex]} isVideoSupported={isVideoSupported} />
             </div>
           </Modal>
         )}
