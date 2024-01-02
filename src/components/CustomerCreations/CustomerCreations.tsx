@@ -68,49 +68,49 @@ const CustomerCreations: React.FC = (): React.ReactElement => {
         {!isMobile && <Slider data={instagramPhotos} instagramStyles={true} />}
         {isMobile && (
           <div className="flex justify-between overflow-x-auto overflow-y-hidden flex-row gap-2 mx-auto lg:gap-10">
-
-            {instagramPhotos && instagramPhotos.map((item, i) => (
-              <div className="flex justify-center items-start lg:basis-1/5   h-[220px] " key={i}>
-                <div
-                  className={`${
-                    item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM'
-                      ? ' min-w-[220px] '
-                      : 'w-[200px]'
-                  } lg:w-full relative`}
-                >
-                  {item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM' ? (
-                    <div onClick={() => openModal(i)} className="cursor-pointer">
-                      <LazyLoadImage
-                        src={item.media_url}
-                        className="object-cover mx-auto z-10 w-[300px] lg:w-[220px] xl:w-[240px] h-[240px]"
-                        effect="blur"
-                      />
-                      {!imageLoaded && <Spinner className="absolute left-1/2 top-1/2" />}
-                      <img
-                        src={item.media_url}
-                        alt="Lazy-loaded image"
-                        onLoad={() => setImageLoaded(true)}
-                        className="hidden"
-                      />
-                    </div>
-                  ) : (
-                    <>
-                      <div className="w-full object-contain  mx-auto" onClick={() => openModal(i)}>
-                        <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
-                          <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
-                        </div>
-                        <VideoDigital
-                          hideIcon={true}
-                          hideControls={true}
-                          srcMp4={item.media_url}
-                          className="min-h-[200px] w-[200px] h-[420px] -mt-[50px]"
+            {instagramPhotos &&
+              instagramPhotos.map((item, i) => (
+                <div className="flex justify-center items-start lg:basis-1/5   h-[220px] " key={i}>
+                  <div
+                    className={`${
+                      item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM'
+                        ? ' min-w-[220px] '
+                        : 'w-[200px]'
+                    } lg:w-full relative`}
+                  >
+                    {item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM' ? (
+                      <div onClick={() => openModal(i)} className="cursor-pointer">
+                        <LazyLoadImage
+                          src={item.media_url}
+                          className="object-cover mx-auto z-10 w-[300px] lg:w-[220px] xl:w-[240px] h-[240px]"
+                          effect="blur"
+                        />
+                        {!imageLoaded && <Spinner className="absolute left-1/2 top-1/2" />}
+                        <img
+                          src={item.media_url}
+                          alt="Lazy-loaded image"
+                          onLoad={() => setImageLoaded(true)}
+                          className="hidden"
                         />
                       </div>
-                    </>
-                  )}
+                    ) : (
+                      <>
+                        <div className="w-full object-contain  mx-auto" onClick={() => openModal(i)}>
+                          <div className={'h-[40px] absolute top-[0%] right-[4%] z-20'}>
+                            <YouTubeIcon style={{ fontSize: '38px', color: 'white' }} />
+                          </div>
+                          <VideoDigital
+                            hideIcon={true}
+                            hideControls={true}
+                            srcMp4={item.media_url}
+                            className="min-h-[200px] w-[200px] h-[420px] -mt-[50px]"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         )}
 
