@@ -101,7 +101,11 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
         ) : (
           <div className={'flex flex-col'}>
             <p className={'font-medium'}>current price: $ {currentPrice}</p>
-            {!!discountPrice && <p className={'font-medium'}>old price: <span className={'text-red-500 line-through'}>$ {discountPrice}</span></p>}
+            {!!discountPrice && (
+              <p className={'font-medium'}>
+                old price: <span className={'text-red-500 line-through'}>$ {discountPrice}</span>
+              </p>
+            )}
           </div>
         )}
         <PencilSimple size={32} weight="fill" onClick={() => setEditPrice(!editPrice)} />

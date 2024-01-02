@@ -53,7 +53,7 @@ const Slider = ({ data, instagramStyles }) => {
   const slideWidth = instagramStyles ? 300 : 200;
   const translateX = -currentIndex * slideWidth;
 
-  const duplicatedImages = [...data || [], ...data || [], ...data || [], ...data || []];
+  const duplicatedImages = [...(data || []), ...(data || []), ...(data || []), ...(data || [])];
 
   const openModal = (index) => {
     setClickedIndex(index);
@@ -122,7 +122,10 @@ const Slider = ({ data, instagramStyles }) => {
                 <img src={X} alt="Close" className=" w-5 h-5 filter brightness-0 invert" />
               </div>
 
-              <ModalContent data={duplicatedImages && duplicatedImages[clickedIndex]} isVideoSupported={isVideoSupported} />
+              <ModalContent
+                data={duplicatedImages && duplicatedImages[clickedIndex]}
+                isVideoSupported={isVideoSupported}
+              />
             </div>
           </Modal>
         )}
