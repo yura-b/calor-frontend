@@ -27,7 +27,7 @@ const VideoReviewsSlider: React.FC = () => {
     {
       srcWebm: '1pISvABcVlTMWN7-dwDfQ2KuQibu3qyue',
       srcMov: '1AEstEk129ttSg_3lzmQLl0MxL9YGa3ys',
-      srcMp4: 'https://www.youtube.com/embed/jIjTzZdKoXI?rel=0',
+      srcMp4: 'https://www.youtube.com/embed/k5DuapIukwA?rel=0',
       name: 'Spencer Campbell',
       date: '22',
       rating: 1,
@@ -46,14 +46,14 @@ const VideoReviewsSlider: React.FC = () => {
     {
       srcWebm: '1zuXc_z6dsfXFr7LQNPiw5Kmh8P-WFGpt',
       srcMov: '1iZ09Zenri90m_5JQqOWSpcZEVHS9i0-d',
-      srcMp4: 'https://www.youtube.com/embed/KIgMCvIAVkU?rel=0',
+      srcMp4: 'https://www.youtube.com/embed/a5l8ONJWEOk?rel=0',
       name: 'Kylah Artz',
       date: '22',
       rating: 1,
       description: '',
     },
     {
-      srcMp4: 'https://www.youtube.com/embed/0x165H-8oXA?rel=0',
+      srcMp4: 'https://www.youtube.com/embed/7PfMDpP4z9Q?rel=0',
       name: 'Hermans',
       date: '22',
       rating: 1,
@@ -70,7 +70,7 @@ const VideoReviewsSlider: React.FC = () => {
       description: '',
     },
     {
-      srcMp4: 'https://www.youtube.com/embed/b6w-G1VxIpQ?rel=0',
+      srcMp4: 'https://www.youtube.com/embed/--Da5luAgDU?rel=0',
       name: 'Candnce',
       date: '22',
       rating: 1,
@@ -78,7 +78,7 @@ const VideoReviewsSlider: React.FC = () => {
     },
 
     {
-      srcMp4: 'https://www.youtube.com/embed/67VYnVlzzhg?rel=0',
+      srcMp4: 'https://www.youtube.com/embed/clDfGgzMlJw?rel=0',
       name: 'Roshi',
       date: '22',
       rating: 1,
