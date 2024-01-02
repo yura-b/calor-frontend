@@ -49,11 +49,9 @@ const VideoFrame: React.FC<Props> = ({ src, title, className, isVerticalVideo, s
         style={iframeStyle}
         onLoad={handleIframeLoad}
       />
-      {showDescription && (
-        <div>
-          <p className="font-bold pt-1">{title}</p>
-        </div>
-      )}
+      <div className="min-h-[30px] lg:min-h-[30px]">
+        {showDescription && !iframeLoading && <p className="font-bold pt-1">{title}</p>}
+      </div>
     </div>
   );
 };
