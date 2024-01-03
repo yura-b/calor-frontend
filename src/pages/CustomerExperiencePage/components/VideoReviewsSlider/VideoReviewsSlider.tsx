@@ -78,7 +78,7 @@ const VideoReviewsSlider: React.FC = () => {
     },
 
     {
-      srcMp4: 'https://www.youtube.com/embed/clDfGgzMlJw?rel=0',
+      srcMp4: 'https://www.youtube.com/embed/67VYnVlzzhg?rel=0',
       name: 'Roshi',
       date: '22',
       rating: 1,
