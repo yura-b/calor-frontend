@@ -26,8 +26,8 @@ const CompleteYourLookHeader = () => {
   };
 
   return (
-    <div className={'flex flex-col items-center mb-4 lg:mb-12 w-full'}>
-      <div className={'p-0 mb-6 lg:mb-12 w-full'}>
+    <div className={'flex flex-col items-center mb-4 lg:mb-4 w-full'}>
+      <div className={'p-0 mb-6 lg:mb-8 w-full'}>
         <div className={`${styles.container} p-0   flex flex-row items-center align-baseline justify-between`}>
           <ReactSVG
             src={leftArrowIcon}
