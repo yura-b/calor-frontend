@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import { Product } from '@/constants/interfaces/product.ts';
 import CustomInput from '@/components/input/CustomInput';
-import { PencilSimple } from '@phosphor-icons/react';
+import { PencilSimple, X } from '@phosphor-icons/react';
 import CustomButton from '@/components/button/CustomButton';
-import { deleteAccessory, saveDiscountPrice, saveNewPrice } from '@/api/products.ts';
+import { deleteAccessory, deleteDiscountPrice, saveDiscountPrice, saveNewPrice } from '@/api/products.ts';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { loading, loadingFinished, showMessage } from '@/store/reducers/StatusReducer.ts';
 import { useNavigate } from 'react-router';
@@ -60,6 +60,19 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
     }
     dispatch(loadingFinished());
   };
+  const deleteDiscountHandler = () => {
+    if (!access_token) return;
+    if (editPrice) {
+      dispatch(loading());
+
+      deleteDiscountPrice(access_token, _id).then(() => {
+        dispatch(showMessage('discount price was successfully deleted'));
+        setEditPrice(false);
+        setDiscountPrice(0);
+      });
+    }
+    dispatch(loadingFinished());
+  };
 
   if (isDeleted) return <></>;
 
@@ -94,7 +107,10 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
             </div>
             <div>
               <p>Old price:</p>
-              <CustomInput value={discountPrice} onChange={onChangeHandler(setDiscountPrice)} />
+              <div className='flex flex-row items-center justify-between'>
+                <CustomInput value={discountPrice} onChange={onChangeHandler(setDiscountPrice)} />
+                <X size={32} weight='fill' color={'red'} style={{cursor: 'pointer'}} onClick={deleteDiscountHandler}/>
+              </div>
               {editPrice && <CustomButton title={'save'} handler={saveDiscountPriceHandler} />}
             </div>
           </div>
@@ -108,7 +124,7 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
             )}
           </div>
         )}
-        <PencilSimple size={32} weight="fill" onClick={() => setEditPrice(!editPrice)} />
+        <PencilSimple size={32} weight="fill" onClick={() => setEditPrice(!editPrice)} style={{cursor: 'pointer'}}/>
       </div>
       {editPrice && !isShoes && <CustomButton title={'delete'} handler={deleteHandler} bgColor={'red'} />}
     </div>
