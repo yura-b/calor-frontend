@@ -21,17 +21,22 @@ const ProductDescription = ({ title, price, rating, sizes, category, description
           {' '}
           <Rating rating={rating} includeTitle={true} readOnly={true} className="flex flex-row-reverse" />
         </div>
-        {id !== constants.DAYGER_ID && (
+        {/* {id !== constants.DAYGER_ID && (
           <div className="flex justify-end">
             From <span className="font-bold ml-2">$ {price}</span>
           </div>
-        )}
-        {winterShoePrice && id === constants.DAYGER_ID && (
+        )} */}
+        {/* {winterShoePrice && id === constants.DAYGER_ID && (
           <div className="flex justify-end">
-            From <span className="font-bold mx-2">$ {price}</span>to
+            From <span className="font-bold mx-2">$ {price}</span>
+            to
             <span className="font-bold ml-2">$ {winterShoePrice}</span>
           </div>
-        )}
+        )} */}
+
+        <div className="flex justify-end ml-2">
+          From <span className="font-bold ml-2">$ {price}</span>
+        </div>
       </div>
       <div className="py-2 w-full">
         <div dangerouslySetInnerHTML={{ __html: description }} />
