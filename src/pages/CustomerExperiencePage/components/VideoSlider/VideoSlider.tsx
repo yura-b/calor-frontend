@@ -22,7 +22,7 @@ const VideoSlider = ({ videoData, isHome }) => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? videoData.length - 1 : prevIndex - 1));
   }, 100);
 
-  const slideWidth = 300;
+  const slideWidth = 260;
   const translateX = -currentIndex * slideWidth;
 
   const duplicatedImages = [...videoData, ...videoData, ...videoData, ...videoData];
@@ -52,16 +52,22 @@ const VideoSlider = ({ videoData, isHome }) => {
         >
           {duplicatedImages.map((video, index) => (
             <div className={''} key={index}>
-              <VideoDigital
+              {/* <VideoDigital
                 srcMp4={video.srcMp4}
                 name={video.name}
                 showDescription={true}
                 hideIcon={false}
                 hideControls={false}
                 className="w-[240px] "
+              /> */}
+              {/* <VideoFrame src={'https://www.youtube.com/embed/k5DuapIukwA?rel=0'} title="Video Guide" className="xl:max-w-[50vw]" isVerticalVideo={true}/> */}
+              <VideoFrame
+                src={video.srcMp4}
+                title={video.name}
+                className="xl:max-w-[50vw]"
+                isVerticalVideo={true}
+                showDescription={true}
               />
-              {/* <VideoFrame src={'https://www.youtube.com/embed/BfnVQH6n4OA?rel=0'} title="Video Guide" className="xl:max-w-[50vw]" isVerticalVideo={true}/> */}
-              {/* <VideoFrame src={video.srcMp4} title={video.name} className="xl:max-w-[50vw]" isVerticalVideo={true} /> */}
               {/* <div className="max-w-screen-md mx-auto mb-8">
       <div className="relative" style={{ paddingTop: '177%' }}>
         <iframe

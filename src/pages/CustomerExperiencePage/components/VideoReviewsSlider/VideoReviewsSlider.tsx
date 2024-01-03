@@ -27,7 +27,7 @@ const VideoReviewsSlider: React.FC = () => {
     {
       srcWebm: '1pISvABcVlTMWN7-dwDfQ2KuQibu3qyue',
       srcMov: '1AEstEk129ttSg_3lzmQLl0MxL9YGa3ys',
-      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/spencer.mp4',
+      srcMp4: 'https://www.youtube.com/embed/k5DuapIukwA?rel=0',
       name: 'Spencer Campbell',
       date: '22',
       rating: 1,
@@ -36,7 +36,7 @@ const VideoReviewsSlider: React.FC = () => {
     {
       srcWebm: '1KKuAMcwRG-VNTBluBv5myrejNOnqDDjr',
       srcMov: '1yealOepucRRhXAL6MQ5Nh6Ly6deS2z2T',
-      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Mary.mp4',
+      srcMp4: 'https://www.youtube.com/embed/qaIjvQxUk_k?rel=0',
       name: 'Mary Naccarato',
       date: '22',
       rating: 1,
@@ -46,14 +46,14 @@ const VideoReviewsSlider: React.FC = () => {
     {
       srcWebm: '1zuXc_z6dsfXFr7LQNPiw5Kmh8P-WFGpt',
       srcMov: '1iZ09Zenri90m_5JQqOWSpcZEVHS9i0-d',
-      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/kylah.mp4',
+      srcMp4: 'https://www.youtube.com/embed/a5l8ONJWEOk?rel=0',
       name: 'Kylah Artz',
       date: '22',
       rating: 1,
       description: '',
     },
     {
-      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/hermans.mp4',
+      srcMp4: 'https://www.youtube.com/embed/7PfMDpP4z9Q?rel=0',
       name: 'Hermans',
       date: '22',
       rating: 1,
@@ -63,14 +63,14 @@ const VideoReviewsSlider: React.FC = () => {
     {
       srcWebm: '1Kaq5Ri5QIllwv7d0FJhUVoUPMdqjtVO8',
       srcMov: '1n_icC3tsMqfcFIFTSiJSeqNiKYBDKLtI',
-      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Annaliese_Jelsema.mp4',
+      srcMp4: 'https://www.youtube.com/embed/gfrZldJGZG8?rel=0',
       name: 'Annaliese Jelsema',
       date: '22',
       rating: 1,
       description: '',
     },
     {
-      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/Candnce.mp4',
+      srcMp4: 'https://www.youtube.com/embed/--Da5luAgDU?rel=0',
       name: 'Candnce',
       date: '22',
       rating: 1,
@@ -78,7 +78,7 @@ const VideoReviewsSlider: React.FC = () => {
     },
 
     {
-      srcMp4: 'https://calor.sfo2.cdn.digitaloceanspaces.com/videos/roshi1.mp4',
+      srcMp4: 'https://www.youtube.com/embed/67VYnVlzzhg?rel=0',
       name: 'Roshi',
       date: '22',
       rating: 1,
@@ -101,14 +101,15 @@ const VideoReviewsSlider: React.FC = () => {
               <div className="flex justify-between overflow-x-auto flex-row gap-2 mx-auto lg:gap-10">
                 {videoGuides.map((video, i) => (
                   <div className="flex justify-center items-center lg:basis-1/5  my-2" key={i}>
-                    <div className={'w-[200px] lg:w-full  relative'}>
-                      <VideoDigital srcMp4={video.srcMp4} name={video.name} showDescription={true} />
-                      {/* <VideoFrame
+                    <div className={'w-[250px] lg:w-full  relative'}>
+                      {/* <VideoDigital srcMp4={video.srcMp4} name={video.name} showDescription={true} /> */}
+                      <VideoFrame
                         src={video.srcMp4}
                         title={video.name}
                         className="xl:max-w-[50vw]"
                         isVerticalVideo={true}
-                      /> */}
+                        showDescription={true}
+                      />
                     </div>
                   </div>
                 ))}
