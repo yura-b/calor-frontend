@@ -260,6 +260,7 @@ const ProductPage = () => {
                     sizes={product?.data.sizes}
                     category={product?.data.category}
                     winterShoePrice={winterShoeProduct?.data?.price}
+                    oldPrice={product?.data.oldPrice}
                   />
                   <div className="py-2 w-full">
                     {product?.data.category == 'shoes' && <span>Your shoes will be manufactured in 7-10 days.</span>}
