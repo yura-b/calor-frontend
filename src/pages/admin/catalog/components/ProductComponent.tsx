@@ -1,14 +1,14 @@
 import React, { FC, useState } from 'react';
 import { Product } from '@/constants/interfaces/product.ts';
 import CustomInput from '@/components/input/CustomInput';
-import { PencilSimple } from '@phosphor-icons/react';
+import { PencilSimple, X } from '@phosphor-icons/react';
 import CustomButton from '@/components/button/CustomButton';
-import { deleteAccessory, saveNewPrice } from '@/api/products.ts';
+import { deleteAccessory, deleteDiscountPrice, saveDiscountPrice, saveNewPrice } from '@/api/products.ts';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import { loading, loadingFinished, showMessage } from '@/store/reducers/StatusReducer.ts';
 import { useNavigate } from 'react-router';
 
-const ProductComponent: FC<Product> = ({ price, photos, title, category, subcategory, _id }) => {
+const ProductComponent: FC<Product> = ({ price, photos, title, category, subcategory, _id, oldPrice }) => {
   const isShoes = typeof category === 'string';
 
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
 
   const [editPrice, setEditPrice] = useState(false);
   const [newPrice, setNewPrice] = useState(price);
+  const [discountPrice, setDiscountPrice] = useState(oldPrice || 0);
   const [currentPrice, setCurrentPrice] = useState(price);
   const [isDeleted, setIsDeleted] = useState(false);
 
@@ -33,7 +34,7 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
     };
   };
 
-  const saveHandler = () => {
+  const savePrice = () => {
     if (!access_token) return;
     if (editPrice) {
       dispatch(loading());
@@ -46,6 +47,33 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
     }
     dispatch(loadingFinished());
   };
+  const saveDiscountPriceHandler = () => {
+    if (!access_token) return;
+    if (editPrice) {
+      dispatch(loading());
+
+      saveDiscountPrice(access_token, Number(discountPrice), _id).then(() => {
+        dispatch(showMessage('discount price was successfully changed'));
+        setEditPrice(false);
+        setDiscountPrice(discountPrice);
+      });
+    }
+    dispatch(loadingFinished());
+  };
+  const deleteDiscountHandler = () => {
+    if (!access_token) return;
+    if (editPrice) {
+      dispatch(loading());
+
+      deleteDiscountPrice(access_token, _id).then(() => {
+        dispatch(showMessage('discount price was successfully deleted'));
+        setEditPrice(false);
+        setDiscountPrice(0);
+      });
+    }
+    dispatch(loadingFinished());
+  };
+
   if (isDeleted) return <></>;
 
   return (
@@ -71,13 +99,33 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
       </div>
       <div className={'flex justify-between items-center'}>
         {editPrice ? (
-          <CustomInput value={newPrice} onChange={onChangeHandler(setNewPrice)} />
+          <div className={'flex flex-col gap-6'}>
+            <div>
+              <p>Actual Price:</p>
+              <CustomInput value={newPrice} onChange={onChangeHandler(setNewPrice)} />
+              {editPrice && <CustomButton title={'save'} handler={savePrice} />}
+            </div>
+            <div>
+              <p>Old price:</p>
+              <div className='flex flex-row items-center justify-between'>
+                <CustomInput value={discountPrice} onChange={onChangeHandler(setDiscountPrice)} />
+                <X size={32} weight='fill' color={'red'} style={{cursor: 'pointer'}} onClick={deleteDiscountHandler}/>
+              </div>
+              {editPrice && <CustomButton title={'save'} handler={saveDiscountPriceHandler} />}
+            </div>
+          </div>
         ) : (
-          <p className={'font-medium'}>$ {currentPrice}</p>
+          <div className={'flex flex-col'}>
+            <p className={'font-medium'}>current price: $ {currentPrice}</p>
+            {!!discountPrice && (
+              <p className={'font-medium'}>
+                old price: <span className={'text-red-500 line-through'}>$ {discountPrice}</span>
+              </p>
+            )}
+          </div>
         )}
-        <PencilSimple size={32} weight="fill" onClick={() => setEditPrice(!editPrice)} />
+        <PencilSimple size={32} weight="fill" onClick={() => setEditPrice(!editPrice)} style={{cursor: 'pointer'}}/>
       </div>
-      {editPrice && <CustomButton title={'save'} handler={saveHandler} />}
       {editPrice && !isShoes && <CustomButton title={'delete'} handler={deleteHandler} bgColor={'red'} />}
     </div>
   );

@@ -56,6 +56,7 @@ const CustomButton: React.FC<IProps> = ({
           borderRadius: borderRadius + 'px',
           boxShadow: !isBoxShadow ? 'none' : null,
           border: border,
+          cursor: 'pointer',
           '&:hover': {
             backgroundColor: isHoveredBg ? hoverBgColor : null,
             color: isHoveredBg ? 'white' : null,

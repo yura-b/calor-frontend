@@ -12,6 +12,7 @@ interface IProps {
     product: {
       title: string;
       price: number;
+      oldPrice: number;
       photos: string[];
       size: string[];
     };
@@ -54,11 +55,21 @@ const CompleteYourLookItem: FC<IProps> = ({ item, setSizeButtonStyles, sizeButto
               <span className="font-bold pr-2">Shiping:</span>
               <span>Free</span>
             </div>
-            <div className="flex flex-row justify-between items-center">
-              <div className="flex flex-row">
+            <div
+              className={`flex flex-row justify-between items-center ${
+                item?.product?.oldPrice ? 'text-mint' : 'text-gray'
+              }   ml-2`}
+            >
+              <div>
                 <span className="pr-2">$</span>
                 <span>{item?.product?.price}</span>
               </div>
+              {item?.product?.oldPrice !== 0 && item?.product?.oldPrice && (
+                <div className="relative  flex flex-row text-custom-red px-2">
+                  <span>$ {item?.product?.oldPrice}</span>
+                  <div className="absolute top-[44%] lg:top-[44%] left-0  w-full  border-b-[2px] border-custom-red "></div>
+                </div>
+              )}
             </div>
             <>
               {!!item?.product?.size.length && (
