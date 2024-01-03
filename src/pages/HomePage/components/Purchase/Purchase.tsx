@@ -94,7 +94,7 @@ const Purchase: React.FC = (): React.ReactElement => {
               disabled={isLoading}
             />
             <Button color="gray" type="submit" disabled={isLoading} className="relative">
-              Check
+              Subscribe
               {isLoading && <Spinner className="absolute left-[48%] top-[20%]" />}
             </Button>
           </form>

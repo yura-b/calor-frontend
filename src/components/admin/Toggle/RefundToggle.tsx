@@ -31,7 +31,7 @@ const RefundToggle: FC<IProps> = ({ _id, available, handler }) => {
         width: '25px',
       }}
     >
-      <CheckIcon />
+      {selected ? <CheckIcon /> : null}
     </ToggleButton>
   );
 };

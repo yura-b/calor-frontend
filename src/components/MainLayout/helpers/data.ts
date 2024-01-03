@@ -43,10 +43,10 @@ export const menuItems = [
       //   subTitle: AccessoriesProduct.BELTS,
       //   path: paths.accessories + '/' + AccessoriesProduct.BELTS.toLowerCase(),
       // },
-      // {
-      //   subTitle: AccessoriesProduct.BRACELETS,
-      //   path: paths.accessories + '/' + AccessoriesProduct.BRACELETS.toLowerCase(),
-      // },
+      {
+        subTitle: AccessoriesProduct.BRACELETS,
+        path: paths.accessories + '/' + AccessoriesProduct.BRACELETS.toLowerCase(),
+      },
       {
         subTitle: AccessoriesProduct.LACES,
         path: paths.accessories + '/' + AccessoriesProduct.LACES.toLowerCase(),

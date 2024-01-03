@@ -54,8 +54,9 @@ const Materials: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
   const isDetailAvailable =
     shoesDetailsFromApi &&
     (shoesDetailsFromApi?.find((item) => item?.title === selectedDetail.name) || shoesDetailsFromApi[0]);
+
   useEffect(() => {
-    dispatch(setSelectedMaterial(materials[0].name));
+    dispatch(setSelectedMaterial(materials[0]?.name));
   }, [selectedDetail, selectedModel]);
 
   return (
@@ -65,9 +66,9 @@ const Materials: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
           key={i}
           className={`capitalize min-w-[150px] h-[40px] border border-gray p-1 ${
             selectedMaterial === material.name ? 'bg-grayLight' : 'bg-white'
-          }  ${!isDetailAvailable?.materials[i].available ? 'opacity-50 ' : ''}`}
+          }  ${!isDetailAvailable?.materials[i]?.available ? 'opacity-50 ' : ''}`}
           onClick={() => handleMaterialClick(material.name)}
-          // disabled={!isDetailAvailable?.materials[i].available}
+          // disabled={!isDetailAvailable?.materials[i]?.available}
         >
           {material.name}
         </button>
