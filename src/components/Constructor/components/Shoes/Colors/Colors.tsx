@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedColor } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import { updateParts } from '@/store/reducers/constructor/ShoesConstructorReducer';
@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { layoutFadeAnimation } from '@/styles/Animations';
 import { useNavigate } from 'react-router';
 import constants from '@/constants/constants';
+import { useMediaQuery } from '@react-hook/media-query';
 
 interface Color {
   img: string;
@@ -37,6 +38,7 @@ interface ShoeDetail {
   title: string;
   materials: MaterialData[];
 }
+
 interface IProps {
   details: Detail[];
   shoesDetailsFromApi: ShoeDetail[];
@@ -96,6 +98,17 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
     }
   }, [selectedColor]);
 
+  const [isTooltipOpen, setTooltipOpen] = useState<string | null>(null);
+
+  const handleColorInteraction = (colorName: string, eventType: 'click' | 'hover', isOpen: boolean) => {
+    if (eventType === 'click') {
+      setTooltipOpen(isOpen ? colorName : null);
+    } else if (eventType === 'hover') {
+      setTooltipOpen(isOpen ? colorName : null);
+    }
+  };
+
+  const isMobile = useMediaQuery('(max-width: 1023px)');
   return (
     <motion.div
       {...layoutFadeAnimation}
@@ -107,8 +120,13 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
     >
       {colors.map((color, index) =>
         color.name !== null ? (
-          <Tooltip key={color.name} title={color.name} placement="top" arrow>
-            <span>
+          <span key={color.name}>
+            <Tooltip
+              open={isTooltipOpen === color.name}
+              title={color.name}
+              placement={isMobile ? 'bottom' : 'top'}
+              arrow
+            >
               <button
                 style={{ background: !color.texture ? color.hex : 'none' }}
                 ref={(element) => (colorRefs.current[color.name] = element)}
@@ -116,12 +134,16 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
                   !isMaterialAvailable ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 onClick={() => handleColorClick({ img: color.img, name: color.name })}
+                onMouseEnter={() => handleColorInteraction(color.name, 'hover', true)}
+                onMouseLeave={() => handleColorInteraction(color.name, 'hover', false)}
+                onTouchStart={() => handleColorInteraction(color.name, 'click', true)}
+                onTouchEnd={() => handleColorInteraction(color.name, 'click', false)}
                 disabled={!isMaterialAvailable}
               >
                 {color.texture ? <img src={color.texture} alt={color.name} height={55} width={55} key={index} /> : null}
               </button>
-            </span>
-          </Tooltip>
+            </Tooltip>
+          </span>
         ) : null
       )}
     </motion.div>
