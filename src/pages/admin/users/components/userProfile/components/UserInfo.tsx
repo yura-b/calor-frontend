@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { IUser, IUserForProfile } from '@/constants/interfaces/user.ts';
-import { ArrowsHorizontal, ChatText, User } from '@phosphor-icons/react';
+import { ChatText, User } from '@phosphor-icons/react';
 import IsRegistered from '@components/admin/IsRegistered.tsx';
 import DefaultShippingInfo from '@pages/admin/users/components/userProfile/components/DefaultShippingInfo.tsx';
 
@@ -16,7 +16,7 @@ interface UserInfoState {
 }
 
 const UserInfo: React.FC<IProps> = ({ userDataState, withDelivery = false, delivery }) => {
-  const { state, setState } = userDataState;
+  const { state } = userDataState;
   return (
     <div className={'flex mb-4'}>
       <div className={'flex flex-col gap-5 mt-4 w-1/2'}>
@@ -33,13 +33,13 @@ const UserInfo: React.FC<IProps> = ({ userDataState, withDelivery = false, deliv
           <p>Phone Number </p>
           <span className={'font-bold'}>{state.phoneNumber}</span>
         </div>
-        <div className={'flex flex-row gap-5 items-center'}>
-          <ArrowsHorizontal size={32} weight="fill" />
-          <p className={'font-bold'}>Measurement</p>
-        </div>
-        <div>
-          <p>This data has not been entered in the user profile</p>
-        </div>
+        {/* <div className={'flex flex-row gap-5 items-center'}>*/}
+        {/*  <ArrowsHorizontal size={32} weight="fill" />*/}
+        {/*  <p className={'font-bold'}>Measurement</p>*/}
+        {/* </div>*/}
+        {/* <div>*/}
+        {/*  <p>This data has not been entered in the user profile</p>*/}
+        {/* </div>*/}
         {withDelivery && (
           <div className={'flex flex-row gap-5 items-center'}>
             <ChatText size={32} weight="fill" />

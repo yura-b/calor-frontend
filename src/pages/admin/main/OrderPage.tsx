@@ -46,6 +46,8 @@ const OrderPage = () => {
       reloadPage();
     });
   };
+
+  console.log(orderData?.size);
   if (!id || !access_token || !orderData) return <></>;
   const { email, phoneNumber, status } = orderData;
   const { firstName, secondName } = orderData;
@@ -65,7 +67,7 @@ const OrderPage = () => {
         {orderData.shoes && <Details details={orderData.details} />}
 
         <div className={'flex flex-row gap-20 justify-start mx-8 mb-8 '}>
-          {orderData.measurement.size && <Measurement measurement={orderData.measurement} />}
+          <Measurement measurement={orderData.measurement} size={orderData.size}/>
           <ShippingAddress info={orderData.shippingInfo} />
         </div>
         <hr />
