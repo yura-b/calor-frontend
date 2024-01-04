@@ -14,12 +14,12 @@ const DetailRow: FC<IProps> = ({ details }) => {
   const { detail, products } = details;
 
   const { access_token } = useAppSelector((state) => state.user);
-  if (detail.materials.length !== 1) {
-    detail.materials[1].additional = true;
-    detail.materials[1].colors.map((color) => {
-      return (color.additional = true);
-    });
-  }
+  // if (detail.materials.length !== 1) {
+  //   detail.materials[1].additional = true;
+  //   detail.materials[1].colors.map((color) => {
+  //     return (color.additional = true);
+  //   });
+  // }
 
   const additionalClass = (isAdditional = false) => {
     return isAdditional ? 'text-mint' : '';

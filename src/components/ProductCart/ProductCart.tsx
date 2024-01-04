@@ -17,6 +17,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { addToCartGTMEvent } from '@/helpers/functions/gtm';
 import constants from '@/constants/constants';
 import { paths } from '@/routes/paths';
+import OldPrice from '@components/OldPrice';
 
 const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => {
   const location = useLocation();
@@ -138,38 +139,21 @@ const ProductCart = ({ product, type, winterShoePrice }): React.ReactElement => 
         </div>
         <div>{product.categoryTitle}</div>
         {product._id !== constants.DAYGER_ID && (
-          <div className={`${styles.body2} ${product.oldPrice ? 'text-mint' : ''} flex flex-row justify-between`}>
-            <div>
-              <span>Price</span>
-              <span className="font-bold ml-2">$ {product.price}</span>
-            </div>
-            {product.oldPrice !== 0 && product.oldPrice && (
-              <div className={`relative ${styles.body2} flex flex-row text-custom-red px-2`}>
-                <span className="font-bold">$ {product.oldPrice}</span>
-                <div className="absolute top-[40%] lg:top-[44%] left-0  w-full  border-b-[2px] border-custom-red "></div>
-              </div>
-            )}
+          <div className={`${styles.body2} flex flex-row`}>
+            <p className="mr-1">Price</p>
+            {product.oldPrice !== 0 && product.oldPrice && <OldPrice oldPrice={product.oldPrice} />}
+            <p className="font-bold ml-2">$ {product.price}</p>
           </div>
         )}
         {product._id == constants.DAYGER_ID && (
-          <div
-            className={`${styles.body2} flex flex-row justify-between ${product.oldPrice ? 'text-mint' : 'text-gray'}`}
-          >
-            <div>
-              <span className="mr-2">Price</span>
-              <span className="font-bold">$ {product.price}</span>
-            </div>
+          <div className={`${styles.body2} flex flex-row`}>
+            <p className="mr-1">Price</p>
+            {product.oldPrice !== 0 && product.oldPrice && <OldPrice oldPrice={product.oldPrice} />}
+            <p className="font-bold ml-2">$ {product.price}</p>
             {/* <div>
               <span className="mx-2">to</span>
               <span className="font-bold">$ {winterShoePrice}</span>
             </div> */}
-
-            {product.oldPrice !== 0 && product.oldPrice && (
-              <div className={`relative ${styles.body2} flex flex-row text-custom-red px-2`}>
-                <span className="font-bold">$ {product.oldPrice}</span>
-                <div className="absolute top-[40%] lg:top-[44%] left-0  w-full  border-b-[2px] border-custom-red "></div>
-              </div>
-            )}
           </div>
         )}
         {(userId && type !== 'shoes' && isProductExistInBasket && product?.size?.length == 0) ||

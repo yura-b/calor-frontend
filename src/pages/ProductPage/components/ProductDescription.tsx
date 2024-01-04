@@ -3,6 +3,7 @@ import styles from '@styles/Styles.module.scss';
 import Rating from '@/components/ui/Rating/Rating';
 import constants from '@/constants/constants';
 import { useParams } from 'react-router';
+import OldPrice from '@components/OldPrice';
 
 const ProductDescription = ({ title, price, rating, sizes, category, description, winterShoePrice, oldPrice }) => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const ProductDescription = ({ title, price, rating, sizes, category, description
         <span className="text-thinGray font-thin">Category</span>
       </div>
 
-      <div className={'flex  justify-between items-center flex-wrap w-full'}>
+      <div className={'flex  justify-between items-center flex-wrap w-full gap-2'}>
         <div className="flex justify-start py-2">
           {' '}
           <Rating rating={rating} includeTitle={true} readOnly={true} className="flex flex-row-reverse" />
@@ -34,16 +35,10 @@ const ProductDescription = ({ title, price, rating, sizes, category, description
           </div>
         )} */}
 
-        <div className={` ${oldPrice ? 'text-mint' : 'text-gray'} flex justify-center items-center flex-col ml-2`}>
-          <div>
-            Price <span className="font-bold ml-2">$ {price}</span>
-          </div>
-          {oldPrice !== 0 && oldPrice && (
-            <div className={`relative ${styles.body2} flex flex-row text-custom-red px-2 -mt-2`}>
-              <span className="text-[14px] font-bold ">$ {oldPrice}</span>
-              <div className="absolute top-[44%] lg:top-[45%] left-0  w-full  border-b-[2px] border-custom-red "></div>
-            </div>
-          )}
+        <div className={`md:${styles.body2} flex flex-row items-center`}>
+          <p className="mr-1">Price</p>
+          {oldPrice !== 0 && oldPrice && <OldPrice oldPrice={oldPrice} />}
+          <p className="font-bold ml-2">$ {price}</p>
         </div>
       </div>
       <div className="py-2 w-full">

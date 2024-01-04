@@ -96,10 +96,13 @@ const Constructor: FC = () => {
                   </>
                 )}
               </div>
-              <div className="flex w-wrapper flex-col mx-auto">
+              <div className="flex w-wrapper flex-col mx-auto mt-4 lg:mt-0">
                 <div className="flex justify-center align-center items-center gap-4">
-                  <div className={`${styles.subtitle}`}>
-                    <span>{product?.data?.title}</span> <span>$ {product?.data?.price}</span>
+                  <div className={`${styles.subtitle} flex flex-col sm:flex-row`}>
+                    <p>{product?.data?.title} </p>{' '}
+                    <div className="sm:ml-2 flex">
+                      <p className="mr-2">$ </p> <p>{product?.data?.price}</p>
+                    </div>
                   </div>
                   <Button color="gray" className="w-full my-4 lg:block max-w-sm" onClick={toggleVisibility}>
                     Preview

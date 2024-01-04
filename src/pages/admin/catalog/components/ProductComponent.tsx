@@ -107,9 +107,15 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
             </div>
             <div>
               <p>Old price:</p>
-              <div className='flex flex-row items-center justify-between'>
+              <div className="flex flex-row items-center justify-between">
                 <CustomInput value={discountPrice} onChange={onChangeHandler(setDiscountPrice)} />
-                <X size={32} weight='fill' color={'red'} style={{cursor: 'pointer'}} onClick={deleteDiscountHandler}/>
+                <X
+                  size={32}
+                  weight="fill"
+                  color={'red'}
+                  style={{ cursor: 'pointer' }}
+                  onClick={deleteDiscountHandler}
+                />
               </div>
               {editPrice && <CustomButton title={'save'} handler={saveDiscountPriceHandler} />}
             </div>
@@ -124,7 +130,7 @@ const ProductComponent: FC<Product> = ({ price, photos, title, category, subcate
             )}
           </div>
         )}
-        <PencilSimple size={32} weight="fill" onClick={() => setEditPrice(!editPrice)} style={{cursor: 'pointer'}}/>
+        <PencilSimple size={32} weight="fill" onClick={() => setEditPrice(!editPrice)} style={{ cursor: 'pointer' }} />
       </div>
       {editPrice && !isShoes && <CustomButton title={'delete'} handler={deleteHandler} bgColor={'red'} />}
     </div>
