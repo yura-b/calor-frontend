@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { DetailsAndProductName } from '@pages/admin/warehouse/WarehousePage.tsx';
 import { TableCell, TableRow } from '@mui/material';
-import { Color } from '@/constants/interfaces/details.ts';
 import CustomToggle from '@components/admin/Toggle/CustomToggle.tsx';
 import { changeMaterialAvailability } from '@/api/warehouse.ts';
 import { useAppSelector } from '@/store/hooks/hooks.ts';
@@ -16,9 +15,6 @@ const DetailRow: FC<IProps> = ({ details }) => {
   const { access_token } = useAppSelector((state) => state.user);
   if (detail.materials.length !== 1) {
     detail.materials[1].additional = true;
-    detail.materials[1].colors.map((color) => {
-      return (color.additional = true);
-    });
   }
 
   const additionalClass = (isAdditional = false) => {
