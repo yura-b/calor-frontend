@@ -74,7 +74,7 @@ const CheckoutPage = () => {
   }, [data]);
 
   return (
-    <div className="font-poppins h-screen ">
+    <div className="font-poppins h-screen text-gray">
       <MainLayout>
         {(!userId && basketProductsForNonRegisterUser.length) || (userId && basketProducts.length) ? (
           <div className=" flex flex-col justify-center items-center w-full mb-12">

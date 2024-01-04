@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import Head from '@/layouts/Head';
 import { titles } from '@/translations/titles';
 import MainLayout from '@/components/MainLayout';
@@ -8,6 +10,15 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import styles from '@styles/Styles.module.scss';
 
 const NotFoundPage: React.FC = (): React.ReactElement => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      navigate('/');
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [navigate]);
+
   return (
     <div className="font-poppins h-full min-h-screen">
       <Head title={titles.notFound} />

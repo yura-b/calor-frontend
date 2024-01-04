@@ -17,10 +17,11 @@ import { shoes } from './shoesData';
 import combineImages from '@/helpers/functions/combineImages';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, QueryObserverResult } from 'react-query';
-import { getProductById } from '@/api/products';
+import { getProductById, getProducts } from '@/api/products';
 import styles from '@styles/Styles.module.scss';
 import Loader from '@/components/ui/Loader';
 import NotFoundPage from '@/pages/NotFoundPage';
+import Spinner from '@components/ui/Spinner';
 
 const Constructor: FC = () => {
   const { id } = useParams();
@@ -36,6 +37,13 @@ const Constructor: FC = () => {
       }
     },
   });
+
+  const { data: products, status } = useQuery('products', getProducts, {
+    keepPreviousData: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const shoesDetailsFromApi = products?.data?.shoes.find((item) => item._id === product?.data?._id)?.details;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -79,9 +87,15 @@ const Constructor: FC = () => {
               <NavigationMenu />
               <MainView model={model} />
               <Details details={modelDetails?.details} />
-              <Materials details={modelDetails?.details} />
-              <Colors details={modelDetails?.details} />
-
+              <div className="relative min-h-[100px]">
+                {status === 'loading' && <Spinner className="absolute left-1/2 top-1/4" />}
+                {status === 'success' && (
+                  <>
+                    <Materials details={modelDetails?.details} shoesDetailsFromApi={shoesDetailsFromApi} />
+                    <Colors details={modelDetails?.details} shoesDetailsFromApi={shoesDetailsFromApi} />
+                  </>
+                )}
+              </div>
               <div className="flex w-wrapper flex-col mx-auto">
                 <div className="flex justify-center align-center items-center gap-4">
                   <div className={`${styles.subtitle}`}>

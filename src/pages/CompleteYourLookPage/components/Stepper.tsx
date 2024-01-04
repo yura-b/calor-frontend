@@ -3,7 +3,7 @@ import { Stack, Step, StepConnector, stepConnectorClasses, StepIconProps, StepLa
 import { styled } from '@mui/material/styles';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks.ts';
 import tick from '@/assets/images/SignUpHeaderImg/tick.png';
-import { setStep, Steps } from '@/store/reducers/RegistrationReducer.ts';
+import { setStep, Steps } from '@/store/reducers/CompleteLookReducer';
 
 const ColorlibStepIconRoot = styled('div')<{
   ownerState: { completed?: boolean; active?: boolean };
@@ -50,6 +50,7 @@ const CustomStepper = () => {
   const firstClick = () => {
     dispatch(setStep(Steps.FIRST));
   };
+
   const secondClick = () => {
     dispatch(setStep(Steps.SECOND));
   };
@@ -62,8 +63,8 @@ const CustomStepper = () => {
             <StepLabel
               onClick={() => {
                 // if (index === 0 && step !== Steps.THIRD) firstClick();
-                // if (index === 1 && step !== Steps.THIRD) secondClick();
-                if (index === 0 && step !== Steps.SECOND) firstClick();
+                // if (index === 1 && step !==0) secondClick();
+                if (index === 0) firstClick();
               }}
               StepIconComponent={ColorlibStepIcon}
             ></StepLabel>

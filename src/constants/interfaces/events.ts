@@ -3,4 +3,5 @@ export interface Events {
   title: string;
   announcement: string;
   photo: string;
+  date: Date;
 }

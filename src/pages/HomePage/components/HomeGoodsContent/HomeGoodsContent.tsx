@@ -41,7 +41,7 @@ const HomeGoodsContent: React.FC = (): React.ReactElement => {
   const winterShoePrice = products?.data?.shoes.find((item) => item._id == constants.DAYGER_WINTER_ID).price;
 
   return (
-    <div className={`${styles.container} w-full bg-white`}>
+    <div className={`${styles.container} w-full bg-white pt-1`}>
       {headerBlock('Our Shoe Models', paths.design_shoe)}
       {isLoading && <Loader />}
       <ShoesList shoes={shoes} winterShoePrice={winterShoePrice} />

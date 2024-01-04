@@ -10,6 +10,7 @@ import Purchase from './components/Purchase';
 import CompleteLook from './components/CompleteLook';
 import { useQuery } from 'react-query';
 import { getPageSection } from '@/api/manager/pages';
+import VideoReviewsSlider from '@/pages/CustomerExperiencePage/components/VideoReviewsSlider';
 
 const HomePage: React.FC = (): React.ReactElement => {
   const { data } = useQuery('getPageSection', () => getPageSection(), {
@@ -27,8 +28,11 @@ const HomePage: React.FC = (): React.ReactElement => {
       <Head title={titles.homePage} />
       <MainLayout>
         <HomeMainContent visions={visions} />
+        <div className="pt-2 lg:pt-8">
+          <VideoReviewsSlider />
+        </div>
         <HomeGoodsContent />
-        <div className="w-f`ull bg-custom-turquoise lg:hidden">
+        <div className="w-full bg-custom-turquoise lg:hidden">
           <HomeShowRoom
             backgroundButton="gray"
             showRoomTitleColor="gray"
@@ -39,7 +43,7 @@ const HomePage: React.FC = (): React.ReactElement => {
         </div>
         <CompleteLook />
         <HomeCalorByYou benefits={benefits} perfectFit={perfectFit} />
-        {/* <Purchase /> */}
+        <Purchase />
       </MainLayout>
     </div>
   );

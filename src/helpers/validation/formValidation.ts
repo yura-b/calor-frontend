@@ -80,7 +80,11 @@ export const oneLowerCaseValidation = (password: string) => {
 };
 
 export const validationSchemaForPurchase = yup.object({
-  email: yup.string().email('Enter a valid email').required('Email is required'),
+  email: yup
+    .string()
+    .email('Enter a valid email')
+    .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 'Invalid email format')
+    .required('Email is required'),
 });
 
 export const validationSchemaForOrderNumber = yup.object({

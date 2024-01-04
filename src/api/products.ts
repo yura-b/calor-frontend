@@ -38,6 +38,12 @@ export const getUserReviews = (access_token: string) => {
 export const saveNewPrice = (access_token: string, newPrice: number, product_id: string) => {
   return axios.patch(`${BASE_URL}/product/price`, { id: product_id, price: newPrice }, authorization(access_token));
 };
+export const saveDiscountPrice = (access_token: string, newPrice: number, product_id: string) => {
+  return axios.put(`${BASE_URL}/product/price`, { id: product_id, price: newPrice }, authorization(access_token));
+};
+export const deleteDiscountPrice = (access_token: string, product_id: string) => {
+  return axios.delete(`${BASE_URL}/product/price/${product_id}`, authorization(access_token));
+};
 
 export const deleteAccessory = (access_token: string, id: string) => {
   return axios.delete(`${BASE_URL}/accessories/${id}`, authorization(access_token));

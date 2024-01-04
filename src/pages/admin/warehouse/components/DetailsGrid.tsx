@@ -22,18 +22,18 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: 'title', label: 'detail name', minWidth: 80 },
-  { id: 'title', label: 'product name', minWidth: 90 },
+  { id: 'title', label: 'Detail name', minWidth: 80 },
+  { id: 'title', label: 'Product name', minWidth: 90 },
   {
     id: 'materials',
-    label: 'material name',
+    label: 'Material name',
     minWidth: 200,
     align: 'center',
     format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'available',
-    label: 'material availability',
+    label: 'Material availability',
     minWidth: 170,
     align: 'center',
     format: (value: number) => value.toLocaleString('en-US'),

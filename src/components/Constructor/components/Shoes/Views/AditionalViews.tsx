@@ -48,6 +48,8 @@ const AditionalViews: FC<IProps> = ({ model }) => {
                     ? 'z-[-20]'
                     : model === 'dayger' && index === 4
                     ? 'z-[10]'
+                    : model === 'dayger' && index === 5
+                    ? 'z-[10]'
                     : 'z-[-10]'
                 }`}
                 style={{ marginRight: '5%', marginLeft: '5%' }}

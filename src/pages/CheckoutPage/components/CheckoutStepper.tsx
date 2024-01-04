@@ -63,7 +63,7 @@ const CheckoutStepper = () => {
             <StepLabel
               onClick={() => {
                 if (index === 0) firstClick();
-                if (index === 1) secondClick();
+                if (index === 1 && step !== 0) secondClick();
               }}
               StepIconComponent={ColorlibStepIcon}
             >

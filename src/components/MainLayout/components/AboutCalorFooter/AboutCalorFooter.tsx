@@ -36,7 +36,7 @@ const AboutCalorFooter = () => {
   const scrollToElement = (el) => {
     setTimeout(() => {
       const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-      const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight - 110 : headerHeight;
+      const yOffset = window.innerWidth < mobileBreakpoint ? headerHeight - 5 : headerHeight + 10;
       window.scrollTo({
         top: yCoordinate - yOffset,
         behavior: 'smooth',

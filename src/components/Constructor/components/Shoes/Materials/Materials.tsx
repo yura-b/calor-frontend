@@ -19,11 +19,22 @@ interface Detail {
   materials: Material[];
 }
 
-interface IProps {
-  details: Detail[];
+interface MaterialData {
+  available: boolean;
+  title: string;
 }
 
-const Materials: FC<IProps> = ({ details }) => {
+interface ShoeDetail {
+  title: string;
+  materials: MaterialData[];
+}
+
+interface IProps {
+  details: Detail[];
+  shoesDetailsFromApi: ShoeDetail[];
+}
+
+const Materials: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
   const dispatch = useDispatch();
   const { selectedMaterial, selectedDetail, selectedModel } = useSelector((state) => state.selectedShoeParts);
   const selectedDetailObj = details.find((item) => item.part === selectedDetail.part);
@@ -40,18 +51,24 @@ const Materials: FC<IProps> = ({ details }) => {
     }
   };
 
+  const isDetailAvailable =
+    shoesDetailsFromApi &&
+    (shoesDetailsFromApi?.find((item) => item?.title === selectedDetail.name) || shoesDetailsFromApi[0]);
+
   useEffect(() => {
-    dispatch(setSelectedMaterial(materials[0].name));
+    dispatch(setSelectedMaterial(materials[0]?.name));
   }, [selectedDetail, selectedModel]);
 
   return (
     <div className="flex justify-center items-start m-auto overflow-x-auto gap-6 flex-row lg:gap-6">
-      {materials.map((material) => (
+      {materials.map((material, i) => (
         <button
+          key={i}
           className={`capitalize min-w-[150px] h-[40px] border border-gray p-1 ${
             selectedMaterial === material.name ? 'bg-grayLight' : 'bg-white'
-          }`}
+          }  ${!isDetailAvailable?.materials[i]?.available ? 'opacity-50 ' : ''}`}
           onClick={() => handleMaterialClick(material.name)}
+          // disabled={!isDetailAvailable?.materials[i]?.available}
         >
           {material.name}
         </button>

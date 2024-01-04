@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Spinner from '@components/ui/Spinner';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import styles from '@styles/Styles.module.scss';
+import { useMediaQuery } from '@react-hook/media-query';
 
 interface Props {
   srcMp4?: string;
@@ -18,6 +19,7 @@ const VideoDigital: React.FC<Props> = ({ srcMp4, className, showDescription, nam
   const [isLoading, setIsLoading] = useState(true);
   const [isVideoSupported, setIsVideoSupported] = useState(true);
   const [isError, setIsError] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 1023px)');
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [posterUrl, setPosterUrl] = useState('');
@@ -84,8 +86,8 @@ const VideoDigital: React.FC<Props> = ({ srcMp4, className, showDescription, nam
         <Spinner className="absolute top-[40%] left-[46%] z-10" />
       )}
       {!isHovered && !isTogglePlay && !isLoading && isVideoSupported && !isError && !hideIcon && (
-        <div className={'h-[50px] absolute top-[40%] left-[42%] z-30'} onClick={toggleVideoPlay}>
-          <YouTubeIcon style={{ fontSize: '68px' }} color="error" />
+        <div className={'h-[50px] absolute top-[39%] left-[42%] z-30'} onClick={toggleVideoPlay}>
+          <YouTubeIcon style={{ fontSize: '3rem' }} color="error" />
         </div>
       )}
 
@@ -93,6 +95,7 @@ const VideoDigital: React.FC<Props> = ({ srcMp4, className, showDescription, nam
         <div className="flex flex-col justify-between z-20">
           <video
             ref={videoRef}
+            loading="lazy"
             className="w-full"
             preload="auto"
             playsInline
@@ -118,8 +121,10 @@ const VideoDigital: React.FC<Props> = ({ srcMp4, className, showDescription, nam
               </div>
             ))}
           {showDescription && (
-            <div className="">
-              <p className={`${styles.subtitle} py-2 mx-auto`}>{name}</p>
+            <div>
+              <p className={`${styles.body2} pt-2 mx-auto font-bold ${isMobile ? 'line-clamp-1' : 'truncate'}`}>
+                {name}
+              </p>
               {/* <p className={`${styles.subtitle} py-2`}>{video.date}</p> */}
             </div>
           )}{' '}

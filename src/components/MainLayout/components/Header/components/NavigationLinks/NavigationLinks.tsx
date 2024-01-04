@@ -61,11 +61,11 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
     return productName.charAt(0).toUpperCase() + productName.slice(1);
   };
 
-  const shouldRender = location.pathname !== '*';
+  // const shouldRender = location.pathname === '*';
 
   return (
     <>
-      {!shouldRender && (
+      {
         <div
           className={`${styles.body1} ${styles.container} ${className} pb-2 pt-0 flex text-${color} justify-center  sm:text-sm`}
         >
@@ -92,7 +92,7 @@ const NavigationLinks: React.FC<Props> = ({ color, className }): React.ReactElem
             );
           })}
         </div>
-      )}
+      }
     </>
   );
 };

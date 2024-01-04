@@ -2,6 +2,7 @@ import { FC, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedDetail } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import styles from '@styles/Styles.module.scss';
+import { useParams } from 'react-router-dom';
 
 interface Color {
   name: string;
@@ -24,7 +25,9 @@ interface IProps {
 }
 
 const Details: FC<IProps> = ({ details }) => {
+  const { id } = useParams();
   const { selectedDetail } = useSelector((state) => state.selectedShoeParts);
+
   const dispatch = useDispatch();
   const containerRef = useRef(null);
   const materialRefs = useRef({});
@@ -51,15 +54,22 @@ const Details: FC<IProps> = ({ details }) => {
     }
   }, [selectedDetail]);
 
+  useEffect(() => {
+    dispatch(setSelectedDetail({ part: details[0].part, name: details[0].name }));
+  }, [id]);
+
   return (
     <>
       <div
         ref={containerRef}
-        className={`flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 xl:w-wrapper no-scrollbar`}
+        className={
+          'flex justify-between items-start m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 xl:w-wrapper no-scrollbar'
+        }
       >
-        {details.map((detail) => {
+        {details.map((detail, i) => {
           return (
             <div
+              key={i}
               className="min-h-[70px] justify-center items-center flex flex-col cursor-pointer"
               onClick={() => handleDetailClick({ part: detail.part, name: detail.name })}
             >
