@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { getUser } from '@/api/users';
-import { setCartVisible, showCartThunk } from "@/store/reducers/CartReducer.ts";
-import { useAppDispatch } from "@/store/hooks/hooks.ts";
 
 interface IMeasurement {
   _id: string;
@@ -91,8 +89,6 @@ const basketSlice = createSlice({
     appendToBasket(state, action: PayloadAction<BasketProduct>) {
       const item = { ...action.payload, photo: action.payload.photos[0] };
       state.items.push(item);
-      console.log('push');
-      showCartThunk()
     },
     removeFromBasket(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item._id !== action.payload);

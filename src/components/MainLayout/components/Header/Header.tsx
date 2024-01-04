@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
 import logoText from '@assets/images/logoText.svg';
 import logoImg from '@assets/images/logo.svg';
 import burgerIcon from '@assets/images/burgerIcon.svg';
-import SearchInput from '@/components/ui/SearchInput';
 import { Modal } from '@mui/material';
 import Cart from '@components/Cart';
 import { layoutFadeAnimation } from '@styles/Animations';
@@ -43,7 +42,7 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
 
   const isCartOpen = open
   const [isOpen, toggleOpen] = useCycle(false, true);
-  console.log(open);
+
   const [isAccountVisible, setIsAccountVisible] = useState(false);
 
   const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
