@@ -7,6 +7,7 @@ import Spinner from '@components/ui/Spinner';
 import SizeSelection from '@components/ui/SizeSelection';
 import AccordionSection from '@components/AccordionSection';
 import styles from '@styles/Styles.module.scss';
+import OldPrice from '@components/OldPrice';
 
 interface IProps {
   item: {
@@ -65,26 +66,17 @@ const CompleteYourLookItem: FC<IProps> = ({ item, setSizeButtonStyles, sizeButto
               />
               {imageLoaded ? null : <Spinner className="absolute top-1/2 left-1/2" />}
             </div>
-            <div className=" flex flex-col text-gray w-full max-w-[400px] sm:max-w-[260px]">
+            <div className={`${styles.body2} flex flex-col text-gray w-full max-w-[400px] sm:max-w-[260px]`}>
               <div className="flex flex-row">
                 <span className="font-bold pr-2">Shiping:</span>
                 <span>Free</span>
               </div>
-              <div
-                className={`flex flex-row justify-between items-center ${
-                  item?.product?.oldPrice ? 'text-mint' : 'text-gray'
-                }   ml-2`}
-              >
-                <div>
-                  <span className="pr-2">$</span>
-                  <span>{item?.product?.price}</span>
-                </div>
+              <div className={'flex flex-row items-center -mb-2'}>
+                <p className="mr-2">Price</p>
                 {item?.product?.oldPrice !== 0 && item?.product?.oldPrice && (
-                  <div className="relative  flex flex-row text-custom-red px-2">
-                    <span>$ {item?.product?.oldPrice}</span>
-                    <div className="absolute top-[44%] lg:top-[44%] left-0  w-full  border-b-[2px] border-custom-red "></div>
-                  </div>
+                  <OldPrice oldPrice={item?.product?.oldPrice} />
                 )}
+                <p className="font-bold ml-2">$ {item?.product?.price}</p>
               </div>
               <>
                 {!!item?.product?.size.length && (
