@@ -1,4 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {  createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {appendToBasket} from '@/store/reducers/BasketSlice.ts';
+import { addToCartNonRegisterUser } from './BasketForNonRegisterUser';
 
 interface CartItem {
   id: number;
@@ -32,7 +34,7 @@ const cartSlice = createSlice({
       }
     },
     setCartVisible(state, { payload }: PayloadAction<boolean>) {
-      console.log(payload);
+      console.log('visible')
       state.open = payload
     },
     removeFromCart(state, action: PayloadAction<number>) {
@@ -46,16 +48,18 @@ const cartSlice = createSlice({
       }
     },
   },
+  extraReducers: (builder) => {
+    builder
+        .addCase(appendToBasket, (state) => {
+          state.open = true
+    })
+        .addCase(addToCartNonRegisterUser, (state)=>{
+          state.open = true
+        })
+  }
 });
 
 export const { addToCart, removeFromCart, updateQuantity, setCartVisible } = cartSlice.actions;
 
 export default cartSlice.reducer;
 
-
-export const showCartThunk = createAsyncThunk(
-  'ShowCart',
-  async (_, { dispatch }) => {
-    dispatch(setCartVisible(true));
-  }
-);
