@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedColor } from '@/store/reducers/constructor/SelectedShoePartsReducer';
 import { updateParts } from '@/store/reducers/constructor/ShoesConstructorReducer';
@@ -8,9 +8,9 @@ import { layoutFadeAnimation } from '@/styles/Animations';
 import { useNavigate } from 'react-router';
 import constants from '@/constants/constants';
 import { useMediaQuery } from '@react-hook/media-query';
-import { ReactSVG } from 'react-svg';
 import IconButton from '@mui/material/IconButton';
-import rightArrowIcon from '@assets/images/rightArrowIcon.svg';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
 interface Color {
   img: string;
@@ -156,34 +156,21 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
     <div className="relative">
       {showArrows && !isMobile && (
         <button
-          className="absolute lg:left-4 2xl:left-10 top-[46%] transform -translate-y-1/2 bg-gray p-1 hover:bg-mint  rounded-full shadow-md"
+          className="absolute lg:left-4 2xl:left-10 top-[48%] transform -translate-y-1/2 bg-white p-1 hover:shadow-lg hover:bg-grayLight border border-grayLight  rounded-full shadow-md"
           onClick={() => handleArrowClick('left')}
         >
           <IconButton>
-            <ReactSVG
-              className="rotate-180"
-              src={rightArrowIcon}
-              beforeInjection={(svg) => {
-                svg.classList.add('icon');
-                svg.setAttribute('stroke', '#E2E0E0');
-              }}
-            />
+            <ArrowBackIosNewRoundedIcon />
           </IconButton>
         </button>
       )}
       {showArrows && !isMobile && (
         <button
-          className="absolute lg:right-4 2xl:right-10 top-[46%] transform -translate-y-1/2 bg-gray p-1 hover:bg-mint rounded-full shadow-md"
+          className="absolute lg:right-4 2xl:right-10 top-[48%] transform -translate-y-1/2 bg-white p-1 hover:shadow-lg hover:bg-grayLight border border-grayLight  rounded-full shadow-md"
           onClick={() => handleArrowClick('right')}
         >
           <IconButton>
-            <ReactSVG
-              src={rightArrowIcon}
-              beforeInjection={(svg) => {
-                svg.classList.add('icon');
-                svg.setAttribute('stroke', '#E2E0E0');
-              }}
-            />
+            <ArrowForwardIosRoundedIcon />
           </IconButton>
         </button>
       )}
