@@ -129,6 +129,7 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
   };
 
   const isMobile = useMediaQuery('(max-width: 1023px)');
+  const isMiddle = useMediaQuery('(max-width:767px)');
 
   const [visibleColorsCount, setVisibleColorsCount] = useState<number>(0);
 
@@ -154,9 +155,9 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
 
   return (
     <div className="relative">
-      {showArrows && !isMobile && (
+      {showArrows && !isMiddle && (
         <button
-          className="absolute lg:left-4 2xl:left-10 top-[48%] transform -translate-y-1/2 bg-white p-1 hover:shadow-lg hover:bg-grayLight border border-grayLight  rounded-full shadow-md"
+          className="absolute md:left-4 xl:left-10 2xl:left-24 top-[48%] transform -translate-y-1/2 bg-white p-1 hover:shadow-lg hover:bg-grayLight border border-grayLight  rounded-full shadow-md"
           onClick={() => handleArrowClick('left')}
         >
           <IconButton>
@@ -164,9 +165,9 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
           </IconButton>
         </button>
       )}
-      {showArrows && !isMobile && (
+      {showArrows && !isMiddle && (
         <button
-          className="absolute lg:right-4 2xl:right-10 top-[48%] transform -translate-y-1/2 bg-white p-1 hover:shadow-lg hover:bg-grayLight border border-grayLight  rounded-full shadow-md"
+          className="absolute md:right-4 xl:right-10 2xl:right-24 top-[48%] transform -translate-y-1/2 bg-white p-1 hover:shadow-lg hover:bg-grayLight border border-grayLight  rounded-full shadow-md"
           onClick={() => handleArrowClick('right')}
         >
           <IconButton>
@@ -181,7 +182,7 @@ const Colors: FC<IProps> = ({ details, shoesDetailsFromApi }) => {
         className={`  ${
           colors.length < 5 ? 'justify-center' : 'justify-between'
         } flex items-center m-auto overflow-x-auto gap-6 flex-row p-5 lg:py-6 lg:gap-6 md:w-wrapper  ${
-          showArrows ? 'lg:w-[86vw]' : 'md:w-wrapper'
+          showArrows ? 'md:w-[82vw] lg:w-[86vw] xl:w-[80vw]' : 'md:w-wrapper'
         } no-scrollbar`}
       >
         {colors.map((color, index) =>
