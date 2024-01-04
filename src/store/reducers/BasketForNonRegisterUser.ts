@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import { setCartVisible, showCartThunk } from "@/store/reducers/CartReducer.ts";
 
 const saveCartToLocalStorage = (cartData) => {
   localStorage.setItem('basket', JSON.stringify(cartData));
@@ -26,6 +27,7 @@ const basketForNonRegisterUser = createSlice({
       const item = { ...action.payload, photo: action.payload.photos[0], basketItemId: uuidv4() };
       state.items.push(item);
       saveCartToLocalStorage(state.items);
+      showCartThunk()
     },
     removeFromCartNonRegisterUser: (state, action) => {
       state.items = state.items.filter((item) => item.basketItemId !== action.payload);

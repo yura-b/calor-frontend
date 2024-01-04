@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import { getUser } from '@/api/users';
+import { setCartVisible, showCartThunk } from "@/store/reducers/CartReducer.ts";
+import { useAppDispatch } from "@/store/hooks/hooks.ts";
 
 interface IMeasurement {
   _id: string;
@@ -57,7 +58,7 @@ export interface BasketProduct {
   count: number;
   details: [];
   measurement: IMeasurement;
-  photo: string;
+  photos: string[];
   shoes?: IShoes;
   accessory?: IAccessory;
   basketItemId: string;
@@ -68,13 +69,17 @@ export interface BasketProduct {
 
 interface CartState {
   items: BasketProduct[];
+  status: string,
+  error: string | undefined
 }
 
 const initialState: CartState = {
   items: [],
+  status: '',
+  error: ''
 };
 
-export const fetchUserProductsInBasket = createAsyncThunk(`user/`, async ({ access_token, userId }) => {
+export const fetchUserProductsInBasket = createAsyncThunk('user/', async ({ access_token, userId }:{access_token:string, userId: string}) => {
   const response = await getUser(access_token, userId);
   return response.data;
 });
@@ -86,6 +91,8 @@ const basketSlice = createSlice({
     appendToBasket(state, action: PayloadAction<BasketProduct>) {
       const item = { ...action.payload, photo: action.payload.photos[0] };
       state.items.push(item);
+      console.log('push');
+      showCartThunk()
     },
     removeFromBasket(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item._id !== action.payload);
@@ -114,11 +121,11 @@ const basketSlice = createSlice({
         state.status = 'succeeded';
         state.items = action.payload.user.basket;
       })
-
       .addCase(fetchUserProductsInBasket.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
+
   },
 });
 

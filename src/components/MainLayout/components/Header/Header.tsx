@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import MainMenu from './components/MainMenu';
 import MobileMenu from './components/MobileMenu';
 import Busket from '@components/ui/Busket';
@@ -22,14 +22,31 @@ import AccountMenuLinks from '@pages/AccountPage/components/AccountMenuLinks';
 import { cleanUserData } from '@/store/reducers/UserReducer.ts';
 import { fetchUserProductsInBasket } from '@/store/reducers/BasketSlice';
 import CustomSnackBar from '@/components/ui/SnackBar/CustomSnackBar';
+import { setCartVisible } from '@/store/reducers/CartReducer.ts';
 
 const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }> = ({
   updateHeaderHeight,
 }): React.ReactElement => {
+
+
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const isHome = location.pathname === paths.home;
   const navigate = useNavigate();
+
+  const isHome = location.pathname === paths.home;
+
+  const {open} = useAppSelector(state => state.cart)
+
+
+  const { roles, access_token, firstName, userId, secondName } = useAppSelector((state) => state.user);
+  const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
+
+  const isCartOpen = open
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  console.log(open);
+  const [isAccountVisible, setIsAccountVisible] = useState(false);
+
+  const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
   const signInHandler = () => {
     dispatch(cleanUserData());
     navigate('/login');
@@ -37,9 +54,6 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
   const signUpHandler = () => {
     navigate('/signup');
   };
-
-  const { roles, access_token, firstName, userId, secondName } = useAppSelector((state) => state.user);
-  const { items: basketNonRegisterUser } = useAppSelector((state) => state.basketForNonRegisterUser);
 
   useEffect(() => {
     if (access_token) {
@@ -49,16 +63,15 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
 
   const { items: basketProducts } = useAppSelector((state) => state.basket);
 
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isOpen, toggleOpen] = useCycle(false, true);
 
   const openCart = () => {
-    setIsCartOpen(true);
+    dispatch(setCartVisible(true))
   };
 
   const closeCart = () => {
-    setIsCartOpen(false);
+    dispatch(setCartVisible(false))
   };
+
   useEffect(() => {
     if (isOpen || isCartOpen) {
       document.body.style.overflow = 'hidden';
@@ -78,9 +91,6 @@ const Header: React.FC<{ headerHeight: number; updateHeaderHeight: () => void }>
     };
   }, [updateHeaderHeight]);
 
-  const [isAccountVisible, setIsAccountVisible] = useState(false);
-
-  const isRegisteredUser = !!(roles?.includes(Role.USER) && access_token);
 
   return (
     <div

@@ -239,7 +239,7 @@ const ProductPage = () => {
                 <Slider
                   images={product?.data.photos}
                   color="gray"
-                  dataShoes={product?.data.category === 'shoes' ? true : false}
+                  dataShoes={product?.data.category === 'shoes'}
                   currentIndex={currentIndex}
                   setCurrentIndex={setCurrentIndex}
                 />

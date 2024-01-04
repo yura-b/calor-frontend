@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartItem {
   id: number;
@@ -9,10 +9,12 @@ interface CartItem {
 
 interface CartState {
   items: CartItem[];
+  open: boolean;
 }
 
 const initialState: CartState = {
   items: [],
+  open: false
 };
 
 const cartSlice = createSlice({
@@ -29,6 +31,10 @@ const cartSlice = createSlice({
         state.items.push({ ...item, quantity: 1 });
       }
     },
+    setCartVisible(state, { payload }: PayloadAction<boolean>) {
+      console.log(payload);
+      state.open = payload
+    },
     removeFromCart(state, action: PayloadAction<number>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
@@ -42,6 +48,14 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateQuantity, setCartVisible } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+
+export const showCartThunk = createAsyncThunk(
+  'ShowCart',
+  async (_, { dispatch }) => {
+    dispatch(setCartVisible(true));
+  }
+);
