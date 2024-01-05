@@ -3,7 +3,7 @@ import { authorization } from '@/api/config.ts';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const getDetails = (productFilter: string) => {
+export const getDetails = (productFilter?: string) => {
   return axios.get(`${BASE_URL}/product/details/?productFilter=${productFilter}`);
 };
 

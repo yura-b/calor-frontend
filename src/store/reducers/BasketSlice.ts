@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import { getUser } from '@/api/users';
 
 interface IMeasurement {
@@ -34,6 +33,7 @@ export interface IShoes {
   title: string;
   upperMaterial: string;
   _id: string;
+  count?: number
 }
 interface IAccessory {
   category: string;
@@ -47,6 +47,7 @@ interface IAccessory {
   subcategory: string;
   title: string;
   _id: string;
+  count?: number
 }
 
 export interface BasketProduct {
@@ -57,7 +58,7 @@ export interface BasketProduct {
   count: number;
   details: [];
   measurement: IMeasurement;
-  photo: string;
+  photos: string[];
   shoes?: IShoes;
   accessory?: IAccessory;
   basketItemId: string;
@@ -68,13 +69,17 @@ export interface BasketProduct {
 
 interface CartState {
   items: BasketProduct[];
+  status: string,
+  error: string | undefined
 }
 
 const initialState: CartState = {
   items: [],
+  status: '',
+  error: ''
 };
 
-export const fetchUserProductsInBasket = createAsyncThunk(`user/`, async ({ access_token, userId }) => {
+export const fetchUserProductsInBasket = createAsyncThunk('user/', async ({ access_token, userId }:{access_token:string, userId: string}) => {
   const response = await getUser(access_token, userId);
   return response.data;
 });
@@ -114,11 +119,11 @@ const basketSlice = createSlice({
         state.status = 'succeeded';
         state.items = action.payload.user.basket;
       })
-
       .addCase(fetchUserProductsInBasket.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
+
   },
 });
 

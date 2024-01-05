@@ -6,13 +6,19 @@ export const fetchProductsDetails = createAsyncThunk('products/fetchProductsDeta
   return response.data;
 });
 
+interface IState {
+  status: string
+  products: unknown,
+  error: null | undefined | string
+}
+
 const productsDataSlice = createSlice({
   name: 'products',
   initialState: {
     products: [],
     status: 'idle',
     error: null,
-  },
+  } as IState,
   reducers: {},
   extraReducers: (builder) => {
     builder

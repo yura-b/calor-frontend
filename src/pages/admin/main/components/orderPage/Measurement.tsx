@@ -3,26 +3,35 @@ import { IMeasurement } from '@/constants/interfaces/order.ts';
 
 interface IProps {
   measurement: IMeasurement;
+  size: string | number | undefined
 }
 
-const Measurement: FC<IProps> = ({ measurement }) => {
-  if (!measurement) return <></>;
+const Measurement: FC<IProps> = ({ measurement,size }) => {
+  console.log(measurement.brandSize?.trim());
   return (
     <div className="flex flex-col w-1/3">
       <div className={'flex flex-col gap-5'}>
         <p className={'font-bold'}>Measurement</p>
-        <div className={'grid grid-cols-2 gap-y-2 gap-x-8'}>
+        {size !== null &&
+          (<div className={'flex flex-row gap-4'}>
+          <p>Size</p>
+          <p className={'font-bold'}>{size}</p>
+        </div>)
+        }
+        {measurement && <div className={'grid grid-cols-2 gap-y-2 gap-x-8'}>
           <p>Brand name</p>
-          {measurement.brandName?.trim() !== '' ? <span>{measurement.brandName}</span> : <span>---</span>}
+          {measurement.brandName?.trim() ? <span>{measurement.brandName}</span> : <span>---</span>}
 
           <p>Brand model</p>
-          {measurement.brandModel?.trim() !== '' ? <span>{measurement.brandModel}</span> : <span>---</span>}
+          {measurement.brandModel?.trim() ? <span>{measurement.brandModel}</span> : <span>---</span>}
 
           <p>Brand size</p>
-          {measurement.brandSize?.trim() !== '' ? <span>{measurement.brandSize}</span> : <span>---</span>}
+          {measurement.brandSize?.trim() ? <span>{measurement.brandSize}</span> : <span>---</span>}
 
-          <p>Size</p>
-          <span>{measurement.size}</span>
+          {!size && <>
+            <p>Size</p>
+            <span>{measurement.size}</span>
+          </>}
           {measurement.rightFootLength && (
             <>
               <p>Right foot length</p>
@@ -59,7 +68,7 @@ const Measurement: FC<IProps> = ({ measurement }) => {
               <span>{measurement.insoleWidth}</span>
             </>
           )}
-        </div>
+        </div>}
       </div>
       <div className="flex flex-col mt-3">
         <p className={'font-bold'}>Comment</p>

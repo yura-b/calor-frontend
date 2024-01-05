@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { fadeAnimation } from '@styles/Animations';
 import { useNavigate } from 'react-router';
 import { BasketProduct } from '@/store/reducers/BasketSlice';
+import { useAppDispatch } from '@/store/hooks/hooks.ts';
+import { setCartVisible } from '@/store/reducers/CartReducer.ts';
 
 interface IProps {
   title: string;
@@ -17,7 +19,8 @@ interface IProps {
 const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
   const navigate = useNavigate();
 
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState<number | string | undefined>(0);
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const productsTotal = data?.reduce((acc, item) => {
@@ -37,6 +40,7 @@ const CartFooter: React.FC<IProps> = ({ title, data }): React.ReactElement => {
   };
 
   const handleClick = () => {
+    dispatch(setCartVisible(false))
     navigate('/checkout');
   };
 
