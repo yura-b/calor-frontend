@@ -33,6 +33,7 @@ export interface IShoes {
   title: string;
   upperMaterial: string;
   _id: string;
+  count?: number
 }
 interface IAccessory {
   category: string;
@@ -46,6 +47,7 @@ interface IAccessory {
   subcategory: string;
   title: string;
   _id: string;
+  count?: number
 }
 
 export interface BasketProduct {

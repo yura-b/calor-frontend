@@ -34,7 +34,6 @@ const cartSlice = createSlice({
       }
     },
     setCartVisible(state, { payload }: PayloadAction<boolean>) {
-      console.log('visible')
       state.open = payload
     },
     removeFromCart(state, action: PayloadAction<number>) {
